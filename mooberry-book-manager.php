@@ -331,6 +331,7 @@
 				if ( isset( $wp_query->query_vars['the-taxonomy'] ) ) {
 					$taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/' );
 					$mbdb_books = mbdb_get_books_in_taxonomy( $mbdb_series, $taxonomy );
+				
 					$content = mbdb_display_grid( array( $mbdb_books ), 200, 3, 0 );
 				}
 			} 

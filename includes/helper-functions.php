@@ -429,6 +429,7 @@ function mbdb_get_list( $options_key ) {
 	
 function mbdb_get_book_array() {
 	$book_query = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null );
+	$books = array();
 	foreach( $book_query as $book ) {
 		$books[$book->ID] = $book->post_title;
 	}
