@@ -1,0 +1,79 @@
+
+
+.cmb-td input {
+	float:left;
+}
+h2 {
+	color: blue;
+	}
+	
+	
+#side-sortables 	.cmb-wrap  {
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+
+#side-sortables .cmb-th label:after {
+	border: 0px;
+	padding: 0px;
+}
+
+#side-sortables .cmb-th {
+	padding: 0px;
+}
+
+.postbox-container .cmb-row:not(:last-of-type) {
+	border: 0px;
+}
+
+#book_page_options_metabox {
+	width: 50%;
+	float: left;
+}
+
+.cmb-row {
+	margin: 0px;
+	padding: 0px;
+}
+
+div.cmb-row.cmb-type-text.cmb2-id--mbdb-author-sort-selection.table-layout  {
+	padding: 0px;
+ }
+/*
+#mbdb_shortcode_selector {
+	width: 45%;
+	float: left;
+	padding: 5px;
+}
+*/
+.shortcode_description, .shortcode_argument_description {
+	font-style: italic;
+	
+}
+
+.fielddescription {
+color: #aaa;
+font-style: italic;
+margin: 0;
+}
+
+/* set book list multi check for book grid page to be horizontal */
+.cmb2-id--mbdb-book-grid-custom-select li,.cmb2-id--mbdb-book-grid-genre li, .cmb2-id--mbdb-book-grid-series li  {
+	display: inline-table;
+	margin-right: 10px;
+}
+
+/* set genre list multi check for book grid page to be horizontal 
+.cmb2-id--mbdb-book-grid-genre li {
+	display: inline-table;
+	margin-right: 10px;
+}
+
+/* set series list multi check for book grid page to be horizontal 
+.cmb2-id--mbdb-book-grid-series li {
+	display: inline-table;
+	margin-right: 10px;
+}
+*/
+
