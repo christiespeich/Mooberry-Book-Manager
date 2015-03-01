@@ -26,3 +26,11 @@ Feature books on your sidebar with four options:
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
 Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Javascript, but the public pages do not.
+
+## Changelog
+
+#### 0.2 
+* Fixes bug with excerpt not showing up
+
+#### 0.1 
+* Initial Release
