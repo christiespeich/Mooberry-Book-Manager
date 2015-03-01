@@ -139,8 +139,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'title'         => 'Excerpt',
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
-		'priority'      => 'default',
-			
+		'priority'      => 'default',	
 		'show_names'    => false, // Show field names on the left
 		'fields' => array(
 			array(

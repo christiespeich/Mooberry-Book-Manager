@@ -177,9 +177,9 @@ function mbdb_shortcode_excerpt($attr, $content) {
 	}
 	$mbdb_excerpt = get_post_meta($bookID, '_mbdb_excerpt', true);
 	if (empty($mbdb_excerpt)) { 
-		apply_filters('mbdb_shortcode_excerpt', '<span class="mbm-book-excerpt"><class="mbm-book-excerpt-blank">' . esc_html($attr['blank']) . '</span></span>'); 
+		return apply_filters('mbdb_shortcode_excerpt', '<span class="mbm-book-excerpt"><class="mbm-book-excerpt-blank">' . esc_html($attr['blank']) . '</span></span>'); 
 	}
-	apply_filters('mbdb_shortcode_excerpt', '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-excerpt-text">' . wpautop($mbdb_excerpt) . '</span><span class="mbm-book-excerpt-after">' . esc_html($attr['after']) . '</span></div>');
+	return apply_filters('mbdb_shortcode_excerpt', '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-excerpt-text">' . wpautop($mbdb_excerpt) . '</span><span class="mbm-book-excerpt-after">' . esc_html($attr['after']) . '</span></div>');
 }
 
 function mbdb_shortcode_series( $attr, $content) {
