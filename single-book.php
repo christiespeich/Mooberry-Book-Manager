@@ -3,7 +3,6 @@
 add_shortcode( 'book_title', 'mbdb_shortcode_title'  );
 add_shortcode( 'book_cover', 'mbdb_shortcode_cover'  );
 add_shortcode( 'book_subtitle', 'mbdb_shortcode_subtitle'  );
-add_shortcode( 'book_author', 'mbdb_shortcode_author'  );
 add_shortcode( 'book_summary', 'mbdb_shortcode_summary'  );
 add_shortcode( 'book_publisher', 'mbdb_shortcode_publisher'  );
 add_shortcode( 'book_published', 'mbdb_shortcode_published'  );
@@ -62,20 +61,6 @@ function mbdb_shortcode_subtitle($attr, $content) {
 	}
 	return apply_filters('mbdb_shortcode_subtitle', '<span class="mbm-book-subtitle"><span class="mbm-book-subtitle-blank">' . esc_html($attr['blank']) . '</span></span>');
 }
-
-function mbdb_shortcode_author($attr, $content) {
-	$attr = shortcode_atts(array('book' => '',
-								'blank' => ''), $attr);
-	$bookID = mbdb_get_book_ID($attr['book']);
-	if ($bookID != 0) {
-		$mbdb_author = get_post_meta($bookID, '_mbdb_author', true);
-		if (!empty($mbdb_author)) {
-			return apply_filters('mbdb_shortcode_author', '<span class="mbm-book-author"><span class="mbm-book-author-text">' . esc_html(mbdb_get_author_names($mbdb_author)) . '</span></span>');	
-		}
-	}
-	return apply_filters('mbdb_shortcode_author', '<span class="mbm-book-author"><span class="mbm-book-author-blank">' . esc_html($attr['blank']) . '</span></span>');
-}
-
 
 
 function mbdb_shortcode_summary($attr, $content) {

@@ -393,77 +393,81 @@ function mbdb_display_grid($mbdb_books, $mbdb_book_grid_cover_height, $mbdb_book
 	$content = '<div class="mbm-book-grid-div" style="padding-left:' . (50 * $l) . 'px;">';
 	
 	// loop through the array
-	foreach($mbdb_books as $key => $set) {
-	
-		// If a label is set and there's at least one book, print the label
-		if ( $key && count( $set ) > 0 ) {
-			// set the heading level based on the depth level of the array
-			do_action('mbdb_book_grid_before_heading',  $l, $key);
-			$content .= '<h' . ( 2 + $l ) . ' class="mbm-book-grid-heading' . ( $l + 1 ) . '">' . $key . '</h' . ( 2 + $l ) .'>';
-			do_action('mbdb_book_grid_after_heading', $l, $key);
-		}
-		// because the index of the array could be a genre or series name and not a sequential index use array_keys to get the index
-		// if the first element in the array isn't an object that means there's another level in the array
-		// and we need to re-call this function recursively to get the next level	
-		$the_key = array_keys($set);
-		if (count($the_key)>0) {
-			if ( gettype( $set[$the_key] ) != 'object') {
-				$l++;
-				do_action('mbdb_book_grid_before_recursion',$set, $mbdb_book_grid_cover_height, $mbdb_book_grid_books_across,  $l);
-
-				$content .= mbdb_display_grid($set, $mbdb_book_grid_cover_height, $mbdb_book_grid_books_across,  $l);
-				
-				do_action('mbdb_book_grid_after_recursion', $set, $mbdb_book_grid_cover_height, $mbdb_book_grid_books_across,  $l);
-				$l--;
-			} else {
-				// we're at the inner most level now so we can print out the grid
-				do_action('mbdb_book_grid_before_table',  $l);
-				$content .= '<table class="mbm-book-grid-table">';
-				do_action('mbdb_book_grid_before_row',  $l);
-				$content .= '<tr class="mbm-book-grid-row">';	
-				
-				// print out each book
-				foreach($set as $book) {
-						$mbdb_bookID = $book->ID;
-						$mbdb_book_title = apply_filters('mbdb_book_grid_book_title', $book->post_title, $l);
-						$image_src = get_post_meta( $mbdb_bookID, '_mbdb_cover', true );
-						do_action('mbdb_book_grid_before_cell',  $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
-						$content .= '<td class="mbm-book-grid-cell" style="width:' . $width . '%;padding:15px;vertical-align:top;">';
-						do_action('mbdb_book_grid_before_link',  $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c);
-						$content .= '<A class="mbm-book-grid-title-link" HREF="' . esc_url(get_permalink($mbdb_bookID)) . '">';
-						if (isset($image_src) && $image_src != '') {
-							do_action('mbdb_book_grid_before_cover_image', $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
-							$content .= '<img class="mbm-book-grid-cover" src="' . esc_url($image_src) . '" style="height:' . esc_attr($mbdb_book_grid_cover_height) . 'px" /><BR> ';
-							do_action('mbdb_book_grid_after_cover_image', $content, $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
-						} else {
-							do_action('mbdb_book_grid_no_cover_image',$mbdb_bookID, $mbdb_book_title, $mbdb_book_grid_cover_height, $c);
-						}
-						do_action('mbdb_book_grid_before_book_title',  $mbdb_bookID, $mbdb_book_title);
-						$content .= '<H3 class="mbm-book-grid-title">' . esc_html($mbdb_book_title) . '</h3>';	
-						do_action('mbdb_book_grid_after_book_title',   $mbdb_bookID, $mbdb_book_title);
-						$content .= '</a>';
-						do_action('mbdb_book_grid_after_link', $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c);
-						$content .= '</td> ';
-						do_action('mbdb_book_grid_after_cell',  $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
-						$c++;
-						// close the row and start a new one if we've reached the number the user set
-						if ($c == $mbdb_book_grid_books_across) {
-							$content .= '</tr>';
-							do_action('mbdb_book_grid_after_row', $l);
-							do_action('mbdb_book_grid_before_row',$l);
-							$content .= '<tr>';
-							$c=0;
-						}
-				}
-				$content .= '</tr>';
-				do_action('mbdb_book_grid_after_row',  $l);
-				$content .= '</table>';
-				do_action('mbdb_book_grid_after_table',  $l);
-				$c=0;
+	if (count($mbdb_books)>0) {
+		foreach($mbdb_books as $key => $set) {
+		
+			// If a label is set and there's at least one book, print the label
+			if ( $key && count( $set ) > 0 ) {
+				// set the heading level based on the depth level of the array
+				do_action('mbdb_book_grid_before_heading',  $l, $key);
+				$content .= '<h' . ( 2 + $l ) . ' class="mbm-book-grid-heading' . ( $l + 1 ) . '">' . $key . '</h' . ( 2 + $l ) .'>';
+				do_action('mbdb_book_grid_after_heading', $l, $key);
 			}
-		} else {
-			$content .= 'Books not found';
+			// because the index of the array could be a genre or series name and not a sequential index use array_keys to get the index
+			// if the first element in the array isn't an object that means there's another level in the array
+			// and we need to re-call this function recursively to get the next level	
+			$the_key = array_keys($set);
+			if (count($the_key)>0) {
+				if ( gettype( $set[$the_key[0]] ) != 'object') {
+					$l++;
+					do_action('mbdb_book_grid_before_recursion',$set, $mbdb_book_grid_cover_height, $mbdb_book_grid_books_across,  $l);
+
+					$content .= mbdb_display_grid($set, $mbdb_book_grid_cover_height, $mbdb_book_grid_books_across,  $l);
+					
+					do_action('mbdb_book_grid_after_recursion', $set, $mbdb_book_grid_cover_height, $mbdb_book_grid_books_across,  $l);
+					$l--;
+				} else {
+					// we're at the inner most level now so we can print out the grid
+					do_action('mbdb_book_grid_before_table',  $l);
+					$content .= '<table class="mbm-book-grid-table">';
+					do_action('mbdb_book_grid_before_row',  $l);
+					$content .= '<tr class="mbm-book-grid-row">';	
+					
+					// print out each book
+					foreach($set as $book) {
+							$mbdb_bookID = $book->ID;
+							$mbdb_book_title = apply_filters('mbdb_book_grid_book_title', $book->post_title, $l);
+							$image_src = get_post_meta( $mbdb_bookID, '_mbdb_cover', true );
+							do_action('mbdb_book_grid_before_cell',  $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
+							$content .= '<td class="mbm-book-grid-cell" style="width:' . $width . '%;padding:15px;vertical-align:top;">';
+							do_action('mbdb_book_grid_before_link',  $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c);
+							$content .= '<A class="mbm-book-grid-title-link" HREF="' . esc_url(get_permalink($mbdb_bookID)) . '">';
+							if (isset($image_src) && $image_src != '') {
+								do_action('mbdb_book_grid_before_cover_image', $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
+								$content .= '<img class="mbm-book-grid-cover" src="' . esc_url($image_src) . '" style="height:' . esc_attr($mbdb_book_grid_cover_height) . 'px" /><BR> ';
+								do_action('mbdb_book_grid_after_cover_image', $content, $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
+							} else {
+								do_action('mbdb_book_grid_no_cover_image',$mbdb_bookID, $mbdb_book_title, $mbdb_book_grid_cover_height, $c);
+							}
+							do_action('mbdb_book_grid_before_book_title',  $mbdb_bookID, $mbdb_book_title);
+							$content .= '<H3 class="mbm-book-grid-title">' . esc_html($mbdb_book_title) . '</h3>';	
+							do_action('mbdb_book_grid_after_book_title',   $mbdb_bookID, $mbdb_book_title);
+							$content .= '</a>';
+							do_action('mbdb_book_grid_after_link', $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c);
+							$content .= '</td> ';
+							do_action('mbdb_book_grid_after_cell',  $mbdb_bookID, $mbdb_book_title, $image_src, $mbdb_book_grid_cover_height, $c );
+							$c++;
+							// close the row and start a new one if we've reached the number the user set
+							if ($c == $mbdb_book_grid_books_across) {
+								$content .= '</tr>';
+								do_action('mbdb_book_grid_after_row', $l);
+								do_action('mbdb_book_grid_before_row',$l);
+								$content .= '<tr>';
+								$c=0;
+							}
+					}
+					$content .= '</tr>';
+					do_action('mbdb_book_grid_after_row',  $l);
+					$content .= '</table>';
+					do_action('mbdb_book_grid_after_table',  $l);
+					$c=0;
+				}
+			} else {
+				$content .= 'Books not found';
+			}
 		}
+	} else {
+		$content .= 'Books not found';
 	}
 	$content .= '</div>';
 	do_action('mbdb_book_grid_after_div', $l);
