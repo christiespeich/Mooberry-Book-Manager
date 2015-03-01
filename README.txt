@@ -73,7 +73,7 @@ A single book most likely won’t have both Download Links and Retailer Links, u
 
 == Changelog ==
 
-= 0.2 =
+= 0.1.1 =
 * Fixed bug with excerpt not showing up
 
 = 0.1 =

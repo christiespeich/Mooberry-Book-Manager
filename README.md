@@ -29,7 +29,7 @@ Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Jav
 
 ## Changelog
 
-#### 0.2 
+#### 0.1.1
 * Fixes bug with excerpt not showing up
 
 #### 0.1 
