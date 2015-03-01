@@ -2,19 +2,18 @@
 	
 function mbdb_get_default_page_layout() {
 	return apply_filters('mdbd_default_book_page', '[book_cover width="200" align="right"][book_summary blank="Summary Coming Soon!"]
-				[book_goodreads  ]
 				<strong>Order Now:</strong> [book_buylinks  align="horizontal" size="35" blank="Coming Soon!"]
-
+				[book_goodreads  ]
+				
 				<strong>Published:</strong> [book_published format="short" blank="TBA"]
 				<strong>Publisher:</strong> [book_publisher  blank="TBA"]
 				<strong>Number of Pages:</strong> [book_length  blank="TBD"]
-				<strong>Genres: </strong><span>[book_genre delim="comma" blank="(uncategorized)"]
-				</span><strong>Tags:</strong><span> [book_tags  delim="comma" blank="(none)"]</span>
+				<strong>Genres:</strong><span>[book_genre delim="comma" blank="(uncategorized)"]</span>
+				<strong>Tags:</strong><span> [book_tags  delim="comma" blank="(none)"]</span>
 
 				[book_serieslist before="Part of the " after=" series: " delim="list"]
-
-				<strong>Reviews:</strong><span> [book_reviews  blank="Coming Soon!"]
-				</span><strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>
+				<strong>Reviews:</strong><span> [book_reviews  blank="Coming Soon!"]</span>
+				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>
 
 				<strong>Order Now:</strong> [book_buylinks  align="horizontal" size="30" blank="Coming Soon!"]');
 	
