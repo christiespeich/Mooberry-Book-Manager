@@ -73,6 +73,13 @@ A single book most likely won’t have both Download Links and Retailer Links, u
 
 == Changelog ==
 
+= 0.1.2 =
+
+* Fixed genre spacing issue
+* Added subtitle to page layout
+* Changed "Order Now" to "Buy Now"
+* Updated grid screenshot
+
 = 0.1.1 =
 * Fixed bug with excerpt not showing up
 
