@@ -31,10 +31,10 @@ Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Jav
 
 #### 0.1.2
 
-Fixed genre spacing issue
-Added subtitle to page layout
-Changed "Order Now" to "Buy Now"
-Updated grid screenshot
+* Fixed genre spacing issue
+* Added subtitle to page layout
+* Changed "Order Now" to "Buy Now"
+* Updated grid screenshot
 
 #### 0.1.1
 * Fixes bug with excerpt not showing up
