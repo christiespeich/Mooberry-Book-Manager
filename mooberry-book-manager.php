@@ -25,8 +25,8 @@
 
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	update_option(MBDB_PLUGIN_VERSION_KEY, '0.1.2');
 	
+
 	
 	// Load in CMB2
 	if ( file_exists( dirname( __FILE__ ) . '/includes/cmb2/init.php' ) ) {
@@ -52,7 +52,14 @@
 	require_once dirname( __FILE__ ) . '/book-grid.php';
 	require_once ABSPATH . 'wp-admin/includes/image.php';
 
-	 
+	// if upgrading from v0.1.1, update the default layout
+	if (get_option(MBDB_PLUGIN_VERSION_KEY) == '0.1.1') {
+			$content = mbdb_get_default_page_layout();
+			update_option('mbdb_book_page_options', array('_mbdb_book_page_layout' => $content));
+	}
+	update_option(MBDB_PLUGIN_VERSION_KEY, '0.1.2');
+	
+	
 	// NOTE: DO NOT change the name of this function because it is required for
 	// the add ons to check dependency
 	register_activation_hook( __FILE__, 'mbdb_activate' );
