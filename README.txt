@@ -8,7 +8,7 @@ Stable tag: 0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An easy-to-use system for authors to add books to their Wordpress website. Organize books with a few clicks. Feature books on the sidebar.
+An easy-to-use system for authors to add books to their Wordpress website. Add your new book to your site in less than 5 minutes.f
 
 == Description ==
 
