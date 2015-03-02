@@ -8,7 +8,7 @@
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 ## Description
-An easy-to-use system for authors to add books to their Wordpress website.
+An easy-to-use system for authors to add books to their Wordpress website. Add your new book to your site in less than 5 minutes.
 
 
 No coding is necessary to use Mooberry Book Manager. Adding books is as easy as filling out a form. Include as much or as little information as you want, including the book cover, links to purchase the book, reviews of the book, an excerpt, and more.
