@@ -1,8 +1,7 @@
 <?php
 	
 function mbdb_get_default_page_layout() {
-	return apply_filters('mdbd_default_book_page', '<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="Summary Coming Soon!"]
-				<strong>Order Now:</strong> [book_buylinks  align="horizontal" size="35" blank="Coming Soon!"]
+	return apply_filters('mdbd_default_book_page', '<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="Summary Coming Soon!"]<h2>Buy Now:</h2>  [book_buylinks  align="horizontal" size="35" blank="Coming Soon!"]
 				[book_goodreads  ]
 				
 				<strong>Published:</strong> [book_published format="short" blank="TBA"]
@@ -13,9 +12,7 @@ function mbdb_get_default_page_layout() {
 
 				[book_serieslist before="Part of the " after=" series: " delim="list"]
 				<strong>Reviews:</strong><span> [book_reviews  blank="Coming Soon!"]</span>
-				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>
-
-				<strong>Order Now:</strong> [book_buylinks  align="horizontal" size="30" blank="Coming Soon!"]');
+				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span><h2>Buy Now:</h2> [book_buylinks  align="horizontal" size="30" blank="Coming Soon!"]');
 	
 	
 }
