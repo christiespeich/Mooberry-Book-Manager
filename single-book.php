@@ -481,19 +481,20 @@ function mbdb_shortcode_buylinks( $attr, $content) {
 	
 	
 function mbdb_book_content($content) {
-	$mbdb_book_page_options = get_option('mbdb_book_page_options');	
+	// $mbdb_book_page_options = get_option('mbdb_book_page_options');	
 	
-	if ($mbdb_book_page_options) {
-		if (array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
-			$content .= stripslashes($mbdb_book_page_options['_mbdb_book_page_layout']); //wpautop(stripslashes($mbdb_book_page_options['_mbdb_book_page_layout']));
+	// if ($mbdb_book_page_options) {
+		// if (array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
+			$book_page_layout = mbdb_get_default_page_layout();
+			$content .= stripslashes($book_page_layout); //wpautop(stripslashes($mbdb_book_page_options['_mbdb_book_page_layout']));
 			$content = preg_replace('/\\n/', '<br>', $content);
 			return apply_filters('mbdb_book_content', $content);
-		}
-	}
-	// just in case the option isn't in the database
-	$content .= preg_replace('/\\n/', '<br>', mbdb_get_default_page_layout()); //wpautop(mbdb_get_default_page_layout());
+		// }
+	// }
+	//just in case the option isn't in the database
+	// $content .= preg_replace('/\\n/', '<br>', mbdb_get_default_page_layout()); //wpautop(mbdb_get_default_page_layout());
 			
-	return apply_filters('mbdb_book_content', $content);
+	//return apply_filters('mbdb_book_content', $content);
 	
 }
 	?>

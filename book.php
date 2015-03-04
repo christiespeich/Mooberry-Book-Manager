@@ -41,7 +41,7 @@ function set_up_mbdb_book_columns( $columns ) {
 
 add_action( 'manage_mbdb_book_posts_custom_column', 'populate_mbdb_book_columns', 10, 2 );
 function populate_mbdb_book_columns($column, $post_id) {
-	global $post;
+
 	switch ($column) {
 		case '_mbdb_cover':
 			$img_src = get_post_meta($post_id, $column, true);

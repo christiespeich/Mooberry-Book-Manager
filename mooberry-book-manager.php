@@ -103,11 +103,11 @@
 		}
 		
 		// check if default book page exists and add it if necessary
-		$mbdb_book_page_options = get_option('mbdb_book_page_options');	
-		if (!$mbdb_book_page_options || !array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
-			$content = mbdb_get_default_page_layout();
-			update_option('mbdb_book_page_options', array('_mbdb_book_page_layout' => $content));
-		}
+		// $mbdb_book_page_options = get_option('mbdb_book_page_options');	
+		// if (!$mbdb_book_page_options || !array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
+			// $content = mbdb_get_default_page_layout();
+			// update_option('mbdb_book_page_options', array('_mbdb_book_page_layout' => $content));
+		// }
 
 		update_option( 'mbdb_options', apply_filters('mbdb_options', $mbdb_options));
 
