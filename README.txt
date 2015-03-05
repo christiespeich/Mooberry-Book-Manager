@@ -73,6 +73,11 @@ A single book most likely won’t have both Download Links and Retailer Links, u
 
 == Changelog ==
 
+= 0.2 =
+
+* Book Grid interface updated to accomodate Mutli-Author add-on
+* NOT backwards-compatible. All pages/posts with a Book Grid will need to be updated.
+
 = 0.1.2 =
 
 * Fixed genre spacing issue
