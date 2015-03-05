@@ -6,13 +6,14 @@ do_action('mbdb_settings_before_instructions');
 <table>
 	<tr style="vertical-align:top">
 	<td style="width:20%; padding:5px;">
-	<h3>Retailers</h3>
-	<p >On this tab, add retailers where your books are sold.</p>
+		<h3>Retailers</h3>
+		<p >On this tab, add retailers where your books are sold.</p>
 	</td>
 	<td style="width:20%; padding:5px;">
-	<h3>Formats</h3>
+		<h3>Formats</h3>
 		<p >On this tab, add e-book formats your books can be downloaded in.</p>
-		</td>
+	</td>
+	
 	</tr>
 	</table>
 
@@ -37,10 +38,31 @@ if ( $pagenow == 'options-general.php' && $_GET['page'] == 'mbdb_settings' ) {
             $fields = mbdb_formats();
 			mbdb_meta_fields($fields);
             break;
+		case 'output':
+			mbdb_print_book_list();
+			break;
 	}
 	do_action('mbdb_settings_after_tab_display', $tab);
 }
 
+function mbdb_print_book_list() {
+	$book_query = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null );
+	$output = '<table border="1"><tr><th>ID</th><th>Title</th><th>Cover</th><th>Genre</th><th>Series</th><th>Pub Date</th><th>Author</th><th>Series Order</th></tr>';
+	foreach($book_query as $book) {
+		$output .= '<tr><td>' . $book->ID . '</td><td>' . $book->post_title . '</td><td>';
+		$img_src = get_post_meta($book->ID, '_mbdb_cover', true);
+		if ($img_src!='') {
+			$output .= '<IMG SRC="' . esc_url($img_src) . '" width="100"/>';
+		}
+		$output .= '</td><td>' . get_the_term_list( $book->ID, 'mbdb_genre', '' , ', ' ) . '</td>';
+		$output .= '<td>' . get_the_term_list( $book->ID, 'mbdb_series', '' , ', ' ) . '</td>';
+		$output .= '<td>' . get_post_meta(  $book->ID, '_mbdb_published', true) . '</td>';
+		$output .= '<td></td>';
+		$output .= '<td>' . get_post_meta(  $book->ID, '_mbdb_series_order', true) . '</td></tr>' ;
+	}
+	$output .= '</table>';
+	echo $output;
+}
 
 function mbdb_meta_fields( $fields) {
 	$metabox = apply_filters('mbdb_settings_options_meta_box', array(
@@ -150,7 +172,7 @@ function mbdb_uniqueID_generator( $value ) {
 }
 
 function mbdb_admin_tabs( $current = 'book-page' ) {
-	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => 'Retailers', 'formats' => 'Formats'));
+	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => 'Retailers', 'formats' => 'Formats', 'output' => 'Print Book list'));
 	do_action('mbdb_settings_before_tabs');
 	echo '<div id="icon-themes" class="icon32"><br></div>';
 	echo '<h2 class="nav-tab-wrapper">';
