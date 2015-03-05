@@ -56,8 +56,9 @@
 	if (get_option(MBDB_PLUGIN_VERSION_KEY) == '0.1.1') {
 			$content = mbdb_get_default_page_layout();
 			update_option('mbdb_book_page_options', array('_mbdb_book_page_layout' => $content));
+			update_option(MBDB_PLUGIN_VERSION_KEY, '0.1.2');
 	}
-	update_option(MBDB_PLUGIN_VERSION_KEY, '0.1.2');
+	
 	
 	
 	// NOTE: DO NOT change the name of this function because it is required for
