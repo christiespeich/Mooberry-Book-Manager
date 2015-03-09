@@ -59,7 +59,7 @@ function populate_mbdb_book_columns($column, $post_id) {
 			break;
 		default:
 			do_action('mbdb_book_before' . $column . '_column');
-			echo apply_filters('mbdb_book' . $column . '_column', get_post_meta( $post_id, $column, true));
+			echo apply_filters('mbdb_book' . $column . '_column', get_post_meta( $post_id, $column, true), $post_id);
 			do_action('mbdb_book_after' . $column . '_column');
 	}	
 }

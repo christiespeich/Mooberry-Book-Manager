@@ -68,7 +68,7 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options) {
 }
 
 
-function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids ) {
+function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids, $authorID = null ) {
 	// title is not a custom field so it uses orderby to set the field
 	// other sorting is by custom fields and they use orderby = 'meta_value' and meta_key = field
 	if ( $sort_field != 'title' ) {
@@ -201,6 +201,9 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 		$args['meta_key'] = $meta_key;
 		$args['order'] = $sort_order;
 	} 
+	
+	
+		
 	$books = get_posts( apply_filters('mbdb_get_books_main_query', $args ) );
 	
 	if ( isset( $args2 ) ) {
@@ -382,6 +385,9 @@ function mbdb_check_field( $fieldname, $arrayname) {
 
 
 function mbdb_format_date($field) {
+		if ($field == null or $field == '') {
+			return $field;
+		}
 		return apply_filters('mbdb_format_date', date( 'Y/m/d', strtotime( $field ) ));
 }
 	
