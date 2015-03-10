@@ -29,6 +29,10 @@ Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Jav
 
 ## Changelog
 
+#### 0.2.1 
+
+* Added Download Links to page layout
+
 #### 0.2 
 
 * Book Grid interface updated to accomodate Mutli-Author add-on
