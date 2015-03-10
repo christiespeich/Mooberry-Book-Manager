@@ -1,7 +1,7 @@
 <?php
 	
 function mbdb_get_default_page_layout() {
-	return apply_filters('mbdb_default_book_page', '<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="Summary Coming Soon!"]<h2>Buy Now:</h2>  [book_buylinks  align="horizontal" size="35" blank="Coming Soon!"]
+	return apply_filters('mbdb_default_book_page', '<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="Summary Coming Soon!"]<h2>Buy Now:</h2>  [book_buylinks  align="horizontal" size="35" blank="Coming Soon!"][book_downloadlinks align="horizontal" size="35"]
 				[book_goodreads  ]
 				
 				<strong>Published:</strong> [book_published format="short" blank="TBA"]
