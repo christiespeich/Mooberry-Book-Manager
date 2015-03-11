@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer  
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.1.1  
-**Stable tag:** 0.2.1  
+**Stable tag:** 0.2.2   
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -28,6 +28,10 @@ Mooberry Book Manager works with your chosen theme to provide a consistent look 
 Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Javascript, but the public pages do not.
 
 ## Changelog
+
+#### 0.2.2
+
+* Shows appropriate label for Download vs Buy links
 
 #### 0.2.1 
 

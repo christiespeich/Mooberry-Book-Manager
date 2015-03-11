@@ -4,7 +4,7 @@
     Plugin URI:
     Description: An easy-to-use system for authors to add books their Wordpress website
     Author: Mooberry Dreams
-    Version: 0.2.1
+    Version: 0.2.2
     Author URI: http://www.mooberrydreams.com/
 	
 	Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
