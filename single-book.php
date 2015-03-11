@@ -16,6 +16,7 @@ add_shortcode( 'book_downloadlinks', 'mbdb_shortcode_downloadlinks'  );
 add_shortcode( 'book_serieslist', 'mbdb_shortcode_serieslist');
 add_shortcode( 'book_series', 'mbdb_shortcode_series');
 add_shortcode( 'book_tags', 'mbdb_shortcode_tags');
+add_shortcode( 'book_links', 'mbdb_shortcode_links');
 		
 		
 function mbdb_get_book_ID( $slug ) {
@@ -479,13 +480,43 @@ function mbdb_shortcode_buylinks( $attr, $content) {
 	return apply_filters('mbdb_shortcode_buylinks', '<div class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['label']) . '</span>' . $download_links_html . '<span class="' . $classname . '-after">'.  esc_html($attr['after']) . '</span></div>');
 }
 	
+function mbdb_shortcode_links($attr, $content) {
+	$attr2 = $attr;
+	$attr = shortcode_atts(array('width' =>  '100',
+								'height' => '50',
+								'size' => '',
+								'align' => 'vertical',
+								'downloadlabel' => 'Download Now:',
+								'buylabel' => 'Buy Now:',
+								'after' => '',
+								'blank' => 'Coming Soon!',
+								'book' => ''), $attr);
+	$classname = 'mbm-book-buy-links';
+	$bookID = mbdb_get_book_ID($attr['book']);
+	$mbdb_buylinks = get_post_meta( $bookID, '_mbdb_buylinks', true);
+	$attr2['blank'] = '';
+	if (!empty($mbdb_buylinks)) { 
+		$attr2['label'] = $attr['buylabel'];
+		$output_html = mbdb_shortcode_buylinks($attr2, $content);
+	}
+	$mbdb_downloadlinks = get_post_meta( $bookID, '_mbdb_downloadlinks', true);
+	if (!empty($mbdb_downloadlinks)) {
+		$attr2['label'] = $attr['downloadlabel'];
+		$output_html .= mbdb_shortcode_downloadlinks($attr2, $content);
+	}
+	if ($mbdb_buylinks=='' && $mbdb_downloadlinks=='') {
+		$output_html .= '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['buylabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>';
+	}
+	return apply_filters('mbdb_shortcode_links', $output_html); 
+}
 	
 function mbdb_book_content($content) {
 	// $mbdb_book_page_options = get_option('mbdb_book_page_options');	
 	
 	// if ($mbdb_book_page_options) {
 		// if (array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
-			$book_page_layout = mbdb_get_default_page_layout();
+			
+			$book_page_layout = mbdb_get_default_page_layout(  );
 			$content .= stripslashes($book_page_layout); //wpautop(stripslashes($mbdb_book_page_options['_mbdb_book_page_layout']));
 			$content = preg_replace('/\\n/', '<br>', $content);
 			return apply_filters('mbdb_book_content', $content);

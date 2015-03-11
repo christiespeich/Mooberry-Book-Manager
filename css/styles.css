@@ -7,3 +7,9 @@
 .mbm-book-reviews-header {
 	font-weight: bold;
 }
+
+.mbm-book-buy-links-label, .mbm-book-download-links-label {
+	font-size: large;
+	font-weight: bold;
+	display: block;
+}
