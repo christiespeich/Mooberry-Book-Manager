@@ -168,7 +168,7 @@ function mbdb_uniqueID_generator( $value ) {
 	if ($value=='') {
 		$value =  uniqid();
 	}
-	return apply_filter('mbdb_settings_uniqid', $value);
+	return apply_filters('mbdb_settings_uniqid', $value);
 }
 
 function mbdb_admin_tabs( $current = 'book-page' ) {

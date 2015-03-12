@@ -25,7 +25,7 @@
 
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	update_option(MBDB_PLUGIN_VERSION_KEY, '0.2.1');
+	update_option(MBDB_PLUGIN_VERSION_KEY, '0.2.2');
 
 	
 	// Load in CMB2
