@@ -29,6 +29,10 @@ Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Jav
 
 ## Changelog
 
+#### 0.2.3
+
+* Small fixes/typos
+
 #### 0.2.2
 
 * Shows appropriate label for Download vs Buy links

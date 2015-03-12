@@ -4,7 +4,7 @@ Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer
 Requires at least: 3.8.0
 Tested up to: 4.1.1
-Stable tag: 0.2.2
+Stable tag: 0.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,10 @@ A single book most likely won’t have both Download Links and Retailer Links, u
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+
+= 0.2.3 =
+
+* Small fixes/typos
 
 = 0.2.2 =
 
