@@ -420,7 +420,7 @@ function mbdb_shortcode_downloadlinks( $attr, $content) {
 				if ($r['image']!='') {
 					$download_links_html .= '<img class="' . $classname . '-image" src="' . esc_url($r['image']) . '"/>';
 				} else {
-					$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($mbdb_downloadlink['mbdb_name']) . '</span>';
+					$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
 				}
 				$download_links_html .= '</a></li>';
 			}			
@@ -470,7 +470,7 @@ function mbdb_shortcode_buylinks( $attr, $content) {
 				if ($r['image']!='') {
 					$download_links_html .= '<img class="' . $classname . '-image" style="' . esc_attr($img_size) . '" src="' . esc_url($r['image']) . '"/>';
 				} else {
-					$download_links_html .= '<span class="' . $classname . '-text"' . esc_html($mbdb_downloadlink['mbdb_name']) . '</span>';
+					$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
 				}
 				$download_links_html .= '</a></li>';
 			}			
