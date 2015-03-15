@@ -70,7 +70,7 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options) {
 }
 
 
-function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids, $authorID = null ) {
+function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids ) {
 	// title is not a custom field so it uses orderby to set the field
 	// other sorting is by custom fields and they use orderby = 'meta_value' and meta_key = field
 	if ( $sort_field != 'title' ) {
@@ -78,6 +78,7 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 		$sort_field = 'meta_value';
 	} else {
 		$meta_key = '';
+		$sort_field = 'post_title';
 	}
 	if ( $sort_field == '_mbdb_series_order' || $sort_field == '_mbdb_published' ) {
 		$sort_field = 'meta_value_num';
@@ -200,15 +201,18 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 	// if NOT ordered by series and these are stand alones
 	if ( $series_ids != '0' ) {	
 		$args['orderby'] = $sort_field;
-		$args['meta_key'] = $meta_key;
+		if ($meta_key!= '' ) {
+			$args['meta_key'] = $meta_key;
+		}
 		$args['order'] = $sort_order;
 	} 
 	
 	
-		
 	$books = get_posts( apply_filters('mbdb_get_books_main_query', $args ) );
 	
 	if ( isset( $args2 ) ) {
+	
+	
 		$books2 = get_posts( apply_filters('mbdb_get_books_blank_pubdate', $args2 ) );
 		if ( $sort_order == 'ASC' ) {
 			// oldest first, so put blanks at the end
@@ -220,7 +224,7 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 	}
 	
 	if ( isset( $args3 ) ) {
-	
+
 		$books3 = get_posts( apply_filters( 'mbdb_get_books_blank_series_order', $args3 ) );
 		$books = array_merge( $books, $books3 );
 	}

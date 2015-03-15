@@ -486,10 +486,11 @@ function mbdb_shortcode_links($attr, $content) {
 								'height' => '50',
 								'size' => '',
 								'align' => 'vertical',
-								'downloadlabel' => 'Download Now:',
-								'buylabel' => 'Buy Now:',
+								'downloadlabel' => '',
+								'buylabel' => '',
 								'after' => '',
-								'blank' => 'Coming Soon!',
+								'blank' => '',
+								'blanklabel' => '',
 								'book' => ''), $attr);
 	$classname = 'mbm-book-buy-links';
 	$bookID = mbdb_get_book_ID($attr['book']);
@@ -505,7 +506,7 @@ function mbdb_shortcode_links($attr, $content) {
 		$output_html .= mbdb_shortcode_downloadlinks($attr2, $content);
 	}
 	if ($mbdb_buylinks=='' && $mbdb_downloadlinks=='') {
-		$output_html .= '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['buylabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>';
+		$output_html .= '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['blanklabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>';
 	}
 	return apply_filters('mbdb_shortcode_links', $output_html); 
 }
