@@ -1,21 +1,9 @@
 <?php
 do_action('mbdb_settings_before_instructions');
 ?>
-<h2>Mooberry Dreams Book Manager Settings</h2>
+<h2>Mooberry Book Manager Settings</h2>
 <p><b>NOTE:</b> You must click the SAVE button to save your changes before switching tabs.</p>
-<table>
-	<tr style="vertical-align:top">
-	<td style="width:20%; padding:5px;">
-		<h3>Retailers</h3>
-		<p >On this tab, add retailers where your books are sold.</p>
-	</td>
-	<td style="width:20%; padding:5px;">
-		<h3>Formats</h3>
-		<p >On this tab, add e-book formats your books can be downloaded in.</p>
-	</td>
-	
-	</tr>
-	</table>
+
 
 <?php
 do_action('mbdb_settings_after_instructions');
@@ -38,9 +26,9 @@ if ( $pagenow == 'options-general.php' && $_GET['page'] == 'mbdb_settings' ) {
             $fields = mbdb_formats();
 			mbdb_meta_fields($fields);
             break;
-		case 'output':
-			mbdb_print_book_list();
-			break;
+		// case 'output':
+			// mbdb_print_book_list();
+			// break;
 	}
 	do_action('mbdb_settings_after_tab_display', $tab);
 }
@@ -66,7 +54,7 @@ function mbdb_print_book_list() {
 
 function mbdb_meta_fields( $fields) {
 	$metabox = apply_filters('mbdb_settings_options_meta_box', array(
-		'id'         => 'option_metabox',
+		'id'         => 'mbdb_option_metabox',
 		'show_on'    => array( 'key' => 'options-page', 'value' => 'mbdb_options', ),
 		'show_names' => true,
 		'fields'     => $fields,
@@ -74,6 +62,8 @@ function mbdb_meta_fields( $fields) {
 	do_action('mbdb_settings_before_metabox');
 	cmb2_metabox_form( $metabox, 'mbdb_options' );	
 	do_action('mbdb_settings_after_metabox');
+	
+	include('views/admin-about-mooberry.php');
 }
 
 function mbdb_retailers() {
@@ -81,10 +71,11 @@ function mbdb_retailers() {
 		array(
 			'id'          => 'retailers',
 			'type'        => 'group',
+			'desc'			=>	'Add any additional retailers that sell your books.',
 			'options'     => array(
-				'group_title'   => __( 'Retailer {#}', 'cmb' ), // since version 1.1.4, {#} gets replaced by row number
-				'add_button'    => __( 'Add Retailer', 'cmb' ),
-				'remove_button' => __( 'Remove Retailer', 'cmb' ),
+				'group_title'   => 'Retailer {#}',  // since version 1.1.4, {#} gets replaced by row number
+				'add_button'    =>  'Add Retailer', 
+				'remove_button' =>  'Remove Retailer', 
 				'sortable'      => false, // beta
 			),
 			// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
@@ -127,10 +118,11 @@ function  mbdb_formats() {
 		array(
 			'id'          => 'formats',
 			'type'        => 'group',
+			'desc'			=> 'If you have free books for download, add any additional formats your books are available in.',
 			'options'     => array(
-				'group_title'   => __( 'Format {#}', 'cmb' ), // since version 1.1.4, {#} gets replaced by row number
-				'add_button'    => __( 'Add Format', 'cmb' ),
-				'remove_button' => __( 'Remove Format', 'cmb' ),
+				'group_title'   => 'Format {#}',  // since version 1.1.4, {#} gets replaced by row number
+				'add_button'    => 'Add Format', 
+				'remove_button' => 'Remove Format',
 				'sortable'      => false, // beta
 			),
 			// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
@@ -172,7 +164,7 @@ function mbdb_uniqueID_generator( $value ) {
 }
 
 function mbdb_admin_tabs( $current = 'book-page' ) {
-	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => 'Retailers', 'formats' => 'Formats', 'output' => 'Print Book list'));
+	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => 'Retailers', 'formats' => 'Formats')); //, 'output' => 'Print Book list'));
 	do_action('mbdb_settings_before_tabs');
 	echo '<div id="icon-themes" class="icon32"><br></div>';
 	echo '<h2 class="nav-tab-wrapper">';

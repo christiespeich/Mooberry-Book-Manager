@@ -64,7 +64,7 @@ function populate_mbdb_book_columns($column, $post_id) {
 	}	
 }
 
-add_filter( 'manage_edit-mbdb_book_sortable_columns', 'mbdb_book_sortable_columns' );
+/* add_filter( 'manage_edit-mbdb_book_sortable_columns', 'mbdb_book_sortable_columns' );
 function mbdb_book_sortable_columns($columns) {
 	
 	// $columns['_mbdb_length'] = '_mbdb_length';
@@ -76,9 +76,9 @@ function mbdb_book_sortable_columns($columns) {
 		
 	return $columns;
 	
-}
+} */
 	
-add_action( 'load-edit.php', 'mbdb_edit_load' );
+/* add_action( 'load-edit.php', 'mbdb_edit_load' );
 function mbdb_edit_load() {
 	add_filter( 'request', 'sort_mbdb_book_columns' );
 }
@@ -100,9 +100,21 @@ function sort_mbdb_book_columns( $vars) {
 			// }
 		// }
 	return $vars;
-}
+} */
 	
-add_filter( 'cmb2_meta_boxes', 'mbdb_book_metaboxes' );
+	
+add_action('add_meta_boxes_mbdb_book', 'mbdb_mbd_metabox', 10);
+function mbdb_mbd_metabox() {
+		add_meta_box('mbdb_mbd_metabox', 'Like Mooberry Book Manager?', 'mbdb_display_mbdb_metabox', 'mbdb_book', 'side', 'high');
+}
+
+function mbdb_display_mbdb_metabox($post, $args) {
+	echo '<p>Check out <a target="_new" href="http://www.mooberrydreams.com/">our website</a> to learn more about the available add-ons so Mooberry Book Manager can save you more time!</p>';
+	echo '<img style="width:225px" src="' . plugins_url('/views/images/logo.png', __FILE__) . '">';
+}
+
+
+add_filter( 'cmb2_meta_boxes', 'mbdb_book_metaboxes', 30 );
 function mbdb_book_metaboxes( array $meta_boxes ) {
 	$meta_boxes['mbdb_summary_metabox'] = array(
 		'id'            => 'mbdb_summary_metabox',
@@ -115,7 +127,6 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name'    => 'Summary',
-				'desc'    => 'field description (optional)',
 				'id'      => '_mbdb_summary',
 				'type'    => 'wysiwyg',
 				'options' => array(  
@@ -174,11 +185,11 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			array(
 			'id'          => '_mbdb_reviews',
 			'type'        => 'group',
-			'description' => __( 'Add reviews of your book', 'cmb2' ),
+			'description' => 'Add reviews of your book',
 			'options'     => array(
-				'group_title'   => __( 'Review {#}', 'cmb2' ), // {#} gets replaced by row number
-				'add_button'    => __( 'Add Review', 'cmb2' ),
-				'remove_button' => __( 'Remove Review', 'cmb2' ),
+				'group_title'   => 'Review {#}', // {#} gets replaced by row number
+				'add_button'    =>  'Add Review',
+				'remove_button' =>  'Remove Review',
 				'sortable'      => false, // beta
 				),
 			
@@ -241,11 +252,11 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			array(
 				'id'          => '_mbdb_buylinks',
 				'type'        => 'group',
-				'description' => __( 'Add links to purchase your book', 'cmb2' ),
+				'description' => 'Add links where readers can purchase your book',
 				'options'     => array(
-					'group_title'   => __( 'Retailer Link {#}', 'cmb2' ), // {#} gets replaced by row number
-					'add_button'    => __( 'Add Retailer Link', 'cmb2' ),
-					'remove_button' => __( 'Remove Retailer Link', 'cmb2' ),
+					'group_title'   => 'Retailer Link {#}', // {#} gets replaced by row number
+					'add_button'    => 'Add Retailer Link',
+					'remove_button' => 'Remove Retailer Link',
 					'sortable'      => false, // beta
 				),
 				// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
@@ -278,18 +289,18 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'title'         => 'Download Links',
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
-		'priority'      => 'default',
+		'priority'      => 'low',
 			
 		'show_names'    => true, // Show field names on the left
 		'fields' => array(
 			array(
 				'id'          => '_mbdb_downloadlinks',
 				'type'        => 'group',
-				'description' => __( 'Add links to download your book', 'cmb2' ),
+				'description' => 'If your book is available to download for free, add the links for each format.',
 				'options'     => array(
-					'group_title'   => __( 'Download Link {#}', 'cmb2' ), // {#} gets replaced by row number
-					'add_button'    => __( 'Add Download Link', 'cmb2' ),
-					'remove_button' => __( 'Remove Download Link', 'cmb2' ),
+					'group_title'   => 'Download Link {#}',  // {#} gets replaced by row number
+					'add_button'    => 'Add Download Link', 
+					'remove_button' =>  'Remove Download Link',
 					'sortable'      => false, // beta
 				),
 				// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
@@ -320,17 +331,17 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'title'         => 'Book Details',
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
-		'priority'      => 'default',
+		'priority'      => 'loe',
 			
 		'show_names'    => true, // Show field names on the left
 		'fields' => array(
 			array(
-				'name' => __( 'Subtitle', 'cmb2' ),
+				'name' => 'Subtitle', 
 				'id'   => '_mbdb_subtitle',
 				'type' => 'text_small',
 			),
 			array(
-				'name' => __( 'Publisher', 'cmb2' ),
+				'name' => 'Publisher', 
 				'id'   => '_mbdb_publisher',
 				'type' => 'text_medium',
 			),
@@ -392,7 +403,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'title'         => 'Cover',
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
-		'priority'      => 'default',
+		'priority'      => 'low',
 			
 		'show_names'    => false, // Show field names on the left
 		'allow'			=> array( 'attachment'),
@@ -406,7 +417,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		),
 	);
 
-	$meta_boxes['mbdb_author_bio'] = array(
+	/* $meta_boxes['mbdb_author_bio'] = array(
 		'id'	=>	'mbdb_author_bio',
 		'title'	=>	'Author Info',
 		'object_types' 	=>	array('mbdb_author'),
@@ -447,8 +458,8 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 						), 
 					),
 				),
-	);
-	$meta_boxes['mbdb_author_photo'] = array(
+	); */
+	/* $meta_boxes['mbdb_author_photo'] = array(
 		'id'	=>	'mbdb_author_photo',
 		'title'	=>	'Author Photo',
 		'object_types' 	=>	array('mbdb_author'),
@@ -464,7 +475,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					'allow'	=> array('attachment'),
 				),
 			),
-		);
+		); */
 	
 	return apply_filters('mbdb_book_meta_boxes', $meta_boxes);
 	
