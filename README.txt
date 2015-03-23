@@ -1,7 +1,7 @@
 === Mooberry Book Manager ===
 Contributors: mooberrydreams
 Donate link: http://www.mooberrydreams.com/
-Tags: book, author, publisher, writer
+Tags: book, author, publisher, writer, books, writing, publishing
 Requires at least: 3.8.0
 Tested up to: 4.1.1
 Stable tag: 0.2.3
@@ -38,9 +38,10 @@ Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Jav
 If you have suggestions for a new add-on, feel free to email me at bookmanager@mooberrydreams.com.
 
 Want regular updates? 
-*Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams
-*Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams
-*Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/
+* Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams
+* Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams
+* Check out the blog: http://www.mooberrydreams.com/blog
+* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/
 
 
 == Installation ==

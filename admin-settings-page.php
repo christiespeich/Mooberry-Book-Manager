@@ -27,7 +27,7 @@ if ( $pagenow == 'options-general.php' && $_GET['page'] == 'mbdb_settings' ) {
 			mbdb_meta_fields($fields);
             break;
 		// case 'output':
-			// mbdb_print_book_list();
+		// mbdb_print_book_list();
 			// break;
 	}
 	do_action('mbdb_settings_after_tab_display', $tab);
@@ -155,7 +155,7 @@ function  mbdb_formats() {
 	));
 }
 	
-	
+// generate uniqueIDs for formats and retailers
 function mbdb_uniqueID_generator( $value ) {
 	if ($value=='') {
 		$value =  uniqid();
@@ -163,10 +163,11 @@ function mbdb_uniqueID_generator( $value ) {
 	return apply_filters('mbdb_settings_uniqid', $value);
 }
 
+// make the tabs for the admin screen
 function mbdb_admin_tabs( $current = 'book-page' ) {
 	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => 'Retailers', 'formats' => 'Formats')); //, 'output' => 'Print Book list'));
 	do_action('mbdb_settings_before_tabs');
-	echo '<div id="icon-themes" class="icon32"><br></div>';
+	echo '<div id="icon-options-general" class="icon32"></div>';
 	echo '<h2 class="nav-tab-wrapper">';
 	foreach( $tabs as $tab => $name ){
 		$class = ( $tab == $current ) ? ' nav-tab-active' : '';

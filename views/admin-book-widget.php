@@ -35,7 +35,7 @@
 		
 		<label for="<?php echo $this->get_field_id('mbdb_bookID'); ?>">Book:</label>
 		<select name="<?php echo $this->get_field_name('mbdb_bookID'); ?>" id="<?php echo $this->get_field_id('mbdb_bookID'); ?>">
-			<option value="0_0"></option>
+			<option value="0></option>
 			<?php mbdb_get_book_dropdown($mbdb_bookID); ?>
 		
 		</select>

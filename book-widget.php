@@ -148,5 +148,3 @@ class mbdb_book_widget extends WP_Widget {
 	}
 	
 }
-
-?>

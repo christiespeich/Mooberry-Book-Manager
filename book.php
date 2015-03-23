@@ -2,7 +2,7 @@
 
 
 	
-	
+// set the book's excerpt to a portion of the summary	
 add_action('save_post_mbdb_book', 'mbdb_save_excerpt');
 function mbdb_save_excerpt($post_id, $post =null, $update=null) {
 	if (array_key_exists('_mbdb_summary', $_POST) && $_POST['_mbdb_summary']) {
@@ -21,7 +21,9 @@ function mbdb_save_excerpt($post_id, $post =null, $update=null) {
 	// re-hook this function
 	add_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );	
 }
-	
+
+
+// set up the columns on the book list page
 add_filter( 'manage_edit-mbdb_book_columns', 'set_up_mbdb_book_columns' );
 function set_up_mbdb_book_columns( $columns ) {
 	$columns = array(
@@ -63,6 +65,8 @@ function populate_mbdb_book_columns($column, $post_id) {
 			do_action('mbdb_book_after' . $column . '_column');
 	}	
 }
+
+// TO DO: fix the sorting
 
 /* add_filter( 'manage_edit-mbdb_book_sortable_columns', 'mbdb_book_sortable_columns' );
 function mbdb_book_sortable_columns($columns) {
@@ -121,8 +125,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'title'         => 'Summary',
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
-		'priority'      => 'high',
-			
+		'priority'      => 'high',	
 		'show_names'    => false, // Show field names on the left
 		'fields' => array(
 			array(
@@ -405,65 +408,6 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		),
 	);
 
-	/* $meta_boxes['mbdb_author_bio'] = array(
-		'id'	=>	'mbdb_author_bio',
-		'title'	=>	'Author Info',
-		'object_types' 	=>	array('mbdb_author'),
-		'context'	=> 'normal',
-		'priority'	=> 'high',
-		'show_names'	=> true,
-		
-		'fields'	=> array(
-				array(
-					'name'	=>	'Sort by',
-					'id'	=>	'_mbdb_author_sort',
-					'type'	=>	'select',
-					
-				),
-				array(
-					'id'	=> '_mbdb_author_sort_selection',
-					'type'	=>	'text',
-					'show_names'	=> 'false',
-					'attributes' => array(
-						'type'	=>	'hidden',
-					),
-				),
-				array(
-						'name'	=> 'Short Bio<BR><em>up to 50 words</em>',
-						'id'	=> '_mbdb_author_short_bio',
-						'type'	=> 'wysiwyg', //'textarea_small'  
-						//'desc'	=> MBDB_SHORT_BIO_LENGTH . ' words remaining',
-						'sanitization_cb'	=> 'mbdb_validate_shortbio',
-						  'options' => array(
-							'wpautop' => true, // use wpautop?
-							'media_buttons' => false, // show insert/upload button(s)
-							'textarea_rows' =>  2, // rows="..."
-							'tabindex' => '',
-							'teeny' => false, // output the minimal editor config used in Press This
-							'dfw' => false, // replace the default fullscreen with DFW (needs specific css)
-							'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
-							'quicktags' => true // load Quicktags, can be used to pass settings directly to Quicktags using an array()
-						), 
-					),
-				),
-	); */
-	/* $meta_boxes['mbdb_author_photo'] = array(
-		'id'	=>	'mbdb_author_photo',
-		'title'	=>	'Author Photo',
-		'object_types' 	=>	array('mbdb_author'),
-		'context'	=> 'side',
-		'priority'	=> 'default',
-		
-		'show_names'	=> false,
-		'fields'	=> array(
-				array(
-					'name' => 'Author Photo',
-					'id'	=> '_mbdb_author_photo',
-					'type'	=> 'file',
-					'allow'	=> array('attachment'),
-				),
-			),
-		); */
 	
 	return apply_filters('mbdb_book_meta_boxes', $meta_boxes);
 	

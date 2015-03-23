@@ -15,8 +15,6 @@ function mbdb_get_default_page_layout() {
 				[book_serieslist before="Part of the " after=" series: " delim="list"]
 				<strong>Reviews:</strong><span> [book_reviews  blank="Coming Soon!"]</span>
 				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>[book_links buylabel="Buy Now:" downloadlabel="Download Now:"  align="horizontal" size="35" blank="Coming Soon!"]');
-	
-	
 }
 
 // uploads file at specfied $filename and returns the attachment id of the uploaded file
@@ -84,7 +82,6 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 		$sort_field = 'meta_value_num';
 	}
 		
-			
 	$args = array('posts_per_page' => -1,
 					'post_type' => 'mbdb_book',
 					'post_status'=>	'publish',
@@ -131,7 +128,6 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 						),
 					);
 	}
-	
 	
 	// unpublished
 	//	- pubdate > today OR pubdate is blank
@@ -454,7 +450,3 @@ function mbdb_get_book_dropdown( $selected_bookID ) {
 		echo apply_filters('mbdb_get_book_dropdown_option', '<option value="' . esc_attr($book_id) .'"' . $selected . '>' . esc_html($book_title) . '</option>');
 	}
 }
-
-
-
-?>
