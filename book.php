@@ -322,7 +322,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'title'         => 'Book Details',
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
-		'priority'      => 'loe',
+		'priority'      => 'low',
 			
 		'show_names'    => true, // Show field names on the left
 		'fields' => array(

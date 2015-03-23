@@ -503,7 +503,7 @@ function mbdb_shortcode_links($attr, $content) {
 	$mbdb_downloadlinks = get_post_meta( $bookID, '_mbdb_downloadlinks', true);
 	if (!empty($mbdb_downloadlinks)) {
 		$attr2['label'] = $attr['downloadlabel'];
-		$output_html .= mbdb_shortcode_downloadlinks($attr2, $content);
+		$output_html = mbdb_shortcode_downloadlinks($attr2, $content);
 	}
 	if ($mbdb_buylinks=='' && $mbdb_downloadlinks=='') {
 		$output_html = '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['blanklabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>';
