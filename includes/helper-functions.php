@@ -14,7 +14,7 @@ function mbdb_get_default_page_layout() {
 
 				[book_serieslist before="Part of the " after=" series: " delim="list"]
 				<strong>Reviews:</strong><span> [book_reviews  blank="Coming Soon!"]</span>
-				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>[book_links buylabel="Buy Now:" downloadlabel="Download Now:"  align="horizontal" size="35" blank="Coming Soon!"]');
+				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>[book_links buylabel="Buy Now:" downloadlabel="Download Now:"  align="horizontal" size="35" blank="" blanklabel=""]');
 }
 
 // uploads file at specfied $filename and returns the attachment id of the uploaded file
