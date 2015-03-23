@@ -38,16 +38,16 @@ function mbdb_tax_grid_title( $content, $id = null ) {
 	return $content;
 } 
 
-add_filter( 'template_include', 'mbdb_grid_template', 99 );
-function mbdb_grid_template( $template ) {
-	if (get_post_type()=='mbdb_tax_grid') {
-		$new_template = locate_template( array('single.php'));
-		if ($new_template != '') {
-			return $new_template;
-		}
-	}
-	return $template;
-}
+// add_filter( 'template_include', 'mbdb_grid_template', 99 );
+// function mbdb_grid_template( $template ) {
+	// if (get_post_type()=='mbdb_tax_grid') {
+		// $new_template = locate_template( array('single.php'));
+		// if ($new_template != '') {
+			// return $new_template;
+		// }
+	// }
+	// return $template;
+// }
 
 
 
@@ -326,7 +326,7 @@ function mbdb_display_grid($mbdb_books, $mbdb_book_grid_cover_height, $mbdb_book
 	$c = 0;
 	// figure out how wide each cell should be
 	$width = floor( 100 / $mbdb_book_grid_books_across );
-	// indent the grid by 50px per depth level of the array
+	// indent the grid by 15px per depth level of the array
 	do_action('mbdb_book_grid_before_div', $l);
 	$content = '<div class="mbm-book-grid-div" style="padding-left:' . (15 * $l) . 'px;">';
 	
@@ -418,6 +418,3 @@ function mbdb_check_grid_order( $field ) {
 	} 
 	return apply_filters('mbdb_book_grid_check_grid_order', $field);
 }
-
-
-?>

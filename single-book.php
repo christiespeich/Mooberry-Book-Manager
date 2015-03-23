@@ -230,7 +230,7 @@ function mbdb_shortcode_taxonomy($attr, $taxonomy, $permalink) {
 		if ( get_option('permalink_structure') !='' ) {
 			$list .= site_url($permalink . '/' . $genre->slug);
 		} else {
-			$list .= site_url('?mbdb_tax_grid=Test&the-taxonomy=' . $taxonomy . '&the-term=' . $genre->slug . '&post_type=mbdb_tax_grid');
+			$list .= site_url('?the-taxonomy=' . $taxonomy . '&the-term=' . $genre->slug . '&post_type=mbdb_tax_grid');
 		}
 		$list .= '"><span class="' . $classname . '-text">' . $genre->name . '</span></a>';
 		$list .= $delim;
@@ -271,7 +271,7 @@ function mbdb_shortcode_serieslist($attr, $content) {
 		if ( get_option('permalink_structure') !='' ) {
 			$series_name .= site_url('series/' .  $series->slug);
 		} else {
-			$series_name .= site_url('?mbdb_tax_grid=Test&the-taxonomy=mbdb_series&the-term=' . $series->slug . '&post_type=mbdb_tax_grid');
+			$series_name .= site_url('?the-taxonomy=mbdb_series&the-term=' . $series->slug . '&post_type=mbdb_tax_grid');
 		}
 		$series_name .=  '"><span class="' . $classname . '-text">' . $series->name . '</span></a>';
 		$series_name .= '<span class="' . $classname . '-after">' . esc_html($attr['after']) . '</span>';
@@ -506,7 +506,7 @@ function mbdb_shortcode_links($attr, $content) {
 		$output_html .= mbdb_shortcode_downloadlinks($attr2, $content);
 	}
 	if ($mbdb_buylinks=='' && $mbdb_downloadlinks=='') {
-		$output_html .= '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['blanklabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>';
+		$output_html = '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['blanklabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>';
 	}
 	return apply_filters('mbdb_shortcode_links', $output_html); 
 }
@@ -529,4 +529,4 @@ function mbdb_book_content($content) {
 	//return apply_filters('mbdb_book_content', $content);
 	
 }
-	?>
+	
