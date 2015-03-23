@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing 
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.1.1  
-**Stable tag:** 0.2.2   
+**Stable tag:** 0.2.4   
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -18,10 +18,10 @@ Mooberry Book Manager will create a page for each book, ensuring a consistent lo
 Organize your book into grids with just a few clicks. Grids can include all of your books or a selection of books, and you choose how they are ordered. You can create multiple grids; for example, an "Available Now" page and a "Coming Soon" page. Grids update automatically when you edit or add books. Set it and forget it!
 
 Feature books on your sidebar with four options:
-* A random book
-* The newest book
-* A book that's coming soon
-* A specific book
+* A random book  
+* The newest book  
+* A book that's coming soon  
+* A specific book  
 	
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
@@ -35,6 +35,17 @@ Want regular updates?
 
 
 ## Changelog
+
+#### 0.2.4 
+
+* Final update before first public release
+* Removed update checker
+* Misc bugs
+* Upgraded CMB2 to 2.0.5
+* Fixed issue with taxonomy grids and non-permalinks
+* removed wysiwyg on reviews
+* fixed buy links/download links to only show the appropriate ones
+* Added About Mooberry Dreams box
 
 #### 0.2.3
 

@@ -4,7 +4,7 @@
     Plugin URI:
     Description: An easy-to-use system for authors to add books their Wordpress website
     Author: Mooberry Dreams
-    Version: 0.2.3
+    Version: 0.2.4
     Author URI: http://www.mooberrydreams.com/
 	
 	Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
@@ -25,7 +25,7 @@
 
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	update_option(MBDB_PLUGIN_VERSION_KEY, '0.2.3');
+	update_option(MBDB_PLUGIN_VERSION_KEY, '0.2.4');
 
 	
 	// Load in CMB2
@@ -35,13 +35,6 @@
 		require_once dirname( __FILE__ ) . '/includes/CMB2/init.php';
 	}
 	
-	//Use version 2.0 of the update checker.
-	require_once dirname( __FILE__ ) . '/includes/plugin-update-checker-master/plugin-update-checker.php';
-	$MyUpdateChecker = new PluginUpdateChecker_2_0 (
-		'http://www.mooberrydreams.com/plugins/e6bc06b9-53a2-479a-81ce-90ada21f50f2/updater.json',
-		__FILE__,
-		'mooberry-book-manager'
-	);
 	
 	
 	// add in additional files
