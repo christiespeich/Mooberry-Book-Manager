@@ -1,10 +1,10 @@
 === Mooberry Book Manager ===
 Contributors: mooberrydreams
 Donate link: http://www.mooberrydreams.com/
-Tags: book, author, publisher, writer, books, writing, publishing
+Tags: book, author, publisher, writer, books, writing, publishing, authors
 Requires at least: 3.8.0
 Tested up to: 4.1.1
-Stable tag: 0.2.4
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,33 +21,33 @@ Mooberry Book Manager will create a page for each book, ensuring a consistent lo
 Organize your book into grids with just a few clicks. Grids can include all of your books or a selection of books, and you choose how they are ordered. You can create multiple grids; for example, an "Available Now" page and a "Coming Soon" page. Grids update automatically when you edit or add books. Set it and forget it!
 
 Feature books on your sidebar with four options:
-* A random book
-* The newest book
-* A book that's coming soon
-* A specific book
+* A random book  
+* The newest book  
+* A book that's coming soon  
+* A specific book  
 	
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
 Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Javascript, but the public pages do not.
 
 **Coming Soon**
-* Mooberry Book Manager Media Kit -- automagically create a media kit and get help writing press releases for your books
-* Mooberry Book Manager Multi-Author -- support multiple authors, useful for small publishers or authors with more than one penname
-* Mooberry Book Manager Customizer -- customize the book pages and more
+* Mooberry Book Manager Media Kit -- automagically create a media kit and get help writing press releases for your books  
+* Mooberry Book Manager Multi-Author -- support multiple authors, useful for small publishers or authors with more than one pen name  
+* Mooberry Book Manager Customizer -- customize the book pages and more  
 
-If you have suggestions for a new add-on, feel free to email me at bookmanager@mooberrydreams.com.
+If you have suggestions for a new add-on, feel free to email me at bookmanager@mooberrydreams.com. 
 
 Want regular updates? 
-* Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams
-* Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams
-* Check out the blog: http://www.mooberrydreams.com/blog
-* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/
+* Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams  
+* Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams  
+* Check out the blog: http://www.mooberrydreams.com/blog  
+* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/  
 
 
 == Installation ==
 
-1. Upload the entire `mooberry-book-manager` directory to the `/wp-content/plugins/` directory 
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Upload the entire `mooberry-book-manager` directory to the `/wp-content/plugins/` directory  
+2. Activate the plugin through the 'Plugins' menu in WordPress  
 
 == Frequently Asked Questions ==
 
@@ -74,43 +74,8 @@ A single book most likely won’t have both Download Links and Retailer Links, u
 
 == Changelog ==
 
-= 0.2.4 =
+= 1.0 =
 
-* Final update before first public release
-* Remove update checker
-* Misc bugs
-* Upgraded CMB2 to 2.0.5
-* Fixed issue with taxonomy grids and none-permalinks
-* removed wysiwyg on reviews
-* fixed buy links/download links to only show the appropriate ones
-* Added About Mooberry Dreams box
+Initial Version
 
-= 0.2.3 =
 
-* Small fixes/typos
-
-= 0.2.2 =
-
-* Shows appropriate label for Download vs Buy links
-
-= 0.2.1 =
-
-* Added Download Links to page layout
-
-= 0.2 =
-
-* Book Grid interface updated to accomodate Mutli-Author add-on
-* NOT backwards-compatible. All pages/posts with a Book Grid will need to be updated.
-
-= 0.1.2 =
-
-* Fixed genre spacing issue
-* Added subtitle to page layout
-* Changed "Order Now" to "Buy Now"
-* Updated grid screenshot
-
-= 0.1.1 =
-* Fixed bug with excerpt not showing up
-
-= 0.1 =
-* First version

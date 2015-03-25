@@ -1,10 +1,10 @@
 <?php
  /*
     Plugin Name: Mooberry Book Manager
-    Plugin URI:
+    Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
     Description: An easy-to-use system for authors to add books their Wordpress website
     Author: Mooberry Dreams
-    Version: 0.2.4
+    Version: 1.0
     Author URI: http://www.mooberrydreams.com/
 	
 	Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
@@ -25,7 +25,7 @@
 
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	update_option(MBDB_PLUGIN_VERSION_KEY, '0.2.4');
+	update_option(MBDB_PLUGIN_VERSION_KEY, '1.0');
 
 	
 	// Load in CMB2
@@ -236,20 +236,20 @@
 		
 		register_post_type('mbdb_tax_grid',
 			apply_filters('mbdb_tax_grid_cpt', array(	
-			'label' => 'Tax Grid',
-			'public' => true,
-			'show_in_menu' => false,
-			'show_ui' => false,
-			'exclude_from_search' => true,
-			'publicly_queryable' => true,
-			'show_in_nav_menus' => false,
-			'has_archive' => false,
-			'capability_type' => 'post',
-			'hierarchical' => false,
-			'rewrite' => array( 'slug' => 'mbdb_tax_grid' ),
-			'query_var' => true,
-			'supports' => array( 'title' ),
-			) 
+				'label' => 'Tax Grid',
+				'public' => true,
+				'show_in_menu' => false,
+				'show_ui' => false,
+				'exclude_from_search' => true,
+				'publicly_queryable' => true,
+				'show_in_nav_menus' => false,
+				'has_archive' => false,
+				'capability_type' => 'post',
+				'hierarchical' => false,
+				'rewrite' => array( 'slug' => 'mbdb_tax_grid' ),
+				'query_var' => true,
+				'supports' => array( 'title' ),
+				) 
 			)
 		);
 		
