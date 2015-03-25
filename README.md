@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing 
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.1.1  
-**Stable tag:** 0.2.4   
+**Stable tag:** 1.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -36,43 +36,7 @@ Want regular updates?
 
 ## Changelog
 
-#### 0.2.4 
+#### 1.0 
 
-* Final update before first public release
-* Removed update checker
-* Misc bugs
-* Upgraded CMB2 to 2.0.5
-* Fixed issue with taxonomy grids and non-permalinks
-* removed wysiwyg on reviews
-* fixed buy links/download links to only show the appropriate ones
-* Added About Mooberry Dreams box
-
-#### 0.2.3
-
-* Small fixes/typos
-
-#### 0.2.2
-
-* Shows appropriate label for Download vs Buy links
-
-#### 0.2.1 
-
-* Added Download Links to page layout
-
-#### 0.2 
-
-* Book Grid interface updated to accomodate Mutli-Author add-on
-* NOT backwards-compatible. All pages/posts with a Book Grid will need to be updated.
-
-#### 0.1.2
-
-* Fixed genre spacing issue
-* Added subtitle to page layout
-* Changed "Order Now" to "Buy Now"
-* Updated grid screenshot
-
-#### 0.1.1
-* Fixes bug with excerpt not showing up
-
-#### 0.1 
 * Initial Release
+
