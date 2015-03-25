@@ -1,6 +1,6 @@
 # Mooberry Book Manager
 **Contributors:** mooberrydreams  
-**Tags:** book, author, publisher, writer, books, writing, publishing 
+**Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.1.1  
 **Stable tag:** 1.0  
