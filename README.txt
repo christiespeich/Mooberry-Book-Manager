@@ -20,7 +20,7 @@ Mooberry Book Manager will create a page for each book, ensuring a consistent lo
 
 Organize your book into grids with just a few clicks. Grids can include all of your books or a selection of books, and you choose how they are ordered. You can create multiple grids; for example, an "Available Now" page and a "Coming Soon" page. Grids update automatically when you edit or add books. Set it and forget it!
 
-Feature books on your sidebar with four options:
+Feature books on your sidebar with four options:  
 * A random book  
 * The newest book  
 * A book that's coming soon  
@@ -30,14 +30,14 @@ Mooberry Book Manager works with your chosen theme to provide a consistent look 
 
 Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Javascript, but the public pages do not.
 
-**Coming Soon**
+**Coming Soon**  
 * Mooberry Book Manager Media Kit -- automagically create a media kit and get help writing press releases for your books  
 * Mooberry Book Manager Multi-Author -- support multiple authors, useful for small publishers or authors with more than one pen name  
 * Mooberry Book Manager Customizer -- customize the book pages and more  
 
 If you have suggestions for a new add-on, feel free to email me at bookmanager@mooberrydreams.com. 
 
-Want regular updates? 
+Want regular updates?   
 * Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams  
 * Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams  
 * Check out the blog: http://www.mooberrydreams.com/blog  
