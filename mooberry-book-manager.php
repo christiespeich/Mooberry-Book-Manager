@@ -193,7 +193,7 @@
 
 	add_action( 'admin_menu', 'mbdb_settings_menu');
 	function mbdb_settings_menu() {
-		add_options_page( 'Mooberry Book Manager Settings', 'Book Manager', 'manage_options', 'mbdb_settings', 'mbdb_settings_page');
+		add_options_page( 'Mooberry Book Manager ' . __('Settings', 'mooberry-book-manager'), __('Book Manager', 'mooberry-book-manager'), 'manage_options', 'mbdb_settings', 'mbdb_settings_page');
 	}
 		
 	function mbdb_settings_page() {
@@ -205,7 +205,7 @@
 		// create Book Post Type
 		register_post_type('mbdb_book',
 			apply_filters('mbdb_book_cpt', array(	
-			'label' => 'Books',
+			'label' => _x('Books', 'noun', 'mooberry-book-manager'),
 			'public' => true,
 			'show_ui' => true,
 			'show_in_menu' => true,
@@ -220,21 +220,21 @@
 			'supports' => array( 'title' ),
 			'taxonomies' => array( 'post_tag', 'mbdb_genre', 'mbdb_series' ),
 			'labels' => array (
-				'name' => 'Books',
-				'singular_name' => 'Book',
-				'menu_name' => 'Books',
-				'all_items' => 'All Books',
-				'add_new' => 'Add New',
-				'add_new_item' => 'Add New Book',
-				'edit' => 'Edit',
-				'edit_item' => 'Edit Book',
-				'new_item' => 'New Book',
-				'view' => 'View Book',
-				'view_item' => 'View Book',
-				'search_items' => 'Search Books',
-				'not_found' => 'No Books Found',
-				'not_found_in_trash' => 'No Books Found in Trash',
-				'parent' => 'Parent Book'
+				'name' => _x('Books', 'noun', 'mooberry-book-manager'),
+				'singular_name' => _x('Book', 'noun', 'mooberry-book-manager'),
+				'menu_name' => _x('Books', 'noun', 'mooberry-book-manager'),
+				'all_items' => __('All Books', 'mooberry-book-manager'),
+				'add_new' => __('Add New', 'mooberry-book-manager'),
+				'add_new_item' => __('Add New Book', 'mooberry-book-manager'),
+				'edit' => __('Edit', 'mooberry-book-manager'),
+				'edit_item' => __('Edit Book', 'mooberry-book-manager'),
+				'new_item' => __('New Book', 'mooberry-book-manager'),
+				'view' => __('View Book', 'mooberry-book-manager'),
+				'view_item' => __('View Book', 'mooberry-book-manager'),
+				'search_items' => __('Search Books', 'mooberry-book-manager'),
+				'not_found' => __('No Books Found', 'mooberry-book-manager'),
+				'not_found_in_trash' => __('No Books Found in Trash', 'mooberry-book-manager'),
+				'parent' => __('Parent Book', 'mooberry-book-manager')
 				),
 			) )
 		);
@@ -264,22 +264,22 @@
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
 				'labels' => array(
-					'name' => 'Genres',
-					'singular_name' => 'Genre',
-					'search_items' => 'Search Genres' ,
-					'all_items' =>  'All Genres' ,
-					'parent_item' =>  'Parent Genre' ,
-					'parent_item_colon' =>  'Parent Genre:' ,
-					'edit_item' =>  'Edit Genre' ,
-					'update_item' =>  'Update Genre' ,
-					'add_new_item' =>  'Add New Genre' ,
-					'new_item_name' =>  'New Genre Name' ,
-					'menu_name' =>  'Genres' ,
-					'popular_items' => 'Popular Genres',
-					'separate_items_with_commas' => 'Separate genres with commas',
-					'add_or_remove_items' => 'Add or remove genres',
-					'choose_from_most_used' => 'Choose from the most used genres',
-					'not_found' => 'No genres found'
+					'name' => __('Genres', 'mooberry-book-manager'),
+					'singular_name' => __('Genre', 'mooberry-book-manager'),
+					'search_items' => __('Search Genres' , 'mooberry-book-manager'),
+					'all_items' =>  __('All Genres' , 'mooberry-book-manager'),
+					'parent_item' =>  __('Parent Genre' , 'mooberry-book-manager'),
+					'parent_item_colon' =>  __('Parent Genre:' , 'mooberry-book-manager'),
+					'edit_item' =>  __('Edit Genre' , 'mooberry-book-manager'),
+					'update_item' =>  __('Update Genre' , 'mooberry-book-manager'),
+					'add_new_item' =>  __('Add New Genre' , 'mooberry-book-manager'),
+					'new_item_name' =>  __('New Genre Name' , 'mooberry-book-manager'),
+					'menu_name' =>  __('Genres' , 'mooberry-book-manager'),
+					'popular_items' => __('Popular Genres', 'mooberry-book-manager'),
+					'separate_items_with_commas' => __('Separate genres with commas', 'mooberry-book-manager'),
+					'add_or_remove_items' => __('Add or remove genres', 'mooberry-book-manager'),
+					'choose_from_most_used' => __('Choose from the most used genres', 'mooberry-book-manager'),
+					'not_found' => __('No genres found', 'mooberry-book-manager')
 				)
 			)
 			)
@@ -291,22 +291,22 @@
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
 				'labels' => array(
-					'name' => 'Series',
-					'singular_name' => 'Series',
-					'search_items' => 'Search Series' ,
-					'all_items' =>  'All Series' ,
-					'parent_item' =>  'Parent Series' ,
-					'parent_item_colon' =>  'Parent Series:' ,
-					'edit_item' =>  'Edit Series' ,
-					'update_item' =>  'Update Series' ,
-					'add_new_item' =>  'Add New Series' ,
-					'new_item_name' =>  'New Series Name' ,
-					'menu_name' =>  'Series' ,
-					'popular_items' => 'Popular Series',
-					'separate_items_with_commas' => 'Separate series with commas',
-					'add_or_remove_items' => 'Add or remove series',
-					'choose_from_most_used' => 'Choose from the most used series',
-					'not_found' => 'No Series found'
+					'name' => __('Series', 'mooberry-book-manager'),
+					'singular_name' => __('Series', 'mooberry-book-manager'),
+					'search_items' => __('Search Series' , 'mooberry-book-manager'),
+					'all_items' =>  __('All Series' , 'mooberry-book-manager'),
+					'parent_item' =>  __('Parent Series' , 'mooberry-book-manager'),
+					'parent_item_colon' =>  __('Parent Series:' , 'mooberry-book-manager'),
+					'edit_item' =>  __('Edit Series' , 'mooberry-book-manager'),
+					'update_item' =>  __('Update Series' , 'mooberry-book-manager'),
+					'add_new_item' =>  __('Add New Series' , 'mooberry-book-manager'),
+					'new_item_name' =>  __('New Series Name' , 'mooberry-book-manager'),
+					'menu_name' =>  __('Series' , 'mooberry-book-manager'),
+					'popular_items' => __('Popular Series', 'mooberry-book-manager'),
+					'separate_items_with_commas' => __('Separate series with commas', 'mooberry-book-manager'),
+					'add_or_remove_items' => __('Add or remove series', 'mooberry-book-manager'),
+					'choose_from_most_used' => __('Choose from the most used series', 'mooberry-book-manager'),
+					'not_found' => __('No Series found', 'mooberry-book-manager')
 				)
 			))
 		);
