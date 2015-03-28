@@ -126,7 +126,7 @@ function mbdb_shortcode_published($attr, $content) {
 }
 
 function mbdb_shortcode_goodreads($attr, $content) {
-	$attr = shortcode_atts(array('text' => 'View on Goodreads',
+	$attr = shortcode_atts(array('text' => __('View on Goodreads', 'mooberry-book-manager'),
 								'label' => '',
 								'after' => '',
 								'blank' => '',
@@ -250,9 +250,9 @@ function mbdb_shortcode_taxonomy($attr, $taxonomy, $permalink) {
 
 function mbdb_shortcode_serieslist($attr, $content) {
 	$attr = shortcode_atts(array('blank' => '',
-									'before' => 'Part of the ',
-									'after' => ' series:',
-									'delim' => 'list',
+									'before' => __('Part of the ', 'mooberry-book-manager'),
+									'after' => __(' series:', 'mooberry-book-manager'),
+									'delim' => __('list', 'mooberry-book-manager'),
 									'book' => ''), $attr);
 	
 	$bookID = mbdb_get_book_ID( $attr['book'] );
