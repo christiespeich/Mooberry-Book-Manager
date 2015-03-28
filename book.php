@@ -28,15 +28,15 @@ add_filter( 'manage_edit-mbdb_book_columns', 'set_up_mbdb_book_columns' );
 function set_up_mbdb_book_columns( $columns ) {
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
-		'title' => 'Title' ,
-		'_mbdb_cover' => 'Cover',
-		'_mbdb_length' => 'Length' ,
-		'mbdb_genre' => 'Genre',
-		'_mbdb_published' => 'Published',
-		'mbdb_series' => 'Series',
-		'_mbdb_series_order' => 'Series Order',
-		'_mbdb_publisher' => 'Publisher' ,
-		'date' => 'Updated'
+		'title' => __('Title', 'mooberry-book-manager') ,
+		'_mbdb_cover' => __('Cover', 'mooberry-book-manager'),
+		'_mbdb_length' => __('Length', 'mooberry-book-manager') ,
+		'mbdb_genre' => __('Genre', 'mooberry-book-manager'),
+		'_mbdb_published' => __('Published', 'mooberry-book-manager'),
+		'mbdb_series' => __('Series', 'mooberry-book-manager'),
+		'_mbdb_series_order' => __('Series Order', 'mooberry-book-manager'), 
+		'_mbdb_publisher' => __('Publisher', 'mooberry-book-manager'),
+		'date' => __('Updated', 'mooberry-book-manager')
 	);
 	return apply_filters('mbdb_book_columns', $columns);
 }
@@ -122,14 +122,14 @@ add_filter( 'cmb2_meta_boxes', 'mbdb_book_metaboxes', 30 );
 function mbdb_book_metaboxes( array $meta_boxes ) {
 	$meta_boxes['mbdb_summary_metabox'] = array(
 		'id'            => 'mbdb_summary_metabox',
-		'title'         => 'Summary',
+		'title'         => __('Summary', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'high',	
 		'show_names'    => false, // Show field names on the left
 		'fields' => array(
 			array(
-				'name'    => 'Summary',
+				'name'    => __('Summary', 'mooberry-book-manager'),
 				'id'      => '_mbdb_summary',
 				'type'    => 'wysiwyg',
 				'options' => array(  
@@ -150,14 +150,14 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	
 	$meta_boxes['mbdb_excerpt'] = array(
 		'id'            => 'mbdb_excerpt',
-		'title'         => 'Excerpt',
+		'title'         => __('Excerpt', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'default',	
 		'show_names'    => false, // Show field names on the left
 		'fields' => array(
 			array(
-				'name'    => 'Excerpt',
+				'name'    => __('Excerpt', 'mooberry-book-manager'),
 				'id'      => '_mbdb_excerpt',
 				'type'    => 'wysiwyg',
 				'options' => array(  
@@ -178,7 +178,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	
 	$meta_boxes['mbdb_reviews'] = array(
 		'id'            => 'mbdb_reviews',
-		'title'         => 'Reviews',
+		'title'         => _x('Reviews', 'noun', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'default',
@@ -190,22 +190,22 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			'type'        => 'group',
 			'description' => 'Add reviews of your book',
 			'options'     => array(
-				'group_title'   => 'Review {#}', // {#} gets replaced by row number
-				'add_button'    =>  'Add Review',
-				'remove_button' =>  'Remove Review',
+				'group_title'   => _x('Reviews', 'noun', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
+				'add_button'    =>  __('Add Review', 'mooberry-book-manager'),
+				'remove_button' =>  __('Remove Review', 'mooberry-book-manager'),
 				'sortable'      => false, // beta
 				),
 			
 			// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
 			'fields'      => array(
 				array(
-					'name' => 'Reviewer Name',
+					'name' => __('Reviewer Name', 'mooberry-book-manager'),
 					'id'   => 'mbdb_reviewer_name',
 					'type' => 'text_medium',
 					'sanitization_cb' => 'mbdb_validate_reviews', 
 				),
 				array(
-					'name' => 'Review Link',
+					'name' => _x('Review Link', 'noun', 'mooberry-book-manager'),
 					'id'   => 'mbdb_review_url',
 					'type' => 'text_url',
 					'desc' => 'http://www.someWebsite.com/',
@@ -215,13 +215,13 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					),
 				),
 				array(
-					'name' => 'Review Website Name',
+					'name' => _x('Review Website Name', 'noun', 'mooberry-book-manager'),
 					'id'   => 'mbdb_review_website',
 					'type' => 'text_medium',
 					
 				),
 				array(
-					'name'    => 'Review',
+					'name'    => _x('Review', 'noun', 'mooberry-book-manager'),
 					'id'      => 'mbdb_review',
 					'type'	=>	'textarea',
 					),
@@ -232,7 +232,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	
 	$meta_boxes['mbdb_buylinks_metabox'] = array(
 		'id'            => 'mbdb_buylinks_metabox',
-		'title'         => 'Retailer Links',
+		'title'         => _x('Retailer Links', 'noun', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'default',
@@ -243,24 +243,24 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			array(
 				'id'          => '_mbdb_buylinks',
 				'type'        => 'group',
-				'description' => 'Add links where readers can purchase your book',
+				'description' => __('Add links where readers can purchase your book', 'mooberry-book-manager'),
 				'options'     => array(
-					'group_title'   => 'Retailer Link {#}', // {#} gets replaced by row number
-					'add_button'    => 'Add Retailer Link',
-					'remove_button' => 'Remove Retailer Link',
+					'group_title'   => _x('Retailer Link', 'noun', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
+					'add_button'    => __('Add Retailer Link', 'mooberry-book-manager'),
+					'remove_button' => __('Remove Retailer Link', 'mooberry-book-manager'),
 					'sortable'      => false, // beta
 				),
 				// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
 				'fields'      => array(
 					array( 
-						'name'    => 'Retailer',
+						'name'    => __('Retailer', 'mooberry-book-manager'),
 						'id'      => '_mbdb_retailerID',
 						'type'    => 'select',
 						'options' => 'mbdb_get_retailers',
 						'sanitization_cb' => 'mbdb_validate_retailers',
 					),
 					array(
-						'name'	=> 'Link',
+						'name'	=> _x('Link', 'noun', 'mooberry-book-manager'),
 						'id'	=> '_mbdb_buylink',
 						'type'	=> 'text_url',
 						'desc' => 'http://www.someWebsite.com/',
@@ -277,7 +277,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	
 	$meta_boxes['mbdb_downloadlinks_metabox'] = array(
 		'id'            => 'mbdb_downloadlinks_metabox',
-		'title'         => 'Download Links',
+		'title'         => _x('Download Links', 'noun', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
 		'priority'      => 'low',
@@ -287,24 +287,24 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			array(
 				'id'          => '_mbdb_downloadlinks',
 				'type'        => 'group',
-				'description' => 'If your book is available to download for free, add the links for each format.',
+				'description' => __('If your book is available to download for free, add the links for each format.', 'mooberry-book-manager'),
 				'options'     => array(
-					'group_title'   => 'Download Link {#}',  // {#} gets replaced by row number
-					'add_button'    => 'Add Download Link', 
-					'remove_button' =>  'Remove Download Link',
+					'group_title'   => _x('Download Link', 'noun', 'mooberry-book-manager') . ' {#}',  // {#} gets replaced by row number
+					'add_button'    => __('Add Download Link', 'mooberry-book-manager'),
+					'remove_button' =>  __('Remove Download Link', 'mooberry-book-manager'),
 					'sortable'      => false, // beta
 				),
 				// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
 				'fields'      => array(
 					array( 
-						'name'    => 'Format',
+						'name'    => _x('Format', 'noun', 'mooberry-book-manager'),
 						'id'      => '_mbdb_formatID',
 						'type'    => 'select',
 						'options' => 'mbdb_get_formats',
 						'sanitization_cb' => 'mbdb_validate_downloadlinks',
 					),
 					array(
-						'name'	=> 'Link',
+						'name'	=> _x('Link', 'noun', 'mooberry-book-manager'),
 						'id'	=> '_mbdb_downloadlink',
 						'type'	=> 'text_url',
 						'attributes' =>  array(
@@ -319,7 +319,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	
 	$meta_boxes['mbdb_bookinfo_metabox'] = array(
 		'id'            => 'mbdb_bookinfo_metabox',
-		'title'         => 'Book Details',
+		'title'         => __('Book Details', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
 		'priority'      => 'low',
@@ -327,17 +327,17 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'show_names'    => true, // Show field names on the left
 		'fields' => array(
 			array(
-				'name' => 'Subtitle', 
+				'name' => __('Subtitle', 'mooberry-book-manager'),
 				'id'   => '_mbdb_subtitle',
 				'type' => 'text_small',
 			),
 			array(
-				'name' => 'Publisher', 
+				'name' => __('Publisher', 'mooberry-book-manager'),
 				'id'   => '_mbdb_publisher',
 				'type' => 'text_medium',
 			),
 			array(
-				'name' 	=> 'Publisher Website',
+				'name' 	=> __('Publisher Website', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_publisherwebsite',
 				'type'	=> 'text_url',
 				'desc' => 'http://www.someWebsite.com/',
@@ -348,14 +348,15 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 				),
 			),
 			array(
-				'name' 	=> 'Release Date',
+				'name' 	=> __('Release Date', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_published',
 				'type' => 'text_date',
+				'desc' => 'yyyy/mm/dd',
 				'date_format' => 'Y/m/d',
 				'sanitization_cb' => 'mbdb_format_date'
 			),
 			array(
-				'name'	=> 'Goodreads Link',
+				'name'	=> __('Goodreads Link', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_goodreads',
 				'type'	=> 'text_url',
 				'desc' => 'http://www.goodreads.com/your/Unique/Text/',
@@ -365,7 +366,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 				),
 			),
 			array(
-				'name'	=> 'Number of Pages',
+				'name'	=> __('Number of Pages', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_length',
 				'type'	=> 'text_small',
 				'attributes' => array(
@@ -375,9 +376,9 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					),
 			),
 			array(
-				'name'	=> 'Series Order',
+				'name'	=> __('Series Order', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_series_order',
-				'desc'	=> '(leave blank if not part of a series)',
+				'desc'	=> __('(leave blank if not part of a series)', 'mooberry-book-manager'),
 				'type'	=> 'text_small',
 				'attributes' => array(
 						'type' => 'number',
@@ -391,7 +392,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	
 	$meta_boxes['mbdb_cover_image'] = array(
 		'id'            => 'mbdb_cover_image',
-		'title'         => 'Cover',
+		'title'         => _x('Cover', 'noun', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'side',
 		'priority'      => 'low',
@@ -400,7 +401,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'allow'			=> array( 'attachment'),
 		'fields' => array(
 			array(
-				 'name' => 'Book Cover',
+				 'name' => _x('Book Cover', 'noun', 'mooberry-book-manager'),
 				'id' => '_mbdb_cover',
 				'type' => 'file',
 				'allow' => array(  'attachment' ) // limit to just attachments with array( 'attachment' )
