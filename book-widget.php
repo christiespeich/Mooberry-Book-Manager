@@ -3,8 +3,8 @@ class mbdb_book_widget extends WP_Widget {
 
 	// constructor
 	function __construct() {
-		$widget_ops = array('classname' => 'mbdb_book_widget', 'description' => 'Shows the cover of the book of your choosing with a link to the book page');
-		parent::WP_Widget(false, $name = 'Mooberry Book Manager Book', $widget_ops  );
+		$widget_ops = array('classname' => 'mbdb_book_widget', 'description' => __('Shows the cover of the book of your choosing with a link to the book page', 'mooberry-book-manager'));
+		parent::WP_Widget(false, $name = 'Mooberry Book Manager '. _x('Book', 'noun', 'mooberry-book-manager'), $widget_ops  );
 
 	}
 
@@ -116,7 +116,7 @@ class mbdb_book_widget extends WP_Widget {
 		echo $before_title . esc_html($mbdb_widget_title) . $after_title;
 		
 		if ($mbdb_bookID == 0) {
-			echo apply_filters('mbdb_widget_no_books_found', '<em>No books found</em>');
+			echo apply_filters('mbdb_widget_no_books_found', '<em>' . __('No books found', 'mooberry-book-manager') . '</em>');
 		} else {
 			$image_src = get_post_meta( $mbdb_bookID, '_mbdb_cover', true );
 			$book_link = get_permalink( $mbdb_bookID );
