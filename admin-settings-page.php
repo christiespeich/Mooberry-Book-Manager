@@ -1,8 +1,8 @@
 <?php
 do_action('mbdb_settings_before_instructions');
 ?>
-<h2>Mooberry Book Manager Settings</h2>
-<p><b>NOTE:</b> You must click the SAVE button to save your changes before switching tabs.</p>
+<h2>Mooberry Book Manager <?php _e('Settings', 'mooberry-book-manager'); ?></h2>
+<p><b><?php _e('NOTE:', 'mooberry-book-manager'); ?></b> <?php _e('You must click the SAVE button to save your changes before switching tabs.', 'mooberry-book-manager'); ?></p>
 
 
 <?php
@@ -71,17 +71,17 @@ function mbdb_retailers() {
 		array(
 			'id'          => 'retailers',
 			'type'        => 'group',
-			'desc'			=>	'Add any additional retailers that sell your books.',
+			'desc'			=>	__('Add any additional retailers that sell your books.', 'mooberry-book-manager'),
 			'options'     => array(
-				'group_title'   => 'Retailer {#}',  // since version 1.1.4, {#} gets replaced by row number
-				'add_button'    =>  'Add Retailer', 
-				'remove_button' =>  'Remove Retailer', 
+				'group_title'   => __('Retailer', 'mooberry-book-manager') . ' {#}',  // since version 1.1.4, {#} gets replaced by row number
+				'add_button'    =>  __('Add Retailer', 'mooberry-book-manager'),
+				'remove_button' =>  __('Remove Retailer', 'mooberry-book-manager') ,
 				'sortable'      => false, // beta
 			),
 			// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
 			'fields'      => array(
 				array(
-					'name' => 'Retailer Name',
+					'name' => __('Retailer Name', 'mooberry-book-manager'),
 					'id'   => 'name',
 					'type' => 'text_medium',
 					'attributes' => array(
@@ -92,7 +92,7 @@ function mbdb_retailers() {
 					
 				),
 				array(
-					'name' => 'Retailer Logo Image',
+					'name' => __('Retailer Logo Image', 'mooberry-book-manager'),
 					'id'   => 'image',
 					'type' => 'file',
 					'attributes' => array(
@@ -118,17 +118,17 @@ function  mbdb_formats() {
 		array(
 			'id'          => 'formats',
 			'type'        => 'group',
-			'desc'			=> 'If you have free books for download, add any additional formats your books are available in.',
+			'desc'			=> __('If you have free books for download, add any additional formats your books are available in.', 'mooberry-book-manager'),
 			'options'     => array(
-				'group_title'   => 'Format {#}',  // since version 1.1.4, {#} gets replaced by row number
-				'add_button'    => 'Add Format', 
-				'remove_button' => 'Remove Format',
+				'group_title'   => _x('Format', 'noun', 'mooberry-book-manager') . ' {#}',  // since version 1.1.4, {#} gets replaced by row number
+				'add_button'    => __('Add Format', 'mooberry-book-manager'),
+				'remove_button' => __('Remove Format', 'mooberry-book-manager'),
 				'sortable'      => false, // beta
 			),
 			// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
 			'fields'      => array(
 				array(
-					'name' => 'Format',
+					'name' => _x('Format', 'noun', 'mooberry-book-manager'),
 					'id'   => 'name',
 					'type' => 'text',
 					'attributes' => array(
@@ -137,7 +137,7 @@ function  mbdb_formats() {
 					// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
 				),
 				array(
-					'name' => 'Format Image',
+					'name' => _x('Format Image', 'noun', 'mooberry-book-manager'),
 					'id'   => 'image',
 					'type' => 'file',
 				),
@@ -165,7 +165,7 @@ function mbdb_uniqueID_generator( $value ) {
 
 // make the tabs for the admin screen
 function mbdb_admin_tabs( $current = 'book-page' ) {
-	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => 'Retailers', 'formats' => 'Formats')); //, 'output' => 'Print Book list'));
+	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => __('Retailers', 'mooberry-book-manager'), 'formats' => _x('Formats', 'noun', 'mooberry-book-manager'))); //, 'output' => 'Print Book list'));
 	do_action('mbdb_settings_before_tabs');
 	echo '<div id="icon-options-general" class="icon32"></div>';
 	echo '<h2 class="nav-tab-wrapper">';
