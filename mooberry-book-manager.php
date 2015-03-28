@@ -6,6 +6,7 @@
     Author: Mooberry Dreams
     Version: 1.0
     Author URI: http://www.mooberrydreams.com/
+	Text Domain: mooberry-book-manager
 	
 	Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
 
@@ -28,6 +29,7 @@
 	update_option(MBDB_PLUGIN_VERSION_KEY, '1.0');
 
 	
+	
 	// Load in CMB2
 	if ( file_exists( dirname( __FILE__ ) . '/includes/cmb2/init.php' ) ) {
 		require_once dirname( __FILE__ ) . '/includes/cmb2/init.php';
@@ -45,7 +47,10 @@
 	require_once dirname( __FILE__ ) . '/book-grid.php';
 	require_once ABSPATH . 'wp-admin/includes/image.php';
 
-
+	add_action( 'plugins_loaded', 'mbdb_load_plugin_textdomain' );
+	function mbdb_load_plugin_textdomain() {
+		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
 	
 	
 	
