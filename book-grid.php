@@ -10,14 +10,38 @@ function mbdb_redirect_tax_grid() {
 	}
 }
 
+
+// edit the breadcrumb for the Customizr theme if this is a tax_grid (series, tag, genre)
+// tc_breadcrumb_trail_items should be unique enough to the Customizr theme
+// that it doesn't affect anything else?
+add_filter('tc_breadcrumb_trail_items', 'mbdb_tax_grid_breadcrumb', 10, 2);
+function mbdb_tax_grid_breadcrumb( $trail, $args) {
+	
+	if (  get_post_type() == 'mbdb_tax_grid' ) {
+		$lastitem = count($trail) -1;
+		$trail[$lastitem] = mbdb_get_tax_title($trail[$lastitem]);
+	}
+	return $trail;
+}
+
+
 // set the title in the book grid to the appropriate tag, genre, or series
 // if query vars have been passed to handle the special case of showing
 // just one tag, genre, or series
-add_filter('the_title', 'mbdb_tax_grid_title');
+//add_filter('tc_the_title', 'mbdb_tax_grid_title');
+add_filter('tc_title_text', 'mbdb_tax_grid_title');
+//add_filter('the_title', 'mbdb_tax_grid_title');
 function mbdb_tax_grid_title( $content, $id = null ) {
-	global $wp_query;
+	
 	if ( is_main_query() && in_the_loop() && get_post_type() == 'mbdb_tax_grid' ) {
-		if ( isset( $wp_query->query_vars['the-term'] ) ) {
+		$content = mbdb_get_tax_title($content);
+	}
+	return $content;
+} 
+
+function mbdb_get_tax_title( $content ) {
+	global $wp_query;
+	if ( isset( $wp_query->query_vars['the-term'] ) ) {
 			$mbdb_term = trim( urldecode( $wp_query->query_vars['the-term'] ), '/');
 			if ( isset( $wp_query->query_vars['the-taxonomy'] ) ) {
 				$mbdb_taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/');
@@ -34,9 +58,9 @@ function mbdb_tax_grid_title( $content, $id = null ) {
 				}
 			}
 		}
-	}
+		error_log($content);
 	return $content;
-} 
+}
 
 // add_filter( 'template_include', 'mbdb_grid_template', 99 );
 // function mbdb_grid_template( $template ) {

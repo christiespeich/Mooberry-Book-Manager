@@ -312,6 +312,12 @@
 		);
 	}
 
+	// because the Customizr theme doesn't use the standard WP set up and
+	// is automatically considering the tax grids a post list type (archive),
+	// add an additional filter handler for the content of the Customizr theme
+	// tc_post_list_content should be unique enough to the Customizr theme
+	// that it doesn't affect anything else?
+	add_filter('tc_post_list_content', 'mbdb_content');
 	add_filter('the_content', 'mbdb_content');
 	function mbdb_content($content) {
 		global $wp_query;
