@@ -114,9 +114,11 @@ function mbdb_shortcode_published($attr, $content) {
 		return apply_filters('mbdb_shortcode_published',  '<span class="mbm-book-published"><span class="mbm-book-published-blank">' . esc_html($attr['blank']) . '</span></span>');
 	}
 	if ($attr['format'] =='short') {
-		$format = 'm/d/Y';
+		/* translators: short date format. see http://php.net/date */
+		$format = __('m/d/Y');
 	} else {
-		$format = 'F j, Y';
+		/* translators: long date format. see http://php.net/date */
+		$format = __('F j, Y');
 	}
 	$mbdb_published = get_post_meta( $bookID, '_mbdb_published', true );
 	if ( empty( $mbdb_published ) ) { 

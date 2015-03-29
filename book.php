@@ -59,6 +59,15 @@ function populate_mbdb_book_columns($column, $post_id) {
 			echo apply_filters('mbdb_book_' . $column . '_column', get_the_term_list( $post_id, $column, '' , ', ' ));
 			do_action('mbdb_book_after_' . $column . '_column');
 			break;
+		case '_mbdb_published':
+			do_action('mbdb_book_before_mbdb_published_column');
+			$mbdb_published = get_post_meta( $post_id, $column, true);
+			if (!empty($mbdb_published)) {
+				/* translators: short date format. see http://php.net/date */
+				echo apply_filters('mbdb_book_mbdb_published_column', date(__('m/d/Y'),strtotime($mbdb_published)), $post_id);
+			}
+			do_action('mbdb_book_afteR_mbdb_published_column');
+			break;
 		default:
 			do_action('mbdb_book_before' . $column . '_column');
 			echo apply_filters('mbdb_book' . $column . '_column', get_post_meta( $post_id, $column, true), $post_id);

@@ -1,20 +1,20 @@
 <?php
 	
 function mbdb_get_default_page_layout() {
-	return apply_filters('mbdb_default_book_page','<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="Summary Coming Soon!"] 
+	return apply_filters('mbdb_default_book_page','<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="' . __('Summary Coming Soon!', 'mooberry-book-manager') . '"] 
 	
-	[book_links buylabel="Buy Now:" downloadlabel="Download Now:"  align="horizontal" size="35" blank="" blanklabel=""]
+	[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="35" blank="" blanklabel=""]
 				[book_goodreads  ]
 				
-				<strong>Published:</strong> [book_published format="short" blank="TBA"]
-				<strong>Publisher:</strong> [book_publisher  blank="TBA"]
-				<strong>Number of Pages:</strong> [book_length  blank="TBD"]
-				<strong>Genres:</strong><span>[book_genre delim="comma" blank="(uncategorized)"]</span>
-				<strong>Tags:</strong><span> [book_tags  delim="comma" blank="(none)"]</span>
+				<strong>Published:</strong> [book_published format="short" blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
+				<strong>Publisher:</strong> [book_publisher  blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
+				<strong>Number of Pages:</strong> [book_length  blank="' . _x('TBD', 'To Be Determined', 'mooberry-book-manager') . '"]
+				<strong>Genres:</strong><span>[book_genre delim="comma" blank="' . __('(uncategorized)', 'mooberry-book-manager') . '"]</span>
+				<strong>Tags:</strong><span> [book_tags  delim="comma" blank="' . __('(none)', 'mooberry-book-manager') . '"]</span>
 
 				[book_serieslist before="Part of the " after=" series: " delim="list"]
-				<strong>Reviews:</strong><span> [book_reviews  blank="Coming Soon!"]</span>
-				<strong>Excerpt:</strong><span> [book_excerpt  blank="Coming Soon!"]</span>[book_links buylabel="Buy Now:" downloadlabel="Download Now:"  align="horizontal" size="35" blank="" blanklabel=""]');
+				<strong>Reviews:</strong><span> [book_reviews  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>
+				<strong>Excerpt:</strong><span> [book_excerpt  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '"  align="horizontal" size="35" blank="" blanklabel=""]');
 }
 
 // uploads file at specfied $filename and returns the attachment id of the uploaded file
@@ -333,18 +333,18 @@ function mbdb_validate_reviews( $field ) {
 		if ($flag) { break; }
 	}
 	do_action('mbdb_validate_reviews_before_msg', $field, $flag, $review);
-	mbdb_msg_if_invalid( $flag, '_mbdb_reviews', $review, apply_filters('mbdb_validate_reviews_msg', 'Reviews require review text and at least one other field. Please check review #%s.') );
+	mbdb_msg_if_invalid( $flag, '_mbdb_reviews', $review, apply_filters('mbdb_validate_reviews_msg', __('Reviews require review text and at least one other field. Please check review #%s.', 'mooberry-book-manager')) );
 	do_action('mbdb_validate_reviews_after_msg', $field, $flag, $review);
 	return mbdb_sanitize_field( $field);
 }
 
 function mbdb_validate_downloadlinks( $field ) {
-	mbdb_validate_book_fields( '_mbdb_downloadlinks', '_mbdb_formatID', '_mbdb_downloadlink', 'Download links require all fields filled out. Please check download link #%s.');
+	mbdb_validate_book_fields( '_mbdb_downloadlinks', '_mbdb_formatID', '_mbdb_downloadlink', __('Download links require all fields filled out. Please check download link #%s.', 'mooberry-book-manager'));
 	return mbdb_sanitize_field($field);
 }
 
 function mbdb_validate_retailers( $field ) {
-	mbdb_validate_book_fields( '_mbdb_buylinks', '_mbdb_retailerID', '_mbdb_buylink', 'Retailer links require all fields filled out. Please check retailer link #%s.');
+	mbdb_validate_book_fields( '_mbdb_buylinks', '_mbdb_retailerID', '_mbdb_buylink', __('Retailer links require all fields filled out. Please check retailer link #%s.', 'mooberry-book-manager'));
 	return mbdb_sanitize_field( $field );
 }
 
