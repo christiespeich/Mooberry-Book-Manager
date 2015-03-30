@@ -319,9 +319,7 @@ msgid "Download Links"
 msgstr ""
 
 #: book.php:299
-msgid ""
-"If your book is available to download for free, add the links for each "
-"format."
+msgid "If your book is available to download for free, add the links for each format."
 msgstr ""
 
 #: book.php:301
@@ -489,9 +487,7 @@ msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
 msgstr ""
 
 #: includes/CMB2/includes/CMB2_hookup.php:159
-msgid ""
-"January, February, March, April, May, June, July, August, September, "
-"October, November, December"
+msgid "January, February, March, April, May, June, July, August, September, October, November, December"
 msgstr ""
 
 #: includes/CMB2/includes/CMB2_hookup.php:160
@@ -590,9 +586,7 @@ msgid "Coming Soon!"
 msgstr ""
 
 #: includes/helper-functions.php:336
-msgid ""
-"Reviews require review text and at least one other field. Please check "
-"review #%s."
+msgid "Reviews require review text and at least one other field. Please check review #%s."
 msgstr ""
 
 #: includes/helper-functions.php:342
@@ -601,8 +595,7 @@ msgid ""
 msgstr ""
 
 #: includes/helper-functions.php:347
-msgid ""
-"Retailer links require all fields filled out. Please check retailer link #%s."
+msgid "Retailer links require all fields filled out. Please check retailer link #%s."
 msgstr ""
 
 #: mooberry-book-manager.php:196
