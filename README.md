@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.1.1  
-**Stable tag:** 1.0  
+**Stable tag:** 1.1   
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -35,6 +35,12 @@ Want regular updates?
 
 
 ## Changelog
+
+#### 1.1 
+* Added support for language translations   
+* Added German translation  
+* Fixed issues resulting from Customizr theme  
+* Fixed bug with book drop down in widget  
 
 #### 1.0 
 

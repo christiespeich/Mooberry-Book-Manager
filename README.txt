@@ -94,6 +94,7 @@ Download the [User Manual](http://www.mooberrydreams.com/wp/wp-content/uploads/2
 * Added support for language translations  
 * Added German translation  
 * Fixed issues resulting from Customizr theme  
+* Fixed bug with book drop down in widget  
 
 = 1.0 =
 * Initial Version  
