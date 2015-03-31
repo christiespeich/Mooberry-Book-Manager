@@ -100,7 +100,7 @@ Download the [User Manual](http://www.mooberrydreams.com/wp/wp-content/uploads/2
 * Initial Version  
 
 == Upgrade Notice ==
-Resolves issues resulting from Customizr theme. Adds German translation.
+Resolves issues resulting from Customizr theme. Adds German translation. Fixes bug with book drop down in widget.
 
 == Translations ==
 * English  
