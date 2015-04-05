@@ -1,14 +1,16 @@
+window.addEventListener('load', onLoad, false);
 
-	
+function onLoad() {
+	if (document.getElementById('_mbdb_book_grid_display') != null) {
+		document.getElementById('_mbdb_book_grid_display').addEventListener('change', displayChange, false);
+		displayChange();
+	}
+		
 	if (document.getElementById('_mbdb_book_grid_books') != null) {
 		document.getElementById('_mbdb_book_grid_books').addEventListener('change', booksChange, false);
 		booksChange();
 	}
 	
-	if (document.getElementById('_mbdb_book_grid_display') != null) {
-		document.getElementById('_mbdb_book_grid_display').addEventListener('change', displayChange, false);
-		displayChange();
-	}
 	
 	if (document.getElementById('_mbdb_book_grid_group_by') != null) {
 		document.getElementById('_mbdb_book_grid_group_by').addEventListener('change', groupByChange, false);
@@ -19,12 +21,13 @@
 		document.getElementById('_mbdb_book_grid_genre_group_by').addEventListener('change', genreGroupByChange, false);
 		genreGroupByChange();
 	}
+}
 	
 	function genreGroupByChange() {
 		var genre_group_by = document.getElementById('_mbdb_book_grid_genre_group_by');
 		var grid_order =  document.getElementsByClassName('cmb2-id--mbdb-book-grid-order');
 		
-		if (genre_group_by.value == 'series') {
+		if (genre_group_by.style.display=='block' && genre_group_by.value == 'series') {
 			grid_order[0].style.display = 'none';
 		} else {
 			grid_order[0].style.display = 'block';
@@ -32,7 +35,7 @@
 		}
 		
 	}
-	
+
 	
 	function groupByChange() {
 		var group_by = document.getElementById('_mbdb_book_grid_group_by');
@@ -45,7 +48,7 @@
 			genre_group_by[0].style.display = 'none';
 		}
 		
-		if (group_by.value == 'series') {
+		if (group_by.style.display=='block' && group_by.value == 'series') {
 			grid_order[0].style.display = 'none';
 		} else {
 			grid_order[0].style.display = 'block';

@@ -30,7 +30,7 @@ function mbdb_tax_grid_breadcrumb( $trail, $args) {
 // just one tag, genre, or series
 //add_filter('tc_the_title', 'mbdb_tax_grid_title');
 add_filter('tc_title_text', 'mbdb_tax_grid_title');
-//add_filter('the_title', 'mbdb_tax_grid_title');
+add_filter('the_title', 'mbdb_tax_grid_title');
 function mbdb_tax_grid_title( $content, $id = null ) {
 	
 	if ( is_main_query() && in_the_loop() && get_post_type() == 'mbdb_tax_grid' ) {
@@ -58,7 +58,6 @@ function mbdb_get_tax_title( $content ) {
 				}
 			}
 		}
-		error_log($content);
 	return $content;
 }
 
@@ -437,8 +436,10 @@ function mbdb_display_grid($mbdb_books, $mbdb_book_grid_cover_height, $mbdb_book
 }
 
 function mbdb_check_grid_order( $field ) {
-	if ($_POST['_mbdb_book_grid_group_by'] == 'series' || $_POST['_mbdb_book_grid_genre_group_by'] == 'series') {
-		$field = 'series';
-	} 
+	if ($_POST['_mbdb_book_grid_group_by'] != 'none') {
+		if ($_POST['_mbdb_book_grid_group_by'] == 'series' || $_POST['_mbdb_book_grid_genre_group_by'] == 'series') {
+			$field = 'series';
+		}
+	}
 	return apply_filters('mbdb_book_grid_check_grid_order', $field);
 }
