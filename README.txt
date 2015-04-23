@@ -1,18 +1,18 @@
 === Mooberry Book Manager ===
 Contributors: mooberrydreams
 Donate link: http://www.mooberrydreams.com/
-Tags: book, author, publisher, writer, books, writing, publishing, authors
+Tags: book, author, publisher, writer, books, writing, publishing, authors, library
 Requires at least: 3.8.0
-Tested up to: 4.1.1
-Stable tag: 1.2
+Tested up to: 4.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An easy-to-use system for authors to add books to their Wordpress website. Add your new book to your site in less than 5 minutes.
+An easy-to-use system for authors. Add your new book to your site in less than 5 minutes.
 
 == Description ==
 
-Mooberry Book Manager is an easy-to-use system for authors to add books to their Wordpress website.
+Mooberry Book Manager is an easy-to-use system for authors to add books to their Wordpress websites.
 
 No coding is necessary to use Mooberry Book Manager. Adding books is as easy as filling out a form. Include as much or as little information as you want, including the book cover, links to purchase the book, reviews of the book, an excerpt, and more.
 
@@ -90,6 +90,10 @@ Download the [User Manual](http://www.mooberrydreams.com/wp/wp-content/uploads/2
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 1.3 =
+* Added 9 new retailers
+* Escapes add_query_vars for safety
+
 = 1.2 =
 * Fixes bugs introduced in 1.1 (oops!)
 
@@ -103,7 +107,7 @@ Download the [User Manual](http://www.mooberrydreams.com/wp/wp-content/uploads/2
 * Initial Version  
 
 == Upgrade Notice ==
-Resolves issues resulting from Customizr theme. Adds German translation. Fixes bug with book drop down in widget.
+Adds 9 retailers.
 
 == Translations ==
 * English  
