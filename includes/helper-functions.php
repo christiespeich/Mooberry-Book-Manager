@@ -1,5 +1,21 @@
 <?php
 	
+function mbdb_upgrade_versions() {
+		
+		
+		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
+		
+		if (version_compare($current_version, '1.3', '<')) {
+			// upgrade to 1.3 script
+			// add new retailers
+			add_filter('mbdb_default_retailers', 'mbdb_upgrade_to_1_3');
+		} 
+		
+		// update database to the new version
+		update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
+	
+}
+
 function mbdb_get_default_page_layout() {
 	return apply_filters('mbdb_default_book_page','<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="' . __('Summary Coming Soon!', 'mooberry-book-manager') . '"] 
 	
@@ -403,7 +419,7 @@ function mbdb_error_message(  $message ) {
 	global $wpdb;
 	$wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $_POST['post_ID'] ) );
 	// filter the query URL to change the published message
-	add_filter( 'redirect_post_location', create_function( '$location', 'return add_query_arg("message", "0", $location);' ) );
+	add_filter( 'redirect_post_location', create_function( '$location', 'return esc_url_raw(add_query_arg("message", "0", $location));' ) );
 }
 
 function mbdb_sanitize_field( $field ) {
@@ -421,13 +437,17 @@ function mbdb_get_formats() {
 function mbdb_get_list( $options_key ) {
 	$mbdb_options = get_option( 'mbdb_options' );
 	$list[0] = '';
+	
 	if ( $mbdb_options ) {
 		if ( array_key_exists( $options_key, $mbdb_options ) ) {
 			foreach( $mbdb_options[$options_key] as $o ) {
 				$list[$o['uniqueID']] = $o['name'];
 			}
+			// natural sort, case insensitive
+			natcasesort($list);
 		}
 	}
+	
 	return apply_filters('mbdb_' . $options_key . '_list', $list);
 }	
 	
@@ -450,3 +470,19 @@ function mbdb_get_book_dropdown( $selected_bookID ) {
 		echo apply_filters('mbdb_get_book_dropdown_option', '<option value="' . esc_attr($book_id) .'"' . $selected . '>' . esc_html($book_title) . '</option>');
 	}
 }
+
+
+function mbdb_upgrade_to_1_3($default_retailers) {
+	$default_retailers[] = array('name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
+	$default_retailers[] = array('name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.gif' );
+	$default_retailers[] = array('name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' );
+	$default_retailers[] = array('name' => 'Create Space', 'uniqueID' => 9, 'image' => 'createspace.jpg' );
+	$default_retailers[] = array('name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.gif' );
+	$default_retailers[] = array('name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.jpg' );
+	$default_retailers[] = array('name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.jpg' );
+	$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.jpg' );
+	$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
+	return $default_retailers;
+}
+	
+	

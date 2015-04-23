@@ -26,9 +26,7 @@
 
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	update_option(MBDB_PLUGIN_VERSION_KEY, '1.2');
-
-	
+	define('MBDB_PLUGIN_VERSION', '1.3');
 	
 	// Load in CMB2
 	if ( file_exists( dirname( __FILE__ ) . '/includes/cmb2/init.php' ) ) {
@@ -58,6 +56,8 @@
 	// the add ons to check dependency
 	register_activation_hook( __FILE__, 'mbdb_activate' );
 	function mbdb_activate() {
+		mbdb_upgrade_versions();
+		
 		
 		$mbdb_options = get_option( 'mbdb_options' );
 		
@@ -133,6 +133,9 @@
 					);
 		} 
 		
+		
+	
+		
 		mbdb_init();
 	
 		global $wp_rewrite;
@@ -202,6 +205,11 @@
 
 	add_action( 'init', 'mbdb_init' );	
 	function mbdb_init() {
+	
+		
+		
+	
+	
 		// create Book Post Type
 		register_post_type('mbdb_book',
 			apply_filters('mbdb_book_cpt', array(	
