@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.2  
-**Stable tag:** 1.3   
+**Stable tag:** 1.3.1   
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -36,7 +36,7 @@ Want regular updates?
 
 ## Changelog
 
-#### 1.3   
+#### 1.3.1   
 * Added 9 new retailers   
 * Escapes add_query_vars for safety   
 
