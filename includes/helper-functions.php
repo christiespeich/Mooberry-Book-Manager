@@ -5,10 +5,10 @@ function mbdb_upgrade_versions() {
 		
 		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
 		
-		if (version_compare($current_version, '1.3', '<')) {
+		if (version_compare($current_version, '1.3.1', '<')) {
 			// upgrade to 1.3 script
 			// add new retailers
-			add_filter('mbdb_default_retailers', 'mbdb_upgrade_to_1_3');
+			mbdb_upgrade_to_1_3_1();
 		} 
 		
 		// update database to the new version
@@ -46,7 +46,6 @@ function mbdb_upload_image($filename) {
 		'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
 		'post_content' => '',
 		'post_status' => 'inherit');
-	
 	$attach_id = wp_insert_attachment( $attachment, $wp_upload_dir['path'] . '/' . $filename );
 	$attach_data = wp_generate_attachment_metadata( $attach_id,  $wp_upload_dir['path'] . '/' . $filename );
 	wp_update_attachment_metadata( $attach_id, $attach_data );
@@ -472,7 +471,8 @@ function mbdb_get_book_dropdown( $selected_bookID ) {
 }
 
 
-function mbdb_upgrade_to_1_3($default_retailers) {
+function mbdb_upgrade_to_1_3_1() {
+	$default_retailers = array();
 	$default_retailers[] = array('name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
 	$default_retailers[] = array('name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.gif' );
 	$default_retailers[] = array('name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' );
@@ -482,7 +482,9 @@ function mbdb_upgrade_to_1_3($default_retailers) {
 	$default_retailers[] = array('name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.jpg' );
 	$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.jpg' );
 	$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
-	return $default_retailers;
+	$mbdb_options = get_option( 'mbdb_options' );
+	mbdb_insert_defaults( $default_retailers, 'retailers', $mbdb_options);
+	update_option( 'mbdb_options',  $mbdb_options );
 }
 	
 	

@@ -25,9 +25,12 @@
     */
 
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
-	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '1.3');
 	
+	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
+	define('MBDB_PLUGIN_VERSION', '1.3.1');
+	
+		
+		
 	// Load in CMB2
 	if ( file_exists( dirname( __FILE__ ) . '/includes/cmb2/init.php' ) ) {
 		require_once dirname( __FILE__ ) . '/includes/cmb2/init.php';
@@ -45,6 +48,9 @@
 	require_once dirname( __FILE__ ) . '/book-grid.php';
 	require_once ABSPATH . 'wp-admin/includes/image.php';
 
+	
+
+	
 	add_action( 'plugins_loaded', 'mbdb_load_plugin_textdomain' );
 	function mbdb_load_plugin_textdomain() {
 		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
@@ -56,7 +62,7 @@
 	// the add ons to check dependency
 	register_activation_hook( __FILE__, 'mbdb_activate' );
 	function mbdb_activate() {
-		mbdb_upgrade_versions();
+	
 		
 		
 		$mbdb_options = get_option( 'mbdb_options' );
@@ -206,7 +212,7 @@
 	add_action( 'init', 'mbdb_init' );	
 	function mbdb_init() {
 	
-		
+			mbdb_upgrade_versions();
 		
 	
 	
