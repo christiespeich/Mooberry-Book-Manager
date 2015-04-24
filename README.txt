@@ -4,7 +4,7 @@ Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library
 Requires at least: 3.8.0
 Tested up to: 4.2
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Download the [User Manual](http://www.mooberrydreams.com/wp/wp-content/uploads/2
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
-= 1.3.1 =
+= 1.3.2 =
 * Added 9 new retailers
 * Escapes add_query_vars for safety
 
