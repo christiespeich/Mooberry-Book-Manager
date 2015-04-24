@@ -41,6 +41,7 @@
 		</select>
 		</P>
 		</div>
+		<?php do_action('mbdb_book_widget_fields'); ?>
 		<p>
 		<label for="<?php echo $this->get_field_id('mbdb_widget_show_title'); ?>"><?php _e('Show Book Title', 'mooberry-book-manager'); ?></label>
 		<input type="checkbox" id="<?php echo $this->get_field_id('mbdb_widget_show_title'); ?>" name="<?php echo $this->get_field_name('mbdb_widget_show_title'); ?>" value="yes"   <?php echo $mbdb_widget_show_title=='yes' ? 'checked' : ''; ?> />
