@@ -34,7 +34,7 @@ add_filter('the_title', 'mbdb_tax_grid_title');
 function mbdb_tax_grid_title( $content, $id = null ) {
 	
 	if ( is_main_query() && in_the_loop() && get_post_type() == 'mbdb_tax_grid' ) {
-		$content = mbdb_get_tax_title($content);
+		$content = apply_filters('mbdb_tax_grid_title', mbdb_get_tax_title($content));
 	}
 	return $content;
 } 

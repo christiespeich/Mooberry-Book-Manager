@@ -220,7 +220,7 @@ function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_ord
 	
 	
 	$books = get_posts( apply_filters('mbdb_get_books_main_query', $args ) );
-	error_log(print_r($books, true));
+	
 	if ( isset( $args2 ) ) {
 	
 	
