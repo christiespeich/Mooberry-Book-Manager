@@ -16,7 +16,7 @@
 ?>
 
 <p>
-		<label for="<?php echo $this->get_field_id('mbdb_widget_title'); ?>"><? _e('Widget Title', 'mooberry-book-manager'); ?></label>
+		<label for="<?php echo $this->get_field_id('mbdb_widget_title'); ?>"><?php _e('Widget Title:', 'mooberry-book-manager'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('mbdb_widget_title'); ?>" name="<?php echo $this->get_field_name('mbdb_widget_title'); ?>" type="text" value="<?php echo esc_html($mbdb_widget_title); ?>" />
 		</p>
 		
@@ -41,7 +41,7 @@
 		</select>
 		</P>
 		</div>
-		<?php do_action('mbdb_book_widget_fields'); ?>
+		<?php do_action('mbdb_book_widget_fields', $instance, $this); ?>
 		<p>
 		<label for="<?php echo $this->get_field_id('mbdb_widget_show_title'); ?>"><?php _e('Show Book Title', 'mooberry-book-manager'); ?></label>
 		<input type="checkbox" id="<?php echo $this->get_field_id('mbdb_widget_show_title'); ?>" name="<?php echo $this->get_field_name('mbdb_widget_show_title'); ?>" value="yes"   <?php echo $mbdb_widget_show_title=='yes' ? 'checked' : ''; ?> />
