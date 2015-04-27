@@ -157,10 +157,19 @@ function mbdb_book_grid_meta_boxes( array $meta_boxes ) {
 					),
 				),
 				array(
-					'name'	=> __('Book Cover Height', 'mooberry-book-manager'),
+					'name'	=>	__('Use default cover height?', 'mooberry-book-manager'),
+					'id'	=>	'_mbdb_book_grid_cover_height_default',
+					'type'	=>	'select',
+					'default'	=>	'yes',
+					'options'	=>	array(
+						'yes'	=> 'Yes',
+						'no'	=>	'No',
+					),
+				),
+				array(
+					'name'	=> __('Book Cover Height (px)', 'mooberry-book-manager'),
 					'id'	=> '_mbdb_book_grid_cover_height',
 					'type'	=> 'text_small',
-					'default'	=> 200,
 					'attributes' => array(
 							'type' => 'number',
 							'pattern' => '\d*',
@@ -168,10 +177,19 @@ function mbdb_book_grid_meta_boxes( array $meta_boxes ) {
 					),
 				),
 				array(
+					'name'	=>	__('Use default number of books across?', 'mooberry-book-manager'),
+					'id'	=>	'_mbdb_book_grid_books_across_default',
+					'type'	=>	'select',
+					'default'	=>	'yes',
+					'options'	=>	array(
+						'yes'	=> 'Yes',
+						'no'	=>	'No',
+					),
+				),
+				array(
 					'name'	=> __('Number of Books Across', 'mooberry-book-manager'),
 					'id'	=> '_mbdb_book_grid_books_across',
 					'type'	=> 'text_small',
-					'default' => 3,
 					'attributes' => array(
 							'type' => 'number',
 							'pattern' => '\d*',
@@ -193,17 +211,37 @@ function mbdb_bookgrid_content() {
 		return apply_filters('mbdb_book_grid_display_grid_no', $content);
 	}
 	
+	$mbdb_options = get_option('mbdb_options');
+	
 	$mbdb_book_grid_books = 		get_post_meta( $post->ID, '_mbdb_book_grid_books', true );
 	$mbdb_book_grid_order =			get_post_meta ($post->ID, '_mbdb_book_grid_order', true );
-	$mbdb_book_grid_cover_height =  get_post_meta( $post->ID, '_mbdb_book_grid_cover_height', true );
-	$mbdb_book_grid_books_across =  get_post_meta( $post->ID, '_mbdb_book_grid_books_across', true );
+	$mbdb_book_grid_cover_height_default = get_post_meta( $post->ID, '_mbdb_book_grid_cover_height_default', true);
+	if ($mbdb_book_grid_cover_height_default == 'yes') {
+		if (!isset($mbdb_options['mbdb_default_cover_height'])) {
+			$mbdb_options['mbdb_default_cover_height'] = 200;
+		}
+		$mbdb_book_grid_cover_height = $mbdb_options['mbdb_default_cover_height'];
+	} else {
+		$mbdb_book_grid_cover_height =  get_post_meta( $post->ID, '_mbdb_book_grid_cover_height', true );
+	}
+	
+	$mbdb_book_grid_books_across_default = get_post_meta( $post->ID, '_mbdb_book_grid_books_across_default', true);
+	if ($mbdb_book_grid_books_across_default == 'yes') {
+		if (!isset($mbdb_options['mbdb_default_books_across'])) {
+			$mbdb_options['mbdb_default_books_across'] = 3;
+		}
+		$mbdb_book_grid_books_across = $mbdb_options['mbdb_default_books_across'];
+	} else {
+		$mbdb_book_grid_books_across =  get_post_meta( $post->ID, '_mbdb_book_grid_books_across', true );
+	}
+	
 	$mbdb_book_grid_genre = 		get_post_meta( $post->ID, '_mbdb_book_grid_genre', true );
 	$mbdb_book_grid_series = 		get_post_meta( $post->ID, '_mbdb_book_grid_series', true );
 	$mbdb_book_grid_custom_select = get_post_meta( $post->ID, '_mbdb_book_grid_custom_select', true );
 	$mbdb_book_grid_genre_group_by = 	get_post_meta( $post->ID, '_mbdb_book_grid_genre_group_by', true );
 	$mbdb_book_grid_group_by = 	get_post_meta( $post->ID, '_mbdb_book_grid_group_by', true );
 	
-	// set defaults just in case
+	// set mins just in case
 	if ( (int) $mbdb_book_grid_books_across < 1 ) {
 		$mbdb_book_grid_books_across = 1;
 	}

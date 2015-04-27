@@ -13,11 +13,15 @@ if ( $pagenow == 'options-general.php' && $_GET['page'] == 'mbdb_settings' ) {
     if ( isset ( $_GET['tab'] ) ) {
         $tab = $_GET['tab'];
     } else {
-        $tab = 'retailers';
+        $tab = 'general';
     }
 	mbdb_admin_tabs($tab);
 	do_action('mbdb_settings_before_tab_display', $tab);
     switch ( $tab ) {
+		case 'general':
+			$fields = mbdb_general_settings();
+			mbdb_meta_fields($fields);
+			break;
 		case 'retailers' :
            $fields =  mbdb_retailers();
 		   mbdb_meta_fields($fields);
@@ -31,6 +35,40 @@ if ( $pagenow == 'options-general.php' && $_GET['page'] == 'mbdb_settings' ) {
 			// break;
 	}
 	do_action('mbdb_settings_after_tab_display', $tab);
+}
+
+
+function mbdb_general_settings() {
+	return apply_filters('mbdb_settings_general_settings', array(
+				array(
+					'id'	=> 'mbdb_grid_default_settings_title',
+					'name'	=>	__('BOOK GRID DEFAULT SETTINGS', 'mooberry-book-manager'),
+					'type'	=>	'title',
+				),
+				array(
+					'id'	=>	'mbdb_default_cover_height',
+					'name'	=> __('Cover Height (px)', 'mooberry-book-manager'),
+					'type'	=> 'text_small',
+					'default'	=> 200,
+					'attributes' => array(
+							'type' => 'number',
+							'pattern' => '\d*',
+							'min' => 50,
+					),
+				),
+				array(
+					'name'	=> __('Number of Books Across', 'mooberry-book-manager'),
+					'id'	=> 'mbdb_default_books_across',
+					'type'	=> 'text_small',
+					'default'	=>	3,
+					'attributes' => array(
+							'type' => 'number',
+							'pattern' => '\d*',
+							'min' => 1,
+					),
+				),
+			)
+		);
 }
 
 function mbdb_print_book_list() {
@@ -165,7 +203,7 @@ function mbdb_uniqueID_generator( $value ) {
 
 // make the tabs for the admin screen
 function mbdb_admin_tabs( $current = 'book-page' ) {
-	$tabs = apply_filters('mbdb_settings_tabs', array( 'retailers' => __('Retailers', 'mooberry-book-manager'), 'formats' => _x('Formats', 'noun', 'mooberry-book-manager'))); //, 'output' => 'Print Book list'));
+	$tabs = apply_filters('mbdb_settings_tabs', array( 'general' => __('General Settings', 'mooberry-book-manager'), 'retailers' => __('Retailers', 'mooberry-book-manager'), 'formats' => _x('Formats', 'noun', 'mooberry-book-manager'))); //, 'output' => 'Print Book list'));
 	do_action('mbdb_settings_before_tabs');
 	echo '<div id="icon-options-general" class="icon32"></div>';
 	echo '<h2 class="nav-tab-wrapper">';
