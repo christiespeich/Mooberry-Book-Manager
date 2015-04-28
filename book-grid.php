@@ -304,6 +304,8 @@ function mbdb_bookgrid_content() {
 	if ( $mbdb_book_grid_books == 'standalone' ) {
 		$mbdb_book_grid_series = '0';
 	}
+	do_action('mbdb_verify_book_grid_options', $mbdb_book_grid_books, $mbdb_book_grid_genre, $mbdb_book_grid_series, $mbdb_book_grid_custom_select, $mbdb_book_grid_group_by, $mbdb_book_grid_genre_group_by);
+	
 	$mbdb_books = array();
 	$groupings = apply_filters('mbdb_book_grid_groupings', array($mbdb_book_grid_group_by, $mbdb_book_grid_genre_group_by, 'none'));
 
