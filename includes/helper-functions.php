@@ -12,7 +12,7 @@ function mbdb_upgrade_versions() {
 		} 
 		
 		if (version_compare($current_version, '2.0', '<')) {
-			mbdb_upgrade_to_2_0();
+			//mbdb_upgrade_to_2_0();
 		}
 		
 		// update database to the new version
@@ -493,6 +493,102 @@ function mbdb_upgrade_to_1_3_1() {
 	
 function mbdb_upgrade_to_2_0() {
 	// set all pages with a book grid to NOT use the default values
+	mbdb_migrate_to_book_grid_defaults();
+	
+	// set up roles
+	mbdb_set_up_roles();
+	
+	// migrate post_tags to mbdb_tags
+	mbdb_migrate_post_tags();
+			
+			
+}
+
+function mbdb_migrate_post_tags() {
+		
+	//loop through all terms in post_tags
+	$post_tags = get_terms('post_tag');
+	foreach($post_tags as $tag) {
+		// get all objects in each term
+		$tagged_posts = get_objects_in_term((int) $tag->term_id, 'post_tag');
+		// loop through the objects
+		foreach($tagged_posts as $tagged_post) {
+			// if one is a book
+			if (get_post_type($tagged_post) == 'mbdb_book') {
+				// add the term to mbdb_tags
+				// if term has already been added, get the ID
+				$new_term = term_exists($tag->name, 'mbdb_tag');
+				// otherwise insert it
+				if ($new_term == 0 || $new_term == null) {					
+					$new_term = wp_insert_term($tag->name, 'mbdb_tag', array(
+									'description' => $tag->description,
+									'slug'	=>	$tag->slug)	);
+				}
+			
+				// add the object to mbdb_tags term
+				wp_set_object_terms($tagged_post, (int) $new_term['term_id'], 'mbdb_tag', true);
+			}
+		}
+	}
+
+	// remove post_tag terms from books
+	// do this outside of the above loop because it will remove ALL tags from the books
+	// and the above loop handles one tag at a time
+	// $mbdb_books = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null );
+	foreach($mbdb_books as $mbdb_book) {
+		$bookID = $mbdb_book->ID;
+		wp_delete_object_term_relationships( $bookID, 'post_tag' );
+	}
+}
+
+function mbdb_set_up_roles() {
+		
+		$contributor_level = array('edit_mbdb_books',
+									'edit_mbdb_book',
+									'delete_mbdb_books',
+									'delete_mbdb_book');
+									
+		$base_level = array(		'publish_mbdb_books',
+									'publish_mbdb_book',
+									'edit_published_mbdb_book',
+									'edit_published_mbdb_books',
+									'delete_published_mbdb_book',
+									'delete_published_mbdb_books',
+									'upload_files',
+									'manage_mbdb_books',
+									'read');
+									
+		$master_level = array(		'edit_others_mbdb_books',
+									'edit_others_mbdb_books',
+									'delete_others_mbdb_books',
+									'delete_others_mbdb_book');
+		
+		remove_role('mbdb_librarian');
+		add_role('mbdb_librarian', 'MBM Librarian');
+		remove_role('mbdb_master_librarian');
+		add_role('mbdb_master_librarian', 'MBM Master Librarian');
+		$base_roles = array('mbdb_librarian', 'author');
+		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
+		$contributor = get_role('contributor');
+		foreach ($contributor_level as $capability) {
+			$contributor->add_cap($capability);
+		}
+		foreach (array_merge($base_level, $contributor_level) as $capability) {
+			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		foreach ($master_level as $capability) {
+			foreach ($master_roles as $each_role) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		
+}
+
+function mbdb_migrate_to_book_grid_defaults() {
 	$grid_pages = get_posts(array(
 								'posts_per_page' => -1,
 								'post_type' => 'page',

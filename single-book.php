@@ -190,7 +190,7 @@ function mbdb_shortcode_series( $attr, $content) {
 }
 
 function mbdb_shortcode_tags( $attr, $content) {
-	return mbdb_shortcode_taxonomy($attr, 'post_tag', 'tag');
+	return mbdb_shortcode_taxonomy($attr, 'mbdb_tag', 'book-tag');
 }
 function mbdb_shortcode_genre($attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_genre', 'genre');

@@ -48,7 +48,7 @@ function mbdb_get_tax_title( $content ) {
 				$term = get_term_by('slug', $mbdb_term, $mbdb_taxonomy);			
 				$taxonomy = get_taxonomy($mbdb_taxonomy);
 				if (isset($term) && isset($taxonomy) && $term != null && $taxonomy !=null) {
-					if ($mbdb_taxonomy != 'post_tag') {
+					if ($mbdb_taxonomy != 'mbdb_tag') {
 						$content = apply_filters('mbdb_book_grid_' . $mbdb_taxonomy . '_title', $term->name . ' ' . $taxonomy->labels->singular_name, $term, $taxonomy);
 					} else {
 						$content = apply_filters('mbdb_book_grid_tag_title', __('Books tagged with ', 'mooberry-book-manager') . $term->name, $term, $taxonomy);
@@ -366,6 +366,9 @@ function mbdb_book_grid_get_books_in_taxonomy($books, $group, $groupings, $mbdb_
 	$taxonomy = get_taxonomy('mbdb_' . $group);
 	foreach ($all_terms as $term) {
 		$ids = ($group == 'series') ? $series : $genre;
+		error_log('ids=' . print_r($ids, true));
+		error_log('series=' . print_r($series, true));
+		error_log('genre=' . print_r($genre, true));
 		if ($group == $mbdb_book_grid_books && array_search($term->term_id, $ids ) === false) {
 			continue;
 		}

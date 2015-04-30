@@ -63,6 +63,7 @@
 	register_activation_hook( __FILE__, 'mbdb_activate' );
 	function mbdb_activate() {
 	
+		mbdb_set_up_roles();
 		
 		
 		$mbdb_options = get_option( 'mbdb_options' );
@@ -187,7 +188,7 @@
 		global $wp_rewrite;
 		$new_rules['series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['genre/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['tag/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=post_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['book-tag/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		
 		$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;		
 	}
@@ -212,9 +213,7 @@
 	add_action( 'init', 'mbdb_init' );	
 	function mbdb_init() {
 	
-			mbdb_upgrade_versions();
-		
-	
+			
 	
 		// create Book Post Type
 		register_post_type('mbdb_book',
@@ -227,12 +226,13 @@
 			'menu_position' => 20,
 			'show_in_nav_menus' => true,
 			'has_archive' => false,
-			'capability_type' => 'post',
+			'capability_type' => array( 'mbdb_book', 'mbdb_books'),
+			'map_meta_cap' => true,
 			'hierarchical' => false,
 			'rewrite' => array( 'slug' => 'book' ),
 			'query_var' => true,
 			'supports' => array( 'title' ),
-			'taxonomies' => array( 'post_tag', 'mbdb_genre', 'mbdb_series' ),
+			'taxonomies' => array( 'mbdb_tag', 'mbdb_genre', 'mbdb_series' ),
 			'labels' => array (
 				'name' => _x('Books', 'noun', 'mooberry-book-manager'),
 				'singular_name' => _x('Book', 'noun', 'mooberry-book-manager'),
@@ -277,6 +277,12 @@
 				'rewrite' => array(	'slug' => 'mbdb_genres' ),
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
+				'capabilities'	=> array(
+					'manage_terms' => 'manage_categories',
+					'edit_terms'   => 'manage_categories',
+					'delete_terms' => 'manage_categories',
+					'assign_terms' => 'manage_mbdb_books',				
+				),
 				'labels' => array(
 					'name' => __('Genres', 'mooberry-book-manager'),
 					'singular_name' => __('Genre', 'mooberry-book-manager'),
@@ -299,11 +305,53 @@
 			)
 		);
 
+	   	register_taxonomy('mbdb_tag', 'mbdb_book', 
+			apply_filters('mdbd_tag_taxonomy', array(
+			//	'rewrite' => array(	'slug' => 'mbdb_tags' ),
+				'rewrite'	=>	'false',
+				'public'	=> 'false',
+				'show_admin_column' => true,
+				'update_count_callback' => '_update_post_term_count',
+				'capabilities'	=> array(
+					'manage_terms' => 'manage_categories',
+					'edit_terms'   => 'manage_categories',
+					'delete_terms' => 'manage_categories',
+					'assign_terms' => 'manage_mbdb_books',				
+				),
+				'labels' => array(
+					'name' => __('Tags', 'mooberry-book-manager'),
+					'singular_name' => __('Tag', 'mooberry-book-manager'),
+					'search_items' => __('Search Tags' , 'mooberry-book-manager'),
+					'all_items' =>  __('All Tags' , 'mooberry-book-manager'),
+					'parent_item' =>  __('Parent Tag' , 'mooberry-book-manager'),
+					'parent_item_colon' =>  __('Parent Tag:' , 'mooberry-book-manager'),
+					'edit_item' =>  __('Edit Tag' , 'mooberry-book-manager'),
+					'update_item' =>  __('Update Tag' , 'mooberry-book-manager'),
+					'add_new_item' =>  __('Add New Tag' , 'mooberry-book-manager'),
+					'new_item_name' =>  __('New Tag Name' , 'mooberry-book-manager'),
+					'menu_name' =>  __('Tags' , 'mooberry-book-manager'),
+					'popular_items' => __('Popular Tags', 'mooberry-book-manager'),
+					'separate_items_with_commas' => __('Separate tags with commas', 'mooberry-book-manager'),
+					'add_or_remove_items' => __('Add or remove tags', 'mooberry-book-manager'),
+					'choose_from_most_used' => __('Choose from the most used tags', 'mooberry-book-manager'),
+					'not_found' => __('No tags found', 'mooberry-book-manager')
+				)
+			)
+			)
+		);  
+
+
 		register_taxonomy('mbdb_series', 'mbdb_book', 
 			apply_filters('mbdb_series_taxonomy', array( 
 				'rewrite' => array( 'slug' => 'mbdb_series' ),
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
+				'capabilities'	=> array(
+					'manage_terms' => 'manage_categories',
+					'edit_terms'   => 'manage_categories',
+					'delete_terms' => 'manage_categories',
+					'assign_terms' => 'manage_mbdb_books',				
+				),
 				'labels' => array(
 					'name' => __('Series', 'mooberry-book-manager'),
 					'singular_name' => __('Series', 'mooberry-book-manager'),
@@ -324,6 +372,9 @@
 				)
 			))
 		);
+		
+		mbdb_upgrade_versions();
+	
 	}
 
 	// because the Customizr theme doesn't use the standard WP set up and
