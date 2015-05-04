@@ -1,18 +1,29 @@
-# Copyright (C) 2015 Mooberry Book Manager
-# This file is distributed under the same license as the Mooberry Book Manager package.
+# WordPress Blank Pot
+# Copyright (C) 2014 ...
+# This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Mooberry Book Manager 1.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/mooberry-book-manager\n"
-"POT-Creation-Date: 2015-03-29 01:24:23+00:00\n"
+"Project-Id-Version: Mooberry Book Manager v2.0\n"
+"Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
+"POT-Creation-Date: 2015-05-01 14:26-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Your Name <you@example.com>\n"
+"Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Kathrin Hamann\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: admin-settings-page.php:4 mooberry-book-manager.php:196
+#: admin-settings-page.php:4 mooberry-book-manager.php:206
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -24,175 +35,195 @@ msgstr "Notiz"
 msgid "You must click the SAVE button to save your changes before switching tabs."
 msgstr "Drücke auf Speichern, um die Änderungen zu sichern, bevor du die Seite wechselst."
 
-#: admin-settings-page.php:74
+#: admin-settings-page.php:45
+msgid "BOOK GRID DEFAULT SETTINGS"
+msgstr ""
+
+#: admin-settings-page.php:50
+msgid "Cover Height (px)"
+msgstr "Cover Höhe (px)"
+
+#: admin-settings-page.php:60 book-grid.php:190
+msgid "Number of Books Across"
+msgstr "Anzahl der Bücher"
+
+#: admin-settings-page.php:112
 msgid "Add any additional retailers that sell your books."
 msgstr "Füge weitere Anbieter hinzu, die Dein Buch verkaufen."
 
-#: admin-settings-page.php:76 book.php:265
+#: admin-settings-page.php:114 book.php:266
 msgid "Retailer"
 msgstr "Anbieter"
 
-#: admin-settings-page.php:77
+#: admin-settings-page.php:115
 msgid "Add Retailer"
 msgstr "Anbieter hinzufügen"
 
-#: admin-settings-page.php:78
+#: admin-settings-page.php:116
 msgid "Remove Retailer"
 msgstr "Anbieter löschen"
 
-#: admin-settings-page.php:84
+#: admin-settings-page.php:122
 msgid "Retailer Name"
 msgstr "Anbieter Name"
 
-#: admin-settings-page.php:95
+#: admin-settings-page.php:133
 msgid "Retailer Logo Image"
 msgstr "Anbieter Logo"
 
-#: admin-settings-page.php:121
+#: admin-settings-page.php:159
 msgid "If you have free books for download, add any additional formats your books are available in."
 msgstr "Steht Dein Buch zum kostenlosen Download bereit, dann füge das Format hinzu, in welchem Dein Buch vorliegt."
 
-#: admin-settings-page.php:123 admin-settings-page.php:131 book.php:309
+#: admin-settings-page.php:161 admin-settings-page.php:169 book.php:310
 msgctxt "noun"
 msgid "Format"
 msgstr "Format"
 
-#: admin-settings-page.php:124
+#: admin-settings-page.php:162
 msgid "Add Format"
 msgstr "Format hinzufügen"
 
-#: admin-settings-page.php:125
+#: admin-settings-page.php:163
 msgid "Remove Format"
 msgstr "Lösche Format"
 
-#: admin-settings-page.php:140
+#: admin-settings-page.php:178
 msgctxt "noun"
 msgid "Format Image"
 msgstr "Format Logo"
 
-#: admin-settings-page.php:168
+#: admin-settings-page.php:206
+msgid "General Settings"
+msgstr "Grundeinstellungen"
+
+#: admin-settings-page.php:206
 msgid "Retailers"
 msgstr "Anbieter"
 
-#: admin-settings-page.php:168
+#: admin-settings-page.php:206
 msgctxt "noun"
 msgid "Formats"
 msgstr "Formate"
 
-#: book-grid.php:30
+#: book-grid.php:54
 msgid "Books tagged with "
 msgstr "Buch getaggt mit"
 
-#: book-grid.php:33
+#: book-grid.php:57
 msgid "Not Found"
 msgstr "Nicht gefunden"
 
-#: book-grid.php:58
+#: book-grid.php:81
 msgid "Book Grid Settings"
 msgstr "Buch Raster Einstellungen"
 
-#: book-grid.php:65
+#: book-grid.php:88
 msgid "Display Books on This Page?"
 msgstr "Möchtest Du Bücher auf der Seite anzeigen?"
 
-#: book-grid.php:70
+#: book-grid.php:93 book-grid.php:165 book-grid.php:185
 msgid "Yes"
 msgstr "Ja"
 
-#: book-grid.php:71
+#: book-grid.php:94 book-grid.php:166 book-grid.php:186
 msgid "No"
 msgstr "Nein"
 
-#: book-grid.php:75
+#: book-grid.php:98
 msgid "Books to Display"
 msgstr "Bücher anzeigen"
 
-#: book-grid.php:79
+#: book-grid.php:102
 msgid "All"
 msgstr "Alle"
 
-#: book-grid.php:80
+#: book-grid.php:103
 msgid "All Published"
 msgstr "Alle veröffentlichten"
 
-#: book-grid.php:81
+#: book-grid.php:104
 msgid "All Coming Soon"
 msgstr "Alle demnächst erscheinenden"
 
-#: book-grid.php:82 book-grid.php:94
+#: book-grid.php:105 book-grid.php:117
 msgid "Select Genres"
 msgstr "Ausgewählte Genres"
 
-#: book-grid.php:83 book-grid.php:100
+#: book-grid.php:106 book-grid.php:123
 msgid "Select Series"
 msgstr "Ausgewählte Serien"
 
-#: book-grid.php:84 book-grid.php:88
+#: book-grid.php:107 book-grid.php:111
 msgid "Select Books"
 msgstr "Ausgewählte Bücher"
 
-#: book-grid.php:106
+#: book-grid.php:129
 msgid "Group Books By"
 msgstr "Bücher gruppieren nach"
 
-#: book-grid.php:110 book-grid.php:120
-#: includes/CMB2/includes/CMB2_Field.php:908
-#: includes/CMB2/includes/CMB2_Field.php:912
-#: includes/CMB2/tests/test-cmb-field.php:170
+#: book-grid.php:133 book-grid.php:143
+#: includes/cmb2/includes/CMB2_Field.php:908
+#: includes/cmb2/includes/CMB2_Field.php:912
+#: includes/cmb2/tests/test-cmb-field.php:170
 msgid "None"
 msgstr "Ohne"
 
-#: book-grid.php:111 book.php:34 mooberry-book-manager.php:268
+#: book-grid.php:134 book.php:34 mooberry-book-manager.php:289
 msgid "Genre"
 msgstr "Genre"
 
-#: book-grid.php:112 book-grid.php:121 book.php:36
-#: mooberry-book-manager.php:294 mooberry-book-manager.php:295
-#: mooberry-book-manager.php:304
+#: book-grid.php:135 book-grid.php:144 book.php:36
+#: mooberry-book-manager.php:358 mooberry-book-manager.php:359
+#: mooberry-book-manager.php:368
 msgid "Series"
 msgstr "Serien"
 
-#: book-grid.php:116
+#: book-grid.php:139
 msgid "Group Within Genre By"
 msgstr "Gruppiere nach Genre"
 
-#: book-grid.php:125
+#: book-grid.php:148
 msgid "Order By"
 msgstr "Sortiere nach"
 
-#: book-grid.php:130
+#: book-grid.php:153
 msgid "Publication Date (oldest first)"
 msgstr "Erscheinungsdatum"
 
-#: book-grid.php:131
+#: book-grid.php:154
 msgid "Publication Date (newest first)"
 msgstr "Erscheinungsdatum (Neuestes zuerst)"
 
-#: book-grid.php:132
+#: book-grid.php:155
 msgid "Title (A-Z)"
 msgstr "Titel (A-Z)"
 
-#: book-grid.php:133
+#: book-grid.php:156
 msgid "Title (Z-A)"
 msgstr "Titel (Z-A)"
 
-#: book-grid.php:137
-msgid "Book Cover Height"
-msgstr "Buch Cover Höhe"
+#: book-grid.php:160
+msgid "Use default cover height?"
+msgstr "Cover Grundeinstellung verwenden?"
 
-#: book-grid.php:148
-msgid "Number of Books Across"
-msgstr "Anzahl der Bücher"
+#: book-grid.php:170
+msgid "Book Cover Height (px)"
+msgstr "Buch Cover Höhe (px)"
 
-#: book-grid.php:270
+#: book-grid.php:180
+msgid "Use default number of books across?"
+msgstr "Festgesetzte Buchanzahl pro Reihe benutzen?"
+
+#: book-grid.php:333
 msgid "Uncategorized"
 msgstr "Ohne Kategorie"
 
-#: book-grid.php:275
+#: book-grid.php:338
 msgid "Standalones"
 msgstr "Einzelwerk"
 
-#: book-grid.php:404 book-grid.php:408
+#: book-grid.php:470 book-grid.php:474
 msgid "Books not found"
 msgstr "Buch nicht gefunden"
 
@@ -200,12 +231,12 @@ msgstr "Buch nicht gefunden"
 msgid "Shows the cover of the book of your choosing with a link to the book page"
 msgstr "Zeigt die gewählten Buchcover an und verlinkt diese mit der Buchseite"
 
-#: book-widget.php:7 mooberry-book-manager.php:224
+#: book-widget.php:7 mooberry-book-manager.php:238
 msgctxt "noun"
 msgid "Book"
 msgstr "Buch"
 
-#: book-widget.php:119
+#: book-widget.php:120
 msgid "No books found"
 msgstr "Keine Bücher gefunden"
 
@@ -221,15 +252,15 @@ msgstr "Cover"
 msgid "Length"
 msgstr "Seitenanzahl"
 
-#: book.php:35
+#: book.php:35 single-book.php:697
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: book.php:37 book.php:388
+#: book.php:37 book.php:389
 msgid "Series Order"
 msgstr "Serien Reihenfolge"
 
-#: book.php:38 book.php:344
+#: book.php:38 book.php:345 single-book.php:701
 msgid "Publisher"
 msgstr "Verleger"
 
@@ -237,544 +268,642 @@ msgstr "Verleger"
 msgid "Updated"
 msgstr "Überarbeitet"
 
-#. translators: short date format. see http:php.net/date
-#: book.php:67 single-book.php:118
+#: book.php:67 single-book.php:105
 msgid "m/d/Y"
 msgstr "M/T/J"
 
-#: book.php:134 book.php:141
+#: book.php:135 book.php:142
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: book.php:162 book.php:169
+#: book.php:163 book.php:170 single-book.php:725
 msgid "Excerpt"
 msgstr "Auszug"
 
-#: book.php:190 book.php:202
+#: book.php:191 book.php:203
 msgctxt "noun"
 msgid "Reviews"
 msgstr "Rezension"
 
-#: book.php:203
+#: book.php:201
+msgid "Add reviews of your book"
+msgstr "Füge Rezensionen dem Buch hinzu"
+
+#: book.php:204
 msgid "Add Review"
 msgstr "Füge Rezension hinzu"
 
-#: book.php:204
+#: book.php:205
 msgid "Remove Review"
 msgstr "Lösche Rezension"
 
-#: book.php:211
+#: book.php:212
 msgid "Reviewer Name"
 msgstr "Name des Rezensenten"
 
-#: book.php:217
+#: book.php:218
 msgctxt "noun"
 msgid "Review Link"
 msgstr "Rezensions Link"
 
-#: book.php:227
+#: book.php:228
 msgctxt "noun"
 msgid "Review Website Name"
 msgstr "Rezension Webseiten Name"
 
-#: book.php:233
+#: book.php:234
 msgctxt "noun"
 msgid "Review"
 msgstr "Rezension"
 
-#: book.php:244
+#: book.php:245
 msgctxt "noun"
 msgid "Retailer Links"
 msgstr "Anbieter Links"
 
-#: book.php:255
+#: book.php:256
 msgid "Add links where readers can purchase your book"
 msgstr "Füge Links hinzu, wo Leser Dein Buch kaufen können"
 
-#: book.php:257
+#: book.php:258
 msgctxt "noun"
 msgid "Retailer Link"
 msgstr "Anbieter Link"
 
-#: book.php:258
+#: book.php:259
 msgid "Add Retailer Link"
 msgstr "Anbieter Link"
 
-#: book.php:259
+#: book.php:260
 msgid "Remove Retailer Link"
 msgstr "Lösche Anbieter Link"
 
-#: book.php:272 book.php:316
+#: book.php:273 book.php:317
 msgctxt "noun"
 msgid "Link"
 msgstr "Link"
 
-#: book.php:289
+#: book.php:290
 msgctxt "noun"
 msgid "Download Links"
 msgstr "Download Link"
 
-#: book.php:299
+#: book.php:300
 msgid "If your book is available to download for free, add the links for each format."
 msgstr "Wenn Dein Buch zum kostenlosen Download zur Verfügung steht, dann füge für jedes Format einen Link hinzu."
 
-#: book.php:301
+#: book.php:302
 msgctxt "noun"
 msgid "Download Link"
 msgstr "Download Link"
 
-#: book.php:302
+#: book.php:303
 msgid "Add Download Link"
 msgstr "Download Link hinzufügen"
 
-#: book.php:303
+#: book.php:304
 msgid "Remove Download Link"
 msgstr "Lösche Download Link"
 
-#: book.php:331
+#: book.php:332
 msgid "Book Details"
 msgstr "Buch Details"
 
-#: book.php:339
+#: book.php:340
 msgid "Subtitle"
 msgstr "Untertitel"
 
-#: book.php:349
+#: book.php:350
 msgid "Publisher Website"
 msgstr "Webseite des Verlegers"
 
-#: book.php:360
+#: book.php:361
 msgid "Release Date"
 msgstr "Erscheinungsdatum"
 
-#: book.php:368
+#: book.php:369
 msgid "Goodreads Link"
 msgstr "Goodreads Link"
 
-#: book.php:378
+#: book.php:379 single-book.php:705
 msgid "Number of Pages"
 msgstr "Seitenzahlen"
 
-#: book.php:390
+#: book.php:391
 msgid "(leave blank if not part of a series)"
 msgstr "(lass das Feld leer, wenn das Buch nicht Teil einer Serie ist)"
 
-#: book.php:404
+#: book.php:405
 msgctxt "noun"
 msgid "Cover"
 msgstr "Cover"
 
-#: book.php:413
+#: book.php:414
 msgctxt "noun"
 msgid "Book Cover"
 msgstr "Buch Cover"
 
-#: includes/CMB2/includes/CMB2.php:112
+#: includes/cmb2/includes/CMB2.php:112
 msgid "Metabox configuration is required to have an ID parameter"
 msgstr "Konfiguriere die Metabol zum Erhalt eines ID Parameters"
 
-#: includes/CMB2/includes/CMB2.php:302
+#: includes/cmb2/includes/CMB2.php:302
 msgid "Click to toggle"
 msgstr "Klick hier zum Feststellen"
 
-#: includes/CMB2/includes/CMB2_Ajax.php:37
+#: includes/cmb2/includes/CMB2_Ajax.php:37
 msgid "Please Try Again"
 msgstr "Erneut versuchen"
 
-#: includes/CMB2/includes/CMB2_Ajax.php:133
-#: includes/CMB2/tests/test-cmb-types.php:766
+#: includes/cmb2/includes/CMB2_Ajax.php:133
+#: includes/cmb2/tests/test-cmb-types.php:766
 msgid "Remove Embed"
 msgstr "Löse die Einbettung"
 
-#: includes/CMB2/includes/CMB2_Ajax.php:137
-#: includes/CMB2/tests/test-cmb-types.php:767
+#: includes/cmb2/includes/CMB2_Ajax.php:137
+#: includes/cmb2/tests/test-cmb-types.php:767
+#, php-format
 msgid "No oEmbed Results Found for %s. View more info at"
 msgstr "Keine Einbettung gefunden für %s. Mehr Informationen hier"
 
-#: includes/CMB2/includes/CMB2_Field.php:885
+#: includes/cmb2/includes/CMB2_Field.php:885
 msgid "Add Group"
 msgstr "Gruppe hinzufügen"
 
-#: includes/CMB2/includes/CMB2_Field.php:886
+#: includes/cmb2/includes/CMB2_Field.php:886
 msgid "Remove Group"
 msgstr "Gruppe löschen"
 
-#: includes/CMB2/includes/CMB2_Types.php:294
+#: includes/cmb2/includes/CMB2_Types.php:294
 msgid "Add Row"
 msgstr "Zeile hinzufügen"
 
-#: includes/CMB2/includes/CMB2_Types.php:353
-#: includes/CMB2/includes/CMB2_Types.php:986
-#: includes/CMB2/includes/CMB2_hookup.php:183
-#: includes/CMB2/tests/test-cmb-types.php:147
-#: includes/CMB2/tests/test-cmb-types.php:155
-#: includes/CMB2/tests/test-cmb-types.php:715
-#: includes/CMB2/tests/test-cmb-types.php:740
+#: includes/cmb2/includes/CMB2_Types.php:353
+#: includes/cmb2/includes/CMB2_Types.php:986
+#: includes/cmb2/includes/CMB2_hookup.php:183
+#: includes/cmb2/tests/test-cmb-types.php:147
+#: includes/cmb2/tests/test-cmb-types.php:155
+#: includes/cmb2/tests/test-cmb-types.php:715
+#: includes/cmb2/tests/test-cmb-types.php:740
 msgid "Remove"
 msgstr "Entfernen"
 
-#: includes/CMB2/includes/CMB2_Types.php:722
-#: includes/CMB2/includes/CMB2_Types.php:770
+#: includes/cmb2/includes/CMB2_Types.php:722
+#: includes/cmb2/includes/CMB2_Types.php:770
 msgid "No terms"
 msgstr "Keine Bestimmungen"
 
-#: includes/CMB2/includes/CMB2_Types.php:835
-#: includes/CMB2/tests/test-cmb-types.php:691
-#: includes/CMB2/tests/test-cmb-types.php:717
+#: includes/cmb2/includes/CMB2_Types.php:835
+#: includes/cmb2/tests/test-cmb-types.php:691
+#: includes/cmb2/tests/test-cmb-types.php:717
 msgid "Add or Upload Files"
 msgstr "Lade neue Dateien hoch"
 
-#: includes/CMB2/includes/CMB2_Types.php:893
-#: includes/CMB2/tests/test-cmb-types.php:727
-#: includes/CMB2/tests/test-cmb-types.php:742
+#: includes/cmb2/includes/CMB2_Types.php:893
+#: includes/cmb2/tests/test-cmb-types.php:727
+#: includes/cmb2/tests/test-cmb-types.php:742
 msgid "Add or Upload File"
 msgstr "Lade eine neue Datei hoch"
 
-#: includes/CMB2/includes/CMB2_Types.php:967
-#: includes/CMB2/includes/CMB2_hookup.php:182
+#: includes/cmb2/includes/CMB2_Types.php:967
+#: includes/cmb2/includes/CMB2_hookup.php:182
 msgid "Remove Image"
 msgstr "Bild löschen"
 
-#: includes/CMB2/includes/CMB2_Types.php:981
-#: includes/CMB2/includes/CMB2_hookup.php:184
-#: includes/CMB2/tests/test-cmb-types.php:716
-#: includes/CMB2/tests/test-cmb-types.php:741
+#: includes/cmb2/includes/CMB2_Types.php:981
+#: includes/cmb2/includes/CMB2_hookup.php:184
+#: includes/cmb2/tests/test-cmb-types.php:716
+#: includes/cmb2/tests/test-cmb-types.php:741
 msgid "File:"
 msgstr "Datei:"
 
-#: includes/CMB2/includes/CMB2_Types.php:984
-#: includes/CMB2/includes/CMB2_hookup.php:185
-#: includes/CMB2/tests/test-cmb-types.php:714
-#: includes/CMB2/tests/test-cmb-types.php:739
+#: includes/cmb2/includes/CMB2_Types.php:984
+#: includes/cmb2/includes/CMB2_hookup.php:185
+#: includes/cmb2/tests/test-cmb-types.php:714
+#: includes/cmb2/tests/test-cmb-types.php:739
 msgid "Download"
 msgstr "Download"
 
-#: includes/CMB2/includes/CMB2_hookup.php:128
-#: includes/CMB2/includes/CMB2_hookup.php:165
+#: includes/cmb2/includes/CMB2_hookup.php:128
+#: includes/cmb2/includes/CMB2_hookup.php:165
 msgid "Clear"
 msgstr "Leeren"
 
-#: includes/CMB2/includes/CMB2_hookup.php:129
+#: includes/cmb2/includes/CMB2_hookup.php:129
 msgid "Default"
 msgstr "Default"
 
-#: includes/CMB2/includes/CMB2_hookup.php:130
+#: includes/cmb2/includes/CMB2_hookup.php:130
 msgid "Select Color"
 msgstr "Wähle eine Farbe"
 
-#: includes/CMB2/includes/CMB2_hookup.php:131
+#: includes/cmb2/includes/CMB2_hookup.php:131
 msgid "Current Color"
 msgstr "Aktuelle Farbe"
 
-#: includes/CMB2/includes/CMB2_hookup.php:155
+#: includes/cmb2/includes/CMB2_hookup.php:155
 msgid "mm/dd/yy"
 msgstr "MM/TT/JJ"
 
-#: includes/CMB2/includes/CMB2_hookup.php:156
+#: includes/cmb2/includes/CMB2_hookup.php:156
 msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
 msgstr "Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag"
 
-#: includes/CMB2/includes/CMB2_hookup.php:157
+#: includes/cmb2/includes/CMB2_hookup.php:157
 msgid "Su, Mo, Tu, We, Th, Fr, Sa"
 msgstr "So, Mo, Di, Mi, Do, Fr, Sa"
 
-#: includes/CMB2/includes/CMB2_hookup.php:158
+#: includes/cmb2/includes/CMB2_hookup.php:158
 msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
 msgstr "Son, Mon, Die, Mit, Don, Fre, Sam"
 
-#: includes/CMB2/includes/CMB2_hookup.php:159
+#: includes/cmb2/includes/CMB2_hookup.php:159
 msgid "January, February, March, April, May, June, July, August, September, October, November, December"
 msgstr "Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"
 
-#: includes/CMB2/includes/CMB2_hookup.php:160
+#: includes/cmb2/includes/CMB2_hookup.php:160
 msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
 msgstr "Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez"
 
-#: includes/CMB2/includes/CMB2_hookup.php:161
+#: includes/cmb2/includes/CMB2_hookup.php:161
 msgid "Next"
 msgstr "Weiter"
 
-#: includes/CMB2/includes/CMB2_hookup.php:162
+#: includes/cmb2/includes/CMB2_hookup.php:162
 msgid "Prev"
 msgstr "Zurück"
 
-#: includes/CMB2/includes/CMB2_hookup.php:163
+#: includes/cmb2/includes/CMB2_hookup.php:163
 msgid "Today"
 msgstr "Heute"
 
-#: includes/CMB2/includes/CMB2_hookup.php:164
-#: includes/CMB2/includes/CMB2_hookup.php:174
+#: includes/cmb2/includes/CMB2_hookup.php:164
+#: includes/cmb2/includes/CMB2_hookup.php:174
 msgid "Done"
 msgstr "Erledigt"
 
-#: includes/CMB2/includes/CMB2_hookup.php:168
+#: includes/cmb2/includes/CMB2_hookup.php:168
 msgid "Choose Time"
 msgstr "Zeit wählen"
 
-#: includes/CMB2/includes/CMB2_hookup.php:169
+#: includes/cmb2/includes/CMB2_hookup.php:169
 msgid "Time"
 msgstr "Zeit"
 
-#: includes/CMB2/includes/CMB2_hookup.php:170
+#: includes/cmb2/includes/CMB2_hookup.php:170
 msgid "Hour"
 msgstr "Stunde"
 
-#: includes/CMB2/includes/CMB2_hookup.php:171
+#: includes/cmb2/includes/CMB2_hookup.php:171
 msgid "Minute"
 msgstr "Minute"
 
-#: includes/CMB2/includes/CMB2_hookup.php:172
+#: includes/cmb2/includes/CMB2_hookup.php:172
 msgid "Second"
 msgstr "Sekunde"
 
-#: includes/CMB2/includes/CMB2_hookup.php:173
+#: includes/cmb2/includes/CMB2_hookup.php:173
 msgid "Now"
 msgstr "Jetzt"
 
-#: includes/CMB2/includes/CMB2_hookup.php:175
+#: includes/cmb2/includes/CMB2_hookup.php:175
 msgid "hh:mm TT"
 msgstr "hh:mm ZZ"
 
-#: includes/CMB2/includes/CMB2_hookup.php:181
+#: includes/cmb2/includes/CMB2_hookup.php:181
 msgid "Use this file"
 msgstr "Datei verwenden"
 
-#: includes/CMB2/includes/CMB2_hookup.php:186
+#: includes/cmb2/includes/CMB2_hookup.php:186
 msgid "Select / Deselect All"
 msgstr "Auswählen / Abwählen Alle"
 
-#: includes/CMB2/includes/helper-functions.php:254
+#: includes/cmb2/includes/helper-functions.php:254
 msgid "Save"
 msgstr "Speichern"
 
-#: includes/helper-functions.php:4
+#: includes/helper-functions.php:24
 msgid "Summary Coming Soon!"
 msgstr "Zusammenfassung kommt bald!"
 
-#: includes/helper-functions.php:6 includes/helper-functions.php:17
+#: includes/helper-functions.php:26 includes/helper-functions.php:37
+#: single-book.php:690 single-book.php:725
 msgid "Buy Now:"
 msgstr "Jetzt kaufen:"
 
-#: includes/helper-functions.php:6 includes/helper-functions.php:17
+#: includes/helper-functions.php:26 includes/helper-functions.php:37
+#: single-book.php:690 single-book.php:725
 msgid "Download Now:"
 msgstr "Jetzt downloaden:"
 
-#: includes/helper-functions.php:9 includes/helper-functions.php:10
+#: includes/helper-functions.php:29 includes/helper-functions.php:30
 msgctxt "To Be Announced"
 msgid "TBA"
 msgstr "Wird noch bekannt gegeben"
 
-#: includes/helper-functions.php:11
+#: includes/helper-functions.php:31
 msgctxt "To Be Determined"
 msgid "TBD"
 msgstr "Wird noch bestimmt"
 
-#: includes/helper-functions.php:12
+#: includes/helper-functions.php:32
 msgid "(uncategorized)"
 msgstr "(ohne Kategorie)"
 
-#: includes/helper-functions.php:13
+#: includes/helper-functions.php:33
 msgid "(none)"
 msgstr "(ohne)"
 
-#: includes/helper-functions.php:16 includes/helper-functions.php:17
+#: includes/helper-functions.php:36 includes/helper-functions.php:37
 msgid "Coming Soon!"
 msgstr "Erscheint bald!"
 
-#: includes/helper-functions.php:336
+#: includes/helper-functions.php:355
+#, php-format
 msgid "Reviews require review text and at least one other field. Please check review #%s."
 msgstr "Rezensionen benötigen einen Text und mindestens ein weiteres Feld. Prüfe bitte Rezension #%s."
 
-#: includes/helper-functions.php:342
+#: includes/helper-functions.php:361
+#, php-format
 msgid "Download links require all fields filled out. Please check download link #%s."
 msgstr "Für Download Links alle Felder ausfüllen. Prüfe bitte Download Link #%s."
 
-#: includes/helper-functions.php:347
+#: includes/helper-functions.php:366
+#, php-format
 msgid "Retailer links require all fields filled out. Please check retailer link #%s."
 msgstr "Für Anbieter Links alle Felder ausfüllen. Prüfe bitte Anbieter Link #%s."
 
-#: mooberry-book-manager.php:196
+#: includes/helper-functions.php:567
+msgid "Librarian"
+msgstr "Bibliothekar"
+
+#: includes/helper-functions.php:569
+msgid "Master Librarian"
+msgstr "Haupt-Bibliothekar"
+
+#: mooberry-book-manager.php:206
 msgid "Book Manager"
 msgstr "Buch Manager"
 
-#: mooberry-book-manager.php:208 mooberry-book-manager.php:223
-#: mooberry-book-manager.php:225
+#: mooberry-book-manager.php:221 mooberry-book-manager.php:237
+#: mooberry-book-manager.php:239
 msgctxt "noun"
 msgid "Books"
 msgstr "Buch"
 
-#: mooberry-book-manager.php:226
+#: mooberry-book-manager.php:240
 msgid "All Books"
 msgstr "Alle Bücher"
 
-#: mooberry-book-manager.php:227
+#: mooberry-book-manager.php:241
 msgid "Add New"
 msgstr "Hinzufügen"
 
-#: mooberry-book-manager.php:228
+#: mooberry-book-manager.php:242
 msgid "Add New Book"
 msgstr "Buch hinzufügen"
 
-#: mooberry-book-manager.php:229
+#: mooberry-book-manager.php:243
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: mooberry-book-manager.php:230
+#: mooberry-book-manager.php:244
 msgid "Edit Book"
 msgstr "Buch bearbeiten"
 
-#: mooberry-book-manager.php:231
+#: mooberry-book-manager.php:245
 msgid "New Book"
 msgstr "Neues Buch"
 
-#: mooberry-book-manager.php:232 mooberry-book-manager.php:233
+#: mooberry-book-manager.php:246 mooberry-book-manager.php:247
 msgid "View Book"
 msgstr "Buch ansehen"
 
-#: mooberry-book-manager.php:234
+#: mooberry-book-manager.php:248
 msgid "Search Books"
 msgstr "Buch Suche"
 
-#: mooberry-book-manager.php:235
+#: mooberry-book-manager.php:249
 msgid "No Books Found"
 msgstr "Keine Bücher gefunden"
 
-#: mooberry-book-manager.php:236
+#: mooberry-book-manager.php:250
 msgid "No Books Found in Trash"
 msgstr "Keine Bücher im Papierkorb gefunden"
 
-#: mooberry-book-manager.php:237
+#: mooberry-book-manager.php:251
 msgid "Parent Book"
 msgstr "Ober Buch"
 
-#: mooberry-book-manager.php:267 mooberry-book-manager.php:277
+#: mooberry-book-manager.php:288 mooberry-book-manager.php:298
+#: single-book.php:709
 msgid "Genres"
 msgstr "Genre"
 
-#: mooberry-book-manager.php:269
+#: mooberry-book-manager.php:290
 msgid "Search Genres"
 msgstr "Genre durchsuchen"
 
-#: mooberry-book-manager.php:270
+#: mooberry-book-manager.php:291
 msgid "All Genres"
 msgstr "Alle Genres"
 
-#: mooberry-book-manager.php:271
+#: mooberry-book-manager.php:292
 msgid "Parent Genre"
 msgstr "Ober Genre"
 
-#: mooberry-book-manager.php:272
+#: mooberry-book-manager.php:293
 msgid "Parent Genre:"
 msgstr "Ober Genre"
 
-#: mooberry-book-manager.php:273
+#: mooberry-book-manager.php:294
 msgid "Edit Genre"
 msgstr "Genre bearbeiten"
 
-#: mooberry-book-manager.php:274
+#: mooberry-book-manager.php:295
 msgid "Update Genre"
 msgstr "Genre aktualisieren"
 
-#: mooberry-book-manager.php:275
+#: mooberry-book-manager.php:296
 msgid "Add New Genre"
 msgstr "Neues Genre hinzufügen"
 
-#: mooberry-book-manager.php:276
+#: mooberry-book-manager.php:297
 msgid "New Genre Name"
 msgstr "Neuer Genre Name"
 
-#: mooberry-book-manager.php:278
+#: mooberry-book-manager.php:299
 msgid "Popular Genres"
 msgstr "Beliebte Genres"
 
-#: mooberry-book-manager.php:279
+#: mooberry-book-manager.php:300
 msgid "Separate genres with commas"
 msgstr "Trenne Genres durch ein Komma"
 
-#: mooberry-book-manager.php:280
+#: mooberry-book-manager.php:301
 msgid "Add or remove genres"
 msgstr "Hinzufügen oder Löschen eines Genres"
 
-#: mooberry-book-manager.php:281
+#: mooberry-book-manager.php:302
 msgid "Choose from the most used genres"
 msgstr "Aus meist benutzten Genres aussuchen"
 
-#: mooberry-book-manager.php:282
+#: mooberry-book-manager.php:303
 msgid "No genres found"
 msgstr "Keine Genres gefunden"
 
-#: mooberry-book-manager.php:296
+#: mooberry-book-manager.php:323 mooberry-book-manager.php:333
+#: single-book.php:713
+msgid "Tags"
+msgstr "Tags"
+
+#: mooberry-book-manager.php:324
+msgid "Tag"
+msgstr "Tag"
+
+#: mooberry-book-manager.php:325
+msgid "Search Tags"
+msgstr "Tags suchen"
+
+#: mooberry-book-manager.php:326
+msgid "All Tags"
+msgstr "Alle Tags"
+
+#: mooberry-book-manager.php:327
+msgid "Parent Tag"
+msgstr "Eltern-Tag"
+
+#: mooberry-book-manager.php:328
+msgid "Parent Tag:"
+msgstr "Eltern-Tag:"
+
+#: mooberry-book-manager.php:329
+msgid "Edit Tag"
+msgstr "Tag bearbeiten"
+
+#: mooberry-book-manager.php:330
+msgid "Update Tag"
+msgstr "Tag erneuern"
+
+#: mooberry-book-manager.php:331
+msgid "Add New Tag"
+msgstr "Neuen Tag hinzufügen"
+
+#: mooberry-book-manager.php:332
+msgid "New Tag Name"
+msgstr "Name des neuen Tags"
+
+#: mooberry-book-manager.php:334
+msgid "Popular Tags"
+msgstr "Beliebteste Tags"
+
+#: mooberry-book-manager.php:335
+msgid "Separate tags with commas"
+msgstr "Trenne Tags durch Komma"
+
+#: mooberry-book-manager.php:336
+msgid "Add or remove tags"
+msgstr "Hinzufügen oder Löschen von Tags"
+
+#: mooberry-book-manager.php:337
+msgid "Choose from the most used tags"
+msgstr "Wähle aus den häufigsten Tags aus"
+
+#: mooberry-book-manager.php:338
+msgid "No tags found"
+msgstr "Keine Tags gefunden"
+
+#: mooberry-book-manager.php:360
 msgid "Search Series"
 msgstr "Serien suchen"
 
-#: mooberry-book-manager.php:297
+#: mooberry-book-manager.php:361
 msgid "All Series"
 msgstr "Alle Serien"
 
-#: mooberry-book-manager.php:298
+#: mooberry-book-manager.php:362
 msgid "Parent Series"
 msgstr "Ober Serie"
 
-#: mooberry-book-manager.php:299
+#: mooberry-book-manager.php:363
 msgid "Parent Series:"
 msgstr "Ober Serien:"
 
-#: mooberry-book-manager.php:300
+#: mooberry-book-manager.php:364
 msgid "Edit Series"
 msgstr "Serien bearbeiten"
 
-#: mooberry-book-manager.php:301
+#: mooberry-book-manager.php:365
 msgid "Update Series"
 msgstr "Serien aktualisieren"
 
-#: mooberry-book-manager.php:302
+#: mooberry-book-manager.php:366
 msgid "Add New Series"
 msgstr "Neue Serie hinzufügen"
 
-#: mooberry-book-manager.php:303
+#: mooberry-book-manager.php:367
 msgid "New Series Name"
 msgstr "Neuer Serien Name"
 
-#: mooberry-book-manager.php:305
+#: mooberry-book-manager.php:369
 msgid "Popular Series"
 msgstr "Beliebte Serien"
 
-#: mooberry-book-manager.php:306
+#: mooberry-book-manager.php:370
 msgid "Separate series with commas"
 msgstr "Trenne Serien durch ein Komma"
 
-#: mooberry-book-manager.php:307
+#: mooberry-book-manager.php:371
 msgid "Add or remove series"
 msgstr "Hinzufügen oder Löschen von Serien"
 
-#: mooberry-book-manager.php:308
+#: mooberry-book-manager.php:372
 msgid "Choose from the most used series"
 msgstr "Aus meist benutzten Serien aussuchen"
 
-#: mooberry-book-manager.php:309
+#: mooberry-book-manager.php:373
 msgid "No Series found"
 msgstr "Keine Serien gefunden"
 
-#. translators: long date format. see http:php.net/date
-#: single-book.php:121
+#: single-book.php:108
 msgid "F j, Y"
 msgstr "F j, Y"
 
-#: single-book.php:131
+#: single-book.php:268
 msgid "View on Goodreads"
 msgstr "Auf Goodreads ansehen"
 
-#: single-book.php:255
+#: single-book.php:361
 msgid "Part of the "
 msgstr "Teil von"
 
-#: single-book.php:256
+#: single-book.php:362
 msgid " series:"
 msgstr " Serie:"
 
-#: single-book.php:257
+#: single-book.php:363
 msgid "list"
 msgstr "Liste"
+
+#: single-book.php:454
+msgid "on "
+msgstr "bei "
+
+#: single-book.php:470
+msgid "wrote"
+msgstr "schreibt"
+
+#: single-book.php:717
+msgid "Part of the"
+msgstr "Teil von"
+
+#: single-book.php:717
+msgid "series"
+msgstr " Serie:"
+
+#: single-book.php:721
+msgid "Reviews"
+msgstr "Rezension"
 
 #: views/admin-book-widget.php:19
 msgid "Widget Title"
@@ -804,34 +933,17 @@ msgstr "Spezielles Buch"
 msgid "Book:"
 msgstr "Buch:"
 
-#: views/admin-book-widget.php:45
+#: views/admin-book-widget.php:46
 msgid "Show Book Title"
 msgstr "Zeige Buchtitel"
 
-#: views/admin-book-widget.php:50
+#: views/admin-book-widget.php:51
 msgid "Cover Size(pixels)"
 msgstr "Cover Größe (in Pixel)"
 
-#: views/admin-book-widget.php:51
+#: views/admin-book-widget.php:52
 msgid "(minimum 50)"
 msgstr "(mindestens 50px)"
-
-#. Plugin Name of the plugin/theme
-msgid "Mooberry Book Manager"
-msgstr "Mooberry Buch Manager"
-
-#. Plugin URI of the plugin/theme
-msgid "http://www.mooberrydreams.com/products/mooberry-book-manager/"
-msgstr "http://www.mooberrydreams.com/products/mooberry-book-manager/"
-
 #. Description of the plugin/theme
 msgid "An easy-to-use system for authors to add books their Wordpress website"
 msgstr "Ein einfach zu benutzendes Plugin für Autoren, um schnell Bücher auf die eigene Wordpress-Seite zu bringen."
-
-#. Author of the plugin/theme
-msgid "Mooberry Dreams"
-msgstr "Mooberry Dreams"
-
-#. Author URI of the plugin/theme
-msgid "http://www.mooberrydreams.com/"
-msgstr "http://www.mooberrydreams.com/"
