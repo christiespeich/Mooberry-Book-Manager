@@ -66,7 +66,7 @@ function populate_mbdb_book_columns($column, $post_id) {
 				/* translators: short date format. see http://php.net/date */
 				echo apply_filters('mbdb_book_mbdb_published_column', date(__('m/d/Y'),strtotime($mbdb_published)), $post_id);
 			}
-			do_action('mbdb_book_afteR_mbdb_published_column');
+			do_action('mbdb_book_after_mbdb_published_column');
 			break;
 		default:
 			do_action('mbdb_book_before' . $column . '_column');
@@ -198,7 +198,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			array(
 			'id'          => '_mbdb_reviews',
 			'type'        => 'group',
-			'description' => 'Add reviews of your book',
+			'description' => __('Add reviews of your book', 'mooberry-book-manager'),
 			'options'     => array(
 				'group_title'   => _x('Reviews', 'noun', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
 				'add_button'    =>  __('Add Review', 'mooberry-book-manager'),

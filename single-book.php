@@ -451,7 +451,7 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
 			$review_html .=  '<span class="mbm-book-reviews-reviewer-name">' . esc_html($review['mbdb_reviewer_name']) . '</span> ';
 		}
 		if ($review_url || $review_website) {
-			$review_html .= 'on ';
+			$review_html .= __('on ','mooberry-book-manager');
 		}
 		if ($review_url) {
 			$review_html .= '<A class="mbm-book-reviews-link" HREF="' . esc_url($review['mbdb_review_url']) . '"><span class="mbm-book-reviews-website">';
@@ -467,7 +467,7 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
 			}
 		}
 		if ($reviewer_name) {
-			$review_html .= ' wrote';
+			$review_html .= ' ' . __('wrote','mooberry-book-manager');
 		}
 		$review_html .=	':</span>';
 		$review_html .= ' <blockquote class="mbm-book-reviews-text">' . wpautop($review['mbdb_review']) . '</blockquote></span>';
@@ -694,35 +694,35 @@ function mbdb_book_content($content) {
 				$book_page_layout .= '[book_goodreads  ]<br><br>';
 			}
 			if (mbdb_get_published_data() !== false) {
-				$book_page_layout .= '<strong>Published:</strong> [book_published format="short" blank=""]<br>';
+				$book_page_layout .= '<strong>' . __('Published', 'mooberry-book-manager') . ':</strong> [book_published format="short" blank=""]<br>';
 			}
 			
 			if (mbdb_get_publisher_data() !== false ) {
-				$book_page_layout .= '<strong>Publisher:</strong> [book_publisher  blank=""]<br>';
+				$book_page_layout .= '<strong>' . __('Publisher','mooberry-book-manager') . ':</strong> [book_publisher  blank=""]<br>';
 			}
 			
 			if (mbdb_get_length_data() !== false ) {
-				$book_page_layout .= '<strong>Number of Pages:</strong> [book_length  blank=""]<br>';
+				$book_page_layout .= '<strong>' . __('Number of Pages','mooberry-book-manager') . ':</strong> [book_length  blank=""]<br>';
 			}
 			
 			if (mbdb_get_taxonomy_data('mbdb_genre') !== false) {
-				$book_page_layout .= '<strong>Genres:</strong> <span>[book_genre delim="comma" blank=""]</span><br>';
+				$book_page_layout .= '<strong>' . __('Genres','mooberry-book-manager') . ':</strong> <span>[book_genre delim="comma" blank=""]</span><br>';
 			}
 			
 			if (mbdb_get_taxonomy_data('mbdb_tag') !== false) {
-				$book_page_layout .= '<strong>Tags:</strong> <span>[book_tags  delim="comma" blank=""]</span><br>';
+				$book_page_layout .= '<strong>' . __('Tags','mooberry-book-manager') . ':</strong> <span>[book_tags  delim="comma" blank=""]</span><br>';
 			}
 			
 			if (mbdb_get_series_data() !== false ) {
-				$book_page_layout .= '<br>[book_serieslist before="Part of the " after=" series: " delim="list"]';
+				$book_page_layout .= '<br>[book_serieslist before="' . __('Part of the','mooberry-book-manager') . ' " after=" ' . __('series','mooberry-book-manager') . ': " delim="list"]';
 			}
 			
 			if (mbdb_get_reviews_data() !== false ) {
-				$book_page_layout .= '<br><strong>Reviews:</strong> <span>[book_reviews  blank=""]</span><br>';
+				$book_page_layout .= '<br><strong>' . __('Reviews','mooberry-book-manager') . ':</strong> <span>[book_reviews  blank=""]</span><br>';
 			}
 			
 			if (mbdb_get_excerpt_data() !== false) {
-				$book_page_layout .= '<strong>Excerpt:</strong> <span>[book_excerpt  blank=""]</span><br>[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '"  align="horizontal" size="35" blank="" blanklabel=""]';
+				$book_page_layout .= '<strong>' . __('Excerpt','mooberry-book-manager') . ':</strong> <span>[book_excerpt  blank=""]</span><br>[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '"  align="horizontal" size="35" blank="" blanklabel=""]';
 			}
 			//$book_page_layout = mbdb_get_default_page_layout(  );
 			$content .= stripslashes($book_page_layout); //wpautop(stripslashes($mbdb_book_page_options['_mbdb_book_page_layout']));

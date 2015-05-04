@@ -162,8 +162,8 @@ function mbdb_book_grid_meta_boxes( array $meta_boxes ) {
 					'type'	=>	'select',
 					'default'	=>	'yes',
 					'options'	=>	array(
-						'yes'	=> 'Yes',
-						'no'	=>	'No',
+						'yes'	=> __('Yes','mooberry-book-manager'),
+						'no'	=>	__('No','mooberry-book-manager'),
 					),
 				),
 				array(
@@ -182,8 +182,8 @@ function mbdb_book_grid_meta_boxes( array $meta_boxes ) {
 					'type'	=>	'select',
 					'default'	=>	'yes',
 					'options'	=>	array(
-						'yes'	=> 'Yes',
-						'no'	=>	'No',
+						'yes'	=> __('Yes','mooberry-book-manager'),
+						'no'	=>	__('No','mooberry-book-manager'),
 					),
 				),
 				array(

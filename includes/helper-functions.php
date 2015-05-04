@@ -564,9 +564,9 @@ function mbdb_set_up_roles() {
 									'delete_others_mbdb_book');
 		
 		remove_role('mbdb_librarian');
-		add_role('mbdb_librarian', 'MBM Librarian');
+		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
 		remove_role('mbdb_master_librarian');
-		add_role('mbdb_master_librarian', 'MBM Master Librarian');
+		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
 		$base_roles = array('mbdb_librarian', 'author');
 		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
 		$contributor = get_role('contributor');
