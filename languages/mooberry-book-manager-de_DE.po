@@ -16,9 +16,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;"
+"_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -37,7 +36,7 @@ msgstr "Drücke auf Speichern, um die Änderungen zu sichern, bevor du die Seite
 
 #: admin-settings-page.php:45
 msgid "BOOK GRID DEFAULT SETTINGS"
-msgstr ""
+msgstr "BOOK GRID DEFAULT SETTINGS"
 
 #: admin-settings-page.php:50
 msgid "Cover Height (px)"
@@ -162,10 +161,8 @@ msgstr "Ausgewählte Bücher"
 msgid "Group Books By"
 msgstr "Bücher gruppieren nach"
 
-#: book-grid.php:133 book-grid.php:143
-#: includes/cmb2/includes/CMB2_Field.php:908
-#: includes/cmb2/includes/CMB2_Field.php:912
-#: includes/cmb2/tests/test-cmb-field.php:170
+#: book-grid.php:133 book-grid.php:143 includes/cmb2/includes/CMB2_Field.php:908
+#: includes/cmb2/includes/CMB2_Field.php:912 includes/cmb2/tests/test-cmb-field.php:170
 msgid "None"
 msgstr "Ohne"
 
@@ -173,8 +170,7 @@ msgstr "Ohne"
 msgid "Genre"
 msgstr "Genre"
 
-#: book-grid.php:135 book-grid.php:144 book.php:36
-#: mooberry-book-manager.php:358 mooberry-book-manager.php:359
+#: book-grid.php:135 book-grid.php:144 book.php:36 mooberry-book-manager.php:358 mooberry-book-manager.php:359
 #: mooberry-book-manager.php:368
 msgid "Series"
 msgstr "Serien"
@@ -415,13 +411,11 @@ msgstr "Klick hier zum Feststellen"
 msgid "Please Try Again"
 msgstr "Erneut versuchen"
 
-#: includes/cmb2/includes/CMB2_Ajax.php:133
-#: includes/cmb2/tests/test-cmb-types.php:766
+#: includes/cmb2/includes/CMB2_Ajax.php:133 includes/cmb2/tests/test-cmb-types.php:766
 msgid "Remove Embed"
 msgstr "Löse die Einbettung"
 
-#: includes/cmb2/includes/CMB2_Ajax.php:137
-#: includes/cmb2/tests/test-cmb-types.php:767
+#: includes/cmb2/includes/CMB2_Ajax.php:137 includes/cmb2/tests/test-cmb-types.php:767
 #, php-format
 msgid "No oEmbed Results Found for %s. View more info at"
 msgstr "Keine Einbettung gefunden für %s. Mehr Informationen hier"
@@ -438,54 +432,42 @@ msgstr "Gruppe löschen"
 msgid "Add Row"
 msgstr "Zeile hinzufügen"
 
-#: includes/cmb2/includes/CMB2_Types.php:353
-#: includes/cmb2/includes/CMB2_Types.php:986
-#: includes/cmb2/includes/CMB2_hookup.php:183
-#: includes/cmb2/tests/test-cmb-types.php:147
-#: includes/cmb2/tests/test-cmb-types.php:155
-#: includes/cmb2/tests/test-cmb-types.php:715
+#: includes/cmb2/includes/CMB2_Types.php:353 includes/cmb2/includes/CMB2_Types.php:986
+#: includes/cmb2/includes/CMB2_hookup.php:183 includes/cmb2/tests/test-cmb-types.php:147
+#: includes/cmb2/tests/test-cmb-types.php:155 includes/cmb2/tests/test-cmb-types.php:715
 #: includes/cmb2/tests/test-cmb-types.php:740
 msgid "Remove"
 msgstr "Entfernen"
 
-#: includes/cmb2/includes/CMB2_Types.php:722
-#: includes/cmb2/includes/CMB2_Types.php:770
+#: includes/cmb2/includes/CMB2_Types.php:722 includes/cmb2/includes/CMB2_Types.php:770
 msgid "No terms"
 msgstr "Keine Bestimmungen"
 
-#: includes/cmb2/includes/CMB2_Types.php:835
-#: includes/cmb2/tests/test-cmb-types.php:691
+#: includes/cmb2/includes/CMB2_Types.php:835 includes/cmb2/tests/test-cmb-types.php:691
 #: includes/cmb2/tests/test-cmb-types.php:717
 msgid "Add or Upload Files"
 msgstr "Lade neue Dateien hoch"
 
-#: includes/cmb2/includes/CMB2_Types.php:893
-#: includes/cmb2/tests/test-cmb-types.php:727
+#: includes/cmb2/includes/CMB2_Types.php:893 includes/cmb2/tests/test-cmb-types.php:727
 #: includes/cmb2/tests/test-cmb-types.php:742
 msgid "Add or Upload File"
 msgstr "Lade eine neue Datei hoch"
 
-#: includes/cmb2/includes/CMB2_Types.php:967
-#: includes/cmb2/includes/CMB2_hookup.php:182
+#: includes/cmb2/includes/CMB2_Types.php:967 includes/cmb2/includes/CMB2_hookup.php:182
 msgid "Remove Image"
 msgstr "Bild löschen"
 
-#: includes/cmb2/includes/CMB2_Types.php:981
-#: includes/cmb2/includes/CMB2_hookup.php:184
-#: includes/cmb2/tests/test-cmb-types.php:716
-#: includes/cmb2/tests/test-cmb-types.php:741
+#: includes/cmb2/includes/CMB2_Types.php:981 includes/cmb2/includes/CMB2_hookup.php:184
+#: includes/cmb2/tests/test-cmb-types.php:716 includes/cmb2/tests/test-cmb-types.php:741
 msgid "File:"
 msgstr "Datei:"
 
-#: includes/cmb2/includes/CMB2_Types.php:984
-#: includes/cmb2/includes/CMB2_hookup.php:185
-#: includes/cmb2/tests/test-cmb-types.php:714
-#: includes/cmb2/tests/test-cmb-types.php:739
+#: includes/cmb2/includes/CMB2_Types.php:984 includes/cmb2/includes/CMB2_hookup.php:185
+#: includes/cmb2/tests/test-cmb-types.php:714 includes/cmb2/tests/test-cmb-types.php:739
 msgid "Download"
 msgstr "Download"
 
-#: includes/cmb2/includes/CMB2_hookup.php:128
-#: includes/cmb2/includes/CMB2_hookup.php:165
+#: includes/cmb2/includes/CMB2_hookup.php:128 includes/cmb2/includes/CMB2_hookup.php:165
 msgid "Clear"
 msgstr "Leeren"
 
@@ -537,8 +519,7 @@ msgstr "Zurück"
 msgid "Today"
 msgstr "Heute"
 
-#: includes/cmb2/includes/CMB2_hookup.php:164
-#: includes/cmb2/includes/CMB2_hookup.php:174
+#: includes/cmb2/includes/CMB2_hookup.php:164 includes/cmb2/includes/CMB2_hookup.php:174
 msgid "Done"
 msgstr "Erledigt"
 
@@ -586,13 +567,11 @@ msgstr "Speichern"
 msgid "Summary Coming Soon!"
 msgstr "Zusammenfassung kommt bald!"
 
-#: includes/helper-functions.php:26 includes/helper-functions.php:37
-#: single-book.php:690 single-book.php:725
+#: includes/helper-functions.php:26 includes/helper-functions.php:37 single-book.php:690 single-book.php:725
 msgid "Buy Now:"
 msgstr "Jetzt kaufen:"
 
-#: includes/helper-functions.php:26 includes/helper-functions.php:37
-#: single-book.php:690 single-book.php:725
+#: includes/helper-functions.php:26 includes/helper-functions.php:37 single-book.php:690 single-book.php:725
 msgid "Download Now:"
 msgstr "Jetzt downloaden:"
 
@@ -645,8 +624,7 @@ msgstr "Haupt-Bibliothekar"
 msgid "Book Manager"
 msgstr "Buch Manager"
 
-#: mooberry-book-manager.php:221 mooberry-book-manager.php:237
-#: mooberry-book-manager.php:239
+#: mooberry-book-manager.php:221 mooberry-book-manager.php:237 mooberry-book-manager.php:239
 msgctxt "noun"
 msgid "Books"
 msgstr "Buch"
@@ -695,8 +673,7 @@ msgstr "Keine Bücher im Papierkorb gefunden"
 msgid "Parent Book"
 msgstr "Ober Buch"
 
-#: mooberry-book-manager.php:288 mooberry-book-manager.php:298
-#: single-book.php:709
+#: mooberry-book-manager.php:288 mooberry-book-manager.php:298 single-book.php:709
 msgid "Genres"
 msgstr "Genre"
 
@@ -752,8 +729,7 @@ msgstr "Aus meist benutzten Genres aussuchen"
 msgid "No genres found"
 msgstr "Keine Genres gefunden"
 
-#: mooberry-book-manager.php:323 mooberry-book-manager.php:333
-#: single-book.php:713
+#: mooberry-book-manager.php:323 mooberry-book-manager.php:333 single-book.php:713
 msgid "Tags"
 msgstr "Tags"
 
@@ -944,6 +920,7 @@ msgstr "Cover Größe (in Pixel)"
 #: views/admin-book-widget.php:52
 msgid "(minimum 50)"
 msgstr "(mindestens 50px)"
+
 #. Description of the plugin/theme
 msgid "An easy-to-use system for authors to add books their Wordpress website"
 msgstr "Ein einfach zu benutzendes Plugin für Autoren, um schnell Bücher auf die eigene Wordpress-Seite zu bringen."
