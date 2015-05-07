@@ -274,8 +274,9 @@
 		
 		register_taxonomy('mbdb_genre', 'mbdb_book', 
 			apply_filters('mdbd_genre_taxonomy', array(
-				'rewrite' => false, // array(	'slug' => 'mbdb_genres' ),
-				'public' => false,
+				'rewrite' => false, 
+				//'rewrite' => array(	'slug' => 'mbdb_genres' ),
+				'public' => true, //false,
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
 				'capabilities'	=> array(
@@ -310,7 +311,7 @@
 			apply_filters('mdbd_tag_taxonomy', array(
 			//	'rewrite' => array(	'slug' => 'mbdb_tags' ),
 				'rewrite'	=>	false,
-				'public'	=> false,
+				'public'	=> true, //false,
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
 				'capabilities'	=> array(
@@ -345,7 +346,7 @@
 		register_taxonomy('mbdb_series', 'mbdb_book', 
 			apply_filters('mbdb_series_taxonomy', array( 
 				'rewrite' => false, // array( 'slug' => 'mbdb_series' ),
-				'public' => false,
+				'public' => true, // false,
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
 				'capabilities'	=> array(
