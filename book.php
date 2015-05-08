@@ -130,6 +130,8 @@ function mbdb_display_mbdb_metabox($post, $args) {
 
 add_filter( 'cmb2_meta_boxes', 'mbdb_book_metaboxes', 30 );
 function mbdb_book_metaboxes( array $meta_boxes ) {
+	$mbdb_options = get_option('mbdb_options');
+	
 	$meta_boxes['mbdb_summary_metabox'] = array(
 		'id'            => 'mbdb_summary_metabox',
 		'title'         => __('Summary', 'mooberry-book-manager'),
@@ -157,7 +159,104 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			),
 		),
 	);
-	
+	$meta_boxes['mbdb_formats'] = array(
+		'id'            => 'mbdb_formats',
+		'title'         => __('Formats and Editions', 'mooberry-book-manager'),
+		'object_types'  => array( 'mbdb_book', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'default',
+		
+		'show_names'    => true, // Show field names on the left
+		'fields' => array(
+			array(
+			'id'          => '_mbdb_formats',
+			'type'        => 'group',
+			'description' => __("List the details of your book's hardcover, paperback, and e-book editions. Everything is optional except the format.", 'mooberry-book-manager'),
+			'options'     => array(
+				'group_title'   => __('Edition', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
+				'add_button'    =>  __('Add Edition', 'mooberry-book-manager'),
+				'remove_button' =>  __('Remove Edition', 'mooberry-book-manager'),
+				'sortable'      => false, // beta
+				),
+			
+				// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
+				'fields'      => array(
+					array(
+						'name'	=>	_x('Format', 'noun', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_format',
+						'type'	=>	'select',
+						'options'	=> array(
+								'' => '',
+								'hardcover'	=>	__('Hardcover', 'mooberry-book-manager'),
+								'paperback'	=>	__('Paperback', 'mooberry-book-manager'),
+								'mobi'	=>	'mobi/Kindle',
+								'epub'	=>	'ePub',
+								'pdf'	=>	'PDF',
+						),
+					),
+					array(
+						'name'	=> 'EAN/ISBN',
+						'id'	=>	'_mbdb_isbn',
+						'type'	=>	'text_medium',
+					),
+					array(
+						'name'	=> __('Language', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_language',
+						'type'	=> 'select',
+						'options'	=> mbdb_get_language_array(),
+						'default'	=>	mbdb_get_default_language($mbdb_options),
+					),
+					array(
+						'name'	=> __('Number of Pages', 'mooberry-book-manager'),
+						'id'	=> '_mbdb_length',
+						'type'	=> 'text_small',
+						'attributes' => array(
+								'type' => 'number',
+								'pattern' => '\d*',
+								'min' => 1
+							),
+					),
+					array(
+						'name'	=>	__('Height', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_height',
+						'type'	=>	'text_small',
+					),
+					array(
+						'name'	=>	__('Width', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_width',
+						'type'	=> 'text_small',
+					),
+					array(
+						'name'	=> _x('Unit', 'units of measurement', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_unit',
+						'type'	=> 'select',
+						'options'	=> mbdb_get_units_array(),
+						'default'	=>	mbdb_get_default_unit($mbdb_options),
+					),
+					array(
+						'name'	=>	__('Suggested Retail Price', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_retail_price',
+						'type'	=> 'text_small',
+					),
+					array(	
+						'name'	=>	__('Currency', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_currency',
+						'type'	=>	'select',
+						'options'	=>	mbdb_get_currency_array(),
+						'default'	=> mbdb_get_default_currency($mbdb_options),
+					),
+					array(
+						'name'	=>	__('Edition Title', 'mooberry-book-manager'),
+						'id'	=>	'_mbdb_edition_title',
+						'type'	=> 'text_medium',
+						'desc' => __('First Edition, Second Edition, etc.', 'mooberry-book-mananger'),
+					),
+				),
+			),
+		),
+	);
+				
+				
 	$meta_boxes['mbdb_excerpt'] = array(
 		'id'            => 'mbdb_excerpt',
 		'title'         => __('Excerpt', 'mooberry-book-manager'),
@@ -342,6 +441,14 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 				'type' => 'text_small',
 			),
 			array(
+				'name' 	=> __('Release Date', 'mooberry-book-manager'),
+				'id'	=> '_mbdb_published',
+				'type' => 'text_date',
+				'desc' => 'yyyy/mm/dd',
+				'date_format' => 'Y/m/d',
+				'sanitization_cb' => 'mbdb_format_date'
+			),
+			array(
 				'name' => __('Publisher', 'mooberry-book-manager'),
 				'id'   => '_mbdb_publisher',
 				'type' => 'text_medium',
@@ -358,14 +465,6 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 				),
 			),
 			array(
-				'name' 	=> __('Release Date', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_published',
-				'type' => 'text_date',
-				'desc' => 'yyyy/mm/dd',
-				'date_format' => 'Y/m/d',
-				'sanitization_cb' => 'mbdb_format_date'
-			),
-			array(
 				'name'	=> __('Goodreads Link', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_goodreads',
 				'type'	=> 'text_url',
@@ -375,16 +474,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					'pattern' => '^(https?:\/\/)?www.goodreads.com.*',
 				),
 			),
-			array(
-				'name'	=> __('Number of Pages', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_length',
-				'type'	=> 'text_small',
-				'attributes' => array(
-						'type' => 'number',
-						'pattern' => '\d*',
-						'min' => 1
-					),
-			),
+			
 			array(
 				'name'	=> __('Series Order', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_series_order',

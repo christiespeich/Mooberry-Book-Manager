@@ -474,6 +474,300 @@ function mbdb_get_book_dropdown( $selected_bookID ) {
 	}
 }
 
+function mbdb_get_units_array() {
+	return apply_filters('mbdb_get_units_array', array(
+			'in'	=>	__('inches (in)', 'mooberry-book-manager'),
+			'cm'	=> __('centimeters (cm)', 'mooberry-book-manager'),
+			'mm'	=>	__('millimeters (mm)', 'mooberry-book-manager'),
+	));
+}
+		
+function mbdb_get_default_unit( $mbdb_options = null) {
+	if ($mdbd_options == null) {
+		$mbdb_options = get_option('mdbd_options');
+	}
+	if (!isset($mbdb_options['mbdb_default_unit'])) {
+		return 'in';
+	} 
+	return $mbdb_options['mbdb_default_unit'];
+}
+
+function mbdb_get_currency_array() {
+	return apply_filters('mbdb_get_currency_array', array(
+		'AUD'   => __('Australian Dollar', 'mooberry-book-manager'),
+		'BRL'   => __('Brazilian Real ', 'mooberry-book-manager'),
+		'CAD'   => __('Canadian Dollar', 'mooberry-book-manager'),
+		'CZK'   => __('Czech Koruna', 'mooberry-book-manager'),
+		'DKK'   => __('Danish Krone', 'mooberry-book-manager'),
+		'EUR'   => __('Euro', 'mooberry-book-manager'),
+		'HKD'   => __('Hong Kong Dollar', 'mooberry-book-manager'),
+		'HUF'   => __('Hungarian Forint ', 'mooberry-book-manager'),
+		'ILS'   => __('Israeli New Sheqel', 'mooberry-book-manager'),
+		'JPY'   => __('Japanese Yen', 'mooberry-book-manager'),
+		'MYR'   => __('Malaysian Ringgit', 'mooberry-book-manager'),
+		'MXN'   => __('Mexican Peso', 'mooberry-book-manager'),
+		'NOK'   => __('Norwegian Krone', 'mooberry-book-manager'),
+		'NZD'   => __('New Zealand Dollar', 'mooberry-book-manager'),
+		'PHP'   => __('Philippine Peso', 'mooberry-book-manager'),
+		'PLN'   => __('Polish Zloty', 'mooberry-book-manager'),
+		'SGD'   => __('Singapore Dollar', 'mooberry-book-manager'),
+		'SEK'   => __('Swedish Krona', 'mooberry-book-manager'),
+		'CHF'   => __('Swiss Franc', 'mooberry-book-manager'),
+		'TWD'   => __('Taiwan New Dollar', 'mooberry-book-manager'),
+		'THB'   => __('Thai Baht', 'mooberry-book-manager'),
+		'TRY'   => __('Turkish Lira', 'mooberry-book-manager'),
+		'GBP'   => __('U.K. Pound Sterling', 'mooberry-book-manager'),
+		'USD'   => __('U.S. Dollar', 'mooberry-book-manager'),
+	));
+}
+
+function mbdb_get_currency_symbol_array() {
+	return apply_filters('mbdb_get_currency_symbol_array', array(
+		'AUD'   => '$',
+		'BRL'   => 'R$',
+		'CAD'   => '$',
+		'CZK'   => 'Kč',
+		'DKK'   => 'kr',
+		'EUR'   => '€',
+		'HKD'   => '$',
+		'HUF'   => 'Ft',
+		'ILS'   => '₪',
+		'JPY'   => '¥',
+		'MYR'   => 'RM',
+		'MXN'   => '$',
+		'NOK'   => 'kr',
+		'NZD'   => '$',
+		'PHP'   => '₱',
+		'PLN'   => 'zł',
+		'GBP'   => '£',
+		'SGD'   => '$',
+		'SEK'   => 'kr',
+		'CHF'   => 'CHF',
+		'TWD'   => 'NT$',
+		'THB'   => '฿',
+		'TRY'   => '₤',
+		'USD'   => '$',
+	));
+}
+
+function mbdb_get_language_array() {
+	return apply_filters('mbdb_get_language_array', array(
+		'AB' => __('Abkhazian', 'mooberry-book-manager'),
+		'AA' => __('Afar', 'mooberry-book-manager'),
+		'AF' => __('Afrikaans', 'mooberry-book-manager'),
+		'SQ' => __('Albanian', 'mooberry-book-manager'),
+		'AM' => __('Amharic', 'mooberry-book-manager'),
+		'AR' => __('Arabic', 'mooberry-book-manager'),
+		'HY' => __('Armenian', 'mooberry-book-manager'),
+		'AS' => __('Assamese', 'mooberry-book-manager'),
+		'AY' => __('Aymara', 'mooberry-book-manager'),
+		'AZ' => __('Azerbaijani', 'mooberry-book-manager'),
+		'BA' => __('Bashkir', 'mooberry-book-manager'),
+		'EU' => __('Basque', 'mooberry-book-manager'),
+		'BN' => __('Bengali, Bangla', 'mooberry-book-manager'),
+		'DZ' => __('Bhutani', 'mooberry-book-manager'),
+		'BH' => __('Bihari', 'mooberry-book-manager'),
+		'BI' => __('Bislama', 'mooberry-book-manager'),
+		'BR' => __('Breton', 'mooberry-book-manager'),
+		'BG' => __('Bulgarian', 'mooberry-book-manager'),
+		'MY' => __('Burmese', 'mooberry-book-manager'),
+		'BE' => __('Byelorussian', 'mooberry-book-manager'),
+		'KM' => __('Cambodian', 'mooberry-book-manager'),
+		'CA' => __('Catalan', 'mooberry-book-manager'),
+		'ZH' => __('Chinese', 'mooberry-book-manager'),
+		'CO' => __('Corsican', 'mooberry-book-manager'),
+		'HR' => __('Croatian', 'mooberry-book-manager'),
+		'CS' => __('Czech', 'mooberry-book-manager'),
+		'DA' => __('Danish', 'mooberry-book-manager'),
+		'NL' => __('Dutch', 'mooberry-book-manager'),
+		'EN' => __('English', 'mooberry-book-manager'),
+		'EO' => __('Esperanto', 'mooberry-book-manager'),
+		'ET' => __('Estonian', 'mooberry-book-manager'),
+		'FO' => __('Faeroese', 'mooberry-book-manager'),
+		'FJ' => __('Fiji', 'mooberry-book-manager'),
+		'FI' => __('Finnish', 'mooberry-book-manager'),
+		'FR' => __('French', 'mooberry-book-manager'),
+		'FY' => __('Frisian', 'mooberry-book-manager'),
+		'GD' => __('Gaelic (Scots Gaelic)', 'mooberry-book-manager'),
+		'GL' => __('Galician', 'mooberry-book-manager'),
+		'KA' => __('Georgian', 'mooberry-book-manager'),
+		'DE' => __('German', 'mooberry-book-manager'),
+		'EL' => __('Greek', 'mooberry-book-manager'),
+		'KL' => __('Greenlandic', 'mooberry-book-manager'),
+		'GN' => __('Guarani', 'mooberry-book-manager'),
+		'GU' => __('Gujarati', 'mooberry-book-manager'),
+		'HA' => __('Hausa', 'mooberry-book-manager'),
+		'IW' => __('Hebrew', 'mooberry-book-manager'),
+		'HI' => __('Hindi', 'mooberry-book-manager'),
+		'HU' => __('Hungarian', 'mooberry-book-manager'),
+		'IS' => __('Icelandic', 'mooberry-book-manager'),
+		'IN' => __('Indonesian', 'mooberry-book-manager'),
+		'IA' => __('Interlingua', 'mooberry-book-manager'),
+		'IE' => __('Interlingue', 'mooberry-book-manager'),
+		'IK' => __('Inupiak', 'mooberry-book-manager'),
+		'GA' => __('Irish', 'mooberry-book-manager'),
+		'IT' => __('Italian', 'mooberry-book-manager'),
+		'JA' => __('Japanese', 'mooberry-book-manager'),
+		'JW' => __('Javanese', 'mooberry-book-manager'),
+		'KN' => __('Kannada', 'mooberry-book-manager'),
+		'KS' => __('Kashmiri', 'mooberry-book-manager'),
+		'KK' => __('Kazakh', 'mooberry-book-manager'),
+		'RW' => __('Kinyarwanda', 'mooberry-book-manager'),
+		'KY' => __('Kirghiz', 'mooberry-book-manager'),
+		'RN' => __('Kirundi', 'mooberry-book-manager'),
+		'KO' => __('Korean', 'mooberry-book-manager'),
+		'KU' => __('Kurdish', 'mooberry-book-manager'),
+		'LO' => __('Laothian', 'mooberry-book-manager'),
+		'LA' => __('Latin', 'mooberry-book-manager'),
+		'LV' => __('Latvian, Lettish', 'mooberry-book-manager'),
+		'LN' => __('Lingala', 'mooberry-book-manager'),
+		'LT' => __('Lithuanian', 'mooberry-book-manager'),
+		'MK' => __('Macedonian', 'mooberry-book-manager'),
+		'MG' => __('Malagasy', 'mooberry-book-manager'),
+		'MS' => __('Malay', 'mooberry-book-manager'),
+		'ML' => __('Malayalam', 'mooberry-book-manager'),
+		'MT' => __('Maltese', 'mooberry-book-manager'),
+		'MI' => __('Maori', 'mooberry-book-manager'),
+		'MR' => __('Marathi', 'mooberry-book-manager'),
+		'MO' => __('Moldavian', 'mooberry-book-manager'),
+		'MN' => __('Mongolian', 'mooberry-book-manager'),
+		'NA' => __('Nauru', 'mooberry-book-manager'),
+		'NE' => __('Nepali', 'mooberry-book-manager'),
+		'NO' => __('Norwegian', 'mooberry-book-manager'),
+		'OC' => __('Occitan', 'mooberry-book-manager'),
+		'OR' => __('Oriya', 'mooberry-book-manager'),
+		'OM' => __('Oromo, Afan', 'mooberry-book-manager'),
+		'PS' => __('Pashto, Pushto', 'mooberry-book-manager'),
+		'FA' => __('Persian', 'mooberry-book-manager'),
+		'PL' => __('Polish', 'mooberry-book-manager'),
+		'PT' => __('Portuguese', 'mooberry-book-manager'),
+		'PA' => __('Punjabi', 'mooberry-book-manager'),
+		'QU' => __('Quechua', 'mooberry-book-manager'),
+		'RM' => __('Rhaeto-Romance', 'mooberry-book-manager'),
+		'RO' => __('Romanian', 'mooberry-book-manager'),
+		'RU' => __('Russian', 'mooberry-book-manager'),
+		'SM' => __('Samoan', 'mooberry-book-manager'),
+		'SG' => __('Sangro', 'mooberry-book-manager'),
+		'SA' => __('Sanskrit', 'mooberry-book-manager'),
+		'SR' => __('Serbian', 'mooberry-book-manager'),
+		'SH' => __('Serbo-Croatian', 'mooberry-book-manager'),
+		'ST' => __('Sesotho', 'mooberry-book-manager'),
+		'TN' => __('Setswana', 'mooberry-book-manager'),
+		'SN' => __('Shona', 'mooberry-book-manager'),
+		'SD' => __('Sindhi', 'mooberry-book-manager'),
+		'SI' => __('Singhalese', 'mooberry-book-manager'),
+		'SS' => __('Siswati', 'mooberry-book-manager'),
+		'SK' => __('Slovak', 'mooberry-book-manager'),
+		'SL' => __('Slovenian', 'mooberry-book-manager'),
+		'SO' => __('Somali', 'mooberry-book-manager'),
+		'ES' => __('Spanish', 'mooberry-book-manager'),
+		'SU' => __('Sudanese', 'mooberry-book-manager'),
+		'SW' => __('Swahili', 'mooberry-book-manager'),
+		'SV' => __('Swedish', 'mooberry-book-manager'),
+		'TL' => __('Tagalog', 'mooberry-book-manager'),
+		'TG' => __('Tajik', 'mooberry-book-manager'),
+		'TA' => __('Tamil', 'mooberry-book-manager'),
+		'TT' => __('Tatar', 'mooberry-book-manager'),
+		'TE' => __('Tegulu', 'mooberry-book-manager'),
+		'TH' => __('Thai', 'mooberry-book-manager'),
+		'BO' => __('Tibetan', 'mooberry-book-manager'),
+		'TI' => __('Tigrinya', 'mooberry-book-manager'),
+		'TO' => __('Tonga', 'mooberry-book-manager'),
+		'TS' => __('Tsonga', 'mooberry-book-manager'),
+		'TR' => __('Turkish', 'mooberry-book-manager'),
+		'TK' => __('Turkmen', 'mooberry-book-manager'),
+		'TW' => __('Twi', 'mooberry-book-manager'),
+		'UK' => __('Ukrainian', 'mooberry-book-manager'),
+		'UR' => __('Urdu', 'mooberry-book-manager'),
+		'UZ' => __('Uzbek', 'mooberry-book-manager'),
+		'VI' => __('Vietnamese', 'mooberry-book-manager'),
+		'VO' => __('Volapuk', 'mooberry-book-manager'),
+		'CY' => __('Welsh', 'mooberry-book-manager'),
+		'WO' => __('Wolof', 'mooberry-book-manager'),
+		'XH' => __('Xhosa', 'mooberry-book-manager'),
+		'JI' => __('Yiddish', 'mooberry-book-manager'),
+		'YO' => __('Yoruba', 'mooberry-book-manager'),
+		'ZU' => __('Zulu', 'mooberry-book-manager'), 
+	));
+
+}
+
+function mbdb_get_default_currency( $mbdb_options = null) {
+	if ($mdbd_options == null) {
+		$mbdb_options = get_option('mdbd_options');
+	}
+	if (!isset($mbdb_options['mbdb_default_currency'])) {
+		return 'USD';
+	} 
+	return $mbdb_options['mbdb_default_currency'];
+}
+
+function mbdb_get_default_language( $mbdb_options = null) {
+	if ($mdbd_options == null) {
+		$mbdb_options = get_option('mdbd_options');
+	}
+	if (!isset($mbdb_options['mbdb_default_language'])) {
+		return 'EN';
+	} 
+	return $mbdb_options['mbdb_default_language'];
+}
+
+
+
+
+function mbdb_set_up_roles() {
+		
+		$contributor_level = array('edit_mbdb_books',
+									'edit_mbdb_book',
+									'delete_mbdb_books',
+									'delete_mbdb_book');
+									
+		$base_level = array(		'publish_mbdb_books',
+									'publish_mbdb_book',
+									'edit_published_mbdb_book',
+									'edit_published_mbdb_books',
+									'delete_published_mbdb_book',
+									'delete_published_mbdb_books',
+									'upload_files',
+									'manage_mbdb_books',
+									'read');
+									
+		$master_level = array(		'edit_others_mbdb_books',
+									'edit_others_mbdb_books',
+									'delete_others_mbdb_books',
+									'delete_others_mbdb_book');
+		
+		remove_role('mbdb_librarian');
+		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
+		remove_role('mbdb_master_librarian');
+		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
+		$base_roles = array('mbdb_librarian', 'author');
+		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
+		$contributor = get_role('contributor');
+		foreach ($contributor_level as $capability) {
+			$contributor->add_cap($capability);
+		}
+		foreach (array_merge($base_level, $contributor_level) as $capability) {
+			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		foreach ($master_level as $capability) {
+			foreach ($master_roles as $each_role) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		
+}
+
+
+/***************************************
+	
+			Update functions
+
+****************************************/
 
 function mbdb_upgrade_to_1_3_1() {
 	$default_retailers = array();
@@ -539,53 +833,6 @@ function mbdb_migrate_post_tags() {
 		$bookID = $mbdb_book->ID;
 		wp_delete_object_term_relationships( $bookID, 'post_tag' );
 	}
-}
-
-function mbdb_set_up_roles() {
-		
-		$contributor_level = array('edit_mbdb_books',
-									'edit_mbdb_book',
-									'delete_mbdb_books',
-									'delete_mbdb_book');
-									
-		$base_level = array(		'publish_mbdb_books',
-									'publish_mbdb_book',
-									'edit_published_mbdb_book',
-									'edit_published_mbdb_books',
-									'delete_published_mbdb_book',
-									'delete_published_mbdb_books',
-									'upload_files',
-									'manage_mbdb_books',
-									'read');
-									
-		$master_level = array(		'edit_others_mbdb_books',
-									'edit_others_mbdb_books',
-									'delete_others_mbdb_books',
-									'delete_others_mbdb_book');
-		
-		remove_role('mbdb_librarian');
-		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
-		remove_role('mbdb_master_librarian');
-		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
-		$base_roles = array('mbdb_librarian', 'author');
-		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
-		$contributor = get_role('contributor');
-		foreach ($contributor_level as $capability) {
-			$contributor->add_cap($capability);
-		}
-		foreach (array_merge($base_level, $contributor_level) as $capability) {
-			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
-				$role = get_role($each_role);
-				$role->add_cap($capability);
-			}
-		}
-		foreach ($master_level as $capability) {
-			foreach ($master_roles as $each_role) {
-				$role = get_role($each_role);
-				$role->add_cap($capability);
-			}
-		}
-		
 }
 
 function mbdb_migrate_to_book_grid_defaults() {

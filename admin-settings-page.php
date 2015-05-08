@@ -41,6 +41,31 @@ if ( $pagenow == 'options-general.php' && $_GET['page'] == 'mbdb_settings' ) {
 function mbdb_general_settings() {
 	return apply_filters('mbdb_settings_general_settings', array(
 				array(
+					'id'	=> 'mbdb_book_default_settings_title',
+					'name'	=>	__('BOOK PAGE DEFAULT SETTINGS', 'mooberry-book-manager'),
+					'type'	=>	'title',
+				),array(
+					'id'	=>	'mbdb_default_unit',
+					'name'	=>	__('Default Unit of Measurement', 'mooberry-book-manager'),
+					'type'	=> 'select',
+					'default'	=> 'in',
+					'options'	=> mbdb_get_units_array(),
+				),
+				array(
+					'id'	=>	'mbdb_default_currency',
+					'name'	=>	__('Default Currency', 'mooberry-book-manager'),
+					'type'	=> 'select',
+					'default'	=> 'USD',
+					'options'	=> mbdb_get_currency_array(),
+				),
+				array(
+					'id'	=>	'mbdb_default_language',
+					'name'	=>	__('Default Language', 'mooberry-book-manager'),
+					'type'	=> 'select',
+					'default'	=> 'EN',
+					'options'	=> mbdb_get_language_array(),
+				),
+				array(
 					'id'	=> 'mbdb_grid_default_settings_title',
 					'name'	=>	__('BOOK GRID DEFAULT SETTINGS', 'mooberry-book-manager'),
 					'type'	=>	'title',
