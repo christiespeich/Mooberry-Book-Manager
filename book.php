@@ -551,7 +551,3 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 	return apply_filters('mbdb_book_meta_boxes', $meta_boxes);
 	
 }
-	
-
-
-?>
