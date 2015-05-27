@@ -266,8 +266,12 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					array(
 						'name'	=>	__('Suggested Retail Price', 'mooberry-book-manager'),
 						'id'	=>	'_mbdb_retail_price',
-						'type'	=> 'text_money',
-						'before_field'	=> ' ',
+						'type'	=> 'text_small',
+						'attributes' => array(
+								'pattern' => '^\d*([.,]\d{2}$)?',
+								'min' => 0
+							),
+						
 					),
 					array(	
 						'name'	=>	__('Currency', 'mooberry-book-manager'),
