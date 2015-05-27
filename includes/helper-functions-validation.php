@@ -25,7 +25,7 @@ function mbdb_validate_editions( $field ) {
 		$width = mbdb_check_field('_mbdb_width', $edition) ;
 		$height = mbdb_check_field('_mbdb_height', $edition);
 		$is_format = mbdb_check_field('_mbdb_format', $edition) && $edition['_mbdb_format'] != '0';
-		$is_others = (mbdb_check_field('_mbdb_isbn', $edition) || mbdb_check_field('_mbdb_length', $edition) || $width || $height || mbdb_check_field('_mbdb_retail_price', $edition) || mbdb_check_field('_mbdb_edition_title'));
+		$is_others = (mbdb_check_field('_mbdb_isbn', $edition) || mbdb_check_field('_mbdb_length', $edition) || $width || $height || mbdb_check_field('_mbdb_retail_price', $edition) || mbdb_check_field('_mbdb_edition_title', $edition));
 		$flag = !$is_format;
 		
 		// if width or height is filled in, the other one must be also
