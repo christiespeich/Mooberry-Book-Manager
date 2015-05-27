@@ -659,13 +659,13 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 	$mbdb_options = get_option( 'mbdb_options' );
 	$buy_links_html = '<UL class="' . $classname . '-list" style="list-style-type:none;">';
 	if ($attr['align'] =='vertical') {
-		$li_style = "margin: 1em 0 1em 0;";
+		$li_style = "margin: 2px 0 2px 0;";
 		if ($attr['size']) { $attr['width'] = $attr['size']; }
 		$img_size = "width:" . esc_attr($attr['width']) . "px;";
 	} else {
 		$li_style = "display:inline;margin: 0 2px 0 0;";
-		if ($attr['size']) { $attr['width'] = $attr['size']; }
-		$img_size = "width:" . esc_attr($attr['width']) . "px;";		
+		if ($attr['size']) { $attr['height'] = $attr['size']; }
+		$img_size = "height:" . esc_attr($attr['height']) . "px;";		
 	}
 	foreach ($mbdb_buylinks as $mbdb_buylink) {
 		// get format info based on formatid = uniqueid
@@ -870,10 +870,17 @@ function mbdb_book_content($content) {
 			$book_page_layout .= '<div id="mbm-book-sidebar">';
 			$book_page_layout .= '[book_cover width="215" align="left"]';
 			
-			if (mbdb_is_links_data() !== false) {
-				$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="205" blank="" blanklabel=""]';
-			}
+			//if (mbdb_is_links_data() !== false) {
+			//	$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="vertical" size="205" blank="" blanklabel=""]';
+			//}
 			
+			$is_links_data = mbdb_get_links_data();
+			if ($is_links_data['buylinks'] !== false) {
+				$book_page_layout .= '[book_buylinks width="205" align="vertical"]';
+			}
+			if ($is_links_data['downloadlinks'] !== false) {
+				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '"]';
+			}
 			
 
 			
@@ -932,7 +939,7 @@ function mbdb_book_content($content) {
 			}
 			
 		if ($is_excerpt && mbdb_is_links_data() !== false) {
-				$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="205" blank="" blanklabel=""]';
+				$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="50" blank="" blanklabel=""]';
 			}
 			
 			
