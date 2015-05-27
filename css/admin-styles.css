@@ -1,8 +1,11 @@
-
+.cmb-repeat-group-wrap .cmb-row:not(:last-of-type){
+	border: none !important; 
+	}
 
 .cmb-td input {
 	float:left;
 }
+
 
 #mbdb_box {
 	width:250px; 

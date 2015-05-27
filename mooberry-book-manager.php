@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '1.3.2');
+	define('MBDB_PLUGIN_VERSION', '2.0');
 	
 		
 		
@@ -86,21 +86,32 @@
 		mbdb_insert_defaults( $default_retailers, 'retailers', $mbdb_options);
 		mbdb_insert_defaults( $default_formats, 'formats', $mbdb_options);
 		
+		mbdb_insert_default_edition_formats($mbdb_options);
 		
 		// check if the coming soon image exists and add it if necessary
 		if (!array_key_exists('coming-soon', $mbdb_options)) {
 			$attachID = mbdb_upload_image('coming_soon_blue.jpg');
-			$img = wp_get_attachment_url( $attachID );
-			$mbdb_options['coming-soon'] = $img;
 			$mbdb_options['coming-soon-id'] = $attachID;
+			if ( $attachID != 0) {
+				$img = wp_get_attachment_url( $attachID );
+				$mbdb_options['coming-soon'] = $img;
+			} else {
+				$mbdb_options['coming-soon'] = '';
+			}
+			
 		}
 			
 		// check if goodreads image exists and add it if necessary
 		if (!array_key_exists('goodreads', $mbdb_options)) {
 			$attachID = mbdb_upload_image('goodreads.png');
-			$img = wp_get_attachment_url( $attachID );
-			$mbdb_options['goodreads'] = $img;
 			$mbdb_options['goodreads-id'] = $attachID;
+			if ($attachID != 0) {
+				$img = wp_get_attachment_url( $attachID );
+				$mbdb_options['goodreads'] = $img;
+			} else {
+				$mbdb_options['goodreads'] = '';
+			}
+			
 		}
 		
 		// check if default book page exists and add it if necessary
@@ -165,6 +176,8 @@
 	function mbdb_register_styles() {
 		wp_register_style( 'mbdb-styles', plugins_url( 'css/styles.css', __FILE__) ) ;
 		wp_enqueue_style( 'mbdb-styles' );
+		
+		wp_enqueue_script('single-book', plugins_url('includes/js/single-book.js', __FILE__));
 	}
 
 	add_action( 'admin_footer', 'mbdb_register_script');

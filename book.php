@@ -115,16 +115,42 @@ function sort_mbdb_book_columns( $vars) {
 	return $vars;
 } */
 	
+// reorder taxonomy boxes
+add_action('add_meta_boxes_mbdb_book', 'mbdb_reorder_taxonomy_boxes');
+function mbdb_reorder_taxonomy_boxes() {
+	
+    global $wp_meta_boxes;
+	$taxonomies = array(  'tagsdiv-mbdb_tag', 'tagsdiv-mbdb_series', 'tagsdiv-mbdb_genre' );
+	// remove the cover to be readded before the taxonomies
+	$cover = $wp_meta_boxes['mbdb_book']['side']['default']['mbdb_cover_image'];
+	unset($wp_meta_boxes['mbdb_book']['side']['default']['mbdb_cover_image']);
+	foreach ($taxonomies as $taxID) {
+		 $tax = $wp_meta_boxes['mbdb_book']['side']['core'][$taxID];
+		 unset($wp_meta_boxes['mbdb_book']['side']['core'][$taxID]);
+		 if (array_key_exists('default', $wp_meta_boxes['mbdb_book']['side'])) {
+			$wp_meta_boxes['mbdb_book']['side']['default'] = array($taxID => $tax) + $wp_meta_boxes['mbdb_book']['side']['default'];
+		 } else {
+			$wp_meta_boxes['mbdb_book']['side']['default'] = array($taxID => $tax);
+		 }
+	}
+	
+	// now add cover above the taxonomies
+	$wp_meta_boxes['mbdb_book']['side']['default'] = array('mbdb_cover_image' => $cover) + $wp_meta_boxes['mbdb_book']['side']['default'];
+}
+
+
 	
 add_action('add_meta_boxes_mbdb_book', 'mbdb_mbd_metabox', 10);
 function mbdb_mbd_metabox() {
-		add_meta_box('mbdb_mbd_metabox', 'Like Mooberry Book Manager?', 'mbdb_display_mbdb_metabox', 'mbdb_book', 'side', 'high');
+		add_meta_box('mbdb_mbd_metabox', 'Need help with Mooberry Book Manager?', 'mbdb_display_mbdb_metabox', 'mbdb_book', 'side', 'core');
 }
 
 function mbdb_display_mbdb_metabox($post, $args) {
-	echo '<p>Check out <a target="_new" href="http://www.mooberrydreams.com/">our website</a> to learn more about the available add-ons so Mooberry Book Manager can save you more time!</p><h4>Need help with Mooberry Book Manager?</h4>
-		<p><a target="_new" href="http://www.mooberrydreams.com/wp/wp-content/uploads/2015/02/Mooberry-Book-Manager-User-Manual-v1.0.pdf">Download the User Manual</a></p>';
-	echo '<img style="width:225px" src="' . plugins_url('/views/images/logo.png', __FILE__) . '">';
+//	echo '<p>Check out <a target="_new" href="http://www.mooberrydreams.com/">our website</a> to learn more about the available add-ons so Mooberry Book Manager can save you more time!</p><h4>Need help with Mooberry Book Manager?</h4>
+//		<p><a target="_new" href="http://www.mooberrydreams.com/wp/wp-content/uploads/2015/02/Mooberry-Book-Manager-User-Manual-v1.0.pdf">Download the User Manual</a></p>';
+//	echo '<img style="width:225px" src="' . plugins_url('/views/images/logo.png', __FILE__) . '">';
+include "views/admin-about-mooberry.php";
+
 }
 
 
@@ -159,8 +185,8 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 			),
 		),
 	);
-	$meta_boxes['mbdb_formats'] = array(
-		'id'            => 'mbdb_formats',
+	$meta_boxes['mbdb_editions'] = array(
+		'id'            => 'mbdb_editions',
 		'title'         => __('Formats and Editions', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
@@ -169,12 +195,12 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		'show_names'    => true, // Show field names on the left
 		'fields' => array(
 			array(
-			'id'          => '_mbdb_formats',
+			'id'          => '_mbdb_editions',
 			'type'        => 'group',
 			'description' => __("List the details of your book's hardcover, paperback, and e-book editions. Everything is optional except the format.", 'mooberry-book-manager'),
 			'options'     => array(
 				'group_title'   => __('Edition', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
-				'add_button'    =>  __('Add Edition', 'mooberry-book-manager'),
+				'add_button'    =>  __('Add New Edition', 'mooberry-book-manager'),
 				'remove_button' =>  __('Remove Edition', 'mooberry-book-manager'),
 				'sortable'      => false, // beta
 				),
@@ -185,17 +211,11 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 						'name'	=>	_x('Format', 'noun', 'mooberry-book-manager'),
 						'id'	=>	'_mbdb_format',
 						'type'	=>	'select',
-						'options'	=> array(
-								'' => '',
-								'hardcover'	=>	__('Hardcover', 'mooberry-book-manager'),
-								'paperback'	=>	__('Paperback', 'mooberry-book-manager'),
-								'mobi'	=>	'mobi/Kindle',
-								'epub'	=>	'ePub',
-								'pdf'	=>	'PDF',
-						),
+						'sanitization_cb' => 'mbdb_validate_editions', 
+						'options'	=> mbdb_get_editions(),
 					),
 					array(
-						'name'	=> 'EAN/ISBN',
+						'name'	=> __('EAN/ISBN', 'mooberry-book-manager'),
 						'id'	=>	'_mbdb_isbn',
 						'type'	=>	'text_medium',
 					),
@@ -220,11 +240,21 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 						'name'	=>	__('Height', 'mooberry-book-manager'),
 						'id'	=>	'_mbdb_height',
 						'type'	=>	'text_small',
+						'attributes' => array(
+							'type' => 'number',
+							'step' => 'any',
+							'min' => 0
+						),
 					),
 					array(
 						'name'	=>	__('Width', 'mooberry-book-manager'),
 						'id'	=>	'_mbdb_width',
 						'type'	=> 'text_small',
+						'attributes' => array(
+							'type' => 'number',
+							'step' => 'any',
+							'min' => 0
+						),
 					),
 					array(
 						'name'	=> _x('Unit', 'units of measurement', 'mooberry-book-manager'),
@@ -236,7 +266,8 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					array(
 						'name'	=>	__('Suggested Retail Price', 'mooberry-book-manager'),
 						'id'	=>	'_mbdb_retail_price',
-						'type'	=> 'text_small',
+						'type'	=> 'text_money',
+						'before_field'	=> ' ',
 					),
 					array(	
 						'name'	=>	__('Currency', 'mooberry-book-manager'),
@@ -339,11 +370,95 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		),
 	);
 	
+		$meta_boxes['mbdb_cover_image'] = array(
+		'id'            => 'mbdb_cover_image',
+		'title'         => _x('Cover', 'noun', 'mooberry-book-manager'),
+		'object_types'  => array( 'mbdb_book', ), // Post type
+		'context'       => 'side',
+		'priority'      => 'default',
+			
+		'show_names'    => false, // Show field names on the left
+		'allow'			=> array( 'attachment'),
+		'fields' => array(
+			array(
+				 'name' => _x('Book Cover', 'noun', 'mooberry-book-manager'),
+				'id' => '_mbdb_cover',
+				'type' => 'file',
+				'allow' => array(  'attachment' ) // limit to just attachments with array( 'attachment' )
+			),
+		),
+	);
+	
+	$meta_boxes['mbdb_bookinfo_metabox'] = array(
+		'id'            => 'mbdb_bookinfo_metabox',
+		'title'         => __('Book Details', 'mooberry-book-manager'),
+		'object_types'  => array( 'mbdb_book', ), // Post type
+		'context'       => 'side',
+		'priority'      => 'default',
+			
+		'show_names'    => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => __('Subtitle', 'mooberry-book-manager'),
+				'id'   => '_mbdb_subtitle',
+				'type' => 'text_small',
+			),
+			array(
+				'name' 	=> __('Release Date', 'mooberry-book-manager'),
+				'id'	=> '_mbdb_published',
+				'type' => 'text_date',
+				'desc' => 'yyyy/mm/dd',
+				'date_format' => 'Y/m/d',
+				'sanitization_cb' => 'mbdb_format_date'
+			),
+			array(
+				'name' => __('Publisher', 'mooberry-book-manager'),
+				'id'   => '_mbdb_publisher',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' 	=> __('Publisher Website', 'mooberry-book-manager'),
+				'id'	=> '_mbdb_publisherwebsite',
+				'type'	=> 'text_url',
+				'desc' => 'http://www.someWebsite.com/',
+				'attributes' =>  array(
+					//'pattern' => '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})\/?([\/\w \.=\?&\-%]*)*\/?',
+					'pattern' => '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6}).*',
+					
+				),
+			),
+			array(
+				'name'	=> __('Goodreads Link', 'mooberry-book-manager'),
+				'id'	=> '_mbdb_goodreads',
+				'type'	=> 'text_url',
+				'desc' => 'http://www.goodreads.com/your/Unique/Text/',
+				'attributes' =>  array(
+				//	'pattern' => '^(https?:\/\/)?www.goodreads.com([\/\w \.=\?&\-]*)*\/?',
+					'pattern' => '^(https?:\/\/)?www.goodreads.com.*',
+				),
+			),
+			
+			array(
+				'name'	=> __('Series Order', 'mooberry-book-manager'),
+				'id'	=> '_mbdb_series_order',
+				'desc'	=> __('(leave blank if not part of a series)', 'mooberry-book-manager'),
+				'type'	=> 'text_small',
+				'attributes' => array(
+						'type' => 'number',
+						//'pattern' => '\d*.?\d*',
+						'step' => 'any',
+						'min' => 0
+					),
+			),
+		),
+	);
+	
+
 	$meta_boxes['mbdb_buylinks_metabox'] = array(
 		'id'            => 'mbdb_buylinks_metabox',
 		'title'         => _x('Retailer Links', 'noun', 'mooberry-book-manager'),
 		'object_types'  => array( 'mbdb_book', ), // Post type
-		'context'       => 'normal',
+		'context'       => 'side',
 		'priority'      => 'default',
 			
 		
@@ -426,88 +541,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		),
 	);
 	
-	$meta_boxes['mbdb_bookinfo_metabox'] = array(
-		'id'            => 'mbdb_bookinfo_metabox',
-		'title'         => __('Book Details', 'mooberry-book-manager'),
-		'object_types'  => array( 'mbdb_book', ), // Post type
-		'context'       => 'side',
-		'priority'      => 'low',
-			
-		'show_names'    => true, // Show field names on the left
-		'fields' => array(
-			array(
-				'name' => __('Subtitle', 'mooberry-book-manager'),
-				'id'   => '_mbdb_subtitle',
-				'type' => 'text_small',
-			),
-			array(
-				'name' 	=> __('Release Date', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_published',
-				'type' => 'text_date',
-				'desc' => 'yyyy/mm/dd',
-				'date_format' => 'Y/m/d',
-				'sanitization_cb' => 'mbdb_format_date'
-			),
-			array(
-				'name' => __('Publisher', 'mooberry-book-manager'),
-				'id'   => '_mbdb_publisher',
-				'type' => 'text_medium',
-			),
-			array(
-				'name' 	=> __('Publisher Website', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_publisherwebsite',
-				'type'	=> 'text_url',
-				'desc' => 'http://www.someWebsite.com/',
-				'attributes' =>  array(
-					//'pattern' => '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})\/?([\/\w \.=\?&\-%]*)*\/?',
-					'pattern' => '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6}).*',
-					
-				),
-			),
-			array(
-				'name'	=> __('Goodreads Link', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_goodreads',
-				'type'	=> 'text_url',
-				'desc' => 'http://www.goodreads.com/your/Unique/Text/',
-				'attributes' =>  array(
-				//	'pattern' => '^(https?:\/\/)?www.goodreads.com([\/\w \.=\?&\-]*)*\/?',
-					'pattern' => '^(https?:\/\/)?www.goodreads.com.*',
-				),
-			),
-			
-			array(
-				'name'	=> __('Series Order', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_series_order',
-				'desc'	=> __('(leave blank if not part of a series)', 'mooberry-book-manager'),
-				'type'	=> 'text_small',
-				'attributes' => array(
-						'type' => 'number',
-						//'pattern' => '\d*.?\d*',
-						'step' => 'any',
-						'min' => 0
-					),
-			),
-		),
-	);
 	
-	$meta_boxes['mbdb_cover_image'] = array(
-		'id'            => 'mbdb_cover_image',
-		'title'         => _x('Cover', 'noun', 'mooberry-book-manager'),
-		'object_types'  => array( 'mbdb_book', ), // Post type
-		'context'       => 'side',
-		'priority'      => 'low',
-			
-		'show_names'    => false, // Show field names on the left
-		'allow'			=> array( 'attachment'),
-		'fields' => array(
-			array(
-				 'name' => _x('Book Cover', 'noun', 'mooberry-book-manager'),
-				'id' => '_mbdb_cover',
-				'type' => 'file',
-				'allow' => array(  'attachment' ) // limit to just attachments with array( 'attachment' )
-			),
-		),
-	);
 
 	
 	return apply_filters('mbdb_book_meta_boxes', $meta_boxes);

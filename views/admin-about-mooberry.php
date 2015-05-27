@@ -1,13 +1,13 @@
-<div id="mbdb_about_mooberry">
-	<div id="mbdb_box">
-		<h4>Like Mooberry Book Manager?</h4>
+
+
+			<ul>
+				<li><a target="_new" href="http://www.mooberrydreams.com/support/mooberry-book-manager-support/">User Manual</a></li>
+				<li><a target="_new" href="https://wordpress.org/plugins/mooberry-book-manager/faq/">FAQs</a></li>
+				<li><a target="_new" href="https://wordpress.org/support/plugin/mooberry-book-manager">Support Forum</a></li>
+			</ul>
+		<h3>Extensions Coming Soon</h3>
 		<p>Check out <a target="_new" href="http://www.mooberrydreams.com/">our website</a> to learn more about
-		the available add-ons so Mooberry Book
+		the upcoming extensions so Mooberry Book
 		Manager can save you more time!</p>
-		<h4>Need help with Mooberry Book Manager?</h4>
-		<p><a target="_new" href="http://www.mooberrydreams.com/wp/wp-content/uploads/2015/02/Mooberry-Book-Manager-User-Manual-v1.0.pdf">Download the User Manual</a></p>
 		
 		<img style="width:225px" src="<?php echo plugins_url('/images/logo.png', __FILE__) ?> ">
-		
-	</div>
-</div>

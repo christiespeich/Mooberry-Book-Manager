@@ -1,15 +1,172 @@
+#mbm-book-sidebar {
+		width: 215px;
+		margin-left: 15px;
+		float: left;
+		margin-bottom: 15px;
+		
+	}
+ 
+	#mbm-book-main {
+		margin: 0px 15px 15px 260px;
+	}
+	
+	#mbm-book-main h3, #mbm-book-sidebar h3 {
+		display: inline;
+		padding: 30px 0px;
+	}
+	
+	#mbm-book-sidebar .mbm-book-cover, #mbm-book-sidebar  .mbm-book-goodreads-image {
+		display: block;
+		margin-left: auto;
+		margin-right: auto
+	}
+
+	#mbm-book-sidebar .mbm-book-buy-links li, #mbm-book-bottom .mbm-book-buy-links li  {
+	margin:0;
+	}
+	
+	#mbm-book-main .mbm-book-details {
+		font-size: smaller;
+		
+		border: 1px solid #cccccc;
+		margin: 15px 0px;
+		padding: 10px;
+	}
+	
+	#mbm-book-sidebar .mbm-book-serieslist-before, .mbm-book-serieslist-link, .mbm-book-serieslist-after {
+		font-weight: bold;
+	}
+	
+	#mbm-book-sidebar .mbm-book-serieslist-listitem-text {
+		font-style: italic;
+	}
+	
+	#mbm-book-sidebar .mbm-book-serieslist-listitem-link .mbm-book-serieslist-listitem-text {
+		font-style: normal;
+	}
+	
+	#mbm-book-bottom {
+		clear: both;
+	border-top: 1px solid #cccccc;
+		margin-bottom: 0;
+	}
+	
+/*	.mbm-book-serieslist, .mbm-book-details, .mbm-book-editions {
+		border-bottom: 1px solid #cccccc;
+		padding-bottom: 10px;
+	}
+	*/
+
+	
+	
+	
+	#mbm-book-sidebar .mbm-book-editions-size, .mbm-book-editions-srp {
+		display: inline;
+	}
+
 .cmb-row {
 	padding: 0px;
 	border: 0px;
 	margin: 0px;
 }
 
-.mbm-book-reviews-header {
+	#mbm-book-bottom .mbm-book-reviews-header, #mbm-book-main .mbm-book-reviews-header {
 	font-weight: bold;
 }
 
-.mbm-book-buy-links-label, .mbm-book-download-links-label {
-	font-size: large;
-	font-weight: bold;
-	display: block;
+	#mbm-book-bottom .mbm-book-buy-links-label, #mbm-book-sidebar .mbm-book-download-links-label,
+	#mbm-book-sidebar .mbm-book-buy-links-label, #mbm-book-bottom .mbm-book-download-links-label {
+		font-size: large;
+		font-weight: bold; 
+		display: block;
+	}
+
+	.mbm-book-editions-format .mbm-book-editions-subinfo {
+	display:none;
+	border: 1px solid #cccccc;
+	margin-left: 10px;
+	margin-top: 0px;
+	padding: 5px 0px 5px 5px;
 }
+
+	.mbm-book-editions-toggle:before {
+	content: '\002B';
+}
+
+ .mbm-book-editions-open:before {
+	 content: '\002D\0020';
+	 }
+	
+.mbm-book-excerpt-text-hidden {
+	display: none;
+}
+
+.mbm-book-excerpt-read-more, .mbm-book-excerpt-collapse, .mbm-book-editions-toggle {
+	
+	cursor: pointer;
+
+}
+
+.mbm-book-excerpt-read-more, .mbm-book-excerpt-collapse {
+	text-decoration: underline;	
+}
+.mbm-book-editions-srp, .mbm-book-editions-format-name {
+/*		font-weight: bold; */
+	}
+	
+#mbm-book-sidebar .mbm-book-editions-format {
+		width: 100%;
+		display: block;
+	}
+	
+	
+	
+	
+
+	
+	#mbm-book-bottom .mbm-book-download-links-image, #mbm-book-sidebar .mbm-book-download-links-image {
+		height: 52px;
+	}
+	
+		#mbm-book-sidebar > div:last-of-type {
+		border: 0;
+		padding-bottom: 15px;
+	}
+	
+	#mbm-book-sidebar > div {
+	
+		margin-bottom: 15px;
+		border-bottom: 1px solid #cccccc;
+	
+	}
+	
+	#mbm-book-sidebar .mbm-book-editions {
+		padding-bottom: 15px;
+	}
+	
+	#mbm-book-sidebar .mbm-book-links ul, #mbm-book-bottom .mbm-book-links ul {
+		margin-left: 0;
+		padding-left: 0;
+		
+	}
+	
+		#mbm-book-sidebar .mbm-book-buy-links-image, #mbm-book-sidebar  .mbm-book-download-links-image,
+	#mbm-book-bottom .mbm-book-buy-links-image, #mbm-book-bottom  .mbm-book-download-links-image {
+		padding: 5px;
+		border-radius: 3px;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	}
+	
+	
+	
+	
+
+	
+	/*
+	* {
+   border: 1px solid red !important;
+}
+*/
+
+	
+	

@@ -1,59 +1,37 @@
 <?php
 	
-function mbdb_upgrade_versions() {
-		
-		
-		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
-		
-		if (version_compare($current_version, '1.3.1', '<')) {
-			// upgrade to 1.3 script
-			// add new retailers
-			mbdb_upgrade_to_1_3_1();
-		} 
-		
-		if (version_compare($current_version, '2.0', '<')) {
-			//mbdb_upgrade_to_2_0();
-		}
-		
-		// update database to the new version
-		update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
-	
-}
+require_once dirname( __FILE__ ) . '/helper-functions-validation.php';
+require_once dirname( __FILE__ ) . '/helper-functions-updates.php';
 
-function mbdb_get_default_page_layout() {
-	return apply_filters('mbdb_default_book_page','<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="' . __('Summary Coming Soon!', 'mooberry-book-manager') . '"] 
-	
-	[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="35" blank="" blanklabel=""]
-				[book_goodreads  ]
-				
-				<strong>Published:</strong> [book_published format="short" blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
-				<strong>Publisher:</strong> [book_publisher  blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
-				<strong>Number of Pages:</strong> [book_length  blank="' . _x('TBD', 'To Be Determined', 'mooberry-book-manager') . '"]
-				<strong>Genres:</strong><span>[book_genre delim="comma" blank="' . __('(uncategorized)', 'mooberry-book-manager') . '"]</span>
-				<strong>Tags:</strong><span> [book_tags  delim="comma" blank="' . __('(none)', 'mooberry-book-manager') . '"]</span>
 
-				[book_serieslist before="Part of the " after=" series: " delim="list"]
-				<strong>Reviews:</strong><span> [book_reviews  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>
-				<strong>Excerpt:</strong><span> [book_excerpt  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '"  align="horizontal" size="35" blank="" blanklabel=""]');
-}
+/**********************************************************
+	
+	UTILITY FUNCTIONS
+	
+***********************************************************/
 
 // uploads file at specfied $filename and returns the attachment id of the uploaded file
 function mbdb_upload_image($filename) {
 	// add images to media library
 	// move to uploads folder
 	$wp_upload_dir = wp_upload_dir();
-	copy( dirname(__FILE__) . '/assets/' . $filename, $wp_upload_dir['path'] . '/' . $filename );
-	$wp_filetype = wp_check_filetype( basename( $filename ), null );
-	$attachment = array (
-		'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ),
-		'post_mime_type' => $wp_filetype['type'],
-		'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
-		'post_content' => '',
-		'post_status' => 'inherit');
-	$attach_id = wp_insert_attachment( $attachment, $wp_upload_dir['path'] . '/' . $filename );
-	$attach_data = wp_generate_attachment_metadata( $attach_id,  $wp_upload_dir['path'] . '/' . $filename );
-	wp_update_attachment_metadata( $attach_id, $attach_data );
-	return $attach_id;
+	
+	if (file_exists(dirname( __FILE__ ) . '/assets/' . $filename)) {
+			copy( dirname(__FILE__) . '/assets/' . $filename, $wp_upload_dir['path'] . '/' . $filename );
+			$wp_filetype = wp_check_filetype( basename( $filename ), null );
+			$attachment = array (
+				'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ),
+				'post_mime_type' => $wp_filetype['type'],
+				'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+				'post_content' => '',
+				'post_status' => 'inherit');
+			$attach_id = wp_insert_attachment( $attachment, $wp_upload_dir['path'] . '/' . $filename );
+			$attach_data = wp_generate_attachment_metadata( $attach_id,  $wp_upload_dir['path'] . '/' . $filename );
+			wp_update_attachment_metadata( $attach_id, $attach_data );
+			return $attach_id;
+	} else {
+		return 0;
+	}
 }
 
 
@@ -75,17 +53,88 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options) {
 		}
 		// if it wasn't found, insert it
 		if (!$found) {
-			// upload the image to the media library 				
-			$attachID = mbdb_upload_image( $default_values[$x]['image'] );
+			if (array_key_exists('image', $default_values[$x])) {
+				// upload the image to the media library 				
+				$attachID = mbdb_upload_image( $default_values[$x]['image'] );
+				$default_data['image_id'] = $attachID;
+				if ($attachID != 0) {
+					$default_data['image'] = wp_get_attachment_url( $attachID );
+				} else {
+					$default_data['image'] = '';
+				}
+			}
 			$default_data['name'] = $default_values[$x]['name'];
-			$default_data['imageID'] = $attachID;
-			$default_data['image'] = wp_get_attachment_url( $attachID );
 			$default_data['uniqueID'] = $default_values[$x][ 'uniqueID' ];
 			$mbdb_options[$options_key][] = $default_data;
 		}
 	}
 }
 
+
+function mbdb_insert_default_edition_formats(&$mbdb_options) {
+	$default_formats = array();
+	$default_formats[] = array('name' => 'Hardcover', 'uniqueID' => 1);
+	$default_formats[] = array('name' => 'Paperback', 'uniqueID' => 2);
+	$default_formats[] = array('name' => 'ePub', 'uniqueID' => 3);
+	$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 4);
+	$default_formats[] = array('name' => 'PDF', 'uniqueID' => 5);
+	$default_formats[] = array('name' => 'Audiobook', 'uniqueID' => 6);
+	$default_formats = apply_filters('mbdb_default_edition_formats', $default_formats);
+	mbdb_insert_defaults( $default_formats, 'editions', $mbdb_options);
+}
+
+function mbdb_set_up_roles() {
+	
+		$contributor_level = array('edit_mbdb_books',
+									'edit_mbdb_book',
+									'delete_mbdb_books',
+									'delete_mbdb_book');
+									
+		$base_level = array(		'publish_mbdb_books',
+									'publish_mbdb_book',
+									'edit_published_mbdb_book',
+									'edit_published_mbdb_books',
+									'delete_published_mbdb_book',
+									'delete_published_mbdb_books',
+									'upload_files',
+									'manage_mbdb_books',
+									'read');
+									
+		$master_level = array(		'edit_others_mbdb_books',
+									'edit_others_mbdb_books',
+									'delete_others_mbdb_books',
+									'delete_others_mbdb_book');
+		
+		remove_role('mbdb_librarian');
+		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
+		remove_role('mbdb_master_librarian');
+		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
+		$base_roles = array('mbdb_librarian', 'author');
+		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
+		$contributor = get_role('contributor');
+		foreach ($contributor_level as $capability) {
+			$contributor->add_cap($capability);
+		}
+		foreach (array_merge($base_level, $contributor_level) as $capability) {
+			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		foreach ($master_level as $capability) {
+			foreach ($master_roles as $each_role) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		
+}
+
+/****************************************************
+	
+	GET DATA
+	
+*****************************************************/
 
 function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids ) {
 	// title is not a custom field so it uses orderby to set the field
@@ -322,112 +371,7 @@ function mbdb_get_books_in_taxonomy( $tax_slug, $taxonomy ) {
 	return apply_filters('mbdb_get_books_in_taxonomy', $books);
 }
 
-// if it's the last element and both sides of the check are empty, ignore the error
-// because CMB2 will automatically delete it from the repeater group
-function mbdb_allow_blank_last_elements( $field1, $field2, $fieldname, $key, $flag ) {
-	if ( !$field1 && !$field2 ) {
-		end( $_POST[$fieldname] );
-		if ( $key === key( $_POST[$fieldname] ) ) {
-			return false;
-		}
-	}
-	return $flag;
-}
-	
-function mbdb_validate_reviews( $field ) {
-	do_action('mbdb_before_validate_reviews', $field);
-	$flag = false;
-	foreach( $_POST['_mbdb_reviews'] as $reviewID => $review ) {	
-		// if the review doesn't exist, then the others can't exist either
-		// but if review does exist, then at least one of the others has to also
-		// set flag = true if validation fails
-		$is_others = (mbdb_check_field('mbdb_reviewer_name', $review) || mbdb_check_field('mbdb_review_url', $review) || mbdb_check_field('mbdb_review_website', $review));
-		$is_review = mbdb_check_field('mbdb_review', $review );
-		$flag = !($is_review && $is_others);
-		
-		// if it's the last element and both sides of the check are empty, ignore the error
-		// because CMB2 will automatically delete it from the repeater group
-		$flag = mbdb_allow_blank_last_elements( $is_review, $is_others, '_mbdb_reviews', $reviewID, $flag);
-		
-		if ($flag) { break; }
-	}
-	do_action('mbdb_validate_reviews_before_msg', $field, $flag, $review);
-	mbdb_msg_if_invalid( $flag, '_mbdb_reviews', $review, apply_filters('mbdb_validate_reviews_msg', __('Reviews require review text and at least one other field. Please check review #%s.', 'mooberry-book-manager')) );
-	do_action('mbdb_validate_reviews_after_msg', $field, $flag, $review);
-	return mbdb_sanitize_field( $field);
-}
 
-function mbdb_validate_downloadlinks( $field ) {
-	mbdb_validate_book_fields( '_mbdb_downloadlinks', '_mbdb_formatID', '_mbdb_downloadlink', __('Download links require all fields filled out. Please check download link #%s.', 'mooberry-book-manager'));
-	return mbdb_sanitize_field($field);
-}
-
-function mbdb_validate_retailers( $field ) {
-	mbdb_validate_book_fields( '_mbdb_buylinks', '_mbdb_retailerID', '_mbdb_buylink', __('Retailer links require all fields filled out. Please check retailer link #%s.', 'mooberry-book-manager'));
-	return mbdb_sanitize_field( $field );
-}
-
-function mbdb_validate_book_fields( $groupname, $fieldIDname, $fieldname, $message) {
-	do_action('mbdb_before_validate' . $groupname);
-	$flag = false;
-	foreach($_POST[$groupname] as $key => $group) {
-		// both fields must be filled in
-		$is_field1 = mbdb_check_field($fieldIDname, $group ) && $group[$fieldIDname] != '0';
-		$is_field2 = mbdb_check_field( $fieldname, $group );
-		$flag = !($is_field1 && $is_field2);
-		
-		// if it's the last element and both sides of the check are empty, ignore the error
-		// because CMB2 will automatically delete it from the repeater group
-		$flag = mbdb_allow_blank_last_elements( $is_field1, $is_field2, $groupname, $key, $flag);
-		
-		if ( $flag ) { break; }
-	}
-	do_action('mbdb_validate' . $groupname . '_before_msg', $flag, $group);
-	mbdb_msg_if_invalid( $flag, $groupname, $group, apply_filters('mbdb_validate' . $groupname . '_msg', $message));
-	do_action('mbdb_validate' . $groupname . '_after_msg', $flag, $group);
-}
-
-function mbdb_msg_if_invalid( $flag, $fieldname, $group, $message ) {
-	 // on attempting to publish - check for completion and intervene if necessary
-    if ( ( isset( $_POST['publish'] ) || isset( $_POST['save'] ) ) && $_POST['post_status'] == 'publish' ) {
-	    //  don't allow publishing while any of these are incomplete
-        if ( $flag ) {
-            // set the message
-			$itemID = array_search( $group, $_POST[$fieldname] );
-			$itemID++;
-			mbdb_error_message(sprintf( $message, $itemID ));
-	    }
-    }
-}
-
-function mbdb_check_field( $fieldname, $arrayname) {
-	return ( array_key_exists($fieldname, $arrayname ) && isset( $arrayname[$fieldname] ) && trim( $arrayname[$fieldname] ) != '');
-}
-
-
-function mbdb_format_date($field) {
-		if ($field == null or $field == '') {
-			return $field;
-		}
-		return apply_filters('mbdb_format_date', date( 'Y/m/d', strtotime( $field ) ));
-}
-	
-function mbdb_error_message(  $message ) {
-	 // set the message
-	$notice = get_option( 'mbdb_notice' );
-	$notice[$_POST['post_ID']] = $message;
-	update_option( 'mbdb_notice', $notice);
-	
-	// change it to pending not updated
-	global $wpdb;
-	$wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $_POST['post_ID'] ) );
-	// filter the query URL to change the published message
-	add_filter( 'redirect_post_location', create_function( '$location', 'return esc_url_raw(add_query_arg("message", "0", $location));' ) );
-}
-
-function mbdb_sanitize_field( $field ) {
-	return strip_tags( stripslashes( $field ) );
-}
 
 function mbdb_get_retailers() {
 	return mbdb_get_list( 'retailers' );
@@ -437,6 +381,10 @@ function mbdb_get_formats() {
 	return mbdb_get_list( 'formats' );
 }
 	
+function mbdb_get_editions() {
+	return mbdb_get_list ('editions');
+}
+
 function mbdb_get_list( $options_key ) {
 	$mbdb_options = get_option( 'mbdb_options' );
 	$list[0] = '';
@@ -483,13 +431,22 @@ function mbdb_get_units_array() {
 }
 		
 function mbdb_get_default_unit( $mbdb_options = null) {
-	if ($mdbd_options == null) {
-		$mbdb_options = get_option('mdbd_options');
+	if ($mbdb_options == null) {
+		$mbdb_options = get_option('mbdb_options');
 	}
 	if (!isset($mbdb_options['mbdb_default_unit'])) {
 		return 'in';
 	} 
 	return $mbdb_options['mbdb_default_unit'];
+}
+
+function mbdb_get_currency_symbol($currency) {
+	$symbols = mbdb_get_currency_symbol_array();
+	if (array_key_exists($currency, $symbols)) {
+		return $symbols[$currency];
+	} else {
+		return '';
+	}
 }
 
 function mbdb_get_currency_array() {
@@ -693,8 +650,8 @@ function mbdb_get_language_array() {
 }
 
 function mbdb_get_default_currency( $mbdb_options = null) {
-	if ($mdbd_options == null) {
-		$mbdb_options = get_option('mdbd_options');
+	if ($mbdb_options == null) {
+		$mbdb_options = get_option('mbdb_options');
 	}
 	if (!isset($mbdb_options['mbdb_default_currency'])) {
 		return 'USD';
@@ -703,8 +660,8 @@ function mbdb_get_default_currency( $mbdb_options = null) {
 }
 
 function mbdb_get_default_language( $mbdb_options = null) {
-	if ($mdbd_options == null) {
-		$mbdb_options = get_option('mdbd_options');
+	if ($mbdb_options == null) {
+		$mbdb_options = get_option('mbdb_options');
 	}
 	if (!isset($mbdb_options['mbdb_default_language'])) {
 		return 'EN';
@@ -712,158 +669,48 @@ function mbdb_get_default_language( $mbdb_options = null) {
 	return $mbdb_options['mbdb_default_language'];
 }
 
-
-
-
-function mbdb_set_up_roles() {
-		
-		$contributor_level = array('edit_mbdb_books',
-									'edit_mbdb_book',
-									'delete_mbdb_books',
-									'delete_mbdb_book');
-									
-		$base_level = array(		'publish_mbdb_books',
-									'publish_mbdb_book',
-									'edit_published_mbdb_book',
-									'edit_published_mbdb_books',
-									'delete_published_mbdb_book',
-									'delete_published_mbdb_books',
-									'upload_files',
-									'manage_mbdb_books',
-									'read');
-									
-		$master_level = array(		'edit_others_mbdb_books',
-									'edit_others_mbdb_books',
-									'delete_others_mbdb_books',
-									'delete_others_mbdb_book');
-		
-		remove_role('mbdb_librarian');
-		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
-		remove_role('mbdb_master_librarian');
-		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
-		$base_roles = array('mbdb_librarian', 'author');
-		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
-		$contributor = get_role('contributor');
-		foreach ($contributor_level as $capability) {
-			$contributor->add_cap($capability);
-		}
-		foreach (array_merge($base_level, $contributor_level) as $capability) {
-			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
-				$role = get_role($each_role);
-				$role->add_cap($capability);
-			}
-		}
-		foreach ($master_level as $capability) {
-			foreach ($master_roles as $each_role) {
-				$role = get_role($each_role);
-				$role->add_cap($capability);
-			}
-		}
-		
-}
-
-
-/***************************************
-	
-			Update functions
-
-****************************************/
-
-function mbdb_upgrade_to_1_3_1() {
-	$default_retailers = array();
-	$default_retailers[] = array('name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
-	$default_retailers[] = array('name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.gif' );
-	$default_retailers[] = array('name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' );
-	$default_retailers[] = array('name' => 'Create Space', 'uniqueID' => 9, 'image' => 'createspace.jpg' );
-	$default_retailers[] = array('name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.gif' );
-	$default_retailers[] = array('name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.jpg' );
-	$default_retailers[] = array('name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.jpg' );
-	$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.jpg' );
-	$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
-	$mbdb_options = get_option( 'mbdb_options' );
-	mbdb_insert_defaults( $default_retailers, 'retailers', $mbdb_options);
-	update_option( 'mbdb_options',  $mbdb_options );
-}
-	
-function mbdb_upgrade_to_2_0() {
-	// set all pages with a book grid to NOT use the default values
-	mbdb_migrate_to_book_grid_defaults();
-	
-	// set up roles
-	mbdb_set_up_roles();
-	
-	// migrate post_tags to mbdb_tags
-	mbdb_migrate_post_tags();
-			
-			
-}
-
-function mbdb_migrate_post_tags() {
-		
-	//loop through all terms in post_tags
-	$post_tags = get_terms('post_tag');
-	foreach($post_tags as $tag) {
-		// get all objects in each term
-		$tagged_posts = get_objects_in_term((int) $tag->term_id, 'post_tag');
-		// loop through the objects
-		foreach($tagged_posts as $tagged_post) {
-			// if one is a book
-			if (get_post_type($tagged_post) == 'mbdb_book') {
-				// add the term to mbdb_tags
-				// if term has already been added, get the ID
-				$new_term = term_exists($tag->name, 'mbdb_tag');
-				// otherwise insert it
-				if ($new_term == 0 || $new_term == null) {					
-					$new_term = wp_insert_term($tag->name, 'mbdb_tag', array(
-									'description' => $tag->description,
-									'slug'	=>	$tag->slug)	);
-				}
-			
-				// add the object to mbdb_tags term
-				wp_set_object_terms($tagged_post, (int) $new_term['term_id'], 'mbdb_tag', true);
-			}
-		}
-	}
-
-	// remove post_tag terms from books
-	// do this outside of the above loop because it will remove ALL tags from the books
-	// and the above loop handles one tag at a time
-	// $mbdb_books = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null );
-	foreach($mbdb_books as $mbdb_book) {
-		$bookID = $mbdb_book->ID;
-		wp_delete_object_term_relationships( $bookID, 'post_tag' );
+function mbdb_get_language_name($language_code) {
+	$language = mbdb_get_language_array();
+	if (array_key_exists($language_code, $language)) {
+		return $language[$language_code];
+	} else {
+		return '';
 	}
 }
 
-function mbdb_migrate_to_book_grid_defaults() {
-	$grid_pages = get_posts(array(
-								'posts_per_page' => -1,
-								'post_type' => 'page',
-								'meta_query'	=>	array(
-										array(
-											'key'	=>	'_mbdb_book_grid_display',
-											'value'	=>	'yes',
-											'compare'	=>	'=',
-										),
-									),	
-							)
-					);
-	foreach($grid_pages as $page) {
-		update_post_meta($page->ID, '_mbdb_book_grid_cover_height_default', 'no');
-		update_post_meta($page->ID, '_mbdb_book_grid_books_across_default', 'no');
-	}
-	wp_reset_postdata();
-					
-	// set the default values
+function mbdb_get_format_name( $format ) {
 	$mbdb_options = get_option('mbdb_options');
-	
-	if (!isset($mbdb_options['mbdb_default_cover_height'])) {
-		$mbdb_options['mbdb_default_cover_height'] = 200;
+	if (array_key_exists('editions', $mbdb_options)) {
+		foreach($mbdb_options['editions'] as $edition) {
+			if (array_key_exists('uniqueID', $edition)) {
+				if ($edition['uniqueID'] == $format) {
+					return $edition['name'];
+				}
+			}
+		}
 	}
-	if (!isset($mbdb_options['mbdb_default_books_across'])) {
-		$mbdb_options['mbdb_default_books_across'] = 3;
-	}
-	
-	update_option('mbdb_options', $mbdb_options);
-	
+	return '';
 }
+
+
+
+/**** OBSOLETE
+
+function mbdb_get_default_page_layout() {
+	return apply_filters('mbdb_default_book_page','<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="' . __('Summary Coming Soon!', 'mooberry-book-manager') . '"] 
+	
+	[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="35" blank="" blanklabel=""]
+				[book_goodreads  ]
+				
+				<strong>Published:</strong> [book_published format="short" blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
+				<strong>Publisher:</strong> [book_publisher  blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
+				<strong>Number of Pages:</strong> [book_length  blank="' . _x('TBD', 'To Be Determined', 'mooberry-book-manager') . '"]
+				<strong>Genres:</strong><span>[book_genre delim="comma" blank="' . __('(uncategorized)', 'mooberry-book-manager') . '"]</span>
+				<strong>Tags:</strong><span> [book_tags  delim="comma" blank="' . __('(none)', 'mooberry-book-manager') . '"]</span>
+
+				[book_serieslist before="Part of the " after=" series: " delim="list"]
+				<strong>Reviews:</strong><span> [book_reviews  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>
+				<strong>Excerpt:</strong><span> [book_excerpt  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '"  align="horizontal" size="35" blank="" blanklabel=""]');
+}
+
+***/
