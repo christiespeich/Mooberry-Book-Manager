@@ -610,7 +610,7 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 	if ($attr['align'] =='vertical') {
 		$li_style = "margin: 1em 0 1em 0;";
 	} else {
-		$li_style = "display:inline;margin: 0 5px 0 0;";
+		$li_style = "display:inline;margin: 0 3% 0 0;";
 	}
 	foreach ($mbdb_downloadlinks as $mbdb_downloadlink) {
 		// get format info based on formatid = uniqueid
@@ -661,11 +661,15 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 	if ($attr['align'] =='vertical') {
 		$li_style = "margin: 2px 0 2px 0;";
 		if ($attr['size']) { $attr['width'] = $attr['size']; }
-		$img_size = "width:" . esc_attr($attr['width']) . "px;";
+		if ($attr['width']) {
+			$img_size = "width:" . esc_attr($attr['width']) . "px;";
+		}
 	} else {
-		$li_style = "display:inline;margin: 0 2px 0 0;";
+		$li_style = "display:inline;margin: 0 1% 0 0;";
 		if ($attr['size']) { $attr['height'] = $attr['size']; }
-		$img_size = "height:" . esc_attr($attr['height']) . "px;";		
+		if ($attr['height']) {
+			$img_size = "height:" . esc_attr($attr['height']) . "px;";		
+		}
 	}
 	foreach ($mbdb_buylinks as $mbdb_buylink) {
 		// get format info based on formatid = uniqueid
@@ -688,8 +692,8 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 	
 	
 function mbdb_shortcode_buylinks( $attr, $content) {
-	$attr = shortcode_atts(array('width' =>  '100',
-								'height' => '50',
+	$attr = shortcode_atts(array('width' =>  '',
+								'height' => '',
 								'size' => '',
 								'align' => 'vertical',
 								'label' => '',
@@ -747,8 +751,8 @@ function mbdb_is_links_data( $links_data = null, $book = '' ) {
 function mbdb_shortcode_links($attr, $content) {
 	
 
-	$attr = shortcode_atts(array('width' =>  '100',
-								'height' => '50',
+	$attr = shortcode_atts(array('width' =>  '',
+								'height' => '',
 								'size' => '',
 								'align' => 'vertical',
 								'downloadlabel' => '',
@@ -863,53 +867,73 @@ function mbdb_book_content($content) {
 	
 	// if ($mbdb_book_page_options) {
 		// if (array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
-		$book_page_layout = '';
+		$book_page_layout = '<div id="mbm-book-page">';
 			if (mbdb_get_subtitle_data() !== false) {
 				$book_page_layout .= '<h3>[book_subtitle blank=""]</h3>';
 			}
-			$book_page_layout .= '<div id="mbm-book-sidebar">';
-			$book_page_layout .= '[book_cover width="215" align="left"]';
-			
-			//if (mbdb_is_links_data() !== false) {
-			//	$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="vertical" size="205" blank="" blanklabel=""]';
-			//}
-			
+		
+		
+		
+		
+		//	$book_page_layout .= '<div id="mbm-book-sidebar">';
+			$book_page_layout .= '[book_cover  align="left"]';
+		
+			$book_page_layout .= '<div id="mbm-book-links1">';
 			$is_links_data = mbdb_get_links_data();
 			if ($is_links_data['buylinks'] !== false) {
-				$book_page_layout .= '[book_buylinks width="205" align="vertical"]';
+				$book_page_layout .= '[book_buylinks  align="vertical"]';
 			}
 			if ($is_links_data['downloadlinks'] !== false) {
 				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '"]';
 			}
 			
-
+			$book_page_layout .= '</div>';
 			
 			if (mbdb_get_series_data() !== false ) {
 				$book_page_layout .= '[book_serieslist before="' . __('Part of the','mooberry-book-manager') . ' " after=" ' . __('series','mooberry-book-manager') . ': " delim="list"]';
 			}
+			
+			
+			
+			//if (mbdb_is_links_data() !== false) {
+			//	$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="vertical" size="205" blank="" blanklabel=""]';
+			//}
+			
+		
+			
 
-			if (mbdb_get_editions_data() !== false) {
-				$book_page_layout .= '<h3>' . __('Editions', 'mooberry-book-manager') . ':</h3> [book_editions blank=""]';
+			
+			
+
+			
+		//	$book_page_layout .= '</div> <!-- mbm-book-sidebar --><div id="mbm-book-main">';
+			
+			
+			
+		
+		
+		
+		if (mbdb_get_editions_data() !== false) {
+				$book_page_layout .= '[book_editions blank="" label="' . __('Editions', 'mooberry-book-manager') . ':"]';
 			}
 		
 			if (mbdb_get_goodreads_data() !== false) {
 				$book_page_layout .= '[book_goodreads  ]';
 			}
 			
-			$book_page_layout .= '</div> <!-- mbm-book-sidebar --><div id="mbm-book-main">';
-			
 			if (mbdb_get_summary_data() !== false) {
 				$book_page_layout .= '[book_summary blank=""]';
 			}
 			
-			$is_published = mbdb_get_published_data();
+		
+				$is_published = mbdb_get_published_data();
 			$is_publisher = mbdb_get_publisher_data();
 			$is_genre = mbdb_get_taxonomy_data('mbdb_genre');
 			$is_tag = mbdb_get_taxonomy_data('mbdb_tag');
 			
 			if ($is_published || $is_publisher || $is_genre || $is_tag) {
-				$book_page_layout .= '<div class="mbm-book-details">';
-							
+				$book_page_layout .= '<div class="mbm-book-details-outer">';
+								$book_page_layout .= '<div class="mbm-book-details">';
 				if ($is_published !== false) {
 					$book_page_layout .= '<strong>' . __('Published', 'mooberry-book-manager') . ':</strong> [book_published format="short" blank=""]<br>';
 				}
@@ -925,22 +949,26 @@ function mbdb_book_content($content) {
 				if ($is_tag !== false) {
 					$book_page_layout .= '<strong>' . __('Tags','mooberry-book-manager') . ':</strong> <span>[book_tags  delim="comma" blank=""]</span><br>';
 				}
-				$book_page_layout .= '</div> <!-- mbm-book-details -->';
+				$book_page_layout .= '</div></div> <!-- mbm-book-details -->';
 			}
 			
-			$is_excerpt = mbdb_get_excerpt_data();
+			
+				$is_excerpt = mbdb_get_excerpt_data();
 			if ( $is_excerpt !== false) {
-				$book_page_layout .= '<strong>' . __('Excerpt','mooberry-book-manager') . ':</strong> [book_excerpt length="1000"  blank="" ]';
-				$book_page_layout .= '</div> <!-- mbm-book-main --><div id="mbm-book-bottom">';
+				$book_page_layout .= '[book_excerpt label="' . __('Excerpt', 'mooberry-book-manager') . ':" length="1000"  blank="" ]';
+		//		$book_page_layout .= '</div> <!-- mbm-book-main --><div id="mbm-book-bottom">';
 			} 
-				
+		
+		
 			if (mbdb_get_reviews_data() !== false ) {
-				$book_page_layout .= '<h3>' . __('Reviews','mooberry-book-manager') . ':</h3> <span>[book_reviews  blank=""]</span><br>';
+				$book_page_layout .= '<span>[book_reviews  blank="" label="' . __('Reviews', 'mooberry-book-manager') . ':"]</span><br>';
 			}
 			
 		if ($is_excerpt && mbdb_is_links_data() !== false) {
-				$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="50" blank="" blanklabel=""]';
+				$book_page_layout .= '<div id="mbm-book-links2">[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal"  blank="" blanklabel=""]</div>';
 			}
+			
+			$book_page_layout .= '</div> <!-- mbm-book-page -->';
 			
 			
 			//$book_page_layout = mbdb_get_default_page_layout(  );
