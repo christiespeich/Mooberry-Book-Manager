@@ -78,7 +78,7 @@ function mbdb_update_format_images() {
 
 function mbdb_update_retailer_images() {
 	$new_images = array();
-	$new_images[] = array( 	'uniqueID' => 1, 'image' => 'amazon.png');
+	$new_images[] = array('uniqueID' => 1, 'image' => 'amazon.png');
 	$new_images[] = array('uniqueID' => 7, 'image' => 'bookbaby.gif');
 	$new_images[] = array('uniqueID' => 2, 'image' => 'bn.jpg');
 	$new_images[] = array('uniqueID' => 13, 'image' => 'kindle.png');
