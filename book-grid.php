@@ -462,6 +462,11 @@ function mbdb_display_grid($mbdb_books, $mbdb_book_grid_cover_height, $mbdb_book
 								$c=0;
 							}
 					}
+					// add blank td's to make up for rows that don't have enough books in them
+					while ($c < $mbdb_book_grid_books_across) {
+						$content .= '<td></td>';
+						$c++;
+					}
 					$content .= '</tr>';
 					do_action('mbdb_book_grid_after_row',  $l);
 					$content .= '</table>';
