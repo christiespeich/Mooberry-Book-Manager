@@ -177,7 +177,7 @@ function mbdb_migrate_to_book_grid_defaults() {
 							)
 					);
 	foreach($grid_pages as $page) {
-		update_post_meta($page->ID, '_mbdb_book_grid_cover_height_default', 'no');
+		//update_post_meta($page->ID, '_mbdb_book_grid_cover_height_default', 'no');
 		update_post_meta($page->ID, '_mbdb_book_grid_books_across_default', 'no');
 	}
 	wp_reset_postdata();
@@ -185,9 +185,9 @@ function mbdb_migrate_to_book_grid_defaults() {
 	// set the default values
 	$mbdb_options = get_option('mbdb_options');
 	
-	if (!isset($mbdb_options['mbdb_default_cover_height'])) {
-		$mbdb_options['mbdb_default_cover_height'] = 200;
-	}
+	//if (!isset($mbdb_options['mbdb_default_cover_height'])) {
+	//	$mbdb_options['mbdb_default_cover_height'] = 200;
+	//}
 	if (!isset($mbdb_options['mbdb_default_books_across'])) {
 		$mbdb_options['mbdb_default_books_across'] = 3;
 	}

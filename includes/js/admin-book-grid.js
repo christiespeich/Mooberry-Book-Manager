@@ -19,11 +19,11 @@ function onLoad() {
 	if (document.getElementById('_mbdb_book_grid_genre_group_by') != null) {
 		document.getElementById('_mbdb_book_grid_genre_group_by').addEventListener('change', displayChange, false);
 	}
-	
+	/*
 	if (document.getElementById('_mbdb_book_grid_cover_height_default') != null) {
 		document.getElementById('_mbdb_book_grid_cover_height_default').addEventListener('change', displayChange, false);
 	}
-	
+	*/
 	if (document.getElementById('_mbdb_book_grid_books_across_default') != null) {
 		document.getElementById('_mbdb_book_grid_books_across_default').addEventListener('change', displayChange, false);
 	}
@@ -51,11 +51,11 @@ function onLoad() {
 	function booksAcrossChange() {		
 		toggle_display('cmb2-id--mbdb-book-grid-books-across-default', '_mbdb_book_grid_books_across_default', 'cmb2-id--mbdb-book-grid-books-across', 'yes', false);
 	}
-	
-	function coverHeightChange() {
+/*	
+function coverHeightChange() {
 		toggle_display('cmb2-id--mbdb-book-grid-cover-height-default', '_mbdb_book_grid_cover_height_default', 'cmb2-id--mbdb-book-grid-cover-height', 'yes', false);
 	}
-	
+*/
 	
 	
 	function genreGroupByChange() {
@@ -92,34 +92,34 @@ function onLoad() {
 		var series_checkboxes = document.getElementsByClassName('cmb2-id--mbdb-book-grid-series');
 		var group_by = document.getElementsByClassName('cmb2-id--mbdb-book-grid-group-by');
 		var genre_group_by = document.getElementsByClassName('cmb2-id--mbdb-book-grid-genre-group-by');
-		var book_grid_cover_size = document.getElementsByClassName('cmb2-id--mbdb-book-grid-cover-height');
+	//	var book_grid_cover_size = document.getElementsByClassName('cmb2-id--mbdb-book-grid-cover-height');
 		var book_grid_books_across = document.getElementsByClassName('cmb2-id--mbdb-book-grid-books-across');
-		var cover_height_default = document.getElementsByClassName('cmb2-id--mbdb-book-grid-cover-height-default');
+	//	var cover_height_default = document.getElementsByClassName('cmb2-id--mbdb-book-grid-cover-height-default');
 		var books_across_default = document.getElementsByClassName('cmb2-id--mbdb-book-grid-books-across-default');
 
 		
 		if (display_grid.value == 'yes') {
 			books_select[0].style.display = 'block';
 			group_by[0].style.display = 'block'
-			cover_height_default[0].style.display = 'block';
+		//	cover_height_default[0].style.display = 'block';
 			books_across_default[0].style.display = 'block';
 			booksChange();
 			groupByChange();
 			genreGroupByChange();
-			coverHeightChange();
+		//	coverHeightChange();
 			booksAcrossChange();
 			
 		} else {
 			books_select[0].style.display = 'none';
 			group_by[0].style.display = 'none'
-			book_grid_cover_size[0].style.display = 'none';
+		//	book_grid_cover_size[0].style.display = 'none';
 			book_grid_books_across[0].style.display = 'none';
 			books_checkboxes[0].style.display = 'none';
 			genre_checkboxes[0].style.display = 'none';
 			series_checkboxes[0].style.display = 'none';
 			genre_group_by[0].style.display  = 'none';
 			grid_order[0].style.display = 'none';
-			cover_height_default[0].style.display = 'none';
+		//	cover_height_default[0].style.display = 'none';
 			books_across_default[0].style.display = 'none';
 		
 		}

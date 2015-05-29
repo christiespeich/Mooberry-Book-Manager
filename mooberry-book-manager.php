@@ -421,14 +421,14 @@
 					$mbdb_books = mbdb_get_books_in_taxonomy( $mbdb_series, $taxonomy );
 					// get default values for cover height and books across
 					$mbdb_options = get_option('mbdb_options');
-					if (!isset($mbdb_options['mbdb_default_cover_height'])) {
-						$mbdb_options['mbdb_default_cover_height'] = 200;
-					}
+				//	if (!isset($mbdb_options['mbdb_default_cover_height'])) {
+				//		$mbdb_options['mbdb_default_cover_height'] = 200;
+				//	}
 					if (!isset($mbdb_options['mbdb_default_books_across'])) {
 						$mbdb_options['mbdb_default_books_across'] = 3;
 					}
 					
-					$content = mbdb_display_grid( array( $mbdb_books ), $mbdb_options['mbdb_default_cover_height'], $mbdb_options['mbdb_default_books_across'], 0 );
+					$content = mbdb_display_grid( array( $mbdb_books ), 0, $mbdb_options['mbdb_default_books_across'], 0 );
 				}
 			} 
 		}
