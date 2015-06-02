@@ -402,6 +402,16 @@
 		mbdb_upgrade_versions();
 	
 	}
+	
+	// add in a check in case the user has their theme set to use excerpts on 
+	// archives. this was found by the Generate theme.
+	add_filter('the_excerpt', 'mbdb_excerpt');
+	function mbdb_excerpt($content) {
+		// if on a tax grid and there's query vars set, display the special grid
+		if ( get_post_type() == 'mbdb_tax_grid' && is_main_query() && !is_admin() ) {
+			return mbdb_content($content);
+		}
+	}
 
 	// because the Customizr theme doesn't use the standard WP set up and
 	// is automatically considering the tax grids a post list type (archive),
