@@ -658,6 +658,7 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 	$classname = 'mbm-book-buy-links';
 	$mbdb_options = get_option( 'mbdb_options' );
 	$buy_links_html = '<UL class="' . $classname . '-list" style="list-style-type:none;">';
+	$img_size = '';
 	if ($attr['align'] =='vertical') {
 		$li_style = "margin: 2px 0 2px 0;";
 		if ($attr['size']) { $attr['width'] = $attr['size']; }

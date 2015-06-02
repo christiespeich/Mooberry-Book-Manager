@@ -62,7 +62,10 @@
 	}
 	*/
 
-	
+	#mbm-book-links2  .mbm-book-buy-links-image {
+		width: 44%;
+		height: auto;
+	}
 	
 	
 	#mbm-book-page .mbm-book-editions-size,#mbm-book-page  .mbm-book-editions-srp {
@@ -103,13 +106,14 @@
 		padding: 3% 0 3% 3% /*5px 0px 5px 5px; */
 }
 
-	#mbm-book-page .mbm-book-editions-toggle:before {
+#mbm-book-page .mbm-book-editions-toggle:before {
 	content: '\002B';
+	
 }
 
  #mbm-book-page .mbm-book-editions-open:before {
 	 content: '\002D\0020';
-	 }
+	}
 	
 #mbm-book-page .mbm-book-excerpt-text-hidden {
 	display: none;
@@ -118,8 +122,9 @@
 #mbm-book-page .mbm-book-excerpt-read-more, #mbm-book-page .mbm-book-excerpt-collapse,#mbm-book-page  .mbm-book-editions-toggle {
 	
 	cursor: pointer;
-
+	border: none;
 }
+
 
 #mbm-book-page .mbm-book-excerpt-read-more,#mbm-book-page  .mbm-book-excerpt-collapse {
 	text-decoration: underline;	
@@ -230,10 +235,7 @@
 		margin-bottom: 15px;
 	}
 	
-	#mbm-book-links2 .mbm-book-buy-links-image {
-		width: 44%;
-		height: auto;
-	}
+	
 	
 }	
 	

@@ -185,14 +185,15 @@
 	function mbdb_register_styles() {
 		wp_register_style( 'mbdb-styles', plugins_url( 'css/styles.css', __FILE__) ) ;
 		wp_enqueue_style( 'mbdb-styles' );
+		wp_enqueue_script('single-book', plugins_url('includes/js/single-book.js', __FILE__), array('jquery'));
 		
-		wp_enqueue_script('single-book', plugins_url('includes/js/single-book.js', __FILE__));
 	}
 
 	add_action( 'admin_footer', 'mbdb_register_script');
 	function mbdb_register_script() {
 		wp_enqueue_script( 'admin-book-grid',  plugins_url( 'includes/js/admin-book-grid.js', __FILE__));
 		wp_enqueue_script( 'admin-widget',  plugins_url( 'includes/js/admin-widget.js', __FILE__));		
+		
 	}
 
 	add_action('widgets_init', 'mbdb_register_widgets');
