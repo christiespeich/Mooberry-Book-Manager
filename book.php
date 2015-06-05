@@ -467,7 +467,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 				'id'   => '_mbdb_publisherID',
 				'type' => 'select',
 				'options' => 'mbdb_get_publishers',
-				'desc' 	=> 'Set up Publishers in Settings.',
+				'desc' 	=> __('Set up Publishers in Settings.', 'mooberry-book-manager'),
 			),
 			array(
 				'name'	=> __('Goodreads Link', 'mooberry-book-manager'),
