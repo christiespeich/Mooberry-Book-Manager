@@ -106,6 +106,10 @@
 #mbm-book-page .mbm-book-reviews-block {
 		margin-left: 3%;
 	}
+	
+	#mbm-book-page .mbm-book-reviews-website:before, #mbm-book-page .mbm-book-reviews-website:after  {
+		display: inline;
+	}
 
 #mbm-book-page 	.mbm-book-buy-links-label, #mbm-book-page .mbm-book-download-links-label, #mbm-book-page .mbm-book-editions-label, #mbm-book-page .mbm-book-reviews-label, #mbm-book-page .mbm-book-excerpt-label 
 	{
@@ -221,6 +225,7 @@
 		width: 44%;
 		height: auto;
 	}
+	
 	
 	
 	#mbm-book-links1 .mbm-book-buy-links, #mbm-book-links1 .mbm-book-download-links {

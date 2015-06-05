@@ -571,6 +571,8 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
 	// if (!mbdb_check_field('mbdb_review', $review)) {
 		// return mbdb_apply_filters('mbdb_shortcode_reviews', '<span class="mbm-book-reviews"><span class="mbm-book-reviews-blank">' . esc_html($attr['blank']) . '</span></span>'); 
 	// } else {
+	
+	
 		return apply_filters('mbdb_shortcode_reviews', '<div class="mbm-book-reviews"><span class="mbm-book-reviews-label">' . esc_html($attr['label']) . '</span>' . $review_html . '<span class="mbm-book-reviews-after">' . esc_html($attr['after']) . '</span></div>');
 	//}
 }
