@@ -2,6 +2,8 @@
 
 function mbdb_upgrade_versions() {
 		
+	
+		
 		
 		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
 		
@@ -64,6 +66,16 @@ function mbdb_upgrade_to_2_0() {
 	
 	// update format images
 	mbdb_update_format_images();
+
+	// update the excerpts
+	$mbdb_books = mbdb_get_books_list('all', null, 'title', 'ASC', null, null);
+	foreach($mbdb_books as $book) {
+		mbdb_save_excerpt($book->ID, $book);
+	}
+	
+	// rewrite rules because new redirects added
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
 			
 }
 

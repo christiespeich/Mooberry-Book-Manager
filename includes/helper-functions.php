@@ -88,7 +88,8 @@ function mbdb_set_up_roles() {
 		$contributor_level = array('edit_mbdb_books',
 									'edit_mbdb_book',
 									'delete_mbdb_books',
-									'delete_mbdb_book');
+									'delete_mbdb_book',
+									'manage_mbdb_books');
 									
 		$base_level = array(		'publish_mbdb_books',
 									'publish_mbdb_book',

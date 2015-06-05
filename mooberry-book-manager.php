@@ -28,7 +28,6 @@
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
 	define('MBDB_PLUGIN_VERSION', '2.0');
-	
 		
 		
 	// Load in CMB2
@@ -191,7 +190,7 @@
 
 	add_action( 'admin_footer', 'mbdb_register_script');
 	function mbdb_register_script() {
-		wp_enqueue_script( 'admin-book-grid',  plugins_url( 'includes/js/admin-book-grid.js', __FILE__));
+		wp_enqueue_script( 'admin-book-grid',  plugins_url( 'includes/js/admin-book-grid.js', __FILE__)); 
 		wp_enqueue_script( 'admin-widget',  plugins_url( 'includes/js/admin-widget.js', __FILE__));		
 		
 	}
@@ -212,6 +211,9 @@
 		$new_rules['series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['genre/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['book-tag/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['mbdb_series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['mbdb_genres/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['mbdb_tags/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		
 		$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;		
 	}
@@ -235,8 +237,6 @@
 
 	add_action( 'init', 'mbdb_init' );	
 	function mbdb_init() {
-	
-			
 	
 		// create Book Post Type
 		register_post_type('mbdb_book',
@@ -297,8 +297,8 @@
 		
 		register_taxonomy('mbdb_genre', 'mbdb_book', 
 			apply_filters('mdbd_genre_taxonomy', array(
-				'rewrite' => false, 
-				//'rewrite' => array(	'slug' => 'mbdb_genres' ),
+				//'rewrite' => false, 
+				'rewrite' => array(	'slug' => 'mbdb_genres' ),
 				'public' => true, //false,
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
@@ -332,8 +332,8 @@
 
 	   	register_taxonomy('mbdb_tag', 'mbdb_book', 
 			apply_filters('mdbd_tag_taxonomy', array(
-			//	'rewrite' => array(	'slug' => 'mbdb_tags' ),
-				'rewrite'	=>	false,
+				'rewrite' => array(	'slug' => 'mbdb_tags' ),
+			//	'rewrite'	=>	false,
 				'public'	=> true, //false,
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
@@ -368,7 +368,7 @@
 
 		register_taxonomy('mbdb_series', 'mbdb_book', 
 			apply_filters('mbdb_series_taxonomy', array( 
-				'rewrite' => false, // array( 'slug' => 'mbdb_series' ),
+				'rewrite' =>  array( 'slug' => 'mbdb_series' ),
 				'public' => true, // false,
 				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
@@ -407,10 +407,20 @@
 	// archives. this was found by the Generate theme.
 	add_filter('the_excerpt', 'mbdb_excerpt');
 	function mbdb_excerpt($content) {
+		
 		// if on a tax grid and there's query vars set, display the special grid
 		if ( get_post_type() == 'mbdb_tax_grid' && is_main_query() && !is_admin() ) {
-			return mbdb_content($content);
+			$content =  mbdb_content('');
 		}
+		// if we're in the admin side and the post type is mbdb_book then we're showign the list of books
+		// truncate the excerpt
+		if (is_admin() && get_post_type() == 'mbdb_book') {
+			$content = trim(substr($content, 0, 50));
+			if (strlen($content) > 0) {
+				$content .= '...';
+			}
+		}
+		return $content;
 	}
 
 	// because the Customizr theme doesn't use the standard WP set up and

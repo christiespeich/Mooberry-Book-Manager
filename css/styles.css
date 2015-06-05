@@ -1,4 +1,27 @@
-  /* #mbm-book-sidebar 	{ */
+.mbm-archive  {
+	
+	}
+
+.mbm-archive-cover {
+			
+			padding: 0px 3%;
+			width: 34%;
+			float:left;
+
+		
+}
+.mbm-archive-image {
+		width: 200px;
+}
+
+.mbm-archive-summary, .mbm-archive-link {
+	/* 	margin: 0px 3% 0px 57%;  */
+	
+	display: inline;
+		
+	}
+
+/* #mbm-book-sidebar 	{ */
   #mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-serieslist, #mbm-book-page .mbm-book-editions, #mbm-book-page .mbm-book-goodreads, #mbm-book-links1  .mbm-book-buy-links, #mbm-book-links1 .mbm-book-download-links  {
 	 width: 34%; /*215px;*/
 	/*	margin-left: 3%; /*15px; */

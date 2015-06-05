@@ -5,18 +5,45 @@
 // set the book's excerpt to a portion of the summary	
 add_action('save_post_mbdb_book', 'mbdb_save_excerpt');
 function mbdb_save_excerpt($post_id, $post =null, $update=null) {
-	if (array_key_exists('_mbdb_summary', $_POST) && $_POST['_mbdb_summary']) {
-		$summary = $_POST['_mbdb_summary'];
-	} elseif ( array_key_exists('_mbdb_summary', $_GET) && $_GET['_mbdb_summary']) {
-		$summary = $_GET['_mbdb_summary'];
+	 if ($post == null) {
+		if (array_key_exists('_mbdb_summary', $_POST) && $_POST['_mbdb_summary']) {
+			$summary = $_POST['_mbdb_summary'];
+		} elseif ( array_key_exists('_mbdb_summary', $_GET) && $_GET['_mbdb_summary']) {
+			$summary = $_GET['_mbdb_summary'];
+		} else {
+			$summary = '';
+		}
+	/*	
+		if (array_key_exists('_mbdb_cover', $_POST) && $_POST['_mbdb_cover']) {
+			$cover = $_POST['_mbdb_cover'];
+		} elseif ( array_key_exists('_mbdb_cover', $_GET) && $_GET['_mbdb_cover']) {
+			$cover = $_GET['_mbdb_cover'];
+		} else {
+			$cover = '';
+		}
+		
+		if (array_key_exists('_mbdb_subtitle', $_POST) && $_POST['_mbdb_subtitle']) {
+			$subtitle = $_POST['_mbdb_subtitle'];
+		} elseif ( array_key_exists('_mbdb_subtitle', $_GET) && $_GET['_mbdb_subtitle']) {
+			$subtitle = $_GET['_mbdb_subtitle'];
+		} else {
+			$subtitle = '';
+		}
+	*/
 	} else {
-		return;
+		$summary = get_post_meta($post_id, '_mbdb_summary', true);
+		//$subtitle = get_post_meta($post_id, '_mbdb_subtitle', true);
+		//$cover = get_post_meta($post_id, '_mbdb_cover', true);
 	}
+	
+	//$excerpt = '<div class="mbm-archive"><h3 class="mbm-archive-subtitle">' . $subtitle . '</h3><span class="mbm-archive-cover"><img class="mbm-archive-image" src="' . $cover . '"></span><span class="mbm-archive-summary">' . $summary . '<p><A class="mbm-archive-link" HREF="' . esc_url(get_permalink($post_id)) . '"> LEARN MORE </a></p></span></div><p style="clear:both"></p>';
+ 
+
 	// unhook this function so it doesn't loop infinitely
 	remove_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );
 
 	// update the post, which calls save_post again
-	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  substr($summary, 0, 50)) );
+	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  $summary) );
 
 	// re-hook this function
 	add_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );	
