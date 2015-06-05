@@ -348,23 +348,19 @@ function mbdb_shortcode_subtitle($attr, $content) {
 }
 
 
-function mbdb_output_publisher($book_data, $attr) {
-		$bookID = mbdb_get_book_ID($attr['book']);
-		$mbdb_publisherwebsite = get_post_meta($bookID, '_mbdb_publisherwebsite', true);
-		if (empty($mbdb_publisherwebsite)) {
-			return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-publisher-text">' . esc_html($book_data) . '</span><span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>'); 
-		} else {
-			return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-publisher-link" HREF="' . esc_url($mbdb_publisherwebsite) . '"><span class="mbm-book-publisher-text">' . esc_html($book_data) . '</span></a><span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>');
-		}
-	
-}
 
 /******************************
 	PUBLISHER 
 	****************************/
 
 function mbdb_get_publisher_data($book = '') {
-	return mbdb_get_book_data('_mbdb_publisher', $book);
+	$publisherID =  mbdb_get_book_data('_mbdb_publisherID', $book);
+	$publisher = mbdb_get_publisher_info($publisherID);
+	if ($publisher == null) {
+		return false;
+	} else {
+		return $publisher;
+	}
 }
 
 function mbdb_shortcode_publisher($attr, $content) {
@@ -378,6 +374,19 @@ function mbdb_shortcode_publisher($attr, $content) {
 	} else {
 		return mbdb_output_publisher($book_data, $attr);
 	}
+	
+}
+
+
+function mbdb_output_publisher($book_data, $attr) {
+		$mbdb_publisher = $book_data['name'];
+		$mbdb_publisherwebsite = $book_data['website'];
+		
+		if (empty($mbdb_publisherwebsite)) {
+			return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span><span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>'); 
+		} else {
+			return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-publisher-link" HREF="' . esc_url($mbdb_publisherwebsite) . '"><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span></a><span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>');
+		}
 	
 }
 

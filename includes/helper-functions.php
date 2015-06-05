@@ -10,6 +10,15 @@ require_once dirname( __FILE__ ) . '/helper-functions-updates.php';
 	
 ***********************************************************/
 
+// generate uniqueIDs for formats and retailers
+function mbdb_uniqueID_generator( $value ) {
+	if ($value=='') {
+		$value =  uniqid();
+	}
+	return apply_filters('mbdb_settings_uniqid', $value);
+}
+
+
 // uploads file at specfied $filename and returns the attachment id of the uploaded file
 function mbdb_upload_image($filename) {
 	// add images to media library
@@ -372,7 +381,23 @@ function mbdb_get_books_in_taxonomy( $tax_slug, $taxonomy ) {
 	return apply_filters('mbdb_get_books_in_taxonomy', $books);
 }
 
+// returns array with publisher info
+// returns null if no publisherID found
+function mbdb_get_publisher_info( $publisherID, $mbdb_options = null ) {
+	if ($mbdb_options == null) {
+		$mbdb_options = get_option('mbdb_options');
+	}
+	foreach ($mbdb_options['publishers'] as $publisher) {
+		if ($publisher['uniqueID'] == $publisherID) {
+			return $publisher;
+		}
+	}
+	return null;
+}
 
+function mbdb_get_publishers() {
+		return mbdb_get_list('publishers');
+}
 
 function mbdb_get_retailers() {
 	return mbdb_get_list( 'retailers' );

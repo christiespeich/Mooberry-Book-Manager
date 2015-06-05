@@ -4,7 +4,6 @@ function mbdb_upgrade_versions() {
 		
 	
 		
-		
 		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
 		
 		if (version_compare($current_version, '1.3.1', '<')) {
@@ -73,6 +72,9 @@ function mbdb_upgrade_to_2_0() {
 		mbdb_save_excerpt($book->ID, $book);
 	}
 	
+	// migrate publishers to settings
+	mbdb_migrate_publishers();
+		
 	// rewrite rules because new redirects added
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
@@ -222,5 +224,41 @@ function mbdb_fix_retailer_array() {
 		}
 	}
 	$mbdb_options['retailers'] = $retailers;
+	update_option('mbdb_options', $mbdb_options);
+}
+
+function mbdb_migrate_publishers() {
+	$mbdb_options = get_option('mbdb_options');
+	if (array_key_exists('publishers', $mbdb_options)) {
+		$publishers = $mbdb_options['publishers'];
+	} else {
+		$publishers = array();
+	}
+	
+	$mbdb_books = mbdb_get_books_list('all', null, 'title', 'ASC', null, null);
+	foreach ($mbdb_books as $book) {
+		$book_publisher = get_post_meta($book->ID, '_mbdb_publisher', true);
+		$book_website = get_post_meta($book->ID, '_mbdb_publisherwebsite', true);
+		if ($book_publisher != '') {
+			// see if publisher is already in options
+			$flag = '';
+			foreach ($publishers as $publisher) {
+				if ($publisher['name'] == $book_publisher) {
+					$flag = $publisher['uniqueID'];
+					break;		
+				}
+			}
+			
+			// if not found, add it to the options
+			// save publisherID to book
+			if ($flag == '') {
+				$flag = mbdb_uniqueID_generator('');
+				$publishers[] = array ('name' => $book_publisher, 'website' => $book_website, 'uniqueID' => $flag );	
+			}
+			update_post_meta($book->ID, '_mbdb_publisherID', $flag);
+		}
+	}
+	// update options		
+	$mbdb_options['publishers'] = $publishers;
 	update_option('mbdb_options', $mbdb_options);
 }

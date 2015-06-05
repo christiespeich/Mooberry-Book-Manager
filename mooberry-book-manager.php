@@ -192,6 +192,7 @@
 	function mbdb_register_script() {
 		wp_enqueue_script( 'admin-book-grid',  plugins_url( 'includes/js/admin-book-grid.js', __FILE__)); 
 		wp_enqueue_script( 'admin-widget',  plugins_url( 'includes/js/admin-widget.js', __FILE__));		
+		wp_enqueue_script( 'admin-book', plugins_url(  'includes/js/admin-book.js', __FILE__), array('jquery'));
 		
 	}
 

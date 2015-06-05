@@ -62,7 +62,7 @@ function set_up_mbdb_book_columns( $columns ) {
 		'_mbdb_published' => __('Published', 'mooberry-book-manager'),
 		'mbdb_series' => __('Series', 'mooberry-book-manager'),
 		'_mbdb_series_order' => __('Series Order', 'mooberry-book-manager'), 
-		'_mbdb_publisher' => __('Publisher', 'mooberry-book-manager'),
+		'_mbdb_publisherID' => __('Publisher', 'mooberry-book-manager'),
 		'date' => __('Updated', 'mooberry-book-manager')
 	);
 	return apply_filters('mbdb_book_columns', $columns);
@@ -94,6 +94,10 @@ function populate_mbdb_book_columns($column, $post_id) {
 				echo apply_filters('mbdb_book_mbdb_published_column', date(__('m/d/Y'),strtotime($mbdb_published)), $post_id);
 			}
 			do_action('mbdb_book_after_mbdb_published_column');
+			break;
+		case '_mbdb_publisherID':
+			$publisher = mbdb_get_publisher_info(get_post_meta( $post_id, $column, true));
+			echo apply_filters('mbdb_book' . $column . '_column', $publisher['name']);
 			break;
 		default:
 			do_action('mbdb_book_before' . $column . '_column');
@@ -442,7 +446,7 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 				'date_format' => 'Y/m/d',
 				'sanitization_cb' => 'mbdb_format_date'
 			),
-			array(
+		/*	array(
 				'name' => __('Publisher', 'mooberry-book-manager'),
 				'id'   => '_mbdb_publisher',
 				'type' => 'text_medium',
@@ -457,6 +461,13 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 					'pattern' => '^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6}).*',
 					
 				),
+			), */
+			array(
+				'name' => __('Publisher', 'mooberry-book-manager'),
+				'id'   => '_mbdb_publisherID',
+				'type' => 'select',
+				'options' => 'mbdb_get_publishers',
+				'desc' 	=> 'Set up Publishers in Settings.',
 			),
 			array(
 				'name'	=> __('Goodreads Link', 'mooberry-book-manager'),
