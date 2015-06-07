@@ -1688,19 +1688,19 @@ msgstr ""
 
 #: admin-settings-page.php:53
 msgid "Add your publishers."
-msgstr "Füge Verleger."
+msgstr ""
 
 #: admin-settings-page.php:56
 msgid "Add New Publisher"
-msgstr "Neues Verleger"
+msgstr ""
 
 #: admin-settings-page.php:57
 msgid "Remove Publisher"
-msgstr "Verleger löschen"
+msgstr ""
 
 #: admin-settings-page.php:320
 msgid "Publishers"
-msgstr "Verleger"
+msgstr ""
 
 #~ msgctxt "noun"
 #~ msgid "Formats"

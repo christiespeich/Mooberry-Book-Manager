@@ -1695,11 +1695,11 @@ msgstr ""
 
 #: book.php:470
 msgid "Set up Publishers in Settings."
-mgstr ""
+msgstr ""
 
 #: admin-settings-page.php:53
 msgid "Add your publishers."
-mgstr ""
+msgstr ""
 
 #: admin-settings-page.php:56
 msgid "Add New Publisher"
