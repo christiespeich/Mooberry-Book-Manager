@@ -124,7 +124,7 @@ function mbdb_format_date($field) {
 		return apply_filters('mbdb_format_date', date( 'Y/m/d', strtotime( $field ) ));
 }
 	
-function mbdb_error_message(  $message ) {
+function mbdb_error_message( $message ) {
 	 // set the message
 	$notice = get_option( 'mbdb_notice' );
 	$notice[$_POST['post_ID']] = $message;

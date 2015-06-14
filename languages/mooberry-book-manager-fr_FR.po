@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: Mooberry Book Manager 1.1\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
 "POT-Creation-Date: 2015-05-21 15:06-0500\n"
-"PO-Revision-Date: 2015-06-07 12:25-0500\n"
+"PO-Revision-Date: 2015-06-08 11:19+0100\n"
 "Last-Translator: ARRIGNON <contact@aydesign.fr>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: admin-settings-page.php:4 mooberry-book-manager.php:219
@@ -1706,23 +1706,23 @@ msgstr "(minimum 50)"
 
 #: book.php:470
 msgid "Set up Publishers in Settings."
-msgstr ""
+msgstr "Mettre en place des éditeurs dans les paramètres."
 
 #: admin-settings-page.php:53
 msgid "Add your publishers."
-msgstr ""
+msgstr "Ajouter vos éditeurs."
 
 #: admin-settings-page.php:56
 msgid "Add New Publisher"
-msgstr ""
+msgstr "Ajouter un nouvel éditeur"
 
 #: admin-settings-page.php:57
 msgid "Remove Publisher"
-msgstr ""
+msgstr "Retirer un éditeur"
 
 #: admin-settings-page.php:320
 msgid "Publishers"
-msgstr ""
+msgstr "Éditeurs"
 
 #~ msgctxt "noun"
 #~ msgid "Formats"

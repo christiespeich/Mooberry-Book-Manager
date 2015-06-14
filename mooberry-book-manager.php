@@ -469,9 +469,9 @@
 add_action('admin_notices', 'mbdb_admin_notice',0);
 function mbdb_admin_notice(){
     //print the message
-    global $post;
+	global $post;
     $notice = get_option('mbdb_notice');
-    if (empty($notice)) return '';
+	if (empty($notice)) return '';
     foreach($notice as $pid => $m){
         if ($post->ID == $pid ){
             echo apply_filters('mbdb_admin_notice', '<div id="message" class="error"><p>'.$m.'</p></div>');
