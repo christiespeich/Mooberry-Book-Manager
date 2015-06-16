@@ -20,7 +20,7 @@ msgstr ""
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;"
 "__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin-settings-page.php:4 mooberry-book-manager.php:219
@@ -1684,23 +1684,23 @@ msgstr "(mindestens 50px)"
 
 #: book.php:470
 msgid "Set up Publishers in Settings."
-msgstr ""
+msgstr "Bearbeite Verlagseinstellung"
 
 #: admin-settings-page.php:53
 msgid "Add your publishers."
-msgstr ""
+msgstr "Deinen Verlag hinzufügen"
 
 #: admin-settings-page.php:56
 msgid "Add New Publisher"
-msgstr ""
+msgstr "Neuen Verlag hinzufügen"
 
 #: admin-settings-page.php:57
 msgid "Remove Publisher"
-msgstr ""
+msgstr "Verlag löschen"
 
 #: admin-settings-page.php:320
 msgid "Publishers"
-msgstr ""
+msgstr "Verlage"
 
 #~ msgctxt "noun"
 #~ msgid "Formats"
