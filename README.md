@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.2  
-**Stable tag:** 1.3.2   
+**Stable tag:** 2.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -33,8 +33,20 @@ Want regular updates?
 * Check out the blog: http://www.mooberrydreams.com/blog
 * Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/
 
+Additonal questions?
+
+Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
+
 
 ## Changelog
+#### 2.0 
+* Added General Settings, Publisher Settings, and Edition Formats Settings
+* Added Editions to book pages 
+* Redesigned layout of Book Page
+* Blank data defaults and labels no longer display on Book Page
+* Added Librarian and Master Librarian Roles
+* Moved tags to new custom taxonomy instead of using post tags
+* Added French translation
 
 #### 1.3.2   
 * Added 9 new retailers   

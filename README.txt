@@ -105,6 +105,15 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 2.0 =
+* Added General Settings, Publisher Settings, and Edition Formats Settings
+* Added Editions to book pages 
+* Redesigned layout of Book Page
+* Blank data defaults and labels no longer display on Book Page
+* Added Librarian and Master Librarian Roles
+* Moved tags to new custom taxonomy instead of using post tags
+* Added French translation
+
 = 1.3.2 =
 * Added 9 new retailers
 * Escapes add_query_vars for safety
@@ -122,13 +131,18 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Initial Version  
 
 == Upgrade Notice ==
-Adds 9 retailers.
+Redesigned book page and much more!
 
 == Translations ==
-* English  
+* English 
+
 * German  
+
+* French
 
 **NOTE:** Mooberry Book Manager is translatable. If you'd like to volunteer a translation for your language, the template file (.pot) is available in the `languages` folder. [Contact us](http://www.mooberrydreams.com/contact/) when your translation is ready or if you need assistance.
 
 == Credits ==
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
+
+* Thanks to Yves for providing the French translation!
