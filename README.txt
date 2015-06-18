@@ -87,9 +87,13 @@ Your ebook files will need to be uploaded somewhere. You have a few options:
 
 The link you enter on the book page should point directly to the file to download.
 
+= Can I use affiliate links? =
+Of course! Mooberry Book Manager doesn’t change your link, so you can set your Retailer Links to use your Amazon, Barnes and Noble, or other affiliate code.
+
+
 = Additonal questions? =
 
-Download the [User Manual](http://www.mooberrydreams.com/wp/wp-content/uploads/2015/02/Mooberry-Book-Manager-User-Manual-v1.0.pdf) (PDF format)
+Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
 
 
 == Screenshots ==
