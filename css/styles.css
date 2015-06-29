@@ -1,3 +1,5 @@
+
+	
 .mbm-archive  {
 	
 	}
@@ -216,6 +218,8 @@
 
 
 @media (max-width:640px) {
+	
+	
 	 #mbm-book-links1 {
 		float: none;
 		width: 50%
@@ -289,7 +293,15 @@
 }
 */
 
-@media  (min-width: 801px) {
+
+@media (min-width:641px) {
+	#mbm-book-links2  .mbm-book-download-links-image {
+		height: 50px;
+		width: auto;
+	}
+	
+}
+@media  (min-width:801px) {
 	#mbm-book-page   .mbm-book-download-links-image  { 
 		height: 52px;
 	}

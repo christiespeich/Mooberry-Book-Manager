@@ -65,7 +65,7 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options) {
 			if (array_key_exists('image', $default_values[$x])) {
 				// upload the image to the media library 				
 				$attachID = mbdb_upload_image( $default_values[$x]['image'] );
-				$default_data['image_id'] = $attachID;
+				$default_data['imageID'] = $attachID;
 				if ($attachID != 0) {
 					$default_data['image'] = wp_get_attachment_url( $attachID );
 				} else {

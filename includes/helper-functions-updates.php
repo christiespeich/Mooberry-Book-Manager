@@ -17,6 +17,7 @@ function mbdb_upgrade_versions() {
 						
 		}
 		
+	
 		
 		
 		// update database to the new version
@@ -41,6 +42,8 @@ function mbdb_upgrade_to_1_3_1() {
 	update_option( 'mbdb_options',  $mbdb_options );
 }
 	
+
+
 function mbdb_upgrade_to_2_0() {
 	// set all pages with a book grid to NOT use the default values
 	mbdb_migrate_to_book_grid_defaults();
@@ -57,7 +60,7 @@ function mbdb_upgrade_to_2_0() {
 	update_option( 'mbdb_options',  $mbdb_options);
 
 	//fix retailer array imageID = image_id
-	mbdb_fix_retailer_array();
+	//mbdb_fix_retailer_array();
 
 		
 	// update buy link images
@@ -114,13 +117,13 @@ function mbdb_update_images($new_images, $options_name) {
 			if ($options[$x]['uniqueID'] == $image['uniqueID']) {
 			
 				// save the original attachID
-				$old_attachID = $options[$x]['image_id'];
+				$old_attachID = $options[$x]['imageID'];
 				// upload the new image
 				$new_attachID = mbdb_upload_image($image['image']);
 				if ($new_attachID != 0) {
 					// if the upload succeeded
 					// update the attach id
-					$options[$x]['image_id'] = $new_attachID;
+					$options[$x]['imageID'] = $new_attachID;
 					// update the image
 					$img = wp_get_attachment_url( $new_attachID );
 					$options[$x]['image'] = $img;
@@ -210,7 +213,7 @@ function mbdb_migrate_to_book_grid_defaults() {
 	
 }
 
-function mbdb_fix_retailer_array() {
+/* function mbdb_fix_retailer_array() {
 	// at some point there was a typo in the upload_image function
 	// and some retailers have image_id in the array and others
 	// have imageID
@@ -226,7 +229,7 @@ function mbdb_fix_retailer_array() {
 	$mbdb_options['retailers'] = $retailers;
 	update_option('mbdb_options', $mbdb_options);
 }
-
+ */
 function mbdb_migrate_publishers() {
 	$mbdb_options = get_option('mbdb_options');
 	if (array_key_exists('publishers', $mbdb_options)) {
