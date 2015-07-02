@@ -40,13 +40,14 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 
 ## Changelog
 #### 2.0 
-* Added General Settings, Publisher Settings, and Edition Formats Settings
-* Added Editions to book pages 
-* Redesigned layout of Book Page
-* Blank data defaults and labels no longer display on Book Page
-* Added Librarian and Master Librarian Roles
-* Moved tags to new custom taxonomy instead of using post tags
-* Added French translation
+* New: Added General Settings, Publisher Settings, and Edition Formats Settings
+* New: Added Editions to book pages 
+* New: Added Librarian and Master Librarian Roles
+* New: Added French translation
+* Improved: Redesigned layout of Book Page
+* Improved: Blank data defaults and labels no longer display on Book Page
+* Improved: Added Comments support to books
+* Fixed: Moved tags to new custom taxonomy instead of using post tags.
 
 #### 1.3.2   
 * Added 9 new retailers   

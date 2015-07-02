@@ -1,10 +1,10 @@
 === Mooberry Book Manager ===
 Contributors: mooberrydreams
 Donate link: http://www.mooberrydreams.com/
-Tags: book, author, publisher, writer, books, writing, publishing, authors, library
+Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.2.1
-Stable tag: 1.3.2
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,13 +48,13 @@ If you have suggestions for a new add-on, feel free to email me at bookmanager@m
 
 **Want regular updates?**  
 
+* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/  
+
 * Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams  
 
 * Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams  
 
 * Check out the blog: http://www.mooberrydreams.com/blog  
-
-* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/  
 
 
 == Installation ==
@@ -90,6 +90,14 @@ The link you enter on the book page should point directly to the file to downloa
 = Can I use affiliate links? =
 Of course! Mooberry Book Manager doesn’t change your link, so you can set your Retailer Links to use your Amazon, Barnes and Noble, or other affiliate code.
 
+= Why is there no Author field? =
+Mooberry Book Manager is designed to be used by the author on the author's website. In this case, the author name would always be the same, and it's already written all over the website.
+
+There are cases though when you might want to have an Author field. You might be an author who publishes under multiple pen names and has a single website. You might be a small publisher who works with multiple authors. Or you might not be an author at all, and using Mooberry Book Manager for a different purpose, such as for a book club. In those cases you have two options:
+
+1. To simply display the author name, you could use another field, such as Subtitle, to display that information.
+
+2. For more advanced handling of author names, use the Mooberry Book Manager Multi-Author plugin (coming soon). This will allow you to have a bio and photo of each author as well as advanced filtering and sorting on Book Grids based on author.
 
 = Additonal questions? =
 
@@ -112,6 +120,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * New: Added French translation
 * Improved: Redesigned layout of Book Page
 * Improved: Blank data defaults and labels no longer display on Book Page
+* Improved: Added Comments support to books
 * Fixed: Moved tags to new custom taxonomy instead of using post tags.
 
 = 1.3.2 =
@@ -142,7 +151,6 @@ Redesigned book page and much more!
 
 **NOTE:** Mooberry Book Manager is translatable. If you'd like to volunteer a translation for your language, the template file (.pot) is available in the `languages` folder. [Contact us](http://www.mooberrydreams.com/contact/) when your translation is ready or if you need assistance.
 
-== Credits ==
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
 
 * Thanks to Yves for providing the French translation!
