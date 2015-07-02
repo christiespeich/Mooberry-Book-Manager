@@ -394,7 +394,7 @@ function mbdb_display_grid($mbdb_books, $mbdb_book_grid_cover_height, $mbdb_book
 	$width = floor( 100 / $mbdb_book_grid_books_across );
 	// indent the grid by 15px per depth level of the array
 	do_action('mbdb_book_grid_before_div', $l);
-	$content = apply_filters('mbdb_book_grid_before_depth',  $l);
+	$content = apply_filters('mbdb_book_grid_before_depth', '', $l);
 	$content .= '<div class="mbm-book-grid-div" style="padding-left:' . (15 * $l) . 'px;">';
 	
 	// loop through the array
