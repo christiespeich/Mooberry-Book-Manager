@@ -255,7 +255,7 @@
 			'hierarchical' => false,
 			'rewrite' => array( 'slug' => 'book' ),
 			'query_var' => true,
-			'supports' => array( 'title' ),
+			'supports' => array( 'title', 'comments' ),
 			'taxonomies' => array( 'mbdb_tag', 'mbdb_genre', 'mbdb_series' ),
 			'labels' => array (
 				'name' => _x('Books', 'noun', 'mooberry-book-manager'),
