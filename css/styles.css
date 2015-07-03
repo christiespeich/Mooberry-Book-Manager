@@ -211,7 +211,7 @@
 	}
 	
 	#mbm-book-links2  .mbm-book-buy-links-image {
-		height: 75px;
+		height: 50px;
 		width: auto;
 	}
 	
@@ -225,11 +225,11 @@
 		width: 50%
 	}
 	
-		#mbm-book-links2  .mbm-book-buy-links-image {
+	/*	#mbm-book-links2  .mbm-book-buy-links-image {
 		height: 50px;
 		width: auto;
 	}
-	
+	*/
 	
 	
 	#mbm-book-links1 .mbm-book-buy-links, #mbm-book-links1 .mbm-book-download-links {
