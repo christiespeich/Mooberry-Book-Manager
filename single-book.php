@@ -506,7 +506,13 @@ function mbdb_output_cover($image_src, $attr) {
 	$image_html ='';
 	
 	if (isset($image_src) && $image_src != '') {
-		$image_html = '<img style="width:' . esc_attr($attr['width']) . 'px" src="' . esc_url($image_src) . '" >';
+		$image_html = '<img ';
+		if (esc_attr($attr['width']) != '') {
+			$image_html .= 'style="width:' . esc_attr($attr['width']) . 'px" ';
+		} else {
+			$image_html .= 'style="width: 100%" ';
+		}
+		$image_html .= 'src="' . esc_url($image_src) . '" >';
 		// if ($attr['wrap']=='yes') {
 			// $image_html .= 'class="align' . esc_attr($attr['align']) . '">';
 		// } else {
@@ -518,7 +524,7 @@ function mbdb_output_cover($image_src, $attr) {
 
 
 function mbdb_shortcode_cover( $attr, $content) {
-	$attr = shortcode_atts(array('width' =>  300,
+	$attr = shortcode_atts(array('width' =>  '',
 								'align' => 'right',
 								'wrap' => 'yes',
 								'book' => ''), $attr);
