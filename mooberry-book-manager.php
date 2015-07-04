@@ -180,7 +180,7 @@
 		wp_enqueue_style( 'mbdb-admin-styles' );
 	}
 	
-	add_action( 'wp_enqueue_scripts', 'mbdb_register_styles' );
+	add_action( 'wp_enqueue_scripts', 'mbdb_register_styles', 15 );
 	function mbdb_register_styles() {
 		wp_register_style( 'mbdb-styles', plugins_url( 'css/styles.css', __FILE__) ) ;
 		wp_enqueue_style( 'mbdb-styles' );
