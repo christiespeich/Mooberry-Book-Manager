@@ -128,7 +128,7 @@ class mbdb_book_widget extends WP_Widget {
 			}
 			if ($image_src != '') { 
 				do_action('mbdb_widget_before_image', $image_src);
-				echo '<img class="mbm-widget-cover" style="width:' . esc_attr($mbdb_cover_size) . 'px" src="' . esc_url($image_src) . '" /> ';
+				echo '<img class="mbm-widget-cover" style="width:' . esc_attr($mbdb_cover_size) . 'px;padding-top:10px;" src="' . esc_url($image_src) . '" /> ';
 				do_action('mbdb_widget_after_image', $image_src);
 			}
 			if ($mbdb_widget_show_title == 'yes') { 
