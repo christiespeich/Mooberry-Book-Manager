@@ -215,7 +215,9 @@
 		width: auto;
 	}
 	
-
+.mbm-book-grid-cell img {
+		width: 100%;
+	}
 
 @media (max-width:640px) {
 	
