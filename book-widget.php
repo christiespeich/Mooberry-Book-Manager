@@ -113,7 +113,7 @@ class mbdb_book_widget extends WP_Widget {
 		
 		do_action('mbdb_widget_before_display');
 		echo $before_widget;
-		echo '<div>';
+		//echo '<div>';
 		echo $before_title . esc_html($mbdb_widget_title) . $after_title;
 		
 		if ($mbdb_bookID == 0) {
@@ -144,7 +144,8 @@ class mbdb_book_widget extends WP_Widget {
 			}
 			
 		}
-		echo '</div>' . $after_widget;
+		//echo '</div>' . 
+		echo $after_widget;
 		do_action('mbdb_widget_after_display');
 	}
 	
