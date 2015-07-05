@@ -140,7 +140,9 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Initial Version  
 
 == Upgrade Notice ==
-Redesigned book page and much more!
+
+= 2.0 =
+Redesigned, responsive book page and much more!
 
 == Translations ==
 * English 
