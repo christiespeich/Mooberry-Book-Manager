@@ -4,7 +4,7 @@
     Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
     Description: An easy-to-use system for authors to add books their Wordpress website
     Author: Mooberry Dreams
-    Version: 2.0
+    Version: 2.0.1
     Author URI: http://www.mooberrydreams.com/
 	Text Domain: mooberry-book-manager
 	
@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.0');
+	define('MBDB_PLUGIN_VERSION', '2.0.1');
 		
 		
 	// Load in CMB2

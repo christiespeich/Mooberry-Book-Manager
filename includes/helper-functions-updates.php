@@ -17,6 +17,12 @@ function mbdb_upgrade_versions() {
 						
 		}
 		
+		if (version_compare($current_version, '2.0.1', '<')) {
+			//flush the rules
+			global $wp_rewrite;
+			$wp_rewrite->flush_rules();
+		}
+		
 	
 		
 		
@@ -58,7 +64,7 @@ function mbdb_upgrade_to_2_0() {
 	$mbdb_options = get_option('mbdb_options');
 	mbdb_insert_default_edition_formats($mbdb_options);
 	update_option( 'mbdb_options',  $mbdb_options);
-
+	
 	//fix retailer array imageID = image_id
 	//mbdb_fix_retailer_array();
 
