@@ -405,6 +405,36 @@ function mbdb_book_metaboxes( array $meta_boxes ) {
 		),
 	);
 	
+		
+	$meta_boxes['mbdb_additional_info'] = array(
+		'id'            => 'mbdb_additional_info',
+		'title'         => __('Additional Information', 'mooberry-book-manager'),
+		'object_types'  => array( 'mbdb_book', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'default',
+		'show_names'    => false, // Show field names on the left
+		'fields' => array(
+			array(
+				'name'    => __('Additional Information', 'mooberry-book-manager'),
+				'id'      => '_mbdb_additional_info',
+				'type'    => 'wysiwyg',
+				'description' => __('Any additional information you want to display on the page. Will be shown at the bottom of the page, after the reviews.', 'mooberry-book-manager'),
+				'options' => array(  
+					'wpautop' => true, // use wpautop?
+					'media_buttons' => true, // show insert/upload button(s)
+					'textarea_rows' => 15, // rows="..."
+					'tabindex' => '',
+					'editor_css' => '', // intended for extra styles for both visual and HTML editors buttons, needs to include the `<style>` tags, can use "scoped".
+					'editor_class' => '', // add extra class(es) to the editor textarea
+					'teeny' => false, // output the minimal editor config used in Press This
+					'dfw' => false, // replace the default fullscreen with DFW (needs specific css)
+					'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
+					'quicktags' => true // load Quicktags, can be used to pass settings directly to Quicktags using an array()   
+				),
+			),
+		),
+	);
+	
 		$meta_boxes['mbdb_cover_image'] = array(
 		'id'            => 'mbdb_cover_image',
 		'title'         => _x('Cover', 'noun', 'mooberry-book-manager'),
