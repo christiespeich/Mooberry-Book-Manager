@@ -163,7 +163,7 @@ function mbdb_general_settings() {
 					'name'	=>	__('BOOK GRID DEFAULT SETTINGS', 'mooberry-book-manager'),
 					'type'	=>	'title',
 				),
-			/*	array(
+				array(
 					'id'	=>	'mbdb_default_cover_height',
 					'name'	=> __('Cover Height (px)', 'mooberry-book-manager'),
 					'type'	=> 'text_small',
@@ -174,7 +174,7 @@ function mbdb_general_settings() {
 							'min' => 50,
 					),
 				),
-			*/
+			/*
 				array(
 					'name'	=> __('Number of Books Across', 'mooberry-book-manager'),
 					'id'	=> 'mbdb_default_books_across',
@@ -186,6 +186,7 @@ function mbdb_general_settings() {
 							'min' => 1,
 					),
 				),
+				*/
 			)
 		);
 }

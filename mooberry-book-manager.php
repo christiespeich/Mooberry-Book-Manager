@@ -4,7 +4,7 @@
     Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
     Description: An easy-to-use system for authors to add books their Wordpress website
     Author: Mooberry Dreams
-    Version: 2.0.1
+    Version: 2.1
     Author URI: http://www.mooberrydreams.com/
 	Text Domain: mooberry-book-manager
 	
@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.0.1');
+	define('MBDB_PLUGIN_VERSION', '2.1');
 		
 		
 	// Load in CMB2
@@ -187,6 +187,14 @@
 		wp_enqueue_script('single-book', plugins_url('includes/js/single-book.js', __FILE__), array('jquery'));
 		
 	}
+	
+	add_action('wp_head', 'mbdb_grid_styles');
+	function mbdb_grid_styles() {
+		global $post;
+		$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
+
+		include 'css/grid-styles.php';
+	}
 
 	add_action( 'admin_footer', 'mbdb_register_script');
 	function mbdb_register_script() {
@@ -196,6 +204,12 @@
 		
 	}
 
+	add_action('after_setup_theme', 'mbdb_image_sizes');
+	function mbdb_image_sizes() {
+		add_image_size( 'grid-cover', 0, 200);
+	}
+	
+	
 	add_action('widgets_init', 'mbdb_register_widgets');
 	function mbdb_register_widgets() {
 		return register_widget('mbdb_book_widget');
@@ -451,15 +465,17 @@
 					$taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/' );
 					$mbdb_books = mbdb_get_books_in_taxonomy( $mbdb_series, $taxonomy );
 					// get default values for cover height and books across
-					$mbdb_options = get_option('mbdb_options');
-				//	if (!isset($mbdb_options['mbdb_default_cover_height'])) {
-				//		$mbdb_options['mbdb_default_cover_height'] = 200;
-				//	}
-					if (!isset($mbdb_options['mbdb_default_books_across'])) {
-						$mbdb_options['mbdb_default_books_across'] = 3;
-					}
+					$mbdb_default_cover_height = mbdb_get_grid_cover_height();
 					
-					$content = mbdb_display_grid( array( $mbdb_books ), 0, $mbdb_options['mbdb_default_books_across'], 0 );
+					// $mbdb_options = get_option('mbdb_options');
+					// if (!isset($mbdb_options['mbdb_default_cover_height'])) {
+						// $mbdb_options['mbdb_default_cover_height'] = 200;
+					// }
+					// if (!isset($mbdb_options['mbdb_default_books_across'])) {
+						// $mbdb_options['mbdb_default_books_across'] = 3;
+					// }
+					
+					$content = mbdb_display_grid( array( $mbdb_books ), $mbdb_default_cover_height, 0, 0 );
 				}
 			} 
 		}
