@@ -79,7 +79,7 @@ function mbdb_upgrade_to_2_0() {
 	mbdb_update_format_images();
 
 	// update the excerpts
-	$mbdb_books = mbdb_get_books_list('all', null, 'title', 'ASC', null, null);
+	$mbdb_books = mbdb_get_books_list('all', null, 'title', 'ASC', null, null, null);
 	foreach($mbdb_books as $book) {
 		mbdb_save_excerpt($book->ID, $book);
 	}
@@ -182,7 +182,7 @@ function mbdb_migrate_post_tags() {
 	// remove post_tag terms from books
 	// do this outside of the above loop because it will remove ALL tags from the books
 	// and the above loop handles one tag at a time
-	 $mbdb_books = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null );
+	 $mbdb_books = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null, null );
 	foreach($mbdb_books as $mbdb_book) {
 		$bookID = $mbdb_book->ID;
 		wp_delete_object_term_relationships( $bookID, 'post_tag' );
@@ -247,7 +247,7 @@ function mbdb_migrate_publishers() {
 		$publishers = array();
 	}
 	
-	$mbdb_books = mbdb_get_books_list('all', null, 'title', 'ASC', null, null);
+	$mbdb_books = mbdb_get_books_list('all', null, 'title', 'ASC', null, null, null);
 	foreach ($mbdb_books as $book) {
 		$book_publisher = get_post_meta($book->ID, '_mbdb_publisher', true);
 		$book_website = get_post_meta($book->ID, '_mbdb_publisherwebsite', true);

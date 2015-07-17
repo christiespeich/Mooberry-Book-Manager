@@ -79,10 +79,23 @@ margin: 0;
 }
 
 /* set book list multi check for book grid page to be horizontal */
-.cmb2-id--mbdb-book-grid-custom-select li,.cmb2-id--mbdb-book-grid-genre li, .cmb2-id--mbdb-book-grid-series li  {
+.cmb2-id--mbdb-book-grid-custom-select li,.cmb2-id--mbdb-book-grid-genre li, .cmb2-id--mbdb-book-grid-series li, .cmb2-id--mbdb-book-grid-tag li  {
 	display: inline-table;
 	margin-right: 10px;
 }
+
+
+/* indent nested group bys */
+.cmb2-id--mbdb-book-grid-genre-tag-group-by, .cmb2-id--mbdb-book-grid-tag-genre-group-by {
+	margin-left: 100px;
+}
+
+.cmb2-id--mbdb-book-grid-genre-group-by, .cmb2-id--mbdb-book-grid-tag-group-by {
+	margin-left: 50px;
+}
+
+
+
 
 /* set genre list multi check for book grid page to be horizontal 
 .cmb2-id--mbdb-book-grid-genre li {

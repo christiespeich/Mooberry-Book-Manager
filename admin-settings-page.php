@@ -192,7 +192,7 @@ function mbdb_general_settings() {
 }
 
 function mbdb_print_book_list() {
-	$book_query = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null );
+	$book_query = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null, null );
 	$output = '<table border="1"><tr><th>ID</th><th>Title</th><th>Cover</th><th>Genre</th><th>Series</th><th>Pub Date</th><th>Author</th><th>Series Order</th></tr>';
 	foreach($book_query as $book) {
 		$output .= '<tr><td>' . $book->ID . '</td><td>' . $book->post_title . '</td><td>';

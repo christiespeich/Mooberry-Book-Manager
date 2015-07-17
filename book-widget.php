@@ -58,7 +58,7 @@ class mbdb_book_widget extends WP_Widget {
 		switch ($mbdb_widget_type) {
 			case 'random':
 				// get book ID of a random book
-				$mbdb_books = apply_filters('mbdb_widget_random_book_list', mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null ));
+				$mbdb_books = apply_filters('mbdb_widget_random_book_list', mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null, null ));
 				if ( count($mbdb_books)>0 ) {		
 					$randomID = rand(0,count($mbdb_books)-1);
 					$mbdb_bookID = $mbdb_books[$randomID]->ID;
@@ -70,7 +70,7 @@ class mbdb_book_widget extends WP_Widget {
 				break;
 			case "newest":
 				// get book ID of most recent book
-				$mbdb_books = apply_filters('mbdb_widget_newest_book_list', mbdb_get_books_list( 'published', null, '_mbdb_published', 'DESC', null, null));
+				$mbdb_books = apply_filters('mbdb_widget_newest_book_list', mbdb_get_books_list( 'published', null, '_mbdb_published', 'DESC', null, null, null));
 				// we just need the first one
 				if (count($mbdb_books)>0) {
 					$mbdb_bookID = $mbdb_books[0]->ID;
@@ -82,7 +82,7 @@ class mbdb_book_widget extends WP_Widget {
 				break;
 			case "coming-soon":
 				// get books with future or blank release dates
-				$mbdb_books = apply_filters('mbdb_widget_coming_soon_book_list', mbdb_get_books_list('unpublished', null, '', null, null, null) );
+				$mbdb_books = apply_filters('mbdb_widget_coming_soon_book_list', mbdb_get_books_list('unpublished', null, '', null, null, null, null) );
 				// choose a random one		
 				if (count($mbdb_books) > 0) {
 					$randomID = rand(0, count($mbdb_books)-1);
@@ -95,7 +95,7 @@ class mbdb_book_widget extends WP_Widget {
 				break;
 			case "specific":
 				// make sure seected book is still a valid book
-				$mbdb_books = apply_filters('mbdb_widget_specific_book_list', mbdb_get_books_list('all', array($mbdb_bookID), '', null, null, null));
+				$mbdb_books = apply_filters('mbdb_widget_specific_book_list', mbdb_get_books_list('all', array($mbdb_bookID), '', null, null, null, null));
 				if (count($mbdb_books) > 0) {
 					$mbdb_book_title = $mbdb_books[0]->post_title;
 				} else {
