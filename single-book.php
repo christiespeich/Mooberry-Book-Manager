@@ -661,16 +661,18 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 	}
 	foreach ($mbdb_downloadlinks as $mbdb_downloadlink) {
 		// get format info based on formatid = uniqueid
-		foreach($mbdb_options['formats'] as $r) {
-			if ($r['uniqueID'] == $mbdb_downloadlink['_mbdb_formatID']) {
-				$download_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '"><A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
-				if ($r['image']!='') {
-					$download_links_html .= '<img class="' . $classname . '-image" src="' . esc_url($r['image']) . '"/>';
-				} else {
-					$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
-				}
-				$download_links_html .= '</a></li>';
-			}			
+		if (array_key_exists('formats', $mbdb_options)) {
+			foreach($mbdb_options['formats'] as $r) {
+				if ($r['uniqueID'] == $mbdb_downloadlink['_mbdb_formatID']) {
+					$download_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '"><A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
+					if ($r['image']!='') {
+						$download_links_html .= '<img class="' . $classname . '-image" src="' . esc_url($r['image']) . '"/>';
+					} else {
+						$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
+					}
+					$download_links_html .= '</a></li>';
+				}			
+			}
 		}
 	}
 	$download_links_html .= "</ul>"; 
@@ -725,18 +727,20 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 		
 	foreach ($mbdb_buylinks as $mbdb_buylink) {
 		// get format info based on formatid = uniqueid
-		foreach($mbdb_options['retailers'] as $r) {
-			if ($r['uniqueID'] == $mbdb_buylink['_mbdb_retailerID']) {
-				//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
-				$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
-				if ($r['image']!='') {
-					$buy_links_html .= '<img class="' . $classname . '-image" style="' . esc_attr($img_size) . '" src="' . esc_url($r['image']) . '"/>';
-				} else {
-					$buy_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
-				}
-				$buy_links_html .= '</a>';
-				//$buy_links_html .= '</li>';
-			}			
+		if (array_key_exists('retailers', $mbdb_options)) {
+			foreach($mbdb_options['retailers'] as $r) {
+				if ($r['uniqueID'] == $mbdb_buylink['_mbdb_retailerID']) {
+					//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
+					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
+					if ($r['image']!='') {
+						$buy_links_html .= '<img class="' . $classname . '-image" style="' . esc_attr($img_size) . '" src="' . esc_url($r['image']) . '"/>';
+					} else {
+						$buy_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
+					}
+					$buy_links_html .= '</a>';
+					//$buy_links_html .= '</li>';
+				}			
+			}
 		}
 	}
 	//$buy_links_html .= "</ul>"; 
