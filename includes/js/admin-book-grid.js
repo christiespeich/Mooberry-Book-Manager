@@ -1,130 +1,69 @@
+jQuery( document ).ready(function() {
+	
+	
+	// bind the change event on all the drop downs in the book grid section
+	jQuery('#cmb2-metabox-mbdb_book_grid').children().find('select').bind('change', displayChange);
+	
+	// set visibility of everything as needed
+	displayChange();
+});
 
-window.addEventListener('load', onLoad, false);
-
-function onLoad() {
-	if (document.getElementById('_mbdb_book_grid_display') != null) {
-		document.getElementById('_mbdb_book_grid_display').addEventListener('change', displayChange, false);
-		displayChange();
-	}
-		
-	if (document.getElementById('_mbdb_book_grid_books') != null) {
-		document.getElementById('_mbdb_book_grid_books').addEventListener('change', displayChange, false);
-	}
+function displayChange () {
+	if (jQuery('#_mbdb_book_grid_display').val() == 'yes') {
 	
-	
-	if (document.getElementById('_mbdb_book_grid_group_by') != null) {
-		document.getElementById('_mbdb_book_grid_group_by').addEventListener('change', displayChange, false);
-	}
-	
-	if (document.getElementById('_mbdb_book_grid_genre_group_by') != null) {
-		document.getElementById('_mbdb_book_grid_genre_group_by').addEventListener('change', displayChange, false);
-	}
-
-	if (document.getElementById('_mbdb_book_grid_cover_height_default') != null) {
-		document.getElementById('_mbdb_book_grid_cover_height_default').addEventListener('change', displayChange, false);
-	}
-	/*
-	if (document.getElementById('_mbdb_book_grid_books_across_default') != null) {
-		document.getElementById('_mbdb_book_grid_books_across_default').addEventListener('change', displayChange, false);
-	}
-	*/
-}
-
-
-	function toggle_display(surroundingElementClass, dropdownID, childElementClass, dropdownValue, shouldDisplay) {
-		var dropdown = document.getElementById(dropdownID);
-		var surroundingElement = document.getElementsByClassName(surroundingElementClass);
-		var childElement =  document.getElementsByClassName(childElementClass);
+		// show the options that don't change
+		jQuery('.cmb2-id--mbdb-book-grid-books').show();
+		jQuery('.cmb2-id--mbdb-book-grid-group-by').show();
+		jQuery('.cmb2-id--mbdb-book-grid-order').show();
+		jQuery('.cmb2-id--mbdb-book-grid-cover-height-default').show();
 		
-		var match = (shouldDisplay ? 'block' : 'none');
-		var nomatch = (!shouldDisplay ? 'block' : 'none');
+		// books to show
+		var books = jQuery('#_mbdb_book_grid_books').val();
+		// show the one that's selected
+		jQuery('.cmb2-id--mbdb-book-grid-' + books).show();
+		// hide the multichecks that aren't selected
+		jQuery('#cmb2-metabox-mbdb_book_grid').children('.cmb-type-taxonomy-multicheck').not('.cmb2-id--mbdb-book-grid-' + books).hide();
 		
-		if (surroundingElement[0].style.display == 'block') {
-			if ( dropdown.value == dropdownValue) {
-				childElement[0].style.display = match;
-			} else {
-				childElement[0].style.display = nomatch;
-			}
-		}
-	}
-	
-/*	
-	function booksAcrossChange() {		
-		toggle_display('cmb2-id--mbdb-book-grid-books-across-default', '_mbdb_book_grid_books_across_default', 'cmb2-id--mbdb-book-grid-books-across', 'yes', false);
-	}
-*/
-function coverHeightChange() {
-		toggle_display('cmb2-id--mbdb-book-grid-cover-height-default', '_mbdb_book_grid_cover_height_default', 'cmb2-id--mbdb-book-grid-cover-height', 'yes', false);
-	}
-
-	
-	
-	function genreGroupByChange() {
-		
-		toggle_display('cmb2-id--mbdb-book-grid-genre-group-by', '_mbdb_book_grid_genre_group_by', 'cmb2-id--mbdb-book-grid-order', 'series', false);
-		
-		
-	}
-
-	
-	function groupByChange() {
-		
-		toggle_display('cmb2-id--mbdb-book-grid-group-by', '_mbdb_book_grid_group_by', 'cmb2-id--mbdb-book-grid-genre-group-by', 'genre', true);
-		toggle_display('cmb2-id--mbdb-book-grid-group-by', '_mbdb_book_grid_group_by', 'cmb2-id--mbdb-book-grid-order', 'series', false);
-	//	genreGroupByChange();
-		
-		
-		
-	}
-	
-	function booksChange() {
-		toggle_display('cmb2-id--mbdb-book-grid-books', '_mbdb_book_grid_books', 'cmb2-id--mbdb-book-grid-custom-select', 'custom', true);
-		toggle_display('cmb2-id--mbdb-book-grid-books', '_mbdb_book_grid_books', 'cmb2-id--mbdb-book-grid-genre', 'genre', true);
-		toggle_display('cmb2-id--mbdb-book-grid-books', '_mbdb_book_grid_books', 'cmb2-id--mbdb-book-grid-series', 'series', true);
-		
-	}
-	
-	function displayChange() {
-		var display_grid = document.getElementById('_mbdb_book_grid_display');
-		var books_select = document.getElementsByClassName('cmb2-id--mbdb-book-grid-books');
-		var grid_order = document.getElementsByClassName('cmb2-id--mbdb-book-grid-order');
-		var books_checkboxes = document.getElementsByClassName('cmb2-id--mbdb-book-grid-custom-select');
-		var genre_checkboxes = document.getElementsByClassName('cmb2-id--mbdb-book-grid-genre');
-		var series_checkboxes = document.getElementsByClassName('cmb2-id--mbdb-book-grid-series');
-		var group_by = document.getElementsByClassName('cmb2-id--mbdb-book-grid-group-by');
-		var genre_group_by = document.getElementsByClassName('cmb2-id--mbdb-book-grid-genre-group-by');
-		var book_grid_cover_size = document.getElementsByClassName('cmb2-id--mbdb-book-grid-cover-height');
-	//	var book_grid_books_across = document.getElementsByClassName('cmb2-id--mbdb-book-grid-books-across');
-		var cover_height_default = document.getElementsByClassName('cmb2-id--mbdb-book-grid-cover-height-default');
-	//	var books_across_default = document.getElementsByClassName('cmb2-id--mbdb-book-grid-books-across-default');
-
-		
-		if (display_grid.value == 'yes') {
-			books_select[0].style.display = 'block';
-			group_by[0].style.display = 'block'
-			cover_height_default[0].style.display = 'block';
-		//	books_across_default[0].style.display = 'block';
-			booksChange();
-			groupByChange();
-			genreGroupByChange();
-			coverHeightChange();
-		//	booksAcrossChange();
-			
+		// book selection doesn't follow the same naming convention as tags, genre, and series selection
+		// but renaming it would cause too much other code to change :-/
+		if (books == 'custom') {
+			jQuery('.cmb2-id--mbdb-book-grid-custom-select').show();
 		} else {
-			books_select[0].style.display = 'none';
-			group_by[0].style.display = 'none'
-			book_grid_cover_size[0].style.display = 'none';
-		//	book_grid_books_across[0].style.display = 'none';
-			books_checkboxes[0].style.display = 'none';
-			genre_checkboxes[0].style.display = 'none';
-			series_checkboxes[0].style.display = 'none';
-			genre_group_by[0].style.display  = 'none';
-			grid_order[0].style.display = 'none';
-			cover_height_default[0].style.display = 'none';
-		//	books_across_default[0].style.display = 'none';
-		
+			jQuery('.cmb2-id--mbdb-book-grid-custom-select').hide();
 		}
 		
-	
-	
+		// group by
+		// show the 2nd group by drop down that's selected
+		var groupby = jQuery('#_mbdb_book_grid_group_by').val();
+		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-group-by').show();
+		// and hide the others
+		jQuery('.cmb2-id--mbdb-book-grid-group-by').nextAll("[class$='-group-by']").not('.cmb2-id--mbdb-book-grid-' + groupby + '-group-by').hide();
+		
+		
+		// show the next level group by drop downs
+		var groupby2 = jQuery('#_mbdb_book_grid_' + groupby + '_group_by').val();
+		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').show();
+		// and hide the others
+		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').nextAll("[class$='-group-by']").not('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').hide();
+		
+				
+		// order should be hidden if series is selected
+		// get the last visible group-by drop down
+		if (jQuery('.cmb2-id--mbdb-book-grid-group-by').nextAll("[class$='-group-by']").andSelf().filter(':visible:last').find('select').val() == 'series') {
+			jQuery('.cmb2-id--mbdb-book-grid-order').hide();
+		} else {
+			jQuery('.cmb2-id--mbdb-book-grid-order').show();
+		}
+		
+		// cover height
+		if (jQuery('#_mbdb_book_grid_cover_height_default').val() == 'yes') {
+			jQuery('.cmb2-id--mbdb-book-grid-cover-height').hide();
+		} else {
+			jQuery('.cmb2-id--mbdb-book-grid-cover-height').show();
+		}
+		
+	} else {
+		// hide all the book grid divs if "no" is selected
+		jQuery('.cmb2-id--mbdb-book-grid-display').nextAll('div').hide();
 	}
+}
