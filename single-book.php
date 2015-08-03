@@ -915,6 +915,36 @@ function mbdb_shortcode_editions( $attr, $content) {
 	}
 }
 
+// Template
+add_filter('single_template', 'mbdb_single_template');
+function mbdb_single_template($template) {
+	
+	if (get_post_type() == 'mbdb_book' && is_main_query() && !is_admin()) {
+		$mbdb_options = get_option('mbdb_options');
+	
+		if (isset($mbdb_options['mbdb_default_template']) && $mbdb_options['mbdb_default_template'] != '' && $mbdb_options['mbdb_default_template'] != 'default') {
+			
+			// first check if there's one in the child theme
+			$child_theme = get_stylesheet_directory();
+		
+			if (file_exists($child_theme . '/' . $mbdb_options['mbdb_default_template'])) {
+				return $child_theme . '/' . $mbdb_options['mbdb_default_template'];
+			} else {
+				// if not get the parent theme
+				$parent_theme = get_template_directory();
+	
+				if (file_exists($parent_theme . '/' . $mbdb_options['mbdb_default_template'])) {
+					return $parent_theme . '/' . $mbdb_options['mbdb_default_template'];
+				}
+			}
+		}
+	}
+	// if everything fails, just return the default
+	
+	return $template;
+
+}
+
 
 /***************************************************************
 						PAGE CONTENT

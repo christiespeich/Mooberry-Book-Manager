@@ -747,7 +747,13 @@ function mbdb_get_format_name( $format ) {
 	return '';
 }
 
-
+function mbdb_get_template_list() {
+	$all_templates = wp_get_theme()->get_page_templates();
+	
+	$all_templates = array_merge( array('default' => 'Default'), $all_templates);
+	
+	return $all_templates;
+}
 
 /**** OBSOLETE
 

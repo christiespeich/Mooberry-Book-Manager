@@ -137,7 +137,16 @@ function mbdb_general_settings() {
 					'id'	=> 'mbdb_book_default_settings_title',
 					'name'	=>	__('BOOK PAGE DEFAULT SETTINGS', 'mooberry-book-manager'),
 					'type'	=>	'title',
-				),array(
+				),
+				array(
+					'id'	=>	'mbdb_default_template',
+					'name'	=> __('Page Template', 'mooberry-book-manager'),
+					'type'	=> 'select',
+					'default'	=>	'default',
+					'options'	=> mbdb_get_template_list(),
+				),
+				
+				array(
 					'id'	=>	'mbdb_default_unit',
 					'name'	=>	__('Default Unit of Measurement', 'mooberry-book-manager'),
 					'type'	=> 'select',
@@ -330,5 +339,3 @@ function mbdb_admin_tabs( $current = 'book-page' ) {
 	do_action('mbdb_settings_after_tabs');
 }
 
-	
-	
