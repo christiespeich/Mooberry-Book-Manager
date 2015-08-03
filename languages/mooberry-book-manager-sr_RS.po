@@ -7,7 +7,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
 "POT-Creation-Date: 2015-08-02 21:44-0500\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Your Name <you@example.com>\n"
+"Last-Translator: Borisa Djuraskovic <borisad@webhostinghub.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -22,199 +22,202 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: includes/cmb2\n"
 
 #: admin-settings-page.php:4 mooberry-book-manager.php:246
 msgid "Settings"
-msgstr ""
+msgstr "Podešavanja"
 
 #: admin-settings-page.php:5
 msgid "NOTE:"
-msgstr ""
+msgstr "BELEŠKA:"
 
 #: admin-settings-page.php:5
 msgid ""
 "You must click the SAVE button to save your changes before switching tabs."
 msgstr ""
+"Morate kliknuti dugme SAVE (sačuvaj) da biste sačuvali vaše izmene pre nego "
+"što isključite tab tipke."
 
 #: admin-settings-page.php:53
 msgid "Add your publishers."
-msgstr ""
+msgstr "Dodajte svoje izdavače"
 
 #: admin-settings-page.php:55 admin-settings-page.php:63 book.php:65
 #: book.php:496 single-book.php:1000
 msgid "Publisher"
-msgstr ""
+msgstr "Izdavač"
 
 #: admin-settings-page.php:56
 msgid "Add New Publisher"
-msgstr ""
+msgstr "Dodajte novog izdavača"
 
 #: admin-settings-page.php:57
 msgid "Remove Publisher"
-msgstr ""
+msgstr "Uklonite izdavača"
 
 #: admin-settings-page.php:71
 msgid "Publisher Website"
-msgstr ""
+msgstr "Vebsajt izdavača "
 
 #: admin-settings-page.php:101
 msgid "Add any additional formats your books are available in."
-msgstr ""
+msgstr "Dodajte koje god dodatne formate u kojima su vaše knjige dostupne."
 
 #: admin-settings-page.php:103
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #: admin-settings-page.php:104
 msgid "Add New Format"
-msgstr ""
+msgstr "Dodajte novi format"
 
 #: admin-settings-page.php:105 admin-settings-page.php:284
 msgid "Remove Format"
-msgstr ""
+msgstr "Uklonite format"
 
 #: admin-settings-page.php:111
 msgid "Format Name"
-msgstr ""
+msgstr "Naziv  formata"
 
 #: admin-settings-page.php:138
 msgid "BOOK PAGE DEFAULT SETTINGS"
-msgstr ""
+msgstr "UOBIČAJENA PODEŠAVANJA STRANICE KNJIGE"
 
 #: admin-settings-page.php:142
 msgid "Default Unit of Measurement"
-msgstr ""
+msgstr "Uobičajena jedinica mere"
 
 #: admin-settings-page.php:149
 msgid "Default Currency"
-msgstr ""
+msgstr "Uobičajena valuta"
 
 #: admin-settings-page.php:156
 msgid "Default Language"
-msgstr ""
+msgstr "Uobičajeni jezik"
 
 #: admin-settings-page.php:163
 msgid "BOOK GRID DEFAULT SETTINGS"
-msgstr ""
+msgstr "UOBIČAJENA PODEŠAVANJA STRUKTURE STRANICE KNJIGE"
 
 #: admin-settings-page.php:168
 msgid "Cover Height (px)"
-msgstr ""
+msgstr "Visina naslovne strane (px)"
 
 #: admin-settings-page.php:233
 msgid "Add any additional retailers that sell your books."
-msgstr ""
+msgstr "Dodajte kojeg god dodatnog prodavca koji će prodavati vaše knjige."
 
 #: admin-settings-page.php:235 book.php:552
 msgid "Retailer"
-msgstr ""
+msgstr "Prodavac"
 
 #: admin-settings-page.php:236
 msgid "Add Retailer"
-msgstr ""
+msgstr "Dodajte prodavca"
 
 #: admin-settings-page.php:237
 msgid "Remove Retailer"
-msgstr ""
+msgstr "Uklonite prodavca"
 
 #: admin-settings-page.php:243
 msgid "Retailer Name"
-msgstr ""
+msgstr "Ime prodavca"
 
 #: admin-settings-page.php:254
 msgid "Retailer Logo Image"
-msgstr ""
+msgstr "Slika logo-a prodavca"
 
 #: admin-settings-page.php:280
 msgid ""
 "If you have free books for download, add any additional formats your books "
 "are available in."
 msgstr ""
+"Ukoliko imate besplatne knjige za preuzimanje, dodajte koji god dodatni "
+"format u kojem su vaše knjige dostupne."
 
 #: admin-settings-page.php:282 admin-settings-page.php:290 book.php:242
 #: book.php:596
 msgctxt "noun"
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #: admin-settings-page.php:283
 msgid "Add Format"
-msgstr ""
+msgstr "Dodajte format"
 
 #: admin-settings-page.php:299
 msgctxt "noun"
 msgid "Format Image"
-msgstr ""
+msgstr "Slika formata"
 
 #: admin-settings-page.php:321
 msgid "General Settings"
-msgstr ""
+msgstr "Opšta podešavanja"
 
 #: admin-settings-page.php:321
 msgid "Publishers"
-msgstr ""
+msgstr "Izdavači"
 
 #: admin-settings-page.php:321
 msgid "Edition Formats"
-msgstr ""
+msgstr "Formati izdanja"
 
 #: admin-settings-page.php:321
 msgid "Retailers"
-msgstr ""
+msgstr "Prodavci"
 
 #: admin-settings-page.php:321
 msgctxt "noun"
 msgid "E-book Formats"
-msgstr ""
+msgstr "Formati elektronskih knjiga"
 
 #: book-grid.php:54
 msgid "Books tagged with "
-msgstr ""
+msgstr "Knjige tagovane sa"
 
 #: book-grid.php:57
 msgid "Not Found"
-msgstr ""
+msgstr "Nije pronađeno"
 
 #: book-grid.php:81
 msgid "Book Grid Settings"
-msgstr ""
+msgstr "Podešavanja svrstavanja knjiga"
 
 #: book-grid.php:88
 msgid "Display Books on This Page?"
-msgstr ""
+msgstr "Prikazati knjige na ovoj stranici?"
 
 #: book-grid.php:93 book-grid.php:202
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: book-grid.php:94 book-grid.php:203
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: book-grid.php:98
 msgid "Books to Display"
-msgstr ""
+msgstr "Knjige koje će biti prikazane"
 
 #: book-grid.php:102
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
 #: book-grid.php:103
 msgid "All Published"
-msgstr ""
+msgstr "Sve objavljeno"
 
 #: book-grid.php:104
 msgid "All Coming Soon"
-msgstr ""
+msgstr "Sve što uskoro izlazi"
 
 #: book-grid.php:105 book-grid.php:118
 msgid "Select Genres"
-msgstr ""
+msgstr "Odaberite žanrove"
 
 #: book-grid.php:106 book-grid.php:124
 msgid "Select Series"
-msgstr ""
+msgstr "Odaberite serije"
 
 #: book-grid.php:107 book-grid.php:130
 msgid "Select Tags"
@@ -222,35 +225,35 @@ msgstr ""
 
 #: book-grid.php:108 book-grid.php:112
 msgid "Select Books"
-msgstr ""
+msgstr "Odaberite knjige"
 
 #: book-grid.php:136
 msgid "Group Books By"
-msgstr ""
+msgstr "Grupišite knjige prema"
 
 #: book-grid.php:140 book-grid.php:151 book-grid.php:161 book-grid.php:171
 #: book-grid.php:180
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 #: book-grid.php:141 book-grid.php:163 book.php:61
 #: mooberry-book-manager.php:328
 msgid "Genre"
-msgstr ""
+msgstr "Žanru"
 
 #: book-grid.php:142 book-grid.php:152 book-grid.php:162 book-grid.php:172
 #: book-grid.php:181 book.php:63 mooberry-book-manager.php:397
 #: mooberry-book-manager.php:398 mooberry-book-manager.php:407
 msgid "Series"
-msgstr ""
+msgstr "Serijama"
 
 #: book-grid.php:143 book-grid.php:153 mooberry-book-manager.php:363
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: book-grid.php:147 book-grid.php:176
 msgid "Group Within Genre By"
-msgstr ""
+msgstr "Grupištite unutar žanra prema"
 
 #: book-grid.php:157 book-grid.php:167
 msgid "Group Within Tag By"
@@ -258,39 +261,39 @@ msgstr ""
 
 #: book-grid.php:185
 msgid "Order By"
-msgstr ""
+msgstr "Poređajte prema"
 
 #: book-grid.php:190
 msgid "Publication Date (oldest first)"
-msgstr ""
+msgstr "Datumu objavljivanja (prvo najstarije)"
 
 #: book-grid.php:191
 msgid "Publication Date (newest first)"
-msgstr ""
+msgstr "Datumu objavljivanja (prvo najnovije)"
 
 #: book-grid.php:192
 msgid "Title (A-Z)"
-msgstr ""
+msgstr "Naslovi (A-Z)"
 
 #: book-grid.php:193
 msgid "Title (Z-A)"
-msgstr ""
+msgstr "Naslovu (Z-A)"
 
 #: book-grid.php:197
 msgid "Use default cover height?"
-msgstr ""
+msgstr "Koristiti uobičajenu visinu naslovne strane?"
 
 #: book-grid.php:207
 msgid "Book Cover Height (px)"
-msgstr ""
+msgstr "Visina naslovne strane (px)"
 
 #: book-grid.php:426
 msgid "Uncategorized"
-msgstr ""
+msgstr "Nekategorizovane"
 
 #: book-grid.php:429
 msgid "Standalones"
-msgstr ""
+msgstr "Samostalne"
 
 #: book-grid.php:432
 msgid "Untagged"
@@ -298,156 +301,160 @@ msgstr ""
 
 #: book-grid.php:556 book-grid.php:561
 msgid "Books not found"
-msgstr ""
+msgstr "Knjige koje nisu pronađene"
 
 #: book-widget.php:6
 msgid ""
 "Shows the cover of the book of your choosing with a link to the book page"
 msgstr ""
+"Prikazuje naslovnu stranu knjige koju ste vi izabrali putem linka za "
+"stranicu knjiga"
 
 #: book-widget.php:7 mooberry-book-manager.php:276
 msgctxt "noun"
 msgid "Book"
-msgstr ""
+msgstr "Knjiga"
 
 #: book-widget.php:120
 msgid "No books found"
-msgstr ""
+msgstr "Nije pronađena nijedna knjiga"
 
 #: book.php:58
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: book.php:59
 msgid "Cover"
-msgstr ""
+msgstr "Naslovna strana"
 
 #: book.php:60
 msgid "Length"
-msgstr ""
+msgstr "Dužina"
 
 #: book.php:62 single-book.php:996
 msgid "Published"
-msgstr ""
+msgstr "Objavljeno"
 
 #: book.php:64 book.php:514
 msgid "Series Order"
-msgstr ""
+msgstr "Redosled serija"
 
 #: book.php:66
 msgid "Updated"
-msgstr ""
+msgstr "Ažurirano"
 
 #: book.php:94 single-book.php:137
 msgid "m/d/Y"
-msgstr ""
+msgstr "m/d/Y"
 
 #: book.php:194 book.php:201
 msgid "Summary"
-msgstr ""
+msgstr "Rezime"
 
 #: book.php:221
 msgid "Formats and Editions"
-msgstr ""
+msgstr "Formati i izdanja"
 
 #: book.php:231
 msgid ""
 "List the details of your book's hardcover, paperback, and e-book editions. "
 "Everything is optional except the format."
 msgstr ""
+"Izlistajte detalje tvrdog poveza vaše knjige, mekog poveza i izdanja "
+"elektronske knjige. Sve je opciono osim formata."
 
 #: book.php:233
 msgid "Edition"
-msgstr ""
+msgstr "Izdanje"
 
 #: book.php:234
 msgid "Add New Edition"
-msgstr ""
+msgstr "Dodajte novo izdanje"
 
 #: book.php:235
 msgid "Remove Edition"
-msgstr ""
+msgstr "Uklonite izdanje"
 
 #: book.php:249
 msgid "EAN/ISBN"
-msgstr ""
+msgstr "EAN/ISBN"
 
 #: book.php:254
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: book.php:261
 msgid "Number of Pages"
-msgstr ""
+msgstr "Broj stranica"
 
 #: book.php:271
 msgid "Height"
-msgstr ""
+msgstr "Visina"
 
 #: book.php:281
 msgid "Width"
-msgstr ""
+msgstr "Širina"
 
 #: book.php:291
 msgctxt "units of measurement"
 msgid "Unit"
-msgstr ""
+msgstr "Jedinica"
 
 #: book.php:298
 msgid "Suggested Retail Price"
-msgstr ""
+msgstr "Predložena maloprodajna cena"
 
 #: book.php:308
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #: book.php:315
 msgid "Edition Title"
-msgstr ""
+msgstr "Naslov izdanja"
 
 #: book.php:318
 msgid "First Edition, Second Edition, etc."
-msgstr ""
+msgstr "Prvo izdanje, Drugo izdanje, itd."
 
 #: book.php:328 book.php:335 single-book.php:1016
 msgid "Excerpt"
-msgstr ""
+msgstr "Izvod"
 
 #: book.php:356 book.php:368
 msgctxt "noun"
 msgid "Reviews"
-msgstr ""
+msgstr "Kritike"
 
 #: book.php:366
 msgid "Add reviews of your book"
-msgstr ""
+msgstr "Dodajte kritike vaše knjige"
 
 #: book.php:369
 msgid "Add Review"
-msgstr ""
+msgstr "Dodajte kritiku"
 
 #: book.php:370
 msgid "Remove Review"
-msgstr ""
+msgstr "Uklonite kritiku"
 
 #: book.php:377
 msgid "Reviewer Name"
-msgstr ""
+msgstr "Ime kritičara"
 
 #: book.php:383
 msgctxt "noun"
 msgid "Review Link"
-msgstr ""
+msgstr "Link za kritiku"
 
 #: book.php:393
 msgctxt "noun"
 msgid "Review Website Name"
-msgstr ""
+msgstr "Naziv vebsajta za kritiku"
 
 #: book.php:399
 msgctxt "noun"
 msgid "Review"
-msgstr ""
+msgstr "Kritika"
 
 #: book.php:411 book.php:418
 msgid "Additional Information"
@@ -462,98 +469,102 @@ msgstr ""
 #: book.php:440
 msgctxt "noun"
 msgid "Cover"
-msgstr ""
+msgstr "Naslovna strana"
 
 #: book.php:449
 msgctxt "noun"
 msgid "Book Cover"
-msgstr ""
+msgstr "Naslovna strana knjige"
 
 #: book.php:459
 msgid "Book Details"
-msgstr ""
+msgstr "Detalji o knjizi"
 
 #: book.php:467
 msgid "Subtitle"
-msgstr ""
+msgstr "Podnaslov"
 
 #: book.php:472
 msgid "Release Date"
-msgstr ""
+msgstr "Datum prvog objavljivanja"
 
 #: book.php:500
 msgid "Set up Publishers in Settings."
-msgstr ""
+msgstr "Uređivanje izdavača i podešavanja:"
 
 #: book.php:503
 msgid "Goodreads Link"
-msgstr ""
+msgstr "Link za “dobro čitanje”"
 
 #: book.php:516
 msgid "(leave blank if not part of a series)"
-msgstr ""
+msgstr "(ostavite prazno ako nije deo serija)"
 
 #: book.php:531
 msgctxt "noun"
 msgid "Retailer Links"
-msgstr ""
+msgstr "Linkovi prodavaca"
 
 #: book.php:542
 msgid "Add links where readers can purchase your book"
-msgstr ""
+msgstr "Dodajte linkove gde čitaoci mogu da kupe vašu knjigu"
 
 #: book.php:544
 msgctxt "noun"
 msgid "Retailer Link"
-msgstr ""
+msgstr "Link prodavca"
 
 #: book.php:545
 msgid "Add Retailer Link"
-msgstr ""
+msgstr "Dodajte link prodavca"
 
 #: book.php:546
 msgid "Remove Retailer Link"
-msgstr ""
+msgstr "Uklonite link prodavca"
 
 #: book.php:559 book.php:603
 msgctxt "noun"
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: book.php:576
 msgctxt "noun"
 msgid "Download Links"
-msgstr ""
+msgstr "Preuzmite linkove"
 
 #: book.php:586
 msgid ""
 "If your book is available to download for free, add the links for each "
 "format."
 msgstr ""
+"Ukoliko je vaša knjiga dostupna za preuzimanje besplatno, dodajte linkove za "
+"svaki format."
 
 #: book.php:588
 msgctxt "noun"
 msgid "Download Link"
-msgstr ""
+msgstr "Preuzmite link"
 
 #: book.php:589
 msgid "Add Download Link"
-msgstr ""
+msgstr "Dodajte preuzimanje linka"
 
 #: book.php:590
 msgid "Remove Download Link"
-msgstr ""
+msgstr "Uklonite preuzimanje linka"
 
 #: includes/helper-functions-validation.php:21
 #, php-format
 msgid "Editions require at least the format. Please check edition #%s."
-msgstr ""
+msgstr "Izdanja zahtevaju bare format. Molimo proverite izdanje #%s."
 
 #: includes/helper-functions-validation.php:34
 #, php-format
 msgid ""
 "If width or height is specified, both must be. Please check edition #%s."
 msgstr ""
+"Ukoliko je specifikovana širina ili visina, moraju biti obe. Molimo "
+"proverite izdanje #%s."
 
 #: includes/helper-functions-validation.php:67
 #, php-format
@@ -561,1003 +572,1138 @@ msgid ""
 "Reviews require review text and at least one other field. Please check "
 "review #%s."
 msgstr ""
+"Kritike zahtevaju tekst kritike i bar jedno polje. Molimo proverite kritiku #"
+"%s."
 
 #: includes/helper-functions-validation.php:73
 #, php-format
 msgid ""
 "Download links require all fields filled out. Please check download link #%s."
 msgstr ""
+"Linkovi za preuzimanje zahtevaju sva polja popunjena.Molimo proverite link "
+"za preuzimanje #%s."
 
 #: includes/helper-functions-validation.php:78
 #, php-format
 msgid ""
 "Retailer links require all fields filled out. Please check retailer link #%s."
 msgstr ""
+"Linkovi za prodavca zahtevaju sva polja popunjena.Molimo proverite link za "
+"prodavca #%s."
 
 #: includes/helper-functions.php:138
 msgid "Librarian"
-msgstr ""
+msgstr "Knjižar"
 
 #: includes/helper-functions.php:140
 msgid "Master Librarian"
-msgstr ""
+msgstr "Glavni knjižar"
 
 #: includes/helper-functions.php:482
 msgid "inches (in)"
-msgstr ""
+msgstr "inči (in)"
 
 #: includes/helper-functions.php:483
 msgid "centimeters (cm)"
-msgstr ""
+msgstr "centimetri (cm)"
 
 #: includes/helper-functions.php:484
 msgid "millimeters (mm)"
-msgstr ""
+msgstr "milimetri (mm)"
 
 #: includes/helper-functions.php:509
 msgid "Australian Dollar"
-msgstr ""
+msgstr "Australijski dolar"
 
 #: includes/helper-functions.php:510
 msgid "Brazilian Real "
-msgstr ""
+msgstr "Brazilski real"
 
 #: includes/helper-functions.php:511
 msgid "Canadian Dollar"
-msgstr ""
+msgstr "Kanadski dolar"
 
 #: includes/helper-functions.php:512
 msgid "Czech Koruna"
-msgstr ""
+msgstr "Češka kruna"
 
 #: includes/helper-functions.php:513
 msgid "Danish Krone"
-msgstr ""
+msgstr "Danska kruna"
 
 #: includes/helper-functions.php:514
 msgid "Euro"
-msgstr ""
+msgstr "Euro"
 
 #: includes/helper-functions.php:515
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Hongkonški dolar"
 
 #: includes/helper-functions.php:516
 msgid "Hungarian Forint "
-msgstr ""
+msgstr "Mađšarska forinta"
 
 #: includes/helper-functions.php:517
 msgid "Israeli New Sheqel"
-msgstr ""
+msgstr "Izraelski novi šekelk"
 
 #: includes/helper-functions.php:518
 msgid "Japanese Yen"
-msgstr ""
+msgstr "Japanski jen"
 
 #: includes/helper-functions.php:519
 msgid "Malaysian Ringgit"
-msgstr ""
+msgstr "Malezijski ringit"
 
 #: includes/helper-functions.php:520
 msgid "Mexican Peso"
-msgstr ""
+msgstr "Meksički pezos"
 
 #: includes/helper-functions.php:521
 msgid "Norwegian Krone"
-msgstr ""
+msgstr "Norveška kruna"
 
 #: includes/helper-functions.php:522
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Novozelandski dolar"
 
 #: includes/helper-functions.php:523
 msgid "Philippine Peso"
-msgstr ""
+msgstr "Filipinski pezos"
 
 #: includes/helper-functions.php:524
 msgid "Polish Zloty"
-msgstr ""
+msgstr "Poljski zlot"
 
 #: includes/helper-functions.php:525
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Singapurski dolar"
 
 #: includes/helper-functions.php:526
 msgid "Swedish Krona"
-msgstr ""
+msgstr "Švedska kruna"
 
 #: includes/helper-functions.php:527
 msgid "Swiss Franc"
-msgstr ""
+msgstr "Švajcarski franak"
 
 #: includes/helper-functions.php:528
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Tajvanski novi dolar"
 
 #: includes/helper-functions.php:529
 msgid "Thai Baht"
-msgstr ""
+msgstr "Tajlandski baht"
 
 #: includes/helper-functions.php:530
 msgid "Turkish Lira"
-msgstr ""
+msgstr "Turska lira"
 
 #: includes/helper-functions.php:531
 msgid "U.K. Pound Sterling"
-msgstr ""
+msgstr "Britanska funta sterling"
 
 #: includes/helper-functions.php:532
 msgid "U.S. Dollar"
-msgstr ""
+msgstr "Američki dolar"
 
 #: includes/helper-functions.php:567
 msgid "Abkhazian"
-msgstr ""
+msgstr "Abhazijski"
 
 #: includes/helper-functions.php:568
 msgid "Afar"
-msgstr ""
+msgstr "Izdaleka"
 
 #: includes/helper-functions.php:569
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrički"
 
 #: includes/helper-functions.php:570
 msgid "Albanian"
-msgstr ""
+msgstr "Albanski"
 
 #: includes/helper-functions.php:571
 msgid "Amharic"
-msgstr ""
+msgstr "Amharski"
 
 #: includes/helper-functions.php:572
 msgid "Arabic"
-msgstr ""
+msgstr "Arapski"
 
 #: includes/helper-functions.php:573
 msgid "Armenian"
-msgstr ""
+msgstr "Jermenski"
 
 #: includes/helper-functions.php:574
 msgid "Assamese"
-msgstr ""
+msgstr "Asamejski"
 
 #: includes/helper-functions.php:575
 msgid "Aymara"
-msgstr ""
+msgstr "Ajmarski"
 
 #: includes/helper-functions.php:576
 msgid "Azerbaijani"
-msgstr ""
+msgstr "Azerbejdžanski"
 
 #: includes/helper-functions.php:577
 msgid "Bashkir"
-msgstr ""
+msgstr "Baškirski"
 
 #: includes/helper-functions.php:578
 msgid "Basque"
-msgstr ""
+msgstr "Baskijski"
 
 #: includes/helper-functions.php:579
 msgid "Bengali, Bangla"
-msgstr ""
+msgstr "Bengalski, bangladeštanski"
 
 #: includes/helper-functions.php:580
 msgid "Bhutani"
-msgstr ""
+msgstr "Butanski"
 
 #: includes/helper-functions.php:581
 msgid "Bihari"
-msgstr ""
+msgstr "Bihari"
 
 #: includes/helper-functions.php:582
 msgid "Bislama"
-msgstr ""
+msgstr "Bislama"
 
 #: includes/helper-functions.php:583
 msgid "Breton"
-msgstr ""
+msgstr "Bretonski"
 
 #: includes/helper-functions.php:584
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bugarski"
 
 #: includes/helper-functions.php:585
 msgid "Burmese"
-msgstr ""
+msgstr "Burmanski"
 
 #: includes/helper-functions.php:586
 msgid "Byelorussian"
-msgstr ""
+msgstr "Beloruski"
 
 #: includes/helper-functions.php:587
 msgid "Cambodian"
-msgstr ""
+msgstr "Kambodžijski"
 
 #: includes/helper-functions.php:588
 msgid "Catalan"
-msgstr ""
+msgstr "Katalonski"
 
 #: includes/helper-functions.php:589
 msgid "Chinese"
-msgstr ""
+msgstr "Kineski"
 
 #: includes/helper-functions.php:590
 msgid "Corsican"
-msgstr ""
+msgstr "Korzikanski"
 
 #: includes/helper-functions.php:591
 msgid "Croatian"
-msgstr ""
+msgstr "Hrvatski"
 
 #: includes/helper-functions.php:592
 msgid "Czech"
-msgstr ""
+msgstr "Češki"
 
 #: includes/helper-functions.php:593
 msgid "Danish"
-msgstr ""
+msgstr "Danski"
 
 #: includes/helper-functions.php:594
 msgid "Dutch"
-msgstr ""
+msgstr "Holandski"
 
 #: includes/helper-functions.php:595
 msgid "English"
-msgstr ""
+msgstr "Engleski"
 
 #: includes/helper-functions.php:596
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"
 
 #: includes/helper-functions.php:597
 msgid "Estonian"
-msgstr ""
+msgstr "Estonski"
 
 #: includes/helper-functions.php:598
 msgid "Faeroese"
-msgstr ""
+msgstr "Farski"
 
 #: includes/helper-functions.php:599
 msgid "Fiji"
-msgstr ""
+msgstr "Fidžijski"
 
 #: includes/helper-functions.php:600
 msgid "Finnish"
-msgstr ""
+msgstr "Finski"
 
 #: includes/helper-functions.php:601
 msgid "French"
-msgstr ""
+msgstr "Francuski"
 
 #: includes/helper-functions.php:602
 msgid "Frisian"
-msgstr ""
+msgstr "Frizijski"
 
 #: includes/helper-functions.php:603
 msgid "Gaelic (Scots Gaelic)"
-msgstr ""
+msgstr "Galski (škotski galski)"
 
 #: includes/helper-functions.php:604
 msgid "Galician"
-msgstr ""
+msgstr "Galicijski"
 
 #: includes/helper-functions.php:605
 msgid "Georgian"
-msgstr ""
+msgstr "Gruzijski"
 
 #: includes/helper-functions.php:606
 msgid "German"
-msgstr ""
+msgstr "Nemački"
 
 #: includes/helper-functions.php:607
 msgid "Greek"
-msgstr ""
+msgstr "Grčki"
 
 #: includes/helper-functions.php:608
 msgid "Greenlandic"
-msgstr ""
+msgstr "Grenlandski"
 
 #: includes/helper-functions.php:609
 msgid "Guarani"
-msgstr ""
+msgstr "Guarani"
 
 #: includes/helper-functions.php:610
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 #: includes/helper-functions.php:611
 msgid "Hausa"
-msgstr ""
+msgstr "Hausa"
 
 #: includes/helper-functions.php:612
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebrejski"
 
 #: includes/helper-functions.php:613
 msgid "Hindi"
-msgstr ""
+msgstr "Hindu"
 
 #: includes/helper-functions.php:614
 msgid "Hungarian"
-msgstr ""
+msgstr "Mađarski"
 
 #: includes/helper-functions.php:615
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandski"
 
 #: includes/helper-functions.php:616
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonezijski"
 
 #: includes/helper-functions.php:617
 msgid "Interlingua"
-msgstr ""
+msgstr "Interlingva"
 
 #: includes/helper-functions.php:618
 msgid "Interlingue"
-msgstr ""
+msgstr "Interlingva"
 
 #: includes/helper-functions.php:619
 msgid "Inupiak"
-msgstr ""
+msgstr "Inupiat"
 
 #: includes/helper-functions.php:620
 msgid "Irish"
-msgstr ""
+msgstr "Irski"
 
 #: includes/helper-functions.php:621
 msgid "Italian"
-msgstr ""
+msgstr "Italijanski"
 
 #: includes/helper-functions.php:622
 msgid "Japanese"
-msgstr ""
+msgstr "Japanski"
 
 #: includes/helper-functions.php:623
 msgid "Javanese"
-msgstr ""
+msgstr "Javanski"
 
 #: includes/helper-functions.php:624
 msgid "Kannada"
-msgstr ""
+msgstr "Kanadski"
 
 #: includes/helper-functions.php:625
 msgid "Kashmiri"
-msgstr ""
+msgstr "Kašmir"
 
 #: includes/helper-functions.php:626
 msgid "Kazakh"
-msgstr ""
+msgstr "Kazahstanski"
 
 #: includes/helper-functions.php:627
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "Kiniarvanda"
 
 #: includes/helper-functions.php:628
 msgid "Kirghiz"
-msgstr ""
+msgstr "Kirgijski"
 
 #: includes/helper-functions.php:629
 msgid "Kirundi"
-msgstr ""
+msgstr "Kirundi"
 
 #: includes/helper-functions.php:630
 msgid "Korean"
-msgstr ""
+msgstr "Korejski"
 
 #: includes/helper-functions.php:631
 msgid "Kurdish"
-msgstr ""
+msgstr "Kurdski"
 
 #: includes/helper-functions.php:632
 msgid "Laothian"
-msgstr ""
+msgstr "Laothian"
 
 #: includes/helper-functions.php:633
 msgid "Latin"
-msgstr ""
+msgstr "Latinski"
 
 #: includes/helper-functions.php:634
 msgid "Latvian, Lettish"
-msgstr ""
+msgstr "Latvijski, letonski"
 
 #: includes/helper-functions.php:635
 msgid "Lingala"
-msgstr ""
+msgstr "Lingala"
 
 #: includes/helper-functions.php:636
 msgid "Lithuanian"
-msgstr ""
+msgstr "Litvanski"
 
 #: includes/helper-functions.php:637
 msgid "Macedonian"
-msgstr ""
+msgstr "Makedonski"
 
 #: includes/helper-functions.php:638
 msgid "Malagasy"
-msgstr ""
+msgstr "malagazijski"
 
 #: includes/helper-functions.php:639
 msgid "Malay"
-msgstr ""
+msgstr "Malajski"
 
 #: includes/helper-functions.php:640
 msgid "Malayalam"
-msgstr ""
+msgstr "Malailam"
 
 #: includes/helper-functions.php:641
 msgid "Maltese"
-msgstr ""
+msgstr "Malteški"
 
 #: includes/helper-functions.php:642
 msgid "Maori"
-msgstr ""
+msgstr "Maorski"
 
 #: includes/helper-functions.php:643
 msgid "Marathi"
-msgstr ""
+msgstr "Marati"
 
 #: includes/helper-functions.php:644
 msgid "Moldavian"
-msgstr ""
+msgstr "Moldavski"
 
 #: includes/helper-functions.php:645
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolski"
 
 #: includes/helper-functions.php:646
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 #: includes/helper-functions.php:647
 msgid "Nepali"
-msgstr ""
+msgstr "Nepalski"
 
 #: includes/helper-functions.php:648
 msgid "Norwegian"
-msgstr ""
+msgstr "Norveški"
 
 #: includes/helper-functions.php:649
 msgid "Occitan"
-msgstr ""
+msgstr "Oksitanski"
 
 #: includes/helper-functions.php:650
 msgid "Oriya"
-msgstr ""
+msgstr "Oriia"
 
 #: includes/helper-functions.php:651
 msgid "Oromo, Afan"
-msgstr ""
+msgstr "Oromo, Afan"
 
 #: includes/helper-functions.php:652
 msgid "Pashto, Pushto"
-msgstr ""
+msgstr "Pašto, Pušto"
 
 #: includes/helper-functions.php:653
 msgid "Persian"
-msgstr ""
+msgstr "Persijski"
 
 #: includes/helper-functions.php:654
 msgid "Polish"
-msgstr ""
+msgstr "Poljski"
 
 #: includes/helper-functions.php:655
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalski"
 
 #: includes/helper-functions.php:656
 msgid "Punjabi"
-msgstr ""
+msgstr "Pandžabi"
 
 #: includes/helper-functions.php:657
 msgid "Quechua"
-msgstr ""
+msgstr "Kečua"
 
 #: includes/helper-functions.php:658
 msgid "Rhaeto-Romance"
-msgstr ""
+msgstr "Raeto-romance"
 
 #: includes/helper-functions.php:659
 msgid "Romanian"
-msgstr ""
+msgstr "Rumunski"
 
 #: includes/helper-functions.php:660
 msgid "Russian"
-msgstr ""
+msgstr "Ruski"
 
 #: includes/helper-functions.php:661
 msgid "Samoan"
-msgstr ""
+msgstr "Samoa"
 
 #: includes/helper-functions.php:662
 msgid "Sangro"
-msgstr ""
+msgstr "Sangrijski"
 
 #: includes/helper-functions.php:663
 msgid "Sanskrit"
-msgstr ""
+msgstr "Sanskrit"
 
 #: includes/helper-functions.php:664
 msgid "Serbian"
-msgstr ""
+msgstr "Srpski"
 
 #: includes/helper-functions.php:665
 msgid "Serbo-Croatian"
-msgstr ""
+msgstr "Srpsko-hrvatski"
 
 #: includes/helper-functions.php:666
 msgid "Sesotho"
-msgstr ""
+msgstr "Sesoto"
 
 #: includes/helper-functions.php:667
 msgid "Setswana"
-msgstr ""
+msgstr "Setsvana"
 
 #: includes/helper-functions.php:668
 msgid "Shona"
-msgstr ""
+msgstr "Šona"
 
 #: includes/helper-functions.php:669
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindi"
 
 #: includes/helper-functions.php:670
 msgid "Singhalese"
-msgstr ""
+msgstr "Cejlonski"
 
 #: includes/helper-functions.php:671
 msgid "Siswati"
-msgstr ""
+msgstr "Sisvati"
 
 #: includes/helper-functions.php:672
 msgid "Slovak"
-msgstr ""
+msgstr "Slovački"
 
 #: includes/helper-functions.php:673
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovenački"
 
 #: includes/helper-functions.php:674
 msgid "Somali"
-msgstr ""
+msgstr "Somalijski"
 
 #: includes/helper-functions.php:675
 msgid "Spanish"
-msgstr ""
+msgstr "Španski"
 
 #: includes/helper-functions.php:676
 msgid "Sudanese"
-msgstr ""
+msgstr "Sudanski"
 
 #: includes/helper-functions.php:677
 msgid "Swahili"
-msgstr ""
+msgstr "Svahili"
 
 #: includes/helper-functions.php:678
 msgid "Swedish"
-msgstr ""
+msgstr "Švedski"
 
 #: includes/helper-functions.php:679
 msgid "Tagalog"
-msgstr ""
+msgstr "Tagalog"
 
 #: includes/helper-functions.php:680
 msgid "Tajik"
-msgstr ""
+msgstr "Tadžički"
 
 #: includes/helper-functions.php:681
 msgid "Tamil"
-msgstr ""
+msgstr "Tamilski"
 
 #: includes/helper-functions.php:682
 msgid "Tatar"
-msgstr ""
+msgstr "Tatarski"
 
 #: includes/helper-functions.php:683
 msgid "Tegulu"
-msgstr ""
+msgstr "Telugu"
 
 #: includes/helper-functions.php:684
 msgid "Thai"
-msgstr ""
+msgstr "Tajlandski"
 
 #: includes/helper-functions.php:685
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetanski"
 
 #: includes/helper-functions.php:686
 msgid "Tigrinya"
-msgstr ""
+msgstr "Tigrinia"
 
 #: includes/helper-functions.php:687
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 #: includes/helper-functions.php:688
 msgid "Tsonga"
-msgstr ""
+msgstr "Conga"
 
 #: includes/helper-functions.php:689
 msgid "Turkish"
-msgstr ""
+msgstr "Turski"
 
 #: includes/helper-functions.php:690
 msgid "Turkmen"
-msgstr ""
+msgstr "Turkmenski"
 
 #: includes/helper-functions.php:691
 msgid "Twi"
-msgstr ""
+msgstr "Tvi"
 
 #: includes/helper-functions.php:692
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrajinski"
 
 #: includes/helper-functions.php:693
 msgid "Urdu"
-msgstr ""
+msgstr "Urdu"
 
 #: includes/helper-functions.php:694
 msgid "Uzbek"
-msgstr ""
+msgstr "Uzbekistanski"
 
 #: includes/helper-functions.php:695
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vijetnamski"
 
 #: includes/helper-functions.php:696
 msgid "Volapuk"
-msgstr ""
+msgstr "Volapuk"
 
 #: includes/helper-functions.php:697
 msgid "Welsh"
-msgstr ""
+msgstr "Velški"
 
 #: includes/helper-functions.php:698
 msgid "Wolof"
-msgstr ""
+msgstr "Volof"
 
 #: includes/helper-functions.php:699
 msgid "Xhosa"
-msgstr ""
+msgstr "Kshosa"
 
 #: includes/helper-functions.php:700
 msgid "Yiddish"
-msgstr ""
+msgstr "Jidiš"
 
 #: includes/helper-functions.php:701
 msgid "Yoruba"
-msgstr ""
+msgstr "Joruba"
 
 #: includes/helper-functions.php:702
 msgid "Zulu"
-msgstr ""
+msgstr "Zulu"
 
 #: mooberry-book-manager.php:246
 msgid "Book Manager"
-msgstr ""
+msgstr "Menadžer knjige"
 
 #: mooberry-book-manager.php:259 mooberry-book-manager.php:275
 #: mooberry-book-manager.php:277
 msgctxt "noun"
 msgid "Books"
-msgstr ""
+msgstr "Knjige"
 
 #: mooberry-book-manager.php:278
 msgid "All Books"
-msgstr ""
+msgstr "Sve knjige"
 
 #: mooberry-book-manager.php:279
 msgid "Add New"
-msgstr ""
+msgstr "Dodajte novu"
 
 #: mooberry-book-manager.php:280
 msgid "Add New Book"
-msgstr ""
+msgstr "Dodajte novu knjigu"
 
 #: mooberry-book-manager.php:281
 msgid "Edit"
-msgstr ""
+msgstr "Izmenite"
 
 #: mooberry-book-manager.php:282
 msgid "Edit Book"
-msgstr ""
+msgstr "Izmenite"
 
 #: mooberry-book-manager.php:283
 msgid "New Book"
-msgstr ""
+msgstr "Nova knjiga"
 
 #: mooberry-book-manager.php:284 mooberry-book-manager.php:285
 msgid "View Book"
-msgstr ""
+msgstr "Pregledajte knjigu"
 
 #: mooberry-book-manager.php:286
 msgid "Search Books"
-msgstr ""
+msgstr "Pretražite knjige"
 
 #: mooberry-book-manager.php:287
 msgid "No Books Found"
-msgstr ""
+msgstr "Nije pronađena nijedna knjiga "
 
 #: mooberry-book-manager.php:288
 msgid "No Books Found in Trash"
-msgstr ""
+msgstr "Nije pronađena nijedna knjiga u otpadu"
 
 #: mooberry-book-manager.php:289
 msgid "Parent Book"
-msgstr ""
+msgstr "Knjiga za roditelje"
 
 #: mooberry-book-manager.php:327 mooberry-book-manager.php:337
 #: single-book.php:1004
 msgid "Genres"
-msgstr ""
+msgstr "Žanrovi"
 
 #: mooberry-book-manager.php:329
 msgid "Search Genres"
-msgstr ""
+msgstr "Pretražite žanrove"
 
 #: mooberry-book-manager.php:330
 msgid "All Genres"
-msgstr ""
+msgstr "Svi žanrovi"
 
 #: mooberry-book-manager.php:331
 msgid "Parent Genre"
-msgstr ""
+msgstr "Žanr za roditelje"
 
 #: mooberry-book-manager.php:332
 msgid "Parent Genre:"
-msgstr ""
+msgstr "Žanr za roditelje::"
 
 #: mooberry-book-manager.php:333
 msgid "Edit Genre"
-msgstr ""
+msgstr "Izmenite žanr"
 
 #: mooberry-book-manager.php:334
 msgid "Update Genre"
-msgstr ""
+msgstr "Ažurirajte žanr"
 
 #: mooberry-book-manager.php:335
 msgid "Add New Genre"
-msgstr ""
+msgstr "Dodajte novi žanr"
 
 #: mooberry-book-manager.php:336
 msgid "New Genre Name"
-msgstr ""
+msgstr "Naziv novog žanra"
 
 #: mooberry-book-manager.php:338
 msgid "Popular Genres"
-msgstr ""
+msgstr "Popularni žanrovi"
 
 #: mooberry-book-manager.php:339
 msgid "Separate genres with commas"
-msgstr ""
+msgstr "Odvojite žanrove zarezima"
 
 #: mooberry-book-manager.php:340
 msgid "Add or remove genres"
-msgstr ""
+msgstr "Dodajte ili uklonite žanrove"
 
 #: mooberry-book-manager.php:341
 msgid "Choose from the most used genres"
-msgstr ""
+msgstr "Odaberite iz najkorišćenijih žanrova"
 
 #: mooberry-book-manager.php:342
 msgid "No genres found"
-msgstr ""
+msgstr "Nijedan žanr nije pronađen"
 
 #: mooberry-book-manager.php:362 mooberry-book-manager.php:372
 #: single-book.php:1008
 msgid "Tags"
-msgstr ""
+msgstr "Tagovi"
 
 #: mooberry-book-manager.php:364
 msgid "Search Tags"
-msgstr ""
+msgstr "Pretražite tagove"
 
 #: mooberry-book-manager.php:365
 msgid "All Tags"
-msgstr ""
+msgstr "Svi tagovi"
 
 #: mooberry-book-manager.php:366
 msgid "Parent Tag"
-msgstr ""
+msgstr "Tagovi za roditelje"
 
 #: mooberry-book-manager.php:367
 msgid "Parent Tag:"
-msgstr ""
+msgstr "Tag za roditelje:"
 
 #: mooberry-book-manager.php:368
 msgid "Edit Tag"
-msgstr ""
+msgstr "Izmenite tag"
 
 #: mooberry-book-manager.php:369
 msgid "Update Tag"
-msgstr ""
+msgstr "Ažurirajte tag"
 
 #: mooberry-book-manager.php:370
 msgid "Add New Tag"
-msgstr ""
+msgstr "Dodajte novi tag"
 
 #: mooberry-book-manager.php:371
 msgid "New Tag Name"
-msgstr ""
+msgstr "Naziv novog taga"
 
 #: mooberry-book-manager.php:373
 msgid "Popular Tags"
-msgstr ""
+msgstr "Popularni tagovi"
 
 #: mooberry-book-manager.php:374
 msgid "Separate tags with commas"
-msgstr ""
+msgstr "Odvojite tagove zarezima"
 
 #: mooberry-book-manager.php:375
 msgid "Add or remove tags"
-msgstr ""
+msgstr "Dodajte ili uklonite tagove"
 
 #: mooberry-book-manager.php:376
 msgid "Choose from the most used tags"
-msgstr ""
+msgstr "Odaberite iz najkorišćenijih tagova"
 
 #: mooberry-book-manager.php:377
 msgid "No tags found"
-msgstr ""
+msgstr "Nijedan tag nije pronađen"
 
 #: mooberry-book-manager.php:399
 msgid "Search Series"
-msgstr ""
+msgstr "Pretražite serije"
 
 #: mooberry-book-manager.php:400
 msgid "All Series"
-msgstr ""
+msgstr "Sve serije"
 
 #: mooberry-book-manager.php:401
 msgid "Parent Series"
-msgstr ""
+msgstr "Serije za roditelje"
 
 #: mooberry-book-manager.php:402
 msgid "Parent Series:"
-msgstr ""
+msgstr "Serije za roditelje:"
 
 #: mooberry-book-manager.php:403
 msgid "Edit Series"
-msgstr ""
+msgstr "Izmenite serije"
 
 #: mooberry-book-manager.php:404
 msgid "Update Series"
-msgstr ""
+msgstr "Ažurirajte serije"
 
 #: mooberry-book-manager.php:405
 msgid "Add New Series"
-msgstr ""
+msgstr "Dodajte nove serije"
 
 #: mooberry-book-manager.php:406
 msgid "New Series Name"
-msgstr ""
+msgstr "Naziv novih serija"
 
 #: mooberry-book-manager.php:408
 msgid "Popular Series"
-msgstr ""
+msgstr "Popularne serije"
 
 #: mooberry-book-manager.php:409
 msgid "Separate series with commas"
-msgstr ""
+msgstr "Odvojite serije zarezima"
 
 #: mooberry-book-manager.php:410
 msgid "Add or remove series"
-msgstr ""
+msgstr "Dodajte ili uklonite serije"
 
 #: mooberry-book-manager.php:411
 msgid "Choose from the most used series"
-msgstr ""
+msgstr "Odaberite iz najkorišćenijih serija"
 
 #: mooberry-book-manager.php:412
 msgid "No Series found"
-msgstr ""
+msgstr "Nijedna serija nije pronađena"
 
 #: single-book.php:140
 msgid "F j, Y"
-msgstr ""
+msgstr "F j, Y"
 
 #: single-book.php:165
 msgid "View on Goodreads"
-msgstr ""
+msgstr "Pogledajte na Goodreads"
 
 #: single-book.php:203
 msgid "READ MORE"
-msgstr ""
+msgstr "ČITAJTE VIŠE"
 
 #: single-book.php:204
 msgid "COLLAPSE"
-msgstr ""
+msgstr "KOLAPS"
 
 #: single-book.php:479
 msgid "Part of the "
-msgstr ""
+msgstr "Deo od"
 
 #: single-book.php:480
 msgid " series:"
-msgstr ""
+msgstr "serija:"
 
 #: single-book.php:481
 msgid "list"
-msgstr ""
+msgstr "lista"
 
 #: single-book.php:586
 msgid "on "
-msgstr ""
+msgstr "na"
 
 #: single-book.php:602
 msgid "wrote"
-msgstr ""
+msgstr "napisao"
 
 #: single-book.php:888
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: single-book.php:891
 msgid "Size"
-msgstr ""
+msgstr "Veličina"
 
 #: single-book.php:894
 msgid "Pages"
-msgstr ""
+msgstr "Stranice"
 
 #: single-book.php:945 single-book.php:1029
 msgid "Download Now:"
-msgstr ""
+msgstr "Preuzmite sada:"
 
 #: single-book.php:951
 msgid "Part of the"
-msgstr ""
+msgstr "Deo od"
 
 #: single-book.php:951
 msgid "series"
-msgstr ""
+msgstr "serija"
 
 #: single-book.php:975
 msgid "Editions"
-msgstr ""
+msgstr "Izdanja"
 
 #: single-book.php:1022
 msgid "Reviews"
-msgstr ""
+msgstr "Kritike"
 
 #: views/admin-book-widget.php:19
 msgid "Widget Title:"
-msgstr ""
+msgstr "Naziv vidžeta:"
 
 #: views/admin-book-widget.php:24
 msgid "Which book to show?"
-msgstr ""
+msgstr "Koju knjigu pokazati?"
 
 #: views/admin-book-widget.php:26
 msgid "Random Book"
-msgstr ""
+msgstr "Nasumična knjiga"
 
 #: views/admin-book-widget.php:27
 msgid "Newest Book"
-msgstr ""
+msgstr "Najnovija knjiga"
 
 #: views/admin-book-widget.php:28
 msgid "Future Book"
-msgstr ""
+msgstr "Buduća knjiga"
 
 #: views/admin-book-widget.php:29
 msgid "Specific Book"
-msgstr ""
+msgstr "Određena knjiga"
 
 #: views/admin-book-widget.php:36
 msgid "Book:"
-msgstr ""
+msgstr "Knjiga:"
 
 #: views/admin-book-widget.php:46
 msgid "Show Book Title"
-msgstr ""
+msgstr "Prikazati naslov knjige"
 
 #: views/admin-book-widget.php:51
 msgid "Cover Size(pixels)"
-msgstr ""
+msgstr "Veličina naslovne strane (pikseli)"
 
 #: views/admin-book-widget.php:52
 msgid "(minimum 50)"
-msgstr ""
+msgstr "(minimum 50)"
+
+#~ msgid "Number of Books Across"
+#~ msgstr "Broj “poprečnih” knjiga"
+
+#~ msgid "Use default number of books across?"
+#~ msgstr "Koristiti uobičajeni broj “poprečnih” knjiga?"
+
+#~ msgid "Metabox configuration is required to have an ID parameter"
+#~ msgstr "Traži se Metabox konfiguracija da biste imali ID parametar"
+
+#~ msgid "Click to toggle"
+#~ msgstr "Kliknite za prebacivanje"
+
+#~ msgid "Please Try Again"
+#~ msgstr "Molimo pokušajte ponovo"
+
+#~ msgid "Remove Embed"
+#~ msgstr "Uklonite ugradnju"
+
+#~ msgid "No oEmbed Results Found for %s. View more info at"
+#~ msgstr ""
+#~ "Nije pronađen nijedan rezultat ugradnje za %s. Pogledajte više "
+#~ "informacija na"
+
+#~ msgid "Add Group"
+#~ msgstr "Dodajte grupu"
+
+#~ msgid "Remove Group"
+#~ msgstr "Uklonite grupu"
+
+#~ msgid "Add Row"
+#~ msgstr "Dodajte red"
+
+#~ msgid "Remove"
+#~ msgstr "Uklonite"
+
+#~ msgid "No terms"
+#~ msgstr "Nema termina"
+
+#~ msgid "Add or Upload Files"
+#~ msgstr "Dodajte ili upload-ujte fajlove"
+
+#~ msgid "Add or Upload File"
+#~ msgstr "Dodajte ili upload-ujte fajl"
+
+#~ msgid "Remove Image"
+#~ msgstr "Uklonite sliku"
+
+#~ msgid "File:"
+#~ msgstr "Fajl:"
+
+#~ msgid "Download"
+#~ msgstr "Preuzimanje"
+
+#~ msgid "Clear"
+#~ msgstr "Brisanje"
+
+#~ msgid "Default"
+#~ msgstr "Uobičajeno"
+
+#~ msgid "Select Color"
+#~ msgstr "Odaberite boju"
+
+#~ msgid "Current Color"
+#~ msgstr "Trenutna boja"
+
+#~ msgid "mm/dd/yy"
+#~ msgstr "mm/dd/yy"
+
+#~ msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+#~ msgstr "Nedelja, ponedeljak, utroak, sreda, četvrtak, petak, subota"
+
+#~ msgid "Su, Mo, Tu, We, Th, Fr, Sa"
+#~ msgstr "Ned., pon., ut., sr., četvrt., pet., sub."
+
+#~ msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+#~ msgstr "Ned., pon., ut., sr., četvrt., pet., sub."
+
+#~ msgid ""
+#~ "January, February, March, April, May, June, July, August, September, "
+#~ "October, November, December"
+#~ msgstr ""
+#~ "Januar, februar, mart, april, maj, jun, jul, avgust, septembar, oktobar, "
+#~ "novembar, decembar"
+
+#~ msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+#~ msgstr "Jan, feb, mar, apr, may, jun, jul, avg, sep, okt, nov, dec"
+
+#~ msgid "Next"
+#~ msgstr "Sledeći"
+
+#~ msgid "Prev"
+#~ msgstr "Prethodni"
+
+#~ msgid "Today"
+#~ msgstr "Danas"
+
+#~ msgid "Done"
+#~ msgstr "Urađenoi"
+
+#~ msgid "Choose Time"
+#~ msgstr "Odaberite vreme"
+
+#~ msgid "Time"
+#~ msgstr "Vreme"
+
+#~ msgid "Hour"
+#~ msgstr "Sat"
+
+#~ msgid "Minute"
+#~ msgstr "Minut"
+
+#~ msgid "Second"
+#~ msgstr "Sekunda"
+
+#~ msgid "Now"
+#~ msgstr "Sada"
+
+#~ msgid "hh:mm TT"
+#~ msgstr "hh:mm TT"
+
+#~ msgid "Use this file"
+#~ msgstr "Koristite ovaj fajl"
+
+#~ msgid "Select / Deselect All"
+#~ msgstr "Selektujte/ Deselektujte sve"
+
+#~ msgid "Save"
+#~ msgstr "Sačuvajte"
