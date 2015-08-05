@@ -2,7 +2,7 @@
 **Contributors:** mooberrydreams  
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
-**Tested up to:** 4.2  
+**Tested up to:** 4.2.4  
 **Stable tag:** 2.0.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -44,15 +44,16 @@ To Add a Widget:
 * Choose the book to display  
 * Save the widget and view your website. Click on the book cover to get the details of the book.  
 
+Additonal questions?  
+Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
+
 Want regular updates? 
 * Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams
 * Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams
 * Check out the blog: http://www.mooberrydreams.com/blog
 * Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/
 
-Additonal questions?
 
-Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
 
 
 ## Changelog
