@@ -1,5 +1,21 @@
-#### 0.2.4 
 
+#### 1.3.2   
+* Added 9 new retailers   
+* Escapes add_query_vars for safety   
+
+#### 1.2 
+* Fixes bugs introduced in 1.1 (oops!)
+
+#### 1.1 
+* Added support for language translations   
+* Added German translation  
+* Fixed issues resulting from Customizr theme  
+* Fixed bug with book drop down in widget  
+
+#### 1.0 
+* Initial Release
+
+#### 0.2.4 
 * Final update before first public release
 * Removed update checker
 * Misc bugs
