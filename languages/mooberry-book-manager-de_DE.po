@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2015-08-02 21:44-0500\n"
+"POT-Creation-Date: 2015-08-05 18:29-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -43,7 +43,7 @@ msgid "Add your publishers."
 msgstr "Deinen Verlag hinzufügen"
 
 #: admin-settings-page.php:55 admin-settings-page.php:63 book.php:65
-#: book.php:496 single-book.php:1000
+#: book.php:496 single-book.php:1030
 msgid "Publisher"
 msgstr "Verleger"
 
@@ -71,7 +71,7 @@ msgstr "Format"
 msgid "Add New Format"
 msgstr "Neue Format hinzufügen"
 
-#: admin-settings-page.php:105 admin-settings-page.php:284
+#: admin-settings-page.php:105 admin-settings-page.php:293
 msgid "Remove Format"
 msgstr "Lösche Format"
 
@@ -83,51 +83,55 @@ msgstr "Format Name"
 msgid "BOOK PAGE DEFAULT SETTINGS"
 msgstr "Buchseiten Grundeinstellungen"
 
-#: admin-settings-page.php:142
+#: admin-settings-page.php:143
+msgid "Page Template"
+msgstr "Template"
+
+#: admin-settings-page.php:151
 msgid "Default Unit of Measurement"
 msgstr "Grundwert"
 
-#: admin-settings-page.php:149
+#: admin-settings-page.php:158
 msgid "Default Currency"
 msgstr "Standardwährung"
 
-#: admin-settings-page.php:156
+#: admin-settings-page.php:165
 msgid "Default Language"
 msgstr "Standardsprache"
 
-#: admin-settings-page.php:163
+#: admin-settings-page.php:172
 msgid "BOOK GRID DEFAULT SETTINGS"
 msgstr "BOOK GRID DEFAULT SETTINGS"
 
-#: admin-settings-page.php:168
+#: admin-settings-page.php:177
 msgid "Cover Height (px)"
 msgstr "Cover Höhe (px)"
 
-#: admin-settings-page.php:233
+#: admin-settings-page.php:242
 msgid "Add any additional retailers that sell your books."
 msgstr "Füge weitere Anbieter hinzu, die Dein Buch verkaufen."
 
-#: admin-settings-page.php:235 book.php:552
+#: admin-settings-page.php:244 book.php:552
 msgid "Retailer"
 msgstr "Anbieter"
 
-#: admin-settings-page.php:236
+#: admin-settings-page.php:245
 msgid "Add Retailer"
 msgstr "Anbieter hinzufügen"
 
-#: admin-settings-page.php:237
+#: admin-settings-page.php:246
 msgid "Remove Retailer"
 msgstr "Anbieter löschen"
 
-#: admin-settings-page.php:243
+#: admin-settings-page.php:252
 msgid "Retailer Name"
 msgstr "Anbieter Name"
 
-#: admin-settings-page.php:254
+#: admin-settings-page.php:263
 msgid "Retailer Logo Image"
 msgstr "Anbieter Logo"
 
-#: admin-settings-page.php:280
+#: admin-settings-page.php:289
 msgid ""
 "If you have free books for download, add any additional formats your books "
 "are available in."
@@ -135,38 +139,38 @@ msgstr ""
 "Steht Dein Buch zum kostenlosen Download bereit, dann füge das Format hinzu, "
 "in welchem Dein Buch vorliegt."
 
-#: admin-settings-page.php:282 admin-settings-page.php:290 book.php:242
+#: admin-settings-page.php:291 admin-settings-page.php:299 book.php:242
 #: book.php:596
 msgctxt "noun"
 msgid "Format"
 msgstr "Format"
 
-#: admin-settings-page.php:283
+#: admin-settings-page.php:292
 msgid "Add Format"
 msgstr "Format hinzufügen"
 
-#: admin-settings-page.php:299
+#: admin-settings-page.php:308
 msgctxt "noun"
 msgid "Format Image"
 msgstr "Format Logo"
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "General Settings"
 msgstr "Grundeinstellungen"
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "Publishers"
 msgstr "Verlage"
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "Edition Formats"
 msgstr "Editionsformate"
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "Retailers"
 msgstr "Anbieter"
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgctxt "noun"
 msgid "E-book Formats"
 msgstr "E-Book Formate"
@@ -221,7 +225,7 @@ msgstr "Ausgewählte Serien"
 
 #: book-grid.php:107 book-grid.php:130
 msgid "Select Tags"
-msgstr ""
+msgstr "Ausgewählte Tags"
 
 #: book-grid.php:108 book-grid.php:112
 msgid "Select Books"
@@ -257,7 +261,7 @@ msgstr "Gruppiere nach Genre"
 
 #: book-grid.php:157 book-grid.php:167
 msgid "Group Within Tag By"
-msgstr ""
+msgstr "Gruppiere Tags nach"
 
 #: book-grid.php:185
 msgid "Order By"
@@ -297,7 +301,7 @@ msgstr "Einzelwerk"
 
 #: book-grid.php:432
 msgid "Untagged"
-msgstr ""
+msgstr "Ungetagget"
 
 #: book-grid.php:556 book-grid.php:561
 msgid "Books not found"
@@ -329,7 +333,7 @@ msgstr "Cover"
 msgid "Length"
 msgstr "Seitenanzahl"
 
-#: book.php:62 single-book.php:996
+#: book.php:62 single-book.php:1026
 msgid "Published"
 msgstr "Veröffentlicht"
 
@@ -414,7 +418,7 @@ msgstr "Title der Edition"
 msgid "First Edition, Second Edition, etc."
 msgstr "Erste Edition, Zweite Edition, etc. "
 
-#: book.php:328 book.php:335 single-book.php:1016
+#: book.php:328 book.php:335 single-book.php:1046
 msgid "Excerpt"
 msgstr "Auszug"
 
@@ -456,13 +460,15 @@ msgstr "Rezension"
 
 #: book.php:411 book.php:418
 msgid "Additional Information"
-msgstr ""
+msgstr "Zusätzlcihe Information"
 
 #: book.php:421
 msgid ""
 "Any additional information you want to display on the page. Will be shown at "
 "the bottom of the page, after the reviews."
 msgstr ""
+"Jede zusätzliche Information word auf der Seite angezeigt, under den "
+"Rezensionen."
 
 #: book.php:440
 msgctxt "noun"
@@ -1245,6 +1251,10 @@ msgstr "Yoruba"
 msgid "Zulu"
 msgstr "Zulu"
 
+#: includes/helper-functions.php:753
+msgid "Default"
+msgstr "Default"
+
 #: mooberry-book-manager.php:246
 msgid "Book Manager"
 msgstr "Buch Manager"
@@ -1300,7 +1310,7 @@ msgid "Parent Book"
 msgstr "Ober Buch"
 
 #: mooberry-book-manager.php:327 mooberry-book-manager.php:337
-#: single-book.php:1004
+#: single-book.php:1034
 msgid "Genres"
 msgstr "Genre"
 
@@ -1357,7 +1367,7 @@ msgid "No genres found"
 msgstr "Keine Genres gefunden"
 
 #: mooberry-book-manager.php:362 mooberry-book-manager.php:372
-#: single-book.php:1008
+#: single-book.php:1038
 msgid "Tags"
 msgstr "Tags"
 
@@ -1513,23 +1523,23 @@ msgstr "Größe"
 msgid "Pages"
 msgstr "Seiten"
 
-#: single-book.php:945 single-book.php:1029
+#: single-book.php:975 single-book.php:1059
 msgid "Download Now:"
 msgstr "Jetzt downloaden:"
 
-#: single-book.php:951
+#: single-book.php:981
 msgid "Part of the"
 msgstr "Teil von"
 
-#: single-book.php:951
+#: single-book.php:981
 msgid "series"
 msgstr " Serie:"
 
-#: single-book.php:975
+#: single-book.php:1005
 msgid "Editions"
 msgstr "Editionen"
 
-#: single-book.php:1022
+#: single-book.php:1052
 msgid "Reviews"
 msgstr "Rezension"
 
@@ -1626,9 +1636,6 @@ msgstr "(mindestens 50px)"
 
 #~ msgid "Clear"
 #~ msgstr "Leeren"
-
-#~ msgid "Default"
-#~ msgstr "Default"
 
 #~ msgid "Select Color"
 #~ msgstr "Wähle eine Farbe"

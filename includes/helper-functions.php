@@ -750,7 +750,7 @@ function mbdb_get_format_name( $format ) {
 function mbdb_get_template_list() {
 	$all_templates = wp_get_theme()->get_page_templates();
 	
-	$all_templates = array_merge( array('default' => 'Default'), $all_templates);
+	$all_templates = array_merge( array('default' => __('Default', 'mooberry-book-manager')), $all_templates);
 	
 	return $all_templates;
 }

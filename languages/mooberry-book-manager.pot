@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2015-08-02 21:44-0500\n"
+"POT-Creation-Date: 2015-08-05 18:29-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -42,7 +42,7 @@ msgid "Add your publishers."
 msgstr ""
 
 #: admin-settings-page.php:55 admin-settings-page.php:63 book.php:65
-#: book.php:496 single-book.php:1000
+#: book.php:496 single-book.php:1030
 msgid "Publisher"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Add New Format"
 msgstr ""
 
-#: admin-settings-page.php:105 admin-settings-page.php:284
+#: admin-settings-page.php:105 admin-settings-page.php:293
 msgid "Remove Format"
 msgstr ""
 
@@ -82,88 +82,92 @@ msgstr ""
 msgid "BOOK PAGE DEFAULT SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:142
+#: admin-settings-page.php:143
+msgid "Page Template"
+msgstr ""
+
+#: admin-settings-page.php:151
 msgid "Default Unit of Measurement"
 msgstr ""
 
-#: admin-settings-page.php:149
+#: admin-settings-page.php:158
 msgid "Default Currency"
 msgstr ""
 
-#: admin-settings-page.php:156
+#: admin-settings-page.php:165
 msgid "Default Language"
 msgstr ""
 
-#: admin-settings-page.php:163
+#: admin-settings-page.php:172
 msgid "BOOK GRID DEFAULT SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:168
+#: admin-settings-page.php:177
 msgid "Cover Height (px)"
 msgstr ""
 
-#: admin-settings-page.php:233
+#: admin-settings-page.php:242
 msgid "Add any additional retailers that sell your books."
 msgstr ""
 
-#: admin-settings-page.php:235 book.php:552
+#: admin-settings-page.php:244 book.php:552
 msgid "Retailer"
 msgstr ""
 
-#: admin-settings-page.php:236
+#: admin-settings-page.php:245
 msgid "Add Retailer"
 msgstr ""
 
-#: admin-settings-page.php:237
+#: admin-settings-page.php:246
 msgid "Remove Retailer"
 msgstr ""
 
-#: admin-settings-page.php:243
+#: admin-settings-page.php:252
 msgid "Retailer Name"
 msgstr ""
 
-#: admin-settings-page.php:254
+#: admin-settings-page.php:263
 msgid "Retailer Logo Image"
 msgstr ""
 
-#: admin-settings-page.php:280
+#: admin-settings-page.php:289
 msgid ""
 "If you have free books for download, add any additional formats your books "
 "are available in."
 msgstr ""
 
-#: admin-settings-page.php:282 admin-settings-page.php:290 book.php:242
+#: admin-settings-page.php:291 admin-settings-page.php:299 book.php:242
 #: book.php:596
 msgctxt "noun"
 msgid "Format"
 msgstr ""
 
-#: admin-settings-page.php:283
+#: admin-settings-page.php:292
 msgid "Add Format"
 msgstr ""
 
-#: admin-settings-page.php:299
+#: admin-settings-page.php:308
 msgctxt "noun"
 msgid "Format Image"
 msgstr ""
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "General Settings"
 msgstr ""
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "Publishers"
 msgstr ""
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "Edition Formats"
 msgstr ""
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgid "Retailers"
 msgstr ""
 
-#: admin-settings-page.php:321
+#: admin-settings-page.php:330
 msgctxt "noun"
 msgid "E-book Formats"
 msgstr ""
@@ -326,7 +330,7 @@ msgstr ""
 msgid "Length"
 msgstr ""
 
-#: book.php:62 single-book.php:996
+#: book.php:62 single-book.php:1026
 msgid "Published"
 msgstr ""
 
@@ -409,7 +413,7 @@ msgstr ""
 msgid "First Edition, Second Edition, etc."
 msgstr ""
 
-#: book.php:328 book.php:335 single-book.php:1016
+#: book.php:328 book.php:335 single-book.php:1046
 msgid "Excerpt"
 msgstr ""
 
@@ -1234,6 +1238,10 @@ msgstr ""
 msgid "Zulu"
 msgstr ""
 
+#: includes/helper-functions.php:753
+msgid "Default"
+msgstr ""
+
 #: mooberry-book-manager.php:246
 msgid "Book Manager"
 msgstr ""
@@ -1289,7 +1297,7 @@ msgid "Parent Book"
 msgstr ""
 
 #: mooberry-book-manager.php:327 mooberry-book-manager.php:337
-#: single-book.php:1004
+#: single-book.php:1034
 msgid "Genres"
 msgstr ""
 
@@ -1346,7 +1354,7 @@ msgid "No genres found"
 msgstr ""
 
 #: mooberry-book-manager.php:362 mooberry-book-manager.php:372
-#: single-book.php:1008
+#: single-book.php:1038
 msgid "Tags"
 msgstr ""
 
@@ -1502,23 +1510,23 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: single-book.php:945 single-book.php:1029
+#: single-book.php:975 single-book.php:1059
 msgid "Download Now:"
 msgstr ""
 
-#: single-book.php:951
+#: single-book.php:981
 msgid "Part of the"
 msgstr ""
 
-#: single-book.php:951
+#: single-book.php:981
 msgid "series"
 msgstr ""
 
-#: single-book.php:975
+#: single-book.php:1005
 msgid "Editions"
 msgstr ""
 
-#: single-book.php:1022
+#: single-book.php:1052
 msgid "Reviews"
 msgstr ""
 
