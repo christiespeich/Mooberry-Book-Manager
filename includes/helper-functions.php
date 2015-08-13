@@ -91,8 +91,12 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options) {
 					$default_data['image'] = '';
 				}
 			}
-			$default_data['name'] = $default_values[$x]['name'];
-			$default_data['uniqueID'] = $default_values[$x][ 'uniqueID' ];
+			if (array_key_exists('name', $default_values[$x])) {
+				$default_data['name'] = $default_values[$x]['name'];
+			}
+			if (array_key_exists('uniqueID', $default_values[$x])) {
+				$default_data['uniqueID'] = $default_values[$x][ 'uniqueID' ];
+			}
 			$mbdb_options[$options_key][] = $default_data;
 		}
 	}
