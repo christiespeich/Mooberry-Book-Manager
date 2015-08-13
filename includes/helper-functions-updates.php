@@ -6,6 +6,10 @@ function mbdb_upgrade_versions() {
 		
 		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
 		
+		if ($current_version == '') {
+			$current_version = MBDB_PLUGIN_VERSION;
+		}
+		
 		if (version_compare($current_version, '1.3.1', '<')) {
 			// upgrade to 1.3 script
 			// add new retailers
@@ -27,6 +31,11 @@ function mbdb_upgrade_versions() {
 			mbdb_migrate_to_book_grid_height_defaults();
 		}
 	
+		if (version_compare($current_version, '2.2', '<')) {
+			// re-run the new retailer images to fix them
+			mbdb_update_retailer_images();
+			
+		}	
 		
 		// update database to the new version
 		update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
@@ -126,19 +135,23 @@ function mbdb_update_images($new_images, $options_name) {
 			
 				// save the original attachID
 				$old_attachID = $options[$x]['imageID'];
+				// delete the original image
+				wp_delete_attachment($old_attachID, true);
 				// upload the new image
 				$new_attachID = mbdb_upload_image($image['image']);
+
 				if ($new_attachID != 0) {
 					// if the upload succeeded
 					// update the attach id
 					$options[$x]['imageID'] = $new_attachID;
 					// update the image
 					$img = wp_get_attachment_url( $new_attachID );
+					
 					$options[$x]['image'] = $img;
-					// delete the original image
-					wp_delete_attachment($old_attachID, true);
+					
 				} else {
 					// error message?
+					
 				}
 				// item has been found, break out of loop
 				break;
