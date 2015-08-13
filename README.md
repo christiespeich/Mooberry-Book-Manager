@@ -57,6 +57,12 @@ Want regular updates?
 
 
 ## Changelog
+#### 2.2  
+* New: Added Spanish translation  
+* Fixed: Compliant with Wordpress 4.3 (and works for < Wordpress 4.3)  
+* Fixed: Retailer images missing since version 2.0 restored  
+* Fixed: Improved translation string for Series and Genre grids for more flexibility  
+
 #### 2.1 
 * New: Book Grids are now responsive  
 * New: Added Serbo–Croatian translation  

@@ -4,7 +4,7 @@
     Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
     Description: An easy-to-use system for authors to add books their Wordpress website
     Author: Mooberry Dreams
-    Version: 2.1
+    Version: 2.2
     Author URI: http://www.mooberrydreams.com/
 	Text Domain: mooberry-book-manager
 	
@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.1');
+	define('MBDB_PLUGIN_VERSION', '2.2');
 		
 		
 	// Load in CMB2
@@ -191,9 +191,15 @@
 	add_action('wp_head', 'mbdb_grid_styles');
 	function mbdb_grid_styles() {
 		global $post;
-		$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
+		
+		$grid = get_post_meta($post->ID, '_mbdb_book_grid_display', true);
+		 
+		if ( (get_post_type() == 'mbdb_tax_grid' || $grid == 'yes') && is_main_query() && !is_admin() ) {
+	
+			$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
 
-		include 'css/grid-styles.php';
+			include 'css/grid-styles.php';
+		}
 	}
 
 	add_action( 'admin_footer', 'mbdb_register_script');
