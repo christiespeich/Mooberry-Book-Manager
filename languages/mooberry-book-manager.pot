@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2015-08-05 18:29-0500\n"
+"POT-Creation-Date: 2015-08-10 22:15-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -172,135 +172,148 @@ msgctxt "noun"
 msgid "E-book Formats"
 msgstr ""
 
-#: book-grid.php:54
-msgid "Books tagged with "
+#: book-grid.php:53
+#, php-format
+msgctxt "%1$s = name of series, %2$s = \"Series\""
+msgid "%1$s %2$s"
 msgstr ""
 
-#: book-grid.php:57
+#: book-grid.php:56
+#, php-format
+msgctxt "%1$s = name of genre, %2$s = \"Genre\""
+msgid "%1$s %2$s"
+msgstr ""
+
+#: book-grid.php:59
+#, php-format
+msgid "Books tagged with %s"
+msgstr ""
+
+#: book-grid.php:65
 msgid "Not Found"
 msgstr ""
 
-#: book-grid.php:81
+#: book-grid.php:89
 msgid "Book Grid Settings"
 msgstr ""
 
-#: book-grid.php:88
+#: book-grid.php:96
 msgid "Display Books on This Page?"
 msgstr ""
 
-#: book-grid.php:93 book-grid.php:202
+#: book-grid.php:101 book-grid.php:210
 msgid "Yes"
 msgstr ""
 
-#: book-grid.php:94 book-grid.php:203
+#: book-grid.php:102 book-grid.php:211
 msgid "No"
 msgstr ""
 
-#: book-grid.php:98
+#: book-grid.php:106
 msgid "Books to Display"
 msgstr ""
 
-#: book-grid.php:102
+#: book-grid.php:110
 msgid "All"
 msgstr ""
 
-#: book-grid.php:103
+#: book-grid.php:111
 msgid "All Published"
 msgstr ""
 
-#: book-grid.php:104
+#: book-grid.php:112
 msgid "All Coming Soon"
 msgstr ""
 
-#: book-grid.php:105 book-grid.php:118
+#: book-grid.php:113 book-grid.php:126
 msgid "Select Genres"
 msgstr ""
 
-#: book-grid.php:106 book-grid.php:124
+#: book-grid.php:114 book-grid.php:132
 msgid "Select Series"
 msgstr ""
 
-#: book-grid.php:107 book-grid.php:130
+#: book-grid.php:115 book-grid.php:138
 msgid "Select Tags"
 msgstr ""
 
-#: book-grid.php:108 book-grid.php:112
+#: book-grid.php:116 book-grid.php:120
 msgid "Select Books"
 msgstr ""
 
-#: book-grid.php:136
+#: book-grid.php:144
 msgid "Group Books By"
 msgstr ""
 
-#: book-grid.php:140 book-grid.php:151 book-grid.php:161 book-grid.php:171
-#: book-grid.php:180
+#: book-grid.php:148 book-grid.php:159 book-grid.php:169 book-grid.php:179
+#: book-grid.php:188
 msgid "None"
 msgstr ""
 
-#: book-grid.php:141 book-grid.php:163 book.php:61
+#: book-grid.php:149 book-grid.php:171 book.php:61
 #: mooberry-book-manager.php:328
 msgid "Genre"
 msgstr ""
 
-#: book-grid.php:142 book-grid.php:152 book-grid.php:162 book-grid.php:172
-#: book-grid.php:181 book.php:63 mooberry-book-manager.php:397
+#: book-grid.php:150 book-grid.php:160 book-grid.php:170 book-grid.php:180
+#: book-grid.php:189 book.php:63 mooberry-book-manager.php:397
 #: mooberry-book-manager.php:398 mooberry-book-manager.php:407
 msgid "Series"
 msgstr ""
 
-#: book-grid.php:143 book-grid.php:153 mooberry-book-manager.php:363
+#: book-grid.php:151 book-grid.php:161 mooberry-book-manager.php:363
 msgid "Tag"
 msgstr ""
 
-#: book-grid.php:147 book-grid.php:176
+#: book-grid.php:155 book-grid.php:184
 msgid "Group Within Genre By"
 msgstr ""
 
-#: book-grid.php:157 book-grid.php:167
+#: book-grid.php:165 book-grid.php:175
 msgid "Group Within Tag By"
 msgstr ""
 
-#: book-grid.php:185
+#: book-grid.php:193
 msgid "Order By"
 msgstr ""
 
-#: book-grid.php:190
+#: book-grid.php:198
 msgid "Publication Date (oldest first)"
 msgstr ""
 
-#: book-grid.php:191
+#: book-grid.php:199
 msgid "Publication Date (newest first)"
 msgstr ""
 
-#: book-grid.php:192
+#: book-grid.php:200
 msgid "Title (A-Z)"
 msgstr ""
 
-#: book-grid.php:193
+#: book-grid.php:201
 msgid "Title (Z-A)"
 msgstr ""
 
-#: book-grid.php:197
+#: book-grid.php:205
 msgid "Use default cover height?"
 msgstr ""
 
-#: book-grid.php:207
+#: book-grid.php:215
 msgid "Book Cover Height (px)"
 msgstr ""
 
-#: book-grid.php:426
+#: book-grid.php:434
 msgid "Uncategorized"
 msgstr ""
 
-#: book-grid.php:429
+#: book-grid.php:437
 msgid "Standalones"
 msgstr ""
 
-#: book-grid.php:432
+#: book-grid.php:440
 msgid "Untagged"
 msgstr ""
 
-#: book-grid.php:556 book-grid.php:561
+#: book-grid.php:564 book-grid.php:569
 msgid "Books not found"
 msgstr ""
 
@@ -309,12 +322,12 @@ msgid ""
 "Shows the cover of the book of your choosing with a link to the book page"
 msgstr ""
 
-#: book-widget.php:7 mooberry-book-manager.php:276
+#: book-widget.php:8 mooberry-book-manager.php:276
 msgctxt "noun"
 msgid "Book"
 msgstr ""
 
-#: book-widget.php:120
+#: book-widget.php:121
 msgid "No books found"
 msgstr ""
 

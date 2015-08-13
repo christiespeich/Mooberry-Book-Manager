@@ -48,10 +48,18 @@ function mbdb_get_tax_title( $content ) {
 				$term = get_term_by('slug', $mbdb_term, $mbdb_taxonomy);			
 				$taxonomy = get_taxonomy($mbdb_taxonomy);
 				if (isset($term) && isset($taxonomy) && $term != null && $taxonomy !=null) {
-					if ($mbdb_taxonomy != 'mbdb_tag') {
-						$content = apply_filters('mbdb_book_grid_' . $mbdb_taxonomy . '_title', $term->name . ' ' . $taxonomy->labels->singular_name, $term, $taxonomy);
-					} else {
-						$content = apply_filters('mbdb_book_grid_tag_title', __('Books tagged with ', 'mooberry-book-manager') . $term->name, $term, $taxonomy);
+					switch ($mbdb_taxonomy) {
+						case 'mbdb_series':
+							$content = apply_filters('mbdb_book_grid_' . $mbdb_taxonomy . '_title', sprintf( _x( '%1$s %2$s', '%1$s = name of series, %2$s = "Series"', 'mooberry-book-manager'), $term->name, $taxonomy->labels->singular_name), $term, $taxonomy);
+							break;
+						case 'mbdb_genre':
+							$content = apply_filters('mbdb_book_grid_' . $mbdb_taxonomy . '_title', sprintf( _x( '%1$s %2$s', '%1$s = name of genre, %2$s = "Genre"', 'mooberry-book-manager'), $term->name, $taxonomy->labels->singular_name), $term, $taxonomy);
+							break;
+						case 'mbdb_tag':
+							$content = apply_filters('mbdb_book_grid_tag_title', sprintf(__('Books tagged with %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+							break;
+						default:
+							$content = '';
 					}
 				} else {
 					$content = __('Not Found', 'mooberry-book-manager');
