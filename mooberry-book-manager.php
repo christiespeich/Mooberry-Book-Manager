@@ -2,7 +2,7 @@
  /*
     Plugin Name: Mooberry Book Manager
     Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
-    Description: An easy-to-use system for authors to add books their Wordpress website
+    Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
     Author: Mooberry Dreams
     Version: 2.2
     Author URI: http://www.mooberrydreams.com/

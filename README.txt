@@ -8,7 +8,7 @@ Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An easy-to-use system for authors. Add your new book to your site in less than 5 minutes.
+An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more.
 
 == Description ==
 
