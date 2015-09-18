@@ -57,6 +57,9 @@ Want regular updates?
 
 
 ## Changelog
+#### 2.3
+* New: Added Russian translation
+
 #### 2.2  
 * New: Added Spanish translation  
 * Fixed: Compliant with Wordpress 4.3 (and works for < Wordpress 4.3)  

@@ -143,6 +143,10 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 2.3 =
+* New: Added Russian translation
+
+
 = 2.2 =
 * New: Added Spanish translation
 * Fixed: Compliant with Wordpress 4.3 (and works for < Wordpress 4.3)
