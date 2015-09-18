@@ -202,6 +202,8 @@ Redesigned, responsive book page and much more!
 
 * Spanish
 
+* Russian
+
 **NOTE:** Mooberry Book Manager is translatable. If you'd like to volunteer a translation for your language, the template file (.pot) is available in the `languages` folder. [Contact us](http://www.mooberrydreams.com/contact/) when your translation is ready or if you need assistance.
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
@@ -211,3 +213,5 @@ Redesigned, responsive book page and much more!
 * Thanks to [Web Hosting Geeks](http://www.webhostinggeeks.com/) for the Serbo-Croatian translation!
 
 * Thanks to Ana Gomez for the Spanish translation!
+
+* Thanks to Sergey Kryukov for the Russian translation!
