@@ -57,7 +57,6 @@ function set_up_mbdb_book_columns( $columns ) {
 		'cb' => '<input type="checkbox" />',
 		'title' => __('Title', 'mooberry-book-manager') ,
 		'_mbdb_cover' => __('Cover', 'mooberry-book-manager'),
-		'_mbdb_length' => __('Length', 'mooberry-book-manager') ,
 		'mbdb_genre' => __('Genre', 'mooberry-book-manager'),
 		'_mbdb_published' => __('Published', 'mooberry-book-manager'),
 		'mbdb_series' => __('Series', 'mooberry-book-manager'),
@@ -151,7 +150,7 @@ add_action('add_meta_boxes_mbdb_book', 'mbdb_reorder_taxonomy_boxes');
 function mbdb_reorder_taxonomy_boxes() {
 	
     global $wp_meta_boxes;
-	$taxonomies = array(  'tagsdiv-mbdb_tag', 'tagsdiv-mbdb_series', 'tagsdiv-mbdb_genre' );
+	$taxonomies = array( 'tagsdiv-mbdb_cover_artist', 'tagsdiv-mbdb_illustrator',  'tagsdiv-mbdb_editor', 'tagsdiv-mbdb_tag', 'tagsdiv-mbdb_series', 'tagsdiv-mbdb_genre' );
 	// remove the cover to be readded before the taxonomies
 	$cover = $wp_meta_boxes['mbdb_book']['side']['default']['mbdb_cover_image'];
 	unset($wp_meta_boxes['mbdb_book']['side']['default']['mbdb_cover_image']);

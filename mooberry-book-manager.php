@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.2');
+	define('MBDB_PLUGIN_VERSION', '2.3');
 		
 		
 	// Load in CMB2
@@ -232,9 +232,15 @@
 		$new_rules['series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['genre/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['book-tag/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['editor/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_editor&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['illustrator/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_illustrator&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['cover-artist/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_cover_artist&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['mbdb_series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['mbdb_genres/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules['mbdb_tags/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['mbdb_editors/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_editor&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['mbdb_cover_artists/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_cover_artist&the-term=$matches[1]&post_type=mbdb_tax_grid';
+		$new_rules['mbdb_illustrators/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_illustrator&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		
 		$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;		
 	}
@@ -419,6 +425,112 @@
 				)
 			))
 		);
+		
+			register_taxonomy('mbdb_editor', 'mbdb_book', 
+			apply_filters('mbdb_editor_taxonomy', array(
+				//'rewrite' => false, 
+				'rewrite' => array(	'slug' => 'mbdb_editors' ),
+				'public' => true, //false,
+				'show_admin_column' => true,
+				'update_count_callback' => '_update_post_term_count',
+				'capabilities'	=> array(
+					'manage_terms' => 'manage_categories',
+					'edit_terms'   => 'manage_categories',
+					'delete_terms' => 'manage_categories',
+					'assign_terms' => 'manage_mbdb_books',				
+				),
+				'labels' => array(
+					'name' => __('Editors', 'mooberry-book-manager'),
+					'singular_name' => __('Editor', 'mooberry-book-manager'),
+					'search_items' => __('Search Editors' , 'mooberry-book-manager'),
+					'all_items' =>  __('All Editors' , 'mooberry-book-manager'),
+					'parent_item' =>  __('Parent Editor' , 'mooberry-book-manager'),
+					'parent_item_colon' =>  __('Parent Editor:' , 'mooberry-book-manager'),
+					'edit_item' =>  __('Edit Editor' , 'mooberry-book-manager'),
+					'update_item' =>  __('Update Editor' , 'mooberry-book-manager'),
+					'add_new_item' =>  __('Add New Editor' , 'mooberry-book-manager'),
+					'new_item_name' =>  __('New Editor Name' , 'mooberry-book-manager'),
+					'menu_name' =>  __('Editors' , 'mooberry-book-manager'),
+					'popular_items' => __('Popular Editors', 'mooberry-book-manager'),
+					'separate_items_with_commas' => __('Separate Editors with commas', 'mooberry-book-manager'),
+					'add_or_remove_items' => __('Add or remove Editors', 'mooberry-book-manager'),
+					'choose_from_most_used' => __('Choose from the most used Editors', 'mooberry-book-manager'),
+					'not_found' => __('No Editors found', 'mooberry-book-manager')
+				)
+			)
+			)
+		);
+		register_taxonomy('mbdb_illustrator', 'mbdb_book', 
+			apply_filters('mbdb_illustrator_taxonomy', array(
+				//'rewrite' => false, 
+				'rewrite' => array(	'slug' => 'mbdb_illustrators' ),
+				'public' => true, //false,
+				'show_admin_column' => true,
+				'update_count_callback' => '_update_post_term_count',
+				'capabilities'	=> array(
+					'manage_terms' => 'manage_categories',
+					'edit_terms'   => 'manage_categories',
+					'delete_terms' => 'manage_categories',
+					'assign_terms' => 'manage_mbdb_books',				
+				),
+				'labels' => array(
+					'name' => __('Illustrators', 'mooberry-book-manager'),
+					'singular_name' => __('Illustrator', 'mooberry-book-manager'),
+					'search_items' => __('Search Illustrators' , 'mooberry-book-manager'),
+					'all_items' =>  __('All Illustrators' , 'mooberry-book-manager'),
+					'parent_item' =>  __('Parent Illustrator' , 'mooberry-book-manager'),
+					'parent_item_colon' =>  __('Parent Illustrator:' , 'mooberry-book-manager'),
+					'edit_item' =>  __('Edit Illustrator' , 'mooberry-book-manager'),
+					'update_item' =>  __('Update Illustrator' , 'mooberry-book-manager'),
+					'add_new_item' =>  __('Add New Illustrator' , 'mooberry-book-manager'),
+					'new_item_name' =>  __('New Illustrator Name' , 'mooberry-book-manager'),
+					'menu_name' =>  __('Illustrators' , 'mooberry-book-manager'),
+					'popular_items' => __('Popular Illustrators', 'mooberry-book-manager'),
+					'separate_items_with_commas' => __('Separate Illustrators with commas', 'mooberry-book-manager'),
+					'add_or_remove_items' => __('Add or remove Illustrators', 'mooberry-book-manager'),
+					'choose_from_most_used' => __('Choose from the most used Illustrators', 'mooberry-book-manager'),
+					'not_found' => __('No Illustrators found', 'mooberry-book-manager')
+				)
+			)
+			)
+		);
+		
+		register_taxonomy('mbdb_cover_artist', 'mbdb_book', 
+			apply_filters('mbdb_cover_artist_taxonomy', array(
+				//'rewrite' => false, 
+				'rewrite' => array(	'slug' => 'mbdb_cover_artists' ),
+				'public' => true, //false,
+				'show_admin_column' => true,
+				'update_count_callback' => '_update_post_term_count',
+				'capabilities'	=> array(
+					'manage_terms' => 'manage_categories',
+					'edit_terms'   => 'manage_categories',
+					'delete_terms' => 'manage_categories',
+					'assign_terms' => 'manage_mbdb_books',				
+				),
+				'labels' => array(
+					'name' => __('Cover Artists', 'mooberry-book-manager'),
+					'singular_name' => __('Cover Artist', 'mooberry-book-manager'),
+					'search_items' => __('Search Cover Artists' , 'mooberry-book-manager'),
+					'all_items' =>  __('All Cover Artists' , 'mooberry-book-manager'),
+					'parent_item' =>  __('Parent Cover Artist' , 'mooberry-book-manager'),
+					'parent_item_colon' =>  __('Parent Cover Artist:' , 'mooberry-book-manager'),
+					'edit_item' =>  __('Edit Cover Artist' , 'mooberry-book-manager'),
+					'update_item' =>  __('Update Cover Artist' , 'mooberry-book-manager'),
+					'add_new_item' =>  __('Add New Cover Artist' , 'mooberry-book-manager'),
+					'new_item_name' =>  __('New Cover Artist Name' , 'mooberry-book-manager'),
+					'menu_name' =>  __('Cover Artists' , 'mooberry-book-manager'),
+					'popular_items' => __('Popular Cover Artists', 'mooberry-book-manager'),
+					'separate_items_with_commas' => __('Separate Cover Artists with commas', 'mooberry-book-manager'),
+					'add_or_remove_items' => __('Add or remove Cover Artists', 'mooberry-book-manager'),
+					'choose_from_most_used' => __('Choose from the most used Cover Artists', 'mooberry-book-manager'),
+					'not_found' => __('No Cover Artists found', 'mooberry-book-manager')
+				)
+			)
+			)
+		);
+
+		
 		
 		mbdb_upgrade_versions();
 	

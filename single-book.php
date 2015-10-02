@@ -17,6 +17,9 @@ add_shortcode( 'book_downloadlinks', 'mbdb_shortcode_downloadlinks'  );
 add_shortcode( 'book_serieslist', 'mbdb_shortcode_serieslist');
 add_shortcode( 'book_series', 'mbdb_shortcode_series');
 add_shortcode( 'book_tags', 'mbdb_shortcode_tags');
+add_shortcode( 'book_illustrator', 'mbdb_shortcode_illustrator');
+add_shortcode( 'book_editor', 'mbdb_shortcode_editor');
+add_shortcode( 'book_cover_artist', 'mbdb_shortcode_cover_artist');
 add_shortcode( 'book_links', 'mbdb_shortcode_links');
 add_shortcode( 'book_editions', 'mbdb_shortcode_editions');
 		
@@ -82,7 +85,7 @@ function mbdb_simple_shortcode( $meta_data, $attr, $classname) {
 
 
 function mbdb_output_summary($book_data, $attr) {
-	return apply_filters('mbdb_shortcode_summary', '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">' . wpautop($book_data) . '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>');
+	return apply_filters('mbdb_shortcode_summary', '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">' . do_shortcode(wpautop($book_data)) . '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>');
 }
 
 
@@ -198,10 +201,10 @@ function mbdb_output_excerpt($mbdb_excerpt, $attr) {
 	 }
 	$html_output = '<div class="mbm-book-excerpt">
 		<span class="mbm-book-excerpt-label">' . esc_html($attr['label']) . '</span>
-		<span class="mbm-book-excerpt-text">' . $excerpt1;
+		<span class="mbm-book-excerpt-text">' . do_shortcode($excerpt1);
 	if (trim($excerpt2) != '' ) {
 		$html_output .= '<a name="more" class="mbm-book-excerpt-read-more">' . __('READ MORE', 'mooberry-book-manager') . '</a>
-	<span class="mbm-book-excerpt-text-hidden">' . $excerpt2 . '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
+	<span class="mbm-book-excerpt-text-hidden">' . do_shortcode($excerpt2) . '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
 	}
 	$html_output .=' </span><span class="mbm-book-excerpt-after">' . esc_html($attr['after']) . '</span></div>';
 	return apply_filters('mbdb_shortcode_excerpt', $html_output);
@@ -325,6 +328,18 @@ function mbdb_shortcode_tags( $attr, $content) {
 }
 function mbdb_shortcode_genre($attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_genre', 'genre');
+}
+
+function mbdb_shortcode_editor($attr, $content) {
+	return mbdb_shortcode_taxonomy($attr, 'mbdb_editor', 'editor');
+}
+
+function mbdb_shortcode_illustrator($attr, $content) {
+	return mbdb_shortcode_taxonomy($attr, 'mbdb_illustrator', 'illustrator');
+}
+
+function mbdb_shortcode_cover_artist($attr, $content) {
+	return mbdb_shortcode_taxonomy($attr, 'mbdb_cover_artist', 'cover-artist');
 }
 
 function mbdb_shortcode_taxonomy($attr, $taxonomy, $permalink) {
@@ -1014,12 +1029,15 @@ function mbdb_book_content($content) {
 			}
 			
 		
-				$is_published = mbdb_get_published_data();
+			$is_published = mbdb_get_published_data();
 			$is_publisher = mbdb_get_publisher_data();
 			$is_genre = mbdb_get_taxonomy_data('mbdb_genre');
 			$is_tag = mbdb_get_taxonomy_data('mbdb_tag');
+			$is_editor = mbdb_get_taxonomy_data('mbdb_editor');
+			$is_illustrator = mbdb_get_taxonomy_data('mbdb_illustrator');
+			$is_cover_artist = mbdb_get_taxonomy_data('mbdb_cover_artist');
 			
-			if ($is_published || $is_publisher || $is_genre || $is_tag) {
+			if ($is_published || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist ) {
 				$book_page_layout .= '<div class="mbm-book-details-outer">';
 								$book_page_layout .= '<div class="mbm-book-details">';
 				if ($is_published !== false) {
@@ -1028,6 +1046,18 @@ function mbdb_book_content($content) {
 				
 				if ($is_publisher !== false ) {
 					$book_page_layout .= '<strong>' . __('Publisher','mooberry-book-manager') . ':</strong> [book_publisher  blank=""]<br>';
+				}
+				
+				if ($is_editor !== false ) {
+					$book_page_layout .= '<strong>' . __('Editors', 'mooberry-book-manager') . ':</strong> <span>[book_editor delim="comma" blank=""]</span><br>';
+				}
+				
+				if ($is_illustrator !== false ) {
+					$book_page_layout .= '<strong>' . __('Illustrators', 'mooberry-book-manager') . ':</strong> <span>[book_illustrator delim="comma" blank=""]</span><br>';
+				}
+				
+				if ($is_cover_artist !== false ) {
+					$book_page_layout .= '<strong>' . __('Cover Artists', 'mooberry-book-manager') . ':</strong> <span>[book_cover_artist delim="comma" blank=""]</span><br>';
 				}
 							
 				if ($is_genre !== false) {
