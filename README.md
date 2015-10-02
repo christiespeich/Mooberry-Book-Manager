@@ -59,6 +59,8 @@ Want regular updates?
 ## Changelog
 #### 2.3
 * New: Added Russian translation
+* New: Buy Links on the bottom of the book page are now hidden if the excerpt is collapsed
+* Fixed: Remove roles when uninstalled
 
 #### 2.2  
 * New: Added Spanish translation  

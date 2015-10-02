@@ -129,7 +129,7 @@ There are cases though when you might want to have an Author field. You might be
 
 2. For more advanced handling of author names, use the Mooberry Book Manager Multi-Author plugin (coming soon). This will allow you to have a bio and photo of each author as well as advanced filtering and sorting on Book Grids based on author.
 
-= Additonal questions? =
+= Additional questions? =
 
 Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
 
@@ -145,6 +145,9 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 == Changelog ==
 = 2.3 =
 * New: Added Russian translation
+* New: Buy Links on the bottom of the book page are now hidden if the excerpt is collapsed
+* New: Added Editors, Illustrators, and Cover Artists
+* Fixed: Remove roles when uninstalled
 
 
 = 2.2 =
