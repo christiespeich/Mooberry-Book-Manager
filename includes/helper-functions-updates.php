@@ -37,6 +37,12 @@ function mbdb_upgrade_versions() {
 			
 		}	
 		
+		if (version_compare($current_version, '2.3', '<')) {
+				//flush the rules
+			global $wp_rewrite;
+			$wp_rewrite->flush_rules();
+		}
+		
 		// update database to the new version
 		update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 	

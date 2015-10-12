@@ -56,7 +56,16 @@ function mbdb_get_tax_title( $content ) {
 							$content = apply_filters('mbdb_book_grid_' . $mbdb_taxonomy . '_title', sprintf( _x( '%1$s %2$s', '%1$s = name of genre, %2$s = "Genre"', 'mooberry-book-manager'), $term->name, $taxonomy->labels->singular_name), $term, $taxonomy);
 							break;
 						case 'mbdb_tag':
-							$content = apply_filters('mbdb_book_grid_tag_title', sprintf(__('Books tagged with %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+							$content = apply_filters('mbdb_book_grid_tag_title', sprintf(__('Books Tagged With %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+							break;
+						case 'mbdb_editor':
+							$content = apply_filters('mbdb_book_grid_mbdb_editor_title', sprintf(__('Books Edited By %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+							break;
+						case 'mbdb_illustrator':
+							$content = apply_filters('mbdb_book_grid_mbdb_illustrator_title', sprintf(__('Books Illustrated By %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+							break;
+						case 'mbdb_cover_artist':
+							$content = apply_filters('mbdb_book_grid_mbdb_cover_artist_title', sprintf(__('Book Covers By %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
 							break;
 						default:
 							$content = '';
