@@ -145,6 +145,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 == Changelog ==
 = 2.3 =
 * New: Added Russian translation
+* New: Added Italian translation
 * New: Buy Links on the bottom of the book page are now hidden if the excerpt is collapsed
 * New: Added Editors, Illustrators, and Cover Artists
 * Fixed: Remove roles when uninstalled
@@ -207,6 +208,8 @@ Redesigned, responsive book page and much more!
 
 * Russian
 
+* Italian
+
 **NOTE:** Mooberry Book Manager is translatable. If you'd like to volunteer a translation for your language, the template file (.pot) is available in the `languages` folder. [Contact us](http://www.mooberrydreams.com/contact/) when your translation is ready or if you need assistance.
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
@@ -218,3 +221,5 @@ Redesigned, responsive book page and much more!
 * Thanks to Ana Gomez for the Spanish translation!
 
 * Thanks to Sergey Kryukov for the Russian translation!
+
+* Thanks to Fabrizio Guidicini for the Italian translation!
