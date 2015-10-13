@@ -2,8 +2,8 @@
 **Contributors:** mooberrydreams  
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
-**Tested up to:** 4.3   
-**Stable tag:** 2.2  
+**Tested up to:** 4.3.1   
+**Stable tag:** 2.3  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -59,7 +59,9 @@ Want regular updates?
 ## Changelog
 #### 2.3
 * New: Added Russian translation
+* New: Added Italian translation
 * New: Buy Links on the bottom of the book page are now hidden if the excerpt is collapsed
+* New: Added Editors, Illustrators, and Cover Artists
 * Fixed: Remove roles when uninstalled
 
 #### 2.2  
