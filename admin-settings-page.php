@@ -1,7 +1,7 @@
 <?php
 do_action('mbdb_settings_before_instructions');
 ?>
-<h2>Mooberry Book Manager <?php _e('Settings', 'mooberry-book-manager'); ?></h2>
+<h1>Mooberry Book Manager <?php _e('Settings', 'mooberry-book-manager'); ?></h1>
 <p><b><?php _e('NOTE:', 'mooberry-book-manager'); ?></b> <?php _e('You must click the SAVE button to save your changes before switching tabs.', 'mooberry-book-manager'); ?></p>
 
 

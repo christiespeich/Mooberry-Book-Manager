@@ -4,7 +4,7 @@
     Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
     Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
     Author: Mooberry Dreams
-    Version: 2.2
+    Version: 2.4
     Author URI: http://www.mooberrydreams.com/
 	Text Domain: mooberry-book-manager
 	
@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.3');
+	define('MBDB_PLUGIN_VERSION', '2.4');
 		
 		
 	// Load in CMB2
@@ -281,7 +281,7 @@
 			'hierarchical' => false,
 			'rewrite' => array( 'slug' => 'book' ),
 			'query_var' => true,
-			'supports' => array( 'title', 'comments' ),
+			'supports' => array( 'title', 'comments', 'author' ),
 			'taxonomies' => array( 'mbdb_tag', 'mbdb_genre', 'mbdb_series' ),
 			'labels' => array (
 				'name' => _x('Books', 'noun', 'mooberry-book-manager'),
@@ -298,7 +298,10 @@
 				'search_items' => __('Search Books', 'mooberry-book-manager'),
 				'not_found' => __('No Books Found', 'mooberry-book-manager'),
 				'not_found_in_trash' => __('No Books Found in Trash', 'mooberry-book-manager'),
-				'parent' => __('Parent Book', 'mooberry-book-manager')
+				'parent' => __('Parent Book', 'mooberry-book-manager'),
+				'filter_items_list'     => __( 'Filter Book List', 'mooberry-book-manager' ),
+				'items_list_navigation' => __( 'Book List Navigation', 'mooberry-book-manager' ),
+				'items_list'            => __( 'Book List', 'mooberry-book-manager' ),
 				),
 			) )
 		);
@@ -351,7 +354,9 @@
 					'separate_items_with_commas' => __('Separate genres with commas', 'mooberry-book-manager'),
 					'add_or_remove_items' => __('Add or remove genres', 'mooberry-book-manager'),
 					'choose_from_most_used' => __('Choose from the most used genres', 'mooberry-book-manager'),
-					'not_found' => __('No genres found', 'mooberry-book-manager')
+					'not_found' => __('No genres found', 'mooberry-book-manager'),
+					'items_list_navigation' => __( 'Genre navigation', 'mooberry-book-manager' ),
+					'items_list'            => __( 'Genre list', 'mooberry-book-manager' ),
 				)
 			)
 			)
@@ -386,7 +391,9 @@
 					'separate_items_with_commas' => __('Separate tags with commas', 'mooberry-book-manager'),
 					'add_or_remove_items' => __('Add or remove tags', 'mooberry-book-manager'),
 					'choose_from_most_used' => __('Choose from the most used tags', 'mooberry-book-manager'),
-					'not_found' => __('No tags found', 'mooberry-book-manager')
+					'not_found' => __('No tags found', 'mooberry-book-manager'),
+					'items_list_navigation' => __( 'Tag navigation', 'mooberry-book-manager' ),
+					'items_list'            => __( 'Tag list', 'mooberry-book-manager' ),
 				)
 			)
 			)
@@ -421,7 +428,9 @@
 					'separate_items_with_commas' => __('Separate series with commas', 'mooberry-book-manager'),
 					'add_or_remove_items' => __('Add or remove series', 'mooberry-book-manager'),
 					'choose_from_most_used' => __('Choose from the most used series', 'mooberry-book-manager'),
-					'not_found' => __('No Series found', 'mooberry-book-manager')
+					'not_found' => __('No Series found', 'mooberry-book-manager'),
+					'items_list_navigation' => __( 'Series navigation', 'mooberry-book-manager' ),
+					'items_list'            => __( 'Series list', 'mooberry-book-manager' ),
 				)
 			))
 		);
@@ -455,7 +464,9 @@
 					'separate_items_with_commas' => __('Separate Editors with commas', 'mooberry-book-manager'),
 					'add_or_remove_items' => __('Add or remove Editors', 'mooberry-book-manager'),
 					'choose_from_most_used' => __('Choose from the most used Editors', 'mooberry-book-manager'),
-					'not_found' => __('No Editors found', 'mooberry-book-manager')
+					'not_found' => __('No Editors found', 'mooberry-book-manager'),
+					'items_list_navigation' => __( 'Edtior navigation', 'mooberry-book-manager' ),
+					'items_list'            => __( 'Editor list', 'mooberry-book-manager' ),
 				)
 			)
 			)
@@ -489,7 +500,9 @@
 					'separate_items_with_commas' => __('Separate Illustrators with commas', 'mooberry-book-manager'),
 					'add_or_remove_items' => __('Add or remove Illustrators', 'mooberry-book-manager'),
 					'choose_from_most_used' => __('Choose from the most used Illustrators', 'mooberry-book-manager'),
-					'not_found' => __('No Illustrators found', 'mooberry-book-manager')
+					'not_found' => __('No Illustrators found', 'mooberry-book-manager'),
+					'items_list_navigation' => __( 'Illustrator navigation', 'mooberry-book-manager' ),
+					'items_list'            => __( 'Illustrator list', 'mooberry-book-manager' ),
 				)
 			)
 			)
@@ -524,7 +537,9 @@
 					'separate_items_with_commas' => __('Separate Cover Artists with commas', 'mooberry-book-manager'),
 					'add_or_remove_items' => __('Add or remove Cover Artists', 'mooberry-book-manager'),
 					'choose_from_most_used' => __('Choose from the most used Cover Artists', 'mooberry-book-manager'),
-					'not_found' => __('No Cover Artists found', 'mooberry-book-manager')
+					'not_found' => __('No Cover Artists found', 'mooberry-book-manager'),
+					'items_list_navigation' => __( 'Cover Artist navigation', 'mooberry-book-manager' ),
+					'items_list'            => __( 'Cover Artist list', 'mooberry-book-manager' ),
 				)
 			)
 			)
@@ -541,8 +556,15 @@
 	add_filter('the_excerpt', 'mbdb_excerpt');
 	function mbdb_excerpt($content) {
 		
+		
 		// if on a tax grid and there's query vars set, display the special grid
 		if ( get_post_type() == 'mbdb_tax_grid' && is_main_query() && !is_admin() ) {
+			// this weeds out content in the sidebar and other odd places
+			// thanks joeytwiddle for this update
+			// added in version 2.3
+			if (!in_the_loop() || !is_main_query() ) {
+				return $content;
+			}
 			$content =  mbdb_content('');
 		}
 		// if we're in the admin side and the post type is mbdb_book then we're showign the list of books
@@ -565,6 +587,13 @@
 	add_filter('the_content', 'mbdb_content');
 	function mbdb_content($content) {
 		global $wp_query;
+		
+		// this weeds out content in the sidebar and other odd places
+		// thanks joeytwiddle for this update
+		// added in version 2.3
+		if (!in_the_loop() || !is_main_query() ) {
+			return $content;
+		}
 
 		// make sure it's the post type 'book'
 		if (get_post_type() == 'mbdb_book' && is_main_query() && !is_admin()) {
@@ -604,16 +633,20 @@ add_action('admin_notices', 'mbdb_admin_notice',0);
 function mbdb_admin_notice(){
     //print the message
 	global $post;
-    $notice = get_option('mbdb_notice');
-	if (empty($notice)) return '';
-    foreach($notice as $pid => $m){
-        if ($post->ID == $pid ){
-            echo apply_filters('mbdb_admin_notice', '<div id="message" class="error"><p>'.$m.'</p></div>');
-            //make sure to remove notice after its displayed so its only displayed when needed.
-            unset($notice[$pid]);
-            update_option('mbdb_notice',$notice);
-            break;
-        }
+	// only show on admin pages where there is a post id (ie editing a cpt)
+	if ($post ) {
+		$notice = get_option('mbdb_notice');
+		if (empty($notice)) return '';
+		foreach($notice as $pid => $m){
+			
+			if ($post->ID == $pid ){
+				echo apply_filters('mbdb_admin_notice', '<div id="message" class="error"><p>'.$m.'</p></div>');
+				//make sure to remove notice after its displayed so its only displayed when needed.
+				unset($notice[$pid]);
+				update_option('mbdb_notice',$notice);
+				break;
+			}
+		}
     }
 }
 

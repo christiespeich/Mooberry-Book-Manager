@@ -2,8 +2,8 @@
 **Contributors:** mooberrydreams  
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
-**Tested up to:** 4.3.1   
-**Stable tag:** 2.3  
+**Tested up to:** 4.4  
+**Stable tag:** 2.4  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -57,6 +57,11 @@ Want regular updates?
 
 
 ## Changelog
+#### 2.4  
+* Added: South African Rand (ZAR/R) to currency dropdown options  
+* Added: Ability to update the user who created the book (may need to enable "author" in the Screen Options)  
+* Updated: Compliant with Wordpress 4.4 update  
+
 #### 2.3
 * New: Added Russian translation
 * New: Added Italian translation
