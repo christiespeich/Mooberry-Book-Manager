@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.4  
-**Stable tag:** 2.4  
+**Stable tag:** 2.4.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -25,7 +25,7 @@ Feature books on your sidebar with four options:
 	
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
-Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Javascript, but the public pages do not.
+Requires Wordpress 3.8 and Javasscript.
 
 ##Getting Started with Mooberry Book Manager  
 After installing and activating Mooberry Book Manager, you'll now have a Books menu.  Use that to add your books to your website.
@@ -57,6 +57,9 @@ Want regular updates?
 
 
 ## Changelog
+#### 2.4.1
+* Fixed: Error about non-object sometimes happening (grid styles)
+
 #### 2.4  
 * Added: South African Rand (ZAR/R) to currency dropdown options  
 * Added: Ability to update the user who created the book (may need to enable "author" in the Screen Options)  

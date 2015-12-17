@@ -4,7 +4,7 @@
     Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
     Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
     Author: Mooberry Dreams
-    Version: 2.4
+    Version: 2.4.1
     Author URI: http://www.mooberrydreams.com/
 	Text Domain: mooberry-book-manager
 	
@@ -27,7 +27,7 @@
 	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
 	
 	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.4');
+	define('MBDB_PLUGIN_VERSION', '2.4.1');
 		
 		
 	// Load in CMB2
@@ -191,14 +191,15 @@
 	add_action('wp_head', 'mbdb_grid_styles');
 	function mbdb_grid_styles() {
 		global $post;
+		if ($post) {
+			$grid = get_post_meta($post->ID, '_mbdb_book_grid_display', true);
+			 
+			if ( (get_post_type() == 'mbdb_tax_grid' || $grid == 'yes') && is_main_query() && !is_admin() ) {
 		
-		$grid = get_post_meta($post->ID, '_mbdb_book_grid_display', true);
-		 
-		if ( (get_post_type() == 'mbdb_tax_grid' || $grid == 'yes') && is_main_query() && !is_admin() ) {
-	
-			$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
+				$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
 
-			include 'css/grid-styles.php';
+				include 'css/grid-styles.php';
+			}
 		}
 	}
 
@@ -651,3 +652,49 @@ function mbdb_admin_notice(){
 }
 
 
+/*
+	add_filter('tc_post_list_layout', 'mbdb_customizr_turn_off_grid');
+	function mbdb_customizr_turn_off_grid($_layout) {
+		
+		// this weeds out content in the sidebar and other odd places
+		// thanks joeytwiddle for this update
+		// added in version 2.3
+		if (!in_the_loop() || !is_main_query() ) {
+			return $_layout;
+		}
+		
+		if (get_post_type()=='mbdb_tax_grid' && is_main_query() && !is_admin()) {
+error_log('tc_is_grid_enabled');		
+			$_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+			$_layout['alternate']        = true; //( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
+			$_layout['show_thumb_first'] = true; //( 'left' == $_position || 'top' == $_position ) ? true : false;
+			$_layout['content']          = 'span12'; //( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
+			$_layout['thumb']            = $_layout['thumb']; //( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
+			return $_layout;
+		}
+		
+		return $_layout;
+	}
+	
+	
+//	add_filter('tc_grid_single_post_thumb_content', 'mbdb_customizr_grid_content');
+	function mbdb_customizr_grid_content($content) {
+		// this weeds out content in the sidebar and other odd places
+		// thanks joeytwiddle for this update
+		// added in version 2.3
+		if (!in_the_loop() || !is_main_query() ) {
+			return $content;
+		}
+		
+		if (get_post_type()=='mbdb_tax_grid' && is_main_query() && !is_admin()) {
+			error_log('tc_grid_single_post_thumb_content');
+			error_log( do_shortcode($content));
+			//return do_shortcode($content);
+			return do_shortcode('[mbdb_tax_grid]');
+		} else {
+			return $content;
+		}
+			
+		
+	}
+	*/

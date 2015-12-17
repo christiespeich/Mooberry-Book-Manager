@@ -480,7 +480,10 @@ function mbdb_book_grid_get_books_in_taxonomy($books, $group, $groupings, $mbdb_
 	$all_terms = get_terms( 'mbdb_' . $group, $terms_query);
 	$taxonomy = get_taxonomy('mbdb_' . $group);
 	$ids = ${$group};
-			
+	// 2.4.1 verify ids is an array
+	if (!is_array($ids)) {
+		$ids = array($ids);
+	}
 		foreach ($all_terms as $term) {
 			${$group} = array($term->term_id);
 			

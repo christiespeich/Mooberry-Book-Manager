@@ -4,7 +4,7 @@ Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.4 
-Stable tag: 2.4
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -143,6 +143,9 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 2.4.1 =
+* Fixed: Error about non-object sometimes happening (grid styles)
+
 = 2.4 =
 * Added: South African Rand (ZAR/R) to currency dropdown options
 * Added: Ability to update the user who created the book (may need to enable "author" in the Screen Options)
