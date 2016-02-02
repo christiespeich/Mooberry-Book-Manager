@@ -284,9 +284,9 @@ function mbdb_shortcode_additional_info($attr, $content) {
 	foreach ($mbdb_terms as $term) {
 		$list .= '<a class="' . $classname . '-link" href="';
 		if ( get_option('permalink_structure') !='' ) {
-			$list .= site_url($permalink . '/' . $term->slug);
+			$list .= home_url($permalink . '/' . $term->slug);
 		} else {
-			$list .= site_url('?the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid');
+			$list .= home_url('?the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid');
 		}
 		$list .= '"><span class="' . $classname . '-text">' . $term->name . '</span></a>';
 		$list .= $delim;
@@ -477,9 +477,9 @@ function mbdb_output_serieslist($mbdb_series, $attr) {
 		$series_name .=  '<div class="' . $classname . '-seriesblock"><span class="' . $classname . '-before">' . esc_html($attr['before']) . '</span>';
 		$series_name .= '<a class="' . $classname . '-link" href="';
 		if ( get_option('permalink_structure') !='' ) {
-			$series_name .= site_url('series/' .  $series->slug);
+			$series_name .= home_url('series/' .  $series->slug);
 		} else {
-			$series_name .= site_url('?the-taxonomy=mbdb_series&the-term=' . $series->slug . '&post_type=mbdb_tax_grid');
+			$series_name .= home_url('?the-taxonomy=mbdb_series&the-term=' . $series->slug . '&post_type=mbdb_tax_grid');
 		}
 		$series_name .=  '"><span class="' . $classname . '-text">' . $series->name . '</span></a>';
 		$series_name .= '<span class="' . $classname . '-after">' . esc_html($attr['after']) . '</span>';

@@ -4,7 +4,7 @@ add_action( 'template_redirect', 'mbdb_redirect_tax_grid' );
 function mbdb_redirect_tax_grid() {	
 	if (get_post_type() == 'mbdb_tax_grid' && is_main_query() && !is_admin()) {
 		if(preg_match('/\/mbdb_tax_grid\//', $_SERVER['REQUEST_URI'])) {
-			wp_redirect( site_url(), 301);
+			wp_redirect( home_url(), 301);
 			exit;
 		}
 	}

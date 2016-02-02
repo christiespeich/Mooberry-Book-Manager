@@ -45,7 +45,11 @@ function mbdb_upload_image($filename) {
 	$wp_upload_dir = wp_upload_dir();
 	
 	if (file_exists(dirname( __FILE__ ) . '/assets/' . $filename)) {
-			copy( dirname(__FILE__) . '/assets/' . $filename, $wp_upload_dir['path'] . '/' . $filename );
+			$success = copy( dirname(__FILE__) . '/assets/' . $filename, $wp_upload_dir['path'] . '/' . $filename );
+			// v 2.4.2 -- bail out if something goes wrong
+			if (!$success) {
+				return 0;
+			}
 			$wp_filetype = wp_check_filetype( basename( $filename ), null );
 			$attachment = array (
 				'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ),

@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.4  
-**Stable tag:** 2.4.1  
+**Stable tag:** 2.4.2    
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -57,6 +57,11 @@ Want regular updates?
 
 
 ## Changelog
+#### 2.4.2 
+* Fixed: Switched from site_url to home_url to create series grid link on book page (caused a problem when Wordpress is installed in a different directory than web URL)  
+* Improved: Reduced size of included images. Hopefully will help 500 errors on activation.  
+
+
 #### 2.4.1
 * Fixed: Error about non-object sometimes happening (grid styles)
 
