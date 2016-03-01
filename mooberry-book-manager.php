@@ -1,701 +1,201 @@
 <?php
- /*
-    Plugin Name: Mooberry Book Manager
-    Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
-    Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
-    Author: Mooberry Dreams
-    Version: 2.4.2
-    Author URI: http://www.mooberrydreams.com/
-	Text Domain: mooberry-book-manager
-	
-	Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
-    published by the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-    */
-
-	define('MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ )); 
-	
-	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
-	define('MBDB_PLUGIN_VERSION', '2.4.2');
-		
-		
-	// Load in CMB2
-	if ( file_exists( dirname( __FILE__ ) . '/includes/cmb2/init.php' ) ) {
-		require_once dirname( __FILE__ ) . '/includes/cmb2/init.php';
-	} elseif ( file_exists( dirname( __FILE__ ) . '/includes/CMB2/init.php' ) ) {
-		require_once dirname( __FILE__ ) . '/includes/CMB2/init.php';
-	}
-	
-	
-	
-	// add in additional files
-	require_once dirname( __FILE__ ) . '/includes/helper-functions.php';
-	require_once dirname( __FILE__ ) . '/book.php';
-	require_once dirname( __FILE__ ) . '/single-book.php';
-	require_once dirname( __FILE__ ) . '/book-widget.php';
-	require_once dirname( __FILE__ ) . '/book-grid.php';
-	require_once ABSPATH . 'wp-admin/includes/image.php';
-
-	
-
-	
-	add_action( 'plugins_loaded', 'mbdb_load_plugin_textdomain' );
-	function mbdb_load_plugin_textdomain() {
-		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
-	}
-	
-	
-	
-	// NOTE: DO NOT change the name of this function because it is required for
-	// the add ons to check dependency
-	register_activation_hook( __FILE__, 'mbdb_activate' );
-	function mbdb_activate() {
-	
-		mbdb_set_up_roles();
-		
-		
-		$mbdb_options = get_option( 'mbdb_options' );
-		
-		// v 2.4.2 updated file names
-		// check if default retailers and formats exist in database and add them if necessary
-		$default_retailers = array();
-		$default_retailers[] = array('name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png');
-		$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png');
-		$default_retailers[] = array('name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png');
-		$default_retailers[] = array('name' => 'iBooks', 'uniqueID' => 4, 'image' => 'ibooks.png');
-		$default_retailers[] = array('name' => 'Smashwords', 'uniqueID' => 5, 'image' => 'smashwords.png');
-		$default_retailers[] = array('name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
-		$default_retailers[] = array('name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.png' );
-		$default_retailers[] = array('name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' );
-		$default_retailers[] = array('name' => 'Create Space', 'uniqueID' => 9, 'image' => 'createspace.png' );
-		$default_retailers[] = array('name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.png' );
-		$default_retailers[] = array('name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.png' );
-		$default_retailers[] = array('name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.png' );
-		$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.png' );
-		$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
-		$default_retailers = apply_filters('mbdb_default_retailers', $default_retailers);
-		
-		$default_formats = array();
-		$default_formats[] = array('name' => 'ePub', 'uniqueID' => 1, 'image' => 'epub.png');
-		$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 2, 'image' => 'amazon-kindle.png');
-		$default_formats[] = array('name' => 'PDF', 'uniqueID' => 3, 'image' => 'pdficon.png');
-		$default_formats = apply_filters('mbdb_default_formats', $default_formats);
-		
-		mbdb_insert_defaults( $default_retailers, 'retailers', $mbdb_options);
-		mbdb_insert_defaults( $default_formats, 'formats', $mbdb_options);
-		
-		mbdb_insert_default_edition_formats($mbdb_options);
-		
-		// check if the coming soon image exists and add it if necessary
-		if (!array_key_exists('coming-soon', $mbdb_options)) {
-			$attachID = mbdb_upload_image('coming_soon_blue.jpg');
-			$mbdb_options['coming-soon-id'] = $attachID;
-			if ( $attachID != 0) {
-				$img = wp_get_attachment_url( $attachID );
-				$mbdb_options['coming-soon'] = $img;
-			} else {
-				$mbdb_options['coming-soon'] = '';
-			}
-			
-		}
-			
-		// check if goodreads image exists and add it if necessary
-		if (!array_key_exists('goodreads', $mbdb_options)) {
-			$attachID = mbdb_upload_image('goodreads.png');
-			$mbdb_options['goodreads-id'] = $attachID;
-			if ($attachID != 0) {
-				$img = wp_get_attachment_url( $attachID );
-				$mbdb_options['goodreads'] = $img;
-			} else {
-				$mbdb_options['goodreads'] = '';
-			}
-			
-		}
-		
-		// check if default book page exists and add it if necessary
-		// $mbdb_book_page_options = get_option('mbdb_book_page_options');	
-		// if (!$mbdb_book_page_options || !array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
-			// $content = mbdb_get_default_page_layout();
-			// update_option('mbdb_book_page_options', array('_mbdb_book_page_layout' => $content));
-		// }
-
-		update_option( 'mbdb_options', apply_filters('mbdb_options', $mbdb_options));
-
-		// add test tax grid if necessary
-		// this is never seen and just needed for the series/tag/genre shortcut URLS (hack)
-		// wp_count_posts doesn't work here because the custom post type hasn't been created yet
-		// and the 1st thing wp_count_posts does is check if it exists
-		$tax_grids = get_posts( apply_filters('mbdb_tax_grids', array(
-					'posts_per_page' => -1,
-					'post_type' => 'mbdb_tax_grid',
-					'post_status' => 'publish' 
-					))
-				);
-		// if there's more than one already in the database, delete them all but one
-		if ( count( $tax_grids > 1 ) ) {
-			for ( $x=1; $x<count($tax_grids); $x++ ) {
-				wp_delete_post( $tax_grids[$x]->ID, true );
-			}
-		}
-		// if there aren't any, add one
-		if ( count( $tax_grids ) == 0 ) { 
-					$new_post_id = wp_insert_post( apply_filters('mbdb_insert_tax_grid', array(
-							'post_title' => 'Test',
-							'post_type' => 'mbdb_tax_grid',
-							'post_status' => 'publish',
-							'name' => 'test',
-							'comment_status' => 'closed'
-							) )
-					);
-		} 
-		
-		
-	
-		
-		mbdb_init();
-	
-		global $wp_rewrite;
-		$wp_rewrite->flush_rules();
-	}
-	
-	register_deactivation_hook( __FILE__, 'mbdb_deactivate' );
-	function mbdb_deactivate() {
-		global $wp_rewrite;
-		$wp_rewrite->flush_rules();
-	}
-	
-	add_action( 'admin_head', 'mbdb_register_admin_styles' );	 
-	function mbdb_register_admin_styles() {
-		wp_register_style( 'mbdb-admin-styles', plugins_url( 'css/admin-styles.css', __FILE__)  );
-		wp_enqueue_style( 'mbdb-admin-styles' );
-	}
-	
-	add_action( 'wp_enqueue_scripts', 'mbdb_register_styles', 15 );
-	function mbdb_register_styles() {
-		wp_register_style( 'mbdb-styles', plugins_url( 'css/styles.css', __FILE__) ) ;
-		wp_enqueue_style( 'mbdb-styles' );
-		wp_enqueue_script('single-book', plugins_url('includes/js/single-book.js', __FILE__), array('jquery'));
-		
-	}
-	
-	add_action('wp_head', 'mbdb_grid_styles');
-	function mbdb_grid_styles() {
-		global $post;
-		if ($post) {
-			$grid = get_post_meta($post->ID, '_mbdb_book_grid_display', true);
-			 
-			if ( (get_post_type() == 'mbdb_tax_grid' || $grid == 'yes') && is_main_query() && !is_admin() ) {
-		
-				$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
-
-				include 'css/grid-styles.php';
-			}
-		}
-	}
-
-	add_action( 'admin_footer', 'mbdb_register_script');
-	function mbdb_register_script() {
-		wp_enqueue_script( 'admin-book-grid',  plugins_url( 'includes/js/admin-book-grid.js', __FILE__)); 
-		wp_enqueue_script( 'admin-widget',  plugins_url( 'includes/js/admin-widget.js', __FILE__));		
-		wp_enqueue_script( 'admin-book', plugins_url(  'includes/js/admin-book.js', __FILE__), array('jquery'));
-		
-	}
-
-	add_action('after_setup_theme', 'mbdb_image_sizes');
-	function mbdb_image_sizes() {
-		add_image_size( 'grid-cover', 0, 200);
-	}
-	
-	
-	add_action('widgets_init', 'mbdb_register_widgets');
-	function mbdb_register_widgets() {
-		return register_widget('mbdb_book_widget');
-	}
-	
-	
-	// Set up redirects to series/{series-name} based on query vars
-	// same for genres and tags
-	// this is so the book grid can be displayed instead of 
-	// using a template file that is reliant on theme
-	add_action('generate_rewrite_rules',  'mbdb_rewrite_rules');
-	function mbdb_rewrite_rules( $rules ) {
-		global $wp_rewrite;
-		$new_rules['series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['genre/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['book-tag/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['editor/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_editor&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['illustrator/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_illustrator&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['cover-artist/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_cover_artist&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['mbdb_series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['mbdb_genres/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_genre&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['mbdb_tags/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_tag&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['mbdb_editors/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_editor&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['mbdb_cover_artists/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_cover_artist&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		$new_rules['mbdb_illustrators/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_illustrator&the-term=$matches[1]&post_type=mbdb_tax_grid';
-		
-		$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;		
-	}
-
-	// Add query vars to be used for the redirection for series, genres, and tags
-	add_filter('query_vars', 'mbdb_add_query_vars');
-	function mbdb_add_query_vars($query_vars) {
-		$query_vars[] = "the-term"; 
-		$query_vars[] = "the-taxonomy";
-		return $query_vars;
-	}
-
-	add_action( 'admin_menu', 'mbdb_settings_menu');
-	function mbdb_settings_menu() {
-		add_options_page( 'Mooberry Book Manager ' . __('Settings', 'mooberry-book-manager'), __('Book Manager', 'mooberry-book-manager'), 'manage_options', 'mbdb_settings', 'mbdb_settings_page');
-	}
-		
-	function mbdb_settings_page() {
-		include('admin-settings-page.php');
-	}
-
-	add_action( 'init', 'mbdb_init' );	
-	function mbdb_init() {
-	
-		// create Book Post Type
-		register_post_type('mbdb_book',
-			apply_filters('mbdb_book_cpt', array(	
-			'label' => _x('Books', 'noun', 'mooberry-book-manager'),
-			'public' => true,
-			'show_ui' => true,
-			'show_in_menu' => true,
-			'menu_icon' => 'dashicons-book-alt',
-			'menu_position' => 20,
-			'show_in_nav_menus' => true,
-			'has_archive' => false,
-			'capability_type' => array( 'mbdb_book', 'mbdb_books'),
-			'map_meta_cap' => true,
-			'hierarchical' => false,
-			'rewrite' => array( 'slug' => 'book' ),
-			'query_var' => true,
-			'supports' => array( 'title', 'comments', 'author' ),
-			'taxonomies' => array( 'mbdb_tag', 'mbdb_genre', 'mbdb_series' ),
-			'labels' => array (
-				'name' => _x('Books', 'noun', 'mooberry-book-manager'),
-				'singular_name' => _x('Book', 'noun', 'mooberry-book-manager'),
-				'menu_name' => _x('Books', 'noun', 'mooberry-book-manager'),
-				'all_items' => __('All Books', 'mooberry-book-manager'),
-				'add_new' => __('Add New', 'mooberry-book-manager'),
-				'add_new_item' => __('Add New Book', 'mooberry-book-manager'),
-				'edit' => __('Edit', 'mooberry-book-manager'),
-				'edit_item' => __('Edit Book', 'mooberry-book-manager'),
-				'new_item' => __('New Book', 'mooberry-book-manager'),
-				'view' => __('View Book', 'mooberry-book-manager'),
-				'view_item' => __('View Book', 'mooberry-book-manager'),
-				'search_items' => __('Search Books', 'mooberry-book-manager'),
-				'not_found' => __('No Books Found', 'mooberry-book-manager'),
-				'not_found_in_trash' => __('No Books Found in Trash', 'mooberry-book-manager'),
-				'parent' => __('Parent Book', 'mooberry-book-manager'),
-				'filter_items_list'     => __( 'Filter Book List', 'mooberry-book-manager' ),
-				'items_list_navigation' => __( 'Book List Navigation', 'mooberry-book-manager' ),
-				'items_list'            => __( 'Book List', 'mooberry-book-manager' ),
-				),
-			) )
-		);
-		
-		register_post_type('mbdb_tax_grid',
-			apply_filters('mbdb_tax_grid_cpt', array(	
-				'label' => 'Tax Grid',
-				'public' => true,
-				'show_in_menu' => false,
-				'show_ui' => false,
-				'exclude_from_search' => true,
-				'publicly_queryable' => true,
-				'show_in_nav_menus' => false,
-				'has_archive' => false,
-				'capability_type' => 'post',
-				'hierarchical' => false,
-				'rewrite' => array( 'slug' => 'mbdb_tax_grid' ),
-				'query_var' => true,
-				'supports' => array( 'title' ),
-				) 
-			)
-		);
-		
-		register_taxonomy('mbdb_genre', 'mbdb_book', 
-			apply_filters('mdbd_genre_taxonomy', array(
-				//'rewrite' => false, 
-				'rewrite' => array(	'slug' => 'mbdb_genres' ),
-				'public' => true, //false,
-				'show_admin_column' => true,
-				'update_count_callback' => '_update_post_term_count',
-				'capabilities'	=> array(
-					'manage_terms' => 'manage_categories',
-					'edit_terms'   => 'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
-				),
-				'labels' => array(
-					'name' => __('Genres', 'mooberry-book-manager'),
-					'singular_name' => __('Genre', 'mooberry-book-manager'),
-					'search_items' => __('Search Genres' , 'mooberry-book-manager'),
-					'all_items' =>  __('All Genres' , 'mooberry-book-manager'),
-					'parent_item' =>  __('Parent Genre' , 'mooberry-book-manager'),
-					'parent_item_colon' =>  __('Parent Genre:' , 'mooberry-book-manager'),
-					'edit_item' =>  __('Edit Genre' , 'mooberry-book-manager'),
-					'update_item' =>  __('Update Genre' , 'mooberry-book-manager'),
-					'add_new_item' =>  __('Add New Genre' , 'mooberry-book-manager'),
-					'new_item_name' =>  __('New Genre Name' , 'mooberry-book-manager'),
-					'menu_name' =>  __('Genres' , 'mooberry-book-manager'),
-					'popular_items' => __('Popular Genres', 'mooberry-book-manager'),
-					'separate_items_with_commas' => __('Separate genres with commas', 'mooberry-book-manager'),
-					'add_or_remove_items' => __('Add or remove genres', 'mooberry-book-manager'),
-					'choose_from_most_used' => __('Choose from the most used genres', 'mooberry-book-manager'),
-					'not_found' => __('No genres found', 'mooberry-book-manager'),
-					'items_list_navigation' => __( 'Genre navigation', 'mooberry-book-manager' ),
-					'items_list'            => __( 'Genre list', 'mooberry-book-manager' ),
-				)
-			)
-			)
-		);
-
-	   	register_taxonomy('mbdb_tag', 'mbdb_book', 
-			apply_filters('mdbd_tag_taxonomy', array(
-				'rewrite' => array(	'slug' => 'mbdb_tags' ),
-			//	'rewrite'	=>	false,
-				'public'	=> true, //false,
-				'show_admin_column' => true,
-				'update_count_callback' => '_update_post_term_count',
-				'capabilities'	=> array(
-					'manage_terms' => 'manage_categories',
-					'edit_terms'   => 'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
-				),
-				'labels' => array(
-					'name' => __('Tags', 'mooberry-book-manager'),
-					'singular_name' => __('Tag', 'mooberry-book-manager'),
-					'search_items' => __('Search Tags' , 'mooberry-book-manager'),
-					'all_items' =>  __('All Tags' , 'mooberry-book-manager'),
-					'parent_item' =>  __('Parent Tag' , 'mooberry-book-manager'),
-					'parent_item_colon' =>  __('Parent Tag:' , 'mooberry-book-manager'),
-					'edit_item' =>  __('Edit Tag' , 'mooberry-book-manager'),
-					'update_item' =>  __('Update Tag' , 'mooberry-book-manager'),
-					'add_new_item' =>  __('Add New Tag' , 'mooberry-book-manager'),
-					'new_item_name' =>  __('New Tag Name' , 'mooberry-book-manager'),
-					'menu_name' =>  __('Tags' , 'mooberry-book-manager'),
-					'popular_items' => __('Popular Tags', 'mooberry-book-manager'),
-					'separate_items_with_commas' => __('Separate tags with commas', 'mooberry-book-manager'),
-					'add_or_remove_items' => __('Add or remove tags', 'mooberry-book-manager'),
-					'choose_from_most_used' => __('Choose from the most used tags', 'mooberry-book-manager'),
-					'not_found' => __('No tags found', 'mooberry-book-manager'),
-					'items_list_navigation' => __( 'Tag navigation', 'mooberry-book-manager' ),
-					'items_list'            => __( 'Tag list', 'mooberry-book-manager' ),
-				)
-			)
-			)
-		);  
-
-
-		register_taxonomy('mbdb_series', 'mbdb_book', 
-			apply_filters('mbdb_series_taxonomy', array( 
-				'rewrite' =>  array( 'slug' => 'mbdb_series' ),
-				'public' => true, // false,
-				'show_admin_column' => true,
-				'update_count_callback' => '_update_post_term_count',
-				'capabilities'	=> array(
-					'manage_terms' => 'manage_categories',
-					'edit_terms'   => 'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
-				),
-				'labels' => array(
-					'name' => __('Series', 'mooberry-book-manager'),
-					'singular_name' => __('Series', 'mooberry-book-manager'),
-					'search_items' => __('Search Series' , 'mooberry-book-manager'),
-					'all_items' =>  __('All Series' , 'mooberry-book-manager'),
-					'parent_item' =>  __('Parent Series' , 'mooberry-book-manager'),
-					'parent_item_colon' =>  __('Parent Series:' , 'mooberry-book-manager'),
-					'edit_item' =>  __('Edit Series' , 'mooberry-book-manager'),
-					'update_item' =>  __('Update Series' , 'mooberry-book-manager'),
-					'add_new_item' =>  __('Add New Series' , 'mooberry-book-manager'),
-					'new_item_name' =>  __('New Series Name' , 'mooberry-book-manager'),
-					'menu_name' =>  __('Series' , 'mooberry-book-manager'),
-					'popular_items' => __('Popular Series', 'mooberry-book-manager'),
-					'separate_items_with_commas' => __('Separate series with commas', 'mooberry-book-manager'),
-					'add_or_remove_items' => __('Add or remove series', 'mooberry-book-manager'),
-					'choose_from_most_used' => __('Choose from the most used series', 'mooberry-book-manager'),
-					'not_found' => __('No Series found', 'mooberry-book-manager'),
-					'items_list_navigation' => __( 'Series navigation', 'mooberry-book-manager' ),
-					'items_list'            => __( 'Series list', 'mooberry-book-manager' ),
-				)
-			))
-		);
-		
-			register_taxonomy('mbdb_editor', 'mbdb_book', 
-			apply_filters('mbdb_editor_taxonomy', array(
-				//'rewrite' => false, 
-				'rewrite' => array(	'slug' => 'mbdb_editors' ),
-				'public' => true, //false,
-				'show_admin_column' => true,
-				'update_count_callback' => '_update_post_term_count',
-				'capabilities'	=> array(
-					'manage_terms' => 'manage_categories',
-					'edit_terms'   => 'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
-				),
-				'labels' => array(
-					'name' => __('Editors', 'mooberry-book-manager'),
-					'singular_name' => __('Editor', 'mooberry-book-manager'),
-					'search_items' => __('Search Editors' , 'mooberry-book-manager'),
-					'all_items' =>  __('All Editors' , 'mooberry-book-manager'),
-					'parent_item' =>  __('Parent Editor' , 'mooberry-book-manager'),
-					'parent_item_colon' =>  __('Parent Editor:' , 'mooberry-book-manager'),
-					'edit_item' =>  __('Edit Editor' , 'mooberry-book-manager'),
-					'update_item' =>  __('Update Editor' , 'mooberry-book-manager'),
-					'add_new_item' =>  __('Add New Editor' , 'mooberry-book-manager'),
-					'new_item_name' =>  __('New Editor Name' , 'mooberry-book-manager'),
-					'menu_name' =>  __('Editors' , 'mooberry-book-manager'),
-					'popular_items' => __('Popular Editors', 'mooberry-book-manager'),
-					'separate_items_with_commas' => __('Separate Editors with commas', 'mooberry-book-manager'),
-					'add_or_remove_items' => __('Add or remove Editors', 'mooberry-book-manager'),
-					'choose_from_most_used' => __('Choose from the most used Editors', 'mooberry-book-manager'),
-					'not_found' => __('No Editors found', 'mooberry-book-manager'),
-					'items_list_navigation' => __( 'Edtior navigation', 'mooberry-book-manager' ),
-					'items_list'            => __( 'Editor list', 'mooberry-book-manager' ),
-				)
-			)
-			)
-		);
-		register_taxonomy('mbdb_illustrator', 'mbdb_book', 
-			apply_filters('mbdb_illustrator_taxonomy', array(
-				//'rewrite' => false, 
-				'rewrite' => array(	'slug' => 'mbdb_illustrators' ),
-				'public' => true, //false,
-				'show_admin_column' => true,
-				'update_count_callback' => '_update_post_term_count',
-				'capabilities'	=> array(
-					'manage_terms' => 'manage_categories',
-					'edit_terms'   => 'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
-				),
-				'labels' => array(
-					'name' => __('Illustrators', 'mooberry-book-manager'),
-					'singular_name' => __('Illustrator', 'mooberry-book-manager'),
-					'search_items' => __('Search Illustrators' , 'mooberry-book-manager'),
-					'all_items' =>  __('All Illustrators' , 'mooberry-book-manager'),
-					'parent_item' =>  __('Parent Illustrator' , 'mooberry-book-manager'),
-					'parent_item_colon' =>  __('Parent Illustrator:' , 'mooberry-book-manager'),
-					'edit_item' =>  __('Edit Illustrator' , 'mooberry-book-manager'),
-					'update_item' =>  __('Update Illustrator' , 'mooberry-book-manager'),
-					'add_new_item' =>  __('Add New Illustrator' , 'mooberry-book-manager'),
-					'new_item_name' =>  __('New Illustrator Name' , 'mooberry-book-manager'),
-					'menu_name' =>  __('Illustrators' , 'mooberry-book-manager'),
-					'popular_items' => __('Popular Illustrators', 'mooberry-book-manager'),
-					'separate_items_with_commas' => __('Separate Illustrators with commas', 'mooberry-book-manager'),
-					'add_or_remove_items' => __('Add or remove Illustrators', 'mooberry-book-manager'),
-					'choose_from_most_used' => __('Choose from the most used Illustrators', 'mooberry-book-manager'),
-					'not_found' => __('No Illustrators found', 'mooberry-book-manager'),
-					'items_list_navigation' => __( 'Illustrator navigation', 'mooberry-book-manager' ),
-					'items_list'            => __( 'Illustrator list', 'mooberry-book-manager' ),
-				)
-			)
-			)
-		);
-		
-		register_taxonomy('mbdb_cover_artist', 'mbdb_book', 
-			apply_filters('mbdb_cover_artist_taxonomy', array(
-				//'rewrite' => false, 
-				'rewrite' => array(	'slug' => 'mbdb_cover_artists' ),
-				'public' => true, //false,
-				'show_admin_column' => true,
-				'update_count_callback' => '_update_post_term_count',
-				'capabilities'	=> array(
-					'manage_terms' => 'manage_categories',
-					'edit_terms'   => 'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
-				),
-				'labels' => array(
-					'name' => __('Cover Artists', 'mooberry-book-manager'),
-					'singular_name' => __('Cover Artist', 'mooberry-book-manager'),
-					'search_items' => __('Search Cover Artists' , 'mooberry-book-manager'),
-					'all_items' =>  __('All Cover Artists' , 'mooberry-book-manager'),
-					'parent_item' =>  __('Parent Cover Artist' , 'mooberry-book-manager'),
-					'parent_item_colon' =>  __('Parent Cover Artist:' , 'mooberry-book-manager'),
-					'edit_item' =>  __('Edit Cover Artist' , 'mooberry-book-manager'),
-					'update_item' =>  __('Update Cover Artist' , 'mooberry-book-manager'),
-					'add_new_item' =>  __('Add New Cover Artist' , 'mooberry-book-manager'),
-					'new_item_name' =>  __('New Cover Artist Name' , 'mooberry-book-manager'),
-					'menu_name' =>  __('Cover Artists' , 'mooberry-book-manager'),
-					'popular_items' => __('Popular Cover Artists', 'mooberry-book-manager'),
-					'separate_items_with_commas' => __('Separate Cover Artists with commas', 'mooberry-book-manager'),
-					'add_or_remove_items' => __('Add or remove Cover Artists', 'mooberry-book-manager'),
-					'choose_from_most_used' => __('Choose from the most used Cover Artists', 'mooberry-book-manager'),
-					'not_found' => __('No Cover Artists found', 'mooberry-book-manager'),
-					'items_list_navigation' => __( 'Cover Artist navigation', 'mooberry-book-manager' ),
-					'items_list'            => __( 'Cover Artist list', 'mooberry-book-manager' ),
-				)
-			)
-			)
-		);
-
-		
-		
-		mbdb_upgrade_versions();
-	
-	}
-	
-	// add in a check in case the user has their theme set to use excerpts on 
-	// archives. this was found by the Generate theme.
-	add_filter('the_excerpt', 'mbdb_excerpt');
-	function mbdb_excerpt($content) {
-		
-		
-		// if on a tax grid and there's query vars set, display the special grid
-		if ( get_post_type() == 'mbdb_tax_grid' && is_main_query() && !is_admin() ) {
-			// this weeds out content in the sidebar and other odd places
-			// thanks joeytwiddle for this update
-			// added in version 2.3
-			if (!in_the_loop() || !is_main_query() ) {
-				return $content;
-			}
-			$content =  mbdb_content('');
-		}
-		// if we're in the admin side and the post type is mbdb_book then we're showign the list of books
-		// truncate the excerpt
-		if (is_admin() && get_post_type() == 'mbdb_book') {
-			$content = trim(substr($content, 0, 50));
-			if (strlen($content) > 0) {
-				$content .= '...';
-			}
-		}
-		return $content;
-	}
-
-	// because the Customizr theme doesn't use the standard WP set up and
-	// is automatically considering the tax grids a post list type (archive),
-	// add an additional filter handler for the content of the Customizr theme
-	// tc_post_list_content should be unique enough to the Customizr theme
-	// that it doesn't affect anything else?
-	add_filter('tc_post_list_content', 'mbdb_content');
-	add_filter('the_content', 'mbdb_content');
-	function mbdb_content($content) {
-		global $wp_query;
-		
-		// this weeds out content in the sidebar and other odd places
-		// thanks joeytwiddle for this update
-		// added in version 2.3
-		if (!in_the_loop() || !is_main_query() ) {
-			return $content;
-		}
-
-		// make sure it's the post type 'book'
-		if (get_post_type() == 'mbdb_book' && is_main_query() && !is_admin()) {
-			$content .= mbdb_book_content($content);
-		}
-		
-		if (get_post_type() == 'page' && is_main_query() && !is_admin()) {
-			$content .= mbdb_bookgrid_content();
-		}
-		
-		// if on a tax grid and there's query vars set, display the special grid
-		if ( get_post_type() == 'mbdb_tax_grid' && is_main_query() && !is_admin() ) {
-			if ( isset($wp_query->query_vars['the-term'] ) ) {
-				$mbdb_series = trim( urldecode( $wp_query->query_vars['the-term'] ), '/' );
-				if ( isset( $wp_query->query_vars['the-taxonomy'] ) ) {
-					$taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/' );
-					$mbdb_books = mbdb_get_books_in_taxonomy( $mbdb_series, $taxonomy );
-					// get default values for cover height and books across
-					$mbdb_default_cover_height = mbdb_get_grid_cover_height();
-					
-					// $mbdb_options = get_option('mbdb_options');
-					// if (!isset($mbdb_options['mbdb_default_cover_height'])) {
-						// $mbdb_options['mbdb_default_cover_height'] = 200;
-					// }
-					// if (!isset($mbdb_options['mbdb_default_books_across'])) {
-						// $mbdb_options['mbdb_default_books_across'] = 3;
-					// }
-					
-					$content = mbdb_display_grid( array( $mbdb_books ), $mbdb_default_cover_height, 0, 0 );
-				}
-			} 
-		}
-		return apply_filters('mbdb_content', $content);
-	}
-	
-add_action('admin_notices', 'mbdb_admin_notice',0);
-function mbdb_admin_notice(){
-    //print the message
-	global $post;
-	// only show on admin pages where there is a post id (ie editing a cpt)
-	if ($post ) {
-		$notice = get_option('mbdb_notice');
-		if (empty($notice)) return '';
-		foreach($notice as $pid => $m){
-			
-			if ($post->ID == $pid ){
-				echo apply_filters('mbdb_admin_notice', '<div id="message" class="error"><p>'.$m.'</p></div>');
-				//make sure to remove notice after its displayed so its only displayed when needed.
-				unset($notice[$pid]);
-				update_option('mbdb_notice',$notice);
-				break;
-			}
-		}
-    }
+ /**
+  *  Plugin Name: Mooberry Book Manager
+  *  Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
+  *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
+  *  Author: Mooberry Dreams
+  *  Author URI: http://www.mooberrydreams.com/
+  *	 Version: 3.0
+  *	 Text Domain: mooberry-book-manager
+  *	 Domain Path: languages
+  *
+  *	 Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License, version 2, as 
+  *  published by the Free Software Foundation.
+  *
+  *  This program is distributed in the hope that it will be useful,
+  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  *  GNU General Public License for more details.
+  *
+  *  You should have received a copy of the GNU General Public License
+  *  along with this program; if not, write to the Free Software
+  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  *
+  * @package MBDB
+  * @author Mooberry Dreams
+  * @version 3.0
+  */
+  
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+ 
+ 
+// Plugin version
+if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
+	define( 'MBDB_PLUGIN_VERSION', '3.0' );
 }
+
+if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
+	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
+}
+
+// Plugin Folder Path
+if ( ! defined( 'MBDB_PLUGIN_DIR' ) ) {
+	define( 'MBDB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+// Plugin Folder URL
+if ( ! defined( 'MBDB_PLUGIN_URL' ) ) {
+	define( 'MBDB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
+// Plugin Root File
+if ( ! defined( 'MBDB_PLUGIN_FILE' ) ) {
+	define( 'MBDB_PLUGIN_FILE', __FILE__ );
+} 
+
+// Load in CMB2
+if ( file_exists( MBDB_PLUGIN_DIR . 'includes/cmb2/init.php' ) ) {
+	require_once MBDB_PLUGIN_DIR . 'includes/cmb2/init.php';
+} elseif ( file_exists( MBDB_PLUGIN_DIR . 'includes/CMB2/init.php' ) ) {
+	require_once MBDB_PLUGIN_DIR . 'includes/CMB2/init.php';
+}
+
+require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
+require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/moobd-database.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-cpt.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-books.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-book.php';
+
+require_once MBDB_PLUGIN_DIR . 'includes/helper-functions.php';
+require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-updates.php';
+require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-validation.php';
+require_once MBDB_PLUGIN_DIR . 'includes/scripts-and-styles.php';
+
+require_once MBDB_PLUGIN_DIR . 'book.php';
+require_once MBDB_PLUGIN_DIR . 'single-book.php';
+require_once MBDB_PLUGIN_DIR . 'book-grid.php';
+require_once MBDB_PLUGIN_DIR . 'book-widget.php';
+require_once MBDB_PLUGIN_DIR . 'admin-settings-page.php';
+require_once MBDB_PLUGIN_DIR . 'tax-grid.php';
+
+
+if ( ! class_exists( 'Mooberry_Book_Manager' ) ) :
+
+/**
+ * Main Mooberry_Book_Manager Class
+ *
+ * @since 3.0
+ */
+final class Mooberry_Book_Manager {
+	/** Singleton *************************************************************/
+
+	/**
+	 * @var Mooberry_Book_Manager The one true Mooberry_Book_Manager
+	 * @since 3.0
+	 */
+	private static $instance;
+
+	/**
+	 * MBDB Books Object
+	 *
+	 * @var object
+	 * @since 3.0
+	 */
+	public $books;
+
+	/**
+	 * Main Mooberry_Book_Manager Instance
+	 *
+	 * Insures that only one instance of Mooberry_Book_Manager exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @since 3.0
+	 * @static
+	 * @staticvar array $instance
+	 * @see MBDB()
+	 * @return The one true Mooberry_Book_Manager
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mooberry_Book_Manager ) ) {
+			self::$instance = new Mooberry_Book_Manager;
+			self::$instance->books  = new MBDB_Books();			
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Throw error on object clone
+	 *
+	 * The whole idea of the singleton design pattern is that there is a single
+	 * object therefore, we don't want the object to be cloned.
+	 *
+	 * @since 3.0
+	 * @return void
+	 */
+	public function __clone() {
+		// Cloning instances of the class is forbidden
+		_doing_it_wrong( __FUNCTION__,  'Cheatin&#8217; huh?', '3.0' );
+	}
+
+	/**
+	 * Disable unserializing of the class
+	 *
+	 * @since 3.0
+	 * @return void
+	 */
+	public function __wakeup() {
+		// Unserializing instances of the class is forbidden
+		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '3.0' );
+	}
+
+}
+
+endif; // End if class_exists check
+
+
+
+/**
+ * The main function responsible for returning the one true Mooberry Book Manager
+ * Instance to functions everywhere.
+ *
+ * Use this function like you would a global variable, except without needing
+ * to declare the global.
+ *
+ * Example: <?php $mbdb = MBDB(); ?>
+ *
+ * @since 3.0
+ * @return object The one true Mooberry_Book_Manager Instance
+ */
+function MBDB() {
+	return Mooberry_Book_Manager::instance();
+}
+
+// Get MBDB Running
+MBDB();
+	
+
+	
+
+
 
 
 /*
-	add_filter('tc_post_list_layout', 'mbdb_customizr_turn_off_grid');
-	function mbdb_customizr_turn_off_grid($_layout) {
-		
-		// this weeds out content in the sidebar and other odd places
-		// thanks joeytwiddle for this update
-		// added in version 2.3
-		if (!in_the_loop() || !is_main_query() ) {
-			return $_layout;
-		}
-		
-		if (get_post_type()=='mbdb_tax_grid' && is_main_query() && !is_admin()) {
-error_log('tc_is_grid_enabled');		
-			$_position                  = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
-			$_layout['alternate']        = true; //( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_thumb_alternate' ) ) ) ? false : true;
-			$_layout['show_thumb_first'] = true; //( 'left' == $_position || 'top' == $_position ) ? true : false;
-			$_layout['content']          = 'span12'; //( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
-			$_layout['thumb']            = $_layout['thumb']; //( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
-			return $_layout;
-		}
-		
-		return $_layout;
+add_filter('tc_include_cpt_in_archives' , 'mbdb_tc_archives');
+function mbdb_tc_archives($include) {
+	error_log('inclue cpt in archives');
+	error_log(get_post_type());
+	if (get_post_type() == 'mbdb_book' || get_post_type() == 'mbdb_tax_grid') {
+		return false;
+	} else {
+		return $include;
 	}
-	
-	
-//	add_filter('tc_grid_single_post_thumb_content', 'mbdb_customizr_grid_content');
-	function mbdb_customizr_grid_content($content) {
-		// this weeds out content in the sidebar and other odd places
-		// thanks joeytwiddle for this update
-		// added in version 2.3
-		if (!in_the_loop() || !is_main_query() ) {
-			return $content;
-		}
-		
-		if (get_post_type()=='mbdb_tax_grid' && is_main_query() && !is_admin()) {
-			error_log('tc_grid_single_post_thumb_content');
-			error_log( do_shortcode($content));
-			//return do_shortcode($content);
-			return do_shortcode('[mbdb_tax_grid]');
-		} else {
-			return $content;
-		}
-			
-		
-	}
-	*/
+}
+*/
+
+
+

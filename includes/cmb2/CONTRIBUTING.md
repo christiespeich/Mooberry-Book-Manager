@@ -36,9 +36,16 @@ All contributions welcome. If you would like to submit a pull request, please fo
 
 **Note:** You may gain more ground and avoid unecessary effort if you first open an issue with the proposed changes, but this step is not necessary.
 
+Translations
+---
+If you are looking to provide language translation files, Please do so via [WP-Translations](http://wp-translations.org/project/cmb2/).
+
 Additional Resources
 ---
+
+* [CMB2 Documentation Wiki](https://github.com/WebDevStudios/CMB2/wiki)
 * [CMB2 Snippet Library](https://github.com/WebDevStudios/CMB2-Snippet-Library)
+* [CMB2 API Documentation](http://cmb2.io/api/)
 * [General GitHub Documentation](http://help.github.com/)
 * [GitHub Pull Request documentation](http://help.github.com/send-pull-requests/)
 * [PHPUnit Tests Guide](http://phpunit.de/manual/current/en/writing-tests-for-phpunit.html)

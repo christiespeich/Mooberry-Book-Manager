@@ -22,12 +22,7 @@
 		
 		<p>
 		<label for="<?php echo $this->get_field_id('mbdb_widget_type'); ?>"><?php _e('Which book to show?', 'mooberry-book-manager'); ?></label>
-		<select onchange="javascript:widget_type('<?php echo $this->get_field_id('mbdb_widget_type'); ?>', '<?php echo $this->get_field_id('bookdropdown'); ?>')" id="<?php echo $this->get_field_id('mbdb_widget_type'); ?>" name="<?php echo $this->get_field_name('mbdb_widget_type'); ?>">
-			<option value="random" <?php echo ($mbdb_widget_type=='random') ? 'selected' : ''; ?>><?php _e('Random Book', 'mooberry-book-manager'); ?></option>
-			<option value="newest" <?php echo ($mbdb_widget_type=='newest') ? 'selected' : ''; ?>><?php _e('Newest Book', 'mooberry-book-manager'); ?></option>
-			<option value="coming-soon" <?php echo ($mbdb_widget_type=='coming-soon') ? 'selected' : ''; ?>><?php _e('Future Book', 'mooberry-book-manager'); ?></option>
-			<option value="specific" <?php echo ($mbdb_widget_type=='specific') ? 'selected' : ''; ?>><?php _e('Specific Book', 'mooberry-book-manager'); ?></option>
-		</select>
+		<?php echo $widget_type_dropdown; ?>
 		</p>
 		
 		<div  id="<?php echo $this->get_field_id('bookdropdown'); ?>" style="display:<?php echo ($mbdb_widget_type=='specific') ? 'block' : 'none'; ?>">

@@ -1,18 +1,18 @@
-=== CMB2 ===  
-Contributors:      webdevstudios, jtsternberg, gregrickaby, tw2113, patrickgarman  
-Donate link:       http://webdevstudios.com  
-Tags:              metaboxes, forms, fields, options, settings  
-Requires at least: 3.8.0  
-Tested up to:      4.1.2  
-Stable tag:        2.0.5  
-License:           GPLv2 or later  
-License URI:       http://www.gnu.org/licenses/gpl-2.0.html  
+=== CMB2 ===
+Contributors:      webdevstudios, jtsternberg, gregrickaby, tw2113, patrickgarman, JPry
+Donate link:       http://webdevstudios.com
+Tags:              metaboxes, forms, fields, options, settings
+Requires at least: 3.8.0
+Tested up to:      4.3.1
+Stable tag:        2.1.2
+License:           GPLv2 or later
+License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
 CMB2 is a metabox, custom fields, and forms library for WordPress that will blow your mind.
 
 == Description ==
 
-CMB2 is a metabox, custom fields, and forms library for WordPress that will blow your mind.
+CMB2 is a developer's toolkit for building metaboxes, custom fields, and forms for WordPress that will blow your mind.
 
 CMB2 is a complete rewrite of [Custom Metaboxes and Fields for WordPress](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress). To get started, please follow the examples in the included `example-functions.php` file and have a look at the [basic usage instructions](https://github.com/WebDevStudios/CMB2/wiki/Basic-Usage).
 
@@ -41,6 +41,7 @@ You can see a list of available field types [here](https://github.com/WebDevStud
 ##### Custom Field Types
 * [CMB2 Field Type: CMB Attached Posts Field](https://github.com/coreymcollins/cmb-attached-posts) from [coreymcollins](https://github.com/coreymcollins): `custom_attached_posts`, for attaching posts to a page.
 * [CMB2 Field Type: CMB2 Post Search field](https://github.com/WebDevStudios/CMB2-Post-Search-field): `post_search_text` adds a post-search dialog for searching/attaching other post IDs.
+* [CMB2 Field Type: CMB2 User Search field](https://github.com/Mte90/CMB2-User-Search-field) from [Mte90](https://github.com/Mte90): `user_search_text` adds a user-search dialog for searching/attaching other User IDs.
 * [CMB2 Field Type: CMB2 RGBa Colorpicker](https://github.com/JayWood/CMB2_RGBa_Picker) from [JayWood](https://github.com/JayWood): `rgba_colorpicker ` adds a color picker that supports RGBa, (RGB with transparency (alpha) value).
 * [CMB2 Field Type: Google Maps](https://github.com/mustardBees/cmb_field_map) from [mustardBees](https://github.com/mustardBees): Custom field type for Google Maps.
 	> The `pw_map` field stores the latitude/longitude values which you can then use to display a map in your theme.
@@ -50,12 +51,21 @@ You can see a list of available field types [here](https://github.com/WebDevStud
 	> 1. The `pw_select field` acts much like the default select field. However, it adds typeahead-style search allowing you to quickly make a selection from a large list
 	> 2. The `pw_multiselect` field allows you to select multiple values with typeahead-style search. The values can be dragged and dropped to reorder
 
-* [CMB Field Type: Gallery](https://github.com/mustardBees/cmb-field-gallery) from [mustardBees](https://github.com/mustardBees): Adds a WordPress gallery field.
 * [CMB Field Type: Slider](https://github.com/qmatt/cmb2-field-slider) from [mattkrupnik](https://github.com/mattkrupnik/): Adds a jQuery UI Slider field.
+* [WDS CMB2 Date Range Field](https://github.com/WebDevStudios/CMB2-Date-Range-Field) from [dustyf](https://github.com/dustyf) of [WebDevStudios](https://github.com/WebDevStudios): Adds a date range field.
+* [CMB2 Remote Image Select](https://github.com/WebDevStudios/CMB2-Remote-Image-Select-Field) from [JayWood](https://github.com/JayWood) of [WebDevStudios](https://github.com/WebDevStudios): Allows users to enter a URL in a text field and select a single image for use in post meta. Similar to Facebook's featured image selector.
+* [CMB Field Type: Sorter](https://wordpress.org/plugins/cmb-field-type-sorter/): This plugin gives you two CMB field types based on the Sorter script.
 
 ##### Other Helpful Resources
 * [Taxonomy_MetaData](https://github.com/jtsternberg/Taxonomy_MetaData#to-use-taxonomy_metadata-with-custom-metaboxes-and-fields): WordPress Helper Class for saving pseudo-metadata for taxonomy terms. Includes an extended class for using CMB to generate the actual form fields.
+* [CMB2 Taxonomy](https://github.com/jcchavezs/cmb2-taxonomy) from [jcchavezs](https://github.com/jcchavezs/): Similar to Taxonomy_MetaData, but uses a custom table for taxonomy term meta storage.
 * [WordPress Shortcode Button](https://github.com/jtsternberg/Shortcode_Button): Uses CMB2 fields to generate fields for shortcode input modals.
+* [WDS-Simple-Page-Builder](https://github.com/WebDevStudios/WDS-Simple-Page-Builder): Uses existing template parts in the currently-active theme to build a customized page with rearrangeable elements. Built with CMB2.
+* [CMB2 Example Theme](https://github.com/WebDevStudios/CMB2-Example-Theme): Demonstrate how to include CMB2 in your theme, as well as some cool tips and tricks.
+* [facetwp-cmb2](https://github.com/FacetWP/facetwp-cmb2): FacetWP integration with CMB2.
+* [CMB2-grid](https://github.com/origgami/CMB2-grid) from [origgami](https://github.com/origgami/): A grid system for WordPress CMB2 library that allows the creation of columns for a better layout in the admin.
+* [CMB2 Conditionals](https://github.com/jcchavezs/cmb2-conditionals) from [jcchavezs](https://github.com/jcchavezs/): Allows developers to relate fields so the display of one is conditional on the value of another.
+* [CMB2 Metabox Code Generator](http://hasinhayder.github.io/cmb2-metabox-generator/) from [hasinhayder](https://github.com/hasinhayder/): Use this code generator to generate fully functional CMB2 metaboxes by visually adding fields in the designer.
 
 ### Contribution
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/WebDevStudios/CMB2/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/WebDevStudios/CMB2/blob/master/CONTRIBUTING.md) doc for more details.
@@ -63,30 +73,43 @@ All contributions welcome. If you would like to submit a pull request, please ch
 A complete list of all our awesome contributors found here: [github.com/WebDevStudios/CMB2/graphs/contributors](https://github.com/WebDevStudios/CMB2/graphs/contributors)
 
 ### Links
+* [Project Homepage](http://cmb2.io)
 * [Github project page](https://github.com/webdevstudios/CMB2)
 * [Documentation (GitHub wiki)](https://github.com/webdevstudios/CMB2/wiki)
 
-### Most Recent Changes - 2.0.4, 2.0.5
+### Most Recent Changes
 
-#### 2.0.5 - 2015-03-17
+#### 2.1.2
 
 ##### Bug Fixes
 
-* Fix grouped fields display (first field was being repeated), broken in 2.0.3.
+* Fixes back-compatibility issue when adding fields array to the metabox registration. ([#472](https://github.com/WebDevStudios/CMB2/pull/472))
 
-#### 2.0.4 - 2015-03-16
+#### 2.1.1
 
 ##### Enhancements
 
-* `select`, `radio`, `radio_inline` field types now all accept the `'show_option_none'` field parameter. This parameter allows you to set the text to display for showing a 'no selection' option. Default will be `false`, which means a 'none' option will not be added. Set to `true` to use the default text, 'None', or specify another value, i.e. 'No selection'.
+* Make all CMB2::save_fields arguments optional to fall-back to `$_POST` data. Props [JPry](https://github.com/JPry).
+* New filter, `cmb2_non_repeatable_fields` for adding additional fields to the blacklist of repeatable field-types. Props [JPry](https://github.com/JPry) ([#430](https://github.com/WebDevStudios/CMB2/pull/430)).
+* New recommended hoook for adding metaboxes, `cmb2_admin_init`. Most metabox registration only needs to happen if in wp-admin, so there is no reason to register them when loading the front-end (and increase the memory usage). `cmb2_init` still exists to register metaboxes that will be used on the front-end or used on both the front and back-end. Instances of `cmb2_init` in example-functions.php have been switched to `cmb2_admin_init`.
+* Add `'render_row_cb'` field parameter for overriding the field render method.
+* Add `'label_cb'` field parameter for overriding the field label render method.
+* Allow `CMB2_Types::checkbox()` method to be more flexible for extending by taking an args array and an `$is_checked` second argument.
+* More thorough unit tests. Props [pglewis](https://github.com/pglewis), ([#447](https://github.com/WebDevStudios/CMB2/pull/447),[#448](https://github.com/WebDevStudios/CMB2/pull/448)).
+* Update `CMB2_Utils::image_id_from_url` to be more reliable. Props [wpscholar](https://github.com/wpscholar), ([#453](https://github.com/WebDevStudios/CMB2/pull/453)).
+* `cmb2_get_option` now takes a default fallback value as a third parameter.
 
 ##### Bug Fixes
 
-* Fix back-compatibility when adding group field sub-fields via old array method (vs using the `CMB2:add_group_field()` method). Thanks to [norcross](https://github.com/norcross) for reporting.
-* Fix occasional jQuery issues with group-field indexes.
+* Address issue where `'file'` and `'file_list'` field results were getting mixed. Props [augustuswm](https://github.com/augustuswm) ([#382](https://github.com/WebDevStudios/CMB2/pull/382), [#250](https://github.com/WebDevStudios/CMB2/pull/250), [#296](https://github.com/WebDevStudios/CMB2/pull/296)).
+* Fix long-standing issues with radio and multicheck fields in repeatable groups losing their values when new rows are added. ([#341](https://github.com/WebDevStudios/CMB2/pull/341), [#304](https://github.com/WebDevStudios/CMB2/pull/304), [#263](https://github.com/WebDevStudios/CMB2/pull/263), [#246](https://github.com/WebDevStudios/CMB2/pull/246), [#150](https://github.com/WebDevStudios/CMB2/pull/150))
+* Fixes issue where currently logged-in user's profile data would display in the "Add New User" screen fields. ([#427](https://github.com/WebDevStudios/CMB2/pull/427))
+* Fixes issue where radio values/selections would not always properly transfer when shifting rows (up/down). Props [jamiechong](https://github.com/jamiechong) ([#429](https://github.com/WebDevStudios/CMB2/pull/429), [#152](https://github.com/WebDevStudios/CMB2/pull/152)).
+* Fixes issue where repeatable groups display "Array" as the field values if group is left completely empty. ([#332](https://github.com/WebDevStudios/CMB2/pull/332),[#390](https://github.com/WebDevStudios/CMB2/pull/390)).
+* Fixes issue with `'file_list'` fields not saving properly when in repeatable groups display. Props [jamiechong](https://github.com/jamiechong) ([#433](https://github.com/WebDevStudios/CMB2/pull/433),[#187](https://github.com/WebDevStudios/CMB2/pull/187)).
+* Update `'taxonomy_radio_inline'` and `'taxonomy_multicheck_inline'` fields sanitization method to use the same method as the non-inline versions. Props [superfreund](https://github.com/superfreund) ([#454](https://github.com/WebDevStudios/CMB2/pull/454)).
 
-
-**[View complete changelog](https://github.com/WebDevStudios/CMB2/blob/master/CONTRIBUTING.md)**
+**[View complete changelog](https://github.com/WebDevStudios/CMB2/blob/master/CHANGELOG.md)**
 
 ### Known Issues
 
@@ -116,6 +139,114 @@ If including the library in your plugin or theme:
 FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/wiki).
 
 == Changelog ==
+
+### 2.1.2 - 2015-10-01
+
+#### Bug Fixes
+
+* Fixes back-compatibility issue when adding fields array to the metabox registration. ([#472](https://github.com/WebDevStudios/CMB2/pull/472))
+
+### 2.1.1 - 2015-09-30
+
+#### Enhancements
+
+* Make all CMB2::save_fields arguments optional to fall-back to `$_POST` data. Props [JPry](https://github.com/JPry).
+* New filter, `cmb2_non_repeatable_fields` for adding additional fields to the blacklist of repeatable field-types. Props [JPry](https://github.com/JPry) ([#430](https://github.com/WebDevStudios/CMB2/pull/430)).
+* New recommended hoook for adding metaboxes, `cmb2_admin_init`. Most metabox registration only needs to happen if in wp-admin, so there is no reason to register them when loading the front-end (and increase the memory usage). `cmb2_init` still exists to register metaboxes that will be used on the front-end or used on both the front and back-end. Instances of `cmb2_init` in example-functions.php have been switched to `cmb2_admin_init`.
+* Add `'render_row_cb'` field parameter for overriding the field render method.
+* Add `'label_cb'` field parameter for overriding the field label render method.
+* Allow `CMB2_Types::checkbox()` method to be more flexible for extending by taking an args array and an `$is_checked` second argument.
+* More thorough unit tests. Props [pglewis](https://github.com/pglewis), ([#447](https://github.com/WebDevStudios/CMB2/pull/447),[#448](https://github.com/WebDevStudios/CMB2/pull/448)).
+* Update `CMB2_Utils::image_id_from_url` to be more reliable. Props [wpscholar](https://github.com/wpscholar), ([#453](https://github.com/WebDevStudios/CMB2/pull/453)).
+* `cmb2_get_option` now takes a default fallback value as a third parameter.
+
+#### Bug Fixes
+
+* Address issue where `'file'` and `'file_list'` field results were getting mixed. Props [augustuswm](https://github.com/augustuswm) ([#382](https://github.com/WebDevStudios/CMB2/pull/382), [#250](https://github.com/WebDevStudios/CMB2/pull/250), [#296](https://github.com/WebDevStudios/CMB2/pull/296)).
+* Fix long-standing issues with radio and multicheck fields in repeatable groups losing their values when new rows are added. ([#341](https://github.com/WebDevStudios/CMB2/pull/341), [#304](https://github.com/WebDevStudios/CMB2/pull/304), [#263](https://github.com/WebDevStudios/CMB2/pull/263), [#246](https://github.com/WebDevStudios/CMB2/pull/246), [#150](https://github.com/WebDevStudios/CMB2/pull/150))
+* Fixes issue where currently logged-in user's profile data would display in the "Add New User" screen fields. ([#427](https://github.com/WebDevStudios/CMB2/pull/427))
+* Fixes issue where radio values/selections would not always properly transfer when shifting rows (up/down). Props [jamiechong](https://github.com/jamiechong) ([#429](https://github.com/WebDevStudios/CMB2/pull/429), [#152](https://github.com/WebDevStudios/CMB2/pull/152)).
+* Fixes issue where repeatable groups display "Array" as the field values if group is left completely empty. ([#332](https://github.com/WebDevStudios/CMB2/pull/332),[#390](https://github.com/WebDevStudios/CMB2/pull/390)).
+* Fixes issue with `'file_list'` fields not saving properly when in repeatable groups display. Props [jamiechong](https://github.com/jamiechong) ([#433](https://github.com/WebDevStudios/CMB2/pull/433),[#187](https://github.com/WebDevStudios/CMB2/pull/187)).
+* Update `'taxonomy_radio_inline'` and `'taxonomy_multicheck_inline'` fields sanitization method to use the same method as the non-inline versions. Props [superfreund](https://github.com/superfreund) ([#454](https://github.com/WebDevStudios/CMB2/pull/454)).
+
+### 2.1.0 - 2015-08-05
+
+#### Bug Fixes
+
+* Fix user fields not saving. Props [achavez](https://github.com/achavez), ([#417](https://github.com/WebDevStudios/CMB2/pull/417)).
+
+### 2.0.9 - 2015-07-28
+
+#### Bug Fixes
+
+* `'multicheck_inline'`, `'taxonomy_radio_inline'`, and `'taxonomy_multicheck_inline'` field types were not outputting anything since it's value was not being returned. Props [ediamin](https://github.com/ediamin), ([#367](https://github.com/WebDevStudios/CMB2/pull/367), ([#405](https://github.com/WebDevStudios/CMB2/pull/405)).
+* `'hidden'` type fields were not honoring the `'show_on_cb'` callback. Props [JPry](https://github.com/JPry), ([commits](https://github.com/WebDevStudios/CMB2/compare/5a4146eec546089fbe1a1c859d680dfda3a86ee2...1ef5ef1e3b2260ab381090c4abe9dc7234cfa0a6)).
+* Fixed: There was no minified cmb2-front.min.css file.
+* Fallback for fatal error with invalid timezone. Props [ryanduff](https://github.com/ryanduff) ([#385](https://github.com/WebDevStudios/CMB2/pull/385)).
+* Fix issues with deleting a row from repeatable group. Props [yuks](https://github.com/yuks) ([#387](https://github.com/WebDevStudios/CMB2/pull/387)).
+* Ensure value passed to `strtotime` in `make_valid_time_stamp` is cast to a string. Props [vajrasar](https://github.com/vajrasar) ([#389](https://github.com/WebDevStudios/CMB2/pull/389)).
+* Fixed issue with Windows IIS and bundling CMB2 in the theme. Props [DevinWalker](https://github.com/DevinWalker), ([#400](https://github.com/WebDevStudios/CMB2/pull/400), [#401](https://github.com/WebDevStudios/CMB2/pull/401))
+
+#### Enhancements
+
+* Updated/Added many translations. Props [fxbenard](https://github.com/fxbenard), ([#203](https://github.com/WebDevStudios/CMB2/pull/344)) and [Mte90](https://github.com/Mte90) for the Italian translation.
+* Updated `'file_list'` field type to have a more intutive selection in the media library, and updated the 'Use file' text in the button. Props [SteveHoneyNZ](https://github.com/SteveHoneyNZ) ([#357](https://github.com/WebDevStudios/CMB2/pull/357), [#358](https://github.com/WebDevStudios/CMB2/pull/358)).
+* `'closed'` group field option parameter introduced in order to set the groups as collapsed by default. Requested in [#391](https://github.com/WebDevStudios/CMB2/issues/391).
+* Added `"cmb2_{$object_type}_process_fields_{$cmb_id}"` hook for hooking in and modifying the metabox or fields before the fields are processed/sanitized for saving.
+* Added Comment Metabox support. Props [GregLancaster71](https://github.com/GregLancaster71) ([#238](https://github.com/WebDevStudios/CMB2/pull/238), [#244](https://github.com/WebDevStudios/CMB2/pull/244)).
+* New "cmb2_{$field_id}_is_valid_img_ext" filter for determining if a field value has a valid image file-type extension.
+
+### 2.0.8 - 2015-06-01
+
+#### Bug Fixes
+
+* Fix color-picker field not enqueueing the colorpicker script. ([#333](https://github.com/WebDevStudios/CMB2/issues/333))
+
+### 2.0.7 - 2015-05-28
+
+#### Enhancements
+
+* Ability to use non-repeatable group fields by setting the `'repeatable'` field param to `false` when registering a group field type. Props [marcusbattle](https://github.com/marcusbattle), ([#159](https://github.com/WebDevStudios/CMB2/pull/159)).
+* Add and enqeueue a front-end specific CSS file which adds additional styles which are typically covered by wp-admin css. ([#311](https://github.com/WebDevStudios/CMB2/issues/311))
+* Better handling of the CMB2 javascript (and CSS) required dependencies array. Dependencies are now only added conditionally based on the field types that are actually visible. ([#136](https://github.com/WebDevStudios/CMB2/issues/136))
+* **THIS IS A BREAKING CHANGE:** The `group` field type's `'show_on_cb'` property now receives the `CMB2_Field` object instance as an argument instead of the `CMB2` instance. If you're using the `'show_on_cb'` property for a `group` field, please adjust accordingly. _note: you can still retrieve the `CMB2` instance via the `cmb2_get_metabox` helper function._
+* New dynamic hook, `"cmb2_save_{$object_type}_fields_{$this->cmb_id}"`, to complement the existing `"cmb2_save_{$object_type}_fields"` hook.
+* German translation provided by Friedhelm Jost.
+
+#### Bug Fixes
+
+* Fix incorrect repeatable group title number. ([#310](https://github.com/WebDevStudios/CMB2/pull/310))
+* Fix obscure bug which prevented group field arguments from being passed to the sub-fields (like `show_names` and `context`).
+* Fixed occasional issue when adding a group row, the previous row's content would be cloned. ([#257](https://github.com/WebDevStudios/CMB2/pull/257))
+
+### 2.0.6 - 2015-04-30
+
+#### Enhancements
+
+* New metabox/form parameter, `show_on_cb`, allows you to conditionally display a cmb metabox/form via a callback. The `$cmb` object gets passed as a parameter to the callback. This complements the `'show_on_cb'` parameter that already exists for individual fields. Using this callback is similar to using the `'cmb2_show_on'` filter, but only applies to that specific metabox and it is recommended to use this callback instead as it minimizes th risk that your filter will affect other metaboxes.
+* Taxonomy types no longer save a value. The value getting saved was causing confusion and is not meant to be used. To use the saved taxonomy data, you need to use the WordPress term api, `get_the_terms `, `get_the_term_list`, etc.
+* Add `'multiple'` field parameter to store values in individual rows instead of serialized array. Will only work if field is not repeatable or a repeatable group. Props [JohnyGoerend](https://github.com/JohnyGoerend). ([#262](https://github.com/WebDevStudios/CMB2/pull/262), [#206](https://github.com/WebDevStudios/CMB2/issues/206), [#45](https://github.com/WebDevStudios/CMB2/issues/45)).
+* Portuguese (Brazil) translation provided by [@lucascdsilva](https://github.com/lucascdsilva) - [#293](https://github.com/WebDevStudios/CMB2/pull/293).
+* Spanish (Spain) translation updated by [@yivi](https://github.com/yivi) - [#272](https://github.com/WebDevStudios/CMB2/pull/272).
+* Added group field callback parameters, `'before_group'`, `'before_group_row'`, `'after_group_row'`, `'after_group'` to complement the `'before_row'`, `'before'`, `'after'`, `'after_row'` field parameters.
+* Better styling for `title` fields and `title` descriptions on options pages.
+* Add a `sanitization_cb` field parameter check for the `group` field type.
+* Better function/file doc-blocks to provide better documentation for automated documentation tools. See: [cmb2.io/api](http://cmb2.io/api/).
+* `cmb2_print_metabox_form`, `cmb2_metabox_form`, and `cmb2_get_metabox_form` helper functions now accept two new parameters:
+	* an `'object_type'` parameter to explictly set that in the `$cmb` object.
+	* an `'enqueue_js'` parameter to explicitly disable the CMB JS enqueue. This is handy if you're not planning on using any of the fields which require JS (like color/date pickers, wysiwyg, file, etc).
+
+#### Bug Fixes
+
+* Fix issue with oembed fields in repeatable groups where changing video changed it for all fields in a group.
+* Fix empty arrays (like in the group field) saving as a value.
+* Move `'cmb2_override_meta_value'` and `"cmb2_override_{$field_id}_meta_value"` filters to the `CMB2_Field::get_data()` method so that the filters are applied every time the data is requested. **THIS IS A BREAKING CHANGE:** The parameters for those filters have changed a bit. Previously, the filters accepted 5 arguments, `$value`, `$object_id`, `$field_args`, `$object_type`, `$field`. They have changed to accept 4 arguments instead, `$value`, `$object_id`, `$args`, `$field`, where `$args` is an array that contains the following:
+	* @type string $type     The current object type
+	* @type int    $id       The current object ID
+	* @type string $field_id The ID of the field being requested
+	* @type bool   $repeat   Whether current field is repeatable
+	* @type bool   $single   Whether current field is a single database row
 
 ### 2.0.5 - 2015-03-17
 
@@ -173,7 +304,7 @@ FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/
 ### 2.0.0(beta) - 2014-08-16
 
 2.0.0 is the official version number for the transition to CMB2, and 2.0.1 is the official version after beta. It is a complete rewrite. Improvements and fixes are listed below. __Note: This release requires WordPress 3.8+__
- 
+
 ##### Enhancements
 
 * Converted `<table>` markup to more generic `<div>` markup to be more extensible and allow easier styling.
@@ -197,7 +328,7 @@ FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/
 * [New before/after dynamic form hooks](https://github.com/WebDevStudios/CMB2/wiki/Tips-&-Tricks#using-the-dynamic-beforeafter-form-hooks).
 * Larger unit test coverage. Props to [@pmgarman](https://github.com/pmgarman) for assistance. ([#90](https://github.com/WebDevStudios/CMB2/pull/90) and [#91](https://github.com/WebDevStudios/CMB2/pull/91))
 * Added helper function to update an option. Props [mAAdhaTTah](https://github.com/mAAdhaTTah), ([#110](https://github.com/WebDevStudios/CMB2/pull/110)).
-* More JS hooks during repeat group shifting. Props [AlchemyUnited](https://github.com/AlchemyUnited), ([#125](https://github.com/WebDevStudios/CMB2/pull/125)). 
+* More JS hooks during repeat group shifting. Props [AlchemyUnited](https://github.com/AlchemyUnited), ([#125](https://github.com/WebDevStudios/CMB2/pull/125)).
 * [New metabox config option for defaulting to closed](https://github.com/WebDevStudios/CMB2/wiki/Tips-&-Tricks#setting-a-metabox-to-closed-by-default).
 * New hooks, [`cmb2_init`](https://github.com/WebDevStudios/CMB2/wiki/Tips-&-Tricks#using-cmb2-helper-functions-and-cmb2_init) and `cmb2_init_{$cmb_id}`.
 
@@ -216,20 +347,20 @@ FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/
 ### 1.3.0 - (never released, merged into CMB2)
 
 ##### Enhancements
- 
+
 * Localize Date, Time, and Color picker defaults so that they can be overridden via the `cmb_localized_data` filter. ([#528](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/issues/528))
 * Change third parameter for 'cmb_metabox_form' to be an args array. Optional arguments include `echo`, `form_format`, and `save_button`.
 * Add support for `show_option_none` argument for `taxonomy_select` and `taxonomy_radio` field types. Also adds the following filters: `cmb_all_or_nothing_types`, `cmb_taxonomy_select_default_value`, `cmb_taxonomy_select_{$this->_id()}_default_value`, `cmb_taxonomy_radio_{$this->_id()}_default_value`, `cmb_taxonomy_radio_default_value`. Props [@pmgarman](https://github.com/pmgarman), ([#569](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/pull/569)).
 * Make the list items in the `file_list` field type drag & drop sortable. Props [twoelevenjay](https://github.com/twoelevenjay), ([#603](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/pull/603)).
 
-##### Bug Fixes  
+##### Bug Fixes
 
 * Fixed typo in closing `</th>` tag. Props [@CivicImages](https://github.com/CivicImages). ([#616](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/issues/616))
 
 ### 1.2.0 - 2014-05-03
 
 ##### Enhancements
- 
+
 * Add support for custom date/time formats. Props [@Scrent](https://github.com/Scrent). ([#506](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/pull/506))
 * Simplify `wysiwyg` escaping and allow it to be overridden via the `escape_cb` parameter. ([#491](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/pull/491))
 * Add a 'Select/Deselect all' button for the `multicheck` field type.
@@ -237,7 +368,7 @@ FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/
 * New field parameter, `show_on_cb`, allows you to conditionally display a field via a callback. ([#47](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/issues/47))
 * Unit testing (the beginning). Props [@brichards](https://github.com/brichards) and [@camdensegal](https://github.com/camdensegal).
 
-##### Bug Fixes  
+##### Bug Fixes
 
 * Fixed issue where remove file button wouldn't clear the url field. ([#514](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/issues/514))
 * `wysiwyg` fields now allow underscores. Fixes some wysiwyg display issues in WordPress 3.8. Props [@lswilson](https://github.com/lswilson). ([#491](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/issues/491))
@@ -250,14 +381,14 @@ FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/
 
 ### 1.1.3 - 2014-04-07
 
-##### Bug Fixes  
+##### Bug Fixes
 
 * Update `cmb_get_field_value` function as it was passing the parameters to `cmb_get_field` in the wrong order.
 * Fix repeating fields not working correctly if meta key or prefix contained an integer. ([#503](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/issues/503))
 
 ### 1.1.2 - 2014-04-05
 
-##### Bug Fixes  
+##### Bug Fixes
 
 * Fix issue with `cmb_Meta_Box_types.php` calling a missing method, `image_id_from_url`. ([#502](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/pull/502))
 
@@ -274,7 +405,7 @@ FAQ's usually end up in the [github wiki](https://github.com/WebDevStudios/CMB2/
 
 * [Repeatable groups](https://github.com/WebDevStudios/CMB2/wiki/Field-Types#group)
 * Support for more fields to be repeatable, including oEmbed field, and date, time, and color picker fields, etc.
-* Codebase has been revamped to be more modular and object-oriented. 
+* Codebase has been revamped to be more modular and object-oriented.
 * New filter, `"cmb_{$element}_attributes"	` for modifying an element's attributes.
 * Every field now supports an `attributes` parameter that takes an array of attributes. [Read more](https://github.com/WebDevStudios/CMB2/wiki/Field-Types#attributes).
 * Removed `cmb_std_filter` in favor of `cmb_default_filter`. **THIS IS A BREAKING CHANGE**
@@ -409,8 +540,110 @@ It is now passed a null value vs saved value. If null is returned, default sanit
 
 == Upgrade Notice ==
 
-### 2.0.5 - 2015-03-17
+### 2.1.2 - 2015-10-01
 
 #### Bug Fixes
 
-* Fix grouped fields display (first field was being repeated), broken in 2.0.3.
+* Fixes back-compatibility issue when adding fields array to the metabox registration. ([#472](https://github.com/WebDevStudios/CMB2/pull/472))
+
+### 2.1.1 - 2015-09-30
+
+#### Enhancements
+
+* Make all CMB2::save_fields arguments optional to fall-back to `$_POST` data. Props [JPry](https://github.com/JPry).
+* New filter, `cmb2_non_repeatable_fields` for adding additional fields to the blacklist of repeatable field-types. Props [JPry](https://github.com/JPry) ([#430](https://github.com/WebDevStudios/CMB2/pull/430)).
+* New recommended hoook for adding metaboxes, `cmb2_admin_init`. Most metabox registration only needs to happen if in wp-admin, so there is no reason to register them when loading the front-end (and increase the memory usage). `cmb2_init` still exists to register metaboxes that will be used on the front-end or used on both the front and back-end. Instances of `cmb2_init` in example-functions.php have been switched to `cmb2_admin_init`.
+* Add `'render_row_cb'` field parameter for overriding the field render method.
+* Add `'label_cb'` field parameter for overriding the field label render method.
+* Allow `CMB2_Types::checkbox()` method to be more flexible for extending by taking an args array and an `$is_checked` second argument.
+* More thorough unit tests. Props [pglewis](https://github.com/pglewis), ([#447](https://github.com/WebDevStudios/CMB2/pull/447),[#448](https://github.com/WebDevStudios/CMB2/pull/448)).
+* Update `CMB2_Utils::image_id_from_url` to be more reliable. Props [wpscholar](https://github.com/wpscholar), ([#453](https://github.com/WebDevStudios/CMB2/pull/453)).
+* `cmb2_get_option` now takes a default fallback value as a third parameter.
+
+#### Bug Fixes
+
+* Address issue where `'file'` and `'file_list'` field results were getting mixed. Props [augustuswm](https://github.com/augustuswm) ([#382](https://github.com/WebDevStudios/CMB2/pull/382), [#250](https://github.com/WebDevStudios/CMB2/pull/250), [#296](https://github.com/WebDevStudios/CMB2/pull/296)).
+* Fix long-standing issues with radio and multicheck fields in repeatable groups losing their values when new rows are added. ([#341](https://github.com/WebDevStudios/CMB2/pull/341), [#304](https://github.com/WebDevStudios/CMB2/pull/304), [#263](https://github.com/WebDevStudios/CMB2/pull/263), [#246](https://github.com/WebDevStudios/CMB2/pull/246), [#150](https://github.com/WebDevStudios/CMB2/pull/150))
+* Fixes issue where currently logged-in user's profile data would display in the "Add New User" screen fields. ([#427](https://github.com/WebDevStudios/CMB2/pull/427))
+* Fixes issue where radio values/selections would not always properly transfer when shifting rows (up/down). Props [jamiechong](https://github.com/jamiechong) ([#429](https://github.com/WebDevStudios/CMB2/pull/429), [#152](https://github.com/WebDevStudios/CMB2/pull/152)).
+* Fixes issue where repeatable groups display "Array" as the field values if group is left completely empty. ([#332](https://github.com/WebDevStudios/CMB2/pull/332),[#390](https://github.com/WebDevStudios/CMB2/pull/390)).
+* Fixes issue with `'file_list'` fields not saving properly when in repeatable groups display. Props [jamiechong](https://github.com/jamiechong) ([#433](https://github.com/WebDevStudios/CMB2/pull/433),[#187](https://github.com/WebDevStudios/CMB2/pull/187)).
+* Update `'taxonomy_radio_inline'` and `'taxonomy_multicheck_inline'` fields sanitization method to use the same method as the non-inline versions. Props [superfreund](https://github.com/superfreund) ([#454](https://github.com/WebDevStudios/CMB2/pull/454)).
+
+### 2.1.0 - 2015-08-05
+
+#### Bug Fixes
+
+* Fix user fields not saving. Props [achavez](https://github.com/achavez), ([#417](https://github.com/WebDevStudios/CMB2/pull/417)).
+
+### 2.0.9 - 2015-07-28
+
+#### Bug Fixes
+
+* `'multicheck_inline'`, `'taxonomy_radio_inline'`, and `'taxonomy_multicheck_inline'` field types were not outputting anything since it's value was not being returned. Props [ediamin](https://github.com/ediamin), ([#367](https://github.com/WebDevStudios/CMB2/pull/367), ([#405](https://github.com/WebDevStudios/CMB2/pull/405)).
+* `'hidden'` type fields were not honoring the `'show_on_cb'` callback. Props [JPry](https://github.com/JPry), ([commits](https://github.com/WebDevStudios/CMB2/compare/5a4146eec546089fbe1a1c859d680dfda3a86ee2...1ef5ef1e3b2260ab381090c4abe9dc7234cfa0a6)).
+* Fixed: There was no minified cmb2-front.min.css file.
+* Fallback for fatal error with invalid timezone. Props [ryanduff](https://github.com/ryanduff) ([#385](https://github.com/WebDevStudios/CMB2/pull/385)).
+* Fix issues with deleting a row from repeatable group. Props [yuks](https://github.com/yuks) ([#387](https://github.com/WebDevStudios/CMB2/pull/387)).
+* Ensure value passed to `strtotime` in `make_valid_time_stamp` is cast to a string. Props [vajrasar](https://github.com/vajrasar) ([#389](https://github.com/WebDevStudios/CMB2/pull/389)).
+* Fixed issue with Windows IIS and bundling CMB2 in the theme. Props [DevinWalker](https://github.com/DevinWalker), ([#400](https://github.com/WebDevStudios/CMB2/pull/400), [#401](https://github.com/WebDevStudios/CMB2/pull/401))
+
+#### Enhancements
+
+* Updated/Added many translations. Props [fxbenard](https://github.com/fxbenard), ([#203](https://github.com/WebDevStudios/CMB2/pull/344)) and [Mte90](https://github.com/Mte90) for the Italian translation.
+* Updated `'file_list'` field type to have a more intutive selection in the media library, and updated the 'Use file' text in the button. Props [SteveHoneyNZ](https://github.com/SteveHoneyNZ) ([#357](https://github.com/WebDevStudios/CMB2/pull/357), [#358](https://github.com/WebDevStudios/CMB2/pull/358)).
+* `'closed'` group field option parameter introduced in order to set the groups as collapsed by default. Requested in [#391](https://github.com/WebDevStudios/CMB2/issues/391).
+* Added `"cmb2_{$object_type}_process_fields_{$cmb_id}"` hook for hooking in and modifying the metabox or fields before the fields are processed/sanitized for saving.
+* Added Comment Metabox support. Props [GregLancaster71](https://github.com/GregLancaster71) ([#238](https://github.com/WebDevStudios/CMB2/pull/238), [#244](https://github.com/WebDevStudios/CMB2/pull/244)).
+* New "cmb2_{$field_id}_is_valid_img_ext" filter for determining if a field value has a valid image file-type extension.
+
+### 2.0.8 - 2015-06-01
+
+#### Bug Fixes
+
+* Fix color-picker field not enqueueing the colorpicker script. ([#333](https://github.com/WebDevStudios/CMB2/issues/333))
+
+### 2.0.7 - 2015-05-28
+
+#### Enhancements
+
+* Ability to use non-repeatable group fields by setting the `'repeatable'` field param to `false` when registering a group field type. Props [marcusbattle](https://github.com/marcusbattle), ([#159](https://github.com/WebDevStudios/CMB2/pull/159)).
+* Add and enqeueue a front-end specific CSS file which adds additional styles which are typically covered by wp-admin css. ([#311](https://github.com/WebDevStudios/CMB2/issues/311))
+* Better handling of the CMB2 javascript (and CSS) required dependencies array. Dependencies are now only added conditionally based on the field types that are actually visible. ([#136](https://github.com/WebDevStudios/CMB2/issues/136))
+* **THIS IS A BREAKING CHANGE:** The `group` field type's `'show_on_cb'` property now receives the `CMB2_Field` object instance as an argument instead of the `CMB2` instance. If you're using the `'show_on_cb'` property for a `group` field, please adjust accordingly. _note: you can still retrieve the `CMB2` instance via the `cmb2_get_metabox` helper function._
+* New dynamic hook, `"cmb2_save_{$object_type}_fields_{$this->cmb_id}"`, to complement the existing `"cmb2_save_{$object_type}_fields"` hook.
+* German translation provided by Friedhelm Jost.
+
+#### Bug Fixes
+
+* Fix incorrect repeatable group title number. ([#310](https://github.com/WebDevStudios/CMB2/pull/310))
+* Fix obscure bug which prevented group field arguments from being passed to the sub-fields (like `show_names` and `context`).
+* Fixed occasional issue when adding a group row, the previous row's content would be cloned. ([#257](https://github.com/WebDevStudios/CMB2/pull/257))
+
+### 2.0.6 - 2015-04-30
+
+#### Enhancements
+
+* New metabox/form parameter, `show_on_cb`, allows you to conditionally display a cmb metabox/form via a callback. The `$cmb` object gets passed as a parameter to the callback. This complements the `'show_on_cb'` parameter that already exists for individual fields. Using this callback is similar to using the `'cmb2_show_on'` filter, but only applies to that specific metabox and it is recommended to use this callback instead as it minimizes th risk that your filter will affect other metaboxes.
+* Taxonomy types no longer save a value. The value getting saved was causing confusion and is not meant to be used. To use the saved taxonomy data, you need to use the WordPress term api, `get_the_terms `, `get_the_term_list`, etc.
+* Add `'multiple'` field parameter to store values in individual rows instead of serialized array. Will only work if field is not repeatable or a repeatable group. Props [JohnyGoerend](https://github.com/JohnyGoerend). ([#262](https://github.com/WebDevStudios/CMB2/pull/262), [#206](https://github.com/WebDevStudios/CMB2/issues/206), [#45](https://github.com/WebDevStudios/CMB2/issues/45)).
+* Portuguese (Brazil) translation provided by [@lucascdsilva](https://github.com/lucascdsilva) - [#293](https://github.com/WebDevStudios/CMB2/pull/293).
+* Spanish (Spain) translation updated by [@yivi](https://github.com/yivi) - [#272](https://github.com/WebDevStudios/CMB2/pull/272).
+* Added group field callback parameters, `'before_group'`, `'before_group_row'`, `'after_group_row'`, `'after_group'` to complement the `'before_row'`, `'before'`, `'after'`, `'after_row'` field parameters.
+* Better styling for `title` fields and `title` descriptions on options pages.
+* Add a `sanitization_cb` field parameter check for the `group` field type.
+* Better function/file doc-blocks to provide better documentation for automated documentation tools. See: [cmb2.io/api](http://cmb2.io/api/).
+* `cmb2_print_metabox_form`, `cmb2_metabox_form`, and `cmb2_get_metabox_form` helper functions now accept two new parameters:
+	* an `'object_type'` parameter to explictly set that in the `$cmb` object.
+	* an `'enqueue_js'` parameter to explicitly disable the CMB JS enqueue. This is handy if you're not planning on using any of the fields which require JS (like color/date pickers, wysiwyg, file, etc).
+
+#### Bug Fixes
+
+* Fix issue with oembed fields in repeatable groups where changing video changed it for all fields in a group.
+* Fix empty arrays (like in the group field) saving as a value.
+* Move `'cmb2_override_meta_value'` and `"cmb2_override_{$field_id}_meta_value"` filters to the `CMB2_Field::get_data()` method so that the filters are applied every time the data is requested. **THIS IS A BREAKING CHANGE:** The parameters for those filters have changed a bit. Previously, the filters accepted 5 arguments, `$value`, `$object_id`, `$field_args`, `$object_type`, `$field`. They have changed to accept 4 arguments instead, `$value`, `$object_id`, `$args`, `$field`, where `$args` is an array that contains the following:
+	* @type string $type     The current object type
+	* @type int    $id       The current object ID
+	* @type string $field_id The ID of the field being requested
+	* @type bool   $repeat   Whether current field is repeatable
+	* @type bool   $single   Whether current field is a single database row

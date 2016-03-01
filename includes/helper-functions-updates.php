@@ -43,6 +43,12 @@ function mbdb_upgrade_versions() {
 			$wp_rewrite->flush_rules();
 		}
 		
+		if (version_compare($current_version, '3.0', '<')) {
+			mbdb_upgrade_to_3_0();
+		
+		}
+	
+	
 		// update database to the new version
 		update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 	
@@ -323,8 +329,121 @@ function mbdb_migrate_to_book_grid_height_defaults() {
 			update_post_meta($page->ID, '_mbdb_book_grid_cover_height', $mbdb_options['mbdb_default_cover_height']);
 		}
 	}
+	wp_reset_postdata();	
+}
+
+function mbdb_upgrade_to_3_0() {
+	// 0. CREATE TABLE 
+	MBDB()->books->create_table();
+	
+	/*
+	// 1. IMPORT BOOK DATA
+	// this needs to run just one time
+	$import_books = get_option('mbdb_import_books');
+	if (!$import_books || $import_books == null) {
+		$success = MBDB()->books->import();
+		if ($success === true) {
+			update_option('mbdb_import_books', true);
+		} else {
+			global $wpdb;
+			update_option('mbdb_error', $wpdb->last_error);
+			add_action( 'admin_notices', 'mbdb_admin_notice_db_error' );
+			
+		}
+	}
+	*/
+	
+	// 2. UPDATE GRID OPTIONS
+	// loop through all the pages with a book grid
+	$grid_pages = get_posts(array(
+								'posts_per_page' => -1,
+								'post_type' => 'page',
+								'meta_query'	=>	array(
+										array(
+											'key'	=>	'_mbdb_book_grid_display',
+											'value'	=>	'yes',
+											'compare'	=>	'=',
+										),
+									),	
+							)
+					);
+	foreach($grid_pages as $page) {
+	
+		// group_by => level 1
+		$level1 = get_post_meta($page->ID, '_mbdb_book_grid_group_by', true);
+		if (!$level1) {
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_1', 'none');
+		} else {
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_1', $level1 );
+		}
+		
+		// genre_group_by => level 2
+		// tag_group_by => level 2
+		// else level 2 => none
+		if ($level1 == 'tag' || $level1 == 'genre') {
+			$level2 = get_post_meta($page->ID, '_mbdb_book_grid_' . $level1 . '_group_by', true);
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_2', $level2);
+		} else {
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_2', 'none' );
+			$level2 = null;
+		}
+			
+		// genre_tag_group_by => level 3
+		// tag_genre_group_by => level 3
+		// level 4 => none
+		// else level 3 => none
+		if ($level2 == 'tag' || $level2 == 'genre') {
+			$level3 = get_post_meta($page->ID, '_mbdb_book_grid_' . $level1 . '_' . $level2 . '_group_by', true);
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_3', $level3);
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_4', 'none');
+		} else {
+			update_post_meta($page->ID, '_mbdb_book_grid_group_by_level_3', 'none');
+		}
+	}
+	
+	// 3. SET DEFAULT OPTIONS FOR GRID SLUGS
+	mbdb_set_default_tax_grid_slugs();
+	
+	
+
+	// 4. update all books to have book short code
+	
+	// get all posts of type mbdb_book
+	$books = get_posts(array('posts_per_page' => -1, 'post_type' => 'mbdb_book'));
+	
+	// unhook this function because wp_update_post will call it
+	remove_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );
+	
+	foreach($books as $book) {
+		// update the post, which calls save_post again
+		wp_update_post( array( 'ID' => $book->ID, 'post_content' => '[mbdb_book]') );
+	}
+	
+	// re-hook this function
+	add_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );	
+	
+	// 5. INSERT DEFAULT SOCIAL MEDIA SITES
+	$mbdb_options = get_option('mbdb_options');
+	mbdb_insert_default_social_media( $mbdb_options );
+	update_option('mbdb_options', $mbdb_options );
+
+	flush_rewrite_rules();
 	wp_reset_postdata();
-					
-	
-	
+}
+
+function mbdb_set_default_tax_grid_slugs() {
+	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
+	$mbdb_options = get_option('mbdb_options');
+	foreach($taxonomies as $name => $taxonomy) {
+		if ($mbdb_options['mbdb_book_grid_' . $name . '_slug'] == '') {
+			$reserved_terms = mbdb_wp_reserved_terms();
+			$slug = sanitize_title($taxonomy->labels->singular_name);
+			if ( in_array($slug, $reserved_terms) ) {
+				$slug = sanitize_title('book-' . $slug);
+			}
+			$mbdb_options['mbdb_book_grid_' . $name . '_slug'] = $slug;
+		}
+	}
+	update_option('mbdb_options', $mbdb_options);
+
 }

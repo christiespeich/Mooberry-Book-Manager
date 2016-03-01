@@ -7,23 +7,25 @@
 }
 
 
-#mbdb_box {
+.mbdb_box {
 	width:250px; 
-	float:right; 
+	/*float:right;  */
 	border: 2px solid #845a90; 
 	box-shadow: 0 1px 1px rgba(0,0,0,.04); 
 	background-color: white;
 		padding: 8px 12px;
+		margin-bottom: 20px;
 }
 
 #mbdb_about_mooberry {
-	width: 45%;
-	float: left;
-	padding-left: 15px;
+	/* width: 45%; */
+	float: right;
+	margin-right: 25px;
+	
 }
 
 #mbdb_option_metabox {
-		width: 50%;
+		width: 50%; 
 		float: left;
 }
 	
@@ -110,3 +112,20 @@ margin: 0;
 }
 */
 
+
+.wrap.cmb2-options-page.mbdb_options {
+	float: left;
+	 width: 50%; 
+	
+}
+
+/*.cmb2-id-mbdb-book-grid-slug-settings-title p.cmb2-metabox-description, .cmb2-id-mbdb-book-grid-template-settings-title 
+*/
+p.cmb2-metabox-description {
+	color: black;
+	font-style: normal;
+}
+
+.cmb2-metabox button.dashicons-before.dashicons-no-alt.cmb-remove-group-row {
+	left: -10px;
+}

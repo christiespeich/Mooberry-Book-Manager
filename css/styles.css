@@ -63,6 +63,10 @@
 	display: inline;
 		
 	}
+	
+	#mbm-book-page .mbm-book-cover img {
+		width: 100%;
+	}
 
 /* #mbm-book-sidebar 	{ */
   #mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-serieslist, #mbm-book-page .mbm-book-editions, #mbm-book-page .mbm-book-goodreads, #mbm-book-links1  .mbm-book-buy-links, #mbm-book-links1 .mbm-book-download-links  {

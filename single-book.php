@@ -22,77 +22,147 @@ add_shortcode( 'book_editor', 'mbdb_shortcode_editor');
 add_shortcode( 'book_cover_artist', 'mbdb_shortcode_cover_artist');
 add_shortcode( 'book_links', 'mbdb_shortcode_links');
 add_shortcode( 'book_editions', 'mbdb_shortcode_editions');
+add_shortcode( 'mbdb_book', 'mbdb_shortcode_book');
 		
+/******************************************************************
+ *  
+ *						 GENERIC FUNCTIONS
+ * 
+ ******************************************************************/
 		
-/*********************************************
-	UTIL FUNCTIONS
-*********************************************/
-
-function mbdb_get_book_ID( $slug ) {
+/**
+ *  Get book ID based on slug or current post
+ *  
+ *  
+ *  
+ *  @since 1.0
+ *  @since 3.0 use MBDB obj
+ *  
+ *  @param [string] $slug slug/post_name of book (optional)
+ *  
+ *  @return ID of book. 0 if book isn't found
+ *  
+ *  
+ */
+function mbdb_get_book_ID( $slug = '' ) {
 	global $post;
 	if ( $slug == '' ) {
-		return $post->ID;
+		if ($post) {
+			return $post->ID;
+		} 
 	} else {
-		$book = mbdb_get_single_book( $slug );
-		if ($book) {
-			return $book[0]->ID;
-		} else {
-			return 0;
-		}
+		$book = MBDB()->books->get_by_slug($slug); 
+
+		if ( $book ) {
+			return $book->book_id;
+		} 
 	}
+	return 0;
 }
 
+/**
+ *  Retrieves book data based on meta_data field ID
+ * 
+ *  Gets book by either ID or slug 
+ *  
+ *  @since 2.0
+ *  @since 3.0 use MBDB obj
+ *  
+ *  @param string $meta_data meta_data field ID of data to return
+ *  @param string $book slug of book to retrieve data for (optional)
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_book_data( $meta_data, $book = '') {
-	$bookID = mbdb_get_book_ID($book);
-	if ($bookID != 0) {
-		$book_data = get_post_meta($bookID, $meta_data, true);
-		if (empty($book_data) || $book_data == '' ) {
-			return false;
-		} else {
+	$bookID = mbdb_get_book_ID( $book );
+	if ( $bookID != 0 ) {
+		$book_data = MBDB()->books->get_data( $meta_data, $bookID );
+		if ( $book_data != '' && $book_data != null ) {
 			return $book_data;
 		}
-	} else {
-		return false;
 	}
+	return false;
 }
 
-
-
-
-
-
+/**
+ * Return the output for a blank element  
+ *  
+ *  Returns the html for when an element doesn't have any data
+ *  including the proper css classes
+ *  
+ *  @since 2.0
+ *  @param string $classname    identifies the datafield in the class name
+ *  @param string $blank_output what should be displayed if the data is blank
+ *  
+ *  @return string 	html output
+ */
 function mbdb_blank_output( $classname, $blank_output) {
 	return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html($blank_output) . '</span></span>');
 }
 
-function mbdb_output_data( $classname, $data) {
-	return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-text">' . esc_html($data) . '</span></span>');
-}
 
-function mbdb_simple_shortcode( $meta_data, $attr, $classname) {
-	$book_data = mbdb_get_book_data($meta_data, $attr['book']);
-	if ($book_data === false) {
-		return mbdb_blank_output($classname, $attr['blank']);
-	} else {
-		return mbdb_output_data($classname, $book_data);
-	}
-		
-}
 
 /******************************
-	SUMMARY
-	***************************/
+ *  
+ *			SUMMARY
+ *
+ *****************************/
 
-
+/**
+ *  Output the summary including the proper css classes
+ *  
+ *  Includes the label & after text
+ *  Adds auto <p> tags for newlines
+ *  
+ *  @since 1.0
+ *  @param string $book_data data to output
+ *  @param array $attr       args passed in to shortcode
+ *  
+ *  @return html output
+ *  
+ *  @access public
+ */
 function mbdb_output_summary($book_data, $attr) {
 	return apply_filters('mbdb_shortcode_summary', '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">' . do_shortcode(wpautop($book_data)) . '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>');
 }
 
-
+/**
+ *  
+ *  Get the book's summary
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_summary_data($book = '') {
-	 return mbdb_get_book_data('_mbdb_summary', $book);
+	 return mbdb_get_book_data('summary', $book);
 }
 
+/**
+ *  
+ *  Shortcode function for book's summary
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_summary($attr, $content) {
 	$attr = shortcode_atts(array('label' => '',
 									'after' => '',
@@ -111,13 +181,41 @@ function mbdb_shortcode_summary($attr, $content) {
 
 /*******************************
 	PUBLICATION DATE
-	*****************************/
+*****************************/
 	
-	
+/**
+ *  
+ *  Get the book's published date
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */	
 function mbdb_get_published_data($book = '' ) {
-	return mbdb_get_book_data('_mbdb_published', $book);
+	return mbdb_get_book_data('release_date', $book);
 }
 
+/**
+ *  
+ *  Shortcode function for book's published date
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_published($attr, $content) {
 	$attr = shortcode_atts(array('format' => 'short',
 									'label' => '',
@@ -132,38 +230,108 @@ function mbdb_shortcode_published($attr, $content) {
 	}
 	
 }
-
+/**
+ *  output the book's published date
+ *  
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use WP's default date format if one is not specified
+ *  
+ *  @param [string] $mbdb_published date to output
+ *  @param [array] $attr           Parameters
+ *  
+ *  @return Return_Description
+ *  
+ *  @access public
+ */
 
 function mbdb_output_published($mbdb_published, $attr) {
-	if ($attr['format'] =='short') {
+	switch ($attr['format']) {
+		case 'short':
 			/* translators: short date format. see http://php.net/date */
 			$format = __('m/d/Y');
-		} else {
+			break;
+		case 'long':
 			/* translators: long date format. see http://php.net/date */
 			$format = __('F j, Y');
-		}
+			break;
+		case 'default':
+			$format = get_option('date_format');
+			break;
+	}
 		return apply_filters('mbdb_shortcode_published',  '<span class="mbm-book-published"><span class="mbm-book-published-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-published-text">' . date($format, strtotime($mbdb_published)) . '</span><span class="mbm-book-published-after">' .  esc_html($attr['after']) . '</span></span>');
 }
 
 
 /*******************************
 	GOODREADS
-	*****************************/
-	
+*****************************/
+
+/**
+ *  Output Add to Goodreads button
+ *  If can't find the Goodreads image, just use the text in the params
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 added alt text
+ *  
+ *  @param [string] $mbdb_goodreads goodreads url
+ *  @param [array] $attr           Parameters
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ */	
 function mbdb_output_goodreads($mbdb_goodreads, $attr) {
 	$mbdb_options = get_option('mbdb_options');
 	
 	if (empty($mbdb_options['goodreads'])) { 
 		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><span class="mbm-book-goodreads-text">' . $attr['text'] . '</span></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>'); 
 	} else {
-		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><img class="mbm-book-goodreads-image" src="' . esc_url($mbdb_options['goodreads']) . '"/></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>');
+		if (array_key_exists('goodreads-id', $mbdb_options)) {
+			$imageID = $mbdb_options['goodreads-id'];
+		} else {
+			$imageID = 0;
+		}
+		$alt = mbdb_get_alt_text( $imageID, __('Add to Goodreads', 'mooberry-book-manager') );
+		
+		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><img class="mbm-book-goodreads-image" src="' . esc_url($mbdb_options['goodreads']) . '"' . $alt . '/></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>');
 	}
 }
-
+/**
+ *  
+ *  Get the book's goodreads link
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *    
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_goodreads_data( $book = '') {
-	return  mbdb_get_book_data('_mbdb_goodreads', $book);
+	return  mbdb_get_book_data('goodreads', $book);
 }
 
+/**
+ *  
+ *  Shortcode function for book's goodreads link
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_goodreads($attr, $content) {
 	$attr = shortcode_atts(array('text' => __('View on Goodreads', 'mooberry-book-manager'),
 								'label' => '',
@@ -181,9 +349,26 @@ function mbdb_shortcode_goodreads($attr, $content) {
 
 /******************************************
 	EXCERPT
-	**************************************/
+**************************************/
+/**
+ *  Output the book's excerpt
+ *  Truncate it around $attr['length'] characters after a paragraph
+ *  behind a "show more" link
+ *  
+ *  
+ *  @since 2.0
+ *  
+ *  @param [string] $mbdb_excerpt excerpt to output
+ *  @param [array] $attr         Parameters
+ *  
+ *  @return html output
+ *  
+ *  @access public
+ */
 function mbdb_output_excerpt($mbdb_excerpt, $attr) {
 	 $mbdb_excerpt = wpautop($mbdb_excerpt);
+	 $excerpt1 = '';
+	 $excerpt2 = '';
 	 if ($attr['length'] == 0) {
 		$excerpt1 = $mbdb_excerpt;
 		$excerpt2 = '';
@@ -202,20 +387,50 @@ function mbdb_output_excerpt($mbdb_excerpt, $attr) {
 	$html_output = '<div class="mbm-book-excerpt">
 		<span class="mbm-book-excerpt-label">' . esc_html($attr['label']) . '</span>
 		<span class="mbm-book-excerpt-text">' . do_shortcode($excerpt1);
+	
 	if (trim($excerpt2) != '' ) {
 		$html_output .= '<a name="more" class="mbm-book-excerpt-read-more">' . __('READ MORE', 'mooberry-book-manager') . '</a>
 	<span class="mbm-book-excerpt-text-hidden">' . do_shortcode($excerpt2) . '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
 	}
+	
 	$html_output .=' </span><span class="mbm-book-excerpt-after">' . esc_html($attr['after']) . '</span></div>';
 	return apply_filters('mbdb_shortcode_excerpt', $html_output);
 		
 }
 
-
+/**
+ *  
+ *  Get the book's excerpt
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_excerpt_data($book = '') {
-	return mbdb_get_book_data('_mbdb_excerpt', $book);
+	return mbdb_get_book_data('excerpt', $book);
 }
 
+/**
+ *  
+ *  Shortcode function for book's excerpt
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_excerpt($attr, $content) {
 	$attr = shortcode_atts(array('label' => '',
 									'after' => '',
@@ -234,6 +449,20 @@ function mbdb_shortcode_excerpt($attr, $content) {
 /*******************************************
 	ADDITIONAL INFO
 *******************************************/
+/**
+ *  Output book's additional info
+ *  
+ *  
+ *  
+ *  @since 2.0
+ *  
+ *  @param [string] $mbdb_additional_info string to output
+ *  @param [array] $attr                 Parameters
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ */
 function mbdb_output_additional_info($mbdb_additional_info, $attr) {
 	 $mbdb_additional_info = wpautop($mbdb_additional_info);
 	 $html_output = '<div class="mbm-book-additional-info">';
@@ -241,15 +470,41 @@ function mbdb_output_additional_info($mbdb_additional_info, $attr) {
 	 $html_output .= '</div>';
 	 return apply_filters('mbdb_shortcode_additional_info', $html_output);
 }
-
+/**
+ *  
+ *  Get the book's additional info
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_additional_info_data($book = '') {
-	return mbdb_get_book_data('_mbdb_additional_info', $book);
+	return mbdb_get_book_data('additional_info', $book);
 }
 
+/**
+ *  
+ *  Shortcode function for book's additioanl info
+ *  
+ *  
+ *  @since 
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_additional_info($attr, $content) {
-	$attr = shortcode_atts(array(
-									'blank' => '',
-								
+	$attr = shortcode_atts(array(	'blank' => '',
 									'book' => ''), $attr);
 									
 	$mbdb_additional_info = mbdb_get_additional_info_data( $attr['book']);
@@ -264,8 +519,26 @@ function mbdb_shortcode_additional_info($attr, $content) {
 
 /********************************************
 	TAXONOMIES
-	******************************************/
-	function mbdb_output_taxonomy($classname, $mbdb_terms, $permalink, $attr) {
+******************************************/
+/**
+ *  output one of the book's taxonomies in either a bulleted list
+ *  or a comma-delimited list
+ *  
+ *  
+ *  
+ *  @since 
+ *  
+ *  @param [string] $classname  name for css class that identifies the taxonomy
+ *  @param [array] $mbdb_terms list of terms
+ *  @param [string] $permalink  permalink for tax grid
+ *  @param [string] $taxonomy   name of taxonomy
+ *  @param [array] $attr       Parameters
+ *  
+ *  @return html output
+ *  
+ *  @access public
+ */
+function mbdb_output_taxonomy($classname, $mbdb_terms, $permalink, $taxonomy, $attr) {
 	if ($attr['delim'] == 'comma') {
 		$delim = ', ';
 		$after = '';
@@ -279,21 +552,26 @@ function mbdb_shortcode_additional_info($attr, $content) {
 		$begin = '<ul class="' . $classname . '-list">';
 		$end = '</ul>';
 	}
+	
 	$list = '';
 	$list .= $before;
+	
 	foreach ($mbdb_terms as $term) {
 		$list .= '<a class="' . $classname . '-link" href="';
+		
+		// check if using permalinks
 		if ( get_option('permalink_structure') !='' ) {
 			$list .= home_url($permalink . '/' . $term->slug);
 		} else {
 			$list .= home_url('?the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid');
 		}
+		
 		$list .= '"><span class="' . $classname . '-text">' . $term->name . '</span></a>';
 		$list .= $delim;
 	}
 	
+	// there's an extra $delim added to the string
 	if ($attr['delim']=='list') {
-		// there's an extra $delim added to the string
 		// trim off the last </li> by cutting the entire $delim off and then adding in the </li> back in
 		$list = substr($list, 0, strripos($list, $delim)) . '</li>';
 	} 	else {
@@ -304,6 +582,19 @@ function mbdb_shortcode_additional_info($attr, $content) {
 
 }
 
+/**
+ *  Get terms for a book's taxonomy
+ *  
+ *  @since 2.0
+ *  
+ *  @param [string] $taxonomy taxonomy to retrieve
+ *  @param [string] $book slug (optional)
+ *  
+ *  @return mixed 	list of terms or false if book couldn't be found 
+ *  				or if data was blank
+ *  
+ *  @access public
+ */
 function mbdb_get_taxonomy_data($taxonomy, $book = '' ) {
 	$bookID = mbdb_get_book_ID($book);
 	if ($bookID != 0) {
@@ -318,78 +609,277 @@ function mbdb_get_taxonomy_data($taxonomy, $book = '' ) {
 	}
 }
 
-		
+/**
+ *  
+ *  Shortcode function for book's series
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */		
 function mbdb_shortcode_series( $attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_series', 'series');
 }
-
+/**
+ *  
+ *  Shortcode function for book's tags
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_tags( $attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_tag', 'book-tag');
 }
+
+/**
+ *  
+ *  Shortcode function for book's genres
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_genre($attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_genre', 'genre');
 }
 
+/**
+ *  
+ *  Shortcode function for book's editors
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_editor($attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_editor', 'editor');
 }
 
+/**
+ *  
+ *  Shortcode function for book's illustrators
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_illustrator($attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_illustrator', 'illustrator');
 }
 
+/**
+ *  
+ *  Shortcode function for book's cover artists
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_cover_artist($attr, $content) {
 	return mbdb_shortcode_taxonomy($attr, 'mbdb_cover_artist', 'cover-artist');
 }
 
-function mbdb_shortcode_taxonomy($attr, $taxonomy, $permalink) {
+/**
+ *  
+ *  Get data for a book's taxonomy and output it
+ *  
+ *  
+ *  @since 1.0
+ *  @since 3.0 get permalink from options
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	taxonomy to get
+ *  @param [string]	default permalink and css class
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
+function mbdb_shortcode_taxonomy($attr, $taxonomy, $default_permalink) {
 
 	$attr = shortcode_atts(array('delim' => 'comma',
 								'blank' => '',
 								'book' => ''), $attr);
 	
+	// v3.0 get permalink from options
+	$mbdb_options = get_option('mbdb_options');
+	$permalink = $mbdb_options['mbdb_book_grid_' . $taxonomy . '_slug'];
+	if ($permalink == '') {
+		$permalink = $default_permalink;
+	}
+	
 	$mbdb_terms = mbdb_get_taxonomy_data( $taxonomy, $attr['book']);
 	if ($mbdb_terms === false) {
 		return mbdb_blank_output($permalink . '_taxonomy', $attr['blank']);
 	} else {
-		return mbdb_output_taxonomy('mbm-book-' . $permalink, $mbdb_terms, $permalink, $attr);
+		return mbdb_output_taxonomy('mbm-book-' . $default_permalink, $mbdb_terms, $permalink, $taxonomy, $attr);
 	}
 }
 
 
 /***********************************************
 	TITLE
-	*******************************************/
-function mbdb_shortcode_title( $attr, $content) {
+*******************************************/
+/**
+ *  
+ *  Shortcode function for book's title
+ *  This function is different than the others because every book
+ *  has a title. it's not an optional property. Also title comes
+ *  from the post object not the custom table or post meta
+ *  
+ *  Title woudl only be blank if an invalid book is passed in
+ *  
+ *  @since 1.0
+ *  @since 3.0 use MBDB object
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
+ 
+function mbdb_get_title_data( $slug ) {
 	global $post;
-	$attr = shortcode_atts(array('book' => '',
-								'blank' => ''), $attr);
-	if ($attr['book'] == '') {
-		$html = '<span class="mbm-book-title"><span class="mbm-book-title-text">' . esc_html($post->post_title) . '</span></span>';
+	
+	if ($slug == '') {
+		$title = $post->post_title;
 	} else {
-		$book = mbdb_get_single_book($attr['book']);
+		$book = MBDB()->books->get_by_slug($slug);
 		if ($book) {
-			$html = '<span class="mbm-book-title"><span class="mbm-book-title-text">' . esc_html($book[0]->post_title) . '</span></span>';
+			$title = $book->post_title;
 		} else {
-			$html = '<span class="mbm-book-title"><span class="mbm-book-title-blank">' . esc_html($attr['blank']) . '</span></span>';
+			$title = '';
 		}
 	}
+	return $title;
+}
+
+
+function mbdb_shortcode_title( $attr, $content) {
+	$attr = shortcode_atts(array('book' => '',
+								'blank' => ''), $attr);
+								
+	$title = mbdb_get_title_data( $attr['book'] );
+	
+	if ($title != '') {
+		$html = '<span class="mbm-book-title"><span class="mbm-book-title-text">' . esc_html($title) . '</span></span>';
+	} else {
+		$html = '<span class="mbm-book-title"><span class="mbm-book-title-blank">' . esc_html($attr['blank']) . '</span></span>';
+	}
+
 	return apply_filters('mbdb_shortcode_title', $html);
 }
 
 /************************************************
 	SUBTITLE
-	*********************************************/
+*********************************************/
 
+/**
+ *  
+ *  Get the book's subtitle
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_subtitle_data( $book = '') {
-	return mbdb_get_book_data('_mbdb_subtitle', $book);
+	return mbdb_get_book_data('subtitle', $book);
 }
 
+/**
+ *  Returns the output for subtitle
+ *  
+ *  
+ *  @since 3.0
+ *  
+ *  @param string $classname identifies the data field in the css class
+ *  @param string $data      data to display
+ *  
+ *  @return string	html output
+ */
+function mbdb_output_subtitle( $data, $attr ) {
+	return apply_filters('mbdb_shortcode_subtitle', '<span class="mbm-book-subtitle"><span class="mbm-book-subtitle-text">' . esc_html($data) . '</span></span>');
+}
+
+/**
+ *  
+ *  Shortcode function for book's subtitle
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_subtitle($attr, $content) {
 	$attr = shortcode_atts(array('book' => '',
 								'blank' => ''), $attr);
 								
-	return mbdb_simple_shortcode( '_mbdb_subtitle', $attr, 'subtitle');
+	
+	$book_data = mbdb_get_subtitle_data( $attr['book'] );
+	if ($book_data === false) {
+		return mbdb_blank_output('subtitle', $attr['blank']);
+	} else {
+		return mbdb_output_subtitle( $book_data, $attr);
+	}
 }
 
 
@@ -397,9 +887,25 @@ function mbdb_shortcode_subtitle($attr, $content) {
 /******************************
 	PUBLISHER 
 	****************************/
-
+/**
+ *  
+ *  Get the book's publisher
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_publisher_data($book = '') {
-	$publisherID =  mbdb_get_book_data('_mbdb_publisherID', $book);
+	$publisherID =  mbdb_get_book_data('publisher_id', $book);
+	if ($publisherID === false) {
+		return false;
+	}
 	$publisher = mbdb_get_publisher_info($publisherID);
 	if ($publisher == null) {
 		return false;
@@ -408,6 +914,21 @@ function mbdb_get_publisher_data($book = '') {
 	}
 }
 
+/**
+ *  
+ *  Shortcode function for book's summary
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_publisher($attr, $content) {
 	$attr = shortcode_atts(array('label' => '',
 									'after' => '',
@@ -422,81 +943,105 @@ function mbdb_shortcode_publisher($attr, $content) {
 	
 }
 
-
+/**
+ *  
+ *  Outputs the book's publisher
+ *  
+ *  
+ *  @since 
+ *  
+ *  @param [array] $book_data Publisher array
+ *  @param [array] $attr      Parameters
+ *  
+ *  @return Return_Description
+ *  
+ *  @access public
+ */
 function mbdb_output_publisher($book_data, $attr) {
-		$mbdb_publisher = $book_data['name'];
-		$mbdb_publisherwebsite = $book_data['website'];
-		
-		if (empty($mbdb_publisherwebsite)) {
-			return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span><span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>'); 
-		} else {
-			return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-publisher-link" HREF="' . esc_url($mbdb_publisherwebsite) . '"><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span></a><span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>');
-		}
+	$mbdb_publisher = $book_data['name'];
+	$mbdb_publisherwebsite = $book_data['website'];
 	
-}
+	if (empty($mbdb_publisherwebsite)) {
+		$text = '<span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span>';
+	} else {
+		$text = '<A class="mbm-book-publisher-link" HREF="' . esc_url($mbdb_publisherwebsite) . '"><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span></a>';
+	}
+	
+	return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span>' . $text . '<span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>'); 
 
-/************************************************
-	LENGHT
-	********************************************/
-function mbdb_get_length_data($book = '') {
-	return mbdb_get_book_data('_mbdb_length', $book);
-}
-
-function mbdb_shortcode_length($attr, $content) {
-	$attr = shortcode_atts(array('label' => '',
-									'after' => '',
-									'blank' => '',
-									'book' => ''), $attr);
-									
-	return mbdb_simple_shortcode( '_mbdb_length', $attr, 'length'); 
 	
 }
 
 /*****************************************
-	SERIES 
-	***************************************/
-function mbdb_get_series_data($book = '') {
-	$bookID = mbdb_get_book_ID($book);
-	if ($bookID != 0) {
-		$mbdb_series = get_the_terms( $bookID, 'mbdb_series');	
-		if (!$mbdb_series) { 
-			return false;
-		} else {
-			return $mbdb_series;
-		}
-	} else {
-		return false;
-	}
-}
-
+	SERIES LIST
+***************************************/
+/**
+ *  
+ *  Output series in a UL list with a heading
+ *  (default Part of the ___ Series:)
+ *  
+ *  
+ *  @since 
+ *  
+ *  @param [array] $mbdb_series series
+ *  @param [array] $attr        Parameters
+ *  
+ *  @return Return_Description
+ *  
+ *  @access public
+ */
 function mbdb_output_serieslist($mbdb_series, $attr) {
+
 	$bookID = mbdb_get_book_ID($attr['book']);
 	$classname = 'mbm-book-serieslist';
 	$series_name = '';
+
 	foreach($mbdb_series as $series) {
 		$series_name .=  '<div class="' . $classname . '-seriesblock"><span class="' . $classname . '-before">' . esc_html($attr['before']) . '</span>';
 		$series_name .= '<a class="' . $classname . '-link" href="';
+		
 		if ( get_option('permalink_structure') !='' ) {
-			$series_name .= home_url('series/' .  $series->slug);
+			// v3.0 get permalink from options
+			$mbdb_options  = get_option('mbdb_options');
+			$permalink = $mbdb_options['mbdb_book_grid_mbdb_series_slug'];
+			if ($permalink == '') {
+				$permalink = 'series';
+			}
+			$series_name .= home_url( $permalink . '/' .  $series->slug);
 		} else {
 			$series_name .= home_url('?the-taxonomy=mbdb_series&the-term=' . $series->slug . '&post_type=mbdb_tax_grid');
 		}
 		$series_name .=  '"><span class="' . $classname . '-text">' . $series->name . '</span></a>';
 		$series_name .= '<span class="' . $classname . '-after">' . esc_html($attr['after']) . '</span>';
-		$series_name .= mbdb_series_list($attr['delim'],  $series->slug, $bookID);
+		$series_name .= mbdb_series_list($attr['delim'],  $series->term_id, $bookID);
 		$series_name .=  '</div>';
 	}
 	return apply_filters('mbdb_shortcode_serieslist', '<div class="' . $classname . '">' . $series_name . '</div>');
 }
 
+/**
+ *  
+ *  Shortcode function for book's series list
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_serieslist($attr, $content) {
 	$attr = shortcode_atts(array('blank' => '',
 									'before' => __('Part of the ', 'mooberry-book-manager'),
 									'after' => __(' series:', 'mooberry-book-manager'),
-									'delim' => __('list', 'mooberry-book-manager'),
+									'delim' => 'list',
 									'book' => ''), $attr);
 	
-	$mbdb_series = mbdb_get_series_data($attr['book']);
+	$mbdb_series = mbdb_get_taxonomy_data('mbdb_series', $attr['book']);
 	if ($mbdb_series === false) {
 		return mbdb_blank_output('serieslist', $attr['blank']);
 	} else {
@@ -505,11 +1050,27 @@ function mbdb_shortcode_serieslist($attr, $content) {
 	}
 }
 	
-
-
+/**
+ *  Outputs list of books in series with links to individual books
+ *  except for the current book
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [string] $delim  list or comma
+ *  @param [string] $series series to print out (term)
+ *  @param [int] $bookID current bookid
+ *  
+ *  @return html output
+ *  
+ *  @access public
+ */
 function mbdb_series_list($delim, $series, $bookID) {
 	$classname = 'mbm-book-serieslist';
-	$books = mbdb_get_books_in_taxonomy($series, 'mbdb_series'); 
+	
+	$books = MBDB()->books->get_books_by_taxonomy( null, 'series', $series, 'series_order', 'ASC'); 
+	
+	
 	if ($delim=='list') {
 		$list = '<ul class="' . $classname . '-list">';
 	} else {
@@ -519,11 +1080,11 @@ function mbdb_series_list($delim, $series, $bookID) {
 		if ($delim=='list') {
 			$list .= '<li class="' . $classname . '-listitem">';
 		}
-		if ($book->ID != $bookID) {
-			$list .= '<A class="' . $classname . '-listitem-link" HREF="' . get_permalink($book->ID) . '">';
+		if ($book->book_id != $bookID) {
+			$list .= '<A class="' . $classname . '-listitem-link" HREF="' . get_permalink($book->book_id) . '">';
 		}
 		$list .= '<span class="' . $classname . '-listitem-text">' . esc_html($book->post_title) . '</span>';
-		if ($book->ID != $bookID) {
+		if ($book->book_id != $bookID) {
 			$list .='</a>';
 		}
 		if ($delim=='list') {
@@ -543,43 +1104,81 @@ function mbdb_series_list($delim, $series, $bookID) {
 
 /**********************************
 	COVER
-	********************************/
-
+********************************/
+/**
+ *  Output book's cover  
+ *  
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 added alt text
+ *  
+ *  @param [string] $image_src cover's URL
+ *  @param [array] $attr      Parameters
+ *  
+ *  @return output html
+ *  
+ *  @access public
+ */
 function mbdb_output_cover($image_src, $attr) {
-	
-								
+		
 	$image_html ='';
 	
 	if (isset($image_src) && $image_src != '') {
 		$image_html = '<img ';
-		if (esc_attr($attr['width']) != '') {
+		// v  3 -- while working on  customizer
+	/*	if (esc_attr($attr['width']) != '') {
 			$image_html .= 'style="width:' . esc_attr($attr['width']) . 'px" ';
 		} else {
 			$image_html .= 'style="width: 100%" ';
 		}
-		$image_html .= 'src="' . esc_url($image_src) . '" >';
-		// if ($attr['wrap']=='yes') {
-			// $image_html .= 'class="align' . esc_attr($attr['align']) . '">';
-		// } else {
-			// $image_html .= 'style="float:' . esc_attr($attr['align']) . '"><div style="clear:' . esc_attr($attr['align']) . '"> &nbsp;</div>';
-		// }
+		*/
+		// get alt text
+		$cover_id = mbdb_get_book_data( 'cover_id', $attr['book'] );
+		
+		$alt = mbdb_get_alt_text( $cover_id,  __('Book Cover:', 'mooberry-book-manager') . ' ' . mbdb_get_title_data( $attr['book'] ) );
+		$image_html .= 'src="' . esc_url($image_src) . '" ' . $alt . '>';
 	}
 	return apply_filters('mbdb_shortcode_cover',  '<span class="mbm-book-cover">' . $image_html . '</span>');
 }
 
-
+/**
+ *  
+ *  Shortcode function for book's cover
+ *  
+ *  
+ *  @since 1.0
+ *  @since 3.0  check if placeholder cover should be used
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_cover( $attr, $content) {
 	$attr = shortcode_atts(array('width' =>  '',
 								'align' => 'right',
 								'wrap' => 'yes',
 								'book' => ''), $attr);
 	$image_src = '';							
-	$image_src = mbdb_get_book_data('_mbdb_cover', $attr['book']);
+	$image_src = mbdb_get_book_data('cover', $attr['book']);
 	if ($image_src === false) {
-		return mbdb_blank_output('cover', '');
-	} else {
-		return mbdb_output_cover( $image_src, $attr );
+		// v3.0 check for placeholder image setting
+		$show_placeholder_cover = mbdb_get_option('show_placeholder_cover');
+		if (is_array($show_placeholder_cover)) {
+			if (in_array('page', $show_placeholder_cover)) {
+				$image_src = mbdb_get_option('coming-soon');
+			} else {
+				return mbdb_blank_output('cover', '');
+			}
+		} else {
+			return mbdb_blank_output('cover', '');
+		}
 	}
+	return mbdb_output_cover( $image_src, $attr );
 	
 }
 
@@ -628,10 +1227,39 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
 	//}
 }
 
+/**
+ *  
+ *  Get the book's summary
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_reviews_data($book = '') {
 	return mbdb_get_book_data(	'_mbdb_reviews', $book);
 }
 
+/**
+ *  
+ *  Shortcode function for book's summary
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_reviews( $attr, $content) {
 	 $attr = shortcode_atts(array('label' => '',
 									 'after' => '',
@@ -664,7 +1292,7 @@ function mbdb_get_downloadlinks_data( $book ) {
 	}
 }
 
-
+// v3.0 added alt text
 function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 	$classname = 'mbm-book-download-links';
 	$mbdb_options = get_option( 'mbdb_options' );
@@ -679,9 +1307,22 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 		if (array_key_exists('formats', $mbdb_options)) {
 			foreach($mbdb_options['formats'] as $r) {
 				if ($r['uniqueID'] == $mbdb_downloadlink['_mbdb_formatID']) {
+		
 					$download_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '"><A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
 					if ($r['image']!='') {
-						$download_links_html .= '<img class="' . $classname . '-image" src="' . esc_url($r['image']) . '"/>';
+						if (array_key_exists('imageID', $r)) {
+							$imageID = $r['imageID'];
+						} else {
+							if (array_key_exists('image_id', $r)) {
+								$imageID = $r['image_id'];
+							} else {
+								$imageID = 0;
+							}
+						}
+				
+						$alt = mbdb_get_alt_text( $imageID, __('Download Now:', 'mooberry-book-manager')  . ' ' . $r['name'] );
+						
+						$download_links_html .= '<img class="' . $classname . '-image" src="' . esc_url($r['image']) . '"' . $alt . '/>';
 					} else {
 						$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
 					}
@@ -697,7 +1338,21 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 }
 
 
-
+/**
+ *  
+ *  Shortcode function for book's summary
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_downloadlinks( $attr, $content) {
 	$attr = shortcode_atts(array('align' => 'vertical',
 								'label' => '',
@@ -716,7 +1371,7 @@ function mbdb_shortcode_downloadlinks( $attr, $content) {
 /************************************************
 	BUY LINKS
 	*********************************************/
-
+// v3.0 added alt text
 function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 								
 	$classname = 'mbm-book-buy-links';
@@ -748,7 +1403,19 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 					//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
 					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
 					if ($r['image']!='') {
-						$buy_links_html .= '<img class="' . $classname . '-image" style="' . esc_attr($img_size) . '" src="' . esc_url($r['image']) . '"/>';
+						
+						if (array_key_exists('imageID', $r)) {
+							$imageID = $r['imageID'];
+						} else {
+							if (array_key_exists('image_id', $r)) {
+								$imageID = $r['image_id'];
+							} else {
+								$imageID = 0;
+							}
+						}
+						$alt = mbdb_get_alt_text( $imageID, __('Buy Now:', 'mooberry-book-manager')  . ' ' . $r['name'] );
+						
+						$buy_links_html .= '<img class="' . $classname . '-image" style="' . esc_attr($img_size) . '" src="' . esc_url($r['image']) . '" ' . $alt . ' />';
 					} else {
 						$buy_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
 					}
@@ -763,7 +1430,22 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 }
 	
 	
-	
+/**
+ *  
+ *  Shortcode function for book's summary
+ *  
+ *  
+ *  @since 1.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */	
 function mbdb_shortcode_buylinks( $attr, $content) {
 	$attr = shortcode_atts(array('width' =>  '',
 								'height' => '',
@@ -806,6 +1488,20 @@ function mbdb_blank_links_output($attr) {
 	return apply_filters('mbdb_shortcode_links', '<span class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html($attr['blanklabel']) . '</span><span class="' . $classname . '-blank">' . esc_html($attr['blank']) . '</span></span>');
 }
 
+/**
+ *  
+ *  Get the book's summary
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_get_links_data( $book = '') {
 	$mbdb_buylinks = mbdb_get_book_data('_mbdb_buylinks', $book);
 	$mbdb_downloadlinks = mbdb_get_book_data('_mbdb_downloadlinks', $book);
@@ -820,7 +1516,21 @@ function mbdb_is_links_data( $links_data = null, $book = '' ) {
 	return !($links_data['buylinks'] === false && $links_data['downloadlinks'] === false);
 }
 
-
+/**
+ *  
+ *  Shortcode function for book's summary
+ *  
+ *  
+ *  @since 1.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_links($attr, $content) {
 	
 
@@ -850,7 +1560,22 @@ function mbdb_shortcode_links($attr, $content) {
 /************************************************************
 	EDITIONS
 	***********************************************************/
-function mbdb_get_editions_data($book = '') {
+
+/**
+ *  
+ *  Get the book's summary
+ *  
+ *  
+ *  @since 2.0
+ *  @since 3.0 use custom table column name instead of post_meta
+ *  
+ *  @return mixed data or false if book couldn't be found or if data was blank
+ *  				( make sure to test with === false when calling this function )
+ *  
+ *  @access public
+ *  
+ */
+ function mbdb_get_editions_data($book = '') {
 	$editions = mbdb_get_book_data(	'_mbdb_editions', $book);
 	// the only way to know for sure there are no editions is to check 
 	// for the existance of the format field
@@ -862,12 +1587,13 @@ function mbdb_get_editions_data($book = '') {
 		}
 	}
 	return false;
-	
 }
 
 function mbdb_output_editions($mbdb_editions, $attr) {
 	$output_html = '';
 	$counter = 0;
+	$default_language = mbdb_get_default_language();
+	
 	foreach ($mbdb_editions as $edition) {
 		$is_isbn = mbdb_check_field('_mbdb_isbn', $edition);
 		$is_height = mbdb_check_field('_mbdb_height', $edition);
@@ -876,7 +1602,7 @@ function mbdb_output_editions($mbdb_editions, $attr) {
 		$is_price = mbdb_check_field('_mbdb_retail_price', $edition);
 		$is_language = mbdb_check_field('_mbdb_language', $edition);
 		$is_title = mbdb_check_field('_mbdb_edition_title', $edition);
-		$default_language = mbdb_get_default_language();
+
 		
 		$output_html .= '<span class="mbm-book-editions-format" id="mbm_book_editions_format_'  . $counter . '" name="mbm_book_editions_format[' . $counter . ']">';
 		if ($is_isbn || $is_pages || ($is_height && $is_width)) {
@@ -917,6 +1643,21 @@ function mbdb_output_editions($mbdb_editions, $attr) {
 	
 }
 
+/**
+ *  
+ *  Shortcode function for book's editions
+ *  
+ *  
+ *  @since 2.0
+ *  
+ *  @param [array]	parameters
+ *  @param [string]	content
+ *  
+ *  @return HTML output
+ *  
+ *  @access public
+ *  
+ */
 function mbdb_shortcode_editions( $attr, $content) {
 	$attr = shortcode_atts(array(
 								'label'	=>	'',
@@ -930,141 +1671,91 @@ function mbdb_shortcode_editions( $attr, $content) {
 	}
 }
 
-// Template
-add_filter('single_template', 'mbdb_single_template');
-function mbdb_single_template($template) {
-	
-	if (get_post_type() == 'mbdb_book' && is_main_query() && !is_admin()) {
-		$mbdb_options = get_option('mbdb_options');
-	
-		if (isset($mbdb_options['mbdb_default_template']) && $mbdb_options['mbdb_default_template'] != '' && $mbdb_options['mbdb_default_template'] != 'default') {
-			
-			// first check if there's one in the child theme
-			$child_theme = get_stylesheet_directory();
-		
-			if (file_exists($child_theme . '/' . $mbdb_options['mbdb_default_template'])) {
-				return $child_theme . '/' . $mbdb_options['mbdb_default_template'];
-			} else {
-				// if not get the parent theme
-				$parent_theme = get_template_directory();
-	
-				if (file_exists($parent_theme . '/' . $mbdb_options['mbdb_default_template'])) {
-					return $parent_theme . '/' . $mbdb_options['mbdb_default_template'];
-				}
-			}
-		}
-	}
-	// if everything fails, just return the default
-	
-	return $template;
 
-}
 
 
 /***************************************************************
 						PAGE CONTENT
 *******************************************************************/
 	
-function mbdb_book_content($content) {
-	// $mbdb_book_page_options = get_option('mbdb_book_page_options');	
-	
-	// if ($mbdb_book_page_options) {
-		// if (array_key_exists('_mbdb_book_page_layout', $mbdb_book_page_options)) {
+	function mbdb_shortcode_book($attr, $content) {
 		$book_page_layout = '<div id="mbm-book-page">';
 			if (mbdb_get_subtitle_data() !== false) {
 				$book_page_layout .= '<h3>[book_subtitle blank=""]</h3>';
 			}
-		
-		
-		
-		
-		//	$book_page_layout .= '<div id="mbm-book-sidebar">';
-			$book_page_layout .= '[book_cover  align="left"]';
-		
-			$book_page_layout .= '<div id="mbm-book-links1">';
-			$is_links_data = mbdb_get_links_data();
-			if ($is_links_data['buylinks'] !== false) {
-				$book_page_layout .= '[book_buylinks  align="horizontal"]';
-			}
-			if ($is_links_data['downloadlinks'] !== false) {
-				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '"]';
-			}
+			// v 3.0 for customizer
+			//$book_page_layout .= '<div id="mbm-left-column">';
+				$book_page_layout .= '[book_cover]';
 			
-			$book_page_layout .= '</div>';
+				$book_page_layout .= '<div id="mbm-book-links1">';
+				$is_links_data = mbdb_get_links_data();
+				if ($is_links_data['buylinks'] !== false) {
+					$book_page_layout .= '[book_buylinks  align="horizontal"]';
+				}
+				if ($is_links_data['downloadlinks'] !== false) {
+					$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '"]';
+				}
+				
+				$book_page_layout .= '</div>';
+				
+				if (mbdb_get_taxonomy_data('mbdb_series') !== false ) {
+					$book_page_layout .= '[book_serieslist before="' . __('Part of the','mooberry-book-manager') . ' " after=" ' . __('series','mooberry-book-manager') . ': " delim="list"]';
+				}
+				
+			if (mbdb_get_editions_data() !== false) {
+					$book_page_layout .= '[book_editions blank="" label="' . __('Editions', 'mooberry-book-manager') . ':"]';
+				}
 			
-			if (mbdb_get_series_data() !== false ) {
-				$book_page_layout .= '[book_serieslist before="' . __('Part of the','mooberry-book-manager') . ' " after=" ' . __('series','mooberry-book-manager') . ': " delim="list"]';
-			}
-			
-			
-			
-			//if (mbdb_is_links_data() !== false) {
-			//	$book_page_layout .= '[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="vertical" size="205" blank="" blanklabel=""]';
-			//}
-			
-		
-			
-
-			
-			
-
-			
-		//	$book_page_layout .= '</div> <!-- mbm-book-sidebar --><div id="mbm-book-main">';
-			
-			
-			
-		
-		
-		
-		if (mbdb_get_editions_data() !== false) {
-				$book_page_layout .= '[book_editions blank="" label="' . __('Editions', 'mooberry-book-manager') . ':"]';
-			}
-		
-			if (mbdb_get_goodreads_data() !== false) {
-				$book_page_layout .= '[book_goodreads  ]';
-			}
-			
+				if (mbdb_get_goodreads_data() !== false) {
+					$book_page_layout .= '[book_goodreads  ]';
+				}
+			// v 3.0 for customizer
+			//$book_page_layout .= '</div><div id="mbm-middle-column">';
 			if (mbdb_get_summary_data() !== false) {
 				$book_page_layout .= '[book_summary blank=""]';
 			}
 			
 		
-			$is_published = mbdb_get_published_data();
-			$is_publisher = mbdb_get_publisher_data();
-			$is_genre = mbdb_get_taxonomy_data('mbdb_genre');
-			$is_tag = mbdb_get_taxonomy_data('mbdb_tag');
-			$is_editor = mbdb_get_taxonomy_data('mbdb_editor');
-			$is_illustrator = mbdb_get_taxonomy_data('mbdb_illustrator');
-			$is_cover_artist = mbdb_get_taxonomy_data('mbdb_cover_artist');
+			// v3.0 convert to simple true/false so that the if statement with ||
+			// below actually works. Otherwise, valid data could be "0" and still
+			// evaulate to false in the if statement
+			// also simplifies the following if statments
+			$is_published = (mbdb_get_published_data() === false ? false : true);
+			$is_publisher = (mbdb_get_publisher_data() === false ? false : true);
+			$is_genre = (mbdb_get_taxonomy_data('mbdb_genre') === false ? false : true);
+			$is_tag = (mbdb_get_taxonomy_data('mbdb_tag') === false ? false : true);
+			$is_editor = (mbdb_get_taxonomy_data('mbdb_editor') === false ? false : true);
+			$is_illustrator = (mbdb_get_taxonomy_data('mbdb_illustrator') === false ? false : true);
+			$is_cover_artist = (mbdb_get_taxonomy_data('mbdb_cover_artist') === false ? false : true);
 			
 			if ($is_published || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist ) {
 				$book_page_layout .= '<div class="mbm-book-details-outer">';
 								$book_page_layout .= '<div class="mbm-book-details">';
-				if ($is_published !== false) {
-					$book_page_layout .= '<strong>' . __('Published', 'mooberry-book-manager') . ':</strong> [book_published format="short" blank=""]<br>';
+				if ($is_published ) {
+					$book_page_layout .= '<strong>' . __('Published', 'mooberry-book-manager') . ':</strong> [book_published format="default" blank=""]<br>';
 				}
 				
-				if ($is_publisher !== false ) {
+				if ($is_publisher  ) {
 					$book_page_layout .= '<strong>' . __('Publisher','mooberry-book-manager') . ':</strong> [book_publisher  blank=""]<br>';
 				}
 				
-				if ($is_editor !== false ) {
+				if ($is_editor  ) {
 					$book_page_layout .= '<strong>' . __('Editors', 'mooberry-book-manager') . ':</strong> <span>[book_editor delim="comma" blank=""]</span><br>';
 				}
 				
-				if ($is_illustrator !== false ) {
+				if ($is_illustrator ) {
 					$book_page_layout .= '<strong>' . __('Illustrators', 'mooberry-book-manager') . ':</strong> <span>[book_illustrator delim="comma" blank=""]</span><br>';
 				}
 				
-				if ($is_cover_artist !== false ) {
+				if ($is_cover_artist ) {
 					$book_page_layout .= '<strong>' . __('Cover Artists', 'mooberry-book-manager') . ':</strong> <span>[book_cover_artist delim="comma" blank=""]</span><br>';
 				}
 							
-				if ($is_genre !== false) {
+				if ($is_genre ) {
 					$book_page_layout .= '<strong>' . __('Genres','mooberry-book-manager') . ':</strong> <span>[book_genre delim="comma" blank=""]</span><br>';
 				}
 				
-				if ($is_tag !== false) {
+				if ($is_tag ) {
 					$book_page_layout .= '<strong>' . __('Tags','mooberry-book-manager') . ':</strong> <span>[book_tags  delim="comma" blank=""]</span><br>';
 				}
 				$book_page_layout .= '</div></div> <!-- mbm-book-details -->';
@@ -1074,9 +1765,10 @@ function mbdb_book_content($content) {
 				$is_excerpt = mbdb_get_excerpt_data();
 			if ( $is_excerpt !== false) {
 				$book_page_layout .= '[book_excerpt label="' . __('Excerpt', 'mooberry-book-manager') . ':" length="1000"  blank="" ]';
-		//		$book_page_layout .= '</div> <!-- mbm-book-main --><div id="mbm-book-bottom">';
 			} 
 		
+			// v 3.0 for customizer
+			//$book_page_layout .= '</div><div id="mbm-right-column"></div>';
 		
 			if (mbdb_get_reviews_data() !== false ) {
 				$book_page_layout .= '<span>[book_reviews  blank="" label="' . __('Reviews', 'mooberry-book-manager') . ':"]</span><br>';
@@ -1085,23 +1777,19 @@ function mbdb_book_content($content) {
 				$book_page_layout .= '[book_additional_info]';
 			}
 			
-		if ($is_excerpt && mbdb_is_links_data() !== false) {
+			// only show 2nd set of links if exceprt is more than 1500 characters long
+			if ($is_excerpt !== false && strlen($is_excerpt) > 1500 && mbdb_is_links_data() !== false) {
 				$book_page_layout .= '<div id="mbm-book-links2">[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal"  blank="" blanklabel=""]</div>';
 			}
 			
 			$book_page_layout .= '</div> <!-- mbm-book-page -->';
 			
 			
-			//$book_page_layout = mbdb_get_default_page_layout(  );
-			$content .= stripslashes($book_page_layout); //wpautop(stripslashes($mbdb_book_page_options['_mbdb_book_page_layout']));
+			$content .= stripslashes($book_page_layout); 
 			$content = preg_replace('/\\n/', '<br>', $content);
-			return apply_filters('mbdb_book_content', $content);
-		// }
-	// }
-	//just in case the option isn't in the database
-	// $content .= preg_replace('/\\n/', '<br>', mbdb_get_default_page_layout()); //wpautop(mbdb_get_default_page_layout());
 			
-	//return apply_filters('mbdb_book_content', $content);
-	
+			$content = apply_filters('mbdb_book_content', $content);
+			return do_shortcode($content);
+		
 }
 	

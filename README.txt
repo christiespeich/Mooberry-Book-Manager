@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
-Tested up to: 4.4 
-Stable tag: 2.4.2
+Tested up to: 4.4
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ Feature books on your sidebar with four options:
 	
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
-Requires Wordpress 3.8. The admin screens (for creating books, etc.) require Javascript, but the public pages do not.
+Requires Wordpress 3.8 and Javascript.
 
 Mooberry Book Manager can be translated into other languages! See `Other Notes` for more information.
 
@@ -64,7 +64,7 @@ To Add a Widget:
 
 Additonal questions?
 
-Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
+Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)  (note: the manual is not updated for version 3 at this time)
 
 **Coming Soon**  
 
@@ -82,10 +82,6 @@ If you have suggestions for a new add-on, feel free to email me at bookmanager@m
 
 * Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams  
 
-* Follow Mooberry Dreams on Twitter: https://twitter.com/MooberryDreams  
-
-* Check out the blog: http://www.mooberrydreams.com/blog  
-
 
 == Installation ==
 
@@ -99,6 +95,8 @@ If you have suggestions for a new add-on, feel free to email me at bookmanager@m
 Mooberry Book Manager has been designed to be theme-independent and should work for most themes. However, as there are infinite possibilities when developing themes and little required standardization, so some themes may not work as expected with the plugin. If Mooberry Book Manager isn’t working for your theme, [contact us](http://www.mooberrydreams.com/contact/) and we’ll see if we can help.
 
 We have found issues when using Mooberry Book Manager with the Customizr theme. These issues should be resolved with v1.1.
+
+Many theme incompatibilities should be solved with v3.0. If you continue to find problems with your theme, please [contact us](http://www.mooberrydreams.com/contact/).
 
 = What’s the difference between Download Links and Retailer Links? =
 
@@ -131,7 +129,7 @@ There are cases though when you might want to have an Author field. You might be
 
 = Additional questions? =
 
-Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)
+Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)  (note: the manual is not updated for version 3 at this time)
 
 
 == Screenshots ==
@@ -143,12 +141,35 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.0 =
+* Added: Book Grids can now be filtered and grouped by Editors, Illustrators, Cover Artists, and Publishers
+* Added: Book Grids can now be grouped by several levels
+* Added: Additional pretty links, ie /book/tag/{some-tag} which lists all matching books but display the full book page not a grid
+* Added: Ability to update/change "Add to Goodreads" and "Coming Soon" book cover images (on settings page)
+* Added: Custom text above and below auto-generated Book Grids (Wordpress 4.4+ only)
+* Added: Tip Jar
+* Added: Greek Translation
+* Improved: Book Cover metabox moved above taxonomies, book info, and buy/download links metaboxes for greater visibility
+* Improved: Book Pages and auto-generated Book Grids now created using a shortcode, which should allow them to play nicely with more themes
+* Improved: Most book data is now stored in a custom table, allowing for faster and more complex grids
+* Improved: Slugs for auto-generated Book Grids can now be customized in settings
+* Improved: Settings Page moved to main Admin menu for greater visibility
+* Improved: 2nd set of retailer/download links only displays if excerpt is more than 1500 characters AND excerpt is expanded
+* Improved: User interface and instructions/descriptions of fields updated/added
+* Improved: "Published on" date now uses the format set in Wordpress General settings
+* Improved: Browser tab title is now the title of grid when viewing an auto-generated grid
+* Improved: Accessibility improved by all images now using ALT tags set by user OR a default ALT tag in case the user has not set one.
+* Improved: Reordered metaboxes on Book Edit page
+* Improved: Added filter to move Yoast SEO metabox lower on the Edit Book page
+
 = 2.4.2 =
 * Fixed: Switched from site_url to home_url to create series grid link on book page (caused a problem when Wordpress is installed in a different directory than web URL)
 * Improved: Reduced size of included images. Hopefully will help 500 errors on activation.
 
+
 = 2.4.1 =
 * Fixed: Error about non-object sometimes happening (grid styles)
+
 
 = 2.4 =
 * Added: South African Rand (ZAR/R) to currency dropdown options
@@ -223,6 +244,8 @@ Redesigned, responsive book page and much more!
 
 * Italian
 
+* Greek
+
 **NOTE:** Mooberry Book Manager is translatable. If you'd like to volunteer a translation for your language, the template file (.pot) is available in the `languages` folder. [Contact us](http://www.mooberrydreams.com/contact/) when your translation is ready or if you need assistance.
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
@@ -236,3 +259,5 @@ Redesigned, responsive book page and much more!
 * Thanks to Sergey Kryukov for the Russian translation!
 
 * Thanks to Fabrizio Guidicini for the Italian translation!
+
+* Thanks to Eleni Linaki for the Greek translation!

@@ -1,0 +1,2149 @@
+# WordPress Blank Pot
+# Copyright (C) 2014 ...
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mooberry Book Manager\n"
+"Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
+"POT-Creation-Date: 2016-02-11 14:05+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: includes/cmb2\n"
+
+#: admin-settings-page.php:4
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: admin-settings-page.php:5 admin-settings-page2.php:98
+msgid "NOTE:"
+msgstr "ΣΗΜΕΙΩΣΗ:"
+
+#: admin-settings-page.php:5 admin-settings-page2.php:99
+msgid ""
+"You must click the SAVE button to save your changes before switching tabs."
+msgstr "Πρέπει να πατήσετε το κουμπί για αποθήκευση πριν να αλλάξετε καρτέλα."
+
+#: admin-settings-page.php:72 admin-settings-page2.php:301
+msgid "Add your publishers."
+msgstr "Προσθέστε εκδοτικούς οίκους."
+
+#: admin-settings-page.php:74 admin-settings-page.php:83
+#: admin-settings-page2.php:303 admin-settings-page2.php:312 book.php:35
+#: book.php:674 includes/helper-functions.php:92 single-book.php:1684
+msgid "Publisher"
+msgstr "Εκδόσεις"
+
+#: admin-settings-page.php:75 admin-settings-page2.php:304
+msgid "Add New Publisher"
+msgstr "Νέος εκδοτικός οίκος"
+
+#: admin-settings-page.php:76 admin-settings-page2.php:305
+msgid "Remove Publisher"
+msgstr "Διαγραφή εκδοτικού οίκου"
+
+#: admin-settings-page.php:93 admin-settings-page2.php:322
+msgid "Publisher Website"
+msgstr "Ιστότοπος εκδοτικού οίκου"
+
+#: admin-settings-page.php:122 admin-settings-page2.php:364
+msgid "Add any additional formats your books are available in."
+msgstr "Προσθέστε άλλες μορφές που μπορεί να έχουν τα βιβλία σας."
+
+#: admin-settings-page.php:124 admin-settings-page2.php:366
+msgid "Format"
+msgstr "Μορφή"
+
+#: admin-settings-page.php:125 admin-settings-page2.php:367
+msgid "Add New Format"
+msgstr "Νέα Μορφή"
+
+#: admin-settings-page.php:126 admin-settings-page.php:295
+#: admin-settings-page2.php:368 admin-settings-page2.php:589
+msgid "Remove Format"
+msgstr "Διαγραφή Μορφής"
+
+#: admin-settings-page.php:133 admin-settings-page2.php:375
+msgid "Format Name"
+msgstr "Ονομασία Μορφής"
+
+#: admin-settings-page.php:160
+msgid "BOOK PAGE DEFAULT SETTINGS"
+msgstr "ΠΡΟΕΠΙΛΟΓΗ ΡΥΘΜΙΣΕΩΝ ΣΕΛΙΔΑΣ ΒΙΒΛΙΟΥ"
+
+#: admin-settings-page.php:166 admin-settings-page2.php:234
+#: admin-settings-page2.php:420
+msgid "Page Template"
+msgstr "Πρότυπο σελίδας"
+
+#: admin-settings-page.php:175 admin-settings-page2.php:429
+msgid "Default Unit of Measurement"
+msgstr "Προεπιλεγμένη Μονάδα Μέτρησης"
+
+#: admin-settings-page.php:183 admin-settings-page2.php:437
+msgid "Default Currency"
+msgstr "Προεπιλεγμένη Νομισματική Μονάδα"
+
+#: admin-settings-page.php:191 admin-settings-page2.php:445
+msgid "Default Language"
+msgstr "Προεπιλεγμένη Γλώσσα"
+
+#: admin-settings-page.php:199
+msgid "BOOK GRID DEFAULT SETTINGS"
+msgstr "ΠΡΟΕΠΙΛΟΓΗ ΡΥΘΜΙΣΕΩΝ ΠΛΕΓΜΑΤΟΣ ΒΙΒΛΙΟΥ"
+
+#: admin-settings-page.php:205
+msgid "Cover Height (px)"
+msgstr "Ύψος Εξώφυλλου (px)"
+
+#: admin-settings-page.php:245
+msgid "Add any additional retailers that sell your books."
+msgstr "Προσθέστε επιπλέον εμπόρους λιανικής που πουλούν τα βιβλία σας."
+
+#: admin-settings-page.php:247 admin-settings-page2.php:520 book.php:731
+msgid "Retailer"
+msgstr "Έμπορος λιανικής"
+
+#: admin-settings-page.php:248 admin-settings-page2.php:521
+msgid "Add Retailer"
+msgstr "Προσθήκη Εμπόρου Λιανικής"
+
+#: admin-settings-page.php:249 admin-settings-page2.php:522
+msgid "Remove Retailer"
+msgstr "Διαγραφή Εμπόρου Λιανικής"
+
+#: admin-settings-page.php:254 admin-settings-page2.php:528
+msgid "Retailer Name"
+msgstr "Όνομα Εμπόρου Λιανικής"
+
+#: admin-settings-page.php:263 admin-settings-page2.php:537
+msgid "Retailer Logo Image"
+msgstr "Λογότυπο Εμπόρου Λιανικής"
+
+#: admin-settings-page.php:291
+msgid ""
+"If you have free books for download, add any additional formats your books "
+"are available in."
+msgstr ""
+"Αν έχετε δωρεάν βιβλία προς λήψη, προσθέστε όποια άλλη μορφή αυτά είναι "
+"διαθέσιμα."
+
+#: admin-settings-page.php:293 admin-settings-page.php:301 book.php:777
+msgctxt "noun"
+msgid "Format"
+msgstr "Μορφή"
+
+#: admin-settings-page.php:294 admin-settings-page2.php:588
+msgid "Add Format"
+msgstr "Νέα Μορφή"
+
+#: admin-settings-page.php:311
+msgctxt "noun"
+msgid "Format Image"
+msgstr "Εικόνα"
+
+#: admin-settings-page.php:334 admin-settings-page2.php:766
+msgid "General Settings"
+msgstr "Γενικές Ρυθμίσεις"
+
+#: admin-settings-page.php:334 admin-settings-page2.php:768
+msgid "Publishers"
+msgstr "Εκδοτικοί Οίκοι"
+
+#: admin-settings-page.php:334 admin-settings-page2.php:769
+msgid "Edition Formats"
+msgstr "Εκδόσεις"
+
+#: admin-settings-page.php:334 admin-settings-page2.php:770
+msgid "Retailers"
+msgstr "Έμποροι Λιανικής"
+
+#: admin-settings-page.php:334 admin-settings-page2.php:771
+msgctxt "noun"
+msgid "E-book Formats"
+msgstr "E-βιβλία"
+
+#: admin-settings-page2.php:50
+msgid "Mooberry Book Manager Options"
+msgstr "Επιλογές Διαχειριστή Βιβλίων Moobery"
+
+#: admin-settings-page2.php:206
+msgid "GRID DEFAULT SETTINGS"
+msgstr "Προεπιλεγμένες ρυθμίσεις πλέγματος"
+
+#: admin-settings-page2.php:208
+msgid ""
+"This setting will be used on all grids that are auto-generated for a single "
+"genre, tag, etc. It's also used on any grids that do not override the "
+"default setting."
+msgstr ""
+"Οι ρυθμίσεις αυτές θα χρησιμοποιηθούν σε όλα τα πλέμγατα που προκύπτουν από "
+"ένα έιδος, μία ετικέτα κλπ. Χρησιμοποιούνται επίσης σε κάθε πλέγμα που δεν "
+"υπερκαλύπτει τις προεπιλεγμένες ρυθμίσεις."
+
+#: admin-settings-page2.php:214
+msgid "Default Cover Height (px)"
+msgstr "Προεπιλεγμένο ύψος εξωφύλλου (px)"
+
+#: admin-settings-page2.php:227
+msgid "GRID TEMPLATE SETTINGS"
+msgstr "ΡΥΘΜΙΣΕΙΣ ΠΛΕΓΜΑΤΟΣ ΠΡΟΤΥΠΟΥ ΣΕΛΙΔΑΣ"
+
+#: admin-settings-page2.php:229
+msgid ""
+"This template will be used to display the grids that are auto-generated for "
+"a single genre, tag, etc."
+msgstr ""
+"Το πρότυπο σελίδας θα χρησιμοποιηθεί για να προβάλλει τα πλέγματα που "
+"δημιουργούνται αυτόματα από ένα είδος, ετικέτα κλπ."
+
+#: admin-settings-page2.php:243
+msgid ""
+"These will be used to build website URL for the grids that are auto-"
+"generated for a single genre, tag, etc.  Text entered in these fields will "
+"be converted to \"friendly URLs\" by making them lower-case, removing the "
+"spaces, etc."
+msgstr ""
+"Χρησιμοποιούνται για την κατασκευή διεύθυνσης ιστοχώρου που δημιουργείται "
+"για ένα μεμονωμένο είδος, ετικέτα κλπ. Το κείμενο που εισάγεται σε αυτά τα "
+"πεδία θα μετατραπεί σε \"φιλικές διευθύνσεις url\" δηλαδή με μικρά γράμματα, "
+"χωρίς κενά κλπ."
+
+#: admin-settings-page2.php:245
+#, php-format
+msgid "%s NOTE: %s Wordpress reserved terms are not allowed here."
+msgstr "%s ΣΗΜΕΙΩΣΗ: %s Δεσμευμένοι όροι του Wordpress δεν επιτρέπονται εδώ."
+
+#: admin-settings-page2.php:246
+msgid "Reserved Terms"
+msgstr "Δεσμευμένοι όροι"
+
+#: admin-settings-page2.php:247
+msgid "See a list of reserved terms."
+msgstr "Δείτε τη λίστα των δεσμευμένων όρων."
+
+#: admin-settings-page2.php:259
+msgid "GRID URL SETTINGS"
+msgstr "ΡΥΘΜΙΣΕΙΣ ΔΙΕΥΘΥΝΣΗΣ URL ΠΛΕΓΜΑΤΟΣ"
+
+#: admin-settings-page2.php:414
+msgid "BOOK PAGE SETTINGS"
+msgstr "ΡΥΘΜΙΣΕΙΣ ΣΕΛΙΔΑΣ ΒΙΒΛΙΟΥ"
+
+#: admin-settings-page2.php:453
+msgid "Show Placeholder Cover On"
+msgstr "Εμφάνιση Placeholder εξωφύλλου σε"
+
+#: admin-settings-page2.php:458
+msgid "Book Page"
+msgstr "Σελίδα βιβλίου"
+
+#: admin-settings-page2.php:459
+msgid "Widgets"
+msgstr "Μικροεφαρμογές"
+
+#: admin-settings-page2.php:465
+msgid "Placeholder Cover Image"
+msgstr "Placeholder εικόνας εξωφύλλου"
+
+#: admin-settings-page2.php:472 admin-settings-page2.php:486
+#: admin-settings-page2.php:544 admin-settings-page2.php:608
+#: admin-settings-page2.php:672
+msgid "Choose or Upload File"
+msgstr "Επιλογή ή μεταφόρτωση αρχείου"
+
+#: admin-settings-page2.php:479
+msgid "Add to Goodreads Image"
+msgstr "Προσθήκη εικόνας Goodreads"
+
+#: admin-settings-page2.php:511
+msgid ""
+"Add any additional retailers that sell your books. If you need to restore "
+"images that came with Mooberry Book Manager, download the "
+msgstr ""
+"Προσθέστε επιπλέον εμπόρους λιανικής που πουλούν τα βιβλία. Αν πρέπει να "
+"επαναφέρετε εικόνες που υπήρχαν στον Διαχειριστή Βιβλίων Mooberry, κατεβάστε "
+"το "
+
+#: admin-settings-page2.php:512 admin-settings-page2.php:579
+msgid "Mooberry Book Manager Image Fixer plugin"
+msgstr "Πρόσθετο βελτιστοποίησης εικόνας του Διαχειριστή Βιβλίων Mooberry"
+
+#: admin-settings-page2.php:578
+msgid ""
+"If you have free books for download, add any additional formats your books "
+"are available in. If you need to restore images that came with Mooberry Book "
+"Manager, download the"
+msgstr ""
+"Αν έχετε βιβλία για δωρεάν κατέβασμα, προσθέστε τις μορφές στις οποίες αυτά "
+"είναι διαθέσιμα. Αν πρέπει να επαναφέρετε εικόνες που υπήρχαν στον "
+"Διαχειριστή Βιβλίων Mooberry, κατεβάστε το "
+
+#: admin-settings-page2.php:587 admin-settings-page2.php:595
+msgctxt "noun: the format of a book"
+msgid "Format"
+msgstr "Μορφή"
+
+#: admin-settings-page2.php:604
+msgctxt "noun: the image that represents the format of a book"
+msgid "Format Image"
+msgstr "Μορφή εικόνας"
+
+#: admin-settings-page2.php:644
+msgid "Add Social Media Sites With Whom You Have Accounts."
+msgstr "Προσθέστε τα μέσα κοινωνικής δικτύωσης στα οποία είστε εγγεγραμένοι."
+
+#: admin-settings-page2.php:646
+msgid "Social Media Site"
+msgstr "Μέσο κοινωνικής δικτύωσης"
+
+#: admin-settings-page2.php:647
+msgid "Add New Social Media Site"
+msgstr "Προσθήκη νέου μέσου κοινωνικής δικτύωσης"
+
+#: admin-settings-page2.php:648
+msgid "Remove Social Media Site"
+msgstr "Διαγραφή μέσου κοινωνικής δικτύωσης"
+
+#: admin-settings-page2.php:655
+msgid "Social Media Site Name"
+msgstr "Ονομασία μέσου κοινωνικής δικτύωσης"
+
+#: admin-settings-page2.php:665
+msgid "Social Media Logo Image"
+msgstr "Λογότυπο μέσου κοινωνικής δικτύωσης"
+
+#: admin-settings-page2.php:694
+msgid "Social Media"
+msgstr "Μέσα κοινωνικής δικτύωσης"
+
+#: admin-settings-page2.php:717
+msgid "is a reserved term and not allowed. This field was not saved."
+msgstr ""
+"είναι δεσμευμένος όρος και δεν επιτρέπεται να χρησιμοποιηθεί. Το πεδίο δεν "
+"έχει αποθηκευτεί."
+
+#: admin-settings-page2.php:767 book-grid.php:29
+msgid "Book Grid Settings"
+msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
+
+#: admin-settings-page2.php:803
+msgid "Settings updated."
+msgstr "Επιτυχία ανανέωσης ρυθμίσεων."
+
+#: book-grid.php:37
+msgid "Display Books on This Page?"
+msgstr "Να προβάλλονται Βιβλία σε αυτή τη Σελίδα;"
+
+#: book-grid.php:42 book-grid.php:163
+msgid "Yes"
+msgstr "Ναι"
+
+#: book-grid.php:43 book-grid.php:164
+msgid "No"
+msgstr "Όχι"
+
+#: book-grid.php:49
+msgid "Books to Display"
+msgstr "Βιβλία για Προβολή"
+
+#: book-grid.php:57 includes/helper-functions.php:64
+msgid "Select Books"
+msgstr "Επιλογή Βιβλίων"
+
+#: book-grid.php:66 includes/helper-functions.php:65
+msgid "Select Genres"
+msgstr "Επιλογή Είδους"
+
+#: book-grid.php:74 includes/helper-functions.php:66
+msgid "Select Series"
+msgstr "Επιλογή Σειράς"
+
+#: book-grid.php:82 includes/helper-functions.php:67
+msgid "Select Tags"
+msgstr "Επιλογή Ετικετών"
+
+#: book-grid.php:90 includes/helper-functions.php:68
+msgid "Select Publishers"
+msgstr "Επιλέξτε εκδότες"
+
+#: book-grid.php:98 includes/helper-functions.php:69
+msgid "Select Editors"
+msgstr "Επιλέξτε συντάκτες"
+
+#: book-grid.php:106 includes/helper-functions.php:70
+msgid "Select Illustrators"
+msgstr "Επιλέξτε εικονογράφους"
+
+#: book-grid.php:114 includes/helper-functions.php:71
+msgid "Select Cover Artists"
+msgstr "Επιλέξτε Cover Artist"
+
+#: book-grid.php:127
+msgid "Group Books By"
+msgstr "Ομαδοποίηση Βιβλίων Κατά"
+
+#: book-grid.php:137
+msgid ""
+"Warning: Setting more than 5 levels could cause the page to timeout and not "
+"display."
+msgstr ""
+"Προειδοποίηση: Μία ρύθμιση μεγαλύτερη των 5 επιπέδων μπορεί να προκαλέσει "
+"λήξει του χρονικού ορίου της σελίδας και να μην εμφανίζεται."
+
+#: book-grid.php:150
+msgid "Order By"
+msgstr "Ταξινόμηση Κατά"
+
+#: book-grid.php:158
+msgid "Use default cover height?"
+msgstr "Χρήση του προεπιπελμένου ύψους εξώφυλλου;"
+
+#: book-grid.php:170
+msgid "Book Cover Height (px)"
+msgstr "Ύψος Εξώφυλλου Βιβλίου (px)"
+
+#: book-grid.php:182
+msgid "Additional Content (bottom)"
+msgstr "Επιπλέον περιεχόμενο (κάτω μέρος)"
+
+#: book-grid.php:185
+msgid "This displays under the book grid."
+msgstr "Αυτό εμφανίζεται κάτω από το πλέγμα του βιβλίου"
+
+#: book-grid.php:396
+msgid "No Publisher Specified"
+msgstr "Δεν έχει οριστεί εκδότης"
+
+#: book-grid.php:411
+msgid "Published by "
+msgstr "Εκδόσεις "
+
+#: book-grid.php:453
+msgid "Uncategorized"
+msgstr "Χωρίς Κατηγορία"
+
+#: book-grid.php:456
+msgid "Standalones"
+msgstr "Ατομικά"
+
+#: book-grid.php:459
+msgid "Untagged"
+msgstr "Χωρίς Ετικέτα"
+
+#: book-grid.php:462
+msgid "No Editor Specified"
+msgstr "Δεν έχει οριστεί συντάκτης"
+
+#: book-grid.php:465
+msgid "No Illustrator Specified"
+msgstr "Δεν έχει οριστεί εικονογράφος"
+
+#: book-grid.php:468
+msgid "No Cover Artist Specified"
+msgstr "Δεν έχει οριστεί ο Cover Artist"
+
+#: book-grid.php:607
+msgid "Books not found"
+msgstr "Δεν Βρέθηκαν Βιβλία"
+
+#: book-widget.php:12
+msgid ""
+"Shows the cover of the book of your choosing with a link to the book page"
+msgstr ""
+"Εμφανίζεται το εξώφυλλο του επιλεγμένου βιβλίου με ενεργό σύνδεσμο στη "
+"σελίδα του βιβλίου"
+
+#: book-widget.php:14 includes/plugin-functions.php:477
+msgctxt "noun"
+msgid "Book"
+msgstr "Βιβλίο"
+
+#: book-widget.php:123
+msgid "No books found"
+msgstr "Δεν βρέθηκαν βιβλία"
+
+#: book.php:29
+msgid "Title"
+msgstr "Τίτλος"
+
+#: book.php:30
+msgid "Cover"
+msgstr "Εξώφυλλο"
+
+#: book.php:31 includes/helper-functions.php:89
+#: includes/plugin-functions.php:544
+msgid "Genre"
+msgstr "Είδος"
+
+#: book.php:32 single-book.php:1680
+msgid "Published"
+msgstr "Έκδοση"
+
+#: book.php:33 includes/helper-functions.php:90
+#: includes/plugin-functions.php:616 includes/plugin-functions.php:617
+#: includes/plugin-functions.php:626
+msgid "Series"
+msgstr "Σειρά"
+
+#: book.php:34 book.php:694
+msgid "Series Order"
+msgstr "Σειρά"
+
+#: book.php:36
+msgid "Updated"
+msgstr "Ενημερωμένα"
+
+#: book.php:97 single-book.php:253
+msgid "m/d/Y"
+msgstr "μ/η/ε"
+
+#: book.php:350 book.php:359
+msgid "Summary"
+msgstr "Περίληψη"
+
+#: book.php:381
+msgid "Formats and Editions"
+msgstr "Μορφές και Εκδόσεις"
+
+#: book.php:392
+msgid ""
+"List the details of your book's hardcover, paperback, and e-book editions. "
+"Everything is optional except the format."
+msgstr ""
+"Εισάγετε τις λεπτομέρειες του βιβλίου. Όλα είναι προαιρετικά εκτός από τον "
+"τύπο του βιβλίου."
+
+#: book.php:394
+msgid "Edition"
+msgstr "Έκδοση"
+
+#: book.php:395
+msgid "Add New Edition"
+msgstr "Νέα έκδοση"
+
+#: book.php:396
+msgid "Remove Edition"
+msgstr "Διαγραφή έκδοσης"
+
+#: book.php:403
+msgctxt "noun: format of a book"
+msgid "Format"
+msgstr "Μορφή"
+
+#: book.php:408 book.php:782
+msgid "Add more formats in Settings"
+msgstr "Προσθέστε περισσότερες μορφές στις ρυθμίσεις"
+
+#: book.php:413
+msgid "EAN/ISBN"
+msgstr "EAN/ISBN"
+
+#: book.php:420
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: book.php:429
+msgid "Number of Pages"
+msgstr "Αριθμός σελίδων"
+
+#: book.php:441
+msgid "Height"
+msgstr "Ύψος"
+
+#: book.php:453
+msgid "Width"
+msgstr "Μήκος"
+
+#: book.php:465
+msgctxt "units of measurement"
+msgid "Unit"
+msgstr "Μονάδα"
+
+#: book.php:474
+msgid "Suggested Retail Price"
+msgstr "Προτεινόμενη τιμή λιανικής"
+
+#: book.php:485
+msgid "Currency"
+msgstr "Νόμισμα"
+
+#: book.php:494
+msgid "Edition Title"
+msgstr "Τίτλος έκδοσης"
+
+#: book.php:497
+msgid "First Edition, Second Edition, etc."
+msgstr "Πρώτη έκδοση, δεύτερη έκδοση, κλπ"
+
+#: book.php:504 book.php:513 single-book.php:1712
+msgid "Excerpt"
+msgstr "Απόσπασμα"
+
+#: book.php:536
+msgctxt "noun: book reviews"
+msgid "Reviews"
+msgstr "Κριτικές"
+
+#: book.php:548
+msgid "Add reviews of your book"
+msgstr "Προσθήκη κριτικών για το βιβλίο"
+
+#: book.php:550
+msgctxt "noun"
+msgid "Reviews"
+msgstr "Κριτικές"
+
+#: book.php:551
+msgid "Add Review"
+msgstr "Νέα κριτική"
+
+#: book.php:552
+msgid "Remove Review"
+msgstr "Διαγραφή κριτικής"
+
+#: book.php:559
+msgid "Reviewer Name"
+msgstr "Όνομα κριτή"
+
+#: book.php:567
+msgctxt "noun: URL to book review"
+msgid "Review Link"
+msgstr "Σύνδεσμος κριτικής"
+
+#: book.php:578
+msgctxt "noun: name of website of book review"
+msgid "Review Website Name"
+msgstr "Όνομα ιστοτόπου κριτικής"
+
+#: book.php:585
+msgctxt "noun: book review"
+msgid "Review"
+msgstr "Κριτική"
+
+#: book.php:595 book.php:604
+msgid "Additional Information"
+msgstr "Επιπλέον πληροφορίες"
+
+#: book.php:607
+msgid ""
+"Any additional information you want to display on the page. Will be shown at "
+"the bottom of the page, after the reviews."
+msgstr ""
+"Κάθε επιπλέον πληροφορία που θέλετε να εμφανίζεται στη σελίδα, θα βρίσκεται "
+"στο κάτω μέρος της σελίδας, μετά τις κριτικές."
+
+#: book.php:627
+msgctxt "noun"
+msgid "Cover"
+msgstr "Εξώφυλλο"
+
+#: book.php:637
+msgctxt "noun"
+msgid "Book Cover"
+msgstr "Εξώφυλλο βιβλίου"
+
+#: book.php:648
+msgid "Book Details"
+msgstr "Λεπτομέρειες βιβλίου"
+
+#: book.php:657
+msgid "Subtitle"
+msgstr "Υπότιτλος"
+
+#: book.php:664
+msgid "Release Date"
+msgstr "Ημερομηνία κυκλοφορίας"
+
+#: book.php:678
+msgid "Set up Publishers in Settings."
+msgstr "Επεξεργασία Εκδοτών στις ρυθμίσεις."
+
+#: book.php:683
+msgid "Goodreads Link"
+msgstr "Σύνδεσμος Goodreads"
+
+#: book.php:696
+msgid "(leave blank if not part of a series)"
+msgstr "(αφήστε το κενό αν δεν είναι μέρος σειράς)"
+
+#: book.php:709
+msgctxt "noun: URLs to book retailers"
+msgid "Retailer Links"
+msgstr "Δικτυακοί τόποι κριτικών"
+
+#: book.php:720
+msgid "Add links where readers can purchase your book"
+msgstr "Προσθέστε συνδέσμους όπου οι αναγνώστες μπορούν να αγοράσουν το βιβλίο"
+
+#: book.php:722
+msgctxt "noun"
+msgid "Retailer Link"
+msgstr "Σύνδεσμος πωλητή λιανικής"
+
+#: book.php:723
+msgid "Add Retailer Link"
+msgstr "Προσθήκη συνδέσμου πωλητή λιανικής"
+
+#: book.php:724
+msgid "Remove Retailer Link"
+msgstr "Διαγραφή συνδέσμου πωλητή λιανικής"
+
+#: book.php:736
+msgid "Add more retailers in Settings"
+msgstr "Προσθέστε περισσότερους κριτικούς στις ρυθμίσεις"
+
+#: book.php:741
+msgctxt "noun: URL"
+msgid "Link"
+msgstr "Σύνδεσμος"
+
+#: book.php:754
+msgctxt "noun"
+msgid "Download Links"
+msgstr "Λήψη Συνδέσμων"
+
+#: book.php:766
+msgid ""
+"If your book is available to download for free, add the links for each "
+"format."
+msgstr ""
+"Αν το βιβλίο είναι διαθέσιμο για δωρεάν λήψη, προσθέστε τους συνδέσμους για "
+"κάθε τύπο."
+
+#: book.php:768
+msgctxt "noun"
+msgid "Download Link"
+msgstr "Σύνδεσμος λήψης"
+
+#: book.php:769
+msgid "Add Download Link"
+msgstr "Προσθήκη συνδέσμου λήψης"
+
+#: book.php:770
+msgid "Remove Download Link"
+msgstr "Διαγραφή συνδέσμου λήψης"
+
+#: book.php:787
+msgctxt "noun"
+msgid "Link"
+msgstr "Σύνδεσμος"
+
+#: includes/helper-functions-validation.php:30
+#, php-format
+msgid "Editions require at least the format. Please check edition #%s."
+msgstr ""
+"Οι εκδόσεις απαιτούν τουλάχιστον τον τύπο. Παρακαλούμε ελέγξτε την έκδοση #"
+"%s."
+
+#: includes/helper-functions-validation.php:45
+#, php-format
+msgid ""
+"If width or height is specified, both must be. Please check edition #%s."
+msgstr ""
+"Αν το μήκος ή το ύψος διευκρινίζονται, πρέπει να διευκρινίζονται και τα δύο. "
+"Παρακαλούμε ελέγξτε την έκδοση #%s."
+
+#: includes/helper-functions-validation.php:83
+#, php-format
+msgid ""
+"Reviews require review text and at least one other field. Please check "
+"review #%s."
+msgstr ""
+"Οι κριτικές απαιτούν κείμενο κριτικής και τουλάχιστον ένα ακόμη πεδίο. "
+"Παρακαλούμε ελέγξτε την κριτική #%s."
+
+#: includes/helper-functions-validation.php:90
+#, php-format
+msgid ""
+"Download links require all fields filled out. Please check download link #%s."
+msgstr ""
+"Η λήψη των συνδέσμων απαιτεί όλα τα πεδία να είναι συμπληρωμένα. Παρακαλούμε "
+"ελέγξτε τν σύνδεσμο λήψης #%s."
+
+#: includes/helper-functions-validation.php:96
+#, php-format
+msgid ""
+"Retailer links require all fields filled out. Please check retailer link #%s."
+msgstr ""
+"Οι σύνδεσμοι των πωλητών λιανικής απαιτούν όλα τα πεδία να είναι "
+"συμπληρωμένα. Παρακαλούμε ελέγξτε τον σύνδεσμο του πωλητή λιανικής #%s."
+
+#: includes/helper-functions-validation.php:103
+#, php-format
+msgid ""
+"Social Media Links require all fields filled out. Please check social media "
+"link #%s."
+msgstr ""
+"Είναι απαραίτητη η συμπλήρωση των διευθύνσεων url των μέσως κοινωνικής "
+"δικτύωσης. παρακαλούμε ελέγξτε τον σύνδεσμο του μέσου #%s."
+
+#: includes/helper-functions.php:61
+msgid "All"
+msgstr "Όλα"
+
+#: includes/helper-functions.php:62
+msgid "All Published"
+msgstr "Όλα τα Δημοσιευμένα"
+
+#: includes/helper-functions.php:63
+msgid "All Coming Soon"
+msgstr "Όλα που Έρχονται Σύντομα"
+
+#: includes/helper-functions.php:79
+msgid "Publication Date (oldest first)"
+msgstr "Ημερομηνία Έκδοσης (η παλαιότερη πρώτα)"
+
+#: includes/helper-functions.php:80
+msgid "Publication Date (newest first)"
+msgstr "Ημερομηνία Έκδοσης (η νεώτερη πρώτα)"
+
+#: includes/helper-functions.php:81
+msgid "Title (A-Z)"
+msgstr "Τίτλος (Α-Ω)"
+
+#: includes/helper-functions.php:82
+msgid "Title (Z-A)"
+msgstr "Τίτλος (Ω-Α)"
+
+#: includes/helper-functions.php:88
+msgid "None"
+msgstr "Καμία"
+
+#: includes/helper-functions.php:91 includes/plugin-functions.php:581
+msgid "Tag"
+msgstr "Ετικέτα"
+
+#: includes/helper-functions.php:93 includes/plugin-functions.php:653
+msgid "Editor"
+msgstr "Συντάκτης"
+
+#: includes/helper-functions.php:94 includes/plugin-functions.php:725
+msgid "Cover Artist"
+msgstr "Cover Artist"
+
+#: includes/helper-functions.php:95 includes/plugin-functions.php:689
+msgid "Illustrator"
+msgstr "Εικονογράφος"
+
+#: includes/helper-functions.php:136
+msgid "Default"
+msgstr "Προεπιλογή"
+
+#: includes/helper-functions.php:339
+msgid "inches (in)"
+msgstr "ίντσες (in)"
+
+#: includes/helper-functions.php:340
+msgid "centimeters (cm)"
+msgstr "εκατοστά (cm)"
+
+#: includes/helper-functions.php:341
+msgid "millimeters (mm)"
+msgstr "χιλιοστά (mm)"
+
+#: includes/helper-functions.php:366
+msgid "Australian Dollar"
+msgstr "Δολάριο Αυστραλίας"
+
+#: includes/helper-functions.php:367
+msgid "Brazilian Real "
+msgstr "Ρεάλ Βραζιλίας "
+
+#: includes/helper-functions.php:368
+msgid "Canadian Dollar"
+msgstr "Δολάριο Καναδά"
+
+#: includes/helper-functions.php:369
+msgid "Czech Koruna"
+msgstr "Κορόνα Τσεχίας"
+
+#: includes/helper-functions.php:370
+msgid "Danish Krone"
+msgstr "Κορόνα Δανίας"
+
+#: includes/helper-functions.php:371
+msgid "Euro"
+msgstr "Ευρώ"
+
+#: includes/helper-functions.php:372
+msgid "Hong Kong Dollar"
+msgstr "Δολάριο Χονγκ Κονγκ"
+
+#: includes/helper-functions.php:373
+msgid "Hungarian Forint "
+msgstr "Ουγγρικό Φιορίνι "
+
+#: includes/helper-functions.php:374
+msgid "Israeli New Sheqel"
+msgstr "Σέκελ Ισραήλ"
+
+#: includes/helper-functions.php:375
+msgid "Japanese Yen"
+msgstr "Γιεν Ιαπωνίας"
+
+#: includes/helper-functions.php:376
+msgid "Malaysian Ringgit"
+msgstr "Ρινγκίτ Μαλαισίας"
+
+#: includes/helper-functions.php:377
+msgid "Mexican Peso"
+msgstr "Πέσο Μεξικού"
+
+#: includes/helper-functions.php:378
+msgid "Norwegian Krone"
+msgstr "Κορόνα Νορβηγίας"
+
+#: includes/helper-functions.php:379
+msgid "New Zealand Dollar"
+msgstr "Δολάριο Νέας Ζηλανδίας"
+
+#: includes/helper-functions.php:380
+msgid "Philippine Peso"
+msgstr "Πέσο Φιλιππίνων"
+
+#: includes/helper-functions.php:381
+msgid "Polish Zloty"
+msgstr "Ζλότυ Πολωνίας"
+
+#: includes/helper-functions.php:382
+msgid "Singapore Dollar"
+msgstr "Δολάριο Σιγκαπούρης"
+
+#: includes/helper-functions.php:383
+msgid "South African Rand"
+msgstr "Ραντ Νότιας Αφρικής"
+
+#: includes/helper-functions.php:384
+msgid "Swedish Krona"
+msgstr "Σουηδική Κορώνα"
+
+#: includes/helper-functions.php:385
+msgid "Swiss Franc"
+msgstr "Ελβετικό Φράγκο"
+
+#: includes/helper-functions.php:386
+msgid "Taiwan New Dollar"
+msgstr "Νέο Δολάριο Ταϊβάν"
+
+#: includes/helper-functions.php:387
+msgid "Thai Baht"
+msgstr "Ταϊλανδικό Μπατ"
+
+#: includes/helper-functions.php:388
+msgid "Turkish Lira"
+msgstr "Τούρκικη λίρα"
+
+#: includes/helper-functions.php:389
+msgid "U.K. Pound Sterling"
+msgstr "Λίρα Αγγλίας"
+
+#: includes/helper-functions.php:390
+msgid "U.S. Dollar"
+msgstr "Αμερικάνικο Δολάριο"
+
+#: includes/helper-functions.php:427
+msgid "Abkhazian"
+msgstr ""
+
+#: includes/helper-functions.php:428
+msgid "Afar"
+msgstr ""
+
+#: includes/helper-functions.php:429
+msgid "Afrikaans"
+msgstr ""
+
+#: includes/helper-functions.php:430
+msgid "Albanian"
+msgstr ""
+
+#: includes/helper-functions.php:431
+msgid "Amharic"
+msgstr ""
+
+#: includes/helper-functions.php:432
+msgid "Arabic"
+msgstr ""
+
+#: includes/helper-functions.php:433
+msgid "Armenian"
+msgstr ""
+
+#: includes/helper-functions.php:434
+msgid "Assamese"
+msgstr ""
+
+#: includes/helper-functions.php:435
+msgid "Aymara"
+msgstr ""
+
+#: includes/helper-functions.php:436
+msgid "Azerbaijani"
+msgstr ""
+
+#: includes/helper-functions.php:437
+msgid "Bashkir"
+msgstr ""
+
+#: includes/helper-functions.php:438
+msgid "Basque"
+msgstr ""
+
+#: includes/helper-functions.php:439
+msgid "Bengali, Bangla"
+msgstr ""
+
+#: includes/helper-functions.php:440
+msgid "Bhutani"
+msgstr ""
+
+#: includes/helper-functions.php:441
+msgid "Bihari"
+msgstr ""
+
+#: includes/helper-functions.php:442
+msgid "Bislama"
+msgstr ""
+
+#: includes/helper-functions.php:443
+msgid "Breton"
+msgstr ""
+
+#: includes/helper-functions.php:444
+msgid "Bulgarian"
+msgstr ""
+
+#: includes/helper-functions.php:445
+msgid "Burmese"
+msgstr ""
+
+#: includes/helper-functions.php:446
+msgid "Byelorussian"
+msgstr ""
+
+#: includes/helper-functions.php:447
+msgid "Cambodian"
+msgstr ""
+
+#: includes/helper-functions.php:448
+msgid "Catalan"
+msgstr ""
+
+#: includes/helper-functions.php:449
+msgid "Chinese"
+msgstr ""
+
+#: includes/helper-functions.php:450
+msgid "Corsican"
+msgstr ""
+
+#: includes/helper-functions.php:451
+msgid "Croatian"
+msgstr ""
+
+#: includes/helper-functions.php:452
+msgid "Czech"
+msgstr ""
+
+#: includes/helper-functions.php:453
+msgid "Danish"
+msgstr ""
+
+#: includes/helper-functions.php:454
+msgid "Dutch"
+msgstr ""
+
+#: includes/helper-functions.php:455
+msgid "English"
+msgstr ""
+
+#: includes/helper-functions.php:456
+msgid "Esperanto"
+msgstr ""
+
+#: includes/helper-functions.php:457
+msgid "Estonian"
+msgstr ""
+
+#: includes/helper-functions.php:458
+msgid "Faeroese"
+msgstr ""
+
+#: includes/helper-functions.php:459
+msgid "Fiji"
+msgstr ""
+
+#: includes/helper-functions.php:460
+msgid "Finnish"
+msgstr ""
+
+#: includes/helper-functions.php:461
+msgid "French"
+msgstr ""
+
+#: includes/helper-functions.php:462
+msgid "Frisian"
+msgstr ""
+
+#: includes/helper-functions.php:463
+msgid "Gaelic (Scots Gaelic)"
+msgstr ""
+
+#: includes/helper-functions.php:464
+msgid "Galician"
+msgstr ""
+
+#: includes/helper-functions.php:465
+msgid "Georgian"
+msgstr ""
+
+#: includes/helper-functions.php:466
+msgid "German"
+msgstr ""
+
+#: includes/helper-functions.php:467
+msgid "Greek"
+msgstr ""
+
+#: includes/helper-functions.php:468
+msgid "Greenlandic"
+msgstr ""
+
+#: includes/helper-functions.php:469
+msgid "Guarani"
+msgstr ""
+
+#: includes/helper-functions.php:470
+msgid "Gujarati"
+msgstr ""
+
+#: includes/helper-functions.php:471
+msgid "Hausa"
+msgstr ""
+
+#: includes/helper-functions.php:472
+msgid "Hebrew"
+msgstr ""
+
+#: includes/helper-functions.php:473
+msgid "Hindi"
+msgstr ""
+
+#: includes/helper-functions.php:474
+msgid "Hungarian"
+msgstr ""
+
+#: includes/helper-functions.php:475
+msgid "Icelandic"
+msgstr ""
+
+#: includes/helper-functions.php:476
+msgid "Indonesian"
+msgstr ""
+
+#: includes/helper-functions.php:477
+msgid "Interlingua"
+msgstr ""
+
+#: includes/helper-functions.php:478
+msgid "Interlingue"
+msgstr ""
+
+#: includes/helper-functions.php:479
+msgid "Inupiak"
+msgstr ""
+
+#: includes/helper-functions.php:480
+msgid "Irish"
+msgstr ""
+
+#: includes/helper-functions.php:481
+msgid "Italian"
+msgstr ""
+
+#: includes/helper-functions.php:482
+msgid "Japanese"
+msgstr ""
+
+#: includes/helper-functions.php:483
+msgid "Javanese"
+msgstr ""
+
+#: includes/helper-functions.php:484
+msgid "Kannada"
+msgstr ""
+
+#: includes/helper-functions.php:485
+msgid "Kashmiri"
+msgstr ""
+
+#: includes/helper-functions.php:486
+msgid "Kazakh"
+msgstr ""
+
+#: includes/helper-functions.php:487
+msgid "Kinyarwanda"
+msgstr ""
+
+#: includes/helper-functions.php:488
+msgid "Kirghiz"
+msgstr ""
+
+#: includes/helper-functions.php:489
+msgid "Kirundi"
+msgstr ""
+
+#: includes/helper-functions.php:490
+msgid "Korean"
+msgstr ""
+
+#: includes/helper-functions.php:491
+msgid "Kurdish"
+msgstr ""
+
+#: includes/helper-functions.php:492
+msgid "Laothian"
+msgstr ""
+
+#: includes/helper-functions.php:493
+msgid "Latin"
+msgstr ""
+
+#: includes/helper-functions.php:494
+msgid "Latvian, Lettish"
+msgstr ""
+
+#: includes/helper-functions.php:495
+msgid "Lingala"
+msgstr ""
+
+#: includes/helper-functions.php:496
+msgid "Lithuanian"
+msgstr ""
+
+#: includes/helper-functions.php:497
+msgid "Macedonian"
+msgstr ""
+
+#: includes/helper-functions.php:498
+msgid "Malagasy"
+msgstr ""
+
+#: includes/helper-functions.php:499
+msgid "Malay"
+msgstr ""
+
+#: includes/helper-functions.php:500
+msgid "Malayalam"
+msgstr ""
+
+#: includes/helper-functions.php:501
+msgid "Maltese"
+msgstr ""
+
+#: includes/helper-functions.php:502
+msgid "Maori"
+msgstr ""
+
+#: includes/helper-functions.php:503
+msgid "Marathi"
+msgstr ""
+
+#: includes/helper-functions.php:504
+msgid "Moldavian"
+msgstr ""
+
+#: includes/helper-functions.php:505
+msgid "Mongolian"
+msgstr ""
+
+#: includes/helper-functions.php:506
+msgid "Nauru"
+msgstr ""
+
+#: includes/helper-functions.php:507
+msgid "Nepali"
+msgstr ""
+
+#: includes/helper-functions.php:508
+msgid "Norwegian"
+msgstr ""
+
+#: includes/helper-functions.php:509
+msgid "Occitan"
+msgstr ""
+
+#: includes/helper-functions.php:510
+msgid "Oriya"
+msgstr ""
+
+#: includes/helper-functions.php:511
+msgid "Oromo, Afan"
+msgstr ""
+
+#: includes/helper-functions.php:512
+msgid "Pashto, Pushto"
+msgstr ""
+
+#: includes/helper-functions.php:513
+msgid "Persian"
+msgstr ""
+
+#: includes/helper-functions.php:514
+msgid "Polish"
+msgstr ""
+
+#: includes/helper-functions.php:515
+msgid "Portuguese"
+msgstr ""
+
+#: includes/helper-functions.php:516
+msgid "Punjabi"
+msgstr ""
+
+#: includes/helper-functions.php:517
+msgid "Quechua"
+msgstr ""
+
+#: includes/helper-functions.php:518
+msgid "Rhaeto-Romance"
+msgstr ""
+
+#: includes/helper-functions.php:519
+msgid "Romanian"
+msgstr ""
+
+#: includes/helper-functions.php:520
+msgid "Russian"
+msgstr ""
+
+#: includes/helper-functions.php:521
+msgid "Samoan"
+msgstr ""
+
+#: includes/helper-functions.php:522
+msgid "Sangro"
+msgstr ""
+
+#: includes/helper-functions.php:523
+msgid "Sanskrit"
+msgstr ""
+
+#: includes/helper-functions.php:524
+msgid "Serbian"
+msgstr ""
+
+#: includes/helper-functions.php:525
+msgid "Serbo-Croatian"
+msgstr ""
+
+#: includes/helper-functions.php:526
+msgid "Sesotho"
+msgstr ""
+
+#: includes/helper-functions.php:527
+msgid "Setswana"
+msgstr ""
+
+#: includes/helper-functions.php:528
+msgid "Shona"
+msgstr ""
+
+#: includes/helper-functions.php:529
+msgid "Sindhi"
+msgstr ""
+
+#: includes/helper-functions.php:530
+msgid "Singhalese"
+msgstr ""
+
+#: includes/helper-functions.php:531
+msgid "Siswati"
+msgstr ""
+
+#: includes/helper-functions.php:532
+msgid "Slovak"
+msgstr ""
+
+#: includes/helper-functions.php:533
+msgid "Slovenian"
+msgstr ""
+
+#: includes/helper-functions.php:534
+msgid "Somali"
+msgstr ""
+
+#: includes/helper-functions.php:535
+msgid "Spanish"
+msgstr ""
+
+#: includes/helper-functions.php:536
+msgid "Sudanese"
+msgstr ""
+
+#: includes/helper-functions.php:537
+msgid "Swahili"
+msgstr ""
+
+#: includes/helper-functions.php:538
+msgid "Swedish"
+msgstr ""
+
+#: includes/helper-functions.php:539
+msgid "Tagalog"
+msgstr ""
+
+#: includes/helper-functions.php:540
+msgid "Tajik"
+msgstr ""
+
+#: includes/helper-functions.php:541
+msgid "Tamil"
+msgstr ""
+
+#: includes/helper-functions.php:542
+msgid "Tatar"
+msgstr ""
+
+#: includes/helper-functions.php:543
+msgid "Tegulu"
+msgstr ""
+
+#: includes/helper-functions.php:544
+msgid "Thai"
+msgstr ""
+
+#: includes/helper-functions.php:545
+msgid "Tibetan"
+msgstr ""
+
+#: includes/helper-functions.php:546
+msgid "Tigrinya"
+msgstr ""
+
+#: includes/helper-functions.php:547
+msgid "Tonga"
+msgstr ""
+
+#: includes/helper-functions.php:548
+msgid "Tsonga"
+msgstr ""
+
+#: includes/helper-functions.php:549
+msgid "Turkish"
+msgstr ""
+
+#: includes/helper-functions.php:550
+msgid "Turkmen"
+msgstr ""
+
+#: includes/helper-functions.php:551
+msgid "Twi"
+msgstr ""
+
+#: includes/helper-functions.php:552
+msgid "Ukrainian"
+msgstr ""
+
+#: includes/helper-functions.php:553
+msgid "Urdu"
+msgstr ""
+
+#: includes/helper-functions.php:554
+msgid "Uzbek"
+msgstr ""
+
+#: includes/helper-functions.php:555
+msgid "Vietnamese"
+msgstr ""
+
+#: includes/helper-functions.php:556
+msgid "Volapuk"
+msgstr ""
+
+#: includes/helper-functions.php:557
+msgid "Welsh"
+msgstr ""
+
+#: includes/helper-functions.php:558
+msgid "Wolof"
+msgstr ""
+
+#: includes/helper-functions.php:559
+msgid "Xhosa"
+msgstr ""
+
+#: includes/helper-functions.php:560
+msgid "Yiddish"
+msgstr ""
+
+#: includes/helper-functions.php:561
+msgid "Yoruba"
+msgstr ""
+
+#: includes/helper-functions.php:562
+msgid "Zulu"
+msgstr ""
+
+#: includes/helper-functions.php:631
+msgid "Librarian"
+msgstr "Βιβλιοθηκάριος"
+
+#: includes/helper-functions.php:633
+msgid "Master Librarian"
+msgstr "Κύριος Βιβλιοθηκάριος"
+
+#: includes/plugin-functions.php:362 includes/plugin-functions.php:395
+msgid "Book Grid Description"
+msgstr "Περιγραφή πλέγματος βιβλίου"
+
+#: includes/plugin-functions.php:369 includes/plugin-functions.php:407
+msgid "Book Grid Description (Bottom)"
+msgstr "Περιγραφή πλέγματος βιβλίου (κάτω μέρος)"
+
+#: includes/plugin-functions.php:460 includes/plugin-functions.php:476
+#: includes/plugin-functions.php:478
+msgctxt "noun"
+msgid "Books"
+msgstr "Βιβλία"
+
+#: includes/plugin-functions.php:479
+msgid "All Books"
+msgstr "Όλα τα βιβλία"
+
+#: includes/plugin-functions.php:480
+msgid "Add New"
+msgstr "Νέο βιβλίο"
+
+#: includes/plugin-functions.php:481
+msgid "Add New Book"
+msgstr "Προσθήκη νέου βιβλίου"
+
+#: includes/plugin-functions.php:482
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: includes/plugin-functions.php:483
+msgid "Edit Book"
+msgstr "Επεξεργασία βιβλίου"
+
+#: includes/plugin-functions.php:484
+msgid "New Book"
+msgstr "Νέο βιβλίο"
+
+#: includes/plugin-functions.php:485 includes/plugin-functions.php:486
+msgid "View Book"
+msgstr "Προβολή βιβλίου"
+
+#: includes/plugin-functions.php:487
+msgid "Search Books"
+msgstr "Αναζήτηση βιβλίων"
+
+#: includes/plugin-functions.php:488
+msgid "No Books Found"
+msgstr "Δε βρέθηκαν βιβλία"
+
+#: includes/plugin-functions.php:489
+msgid "No Books Found in Trash"
+msgstr "Δε βρέθηκαν βιβλία στον κάδο"
+
+#: includes/plugin-functions.php:490
+msgid "Parent Book"
+msgstr "Γονικό βιβλίο"
+
+#: includes/plugin-functions.php:491
+msgid "Filter Book List"
+msgstr "Φίλτρο λίστας βιβλίων"
+
+#: includes/plugin-functions.php:492
+msgid "Book List Navigation"
+msgstr "Περιήγηση στη λίστα των βιβλίων"
+
+#: includes/plugin-functions.php:493
+msgid "Book List"
+msgstr "Λίστα των βιβλίων"
+
+#: includes/plugin-functions.php:543 includes/plugin-functions.php:553
+#: single-book.php:1700
+msgid "Genres"
+msgstr "Είδος"
+
+#: includes/plugin-functions.php:545
+msgid "Search Genres"
+msgstr "Αναζήτηση ειδών"
+
+#: includes/plugin-functions.php:546
+msgid "All Genres"
+msgstr "Όλα τα είδη"
+
+#: includes/plugin-functions.php:547
+msgid "Parent Genre"
+msgstr "Γονικό είδος"
+
+#: includes/plugin-functions.php:548
+msgid "Parent Genre:"
+msgstr "Γονικό είδος:"
+
+#: includes/plugin-functions.php:549
+msgid "Edit Genre"
+msgstr "Επεξεργασία είδους"
+
+#: includes/plugin-functions.php:550
+msgid "Update Genre"
+msgstr "Ενημέρωση είδους"
+
+#: includes/plugin-functions.php:551
+msgid "Add New Genre"
+msgstr "Προσθήκη νέου είδους"
+
+#: includes/plugin-functions.php:552
+msgid "New Genre Name"
+msgstr "Νέο όνομα είδους"
+
+#: includes/plugin-functions.php:554
+msgid "Popular Genres"
+msgstr "Δημοφιλή είδη"
+
+#: includes/plugin-functions.php:555
+msgid "Separate genres with commas"
+msgstr "Διαχωρίστε τα είδη με κόμμα"
+
+#: includes/plugin-functions.php:556
+msgid "Add or remove genres"
+msgstr "Προσθήκη ή διαγραφή ειδών"
+
+#: includes/plugin-functions.php:557
+msgid "Choose from the most used genres"
+msgstr "Επιλέξτε από τα πιο δημοφιλή είδη"
+
+#: includes/plugin-functions.php:558
+msgid "No genres found"
+msgstr "Δε βρέθηκαν είδη"
+
+#: includes/plugin-functions.php:559
+msgid "Genre navigation"
+msgstr "Περιήγηση στα είδη"
+
+#: includes/plugin-functions.php:560
+msgid "Genre list"
+msgstr "Λϊστα ειδών"
+
+#: includes/plugin-functions.php:580 includes/plugin-functions.php:590
+#: single-book.php:1704
+msgid "Tags"
+msgstr "Ετικέτες"
+
+#: includes/plugin-functions.php:582
+msgid "Search Tags"
+msgstr "Αναζήτηση ετικετών"
+
+#: includes/plugin-functions.php:583
+msgid "All Tags"
+msgstr "Όλες οι ετικέτες"
+
+#: includes/plugin-functions.php:584
+msgid "Parent Tag"
+msgstr "Γονική ετικέτα"
+
+#: includes/plugin-functions.php:585
+msgid "Parent Tag:"
+msgstr "Γονική ετικέτα:"
+
+#: includes/plugin-functions.php:586
+msgid "Edit Tag"
+msgstr "Επεξεργασία ετικέτας"
+
+#: includes/plugin-functions.php:587
+msgid "Update Tag"
+msgstr "Ενημέρωση ετικέτας"
+
+#: includes/plugin-functions.php:588
+msgid "Add New Tag"
+msgstr "Προσθήκη νέας ετικέτας"
+
+#: includes/plugin-functions.php:589
+msgid "New Tag Name"
+msgstr "Νέο όνομα ετικέτας"
+
+#: includes/plugin-functions.php:591
+msgid "Popular Tags"
+msgstr "Δημοφιλείς ετικέτες"
+
+#: includes/plugin-functions.php:592
+msgid "Separate tags with commas"
+msgstr "Διαχωρίστε τις ετικέτες με κόμμα"
+
+#: includes/plugin-functions.php:593
+msgid "Add or remove tags"
+msgstr "Προσθήκη ή διαγραφή ετικετών"
+
+#: includes/plugin-functions.php:594
+msgid "Choose from the most used tags"
+msgstr "Επιλέξτε από τις πιο χρησιμοποιούμενες ετικέτες"
+
+#: includes/plugin-functions.php:595
+msgid "No tags found"
+msgstr "Δε βρέθηκαν ετικέτες"
+
+#: includes/plugin-functions.php:596
+msgid "Tag navigation"
+msgstr "Περιήγηση στις ετικέτες"
+
+#: includes/plugin-functions.php:597
+msgid "Tag list"
+msgstr "Λίστα ετικετών"
+
+#: includes/plugin-functions.php:618
+msgid "Search Series"
+msgstr "Αναζήτηση σειράς"
+
+#: includes/plugin-functions.php:619
+msgid "All Series"
+msgstr "Όλες οι σειρές"
+
+#: includes/plugin-functions.php:620
+msgid "Parent Series"
+msgstr "Γονική σειρά"
+
+#: includes/plugin-functions.php:621
+msgid "Parent Series:"
+msgstr "Γονική σειρά:"
+
+#: includes/plugin-functions.php:622
+msgid "Edit Series"
+msgstr "Επεξεργασία σειράς"
+
+#: includes/plugin-functions.php:623
+msgid "Update Series"
+msgstr "Ενημέρωση σειράς"
+
+#: includes/plugin-functions.php:624
+msgid "Add New Series"
+msgstr "Προσθήκη νέας σειράς"
+
+#: includes/plugin-functions.php:625
+msgid "New Series Name"
+msgstr "Νέο όνομα σειράς"
+
+#: includes/plugin-functions.php:627
+msgid "Popular Series"
+msgstr "Δημοφιλείς σειρές"
+
+#: includes/plugin-functions.php:628
+msgid "Separate series with commas"
+msgstr "Διαχωρίστε τις σειρές με κόμμα"
+
+#: includes/plugin-functions.php:629
+msgid "Add or remove series"
+msgstr "Προσθήκη ή διαγραφή σειράς"
+
+#: includes/plugin-functions.php:630
+msgid "Choose from the most used series"
+msgstr "Επιλέξτε από τις πιο χρησιμοποιούμενες σειρές"
+
+#: includes/plugin-functions.php:631
+msgid "No Series found"
+msgstr "Δε βρέθηκαν σειρές"
+
+#: includes/plugin-functions.php:632
+msgid "Series navigation"
+msgstr "Περιήγηση στις σειρές"
+
+#: includes/plugin-functions.php:633
+msgid "Series list"
+msgstr "Λίστα σειρών"
+
+#: includes/plugin-functions.php:652 includes/plugin-functions.php:662
+#: single-book.php:1688
+msgid "Editors"
+msgstr "Συντάκτες"
+
+#: includes/plugin-functions.php:654
+msgid "Search Editors"
+msgstr "Εύρεση συντακτών"
+
+#: includes/plugin-functions.php:655
+msgid "All Editors"
+msgstr "Όλοι οι συντάκτες"
+
+#: includes/plugin-functions.php:656
+msgid "Parent Editor"
+msgstr "Γονικός συντάκτης"
+
+#: includes/plugin-functions.php:657
+msgid "Parent Editor:"
+msgstr "Γονικός συντάκτης:"
+
+#: includes/plugin-functions.php:658
+msgid "Edit Editor"
+msgstr "Επεξεργασία συντάκτη"
+
+#: includes/plugin-functions.php:659
+msgid "Update Editor"
+msgstr "Ενημέρωση συντάκτη"
+
+#: includes/plugin-functions.php:660
+msgid "Add New Editor"
+msgstr "Προσθήκη νέου συντάκτη"
+
+#: includes/plugin-functions.php:661
+msgid "New Editor Name"
+msgstr "Νέο όνομα συντάκτη"
+
+#: includes/plugin-functions.php:663
+msgid "Popular Editors"
+msgstr "Δημοφιλείς συντάκτες"
+
+#: includes/plugin-functions.php:664
+msgid "Separate Editors with commas"
+msgstr "Διαχωρίστε τους συντάκτες με κόμμα"
+
+#: includes/plugin-functions.php:665
+msgid "Add or remove Editors"
+msgstr "Προσθήκη ή διαγραφή συντακτών"
+
+#: includes/plugin-functions.php:666
+msgid "Choose from the most used Editors"
+msgstr "Επιλέξτε ανάμεσα στους πιο χρησιμοποιημένους συντάκτες"
+
+#: includes/plugin-functions.php:667
+msgid "No Editors found"
+msgstr "Δεν βρέθηκαν συντάκτες"
+
+#: includes/plugin-functions.php:668
+msgid "Edtior navigation"
+msgstr "Περιήγηση στους συντάκτες"
+
+#: includes/plugin-functions.php:669
+msgid "Editor list"
+msgstr "Λίστα συντακτών"
+
+#: includes/plugin-functions.php:688 includes/plugin-functions.php:698
+#: single-book.php:1692
+msgid "Illustrators"
+msgstr "Εικονογράφοι"
+
+#: includes/plugin-functions.php:690
+msgid "Search Illustrators"
+msgstr "Αναζήτηση εικονογράφων"
+
+#: includes/plugin-functions.php:691
+msgid "All Illustrators"
+msgstr "Όλοι οι εικονογράφοι"
+
+#: includes/plugin-functions.php:692
+msgid "Parent Illustrator"
+msgstr "Γονικός εικονογράφος"
+
+#: includes/plugin-functions.php:693
+msgid "Parent Illustrator:"
+msgstr "Γονικός εικονογράφος:"
+
+#: includes/plugin-functions.php:694
+msgid "Edit Illustrator"
+msgstr "Επεξεργασία εικονογράφου"
+
+#: includes/plugin-functions.php:695
+msgid "Update Illustrator"
+msgstr "Ενημέρωση εικονογράφου"
+
+#: includes/plugin-functions.php:696
+msgid "Add New Illustrator"
+msgstr "Προσθήκη νέου εικονογράφου"
+
+#: includes/plugin-functions.php:697
+msgid "New Illustrator Name"
+msgstr "Νέο όνομα εικονογράφου"
+
+#: includes/plugin-functions.php:699
+msgid "Popular Illustrators"
+msgstr "Δημοφιλείς εικονογράφοι"
+
+#: includes/plugin-functions.php:700
+msgid "Separate Illustrators with commas"
+msgstr "Διαχωρίστε τους εικονογράφους με κόμμα"
+
+#: includes/plugin-functions.php:701
+msgid "Add or remove Illustrators"
+msgstr "Προσθήκη ή διαγραφή εικονογράφου"
+
+#: includes/plugin-functions.php:702
+msgid "Choose from the most used Illustrators"
+msgstr "Επιλέξτε ανάμεσα στους πιο χρησιμοποιημένους εικονογράφους"
+
+#: includes/plugin-functions.php:703
+msgid "No Illustrators found"
+msgstr "Δεν βρέθηκαν εικονογράφοι"
+
+#: includes/plugin-functions.php:704
+msgid "Illustrator navigation"
+msgstr "Περιήγηση στους εικονογράφους"
+
+#: includes/plugin-functions.php:705
+msgid "Illustrator list"
+msgstr "Λίστα εικονογράφων"
+
+#: includes/plugin-functions.php:724 includes/plugin-functions.php:734
+#: single-book.php:1696
+msgid "Cover Artists"
+msgstr "Cover Artists"
+
+#: includes/plugin-functions.php:726
+msgid "Search Cover Artists"
+msgstr "Εύρεση Cover Artists"
+
+#: includes/plugin-functions.php:727
+msgid "All Cover Artists"
+msgstr "Όλοι οι Cover Artists"
+
+#: includes/plugin-functions.php:728
+msgid "Parent Cover Artist"
+msgstr "Γονικός Cover Artist"
+
+#: includes/plugin-functions.php:729
+msgid "Parent Cover Artist:"
+msgstr "Γονικός Cover Artist:"
+
+#: includes/plugin-functions.php:730
+msgid "Edit Cover Artist"
+msgstr "Επεξεργασία Cover Artist"
+
+#: includes/plugin-functions.php:731
+msgid "Update Cover Artist"
+msgstr "Ενημέρωση Cover Artist"
+
+#: includes/plugin-functions.php:732
+msgid "Add New Cover Artist"
+msgstr "Προσθήκη νέου Cover Artist"
+
+#: includes/plugin-functions.php:733
+msgid "New Cover Artist Name"
+msgstr "Νέο όνομα Cover Artist"
+
+#: includes/plugin-functions.php:735
+msgid "Popular Cover Artists"
+msgstr "Διμοφιλείς Cover Artists"
+
+#: includes/plugin-functions.php:736
+msgid "Separate Cover Artists with commas"
+msgstr "Διαχωρίστε τους Cover Artists με κόμμα"
+
+#: includes/plugin-functions.php:737
+msgid "Add or remove Cover Artists"
+msgstr "Προσθήκη ή διαγραφή Cover Artists"
+
+#: includes/plugin-functions.php:738
+msgid "Choose from the most used Cover Artists"
+msgstr "Επιλέξτε ανάμεσα από του πιο χρησιμοποιούμενους Cover Artists"
+
+#: includes/plugin-functions.php:739
+msgid "No Cover Artists found"
+msgstr "Δεν βρέθηκαν Cover Artists"
+
+#: includes/plugin-functions.php:740
+msgid "Cover Artist navigation"
+msgstr "Περιήγηση τους Cover Artists"
+
+#: includes/plugin-functions.php:741
+msgid "Cover Artist list"
+msgstr "Λίστα Cover Artists"
+
+#: includes/scripts-and-styles.php:15
+msgid "Group Books Within"
+msgstr "Κατηγοριοποίηση βιβλίων ανάμεσα σε"
+
+#: includes/scripts-and-styles.php:16
+msgid "By"
+msgstr "κατά"
+
+#: mooberry-book-manager-3.0.php:142 mooberry-book-manager-3.0.php:153
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: single-book.php:257
+msgid "F j, Y"
+msgstr ""
+
+#: single-book.php:328
+msgid "View on Goodreads"
+msgstr "Δείτε στο Goodreads"
+
+#: single-book.php:384
+msgid "READ MORE"
+msgstr "ΠΕΡΙΣΣΟΤΕΡΑ"
+
+#: single-book.php:385
+msgid "COLLAPSE"
+msgstr "ΛΙΓΟΤΕΡΑ"
+
+#: single-book.php:1021
+msgid "Part of the "
+msgstr "Μέρος του "
+
+#: single-book.php:1022
+msgid " series:"
+msgstr " σειρά:"
+
+#: single-book.php:1171
+msgid "on "
+msgstr "σε "
+
+#: single-book.php:1187
+msgid "wrote"
+msgstr "έγραψε"
+
+#: single-book.php:1576
+msgid "ISBN"
+msgstr "ISBN"
+
+#: single-book.php:1579
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: single-book.php:1582
+msgid "Pages"
+msgstr "Σελίδες"
+
+#: single-book.php:1642 single-book.php:1725
+msgid "Download Now:"
+msgstr "Κατεβάστε τώρα:"
+
+#: single-book.php:1648
+msgid "Part of the"
+msgstr "Μέρος του"
+
+#: single-book.php:1648
+msgid "series"
+msgstr "σειρά"
+
+#: single-book.php:1652
+msgid "Editions"
+msgstr "Εκδόσεις"
+
+#: single-book.php:1717
+msgid "Reviews"
+msgstr "Κριτικές"
+
+#: tax-grid.php:157
+#, php-format
+msgctxt "%1$s = name of series, %2$s = \"Series\""
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: tax-grid.php:160
+#, php-format
+msgctxt "%1$s = name of genre, %2$s = \"Genre\""
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: tax-grid.php:163
+#, php-format
+msgid "Books Tagged With %s"
+msgstr "Βιβλία με ετικέτα %s"
+
+#: tax-grid.php:166
+#, php-format
+msgid "Books Edited By %s"
+msgstr "Βιβλία επεξεργασμένα από %s"
+
+#: tax-grid.php:169
+#, php-format
+msgid "Books Illustrated By %s"
+msgstr "Βιβλία εικονογραφημένα από %s"
+
+#: tax-grid.php:172
+#, php-format
+msgid "Book Covers By %s"
+msgstr "Εξώφυλλα βιβλίων από %s"
+
+#: tax-grid.php:178
+msgid "Not Found"
+msgstr "Δεν βρέθηκε"
+
+#: views/admin-book-widget.php:19
+msgid "Widget Title:"
+msgstr "Τίτλος μικροεφαρμογής:"
+
+#: views/admin-book-widget.php:24
+msgid "Which book to show?"
+msgstr "Ποιο βιβλίο να εμφανιστεί;"
+
+#: views/admin-book-widget.php:26
+msgid "Random Book"
+msgstr "Τυχαίο βιβλίο"
+
+#: views/admin-book-widget.php:27
+msgid "Newest Book"
+msgstr "Πιο πρόσφατο βιβλίο"
+
+#: views/admin-book-widget.php:28
+msgid "Future Book"
+msgstr "Μελλοντικό βιβλίο"
+
+#: views/admin-book-widget.php:29
+msgid "Specific Book"
+msgstr "Συγκεκριμένο βιβλίο"
+
+#: views/admin-book-widget.php:36
+msgid "Book:"
+msgstr "Βιβλίο:"
+
+#: views/admin-book-widget.php:46
+msgid "Show Book Title"
+msgstr "Εμφάνιση τίτλου βιβλίου"
+
+#: views/admin-book-widget.php:51
+msgid "Cover Size(pixels)"
+msgstr "Μέγεθος εξώφυλλου(pixels)"
+
+#: views/admin-book-widget.php:52
+msgid "(minimum 50)"
+msgstr "(το λιγότερο 50)"
+
+#~ msgid "Books tagged with %s"
+#~ msgstr "Βιβλία με ετικέτα %s"
+
+#~ msgid "Group Within Genre By"
+#~ msgstr "Ομαδοποίηση στα Πλαίσια του Είδους Κατά"
+
+#~ msgid "Group Within Tag By"
+#~ msgstr "Ομαδοποίηση στα Πλαίσια της Ετικέτας Κατά"
+
+#~ msgid "Length"
+#~ msgstr "Μήκος"
+
+#~ msgctxt "noun"
+#~ msgid "Review Link"
+#~ msgstr "Σύνδεσμος κριτικής"
+
+#~ msgctxt "noun"
+#~ msgid "Review Website Name"
+#~ msgstr "Ιστότοπος κριτή"
+
+#~ msgctxt "noun"
+#~ msgid "Review"
+#~ msgstr "Κριτική"
+
+#~ msgctxt "noun"
+#~ msgid "Retailer Links"
+#~ msgstr "Σύνδεσμοι πωλητών λιανικής"
+
+#~ msgid "Book Manager"
+#~ msgstr "Διαχειριστής Βιβλίων"
+
+#~ msgid "list"
+#~ msgstr "λίστα"

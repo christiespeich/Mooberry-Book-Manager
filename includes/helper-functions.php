@@ -1,21 +1,38 @@
 <?php
 	
-require_once dirname( __FILE__ ) . '/helper-functions-validation.php';
-require_once dirname( __FILE__ ) . '/helper-functions-updates.php';
-
-
 /**********************************************************
-	
-	UTILITY FUNCTIONS
-	
+
+UTILITY FUNCTIONS
+
 ***********************************************************/
 
+function mbdb_format_date($field) {
+	if ($field == null or $field == '') {
+		return $field;
+	}
+	return apply_filters('mbdb_format_date', date( 'Y/m/d', strtotime( $field ) ));
+}
+
+
+function mbdb_check_field( $fieldname, $arrayname) {
+	return ( array_key_exists($fieldname, $arrayname ) && isset( $arrayname[$fieldname] ) && trim( $arrayname[$fieldname] ) != '');
+}
+
+function mbdb_sanitize_field( $field ) {
+	return strip_tags( stripslashes( $field ) );
+}
+
 function mbdb_get_grid_cover_height( $postID = null ) {
+	// if there's no postID then it's a tax grid
+	// tax grids always use the default
 	if ($postID != null) {
 		$mbdb_book_grid_cover_height_default = get_post_meta( $postID, '_mbdb_book_grid_cover_height_default', true);
 	} else {
 		$mbdb_book_grid_cover_height_default = 'yes';
 	}
+	
+	// if getting the default, pull from options
+	// otherwise pull from the specific page's settings
 	if ($mbdb_book_grid_cover_height_default == 'yes') {
 		if (isset($mbdb_options['mbdb_default_cover_height'])) {
 			$mbdb_book_grid_cover_height = $mbdb_options['mbdb_default_cover_height'];
@@ -23,8 +40,10 @@ function mbdb_get_grid_cover_height( $postID = null ) {
 	} else {
 		$mbdb_book_grid_cover_height = get_post_meta( $postID, '_mbdb_book_grid_cover_height', true);
 	}
+	
+	// if the height isn't set for some reason, default to 200
 	if (!isset($mbdb_book_grid_cover_height) || $mbdb_book_grid_cover_height == '') {
-		$mbdb_book_grid_cover_height = 200;
+		$mbdb_book_grid_cover_height = apply_filters('mbdb_book_grid_cover_height_default', 200);
 	}
 	return $mbdb_book_grid_cover_height;
 }
@@ -37,135 +56,177 @@ function mbdb_uniqueID_generator( $value ) {
 	return apply_filters('mbdb_settings_uniqid', $value);
 }
 
+function mbdb_book_grid_selection_options() {
+		return apply_filters('mbdb_book_grid_selection_options', array(
+						'all'		=> __('All', 'mooberry-book-manager'),
+						'published'	=> __('All Published', 'mooberry-book-manager'),
+						'unpublished'	=> __('All Coming Soon', 'mooberry-book-manager'),
+						'custom'	=> __('Select Books', 'mooberry-book-manager'),
+						'genre'			=> __('Select Genres', 'mooberry-book-manager'),
+						'series'	=> __('Select Series', 'mooberry-book-manager'),
+						'tag'		=> __('Select Tags', 'mooberry-book-manager'),
+						'publisher'	=>	__('Select Publishers', 'mooberry-book-manager'),
+						'editor'	=> __('Select Editors', 'mooberry-book-manager'),
+						'illustrator'	=> __('Select Illustrators', 'mooberry-book-manager'),
+						'cover_artist'	=>	__('Select Cover Artists', 'mooberry-book-manager'),
+					)
+				);
+						
+}
 
-// uploads file at specfied $filename and returns the attachment id of the uploaded file
-function mbdb_upload_image($filename) {
-	// add images to media library
-	// move to uploads folder
-	$wp_upload_dir = wp_upload_dir();
+function mbdb_book_grid_order_options() {
+	return apply_filters('mbdb_book_grid_order_options', array(	
+						'pubdateA'	=> __('Publication Date (oldest first)', 'mooberry-book-manager'),
+						'pubdateD'	=> __('Publication Date (newest first)', 'mooberry-book-manager'),
+						'titleA'	=> __('Title (A-Z)', 'mooberry-book-manager'),
+						'titleD'	=> __('Title (Z-A)', 'mooberry-book-manager')));
+}
+
+
+function mbdb_book_grid_group_by_options() {
+	return apply_filters('mbdb_book_grid_group_by_options', array(
+						'none'		=>	__('None', 'mooberry-book-manager'),
+						'genre'		=>	__('Genre', 'mooberry-book-manager'),
+						'series'	=>	__('Series', 'mooberry-book-manager'),
+						'tag'		=>	__('Tag', 'mooberry-book-manager'),
+						'publisher'	=>	__('Publisher', 'mooberry-book-manager'),
+						'editor'	=> 	__('Editor', 'mooberry-book-manager'),
+						'cover_artist'	=> __('Cover Artist', 'mooberry-book-manager'),
+						'illustrator'	=> __('Illustrator', 'mooberry-book-manager'),
+				)
+			);
+}
+
+/**
+ * Gets a number of terms and displays them as options
+ * @param  string       $taxonomy Taxonomy terms to retrieve. Default is category.
+ * @param  string|array $args     Optional. get_terms optional arguments
+ * @return array                  An array of options that matches the CMB2 options array
+ */
+function mbdb_get_term_options( $taxonomy = 'category', $args = array() ) {
+
+    $args['taxonomy'] = $taxonomy;
+    // $defaults = array( 'taxonomy' => 'category' );
+    $args = wp_parse_args( $args, array( 'orderby'           => 'name', 
+										'order'             => 'ASC', 
+									) 
+						);
+
+    $taxonomy = $args['taxonomy'];
+
+    $terms = (array) get_terms( $taxonomy, $args );
+
+    // Initate an empty array
+    $term_options = array();
+    if ( ! empty( $terms ) ) {
+        foreach ( $terms as $term ) {
+            $term_options[ $term->term_id ] = $term->name;
+        }
+    }
+
+    return $term_options;
+}
+
+
+function mbdb_get_template_list() {
+	// get the list of templates from the theme
+	$all_templates = wp_get_theme()->get_page_templates();
 	
-	if (file_exists(dirname( __FILE__ ) . '/assets/' . $filename)) {
-			$success = copy( dirname(__FILE__) . '/assets/' . $filename, $wp_upload_dir['path'] . '/' . $filename );
-			// v 2.4.2 -- bail out if something goes wrong
-			if (!$success) {
-				return 0;
-			}
-			$wp_filetype = wp_check_filetype( basename( $filename ), null );
-			$attachment = array (
-				'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ),
-				'post_mime_type' => $wp_filetype['type'],
-				'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
-				'post_content' => '',
-				'post_status' => 'inherit');
-			$attach_id = wp_insert_attachment( $attachment, $wp_upload_dir['path'] . '/' . $filename );
-			$attach_data = wp_generate_attachment_metadata( $attach_id,  $wp_upload_dir['path'] . '/' . $filename );
-			wp_update_attachment_metadata( $attach_id, $attach_data );
-			return $attach_id;
-	} else {
+	// add the default
+	$all_templates = array_merge( array('default' => __('Default', 'mooberry-book-manager')), $all_templates);
+	
+	return $all_templates;
+}
+
+function mbdb_tax_grid_objects() {
+	$taxonomies = get_object_taxonomies('mbdb_book', 'objects' );
+	return apply_filters('mbdb_tax_grid_objects', $taxonomies );
+}
+
+
+function mbdb_get_metabox_field_position($metabox, $fieldname) {
+
+	// create an array of field ids
+	$fields = array_keys($metabox->meta_box['fields']);
+	
+	// get the index of the  field
+	$position = array_search($fieldname, $fields);
+	
+	if ($position === false) {
+		// return 0 if not found
 		return 0;
+	} else {
+		// add 1 because the first position = 1 and array_search is a 0-based result
+		return $position + 1;
 	}
 }
 
-
-// NOTE: $mbdb_options passed by reference because it's updated
-function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options) {
-	// check each default item
-	for( $x = 0; $x < count($default_values); $x++ ) {
-		$found = false;
-		if ($mbdb_options) {
-			if (array_key_exists($options_key, $mbdb_options)) {
-				// if an item with this uniqueID already exists, set the flag and exit the loop
-				foreach ($mbdb_options[$options_key] as $o ) {
-					if ( $o['uniqueID'] == $default_values[$x]['uniqueID']) {
-						$found = true;
-						break;
-					}
-				}
-			}
-		}
-		// if it wasn't found, insert it
-		if (!$found) {
-			if (array_key_exists('image', $default_values[$x])) {
-				// upload the image to the media library 				
-				$attachID = mbdb_upload_image( $default_values[$x]['image'] );
-				$default_data['imageID'] = $attachID;
-				if ($attachID != 0) {
-					$default_data['image'] = wp_get_attachment_url( $attachID );
-				} else {
-					$default_data['image'] = '';
-				}
-			}
-			if (array_key_exists('name', $default_values[$x])) {
-				$default_data['name'] = $default_values[$x]['name'];
-			}
-			if (array_key_exists('uniqueID', $default_values[$x])) {
-				$default_data['uniqueID'] = $default_values[$x][ 'uniqueID' ];
-			}
-			$mbdb_options[$options_key][] = $default_data;
-		}
-	}
-}
-
-
-function mbdb_insert_default_edition_formats(&$mbdb_options) {
-	$default_formats = array();
-	$default_formats[] = array('name' => 'Hardcover', 'uniqueID' => 1);
-	$default_formats[] = array('name' => 'Paperback', 'uniqueID' => 2);
-	$default_formats[] = array('name' => 'ePub', 'uniqueID' => 3);
-	$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 4);
-	$default_formats[] = array('name' => 'PDF', 'uniqueID' => 5);
-	$default_formats[] = array('name' => 'Audiobook', 'uniqueID' => 6);
-	$default_formats = apply_filters('mbdb_default_edition_formats', $default_formats);
-	mbdb_insert_defaults( $default_formats, 'editions', $mbdb_options);
-}
-
-function mbdb_set_up_roles() {
+function mbdb_get_random( $array ) {
+	// does not use array_rand because it's been noted that the randomness
+	// is "weird" and it's also slower
 	
-		$contributor_level = array('edit_mbdb_books',
-									'edit_mbdb_book',
-									'delete_mbdb_books',
-									'delete_mbdb_book',
-									'manage_mbdb_books');
-									
-		$base_level = array(		'publish_mbdb_books',
-									'publish_mbdb_book',
-									'edit_published_mbdb_book',
-									'edit_published_mbdb_books',
-									'delete_published_mbdb_book',
-									'delete_published_mbdb_books',
-									'upload_files',
-									'manage_mbdb_books',
-									'read');
-									
-		$master_level = array(		'edit_others_mbdb_books',
-									'edit_others_mbdb_books',
-									'delete_others_mbdb_books',
-									'delete_others_mbdb_book');
-		
-		remove_role('mbdb_librarian');
-		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
-		remove_role('mbdb_master_librarian');
-		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
-		$base_roles = array('mbdb_librarian', 'author');
-		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
-		$contributor = get_role('contributor');
-		foreach ($contributor_level as $capability) {
-			$contributor->add_cap($capability);
-		}
-		foreach (array_merge($base_level, $contributor_level) as $capability) {
-			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
-				$role = get_role($each_role);
-				$role->add_cap($capability);
-			}
-		}
-		foreach ($master_level as $capability) {
-			foreach ($master_roles as $each_role) {
-				$role = get_role($each_role);
-				$role->add_cap($capability);
-			}
-		}
-		
+	if ( count( $array ) == 0 ) {
+		return null;
+	}
+	
+	shuffle( $array );
+	return $array[0];
 }
+
+// TODO put this in all URL fields
+function mbdb_url_validation_pattern() {
+	return '^(https?:\/\/)?([\da-zA-Z\.-]+)\.([A-Za-z\.]{2,6}).*';
+}
+	
+
+function mbdb_dropdown($dropdownID, $options, $selected = null, $include_empty = 'yes', $empty_value = -1, $name = '' ) {
+	$html = '<select id="' . $dropdownID . '"';
+	if ($name != '' ) {
+		$html .= ' name="' . $name;
+	}
+	$html .= '">';
+	if ($include_empty == 'yes') {
+		$html .= '<option value="' . esc_attr($empty_value) . '"></option>';
+	}
+	foreach ( $options as $id => $option) {
+		$html .= '<option value="' . esc_attr($id) . '"';
+		if ($selected == $id) {
+			$html .= ' selected ';
+		}
+		$html .= '>' . $option . '</option>';
+	}
+	$html .= '</select>';
+	return $html;
+}
+	
+	
+	
+	
+	// for users with PHP <5.5
+if(!function_exists("array_column"))
+{
+
+    function array_column($array,$column_name, $key = null)
+    {
+
+		if ($key == null) {
+			return array_map(function($element) use($column_name){return $element[$column_name];}, $array);
+		} else {
+			$new_array = array();
+			
+			foreach ($array as $element) {
+				$new_array[$element[$key]] = $element[$column_name];
+			}
+
+			return $new_array;
+		}
+
+    }
+
+}
+
+
+
 
 /****************************************************
 	
@@ -173,177 +234,7 @@ function mbdb_set_up_roles() {
 	
 *****************************************************/
 
-// v2.1 - parameter added - $tag_ids
-function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids, $tag_ids ) {
-	// title is not a custom field so it uses orderby to set the field
-	// other sorting is by custom fields and they use orderby = 'meta_value' and meta_key = field
-	if ( $sort_field != 'title' ) {
-		$meta_key = $sort_field;
-		$sort_field = 'meta_value';
-	} else {
-		$meta_key = '';
-		$sort_field = 'post_title';
-	}
-	if ( $sort_field == '_mbdb_series_order' || $sort_field == '_mbdb_published' ) {
-		$sort_field = 'meta_value_num';
-	}
-		
-	$args = array('posts_per_page' => -1,
-					'post_type' => 'mbdb_book',
-					'post_status'=>	'publish',
-			);
-	
-	// if genre ids and series ids are passed,
-	// add a filter for them
-	// if 0 is passed, add a filter for NOT IN
-	$series_tax_query = mbdb_set_tax_query( $series_ids, 'mbdb_series', $sort_field, $meta_key );
-	
-	$genre_tax_query = mbdb_set_tax_query( $genre_ids, 'mbdb_genre', $sort_field, $meta_key );
-	
-	$tag_tax_query = mbdb_set_tax_query( $tag_ids, 'mbdb_tag', $sort_field, $meta_key );
-	
-	if ( $series_tax_query != null ) {
-		$args['tax_query'][] = $series_tax_query;
-	}
-	if ( $genre_tax_query != null ) {
-		$args['tax_query'][] = $genre_tax_query;
-	}
-	
-	if ($tag_tax_query != null ) {
-		$args['tax_query'][] = $tag_tax_query;
-	}
-	if ( array_key_exists( 'tax_query', $args ) ) {
-		if ( count( $args['tax_query'] ) > 1 ) {
-			$args['tax_query']['relation'] = 'AND';
-		}
-	}
-	
-	// if custom ids are passed,
-	// add a filter for them
-	if( $selection_ids ) {
-		$args['post__in'] = $selection_ids;
-	}
-	
-	
-	// based on selection:
-	// all
-	//	- no filters
-	//	- if sorted by date, will need to get books w/ dates and w/o
-
-	// published
-	//	- pubdate <= today
-	if ($selection == 'published') {
-		$args['meta_query'] = array(
-						array(
-							'key'	=>	'_mbdb_published',
-							'value'	=>	date('Y/m/d'),
-							'compare'	=> '<=',
-						),
-					);
-	}
-	
-	// unpublished
-	//	- pubdate > today OR pubdate is blank
-	if ($selection == 'unpublished' ) {
-		$args['meta_query'] = array(
-								'relation' => 'OR',
-								array(
-									'key'	=>	'_mbdb_published',
-									'value'	=>	date('Y/m/d'),
-									'compare'	=> '>',
-								),
-								 array(
-									'compare' => 'NOT EXISTS',
-									'value' => 'bug #23268',
-									'key' => '_mbdb_published'
-								),								
-							);
-	}
-	
-	// custom
-	//	- ids filter already put in
-	//	- if sorted by date, will need to get books w/ dates and w/o
-	
-	// series
-	//	- series filter already put in
-	//	- if sorted by date, will need to get books w/ dates and w/o
-	
-	// genre
-	//	- genre filter already put in
-	//	- if sorted by date, will need to get books w/ dates and w/o
-	
-	// if not published AND sorted by date, will need to get books w/ dates and w/o
-	if ( ( $selection != 'published' ) && $meta_key == '_mbdb_published' ) {
-		// copy in the base args
-		$args2 = $args;
-		// get books w/ no published date
-		$args2['meta_query'] = array( array(
-										'compare' => 'NOT EXISTS',
-										'value' => 'bug #23268',
-										'key' => '_mbdb_published',
-								),								
-							);
-	}
-	
-	// if ordered by series grab the books where series order is empty
-	if ( $meta_key == '_mbdb_series_order' && $series_ids != '0' ) {
-		// move the existing meta_query to the inner condition
-		$args3 = $args;
-		if ( array_key_exists('meta_query', $args ) ) {
-			$inner_query = $args['meta_query']; 
-		} else {
-			$inner_query = null;
-		}
-		
-		$args3['meta_query'] = array(
-							'relation' => 'AND',
-							array(
-								'compare' => 'NOT EXISTS',
-								'value' => 'bug #23268',
-								'key' => '_mbdb_series_order',
-							), 
-							$inner_query
-						);
-	}
-	
-	// add in sort args
-	// if NOT ordered by series and these are stand alones
-	if ( $series_ids != '0' ) {	
-		$args['orderby'] = $sort_field;
-		if ($meta_key!= '' ) {
-			$args['meta_key'] = $meta_key;
-		}
-		$args['order'] = $sort_order;
-	} 
-//	error_log('args = ' . print_r($args, true));
-	
-	$books = get_posts( apply_filters('mbdb_get_books_main_query', $args ) );
-	
-	if ( isset( $args2 ) ) {
-	
-//	error_log('args2 = ' . print_r($args2, true));
-		$books2 = get_posts( apply_filters('mbdb_get_books_blank_pubdate', $args2 ) );
-		if ( $sort_order == 'ASC' ) {
-			// oldest first, so put blanks at the end
-			$books = array_merge( $books, $books2 );	
-		} else {
-			// newest first, so put blanks at the beginning
-			$books = array_merge( $books2, $books );
-		}
-	}
-	
-	if ( isset( $args3 ) ) {
-//error_log('args3 = ' . print_r($args3, true));
-		$books3 = get_posts( apply_filters( 'mbdb_get_books_blank_series_order', $args3 ) );
-		$books = array_merge( $books, $books3 );
-	}
-	
-	wp_reset_postdata();
-
-	return apply_filters('mbdb_get_books_list', $books);
-}
-
-	
+// not used
 function mbdb_get_single_book( $slug ) {
 	$args = array('posts_per_page' => -1,
 					'post_type' => 'mbdb_book',
@@ -356,65 +247,26 @@ function mbdb_get_single_book( $slug ) {
 	return apply_filters('mbdb_get_single_book', $book);
 }
 
-function mbdb_set_tax_query($tax_ids, $taxonomy) {
-	// if taxids=null that means all books regardless of taxonomy
-	// if taxids=0 that means all books NOT assigned tis taxonomy
-	// others, get books in specified taxonomies
-	if ( $tax_ids == null ) {
-		return null;
-	}
-	if ( $tax_ids == '0' ) {
-			$operator = 'NOT IN';
-			$tax_ids = get_terms( $taxonomy, 'fields=ids&hide_empty=1' );   
-	} else {
-			$operator = 'IN';
-	}
-	return apply_filters('mbdb_tax_query', array(
-			'taxonomy' => $taxonomy,
-			'terms' => $tax_ids,
-			'operator' => $operator,
-		));
-}
-
-function mbdb_get_books_in_taxonomy( $tax_slug, $taxonomy ) {
-	if ( $taxonomy == 'mbdb_series' ) {
-		$sort_field = 'meta_value_num';
-		$meta_key = '_mbdb_series_order';
-	} else {
-		$sort_field = 'title';
-		$meta_key = '';
-	}
-	
-	$args = array(
-					'posts_per_page' => -1,
+// used to create drop down for wiget and for multicheck for book grids
+// uses get_posts because it only uses data in the posts table
+function mbdb_get_book_array($orderby = 'post_title', $direction = 'ASC') {
+	$args = array('posts_per_page' => -1,
 					'post_type' => 'mbdb_book',
-					'post_status' => 'publish',
-					'meta_key' => $meta_key,
-					'orderby' => $sort_field,
-					'order' => 'ASC',
-					'tax_query' => array(
-							array(
-								'taxonomy' => $taxonomy,
-								'terms' => $tax_slug,
-								'field' => 'slug',
-							)
-						)
+					'post_status'=>	'publish',
+					'orderby' => $orderby,
+					'order' => $direction
 					);
-	$books = get_posts( apply_filters('mbdb_books_by_tax_slug', $args) );
-	
-	// if a series, get the ones w/o a series order
-	if ( $taxonomy == 'mbdb_series' ) {
-		unset($args['meta_key']);
-		unset($args['orderby']);
-		unset($args['order']);
-		$args['meta_query'] = array(					
-							array('compare' => 'NOT EXISTS',
-								'value' => 'bug #23268',
-								'key' => '_mbdb_series_order'));					
-		$books = array_merge( $books, get_posts( apply_filters('mbdb_books_by_tax_slug_blank_series_order', $args) ) );
+			
+	$book_query = get_posts( $args);
+	$books = array();
+	foreach( $book_query as $book ) {
+		$books[$book->ID] = $book->post_title;
 	}
-	return apply_filters('mbdb_get_books_in_taxonomy', $books);
+	wp_reset_postdata();
+	return apply_filters('mbdb_get_book_array', $books);
 }
+	
+
 
 // returns array with publisher info
 // returns null if no publisherID found
@@ -423,65 +275,94 @@ function mbdb_get_publisher_info( $publisherID, $mbdb_options = null ) {
 		$mbdb_options = get_option('mbdb_options');
 	}
 	if (array_key_exists('publishers', $mbdb_options)) {
-		foreach ($mbdb_options['publishers'] as $publisher) {
-			if ($publisher['uniqueID'] == $publisherID) {
-				return $publisher;
-			}
+		
+		// turn the publishers array from [0]['unqiueID'] = '',
+		//								  [1]['name'] = ''
+		// into array like this			[uniqueID] => { ['name'],
+		//												['link'] }
+										  
+		// get an array of uniqueIDs
+		$keys = array_column( $mbdb_options['publishers'], 'uniqueID' );
+		
+		// map uniqueIDs to the rest of the publisher info
+		$publishers = array_combine( $keys, $mbdb_options['publishers'] );
+		
+		// return the publisher with the ID
+		if (array_key_exists( $publisherID, $publishers ) ) {
+			return $publishers[ $publisherID ];
+		} else {
+			return null;
 		}
+
 	}
 	return null;
 }
 
-function mbdb_get_publishers() {
-		return mbdb_get_list('publishers');
-}
-
-function mbdb_get_retailers() {
-	return mbdb_get_list( 'retailers' );
-}
-	
-function mbdb_get_formats() {
-	return mbdb_get_list( 'formats' );
-}
-	
-function mbdb_get_editions() {
-	return mbdb_get_list ('editions');
-}
-
-function mbdb_get_list( $options_key ) {
-	$mbdb_options = get_option( 'mbdb_options' );
-	$list[0] = '';
-	
-	if ( $mbdb_options ) {
-		if ( array_key_exists( $options_key, $mbdb_options ) ) {
-			foreach( $mbdb_options[$options_key] as $o ) {
-				$list[$o['uniqueID']] = $o['name'];
-			}
-			// natural sort, case insensitive
-			natcasesort($list);
-		}
+function mbdb_get_book_dropdown( $selected_bookID ) {
+	$books = mbdb_get_book_array();
+	foreach( $books as $book_id => $book_title ) {
+		$selected = ($selected_bookID == $book_id ? ' selected' : '');
+		echo apply_filters('mbdb_get_book_dropdown_option', '<option value="' . esc_attr($book_id) .'"' . $selected . '>' . esc_html($book_title) . '</option>');
 	}
+}
+
+function mbdb_get_publishers($empty_option = 'yes' ) {
+		return mbdb_get_list('publishers', $empty_option);
+}
+
+function mbdb_get_retailers($empty_option = 'yes' ) {
+	return mbdb_get_list( 'retailers', $empty_option );
+}
+	
+function mbdb_get_formats($empty_option = 'yes' ) {
+	return mbdb_get_list( 'formats', $empty_option );
+}
+	
+function mbdb_get_editions($empty_option = 'yes' ) {
+	return mbdb_get_list ('editions', $empty_option);
+}
+
+// since 3.0
+function mbdb_get_social_media( $empty_option = 'yes' ) {
+	return mbdb_get_list( 'social_media', $empty_option);
+}
+
+
+// create an array from serialized data in options using uniqueID as the key and name as the value
+function mbdb_get_list( $options_key, $empty_option = 'yes' ) {
+	// creates an array with uniqueID as the key and name as the value
+	$list = mbdb_create_array_options_list( $options_key, 'uniqueID', 'name' );
+	
+	if ($empty_option == 'yes') {
+		$list[0] = '';
+	}
+	// natural sort, case insensitive (sorts by value)
+	natcasesort($list);
 	
 	return apply_filters('mbdb_' . $options_key . '_list', $list);
 }	
-	
-function mbdb_get_book_array() {
-	$book_query = mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null, null );
-	$books = array();
-	foreach( $book_query as $book ) {
-		$books[$book->ID] = $book->post_title;
+
+function mbdb_create_array_options_list( $options_key, $key_field, $value_field, $mbdb_options = null ) {
+	if (!$mbdb_options) {
+		$mbdb_options = get_option('mbdb_options');
 	}
-	return apply_filters('mbdb_get_book_array', $books);
+	if (array_key_exists( $options_key, $mbdb_options ) ) {
+		// creates an array with key_field as the key and value_field as the value
+		return array_column( $mbdb_options[ $options_key ], $value_field, $key_field );
+	} else {
+		return array();
+	}
 }
 	
-
-function mbdb_get_book_dropdown( $selected_bookID ) {
-	$book_query = apply_filters('mbdb_get_book_downdown_list', mbdb_get_books_list( 'all', null, 'title', 'ASC', null, null, null ) );
-	foreach( $book_query as $book ) {
-		$book_title = $book->post_title;
-		$book_id = $book->ID;
-		$selected = ($selected_bookID == $book_id ? ' selected' : '');
-		echo apply_filters('mbdb_get_book_dropdown_option', '<option value="' . esc_attr($book_id) .'"' . $selected . '>' . esc_html($book_title) . '</option>');
+// used in mbdb_output_editions
+function mbdb_get_format_name( $formatID ) {
+	
+	// creates an array of editions with uniqueID as the key and name as the value
+	$formats = mbdb_create_array_options_list( 'editions', 'uniqueID', 'name' );
+	if (array_key_exists($formatID, $formats)) {
+		return $formats[$formatID];
+	} else {
+		return '';
 	}
 }
 
@@ -569,6 +450,7 @@ function mbdb_get_currency_symbol_array() {
 		'THB'   => '฿',
 		'TRY'   => '₤',
 		'USD'   => '$',
+		
 	));
 }
 
@@ -743,45 +625,329 @@ function mbdb_get_language_name($language_code) {
 	}
 }
 
-function mbdb_get_format_name( $format ) {
-	$mbdb_options = get_option('mbdb_options');
-	if (array_key_exists('editions', $mbdb_options)) {
-		foreach($mbdb_options['editions'] as $edition) {
-			if (array_key_exists('uniqueID', $edition)) {
-				if ($edition['uniqueID'] == $format) {
-					return $edition['name'];
-				}
+
+
+
+
+ 
+function mbdb_set_up_roles() {
+	
+		$contributor_level = apply_filters('mbdb_contributor_level_capabilities', array(
+									'edit_mbdb_books',
+									'edit_mbdb_book',
+									'delete_mbdb_books',
+									'delete_mbdb_book',
+									'manage_mbdb_books')
+								);
+									
+		$base_level = apply_filters('mbdb_base_level_capabilities', array(		
+									'publish_mbdb_books',
+									'publish_mbdb_book',
+									'edit_published_mbdb_book',
+									'edit_published_mbdb_books',
+									'delete_published_mbdb_book',
+									'delete_published_mbdb_books',
+									'upload_files',
+									'manage_mbdb_books',
+									'read')
+								);
+									
+		$master_level = apply_filters('mbdb_master_level_capabilities', array(		
+									'edit_others_mbdb_books',
+									'edit_others_mbdb_books',
+									'delete_others_mbdb_books',
+									'delete_others_mbdb_book')
+								);
+		
+		remove_role('mbdb_librarian');
+		add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
+		remove_role('mbdb_master_librarian');
+		add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
+		$base_roles = array('mbdb_librarian', 'author');
+		$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
+		$contributor = get_role('contributor');
+		foreach ($contributor_level as $capability) {
+			$contributor->add_cap($capability);
+		}
+		foreach (array_merge($base_level, $contributor_level) as $capability) {
+			foreach (array_merge($base_roles, $master_roles) as $each_role ) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
 			}
 		}
+		foreach ($master_level as $capability) {
+			foreach ($master_roles as $each_role) {
+				$role = get_role($each_role);
+				$role->add_cap($capability);
+			}
+		}
+		
+}
+
+
+// uploads file at specfied $filename and returns the attachment id of the uploaded file
+// v3.0 added path param to allow it to be used with other plugins
+function mbdb_upload_image($filename, $path = '') {
+	// add images to media library
+	// move to uploads folder
+	$wp_upload_dir = wp_upload_dir();
+	
+	// check for path
+	if ($path == '') {
+		$path = dirname( __FILE__ ) . '/assets/';
+		
 	}
-	return '';
+	
+	if (file_exists($path . $filename)) {
+			$success = copy( $path . $filename, $wp_upload_dir['path'] . '/' . $filename );
+			// v 2.4.2 -- bail out if something goes wrong
+			if (!$success) {
+				return 0;
+			}
+			$wp_filetype = wp_check_filetype( basename( $filename ), null );
+			$attachment = array (
+				'guid' => $wp_upload_dir['url'] . '/' . basename( $filename ),
+				'post_mime_type' => $wp_filetype['type'],
+				'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+				'post_content' => '',
+				'post_status' => 'inherit');
+			$attach_id = wp_insert_attachment( $attachment, $wp_upload_dir['path'] . '/' . $filename );
+			$attach_data = wp_generate_attachment_metadata( $attach_id,  $wp_upload_dir['path'] . '/' . $filename );
+			wp_update_attachment_metadata( $attach_id, $attach_data );
+			return $attach_id;
+	} else {
+		return 0;
+	}
 }
 
-function mbdb_get_template_list() {
-	$all_templates = wp_get_theme()->get_page_templates();
+
+// NOTE: $mbdb_options passed by reference because it's updated
+// v3.0 added path param to allow it to be used with other plugins
+function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options, $path = '') {
+	if ( ! array_key_exists($options_key, $mbdb_options ) ) {
+		//return;
+		$mbdb_options[$options_key] = array();
+	}
 	
-	$all_templates = array_merge( array('default' => __('Default', 'mooberry-book-manager')), $all_templates);
+	// Create an array of uniqueIDs
+	$default_uniqueIDs = array_column( $default_values, 'uniqueID' );
+	// Create an array wih uniqueIDs as the key and the default info as the value
+	$default_values = array_combine($default_uniqueIDs, $default_values);
 	
-	return $all_templates;
+	// create an array of uniqueIDs
+	$existing_uniqueIDs = array_column( $mbdb_options[$options_key], 'uniqueID' );
+	
+	// loop through each default value
+	foreach ($default_values as $uniqueID => $default_value) {
+		if ( array_search( $uniqueID, $existing_uniqueIDs ) === false ) {
+			// uniqueID doesn't already exist, so add this default value to the options 
+			if (array_key_exists('image', $default_value)) {
+				// upload the image to the media library 	
+				// and save both the URL and the ID
+				$attachID = mbdb_upload_image( $default_value['image'], $path );
+				$default_values[$uniqueID]['imageID'] = $attachID;
+				if ($attachID != 0) {
+					$default_values[$uniqueID]['image'] = wp_get_attachment_url( $attachID );
+				} else {
+					$default_values[$uniqueID]['image'] = '';
+				}
+			}
+			
+			/* // save each piece of data
+			foreach($default_value as $key => $data) {
+			// save the name and uniqueID
+				$default_data[$key] = $default_value['name'];
+			}
+			if (array_key_exists('uniqueID', $default_value)) {
+				$default_data['uniqueID'] = $default_value[ 'uniqueID' ];
+			} */
+			
+			// add to the options
+			$mbdb_options[$options_key][] = $default_values[$uniqueID];
+		}
+	}		
+
 }
 
-/**** OBSOLETE
-
-function mbdb_get_default_page_layout() {
-	return apply_filters('mbdb_default_book_page','<h3>[book_subtitle blank=""]</h3>[book_cover width="200" align="right"][book_summary blank="' . __('Summary Coming Soon!', 'mooberry-book-manager') . '"] 
+// used by MBM Image Fixer
+function mbdb_get_default_retailers() {
+	// v 2.4.2 updated file names
+	$default_retailers = array();
+	$default_retailers[] = array('name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png');
+	$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.jpg');
+	$default_retailers[] = array('name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png');
+	$default_retailers[] = array('name' => 'iBooks', 'uniqueID' => 4, 'image' => 'ibooks.png');
+	$default_retailers[] = array('name' => 'Smashwords', 'uniqueID' => 5, 'image' => 'smashwords.png');
+	$default_retailers[] = array('name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
+	$default_retailers[] = array('name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.png' );
+	$default_retailers[] = array('name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' );
+	$default_retailers[] = array('name' => 'Create Space', 'uniqueID' => 9, 'image' => 'createspace.png' );
+	$default_retailers[] = array('name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.png' );
+	$default_retailers[] = array('name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.png' );
+	$default_retailers[] = array('name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.png' );
+	$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.png' );
+	$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
 	
-	[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal" size="35" blank="" blanklabel=""]
-				[book_goodreads  ]
-				
-				<strong>Published:</strong> [book_published format="short" blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
-				<strong>Publisher:</strong> [book_publisher  blank="' . _x('TBA', 'To Be Announced', 'mooberry-book-manager') . '"]
-				<strong>Number of Pages:</strong> [book_length  blank="' . _x('TBD', 'To Be Determined', 'mooberry-book-manager') . '"]
-				<strong>Genres:</strong><span>[book_genre delim="comma" blank="' . __('(uncategorized)', 'mooberry-book-manager') . '"]</span>
-				<strong>Tags:</strong><span> [book_tags  delim="comma" blank="' . __('(none)', 'mooberry-book-manager') . '"]</span>
+	return apply_filters('mbdb_default_retailers', $default_retailers);
 
-				[book_serieslist before="Part of the " after=" series: " delim="list"]
-				<strong>Reviews:</strong><span> [book_reviews  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>
-				<strong>Excerpt:</strong><span> [book_excerpt  blank="' . __('Coming Soon!', 'mooberry-book-manager') . '"]</span>[book_links buylabel="' . __('Buy Now:', 'mooberry-book-manager') . '" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '"  align="horizontal" size="35" blank="" blanklabel=""]');
 }
 
-***/
+function mbdb_insert_default_edition_formats(&$mbdb_options) {
+	$default_formats = array();
+	$default_formats[] = array('name' => 'Hardcover', 'uniqueID' => 1);
+	$default_formats[] = array('name' => 'Paperback', 'uniqueID' => 2);
+	$default_formats[] = array('name' => 'ePub', 'uniqueID' => 3);
+	$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 4);
+	$default_formats[] = array('name' => 'PDF', 'uniqueID' => 5);
+	$default_formats[] = array('name' => 'Audiobook', 'uniqueID' => 6);
+	$default_formats = apply_filters('mbdb_default_edition_formats', $default_formats);
+	
+	mbdb_insert_defaults( $default_formats, 'editions', $mbdb_options);
+}
+
+// since version 3.0
+function mbdb_insert_default_social_media( &$mbdb_options ) {
+	$defaults = array();
+	$defaults[] = array('name' => 'Facebook', 'uniqueID' => 1, 'image' => 'facebook.png');
+	$defaults[] = array('name' => 'Twitter', 'uniqueID' => 2, 'image' => 'twitter.png');
+	$defaults[] = array('name' => 'Pinterest', 'uniqueID' => 3, 'image' => 'pinterest.png');
+	$defaults[] = array('name' => 'YouTube', 'uniqueID' => 4, 'image' => 'youtube.png');
+	$defaults[] = array('name' => 'LinkedIn', 'uniqueID' => 5, 'image' => 'linkedin.png');
+	$defaults[] = array('name' => 'Goodreads', 'uniqueID' => 6, 'image' => 'goodreads_logo.png');
+	$defaults = apply_filters('mbdb_default_social_media_sites', $defaults);
+	
+	mbdb_insert_defaults( $defaults, 'social_media', $mbdb_options);
+}
+
+function mbdb_insert_default_retailers( &$mbdb_options ) {
+// check if default retailers and formats exist in database and add them if necessary
+	$default_retailers = mbdb_get_default_retailers();
+	
+	mbdb_insert_defaults( $default_retailers, 'retailers', $mbdb_options);
+}
+
+
+// used by MBM Image Fixer
+function mbdb_get_default_formats() {
+	$default_formats = array();
+	$default_formats[] = array('name' => 'ePub', 'uniqueID' => 1, 'image' => 'epub.png');
+	$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 2, 'image' => 'amazon-kindle.png');
+	$default_formats[] = array('name' => 'PDF', 'uniqueID' => 3, 'image' => 'pdficon.png');
+	
+	return apply_filters('mbdb_default_formats', $default_formats);
+	
+}
+
+function mbdb_insert_default_formats( &$mbdb_options) {
+	$default_formats = mbdb_get_default_formats();
+	mbdb_insert_defaults( $default_formats, 'formats', $mbdb_options);
+}
+
+function mbdb_insert_image( $key, $file, &$mbdb_options ) {
+	// check if the coming soon image exists and add it if necessary
+		if (!array_key_exists($key, $mbdb_options)) {
+			$attachID = mbdb_upload_image($file);
+			$mbdb_options[ $key . '-id'] = $attachID;
+			if ( $attachID != 0) {
+				$img = wp_get_attachment_url( $attachID );
+				$mbdb_options[$key] = $img;
+			} else {
+				$mbdb_options[$key] = '';
+			}
+			
+		}
+}
+
+function mbdb_get_alt_text( $imageID, $default_alt) {
+	$alt = get_post_meta( $imageID, '_wp_attachment_image_alt', true);
+	if ($alt == '') {
+		$alt = $default_alt;
+	}	
+	return ' alt="' . esc_attr($alt) . '" ';
+}
+
+
+function mbdb_wp_reserved_terms() {
+	return array(
+		'attachment', 
+		'attachment_id', 
+		'author', 
+		'author_name', 
+		'calendar', 
+		'cat', 
+		'category', 
+		'category__and', 
+		'category__in', 
+		'category__not_in', 
+		'category_name', 
+		'comments_per_page', 
+		'comments_popup', 
+		'customize_messenger_channel', 
+		'customized', 
+		'cpage', 
+		'day', 
+		'debug', 
+		'error', 
+		'exact', 
+		'feed', 
+		'hour', 
+		'link_category', 
+		'm', 
+		'minute', 
+		'monthnum', 
+		'more', 
+		'name', 
+		'nav_menu', 
+		'nonce', 
+		'nopaging', 
+		'offset', 
+		'order', 
+		'orderby', 
+		'p', 
+		'page', 
+		'page_id', 
+		'paged', 
+		'pagename', 
+		'pb', 
+		'perm', 
+		'post', 
+		'post__in', 
+		'post__not_in', 
+		'post_format', 
+		'post_mime_type', 
+		'post_status', 
+		'post_tag', 
+		'post_type', 
+		'posts', 
+		'posts_per_archive_page', 
+		'posts_per_page', 
+		'preview', 
+		'robots', 
+		's', 
+		'search', 
+		'second', 
+		'sentence', 
+		'showposts', 
+		'static', 
+		'subpost', 
+		'subpost_id', 
+		'tag', 
+		'tag__and', 
+		'tag__in', 
+		'tag__not_in', 
+		'tag_id', 
+		'tag_slug__and', 
+		'tag_slug__in', 
+		'taxonomy', 
+		'tb', 
+		'term', 
+		'terms', 
+		'theme', 
+		'title', 
+		'type', 
+		'w', 
+		'withcomments', 
+		'withoutcomments', 
+		'year', 
+	);
+}
