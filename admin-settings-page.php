@@ -94,14 +94,14 @@ class mbdb_Admin_Settings {
 							'mbdb_publishers_options' 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Publishers', 'mooberry-book-manager'),
 																'menu_title'	=>	__('Publishers', 'mooberry-book-manager')
 															),
-							'mbdb_editions_options'	 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Edition Formats', 'mooberry-book-manager'),
-																'menu_title'	=>	__('Edition Formats', 'mooberry-book-manager')
-															),
 							'mbdb_retailers_options' 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Retailers', 'mooberry-book-manager'),
 																'menu_title'	=>	__('Retailers', 'mooberry-book-manager')
 															),
 							'mbdb_formats_options' 		=> 	array( 'page_title' =>  __('Mooberry Book Manager E-book Formats', 'noun', 'mooberry-book-manager'),
 																'menu_title'	=>	_x('E-book Formats', 'noun', 'mooberry-book-manager')
+															),
+							'mbdb_editions_options'	 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Edition Formats', 'mooberry-book-manager'),
+																'menu_title'	=>	__('Edition Formats', 'mooberry-book-manager')
 															)
 					);
 					
