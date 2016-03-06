@@ -78,9 +78,7 @@ class mbdb_Admin_Settings {
 	 */
 	public function add_options_page() {
 		$this->options_page = add_menu_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
-		
-		
-		//add_submenu_page($this->key, __( 'Mooberry Book Manager General Options', 'mooberry-book-manager' ), __( 'General Options', 'mooberry-book-manager' ) , 'manage_options', $this->key );
+	
     	
 		$pages = array( 'mbdb_options'		=>	array( 'page_title' =>  __( 'Mooberry Book Manager General Settings', 'mooberry-book-manager' ), 
 																'menu_title'	=>	__( 'General Settings', 'mooberry-book-manager' ) 
@@ -119,8 +117,6 @@ class mbdb_Admin_Settings {
 			$this->sub_pages[] = $sub_page_hook;
 			add_action( "admin_print_styles-{$sub_page_hook}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 		}
-		
-		
 		
 		// Include CMB CSS in the head to avoid FOUC
 		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
