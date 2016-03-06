@@ -1,19 +1,19 @@
 
 
 			<ul>
-				<li><a target="_new" href="http://www.mooberrydreams.com/support/mooberry-book-manager-support/">User Manual</a></li>
-				<li><a target="_new" href="https://wordpress.org/plugins/mooberry-book-manager/faq/">FAQs</a></li>
-				<li><a target="_new" href="https://wordpress.org/support/plugin/mooberry-book-manager">Support Forum</a></li>
+				<li><a target="_new" href="http://www.mooberrydreams.com/support/mooberry-book-manager-support/"><?php _e('User Manual', 'mooberry-book-manager'); ?></a></li>
+				<li><a target="_new" href="https://wordpress.org/plugins/mooberry-book-manager/faq/"><?php _e('FAQs', 'mooberry-book-manager'); ?></a></li>
+				<li><a target="_new" href="https://wordpress.org/support/plugin/mooberry-book-manager"><?php _e('Support Forum', 'mooberry-book-manager'); ?></a></li>
 			</ul>
-		<h3>Extensions Coming Soon</h3>
-		<p>Check out <a target="_new" href="http://www.mooberrydreams.com/">our website</a> to learn more about
+		<h3><?php _e('Extensions Coming Soon', 'mooberry-book-manager'); ?></h3>
+		<p><?php _e('Check out <a target="_new" href="http://www.mooberrydreams.com/">our website</a> to learn more about
 		the upcoming extensions so Mooberry Book
-		Manager can save you more time!</p>
+		Manager can save you more time!', 'mooberry-book-manager'); ?></p>
 		
-		<h3>Tip Jar</h3>
-		<p>You can help support this plugin by leaving a tip.</p>
+		<h3><?php _e('Tip Jar', 'mooberry-book-manager'); ?></h3>
+		<p><?php _e('You can help support this plugin by leaving a tip.', 'mooberry-book-manager'); ?></p>
 <p>
-Contributions can be made in any amount from $1 on up. This is completely optional. Thank you for the support.
+<?php _e('Contributions can be made in any amount from $1 on up. This is completely optional. Thank you for the support.', 'mooberry-book-manager'); ?>
 </p>
 		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_new">
 <input type="hidden" name="cmd" value="_s-xclick">
