@@ -36,7 +36,10 @@ function mbdb_activate() {
 	
 	update_option( 'mbdb_options', $mbdb_options );
 	
-
+	// SET DEFAULT OPTIONS FOR GRID SLUGS
+	mbdb_set_default_tax_grid_slugs();
+	
+	
 	mbdb_init();
 
 	flush_rewrite_rules();
@@ -289,7 +292,7 @@ function mbdb_admin_import_notice(){
 			
 			$m = __('Upgrading to Mooberry Book Manager version 3.0 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
 			$m2 = __('Migrate Data Now', 'mooberry-book-manager');
-			echo '<div id="message" class="error"><p>' . $m . '</p><p><button>' . $m2 . '</button></p></div>';
+			echo '<div id="message" class="error"><p>' . $m . '</p><p><a href="admin.php?page=mbdb_migrate" class="button">' . $m2 . '</a></p></div>';
 		} else {
 			update_option('mbdb_import_books', true);
 		}
