@@ -440,7 +440,7 @@ function mbdb_book_metaboxes(  ) {
 			'group_title'   => _x('Reviews', 'noun', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
 			'add_button'    =>  __('Add Review', 'mooberry-book-manager'),
 			'remove_button' =>  __('Remove Review', 'mooberry-book-manager'),
-			'sortable'      => false, // beta
+			'sortable'      => true, // beta
 			)
 		)
 	);
@@ -498,7 +498,7 @@ function mbdb_book_metaboxes(  ) {
 				'group_title'   => __('Edition', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
 				'add_button'    =>  __('Add New Edition', 'mooberry-book-manager'),
 				'remove_button' =>  __('Remove Edition', 'mooberry-book-manager'),
-				'sortable'      => false, // beta
+				'sortable'      => true, // beta
 			),
 		)
 	);
@@ -782,7 +782,7 @@ function mbdb_book_metaboxes(  ) {
 				'group_title'   => _x('Download Link', 'noun', 'mooberry-book-manager') . ' {#}',  // {#} gets replaced by row number
 				'add_button'    => __('Add Download Link', 'mooberry-book-manager'),
 				'remove_button' =>  __('Remove Download Link', 'mooberry-book-manager'),
-				'sortable'      => false, // beta
+				'sortable'      => true, // beta
 			),
 		)
 	);

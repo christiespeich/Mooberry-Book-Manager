@@ -7,4 +7,8 @@ jQuery( document ).ready(function() {
 	} else {
 		jQuery('.cmb2-id--mbdb-publisherID .cmb2-metabox-description').hide();
 	}
+	
+	jQuery('#mbdb_editions_metabox').toggleClass('closed', display_editions == 'no' );
+	
+	
 }); // document ready
