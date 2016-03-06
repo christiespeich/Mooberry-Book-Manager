@@ -857,41 +857,6 @@ class mbdb_Admin_Settings {
 		}
 	}
 
-	/**
-	 *  
-	 *  Generate the tabs
-	 *  
-	 *  
-	 *  @since 3.0
-	 *  
-	 *  @access public
-	 */
-	function tab_display() {
-		$tabs = array( 
-				'general' => __('General Settings', 'mooberry-book-manager'),
-				'grid' => __('Book Grid Settings', 'mooberry-book-manager'),
-				'publishers' => __('Publishers', 'mooberry-book-manager'),
-				'editions' => __('Edition Formats', 'mooberry-book-manager'),
-				'retailers' => __('Retailers', 'mooberry-book-manager'), 
-				'formats' => _x('E-book Formats', 'noun', 'mooberry-book-manager')
-		); //, 'output' => 'Print Book list'));
-	
-		$import_books = get_option('mbdb_import_books');
-		if (!$import_books || $import_books == null) {
-			$tabs['migrate'] = __('Migrate Data', 'mooberry-book-manager');
-		}
-		$tabs = apply_filters('mbdb_settings_tabs', $tabs);
-	
-		echo '<h2 class="nav-tab-wrapper">';
-		foreach( $tabs as $tab => $name ){
-			// use the active class if on the current table
-			$class = ( $tab == $this->tab ) ? 'nav-tab-active' : '';
-			
-			echo "<a class='nav-tab $class' href='admin.php?page=mbdb_options&tab=$tab'>$name</a>";
-		}
-		echo '</h2>';
-		
-	}
 	
 
 	/**
