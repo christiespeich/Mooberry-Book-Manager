@@ -175,7 +175,7 @@ function mbdb_get_random( $array ) {
 
 // TODO put this in all URL fields
 function mbdb_url_validation_pattern() {
-	return '^(https?:\/\/)?([\da-zA-Z\.-]+)\.([A-Za-z\.]{2,6}).*';
+	return apply_filters('mbdb_url_validation_pattern', '^(https?:\/\/)?([\da-zA-Z\.-]+)\.([A-Za-z\.]{2,6}).*');
 }
 	
 
