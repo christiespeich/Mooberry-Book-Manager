@@ -40,6 +40,8 @@ class mbdb_Admin_Settings {
 	 * @since 3.0
 	 */
 	protected $options_page = '';
+	
+	protected $sub_pages = array();
 
 	/**
 	 * Constructor
@@ -47,7 +49,7 @@ class mbdb_Admin_Settings {
 	 */
 	public function __construct() {
 		// Set our title
-		$this->title = __( 'Mooberry Book Manager Options', 'mooberry-book-manager' );
+		$this->title = __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' );
 	}
 
 	/**
@@ -76,10 +78,53 @@ class mbdb_Admin_Settings {
 	 */
 	public function add_options_page() {
 		$this->options_page = add_menu_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
-
+		
+		
+		//add_submenu_page($this->key, __( 'Mooberry Book Manager General Options', 'mooberry-book-manager' ), __( 'General Options', 'mooberry-book-manager' ) , 'manage_options', $this->key );
+    	
+		$pages = array( 'mbdb_options'		=>	array( 'page_title' =>  __( 'Mooberry Book Manager General Settings', 'mooberry-book-manager' ), 
+																'menu_title'	=>	__( 'General Settings', 'mooberry-book-manager' ) 
+															), 
+							'mbdb_book_page_options'	=>	array( 'page_title' =>  __('Mooberry Book Manager Book Page Settings', 'mooberry-book-manager'), 
+																'menu_title'	=>	__('Book Page', 'mooberry-book-manager') 
+															),
+							'mbdb_grid_options'			=>	array( 'page_title' =>  __('Mooberry Book Manager Book Grid Settings', 'mooberry-book-manager'), 
+																'menu_title'	=>	__('Book Grid', 'mooberry-book-manager') 
+															),
+							'mbdb_publishers_options' 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Publishers', 'mooberry-book-manager'),
+																'menu_title'	=>	__('Publishers', 'mooberry-book-manager')
+															),
+							'mbdb_editions_options'	 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Edition Formats', 'mooberry-book-manager'),
+																'menu_title'	=>	__('Edition Formats', 'mooberry-book-manager')
+															),
+							'mbdb_retailers_options' 	=> 	array( 'page_title' =>  __('Mooberry Book Manager Retailers', 'mooberry-book-manager'),
+																'menu_title'	=>	__('Retailers', 'mooberry-book-manager')
+															),
+							'mbdb_formats_options' 		=> 	array( 'page_title' =>  __('Mooberry Book Manager E-book Formats', 'noun', 'mooberry-book-manager'),
+																'menu_title'	=>	_x('E-book Formats', 'noun', 'mooberry-book-manager')
+															)
+					);
+					
+		$import_books = get_option('mbdb_import_books');
+		if ( !$import_books || $import_books == null ) {
+			$pages['mbdb_migrate'] = array ( 'page_title'	=>	__('Mooberry Book Manager v3.0 Data Migration', 'mooberry-book-manager'),
+												'menu_title'	=>	__('Migrate Data', 'mooberry-book-manager')
+												);
+		}
+		$pages = apply_filters('mbdb_settings_pages', $pages);
+		
+															
+		foreach($pages as $key => $subpage) {												
+			$sub_page_hook = add_submenu_page( 'mbdb_options', $subpage['page_title'], $subpage['menu_title'], 'manage_options', $key, array( $this, 'admin_page_display') );
+			$this->sub_pages[] = $sub_page_hook;
+			add_action( "admin_print_styles-{$sub_page_hook}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
+		}
+		
+		
+		
 		// Include CMB CSS in the head to avoid FOUC
 		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
-		
+				
 	}
 
 	/**
@@ -94,17 +139,17 @@ class mbdb_Admin_Settings {
 		// instructions
 		do_action('mbdb_settings_before_instructions');
 			
-		echo '<p>';
+		/*echo '<p>';
 		echo '<b>' . __('NOTE:', 'mooberry-book-manager') . '</b> ';
 		echo __('You must click the SAVE button to save your changes before switching tabs.', 'mooberry-book-manager');
 		echo '</p>';
-
+*/
 		do_action('mbdb_settings_after_instructions');
 				
 		// tabs
 		do_action('mbdb_settings_pre_tab_display', $this->tab);
 		
-		$this->tab_display();
+		//$this->tab_display();
 		
 		do_action('mbdb_settings_post_tab_display', $this->tab);
 		
@@ -116,7 +161,7 @@ class mbdb_Admin_Settings {
 		echo '</div>';
 			
 		// metabox
-		if ($this->tab == 'migrate') {
+		if ($this->tab == 'mbdb_migrate') {
 			$this->migrate_data();
 			return;
 		}
@@ -154,36 +199,39 @@ class mbdb_Admin_Settings {
 		) );
 	
 		// if tab isn't set, default to general
-		if ( isset ( $_GET['tab'] ) ) {
-			$this->tab = $_GET['tab'];
+		if ( isset ( $_GET['page'] ) ) {
+			$this->tab = $_GET['page'];
 		} else {
 			$this->tab = 'general';
 		}
 	
 		// load the metabox based on what tab is set to
 		switch ($this->tab) {
-			case 'general':
+			case 'mbdb_options':
 				$mbdb_settings_metabox = $this->mbdb_general_settings($mbdb_settings_metabox);
 				break;
-			case 'grid':
+			case 'mbdb_book_page_options':
+				$mbdb_settings_metaxbox = $this->mbdb_book_page_settings($mbdb_settings_metabox);
+				break;
+			case 'mbdb_grid_options':
 				$mbdb_settings_metaxbox = $this->mbdb_grid_settings($mbdb_settings_metabox);
 				break;
-			case 'publishers':
+			case 'mbdb_publishers_options':
 				$mbdb_settings_metabox = $this->mbdb_publishers($mbdb_settings_metabox);
 				break;
-			case 'retailers' :
+			case 'mbdb_retailers_options' :
 			   $mbdb_settings_metabox =  $this->mbdb_retailers($mbdb_settings_metabox);
 				break;
-			case 'formats' :
+			case 'mbdb_formats_options' :
 				$mbdb_settings_metabox = $this->mbdb_formats($mbdb_settings_metabox);
 				break;
-			case 'social-media' :
+			case 'mbdb_social-media_options' :
 				$mbdb_settings_metabox = $this->mbdb_social_media($mbdb_settings_metabox);
 				break;
 			// case 'output':
 				// mbdb_print_book_list();
 				// break;
-			case 'editions' :
+			case 'mbdb_editions_options' :
 				$mbdb_settings_metabox = $this->mbdb_editions($mbdb_settings_metabox);
 				//mbdb_meta_fields($fields);
 				break;
@@ -194,21 +242,84 @@ class mbdb_Admin_Settings {
 	}
 	
 	function migrate_data() {
-		echo '<h3>' . __('Mooberry Book Manager v3.0 Data Migration', 'mooberry-book-manager') . '</h3>';
+	
 		$import_books = get_option('mbdb_import_books');
 		if ($import_books ) {
-			echo '<p>' . __('Data already migrated!', 'mooberry-book-manager') . '</p>';
+			echo '<h4>' . __('Data already migrated. Mooberry Book Manager 3.0 is ready to use!', 'mooberry-book-manager') . '</h4>';
 			return;
 		}
-		echo '<p>' . __('Migrating Data...', 'mooberry-book-manager') . '</p>';
+		echo '<h4>' . __('Migrating Data...', 'mooberry-book-manager') . '</h4>';
 		$success = MBDB()->books->import();
 		if ($success === true) {
-			echo '<p>' . __('Success!', 'mooberry-book-manager') . '</p>';
+			echo '<h4>' . __('Success!', 'mooberry-book-manager') . '</h4>';
 			update_option('mbdb_import_books', true);
-		} else {
+		} else { 
 			global $wpdb;
-			echo '<p>' . sprintf(__('An error occured while migrating data to version 3.0. Please contact Mooberry Dreams at %s with the following error message.', 'mooberry-book-manager'), '<A HREF="mailto:bookmanager@mooberrydreams.com">bookmanager@mooberrydreams.com</A>') . '</p><b>' . __('Error:', 'mooberry-book-manager') . '</b></p> <p>' . $wpdb->last_error . '</p>';
+			echo '<h4>' . sprintf(__('An error occured while migrating data to version 3.0. Please contact Mooberry Dreams at %s with the following error message.', 'mooberry-book-manager'), '<A HREF="mailto:bookmanager@mooberrydreams.com">bookmanager@mooberrydreams.com</A>') . '</h4><p><h4><b>' . __('Error:', 'mooberry-book-manager') . '</b></h3> <h3>' . $wpdb->last_error . '</h4></p>';
 		}
+	}
+	
+	function mbdb_book_page_settings( $mbdb_settings_metabox ) {
+		
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=> 'mbdb_book_book_page_settings_title',
+				'name'	=>	__('BOOK PAGE SETTINGS', 'mooberry-book-manager'),
+				'type'	=>	'title',
+			)
+		);
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=>	'mbdb_default_template',
+				'name'	=> __('Page Template', 'mooberry-book-manager'),
+				'type'	=> 'select',
+				'default'	=>	'default',
+				'options'	=> mbdb_get_template_list(),
+			)
+		);
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=>	'mbdb_reset_meta_boxes',
+				'name'	=> __('Reset Book Edit Page', 'mooberry-book-manager'),
+				'type'	=> 'text',
+				'after_row'	=>	"<span style='font-style:italic'>" . __("If you've reordered the boxes on the Book Edit page, this will revert them to their default positions.", "mooberry-book-manager") .  "</span>",
+				'before'	=>	'<a href="#" class="button" id="reset_meta_boxes">' . __('Reset', 'mooberry-book-manager') . '</a><img id="reset_progress" src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;padding-left:10px;"/><img id="reset_complete" src="' . MBDB_PLUGIN_URL . 'includes/assets/check.png" style="display:none;padding-left:10px;"/>',
+				'attributes'	=>	 array(
+						'type'	=>	'hidden'
+						),
+			)
+		);
+		
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=> 'mbdb_book_default_settings_title',
+				'name'	=>	__('DEFAULT SETTINGS', 'mooberry-book-manager'),
+				'type'	=>	'title',
+			)
+		);
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=>	'mbdb_default_unit',
+				'name'	=>	__('Default Unit of Measurement', 'mooberry-book-manager'),
+				'type'	=> 'select',
+				'default'	=> 'in',
+				'options'	=> mbdb_get_units_array(),
+			)
+		);
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=>	'mbdb_default_currency',
+				'name'	=>	__('Default Currency', 'mooberry-book-manager'),
+				'type'	=> 'select',
+				'default'	=> 'USD',
+				'options'	=> mbdb_get_currency_array(),
+			)
+		);
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=>	'mbdb_default_language',
+				'name'	=>	__('Default Language', 'mooberry-book-manager'),
+				'type'	=> 'select',
+				'default'	=> 'EN',
+				'options'	=> mbdb_get_language_array(),
+			)
+		);
+		
+		return apply_filters('mbdb_settings_book_page_settings', $mbdb_settings_metabox);
+		
 	}
 	
 	/**
@@ -433,62 +544,9 @@ class mbdb_Admin_Settings {
 	 */
 	function mbdb_general_settings($mbdb_settings_metabox) {
 	
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=> 'mbdb_book_book_page_settings_title',
-				'name'	=>	__('BOOK PAGE SETTINGS', 'mooberry-book-manager'),
-				'type'	=>	'title',
-			)
-		);
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=>	'mbdb_default_template',
-				'name'	=> __('Page Template', 'mooberry-book-manager'),
-				'type'	=> 'select',
-				'default'	=>	'default',
-				'options'	=> mbdb_get_template_list(),
-			)
-		);
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=>	'mbdb_reset_meta_boxes',
-				'name'	=> __('Reset Book Edit Page', 'mooberry-book-manager'),
-				'type'	=> 'text',
-				'after_row'	=>	"<span style='font-style:italic'>" . __("If you've reordered the boxes on the Book Edit page, this will revert them to their default positions.", "mooberry-book-manager") .  "</span>",
-				'before'	=>	'<a href="#" class="button" id="reset_meta_boxes">' . __('Reset', 'mooberry-book-manager') . '</a><img id="reset_progress" src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;padding-left:10px;"/><img id="reset_complete" src="' . MBDB_PLUGIN_URL . 'includes/assets/check.png" style="display:none;padding-left:10px;"/>',
-				'attributes'	=>	 array(
-						'type'	=>	'hidden'
-						),
-			)
-		);
+		
 			
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=> 'mbdb_book_default_settings_title',
-				'name'	=>	__('DEFAULT SETTINGS', 'mooberry-book-manager'),
-				'type'	=>	'title',
-			)
-		);
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=>	'mbdb_default_unit',
-				'name'	=>	__('Default Unit of Measurement', 'mooberry-book-manager'),
-				'type'	=> 'select',
-				'default'	=> 'in',
-				'options'	=> mbdb_get_units_array(),
-			)
-		);
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=>	'mbdb_default_currency',
-				'name'	=>	__('Default Currency', 'mooberry-book-manager'),
-				'type'	=> 'select',
-				'default'	=> 'USD',
-				'options'	=> mbdb_get_currency_array(),
-			)
-		);
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=>	'mbdb_default_language',
-				'name'	=>	__('Default Language', 'mooberry-book-manager'),
-				'type'	=> 'select',
-				'default'	=> 'EN',
-				'options'	=> mbdb_get_language_array(),
-			)
-		);
+		
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 'mbdb_book_image_settings_title',
@@ -736,11 +794,14 @@ class mbdb_Admin_Settings {
 					
 	}
 
-	// this is called with an add_filter('mbdb_settings_tabs') by the
+	// this is called with an add_filter('mbdb_settings_pages') by the
 	// add ons that need it.
-	function mbdb_add_social_media_tab( $tabs ) {
-		$tabs['social-media'] = __('Social Media', 'mooberry-book-manager');
-		return $tabs;
+	function mbdb_add_social_media_page( $pages ) {
+		
+		$pages['mbdb_social_media_options'] = array( 'page_title' =>  __( 'Mooberry Book Manager Social Media Options', 'mooberry-book-manager' ), 
+																'menu_title'	=>	__( 'Social Media', 'mooberry-book-manager' ) 
+															); 
+		return $pages;
 	}
 
 	/**

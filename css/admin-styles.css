@@ -6,6 +6,21 @@
 	float:left;
 }
 
+.cmb2-options-page .cmb2-metabox-title {
+	font-size: 1em;
+    background-color: #9667a4;
+    color: white;
+    padding: 5px;
+
+}
+.cmb-repeatable-group .cmb-group-title {
+	background-color: lavender;
+}
+
+.cmb-remove-row .dashicons.dashicons-arrow-down-alt2, .cmb-remove-row .dashicons.dashicons-arrow-up-alt2 {
+	font-size: 1em;
+	vertical-align: middle;
+}
 
 .mbdb_box {
 	width:250px; 
