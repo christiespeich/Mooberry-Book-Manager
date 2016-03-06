@@ -6,6 +6,16 @@ UTILITY FUNCTIONS
 
 ***********************************************************/
 
+// if in development, return the time so that it forces a reload
+// otherwise return the current plugin version so a reload is only forced if it's an update
+function mbdb_get_enqueue_version() {
+	if ( WP_DEBUG ) {
+		return time();
+	} else {
+		return MBDB_PLUGIN_VERSION;
+	}
+}
+
 function mbdb_format_date($field) {
 	if ($field == null or $field == '') {
 		return $field;
