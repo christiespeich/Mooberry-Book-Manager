@@ -162,7 +162,7 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
 
 	// update the post, which calls save_post again
-	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  $summary, 'post_content' => '[mbdb_book]' ) );
+	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  balanceTags($summary, true), 'post_content' => '[mbdb_book]' ) );
 
 	// re-hook this function
 	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
@@ -330,7 +330,7 @@ add_action('add_meta_boxes_mbdb_book', 'mbdb_reorder_taxonomy_boxes');
  *  
  *  @access public
  */
-add_action( 'add_meta_boxes_mbdb_book', 'mbdb_mbd_metabox', 10 );
+//add_action( 'add_meta_boxes_mbdb_book', 'mbdb_mbd_metabox', 10 );
 function mbdb_mbd_metabox() {
 	add_meta_box( 'mbdb_mbd_metabox', __('Need help with Mooberry Book Manager?', 'mooberry-book-manager'), 'mbdb_display_mbdb_metabox', 'mbdb_book', 'side', 'core' );
 }
