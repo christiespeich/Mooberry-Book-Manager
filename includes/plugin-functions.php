@@ -278,9 +278,22 @@ add_action( 'admin_notices', 'mbdb_admin_import_notice', 0 );
 function mbdb_admin_import_notice(){
 	$import_books = get_option('mbdb_import_books');
 	if (!$import_books || $import_books == null) {
-		$m = __('Upgrading to Mooberry Book Manager version 3.0 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
-		$m2 = __('Migrate Data Now', 'mooberry-book-manager');
-		echo '<div id="message" class="error"><p>' . $m . '</p><p><button>' . $m2 . '</button></p></div>';
+		// only need to migrate if there are books
+		$args = array('posts_per_page' => -1,
+					'post_type' => 'mbdb_book',
+		);
+		
+		$posts = get_posts( $args  );
+		
+		if (count($posts) > 0) {
+			
+			$m = __('Upgrading to Mooberry Book Manager version 3.0 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
+			$m2 = __('Migrate Data Now', 'mooberry-book-manager');
+			echo '<div id="message" class="error"><p>' . $m . '</p><p><button>' . $m2 . '</button></p></div>';
+		} else {
+			update_option('mbdb_import_books', true);
+		}
+		wp_reset_postdata();
 	}
 }
   
