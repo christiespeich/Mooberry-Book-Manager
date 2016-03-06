@@ -127,7 +127,7 @@ function mbdb_blank_output( $classname, $blank_output) {
  *  @access public
  */
 function mbdb_output_summary($book_data, $attr) {
-	return apply_filters('mbdb_shortcode_summary', '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">' . do_shortcode(wpautop($book_data)) . '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>');
+	return apply_filters('mbdb_shortcode_summary', '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">' . do_shortcode(wpautop(wp_kses_post($book_data))) . '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>');
 }
 
 /**
@@ -386,11 +386,11 @@ function mbdb_output_excerpt($mbdb_excerpt, $attr) {
 	 }
 	$html_output = '<div class="mbm-book-excerpt">
 		<span class="mbm-book-excerpt-label">' . esc_html($attr['label']) . '</span>
-		<span class="mbm-book-excerpt-text">' . do_shortcode($excerpt1);
+		<span class="mbm-book-excerpt-text">' . do_shortcode(wp_kses_post($excerpt1));
 	
 	if (trim($excerpt2) != '' ) {
 		$html_output .= '<a name="more" class="mbm-book-excerpt-read-more">' . __('READ MORE', 'mooberry-book-manager') . '</a>
-	<span class="mbm-book-excerpt-text-hidden">' . do_shortcode($excerpt2) . '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
+	<span class="mbm-book-excerpt-text-hidden">' . do_shortcode(wp_kses_post($excerpt2)) . '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
 	}
 	
 	$html_output .=' </span><span class="mbm-book-excerpt-after">' . esc_html($attr['after']) . '</span></div>';
@@ -464,9 +464,9 @@ function mbdb_shortcode_excerpt($attr, $content) {
  *  @access public
  */
 function mbdb_output_additional_info($mbdb_additional_info, $attr) {
-	 $mbdb_additional_info = wpautop($mbdb_additional_info);
+	 
 	 $html_output = '<div class="mbm-book-additional-info">';
-	 $html_output .= $mbdb_additional_info;
+	 $html_output .= wpautop(wp_kses_post($mbdb_additional_info));
 	 $html_output .= '</div>';
 	 return apply_filters('mbdb_shortcode_additional_info', $html_output);
 }
@@ -1216,7 +1216,7 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
 			$review_html .= ' ' . __('wrote','mooberry-book-manager');
 		}
 		$review_html .=	':</span>';
-		$review_html .= ' <blockquote class="mbm-book-reviews-text">' . wpautop($review['mbdb_review']) . '</blockquote></span>';
+		$review_html .= ' <blockquote class="mbm-book-reviews-text">' . wpautop(wp_kses_post($review['mbdb_review'])) . '</blockquote></span>';
 	}
 	// if (!mbdb_check_field('mbdb_review', $review)) {
 		// return mbdb_apply_filters('mbdb_shortcode_reviews', '<span class="mbm-book-reviews"><span class="mbm-book-reviews-blank">' . esc_html($attr['blank']) . '</span></span>'); 
