@@ -27,6 +27,10 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			
 	}
 	
+	public function columns_with_html() {
+		return array();
+	}
+	
 	public function get($ids = null, $orderby = null, $order = null, $include_unpublished = false) {
 		if ($ids == null) {
 			$data = $this->get_all($orderby, $order, $include_unpublished);

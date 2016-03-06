@@ -23,6 +23,10 @@ abstract class MBDB_CPT {
 	
 	abstract public function __construct();
 	
+	private function allows_html( $column ) {
+		return (in_array($column, $this->db_object->columns_with_html()));
+	}
+	
 	public function get( $id, $orderby = null, $order = null, $include_unpublished = false ) {
 		return $this->db_object->get ( $id, $orderby, $order, $include_unpublished );
 	}
@@ -58,7 +62,12 @@ abstract class MBDB_CPT {
 	public function save_data_by_post_meta( $post_meta, $value, $id ) {
 		$column = $this->post_meta_to_column( $post_meta );
 		if ( $column !== false ) {
-			$value = mbdb_sanitize_field($value);	
+			// same data should be sanitized and some should retain HTML
+			if ($this->allows_html($column)) {
+				$value = wp_kses_post($value);
+			} else {
+				$value = mbdb_sanitize_field($value);	
+			}
 			$success = $this->db_object->save( array( $column => $value ), $id );
 			if ($success === false) {
 				return false;

@@ -43,6 +43,14 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		);
 	}
 	
+	public function columns_with_html() {
+		return array(
+			'summary',
+			'excerpt',
+			'additional_info',
+		);
+	}
+	
 	private function get_sort_fields( $sort ) {
 		switch ($sort) {
 			case 'titleA':
