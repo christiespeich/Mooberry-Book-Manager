@@ -5,7 +5,7 @@ $reserved_terms = mbdb_wp_reserved_terms();
 ?>
 <html>
 <head>
-<title><?php _e('Wordpress Reserved Terms', 'mooberry-book-manager'); ?></title>
+<title>Wordpress Reserved Terms</title>
 <style>
 ul{
     width:400px;
@@ -21,7 +21,7 @@ li:nth-child(even){
 </style>
 </head>
 <body>
-<h2><?php _e('Wordpress Reserved Terms', 'mooberry-book-manager'); ?></h2>
+<h2>Wordpress Reserved Terms</h2>
 <ul id="reserved_terms" >
 <?php foreach ($reserved_terms as $term) { ?>
 	 <li> <?php echo $term; ?></li>
