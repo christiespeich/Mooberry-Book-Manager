@@ -496,7 +496,7 @@ function mbdb_get_books_by_taxonomy($level, $groups, $current_group, $selection,
 			if (in_array($groups[$level], array('genre', 'series', 'tag'))) {
 				$heading = $term->name . ' ' . $taxonomy->labels->singular_name;
 			} else {
-				$heading = $taxonomy->labels->singular_name . ' ' . $term->name;
+				$heading = $taxonomy->labels->singular_name . ': ' . $term->name;
 			}
 			$books[ apply_filters('mbdb_book_grid_heading', $heading )] = $results;
 		}
