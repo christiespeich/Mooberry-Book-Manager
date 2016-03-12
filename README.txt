@@ -144,7 +144,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 = 3.0 =
 * Added: Book Grids can now be filtered and grouped by Editors, Illustrators, Cover Artists, and Publishers
 * Added: Book Grids can now be grouped by several levels
-* Added: Additional pretty links, ie /book/tag/{some-tag} which lists all matching books but display the full book page not a grid
+* Added: Additional pretty links, eg /book/tag/{some-tag} which lists all matching books but display the full book page not a grid
 * Added: Ability to update/change "Add to Goodreads" and "Coming Soon" book cover images (on settings page)
 * Added: Custom text above and below auto-generated Book Grids (Wordpress 4.4+ only)
 * Added: Tip Jar
@@ -152,7 +152,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Improved: Book Cover metabox moved above taxonomies, book info, and buy/download links metaboxes for greater visibility
 * Improved: Book Pages and auto-generated Book Grids now created using a shortcode, which should allow them to play nicely with more themes
 * Improved: Most book data is now stored in a custom table, allowing for faster and more complex grids
-* Improved: Slugs for auto-generated Book Grids can now be customized in settings
+* Improved: URLs for auto-generated Book Grids can now be customized in settings
 * Improved: Settings Page moved to main Admin menu for greater visibility and tabs are now sub-pages of the Settings menu
 * Improved: New Page Settings sub-page to better categorize settings
 * Improved: 2nd set of retailer/download links only displays if excerpt is more than 1500 characters AND excerpt is expanded
@@ -163,7 +163,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Improved: Reordered metaboxes on Book Edit page
 * Improved: Added filter to move Yoast SEO metabox lower on the Edit Book page
 * Improved: Formats & Editions box defaults to closed on Book Edit page. Entering all this info looks intimidating and probably 95% of authors don't want/need this info on the website anyway.
-* Improved: Added move up/down buttons on repeated fields on Edit Book page (reviews, retailer links, download links, and editions)
+* Improved: Added up/down buttons on repeated fields on Edit Book page to allow re-ordering (reviews, retailer links, download links, and editions)
 
 = 2.4.2 =
 * Fixed: Switched from site_url to home_url to create series grid link on book page (caused a problem when Wordpress is installed in a different directory than web URL)
