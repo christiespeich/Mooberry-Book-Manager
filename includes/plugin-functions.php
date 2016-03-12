@@ -19,13 +19,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // the add ons to check dependency
 register_activation_hook( MBDB_PLUGIN_FILE, 'mbdb_activate'  );
 function mbdb_activate() {
+	
+	
 	MBDB()->books->create_table();
 
 	mbdb_set_up_roles();
 
 	// insert defaults
 	$mbdb_options = get_option('mbdb_options');
-	
+	if (!is_array($mbdb_options)) {
+		$mbdb_options = array();
+	}
 	mbdb_insert_default_retailers( $mbdb_options );
 	mbdb_insert_default_formats( $mbdb_options );
 	mbdb_insert_default_edition_formats( $mbdb_options );
@@ -43,6 +47,7 @@ function mbdb_activate() {
 	mbdb_init();
 
 	flush_rewrite_rules();
+	
 }
 
 /**
@@ -92,6 +97,8 @@ function mbdb_init() {
 	mbdb_add_tax_grid();
 	
 	mbdb_upgrade_versions();
+	
+	mbdb_set_default_tax_grid_slugs();
 }
 
 /**
@@ -118,6 +125,7 @@ function mbdb_register_widgets() {
  * @since 1.1 Added tc_post_list_content filter for Customizr theme
  * @since 2.3 Added check for !in_the_loop or !is_main_query
  * @since 3.0 Removed book pages and tax grids into shortcodes
+ * @since 3.0 Added priority 50 to run after PageBuilder because PB overwrites $content
  *
  * @param string $content 
  * @return string content to display
@@ -127,8 +135,9 @@ function mbdb_register_widgets() {
 // add an additional filter handler for the content of the Customizr theme
 // tc_post_list_content should be unique enough to the Customizr theme
 // that it doesn't affect anything else?
+
 add_filter( 'tc_post_list_content', 'mbdb_content' );
-add_filter( 'the_content', 'mbdb_content' );
+add_filter( 'the_content', 'mbdb_content', 50, 1 );
 function mbdb_content( $content ) {
 	
 	global $post;
@@ -141,13 +150,14 @@ function mbdb_content( $content ) {
 	}
 	
 	if ( get_post_type() == 'page' && is_main_query() && !is_admin() ) {
-		
+			
 		$display_grid = get_post_meta( $post->ID, '_mbdb_book_grid_display', true );
 		
 		if ( $display_grid != 'yes' ) {
 			return apply_filters( 'mbdb_book_grid_display_grid_no', $content );
 		} else {
 			$content .= mbdb_bookgrid_content();
+			
 			return apply_filters( 'mbdb_book_grid_content', $content );
 		}
 	}
