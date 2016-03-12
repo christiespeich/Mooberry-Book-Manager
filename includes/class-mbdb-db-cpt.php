@@ -173,19 +173,22 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		$columns = $this->map_postmeta_to_columns();
 	
 		foreach ($posts as $post) {
+			echo '<p>' . __('Migrating', 'mooberry-book-manager') . ' ' . $post->post_title . '...';
 			$new_row = array();
 			$post_data = get_post_meta($post->ID);
 			foreach ( $columns as $post_meta => $column) {
 				if (array_key_exists( $post_meta, $post_data)) {
 					$new_row[$column] = $post_data[$post_meta][0];
 				}
+				echo '.';
 			}
 			$new_row[$this->primary_key] = $post->ID;
 			$success = $this->insert($new_row);
 			if (!$success) {
+				echo '<b>' . __('Error!', 'mooberry-book-manager') . '</b></p>';
 				return false;
 			}
-			
+			echo '<b>' . __('Success!', 'mooberry-book-manager') . '</b></p>';
 		}
 		
 		return true;
