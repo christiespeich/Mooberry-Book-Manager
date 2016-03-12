@@ -247,7 +247,7 @@ class mbdb_Admin_Settings {
 		echo '<h4>' . __('Migrating Data...', 'mooberry-book-manager') . '</h4>';
 		$success = MBDB()->books->import();
 		if ($success === true) {
-			echo '<h4>' . __('Success!', 'mooberry-book-manager') . '</h4>';
+			echo '<h4>' . __('Success! Mooberry Book Manager version 3.0 is ready to use!', 'mooberry-book-manager') . '</h4>';
 			update_option('mbdb_import_books', true);
 		} else { 
 			global $wpdb;
@@ -271,6 +271,21 @@ class mbdb_Admin_Settings {
 				'options'	=> mbdb_get_template_list(),
 			)
 		);
+		
+		$mbdb_settings_metabox->add_field(array(
+				'id'	=> 	'goodreads',
+				'name'	=>	__('Add to Goodreads Image', 'mooberry-book-manager'),
+				'type' => 'file',
+				'attributes' => array(
+					'style'	=>	'width:300px',
+				),
+				'options'	=> array(
+					'url'	=> false,
+					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
+				),
+			)
+		);
+		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=>	'mbdb_reset_meta_boxes',
 				'name'	=> __('Reset Book Edit Page', 'mooberry-book-manager'),
@@ -334,9 +349,9 @@ class mbdb_Admin_Settings {
 	
 		$mbdb_settings_metabox->add_field(array(
 					'id'	=> 'mbdb_book_grid_default_settings_title',
-					'name'	=>	__('GRID DEFAULT SETTINGS', 'mooberry-book-manager'),
+					'name'	=>	__('BOOK GRID DEFAULT SETTINGS', 'mooberry-book-manager'),
 					'type'	=>	'title',
-					'desc'	=>	__('This setting will be used on all grids that are auto-generated for a single genre, tag, etc. It\'s also used on any grids that do not override the default setting.', 'mooberry-book-manager'),
+					'desc'	=>	__('This setting will be used on all Taxonomy Grids. It\'s also used on any grids that do not override the default setting.', 'mooberry-book-manager'),
 				)
 			);
 			
@@ -355,9 +370,9 @@ class mbdb_Admin_Settings {
 			
 		$mbdb_settings_metabox->add_field(array(
 					'id'	=> 'mbdb_book_grid_template_settings_title',
-					'name'	=>	__('GRID TEMPLATE SETTINGS', 'mooberry-book-manager'),
+					'name'	=>	__('TAXONOMY GRID TEMPLATE SETTINGS', 'mooberry-book-manager'),
 					'type'	=>	'title',
-					'desc' =>__('This template will be used to display the grids that are auto-generated for a single genre, tag, etc.', 'mooberry-book-manager'),
+					'desc' =>__('This template will be used to display the Taxonomy Book Grids.', 'mooberry-book-manager'),
 				)
 			);
 		$mbdb_settings_metabox->add_field(array(
@@ -371,9 +386,9 @@ class mbdb_Admin_Settings {
 			
 		// break up the description into multiple sections to keep the HTML
 		// out of the translatable text
-		$description1 = __('These will be used to build website URL for the grids that are auto-generated for a single genre, tag, etc.  Text entered in these fields will be converted to "friendly URLs" by making them lower-case, removing the spaces, etc.', 'mooberry-book-manager');
+		$description1 = __('These will be used to build website URL for the Taxonomy Book Grids.  Text entered in these fields will be converted to "friendly URLs" by making them lower-case, removing the spaces, etc.', 'mooberry-book-manager');
 		/* translators: %s represents HTML for bolding. Please leave them in */
-		$description2 = '<b>' . __('NOTE:', 'mooberry-book-manager') . '</b>' . __('Wordpress reserved terms are not allowed here.', 'mooberry-book-manager');
+		$description2 = '<b>' . __('NOTE:', 'mooberry-book-manager') . '</b> ' . __('Wordpress reserved terms are not allowed here.', 'mooberry-book-manager');
 		$description4 = __('Reserved Terms', 'mooberry-book-manager');
 		$description5 = __('See a list of reserved terms.', 'mooberry-book-manager');
 		
@@ -387,7 +402,7 @@ class mbdb_Admin_Settings {
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 'mbdb_book_grid_slug_settings_title',
-				'name'	=>	__('GRID URL SETTINGS', 'mooberry-book-manager'),
+				'name'	=>	__('TAXONOMY BOOK GRID URL SETTINGS', 'mooberry-book-manager'),
 				'type'	=>	'title',
 				'desc' =>  $description,
 			)
@@ -556,6 +571,7 @@ class mbdb_Admin_Settings {
 				'name'	=>	__('Show Placeholder Cover On', 'mooberry-book-manager'),
 				'type'	=> 'multicheck',
 				'select_all_button' => false,
+				'desc'	=>	__('The placeholder cover is used for books that do not have a cover selected.', 'mooberry-book-manager'),
 				'options'	=> array(
 								'page' => __('Book Page', 'mooberry-book-manager'),
 								'widget'	=>	__('Widgets', 'mooberry-book-manager'),
@@ -576,19 +592,6 @@ class mbdb_Admin_Settings {
 			)
 		);
 		
-		$mbdb_settings_metabox->add_field(array(
-				'id'	=> 	'goodreads',
-				'name'	=>	__('Add to Goodreads Image', 'mooberry-book-manager'),
-				'type' => 'file',
-				'attributes' => array(
-					'style'	=>	'width:300px',
-				),
-				'options'	=> array(
-					'url'	=> false,
-					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
-				),
-			)
-		);
 		
 		
 		return apply_filters('mbdb_settings_general_settings', $mbdb_settings_metabox);
