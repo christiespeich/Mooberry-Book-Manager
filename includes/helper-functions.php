@@ -848,6 +848,24 @@ function mbdb_get_default_formats() {
 	
 }
 
+function mbdb_set_default_tax_grid_slugs() {
+	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
+	$mbdb_options = get_option('mbdb_options');
+	$reserved_terms = mbdb_wp_reserved_terms();
+	foreach($taxonomies as $name => $taxonomy) {
+		$key = 'mbdb_book_grid_' . $name . '_slug';
+		if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
+			$slug = sanitize_title($taxonomy->labels->singular_name);
+			if ( in_array($slug, $reserved_terms) ) {
+				$slug = sanitize_title('book-' . $slug);
+			}
+			$mbdb_options[$key] = $slug;
+		}
+	}
+	update_option('mbdb_options', $mbdb_options);
+
+}
+
 function mbdb_insert_default_formats( &$mbdb_options) {
 	$default_formats = mbdb_get_default_formats();
 	mbdb_insert_defaults( $default_formats, 'formats', $mbdb_options);
