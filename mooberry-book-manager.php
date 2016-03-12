@@ -177,25 +177,3 @@ function MBDB() {
 
 // Get MBDB Running
 MBDB();
-	
-
-	
-
-
-
-
-/*
-add_filter('tc_include_cpt_in_archives' , 'mbdb_tc_archives');
-function mbdb_tc_archives($include) {
-	error_log('inclue cpt in archives');
-	error_log(get_post_type());
-	if (get_post_type() == 'mbdb_book' || get_post_type() == 'mbdb_tax_grid') {
-		return false;
-	} else {
-		return $include;
-	}
-}
-*/
-
-
-
