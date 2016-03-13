@@ -347,7 +347,7 @@ public function search_where( $where ) {
 			  FULLTEXT INDEX summary_index (summary),
 			  FULLTEXT INDEX excerpt_index (excerpt),
 			  FULLTEXT INDEX additional_info (additional_info)
-		 ) $charset_collate; ";
+		 ) ENGINE=MyISAM $charset_collate; ";
 	 
 		dbDelta( $sql_create_table );
 		
