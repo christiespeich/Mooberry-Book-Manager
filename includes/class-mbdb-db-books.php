@@ -5,7 +5,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 	public function __construct() {
 		$this->primary_key = 'book_id';
 		$this->post_type = 'mbdb_book';
-		$this->version = '1.0';
+		$this->version = MBDB_PLUGIN_VERSION; //'3.0';
 		
 		parent::__construct( 'mbdb_books' );
 		
@@ -343,10 +343,7 @@ public function search_where( $where ) {
 			  goodreads longtext,
 			  series_order tinyint unsigned,
 			  PRIMARY KEY  (book_id),
-			  KEY release_date (release_date),
-			  FULLTEXT INDEX summary_index (summary),
-			  FULLTEXT INDEX excerpt_index (excerpt),
-			  FULLTEXT INDEX additional_info (additional_info)
+			  KEY release_date (release_date)
 		 ) $charset_collate; ";
 	 
 		dbDelta( $sql_create_table );
