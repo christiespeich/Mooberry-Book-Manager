@@ -56,6 +56,7 @@ class MBDB_Books extends MBDB_CPT {
 	
 	public function get_random_book( $bookIDs = null ) {
 		$books = $this->db_object->get( $bookIDs );
+		
 		return mbdb_get_random( $books );
 		
 	}

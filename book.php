@@ -330,7 +330,7 @@ add_action('add_meta_boxes_mbdb_book', 'mbdb_reorder_taxonomy_boxes');
  *  
  *  @access public
  */
-//add_action( 'add_meta_boxes_mbdb_book', 'mbdb_mbd_metabox', 10 );
+add_action( 'add_meta_boxes_mbdb_book', 'mbdb_mbd_metabox', 10 );
 function mbdb_mbd_metabox() {
 	add_meta_box( 'mbdb_mbd_metabox', __('Need help with Mooberry Book Manager?', 'mooberry-book-manager'), 'mbdb_display_mbdb_metabox', 'mbdb_book', 'side', 'core' );
 }
@@ -806,6 +806,8 @@ function mbdb_book_metaboxes(  ) {
 			),
 		)
 	);
+	
+
 	
 	$mbdb_summary_metabox = apply_filters('mbdb_summary_metabox', $mbdb_summary_metabox);
 	$mbdb_editions_metabox = apply_filters('mbdb_editions_metabox', $mbdb_editions_metabox);

@@ -85,6 +85,7 @@ class mbdb_book_widget extends WP_Widget {
 		$book = null;
 		do_action('mbdb_widget_pre_get_books', $instance);
 			
+
 		switch ($mbdb_widget_type) {
 			case 'random':
 				// get book ID of a random book
