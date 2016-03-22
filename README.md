@@ -3,7 +3,7 @@
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
 **Tested up to:** 4.3.1   
-**Stable tag:** 2.3  
+**Stable tag:** 2.4.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -60,21 +60,27 @@ Want regular updates?
 #### 3.0 
 * Added: Book Grids can now be filtered and grouped by Editors, Illustrators, Cover Artists, and Publishers
 * Added: Book Grids can now be grouped by several levels
-* Added: Additional pretty links, ie /book/tag/{some-tag} which lists all matching books but display the full book page not a grid
+* Added: Additional pretty links, eg /book/tag/{some-tag} which lists all matching books but display the full book page not a grid
 * Added: Ability to update/change "Add to Goodreads" and "Coming Soon" book cover images (on settings page)
 * Added: Custom text above and below auto-generated Book Grids (Wordpress 4.4+ only)
 * Added: Tip Jar
 * Added: Greek Translation
+* Added: Indian Rupees (INR/₹) to currency dropdown options
 * Improved: Book Cover metabox moved above taxonomies, book info, and buy/download links metaboxes for greater visibility
 * Improved: Book Pages and auto-generated Book Grids now created using a shortcode, which should allow them to play nicely with more themes
 * Improved: Most book data is now stored in a custom table, allowing for faster and more complex grids
-* Improved: Slugs for auto-generated Book Grids can now be customized in settings
-* Improved: Settings Page moved to main Admin menu for greater visibility
+* Improved: URLs for auto-generated Book Grids can now be customized in settings
+* Improved: Settings Page moved to main Admin menu for greater visibility and tabs are now sub-pages of the Settings menu
+* Improved: New Page Settings sub-page to better categorize settings
 * Improved: 2nd set of retailer/download links only displays if excerpt is more than 1500 characters AND excerpt is expanded
 * Improved: User interface and instructions/descriptions of fields updated/added
 * Improved: "Published on" date now uses the format set in Wordpress General settings
 * Improved: Browser tab title is now the title of grid when viewing an auto-generated grid
 * Improved: Accessibility improved by all images now using ALT tags set by user OR a default ALT tag in case the user has not set one.
+* Improved: Reordered metaboxes on Book Edit page
+* Improved: Added filter to move Yoast SEO metabox lower on the Edit Book page
+* Improved: Formats & Editions box defaults to closed on Book Edit page. Entering all this info looks intimidating and probably 95% of authors don't want/need this info on the website anyway.
+* Improved: Added up/down buttons on repeated fields on Edit Book page to allow re-ordering (reviews, retailer links, download links, and editions)
 
 
 #### 2.4.2 
