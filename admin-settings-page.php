@@ -221,7 +221,7 @@ class mbdb_Admin_Settings {
 			case 'mbdb_formats_options' :
 				$mbdb_settings_metabox = $this->mbdb_formats($mbdb_settings_metabox);
 				break;
-			case 'mbdb_social-media_options' :
+			case 'mbdb_social_media_options' :
 				$mbdb_settings_metabox = $this->mbdb_social_media($mbdb_settings_metabox);
 				break;
 			// case 'output':

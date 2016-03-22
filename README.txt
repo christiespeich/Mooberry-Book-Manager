@@ -149,6 +149,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Added: Custom text above and below auto-generated Book Grids (Wordpress 4.4+ only)
 * Added: Tip Jar
 * Added: Greek Translation
+* Added: Indian Rupees (INR/₹) to currency dropdown options
 * Improved: Book Cover metabox moved above taxonomies, book info, and buy/download links metaboxes for greater visibility
 * Improved: Book Pages and auto-generated Book Grids now created using a shortcode, which should allow them to play nicely with more themes
 * Improved: Most book data is now stored in a custom table, allowing for faster and more complex grids
