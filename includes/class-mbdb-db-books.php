@@ -32,7 +32,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return array(
 			'_mbdb_summary' => 'summary',
 			'_mbdb_excerpt' => 'excerpt',
-			'_mbdb_additonal_info' => 'additional_info',
+			'_mbdb_additional_info' => 'additional_info',
 			'_mbdb_subtitle' => 'subtitle',
 			'_mbdb_cover' => 'cover',
 			'_mbdb_cover_id' => 'cover_id',
