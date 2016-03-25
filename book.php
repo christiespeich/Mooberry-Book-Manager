@@ -185,6 +185,7 @@ function populate_mbdb_book_columns( $column, $post_id ) {
  *  
  *  @access public
  */
+ add_filter('cmb2_override_meta_remove', 'mbdb_save_meta_data', 10, 2);
  add_filter('cmb2_override_meta_save', 'mbdb_save_meta_data', 10, 2);
  function mbdb_save_meta_data( $override, $a ) {
 	
