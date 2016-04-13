@@ -6,8 +6,21 @@ function mbdb_register_admin_styles() {
 	wp_enqueue_style( 'mbdb-admin-styles' );
 }
 
+add_action( 'admin_enqueue_scripts', 'mbdb_register_widget_script');
+function mbdb_register_widget_script( $page_hook ) {
+
+	if ($page_hook == 'widgets.php') {
+		wp_enqueue_script( 'mbdb-admin-widget',  MBDB_PLUGIN_URL . 'includes/js/admin-widget.js', '', mbdb_get_enqueue_version());		
+		
+	}
+}
+
+
 add_action( 'admin_footer', 'mbdb_register_script');
 function mbdb_register_script() {
+	
+	
+	
 	$current_screen = get_current_screen();
 	if (!$current_screen) {
 		return;
@@ -29,11 +42,7 @@ function mbdb_register_script() {
 		wp_enqueue_script( 'mbdb-admin-book-grid' ); 
 	}
 
-	if ($base == 'widgets') {
-		// admin-widget
-		wp_enqueue_script( 'mbdb-admin-widget',  MBDB_PLUGIN_URL . 'includes/js/admin-widget.js', '', mbdb_get_enqueue_version());		
-		
-	}
+	
 	
 	if ($post_type == 'mbdb_book' && $base == 'post') {
 		// admin-book
@@ -57,6 +66,21 @@ function mbdb_register_script() {
 						);
 	}
 	
+	// show on all admin pages
+	wp_enqueue_script('mbdb-admin-ajax',
+							plugins_url('js/admin.js', __FILE__),
+							array('jquery'),
+							mbdb_get_enqueue_version());
+						
+		wp_localize_script( 'mbdb-admin-ajax', 
+						'mbdb_admin_notice_ajax', 
+						array( 
+							'ajax_url' => admin_url( 'admin-ajax.php' ),
+							'dismiss_ajax_nonce' => wp_create_nonce('mbdb_admin_notice_dismiss_ajax_nonce'),
+							'remigrate_ajax_nonce' => wp_create_nonce('mbdb_admin_notice_3_1_remigrate_ajax_nonce'),
+							'redirect_url' => admin_url('admin.php?page=mbdb_migrate')
+						) 
+					);
 }
 
 // woocommerce
@@ -86,4 +110,14 @@ function mbdb_grid_styles() {
 			include MBDB_PLUGIN_DIR . 'css/grid-styles.php';
 		}
 	}
+}
+
+add_filter( 'post_class', 'mbdb_add_post_class' );
+function mbdb_add_post_class( $classes ) {
+	if (get_post_type()=='mbdb_book') {
+		if (!in_array('post', $classes)) {
+			$classes[] = 'post';
+		}
+	}
+	return $classes;
 }
