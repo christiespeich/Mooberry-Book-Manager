@@ -23,30 +23,69 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		add_filter('posts_where', array( $this, 'search_where' ) );
 		add_filter('posts_groupby', array( $this, 'search_groupby' ) );	
 		
+		add_action( 'before_delete_post', array( $this, 'post_deleted') );
+		
 		parent::__construct( $table_name );
 			
 	}
 	
-	public function columns_with_html() {
-		return array();
+	public function get_data_by_post_meta( $post_meta, $id ) {
+		$data = $this->get( $id );
+		if ($data == null) {
+			return false;
+		}
+		$column = $this->post_meta_to_column($post_meta);
+		if ( $column !== false ) {		
+			return $data->{$column};
+		}
+		
+		return false;
 	}
 	
+	public function post_meta_to_column( $post_meta ) {
+		$fields = $this->map_postmeta_to_columns();
+		if ( array_key_exists( $post_meta, $fields ) ) {
+			return $fields[$post_meta];
+		} else {
+			return false;
+		}
+	}
+	
+	
 	public function get($ids = null, $orderby = null, $order = null, $include_unpublished = false) {
+		global $wpdb;
 		if ($ids == null) {
 			$data = $this->get_all($orderby, $order, $include_unpublished);
 		} else {
 			if (is_array($ids)) {
 				$data = $this->get_multiple_with_posts( $ids, $orderby, $order, $include_unpublished );
 			} else {
+				
+				
+					
 				$sql =  "SELECT * 
 				FROM $this->table_name AS t
-				JOIN " . $this->prefix() . "posts p ON p.id = t." . $this->primary_key . "
-				WHERE p.id = $ids";
-
+				JOIN " . $wpdb->posts . " p ON p.id = t." . $this->primary_key . "
+				WHERE p.id = $ids ";
+				if ( $this->column_exists( 'blog_id' ) ) {
+					$sql .= " AND t.blog_id = " . $this->blog_id;
+				}
+		
+				$cache = $this->get_cache($sql);
+				
+				if (false !== $cache) {
+					return $cache;
+				}
+				
 				global $wpdb;
 				$data =  $wpdb->get_row($sql);
+				
+				$this->set_cache( $data, $sql );
+
 			}
 		}
+		
+		
 		return $data;
 	}
 	
@@ -62,8 +101,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		
 		$order = $this->validate_order( $order );
 		
-		$join = ' JOIN ' . $this->prefix() . 'posts p ON p.id = t.' . $this->primary_key;
+		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.' . $this->primary_key;
 		
+		$where = '';
 		if ( ! $include_unpublished ) {
 			$where = ' AND p.post_status = "publish" ';
 		} 
@@ -71,10 +111,16 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		// %d, %d, %d, [...]
 		$key_ids = $this->get_in_format( $ids, '%d' );
 		
+		
+		if ( $this->column_exists( 'blog_id' ) ) {
+			$where .= " AND blog_id = $this->blog_id";
+		}
+
+		
 		$sql = $wpdb->prepare( "SELECT * 
 						FROM $this->table_name AS t
 						$join
-						WHERE $this->primary_key IN ($key_ids)
+						WHERE $this->primary_key IN ($key_ids) 
 						$where
 						ORDER BY %s %s;",
 						array_merge($ids , 
@@ -89,6 +135,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	
 	protected function get_all ($orderby = null, $order = null, $include_unpublished = false ) {
 		
+		global $wpdb;
 		
 		//	$orderby = $this->validate_orderby( $orderby );
 		if ($orderby == null) {
@@ -97,16 +144,21 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		$order = $this->validate_order( $order );
 		
 		$where = '';
-		$join = ' JOIN ' . $this->prefix() . 'posts p ON p.id = t.' . $this->primary_key;
+		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.' . $this->primary_key;
 		
 		if ( ! $include_unpublished ) {
-			$where = ' WHERE p.post_status = "publish" ';
+			$where = ' AND p.post_status = "publish" ';
 			
 		} 
+		
+		if ( $this->column_exists( 'blog_id' ) ) {
+			$where .= " AND blog_id = $this->blog_id";
+		}
 		
 		$sql =  "SELECT * 
 				FROM $this->table_name AS t
 				$join
+				WHERE blog_id = $this->blog_id
 				$where
 				ORDER BY  
 				$orderby 
@@ -134,11 +186,15 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		$slug = esc_sql( $slug );
 		$slug = sanitize_title_for_query( $slug );
 	
+		$where = '';
+		if ( $this->column_exists( 'blog_id' ) ) {
+			$where = " AND blog_id = $this->blog_id";
+		}
 		
 		$sql = $wpdb->prepare("SELECT * 
-						FROM {$this->prefix()}posts AS p
-						JOIN $this->table_name AS a ON a.{$this->primary_key} = p.ID
-						WHERE post_name = %s AND 
+						FROM {$wpdb->posts} AS p
+						JOIN {$this->table_name} AS a ON a.{$this->primary_key} = p.ID
+						WHERE post_name = %s {$where} AND 
 						post_type = %s;",
 						$slug,
 						$this->post_type);
@@ -152,13 +208,52 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	}
 	
 	public function save( $data, $id, $auto_increment = false, $type = '') {	
+	
+		// no data to save. Not an error just no rows updated/inserted
+		if (!is_array($data)) {
+			return 0;
+		}
+		
+		// data comes in as
+		// ( post_meta_id => value )
+		// must be rewritten to
+		// ( column => value )
+		$columns = $this->map_postmeta_to_columns();
+		foreach( $data as $post_meta => $value ) {
+			if (array_key_exists($post_meta, $columns)) {
+				$column = $columns[ $post_meta ];
+				$new_data[ $column ] = $this->sanitize_field( $column, $value);
+			}
+		}
+		
+		// no data to save. Not an error just no rows updated/inserted
+		if (!is_array($new_data)) {
+			return 0;
+		}
+	
+	
+	
 		// does not have a regular PK because it gets it from the posts table 
 		//so the "primary key" field has to be added as one to insert (not auto-increment)
+		
 		if ($type == '') {
 			$type = $this->post_type;
 		}
-		return parent::save( $data, $id, false, $type );
 		
+		return parent::save( $new_data, $id, false, $type );
+		
+	}
+	
+	
+	
+	// runs when a post is emptied from the trash
+	public function post_deleted ( $id ) {
+		global $post_type;   
+		if ( $post_type != $this->post_type ) {
+			return;
+		}
+		
+		parent::delete( $id );
 	}
 	
 	public function import() {
@@ -182,8 +277,22 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				}
 				echo '.';
 			}
-			$new_row[$this->primary_key] = $post->ID;
-			$success = $this->insert($new_row);
+			if (count($new_row)>0) {
+				
+				$new_row['blog_id'] = $this->blog_id;
+				$success = $this->save($new_row, $post->ID);
+			} else {
+				$success = true;
+			}
+			
+		/* 	$results = $this->get( $post->ID );
+		
+			if ($results == null || empty($results) ) {
+				$new_row[$this->primary_key] = $post->ID;
+				$success = $this->insert($new_row);
+			} else {
+				$success = $this->update( $post->ID, $new_row);
+			} */
 			if (!$success) {
 				echo '<b>' . __('Error!', 'mooberry-book-manager') . '</b></p>';
 				return false;
@@ -199,7 +308,14 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	 *  
 	 ****************************************************************/
  
-	abstract public function search_where( $where );
+	public function search_where( $where ) {
+		global $wpdb;	
+		if( is_search() ) {
+			if ( $this->column_exists( 'blog_id' ) ) {
+				$where .= " AND " . $this->table_name . ".blog_id = " . $this->blog_id . " ";
+			}
+		}
+	}
 	
 	public function search_join( $join ) {
 		global $wpdb;
