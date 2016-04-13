@@ -44,6 +44,7 @@ function mbdb_get_grid_cover_height( $postID = null ) {
 	// if getting the default, pull from options
 	// otherwise pull from the specific page's settings
 	if ($mbdb_book_grid_cover_height_default == 'yes') {
+		$mbdb_options = get_option('mbdb_options');
 		if (isset($mbdb_options['mbdb_default_cover_height'])) {
 			$mbdb_book_grid_cover_height = $mbdb_options['mbdb_default_cover_height'];
 		}
@@ -210,6 +211,26 @@ function mbdb_dropdown($dropdownID, $options, $selected = null, $include_empty =
 }
 	
 	
+function mbdb_set_admin_notice($message, $type, $key) {
+	// type must be one of these
+	if (!in_array($type, array('error', 'updated', 'update-nag'))) {
+		$type = 'updated';
+	}
+	
+	$notices = get_option( 'mbdb_admin_notices', array() );
+	$notices[$key] = array('message' => $message, 'type' => $type);
+	update_option( 'mbdb_admin_notices', $notices);
+	
+}
+
+function mbdb_remove_admin_notice($key) {
+	$mbdb_admin_notices = get_option('mbdb_admin_notices');
+
+	if (array_key_exists($key, $mbdb_admin_notices)) {
+		unset($mbdb_admin_notices[$key]);
+	}
+	update_option('mbdb_admin_notices', $mbdb_admin_notices);
+}
 	
 	
 	// for users with PHP <5.5
@@ -756,13 +777,17 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options, $p
 			if (array_key_exists('image', $default_value)) {
 				// upload the image to the media library 	
 				// and save both the URL and the ID
-				$attachID = mbdb_upload_image( $default_value['image'], $path );
+				//$attachID = mbdb_upload_image( $default_value['image'], $path );
+				$path = MBDB_PLUGIN_URL . 'includes/assets/' . $default_value['image']; //dirname( __FILE__ ) . '/assets/';
+				$default_values[$uniqueID]['image'] = $path;
+				/*
 				$default_values[$uniqueID]['imageID'] = $attachID;
 				if ($attachID != 0) {
 					$default_values[$uniqueID]['image'] = wp_get_attachment_url( $attachID );
 				} else {
 					$default_values[$uniqueID]['image'] = '';
 				}
+				*/
 			}
 			
 			/* // save each piece of data
@@ -786,7 +811,7 @@ function mbdb_get_default_retailers() {
 	// v 2.4.2 updated file names
 	$default_retailers = array();
 	$default_retailers[] = array('name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png');
-	$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.jpg');
+	$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png');
 	$default_retailers[] = array('name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png');
 	$default_retailers[] = array('name' => 'iBooks', 'uniqueID' => 4, 'image' => 'ibooks.png');
 	$default_retailers[] = array('name' => 'Smashwords', 'uniqueID' => 5, 'image' => 'smashwords.png');
@@ -853,8 +878,12 @@ function mbdb_get_default_formats() {
 function mbdb_set_default_tax_grid_slugs() {
 	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
 	$mbdb_options = get_option('mbdb_options');
-	$reserved_terms = mbdb_wp_reserved_terms();
+	
+	//$reserved_terms = mbdb_wp_reserved_terms();
 	foreach($taxonomies as $name => $taxonomy) {
+		$key = 'mbdb_book_grid_' . $name . '_slug';
+		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $name, $mbdb_options);
+		/*
 		$key = 'mbdb_book_grid_' . $name . '_slug';
 		if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
 			$slug = sanitize_title($taxonomy->labels->singular_name);
@@ -863,10 +892,32 @@ function mbdb_set_default_tax_grid_slugs() {
 			}
 			$mbdb_options[$key] = $slug;
 		}
+		*/
 	}
 	update_option('mbdb_options', $mbdb_options);
-
 }
+
+function mbdb_get_tax_grid_slug( $singular_name, $term, $mbdb_options = null ) {
+	if ($mbdb_options == null) {
+		$mbdb_options = get_option('mbdb_options');
+	}
+	if (!is_array($mbdb_options)) {
+		$mbdb_options = array();
+	}
+	$key = 'mbdb_book_grid_' . $term . '_slug';
+	$reserved_terms = mbdb_wp_reserved_terms();
+	if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
+		$slug = $singular_name;
+		if ( in_array($slug, $reserved_terms) ) {
+			$slug = 'book-' . $slug;
+		}
+	} else {
+		$slug = $mbdb_options[$key];
+	}
+	return sanitize_title($slug);
+}
+
+
 
 function mbdb_insert_default_formats( &$mbdb_options) {
 	$default_formats = mbdb_get_default_formats();
