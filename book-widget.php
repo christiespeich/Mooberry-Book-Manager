@@ -8,8 +8,11 @@
 class mbdb_book_widget extends WP_Widget {
 
 	// constructor
+	// 3.1 -- added customize_selected_refresh for WP 4.5
 	function __construct() {
-		$widget_ops = array('classname' => 'mbdb_book_widget', 'description' => __('Shows the cover of the book of your choosing with a link to the book page', 'mooberry-book-manager'));
+		$widget_ops = array('classname' => 'mbdb_book_widget', 
+							'description' => __('Shows the cover of the book of your choosing with a link to the book page', 'mooberry-book-manager'),
+							 'customize_selective_refresh' => true,);
 		
 		parent::__construct('mbdb_book_widget', 'Mooberry Book Manager '. _x('Book', 'noun', 'mooberry-book-manager'), $widget_ops  );
 
@@ -94,6 +97,7 @@ class mbdb_book_widget extends WP_Widget {
 		
 			case "newest":
 				// get book ID of most recent book
+				
 				$book = apply_filters('mbdb_widget_newest_book_list', MBDB()->books->get_most_recent_book(), $instance);
 				break;
 			
@@ -146,10 +150,19 @@ class mbdb_book_widget extends WP_Widget {
 			}
 			if (!$image_src || $image_src == '') { 
 				// v3.0 check for placeholder image setting
-				$show_placeholder_cover = mbdb_get_option('show_placeholder_cover');
+				$mbdb_options = get_option('mbdb_options');
+				if (array_key_exists('show_placeholder_cover', $mbdb_options)) {
+					$show_placeholder_cover = $mbdb_options['show_placeholder_cover']; //mbdb_get_option('show_placeholder_cover');
+				} else {
+					$show_placeholder_cover = array();
+				}
 				if (is_array($show_placeholder_cover)) {
 					if (in_array('widget', $show_placeholder_cover)) {
-						$image_src = mbdb_get_option('coming-soon');
+						if (array_key_exists('coming-soon', $mbdb_options)) {
+							$image_src = $mbdb_options['coming-soon']; //mbdb_get_option('coming-soon');
+						} else {
+							$image_src = '';
+						}
 					}
 				}
 			}
