@@ -102,9 +102,13 @@ class mbdb_Admin_Settings {
 																'menu_title'	=>	__('Edition Formats', 'mooberry-book-manager')
 															)
 					);
-					
+		/*			
 		$import_books = get_option('mbdb_import_books');
-		if ( !$import_books || $import_books == null ) {
+		error_log($import_books); 
+		if ( !$import_books || $import_books == null ) {  */
+		// show migrate page if version is 3.x
+		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
+		if (version_compare($current_version, '2.4.4', '>') && version_compare($current_version, '4.0', '<')) {
 			$pages['mbdb_migrate'] = array ( 'page_title'	=>	__('Mooberry Book Manager v3.0 Data Migration', 'mooberry-book-manager'),
 												'menu_title'	=>	__('Migrate Data', 'mooberry-book-manager')
 												);
@@ -241,7 +245,12 @@ class mbdb_Admin_Settings {
 	
 		$import_books = get_option('mbdb_import_books');
 		if ($import_books ) {
+			
 			echo '<h4>' . __('Data already migrated. Mooberry Book Manager 3.0 is ready to use!', 'mooberry-book-manager') . '</h4>';
+			echo __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.  ', 'mooberry-book-manager');
+			echo '<b>' . __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager') . '</b>';
+			echo '<p><a href="#"  id="mbdb_3_1_remigrate" class="button">' . __('Re-Migrate Data Now', 'mooberry-book-manager'). '</a></p> ';
+			echo '<div id="results"></div>';
 			return;
 		}
 		echo '<h4>' . __('Migrating Data...', 'mooberry-book-manager') . '</h4>';
@@ -853,8 +862,12 @@ class mbdb_Admin_Settings {
 		// if any of the tax slugs change, flush the rewrite rules
 		$taxonomies = mbdb_tax_grid_objects(); 
 		foreach($taxonomies as $name => $taxonomy) {
-			if ($old_value['mbdb_book_grid_' . $name . '_slug']	!= $new_value['mbdb_book_grid_' . $name . '_slug']) {
-				flush_rewrite_rules();
+			$key = 'mbdb_book_grid_' . $name . '_slug';
+			if ( (!array_key_exists($key, $old_value)) || ($old_value[$key] != $new_value[$key]) ) {
+				// multi-site compatible
+				global $wp_rewrite;
+				$wp_rewrite->init(); //important...
+				$wp_rewrite->flush_rules();
 				break;
 			}
 		}
@@ -920,13 +933,16 @@ function mbdb_admin() {
  * @param  string  $key Options array key
  * @return mixed        Option value
  */
-function mbdb_get_option( $key = '' ) {
+/*function mbdb_get_option( $key = '' ) {
 	return cmb2_get_option( mbdb_admin()->key, $key );
 }
+*/
+
 
 // ajax function to reset meta boxes
 add_action( 'wp_ajax_mbdb_reset_meta_boxes', 'mbdb_reset_meta_boxes' );
 function mbdb_reset_meta_boxes() {
+	check_ajax_referer( 'mbdb_admin_options_ajax_nonce', 'security' );
 	$user_id = get_current_user_id();
 	delete_user_meta( $user_id, 'meta-box-order_mbdb_book');
 }
