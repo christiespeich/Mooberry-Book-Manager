@@ -25,6 +25,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'publisher_id' => '%s',
 			'goodreads' => '%s',
 			'series_order' => '%d',
+			'blog_id'	=> '%d',
 		);
 	}
 	
@@ -36,14 +37,14 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'_mbdb_subtitle' => 'subtitle',
 			'_mbdb_cover' => 'cover',
 			'_mbdb_cover_id' => 'cover_id',
-			'_mbdb_pubdate' => 'release_date',
+			'_mbdb_published' => 'release_date',
 			'_mbdb_publisherID' => 'publisher_id',
 			'_mbdb_goodreads' => 'goodreads',
 			'_mbdb_series_order' => 'series_order',
 		);
 	}
 	
-	public function columns_with_html() {
+	protected function columns_with_html() {
 		return array(
 			'summary',
 			'excerpt',
@@ -94,6 +95,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		//			OR { field, direction } ie { release_date, DESC }
 		
 		
+		global $wpdb;
 		
 		// validate inputs
 		
@@ -163,11 +165,15 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			}
 		}
 		
+		$where = '';
+		if ( $this->column_exists( 'blog_id' ) ) {
+			$where = " AND blog_id = $this->blog_id";
+		}
 
 		
 		$select = 'SELECT DISTINCT ';
-		$join = ' JOIN ' . $this->prefix() . 'posts p ON p.id = b.book_id ';
-		$where = ' WHERE p.post_status = "publish" ';
+		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = b.book_id ';
+		$where = ' WHERE p.post_status = "publish" ' . $where . ' ';
 		$orderby = ' ORDER BY ';
 		
 		// if book_ids are sent, filter by them
@@ -209,8 +215,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 					$where .= ' AND ( tt.taxonomy = "mbdb_' . $selection . '" 
 									AND tt.term_id in ( ' . implode(', ', $selection_ids) . ' ) 
 									AND p.post_type = "mbdb_book" ) ';
-					$join .= ' JOIN ' . $this->prefix() . 'term_relationships AS tr ON tr.object_id = b.book_id 
-								JOIN ' . $this->prefix() . 'term_taxonomy AS tt  ON tt.term_taxonomy_id = tr.term_taxonomy_id ';
+					$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr ON tr.object_id = b.book_id 
+								JOIN ' . $wpdb->term_taxonomy . ' AS tt  ON tt.term_taxonomy_id = tr.term_taxonomy_id ';
 				}
 				break;
 		}
@@ -247,8 +253,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								if ($tax_ids == -1) {
 									$select .=  ' "" AS name' . $tax_level . ', ';
 									$where .= ' and b.book_id not in (select book_id from ' . $this->table_name . ' as b 
-																		join ' . $this->prefix() . 'term_relationships as tr3 on tr3.object_id = b.book_id 
-																		join ' . $this->prefix() . 'term_taxonomy tt3 on tt3.term_taxonomy_id = tr3.term_taxonomy_id 
+																		join ' . $wpdb->term_relationships . ' as tr3 on tr3.object_id = b.book_id 
+																		join ' . $wpdb->term_taxonomy . ' tt3 on tt3.term_taxonomy_id = tr3.term_taxonomy_id 
 																		where tt3.taxonomy = "mbdb_' . $tax . '" ) ';
 								} else {	
 									if (!is_array($tax_ids)) {
@@ -257,9 +263,9 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 									$tax_ids = array_map('absint', $tax_ids);
 									$select .= 't' . $tax_level . '.name AS name' . $tax_level . ', ';
 									$where .= ' AND (tt' . $tax_level . '.taxonomy = "mbdb_' . $tax . '" AND tt' . $tax_level . '.term_id in (' . implode(',', $tax_ids) . ') ) ';
-									$join .= ' JOIN ' . $this->prefix() . 'term_relationships AS tr' . $tax_level . ' ON tr' . $tax_level . '.object_id = b.book_id 
-												JOIN ' . $this->prefix() . 'term_taxonomy AS tt' . $tax_level . '  ON tt' . $tax_level . '.term_taxonomy_id = tr' . $tax_level . '.term_taxonomy_id 
-												JOIN ' . $this->prefix() . 'terms AS t' . $tax_level . ' ON t' . $tax_level . '.term_id = tt' . $tax_level . '.term_id';
+									$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr' . $tax_level . ' ON tr' . $tax_level . '.object_id = b.book_id 
+												JOIN ' . $wpdb->term_taxonomy . ' AS tt' . $tax_level . '  ON tt' . $tax_level . '.term_taxonomy_id = tr' . $tax_level . '.term_taxonomy_id 
+												JOIN ' . $wpdb->terms . ' AS t' . $tax_level . ' ON t' . $tax_level . '.term_id = tt' . $tax_level . '.term_id';
 								}
 							}
 						break;
@@ -315,7 +321,7 @@ public function search_where( $where ) {
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $this->table_name . ".subtitle LIKE $1 ) OR (
 		   " . $this->table_name . ".excerpt LIKE $1) OR (
 		   " . $this->table_name . ".summary LIKE $1) OR (" . $this->table_name .".additional_info LIKE $1) ", $where);
-	
+		$where = parent::search_where( $where );
 	}
 	
 	return $where;
@@ -332,6 +338,7 @@ public function search_where( $where ) {
 		
 		$sql_create_table = "CREATE TABLE " . $this->table_name . " (
 			  book_id bigint(20) unsigned NOT NULL,
+			  blog_id bigint(20) unsigned NOT NULL,
 			  subtitle varchar(100),
 			  summary longtext,
 			  excerpt longtext,
@@ -342,7 +349,7 @@ public function search_where( $where ) {
 			  publisher_id char(13),
 			  goodreads longtext,
 			  series_order tinyint unsigned,
-			  PRIMARY KEY  (book_id),
+			  PRIMARY KEY  (book_id,blog_id),
 			  KEY release_date (release_date)
 		 ) $charset_collate; ";
 	 
