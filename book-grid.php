@@ -225,7 +225,7 @@ function mbdb_book_grid_meta_boxes( ) {
 	
 
 	// VALIDATE THE INPUTS
-	
+	// make sure the group value is valid. ie it could be "author" but the author plugin has since been deactivated.
 	// loop through the group by levels
 	// set up the group arrays
 	// stop at the first one that is none
@@ -235,12 +235,23 @@ function mbdb_book_grid_meta_boxes( ) {
 	$group_by_levels = mbdb_book_grid_group_by_options();
 
 	for($x = 1; $x< count($group_by_levels); $x++) {
-		if (!array_key_exists('_mbdb_book_grid_group_by_level_' . $x, $mbdb_book_grid_meta_data) ) {
+		$key = '_mbdb_book_grid_group_by_level_' . $x;
+		
+		// if there the key doesn't exist for whatever reason, default to none
+		if (!array_key_exists($key, $mbdb_book_grid_meta_data) ) {
 			$groups[$x] = 'none';
 			$current_group['none'] = 0;
 			break;
 		}
-		$group_by_dropdown = $mbdb_book_grid_meta_data['_mbdb_book_grid_group_by_level_' . $x][0];
+		
+		// if the group by level doesn't match one of the options, default to none
+		if (!array_key_exists($mbdb_book_grid_meta_data[$key][0], $group_by_levels)) {
+			$groups[$x] = 'none';
+			$current_group['none'] = 0;
+			break;
+		}
+		
+		$group_by_dropdown = $mbdb_book_grid_meta_data[$key][0];
 		$groups[$x] = $group_by_dropdown;
 		$current_group[$group_by_dropdown] = 0;
 		if ( $group_by_dropdown == 'none' ) {
@@ -277,6 +288,7 @@ function mbdb_book_grid_meta_boxes( ) {
 	
 	// start off the recursion by getting the first group
 	$level = 1;
+	
 	$books = mbdb_get_group($level, $groups, $current_group, $selection, $selected_ids, $sort, null); 
 	
 	// $books now contains the complete array of books to display in the grid
@@ -398,7 +410,8 @@ function mbdb_get_group($level, $groups, $current_group, $selection, $selected_i
 	
 	// loop through each publisher
 	// and recursively get the next nested group of books for that publisher
-	$mbdb_options = get_option('mbdb_options');
+	//$mbdb_options = get_option('mbdb_options');
+	$mbdb_options = get_option('mbdb_options'); //mbdb_get_options('mbdb_options');//'mbdb_options');
 	if (array_key_exists('publishers', $mbdb_options)) {
 		$publishers = $mbdb_options['publishers'];
 		foreach($publishers as $publisher) {
@@ -553,6 +566,7 @@ function mbdb_display_grid($mbdb_books,  $l) {
 	
 	// grab the coming soon image
 	$mbdb_options = get_option('mbdb_options');
+	//$mbdb_options = mbdb_get_options('mbdb_options'); //('mbdb_options');
 	$coming_soon_image = $mbdb_options['coming-soon'];
 	
 	// indent the grid by 15px per depth level of the array
