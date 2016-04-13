@@ -23,9 +23,7 @@ abstract class MBDB_CPT {
 	
 	abstract public function __construct();
 	
-	private function allows_html( $column ) {
-		return (in_array($column, $this->db_object->columns_with_html()));
-	}
+	
 	
 	public function get( $id, $orderby = null, $order = null, $include_unpublished = false ) {
 		return $this->db_object->get ( $id, $orderby, $order, $include_unpublished );
@@ -40,34 +38,34 @@ abstract class MBDB_CPT {
 	}
 	
 	public function get_data_by_post_meta( $post_meta, $id ) {
-		$data = $this->db_object->get( $id );
-		if ($data == null) {
-			return false;
-		}
-			
-		$column = $this->post_meta_to_column($post_meta);
-		if ( $column !== false ) {		
-			return $data->{$column};
-		}
-		
-		return false;
+		return $this->db_object->get_data_by_post_meta( $post_meta, $id );
 	}
+	
+	
 	
 	public function get_by_slug( $slug ) {
 		$data = $this->db_object->get_by_slug($slug);
 		return $data;
 	}
 	
+	public function save( $data, $id ) {
+		
+		$success = $this->db_object->save( $data, $id );
+		
+		if ($success === false) {
+			return false;
+		} else {
+			return $success;
+		}
+		
+	}
 	
+
+	/*
 	public function save_data_by_post_meta( $post_meta, $value, $id ) {
 		$column = $this->post_meta_to_column( $post_meta );
 		if ( $column !== false ) {
-			// same data should be sanitized and some should retain HTML
-			if ($this->allows_html($column)) {
-				$value = wp_kses_post($value);
-			} else {
-				$value = mbdb_sanitize_field($value);	
-			}
+			$value = $this->sanitize_field( $column, $value );
 			$success = $this->db_object->save( array( $column => $value ), $id );
 			if ($success === false) {
 				return false;
@@ -79,15 +77,18 @@ abstract class MBDB_CPT {
 		}
 		
 	}
+	*/
 	
-	private function post_meta_to_column( $post_meta ) {
-		$fields = $this->db_object->map_postmeta_to_columns();
-		if ( array_key_exists( $post_meta, $fields ) ) {
-			return $fields[$post_meta];
-		} else {
+	
+	public function in_custom_table( $post_meta ) {
+		$column = $this->db_object->post_meta_to_column( $post_meta );
+		if ($column === false) {
 			return false;
+		} else {
+			return true;
 		}
 	}
+	
 	
 	public function import() {
 		return $this->db_object->import();
@@ -95,6 +96,10 @@ abstract class MBDB_CPT {
 	
 	public function create_table() {
 		$this->db_object->create_table();
+	}
+	
+	public function empty_table() {
+		$this->db_object->empty_table();
 	}
 	
 }
