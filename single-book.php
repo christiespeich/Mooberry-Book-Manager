@@ -289,12 +289,14 @@ function mbdb_output_goodreads($mbdb_goodreads, $attr) {
 	if (empty($mbdb_options['goodreads'])) { 
 		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><span class="mbm-book-goodreads-text">' . $attr['text'] . '</span></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>'); 
 	} else {
+		/*
 		if (array_key_exists('goodreads-id', $mbdb_options)) {
 			$imageID = $mbdb_options['goodreads-id'];
 		} else {
 			$imageID = 0;
 		}
-		$alt = mbdb_get_alt_text( $imageID, __('Add to Goodreads', 'mooberry-book-manager') );
+		$alt = mbdb_get_alt_text( $imageID, __('Add to Goodreads', 'mooberry-book-manager') ); */
+		$alt = __('Add to Goodreads', 'mooberry-book-manager');
 		
 		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><img class="mbm-book-goodreads-image" src="' . esc_url($mbdb_options['goodreads']) . '"' . $alt . '/></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>');
 	}
@@ -599,6 +601,7 @@ function mbdb_get_taxonomy_data($taxonomy, $book = '' ) {
 	$bookID = mbdb_get_book_ID($book);
 	if ($bookID != 0) {
 		$mbdb_terms = get_the_terms( $bookID, $taxonomy);
+	
 		if (!$mbdb_terms) { 
 			return false;
 		} else {
@@ -746,12 +749,11 @@ function mbdb_shortcode_taxonomy($attr, $taxonomy, $default_permalink) {
 								'book' => ''), $attr);
 	
 	// v3.0 get permalink from options
-	$mbdb_options = get_option('mbdb_options');
-	$permalink = $mbdb_options['mbdb_book_grid_' . $taxonomy . '_slug'];
+	$permalink =  mbdb_get_tax_grid_slug( $taxonomy, $taxonomy); /* $mbdb_options['mbdb_book_grid_' . $taxonomy . '_slug'];
 	if ($permalink == '') {
 		$permalink = $default_permalink;
 	}
-	
+	*/
 	$mbdb_terms = mbdb_get_taxonomy_data( $taxonomy, $attr['book']);
 	if ($mbdb_terms === false) {
 		return mbdb_blank_output($permalink . '_taxonomy', $attr['blank']);
@@ -958,8 +960,16 @@ function mbdb_shortcode_publisher($attr, $content) {
  *  @access public
  */
 function mbdb_output_publisher($book_data, $attr) {
-	$mbdb_publisher = $book_data['name'];
-	$mbdb_publisherwebsite = $book_data['website'];
+	if (array_key_exists('name', $book_data)) {
+		$mbdb_publisher = $book_data['name'];
+	} else {
+		$mbdb_publisher = '';
+	}
+	if (array_key_exists('website', $book_data)) {
+		$mbdb_publisherwebsite = $book_data['website'];
+	} else {
+		$mbdb_publisherwebsite = '';
+	}
 	
 	if (empty($mbdb_publisherwebsite)) {
 		$text = '<span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span>';
@@ -1003,10 +1013,12 @@ function mbdb_output_serieslist($mbdb_series, $attr) {
 		if ( get_option('permalink_structure') !='' ) {
 			// v3.0 get permalink from options
 			$mbdb_options  = get_option('mbdb_options');
-			$permalink = $mbdb_options['mbdb_book_grid_mbdb_series_slug'];
+			$permalink =  mbdb_get_tax_grid_slug( 'series', 'series');  /*$mbdb_options['mbdb_book_grid_mbdb_series_slug'];
 			if ($permalink == '') {
 				$permalink = 'series';
 			}
+			*/
+			
 			$series_name .= home_url( $permalink . '/' .  $series->slug);
 		} else {
 			$series_name .= home_url('?the-taxonomy=mbdb_series&the-term=' . $series->slug . '&post_type=mbdb_tax_grid');
@@ -1167,10 +1179,19 @@ function mbdb_shortcode_cover( $attr, $content) {
 	$image_src = mbdb_get_book_data('cover', $attr['book']);
 	if ($image_src === false) {
 		// v3.0 check for placeholder image setting
-		$show_placeholder_cover = mbdb_get_option('show_placeholder_cover');
+		$mbdb_options = get_option('mbdb_options');
+		if (array_key_exists('show_placeholder_cover', $mbdb_options)) {
+			$show_placeholder_cover = $mbdb_options['show_placeholder_cover']; //mbdb_get_option('show_placeholder_cover');
+		} else {
+			$show_placeholder_cover = array();
+		}
 		if (is_array($show_placeholder_cover)) {
 			if (in_array('page', $show_placeholder_cover)) {
-				$image_src = mbdb_get_option('coming-soon');
+				if (array_key_exists('coming-soon', $mbdb_options)) {
+					$image_src = $mbdb_options['coming-soon']; //mbdb_get_option('coming-soon');
+				} else {
+					$image_src = '';
+				}
 			} else {
 				return mbdb_blank_output('cover', '');
 			}
@@ -1783,7 +1804,6 @@ function mbdb_shortcode_editions( $attr, $content) {
 			}
 			
 			$book_page_layout .= '</div> <!-- mbm-book-page -->';
-			
 			
 			$content .= stripslashes($book_page_layout); 
 			$content = preg_replace('/\\n/', '<br>', $content);
