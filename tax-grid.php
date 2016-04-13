@@ -8,17 +8,24 @@ add_action('generate_rewrite_rules',  'mbdb_rewrite_rules');
 function mbdb_rewrite_rules( $rules ) {
 	global $wp_rewrite;
 	$mbdb_options = get_option('mbdb_options');
+	if (!is_array($mbdb_options)) {
+		$mbdb_options = array();
+	}
 	$new_rules = array();
 	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
 	foreach($taxonomies as $name => $taxonomy) {
+		$url = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $name);
+		/*
 		$url = '';
 		if (array_key_exists('mbdb_book_grid_' . $name . '_slug', $mbdb_options)) {
 			$url = $mbdb_options['mbdb_book_grid_' . $name . '_slug'];
 		}
 		if ( $url == '') {
 			$url = $taxonomy->labels->singular_name;
-		} 
+		}
+	
 		$url = sanitize_title($url);
+*/	
 		//$new_rules['series/([^/]*)/?$'] =  'mbdb_tax_grid/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$new_rules[$url . '/([^/]*)/?$'] = 'mbdb_tax_grid/test/?x=x&the-taxonomy=' . $name . '&the-term=$matches[1]&post_type=mbdb_tax_grid';
 		$pretty_name = str_replace('mbdb_', '', $name);
