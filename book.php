@@ -7,6 +7,7 @@
  *  
  */
 
+ $mbdb_edit_book = null;
 
 
 /*****************************************************************************
@@ -131,13 +132,13 @@ function populate_mbdb_book_columns( $column, $post_id ) {
  *  
  *  @param [int] $post_id id of post being saved
  *  @param [object] $post    post object of post being saved
- *  @param [type] $update  unused
  * 
  *  
  *  @access public
  */
- add_action('save_post_mbdb_book', 'mbdb_save_book');
- function mbdb_save_book( $post_id, $post = null, $update = null ) {
+add_action('save_post_mbdb_book', 'mbdb_save_book');
+ function mbdb_save_book( $post_id, $post = null ) {
+	 
 	// if the post object is null then we are creating a new book
 	// and must pull values from the GET/POST vars ???
 	 if ( $post == null ) {
@@ -158,15 +159,33 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 		}
 	}
 	
+	
 	// unhook this function so it doesn't loop infinitely
+	// and mbdb_save_book_custom_table so it doesn't run twice
 	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
+	remove_action('save_post', 'mbdb_save_book_custom_table');
 
 	// update the post, which calls save_post again
 	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  balanceTags($summary, true), 'post_content' => '[mbdb_book]' ) );
 
-	// re-hook this function
+	// re-hook this function and mbdb_save_book_custom_table 
 	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
+	 add_action('save_post', 'mbdb_save_book_custom_table', 20);
 }
+
+ add_action('save_post', 'mbdb_save_book_custom_table', 20);
+function mbdb_save_book_custom_table( $post_id, $post = null ) {
+	if (!get_post_type() == 'mbdb_book') {
+		return;
+	}
+
+	// save custom database fields to database
+	global $mbdb_edit_book;
+	
+	
+	MBDB()->books->save( $mbdb_edit_book, $post_id );
+
+}	
 
 /******************************************************************************
 	SAVE DATA FOR META BOXES
@@ -188,11 +207,39 @@ function populate_mbdb_book_columns( $column, $post_id ) {
  add_filter('cmb2_override_meta_remove', 'mbdb_save_meta_data', 10, 2);
  add_filter('cmb2_override_meta_save', 'mbdb_save_meta_data', 10, 2);
  function mbdb_save_meta_data( $override, $a ) {
-	
 	// if not a book post type, return what we got in
 	if ( get_post_type() != 'mbdb_book' ) {
 		return $override;
 	}
+	
+	// v3.1 by adding meta_remove filter, now this is sometimes called without the value element
+	// add the element as blank text
+	// this is necessary (vs just exiting the function) because otherwise if a field is left blank
+	// it won't get saved as such without the meta_remove filter
+	if (!array_key_exists('value', $a)) {
+		$a['value'] = null;
+	}
+
+	global $mbdb_edit_book;
+	if (MBDB()->books->in_custom_table( $a['field_id'] ) ) {
+		$mbdb_edit_book[$a['field_id']] = $a['value'];
+		return 'override';
+	} else {
+		return $override;
+	}
+	
+	
+	/*
+	$column = MBDB()->books->post_meta_to_column( $a['field_id'] );	
+	if ($column !== false) {
+		error_log('column ' . $column);
+		$mbdb_edit_book[$column] = MBDB()->books->sanitize_field( $column, $a['value'] );
+			
+		return 'override';
+	} else {
+		return $override;
+	}
+	
 	
 	
 	// returns false if $a['id'] is not valid book id or if $a['field_id'] is not a valid column in custom table
@@ -206,6 +253,7 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 	// if doesn't match the columns in the table, return what we got in
 	// so that CMB2 handles the save as post_meta
 	return $override;
+	*/
 }
 
 
@@ -228,16 +276,18 @@ function populate_mbdb_book_columns( $column, $post_id ) {
  *  @access public
  */
 add_filter('cmb2_override_meta_value', 'mbdb_get_meta_data', 10, 3);
-function mbdb_get_meta_data( $override, $object_id, $a ) {
+function mbdb_get_meta_data( $override, $object_id, $a) {
 	// if not a book post type, return what we got in
 	if ( get_post_type() != 'mbdb_book' ) {
 		return $override;
 	}
 	
+
+	
 	// returns false if $object_id is not a valid book or field is not column
 	// in custom table
 	// otherwise returns book field data
-	$book_data = MBDB()->books->get_data_by_post_meta( $a['field_id'], $object_id );
+	$book_data = MBDB()->books->get_data_by_post_meta( $a['field_id'], $object_id); //, $mbdb_edit_book );
 	
 	
 	// only override the fields in the table
@@ -819,6 +869,16 @@ function mbdb_book_metaboxes(  ) {
 	$mbdb_bookinfo_metabox = apply_filters('mbdb_bookinfo_metabox', $mbdb_bookinfo_metabox);
 	$mbdb_buylinks_metabox = apply_filters('mbdb_buylinks_metabox', $mbdb_buylinks_metabox);
 	$mbdb_downloadlinks_metabox = apply_filters('mbdb_downloadlinks_metabox', $mbdb_downloadlinks_metabox);
+	
+	/*
+	global $mbdb_edit_book;
+	// load the book data
+	if (array_key_exists('post', $_GET) && $_GET['post'] != '') {
+		$book_id = $_GET['post'];
+		$mbdb_edit_book = MBDB()->books->get($book_id);
+		
+	}
+	*/
 }	
 
 
