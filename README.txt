@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
-Tested up to: 4.4
-Stable tag: 3.0 
+Tested up to: 4.5
+Stable tag: 3.0.4  
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,15 @@ The link you enter on the book page should point directly to the file to downloa
 = Can I use affiliate links? =
 Of course! Mooberry Book Manager doesn’t change your link, so you can set your Retailer Links to use your Amazon, Barnes and Noble, or other affiliate code.
 
+= How do I use my Amazon affiliate link? =
+You need to use just the associates link to your book, not any additional code.
+
+I generated an associates link for a book by using the Associates Site Strip on Amazon's website. It runs across the page right above the search bar. When viewing a product, it says "Get Link" and there are options for Text, Image, and Text + Image. You want to choose Text. It will give you a link and nothing more. The link will look something like this:
+
+http://amzn.to/23r4rHm
+
+This will work fine for putting in as your retailer link for your book.
+
 = Why is there no Author field? =
 Mooberry Book Manager is designed to be used by the author on the author's website. In this case, the author name would always be the same, and it's already written all over the website.
 
@@ -141,6 +150,16 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.1 =
+* Fixed: Now compatible with Multisite, including Network Activation
+* Fixed: Migration problems from version 3.0
+* Fixed: Problems with W3 Total Cache (see **Other Notes** section for more info about using caching plugins with MBM)
+* Fixed: Not pulling grid default cover height from settings, always defaulting to 200
+* Improved: For new insallations, activation process simplified and sped up (images no longer uploaded to Media Library)
+* Removed: unused images
+* Wordpress 4.5 Compatibility
+
+
 = 3.0 =
 * Added: Book Grids can now be filtered and grouped by Editors, Illustrators, Cover Artists, and Publishers
 * Added: Book Grids can now be grouped by several levels
