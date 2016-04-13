@@ -5,7 +5,7 @@
   *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
-  *	 Version: 3.0
+  *	 Version: 3.1
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -26,7 +26,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 3.0
+  * @version 3.0.4
   */
   
 // Exit if accessed directly
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '3.0' );
+	define( 'MBDB_PLUGIN_VERSION', '3.1' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -177,3 +177,162 @@ function MBDB() {
 
 // Get MBDB Running
 MBDB();
+
+/**
+ * Activation
+ * 
+ * Runs on plugin activation
+ * - Creates custom tables
+ * - Inserts default images
+ * - Running the init() functions
+ * - flushing the rewrite rules
+ *
+ * @since 1.0
+ * @since 3.1 	Multi-site compatibility
+ * @return void
+ */
+// NOTE: DO NOT change the name of this function because it is required for
+// the add ons to check dependency
+
+
+register_activation_hook(basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), 'mbdb_activate'  );
+function mbdb_activate( $networkwide ) {
+	global $blog_id;
+	global $wpdb;
+	
+	
+	// create the table for the entire site if multisite
+	MBDB()->books->create_table();
+
+	if (function_exists('is_multisite') && is_multisite()) {
+        // check if it is a network activation - if so, run the activation function for each blog id
+        if ( $networkwide ) {
+            $old_blog = $blog_id;
+            // Get all blog ids
+            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+			//$sites = wp_get_sites( array(  'limit' => 1000 ) );
+			//error_log(print_r($blogids, true));
+			
+            foreach ($blogids as $blog) {
+                switch_to_blog($blog);
+                _mbdb_activate();
+				
+				if (!wp_is_large_network() ) {
+					delete_blog_option( $blog, 'rewrite_rules' );
+				}
+            }
+            switch_to_blog($old_blog);
+			//mbdb_flush_rewrite_rules_multisite();
+            return;
+        }   
+    } 
+    _mbdb_activate();      
+	flush_rewrite_rules();
+}
+
+function mbdb_flush_rewrite_rules_multisite() {
+	// Much better...
+	if ( wp_is_large_network() ) {
+		return;
+	}
+
+	// ...and we're probably still friends.
+	$sites = wp_get_sites( array(  'limit' => 1000 ) );
+	
+	foreach( $sites as $site ) {
+		
+		switch_to_blog( $site['blog_id'] );
+		delete_blog_option( $site['blog_id'], 'rewrite_rules' );
+		restore_current_blog();
+	}
+}
+// blog-specific activation tasks
+// v3.1 split out into separate function for multisite compatibility
+function _mbdb_activate() {
+	
+	mbdb_set_up_roles();
+
+	// insert defaults
+	
+	$mbdb_options = get_option( 'mbdb_options' );
+	
+	if (!is_array($mbdb_options)) {
+		$mbdb_options = array();
+	}
+
+	mbdb_insert_default_formats( $mbdb_options );
+	mbdb_insert_default_edition_formats( $mbdb_options );
+	mbdb_insert_default_social_media ( $mbdb_options );
+	mbdb_insert_default_retailers( $mbdb_options );
+	
+	$path = MBDB_PLUGIN_URL . 'includes/assets/';
+	
+	$mbdb_options['coming-soon'] = $path . 'coming_soon_blue.jpg';
+	$mbdb_options['goodreads'] = $path . 'goodreads.png';
+	
+	//mbdb_insert_image( 'coming-soon', 'coming_soon_blue.jpg', $mbdb_options );
+	//mbdb_insert_image( 'goodreads', 'goodreads.png', $mbdb_options );
+	
+	
+	update_option( 'mbdb_options', $mbdb_options );
+	
+	
+	// SET DEFAULT OPTIONS FOR GRID SLUGS
+	mbdb_set_default_tax_grid_slugs();
+	
+	
+	mbdb_init();
+
+	
+}
+
+// activate MBM for any new blogs added to multisite
+// v3.1
+add_action( 'wpmu_new_blog', 'mbdb_new_blog', 10, 6);        
+function mbdb_new_blog($blog, $user_id, $domain, $path, $site_id, $meta ) {
+	//wp_die('Network Activation Not Supported.');
+	
+	global $blog_id;
+
+    if (is_plugin_active_for_network('mooberry-book-manager/mooberry-book-manager.php')) {
+        $old_blog = $blog_id;
+        switch_to_blog($blog);
+
+        _mbdb_activate($blog);
+		delete_blog_option( $blog, 'rewrite_rules' );
+        switch_to_blog($old_blog);
+    }
+	
+}
+
+/**
+ * Deactivation
+ * 
+ * Runs on plugin deactivation
+ * - flushing the rewrite rules
+ *
+ * @since 1.0
+ * @return void
+ */
+register_deactivation_hook( MBDB_PLUGIN_FILE, 'mbdb_deactivate' );
+function mbdb_deactivate( $networkwide ) {
+	global $blog_id;
+	
+	if (function_exists('is_multisite') && is_multisite()) {
+        // check if it is a network activation - if so, run the activation function for each blog id
+        if ( $networkwide ) {
+            $old_blog = $blog_id;
+            // Get all blog ids
+            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+            foreach ($blogids as $blog) {
+				switch_to_blog($blog);
+				delete_blog_option( $blog, 'rewrite_rules' );
+				//flush_rewrite_rules();
+			}
+			 switch_to_blog($old_blog);
+            return;
+        }   
+    } 
+	flush_rewrite_rules();
+}
+
