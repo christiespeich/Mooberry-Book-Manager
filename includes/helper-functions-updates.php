@@ -43,15 +43,31 @@ function mbdb_upgrade_versions() {
 			$wp_rewrite->flush_rules();
 		}
 		
+		if (version_compare($current_version, '2.4.3', '<')) {
+			mbdb_upgrade_to_2_4_3();
+		}
+		
 		if (version_compare($current_version, '3.0', '<')) {
 			mbdb_upgrade_to_3_0();
 		
 		}
+		
+		if (version_compare($current_version, '3.1', '<')) {
+			mbdb_upgrade_to_3_1($current_version);
+		}
+		
+		/*
+		$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
+		$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
+		$m2 = __('Migrate Data Now', 'mooberry-book-manager');
+		$m3 = __('Dismiss Notice', 'mooberry-book-manager');
+		$key = '3_1_remigrate';
+		
+		$message = $m1 . '<b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
+		mbdb_set_admin_notice($message, 'error', $key );
+	*/
 	
-	
-		// update database to the new version
-		update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
-	
+	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
 
 
@@ -332,6 +348,25 @@ function mbdb_migrate_to_book_grid_height_defaults() {
 	wp_reset_postdata();	
 }
 
+function mbdb_upgrade_to_2_4_3() {
+// 4. update all books to remove book short code
+	
+	// get all posts of type mbdb_book
+	$books = get_posts(array('posts_per_page' => -1, 'post_type' => 'mbdb_book'));
+	
+	// unhook this function because wp_update_post will call it
+	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
+	
+	foreach($books as $book) {
+		// update the post, which calls save_post again
+		wp_update_post( array( 'ID' => $book->ID, 'post_content' => '') );
+	}
+	
+	// re-hook this function
+	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );		
+}
+
+
 function mbdb_upgrade_to_3_0() {
 	// 0. CREATE TABLE 
 	MBDB()->books->create_table();
@@ -412,7 +447,7 @@ function mbdb_upgrade_to_3_0() {
 	$books = get_posts(array('posts_per_page' => -1, 'post_type' => 'mbdb_book'));
 	
 	// unhook this function because wp_update_post will call it
-	remove_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );
+	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
 	
 	foreach($books as $book) {
 		// update the post, which calls save_post again
@@ -420,7 +455,7 @@ function mbdb_upgrade_to_3_0() {
 	}
 	
 	// re-hook this function
-	add_action( 'save_post_mbdb_book', 'mbdb_save_excerpt' );	
+	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
 	
 	// 5. INSERT DEFAULT SOCIAL MEDIA SITES
 	$mbdb_options = get_option('mbdb_options');
@@ -429,6 +464,90 @@ function mbdb_upgrade_to_3_0() {
 
 	flush_rewrite_rules();
 	wp_reset_postdata();
+}
+
+function mbdb_upgrade_to_3_1($current_version) {
+	global $wpdb;
+	// drop the original primary key if it exsists
+	$results = $wpdb->query("SHOW TABLES LIKE '{$wpdb->base_prefix}mbdb_books'");
+	if ($results == 1) {
+		$wpdb->query( "ALTER TABLE {$wpdb->base_prefix}mbdb_books DROP PRIMARY KEY" );
+	}
+	// alter/create the table
+	MBDB()->books->create_table();
+	
+	// force re-importing if on multisite OR if coming from a version < 3.0
+	if ( is_multisite()  ||  version_compare($current_version, '3.0', '<') ) {
+
+		
+		// truncate the table 
+		MBDB()->books->empty_table();
+
+		// re-import the data
+		update_option('mbdb_import_books', false);
+		
+		// only need to migrate if there are books
+			$args = array('posts_per_page' => -1,
+						'post_type' => 'mbdb_book',
+			);
+			
+			$posts = get_posts( $args  );
+			
+			if (count($posts) > 0) {
+				
+				
+				$m = __('Upgrading to Mooberry Book Manager version 3.1 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
+				$m3 = __('Even if you have previously migrated the data (if you upgraded to version 3.0 and then rolled back to version 2.4.x), you must migrate again to ensure Mooberry Book Manaer will operate properly.');
+				$m2 = __('Migrate Data Now', 'mooberry-book-manager');
+				$message = $m . '<p>' . $m3 . '</p><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a></p>';
+				
+				
+				mbdb_set_admin_notice($message, 'error', '3_1_migrate');
+				
+				
+			} else {
+				update_option('mbdb_import_books', true);
+			}
+			wp_reset_postdata();
+			
+	}	else {
+		// user is NOT on multisite AND is NOT coming from a pre-3.0 version
+		// give option to re-import
+		$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
+		$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
+		$m2 = __('Migrate Data Now', 'mooberry-book-manager');
+		$m3 = __('Dismiss Notice', 'mooberry-book-manager');
+		$key = '3_1_remigrate';
+		
+		$message = $m1 . '<b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
+		mbdb_set_admin_notice($message, 'error', $key );
+		
+	}
+	
+	
+	
+	// how will the blog id column get populated if the data isn't remigrated?!
+	// the table will only be not remigrated if not multisite, so just add the blog id?
+	if (!is_multisite()) {
+		global $blog_id;
+		$wpdb->query( "UPDATE {$wpdb->base_prefix}mbdb_books SET blog_id = {$blog_id}" );
+		
+	}
+
+	// make sure short code is set
+	// get all posts of type mbdb_book
+	$books = get_posts(array('posts_per_page' => -1, 'post_type' => 'mbdb_book'));
+	
+	// unhook this function because wp_update_post will call it
+	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
+	
+	foreach($books as $post) {
+		
+		wp_update_post( array( 'ID' => $post->ID, 'post_content' => '[mbdb_book]') );
+	}
+	
+	// re-hook this function
+	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
 }
 
 
