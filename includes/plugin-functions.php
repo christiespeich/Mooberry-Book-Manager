@@ -3,66 +3,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * Activation
- * 
- * Runs on plugin activation
- * - Creates custom tables
- * - Inserts default images
- * - Running the init() functions
- * - flushing the rewrite rules
- *
- * @since 1.0
- * @return void
- */
-// NOTE: DO NOT change the name of this function because it is required for
-// the add ons to check dependency
-register_activation_hook( MBDB_PLUGIN_FILE, 'mbdb_activate'  );
-function mbdb_activate() {
-	
-	
-	MBDB()->books->create_table();
-
-	mbdb_set_up_roles();
-
-	// insert defaults
-	$mbdb_options = get_option('mbdb_options');
-	if (!is_array($mbdb_options)) {
-		$mbdb_options = array();
-	}
-	mbdb_insert_default_retailers( $mbdb_options );
-	mbdb_insert_default_formats( $mbdb_options );
-	mbdb_insert_default_edition_formats( $mbdb_options );
-	mbdb_insert_default_social_media ( $mbdb_options );
-	
-	mbdb_insert_image( 'coming-soon', 'coming_soon_blue.jpg', $mbdb_options );
-	mbdb_insert_image( 'goodreads', 'goodreads.png', $mbdb_options );
-	
-	update_option( 'mbdb_options', $mbdb_options );
-	
-	// SET DEFAULT OPTIONS FOR GRID SLUGS
-	mbdb_set_default_tax_grid_slugs();
-	
-	
-	mbdb_init();
-
-	flush_rewrite_rules();
-	
-}
-
-/**
- * Deactivation
- * 
- * Runs on plugin deactivation
- * - flushing the rewrite rules
- *
- * @since 1.0
- * @return void
- */
-register_deactivation_hook( MBDB_PLUGIN_FILE, 'mbdb_deactivate' );
-function mbdb_deactivate() {
-	flush_rewrite_rules();
-}
 
 /**
  * Loads the plugin language files
@@ -98,7 +38,7 @@ function mbdb_init() {
 	
 	mbdb_upgrade_versions();
 	
-	mbdb_set_default_tax_grid_slugs();
+	//mbdb_set_default_tax_grid_slugs();
 }
 
 /**
@@ -248,11 +188,15 @@ function mbdb_single_template( $template ) {
 		if ( get_post_type() == 'mbdb_book' ) {
 			if ( array_key_exists( 'mbdb_default_template', $mbdb_options ) ) {
 				$default_template = $mbdb_options['mbdb_default_template'];
-			} 	
+			} 	else {
+				$default_template = 'default';
+			}
 		} else {
 			// otherwise it's a tax grid so get the default template for tax grids
 			if ( array_key_exists( 'mbdb_tax_grid_template', $mbdb_options ) ) {
 				$default_template = $mbdb_options['mbdb_tax_grid_template'];
+			} else {
+				$default_template = 'default';
 			}
 		}
 	} else {
@@ -289,26 +233,66 @@ function mbdb_single_template( $template ) {
 
 add_action( 'admin_notices', 'mbdb_admin_import_notice', 0 );
 function mbdb_admin_import_notice(){
-	$import_books = get_option('mbdb_import_books');
-	if (!$import_books || $import_books == null) {
-		// only need to migrate if there are books
-		$args = array('posts_per_page' => -1,
-					'post_type' => 'mbdb_book',
-		);
-		
-		$posts = get_posts( $args  );
-		
-		if (count($posts) > 0) {
+	
+	// original 3.0 upgrade migration notice
+	$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
+	if (version_compare($current_version, '2.4.4', '>') && version_compare($current_version, '3.1', '<')) {
+		$import_books = get_option('mbdb_import_books');
+		if (!$import_books || $import_books == null) {
+			// only need to migrate if there are books
+			$args = array('posts_per_page' => -1,
+						'post_type' => 'mbdb_book',
+			);
 			
-			$m = __('Upgrading to Mooberry Book Manager version 3.0 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
-			$m2 = __('Migrate Data Now', 'mooberry-book-manager');
-			echo '<div id="message" class="error"><p>' . $m . '</p><p><a href="admin.php?page=mbdb_migrate" class="button">' . $m2 . '</a></p></div>';
-		} else {
-			update_option('mbdb_import_books', true);
+			$posts = get_posts( $args  );
+			
+			if (count($posts) > 0) {
+				
+				$m = __('Upgrading to Mooberry Book Manager version 3.0 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
+				$m2 = __('Migrate Data Now', 'mooberry-book-manager');
+				echo '<div id="message" class="error"><p>' . $m . '</p><p><a href="admin.php?page=mbdb_migrate" class="button">' . $m2 . '</a></p></div>';
+			} else {
+				update_option('mbdb_import_books', true);
+			}
+			wp_reset_postdata();
 		}
-		wp_reset_postdata();
-	}
+	}		
+	
+	// v3.1 added amdin notice option
+	$notices  = get_option('mbdb_admin_notices');
+	if (is_array($notices)) {
+		foreach ($notices as $key => $notice) {
+		  echo "<div class='notice {$notice['type']}' id='{$key}'><p>{$notice['message']}</p></div>";
+		}
+	}	
 }
+
+
+
+
+add_action( 'wp_ajax_mbdb_admin_notice_dismiss', 'mbdb_admin_notice_dismiss' );
+function mbdb_admin_notice_dismiss() {
+	check_ajax_referer( 'mbdb_admin_notice_dismiss_ajax_nonce', 'security' );
+	
+	$key = $_POST['admin_notice_key'];
+	
+	mbdb_remove_admin_notice($key);
+}
+
+
+add_action( 'wp_ajax_mbdb_admin_3_1_remigrate', 'mbdb_admin_3_1_remigrate' );
+function mbdb_admin_3_1_remigrate() {
+	
+		
+		check_ajax_referer( 'mbdb_admin_notice_3_1_remigrate_ajax_nonce', 'security' );
+	
+		update_option('mbdb_import_books', false);
+		mbdb_remove_admin_notice( '3_1_remigrate');
+	
+	//	wp_redirect(admin_url('admin.php?page=mbdb_migrate'));
+	//exit;
+}
+  
   
 
 
@@ -391,12 +375,8 @@ function mbdb_edit_cover_artist_grid_description_field( $term ) {
 
 function mbdb_taxonomy_grid_description_field( $taxonomy ) {
 	 wp_nonce_field( basename( __FILE__ ), 'mbdb_ ' . $taxonomy .'_grid_description_nonce' ); 
-	 $mbdb_options = get_option('mbdb_options');
-	if (array_key_exists('mbdb_book_grid_mbdb_' . $taxonomy . '_slug', $mbdb_options) ) {
-		$slug = $mbdb_options['mbdb_book_grid_mbdb_' . $taxonomy . '_slug'];
-	} else {
-		$slug = $taxonomy;
-	}
+	 $slug = mbdb_get_tax_grid_slug( $taxonomy, $taxonomy)
+	 
 	 ?>
 
     <div class="form-field">
@@ -423,12 +403,10 @@ function mbdb_edit_taxonomy_grid_description_field( $term, $taxonomy ) {
 		$description = get_term_meta( $term->term_id, 'mbdb_' . $taxonomy .'_book_grid_description', true );
 		$description_bottom = get_term_meta( $term->term_id, 'mbdb_' . $taxonomy .'_book_grid_description_bottom', true );
 		
-		$mbdb_options = get_option('mbdb_options');
-		if (array_key_exists('mbdb_book_grid_mbdb_' . $taxonomy . '_slug', $mbdb_options) ) {
-			$slug = $mbdb_options['mbdb_book_grid_mbdb_' . $taxonomy . '_slug'];
-		} else {
-			$slug = $taxonomy;
-		}
+		$slug = mbdb_get_tax_grid_slug( $taxonomy, $taxonomy)
+		
+		
+		
 		
 	  ?>
 
