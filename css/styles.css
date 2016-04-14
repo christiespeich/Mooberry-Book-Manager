@@ -270,6 +270,8 @@
 .mbm-book-grid-cell img {
 		width: 100%;
 	}
+	
+#mbm-book-links1	.mbm-book-buy-links-text { display: block; }
 
 @media (max-width:640px) {
 	
