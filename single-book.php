@@ -580,7 +580,7 @@ function mbdb_output_taxonomy($classname, $mbdb_terms, $permalink, $taxonomy, $a
 		// trim off the last space and comma
 		$list = substr($list, 0, -2);
 	}
-	return apply_filters('mbdb_shortcode_' . $permalink . '_taxonomy',  '<div class="' . $classname . '" style="display:inline-block">' . $begin . $list  . $end . '</div>');
+	return apply_filters('mbdb_shortcode_' . $permalink . '_taxonomy',  '<div class="' . $classname . '" style="display:inline;">' . $begin . $list  . $end . '</div>');
 
 }
 
@@ -1330,7 +1330,7 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 				if ($r['uniqueID'] == $mbdb_downloadlink['_mbdb_formatID']) {
 		
 					$download_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '"><A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
-					if ($r['image']!='') {
+					if (array_key_exists('image', $r) && $r['image']!='') {
 						if (array_key_exists('imageID', $r)) {
 							$imageID = $r['imageID'];
 						} else {
@@ -1423,7 +1423,7 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 				if ($r['uniqueID'] == $mbdb_buylink['_mbdb_retailerID']) {
 					//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
 					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
-					if ($r['image']!='') {
+					if (array_key_exists('image', $r) && $r['image']!='') {
 						
 						if (array_key_exists('imageID', $r)) {
 							$imageID = $r['imageID'];
