@@ -33,9 +33,8 @@ function mbdb_sanitize_field( $field ) {
 }
 
 function mbdb_get_grid_cover_height( $postID = null ) {
-	// if there's no postID then it's a tax grid
 	// tax grids always use the default
-	if ($postID != null) {
+	if ( get_post_type() != 'mbdb_tax_grid' ) {
 		$mbdb_book_grid_cover_height_default = get_post_meta( $postID, '_mbdb_book_grid_cover_height_default', true);
 	} else {
 		$mbdb_book_grid_cover_height_default = 'yes';
@@ -879,35 +878,25 @@ function mbdb_set_default_tax_grid_slugs() {
 	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
 	$mbdb_options = get_option('mbdb_options');
 	
-	//$reserved_terms = mbdb_wp_reserved_terms();
 	foreach($taxonomies as $name => $taxonomy) {
 		$key = 'mbdb_book_grid_' . $name . '_slug';
-		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $name, $mbdb_options);
-		/*
-		$key = 'mbdb_book_grid_' . $name . '_slug';
-		if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
-			$slug = sanitize_title($taxonomy->labels->singular_name);
-			if ( in_array($slug, $reserved_terms) ) {
-				$slug = sanitize_title('book-' . $slug);
-			}
-			$mbdb_options[$key] = $slug;
-		}
-		*/
+		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $key, $mbdb_options);
 	}
 	update_option('mbdb_options', $mbdb_options);
 }
 
-function mbdb_get_tax_grid_slug( $singular_name, $term, $mbdb_options = null ) {
+function mbdb_get_tax_grid_slug( $singular_name, $key, $mbdb_options = null ) {
 	if ($mbdb_options == null) {
 		$mbdb_options = get_option('mbdb_options');
 	}
 	if (!is_array($mbdb_options)) {
 		$mbdb_options = array();
 	}
-	$key = 'mbdb_book_grid_' . $term . '_slug';
+	
 	$reserved_terms = mbdb_wp_reserved_terms();
 	if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
-		$slug = $singular_name;
+		// must be sanitized before checking against reserved terms
+		$slug = sanitize_title($singular_name);
 		if ( in_array($slug, $reserved_terms) ) {
 			$slug = 'book-' . $slug;
 		}
