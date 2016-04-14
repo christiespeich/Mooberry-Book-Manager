@@ -245,7 +245,7 @@ class mbdb_Admin_Settings {
 	
 		$import_books = get_option('mbdb_import_books');
 		if ($import_books ) {
-			
+			echo '<h4>' . __('Note: This page for users of previous versions of Mooberry Book Manager only.', 'mooberry-book-manager') . '</h4>';
 			echo '<h4>' . __('Data already migrated. Mooberry Book Manager 3.0 is ready to use!', 'mooberry-book-manager') . '</h4>';
 			echo __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.  ', 'mooberry-book-manager');
 			echo '<b>' . __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager') . '</b>';
@@ -280,6 +280,11 @@ class mbdb_Admin_Settings {
 				'options'	=> mbdb_get_template_list(),
 			)
 		);
+		// split up the descriptions to keep the html out of the
+		// translatable text
+		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
+		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
+		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="http://localhost/wordpress/wp-admin/plugins.php?s=mooberry+book+manager+image+fixer">' . $description2 . '</a></span>.';
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 	'goodreads',
@@ -288,6 +293,7 @@ class mbdb_Admin_Settings {
 				'attributes' => array(
 					'style'	=>	'width:300px',
 				),
+				'after_row'=> $description,
 				'options'	=> array(
 					'url'	=> false,
 					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
@@ -422,10 +428,12 @@ class mbdb_Admin_Settings {
 		
 		// add a text field for each taxonomy
 		foreach($taxonomies as $name => $taxonomy) {
+			$id = 'mbdb_book_grid_' . $name . '_slug';
+			$singular_name = $taxonomy->labels->singular_name;
 			$mbdb_settings_metabox->add_field(array(
-				'id'	=> 'mbdb_book_grid_' . $name . '_slug',
-				'name'	=>	$taxonomy->labels->singular_name,
-				'default'	=>	sanitize_title($taxonomy->labels->singular_name),
+				'id'	=> $id,
+				'name'	=>	$singular_name,
+				'default'	=>	mbdb_get_tax_grid_slug($singular_name, $id),
 				'sanitization_cb'	=> array( $this, 'sanitize_slug'),
 				'type'	=> 'text',
 				)
@@ -574,6 +582,7 @@ class mbdb_Admin_Settings {
 				'type'	=>	'title',
 			)
 		);
+	
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=>	'show_placeholder_cover',
@@ -587,6 +596,13 @@ class mbdb_Admin_Settings {
 				),
 			)
 		);
+		
+		// split up the descriptions to keep the html out of the
+		// translatable text
+		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
+		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
+		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="http://localhost/wordpress/wp-admin/plugins.php?s=mooberry+book+manager+image+fixer">' . $description2 . '</a></span>.';
+		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 	'coming-soon',
 				'name'	=>	__('Placeholder Cover Image', 'mooberry-book-manager'),
@@ -594,6 +610,7 @@ class mbdb_Admin_Settings {
 				'attributes' => array(
 					'style'	=>	'width:300px',
 				),
+				'after_row'	=>	$description,
 				'options'	=> array(
 					'url'	=> false,
 					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
@@ -819,7 +836,7 @@ class mbdb_Admin_Settings {
 	 *  
 	 *  @since 3.0
 	 *  @param [string] $meta_value value the user entered
-	 *  @param [array] $args       	unused
+	 *  @param [array] $args       	contains field id
 	 *  @param [obj] $object     	contains original value before user input
 	 *  
 	 *  @return sanitized value. Either the inputted value if it checks out
@@ -828,6 +845,23 @@ class mbdb_Admin_Settings {
 	 *  @access public
 	 */
 	function sanitize_slug($meta_value, $args, $object) {
+		
+		// make sure none of the fields are blank
+		if (!isset($meta_value) || trim($meta_value) == '') {
+			// default to the field id as a last resort
+			$meta_value = $args['id'];
+			
+			// pull the singular name from the field id
+			$field_id = $args['id'];
+			$results = preg_match( '/mbdb_book_grid_(mbdb_.*)_slug/', $field_id, $matches );
+			if ($results) {
+				$taxonomy = get_taxonomy($matches[1]);
+				if ($taxonomy) {
+					$meta_value = sanitize_title($taxonomy->labels->singular_name);
+				}
+			} 
+			
+		}
 		$reserved_terms = mbdb_wp_reserved_terms();
 		if ( in_array($meta_value, $reserved_terms) ) {
 			//show a message
