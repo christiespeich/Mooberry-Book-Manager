@@ -19,8 +19,6 @@ function mbdb_register_widget_script( $page_hook ) {
 add_action( 'admin_footer', 'mbdb_register_script');
 function mbdb_register_script() {
 	
-	
-	
 	$current_screen = get_current_screen();
 	if (!$current_screen) {
 		return;
@@ -112,9 +110,14 @@ function mbdb_grid_styles() {
 	}
 }
 
+// add post class so it looks good on the theme
 add_filter( 'post_class', 'mbdb_add_post_class' );
 function mbdb_add_post_class( $classes ) {
-	if (get_post_type()=='mbdb_book') {
+	return mbdb_add_post_class_cpt( $classes, 'mbdb_book' );
+}
+
+function mbdb_add_post_class_cpt( $classes, $type ) {
+	if (get_post_type()==$type) {
 		if (!in_array('post', $classes)) {
 			$classes[] = 'post';
 		}
