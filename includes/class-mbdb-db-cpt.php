@@ -227,7 +227,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		}
 		
 		// no data to save. Not an error just no rows updated/inserted
-		if (!is_array($new_data)) {
+		if (!isset($new_data) || !is_array($new_data)) {
 			return 0;
 		}
 	
@@ -273,7 +273,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			$post_data = get_post_meta($post->ID);
 			foreach ( $columns as $post_meta => $column) {
 				if (array_key_exists( $post_meta, $post_data)) {
-					$new_row[$column] = $post_data[$post_meta][0];
+					$new_row[$post_meta] = $post_data[$post_meta][0];
 				}
 				echo '.';
 			}
@@ -298,6 +298,8 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				return false;
 			}
 			echo '<b>' . __('Success!', 'mooberry-book-manager') . '</b></p>';
+			mbdb_remove_admin_notice('3_1_migrate');
+			mbdb_remove_admin_notice('3_1_remigreate');
 		}
 		
 		return true;
