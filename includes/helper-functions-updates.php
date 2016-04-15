@@ -548,6 +548,16 @@ function mbdb_upgrade_to_3_1($current_version) {
 	
 	// re-hook this function
 	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
+	
+	
+	// update book grid setting _mbdb_book_grid_custom_select =>
+	// _mbdb_book_grid_custom
+	$pages = get_posts(array('posts_per_page' => -1, 'post_type' => 'page', 'meta_key' => '_mbdb_book_grid_custom_select'));
+	foreach ($pages as $page) {
+		$value = get_post_meta($page->ID, '_mbdb_book_grid_custom_select', true);
+		update_post_meta($page->ID, '_mbdb_book_grid_custom', $value);
+	}
+	wp_reset_postdata();
 }
 
 
