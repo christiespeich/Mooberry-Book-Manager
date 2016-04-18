@@ -25,7 +25,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'publisher_id' => '%s',
 			'goodreads' => '%s',
 			'series_order' => '%d',
-			'blog_id'	=> '%d',
+			//'blog_id'	=> '%d',
 		);
 	}
 	
@@ -164,16 +164,16 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				$taxonomy = null;
 			}
 		}
-		
+		/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = " AND blog_id = $this->blog_id";
 		}
-
+*/
 		
 		$select = 'SELECT DISTINCT ';
 		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = b.book_id ';
-		$where = ' WHERE p.post_status = "publish" ' . $where . ' ';
+		$where = ' WHERE p.post_status = "publish" ';
 		$orderby = ' ORDER BY ';
 		
 		// if book_ids are sent, filter by them
@@ -338,7 +338,6 @@ public function search_where( $where ) {
 		
 		$sql_create_table = "CREATE TABLE " . $this->table_name . " (
 			  book_id bigint(20) unsigned NOT NULL,
-			  blog_id bigint(20) unsigned NOT NULL,
 			  subtitle varchar(100),
 			  summary longtext,
 			  excerpt longtext,
@@ -349,7 +348,7 @@ public function search_where( $where ) {
 			  publisher_id char(13),
 			  goodreads longtext,
 			  series_order tinyint unsigned,
-			  PRIMARY KEY  (book_id,blog_id),
+			  PRIMARY KEY  (book_id),
 			  KEY release_date (release_date)
 		 ) $charset_collate; ";
 	 

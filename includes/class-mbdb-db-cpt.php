@@ -67,10 +67,11 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				FROM $this->table_name AS t
 				JOIN " . $wpdb->posts . " p ON p.id = t." . $this->primary_key . "
 				WHERE p.id = $ids ";
+				/*
 				if ( $this->column_exists( 'blog_id' ) ) {
 					$sql .= " AND t.blog_id = " . $this->blog_id;
 				}
-		
+		*/
 				$cache = $this->get_cache($sql);
 				
 				if (false !== $cache) {
@@ -111,11 +112,11 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		// %d, %d, %d, [...]
 		$key_ids = $this->get_in_format( $ids, '%d' );
 		
-		
+		/*
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where .= " AND blog_id = $this->blog_id";
 		}
-
+*/
 		
 		$sql = $wpdb->prepare( "SELECT * 
 						FROM $this->table_name AS t
@@ -147,18 +148,17 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.' . $this->primary_key;
 		
 		if ( ! $include_unpublished ) {
-			$where = ' AND p.post_status = "publish" ';
+			$where = ' WHERE p.post_status = "publish" ';
 			
 		} 
-		
+		/*
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where .= " AND blog_id = $this->blog_id";
 		}
-		
+		*/
 		$sql =  "SELECT * 
 				FROM $this->table_name AS t
 				$join
-				WHERE blog_id = $this->blog_id
 				$where
 				ORDER BY  
 				$orderby 
@@ -185,16 +185,16 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		
 		$slug = esc_sql( $slug );
 		$slug = sanitize_title_for_query( $slug );
-	
+	/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = " AND blog_id = $this->blog_id";
 		}
-		
+		*/
 		$sql = $wpdb->prepare("SELECT * 
 						FROM {$wpdb->posts} AS p
 						JOIN {$this->table_name} AS a ON a.{$this->primary_key} = p.ID
-						WHERE post_name = %s {$where} AND 
+						WHERE post_name = %s  AND 
 						post_type = %s;",
 						$slug,
 						$this->post_type);
@@ -279,7 +279,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			}
 			if (count($new_row)>0) {
 				
-				$new_row['blog_id'] = $this->blog_id;
+				//$new_row['blog_id'] = $this->blog_id;
 				$success = $this->save($new_row, $post->ID);
 			} else {
 				$success = true;
@@ -310,14 +310,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	 *  
 	 ****************************************************************/
  
-	public function search_where( $where ) {
-		global $wpdb;	
-		if( is_search() ) {
-			if ( $this->column_exists( 'blog_id' ) ) {
-				$where .= " AND " . $this->table_name . ".blog_id = " . $this->blog_id . " ";
-			}
-		}
-	}
+	
 	
 	public function search_join( $join ) {
 		global $wpdb;

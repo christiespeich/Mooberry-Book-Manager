@@ -26,7 +26,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 3.0.4
+  * @version 3.1
   */
   
 // Exit if accessed directly
@@ -202,7 +202,7 @@ function mbdb_activate( $networkwide ) {
 	
 	
 	// create the table for the entire site if multisite
-	MBDB()->books->create_table();
+	
 
 	if (function_exists('is_multisite') && is_multisite()) {
         // check if it is a network activation - if so, run the activation function for each blog id
@@ -249,6 +249,8 @@ function mbdb_flush_rewrite_rules_multisite() {
 // blog-specific activation tasks
 // v3.1 split out into separate function for multisite compatibility
 function _mbdb_activate() {
+	
+	MBDB()->books->create_table();
 	
 	mbdb_set_up_roles();
 
