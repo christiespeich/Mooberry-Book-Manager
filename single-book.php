@@ -749,7 +749,7 @@ function mbdb_shortcode_taxonomy($attr, $taxonomy, $default_permalink) {
 								'book' => ''), $attr);
 	
 	// v3.0 get permalink from options
-	$permalink =  mbdb_get_tax_grid_slug( $taxonomy, $taxonomy); /* $mbdb_options['mbdb_book_grid_' . $taxonomy . '_slug'];
+	$permalink =  mbdb_get_tax_grid_slug( $taxonomy ); /* $mbdb_options['mbdb_book_grid_' . $taxonomy . '_slug'];
 	if ($permalink == '') {
 		$permalink = $default_permalink;
 	}
@@ -1012,8 +1012,7 @@ function mbdb_output_serieslist($mbdb_series, $attr) {
 		
 		if ( get_option('permalink_structure') !='' ) {
 			// v3.0 get permalink from options
-			$mbdb_options  = get_option('mbdb_options');
-			$permalink =  mbdb_get_tax_grid_slug( 'series', 'series');  /*$mbdb_options['mbdb_book_grid_mbdb_series_slug'];
+			$permalink =  mbdb_get_tax_grid_slug( 'mbdb_series' );  /*$mbdb_options['mbdb_book_grid_mbdb_series_slug'];
 			if ($permalink == '') {
 				$permalink = 'series';
 			}

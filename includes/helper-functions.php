@@ -880,18 +880,28 @@ function mbdb_set_default_tax_grid_slugs() {
 	
 	foreach($taxonomies as $name => $taxonomy) {
 		$key = 'mbdb_book_grid_' . $name . '_slug';
-		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $key, $mbdb_options);
+		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $name, $mbdb_options);
 	}
 	update_option('mbdb_options', $mbdb_options);
 }
 
-function mbdb_get_tax_grid_slug( $singular_name, $key, $mbdb_options = null ) {
+function mbdb_get_tax_grid_slug( $taxonomy, $mbdb_options = null ) {
+	
 	if ($mbdb_options == null) {
 		$mbdb_options = get_option('mbdb_options');
 	}
 	if (!is_array($mbdb_options)) {
 		$mbdb_options = array();
 	}
+	
+	$tax = get_taxonomy( $taxonomy );
+	if ($tax !== false ) {
+		$singular_name = $tax->labels->singular_name;
+	} else {
+		$singular_name = $taxonomy;
+	}
+	
+	$key = 'mbdb_book_grid_' . $taxonomy . '_slug';
 	
 	$reserved_terms = mbdb_wp_reserved_terms();
 	if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {

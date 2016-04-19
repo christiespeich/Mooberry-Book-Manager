@@ -14,7 +14,7 @@ function mbdb_rewrite_rules( $rules ) {
 	$new_rules = array();
 	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
 	foreach($taxonomies as $name => $taxonomy) {
-		$url = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $name);
+		$url = mbdb_get_tax_grid_slug( $name, $mbdb_options );
 		/*
 		$url = '';
 		if (array_key_exists('mbdb_book_grid_' . $name . '_slug', $mbdb_options)) {

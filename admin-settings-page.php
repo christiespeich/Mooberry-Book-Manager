@@ -57,6 +57,7 @@ class mbdb_Admin_Settings {
 	 * @since 3.0
 	 */
 	public function hooks() {
+		
 		add_action( 'admin_init', array( $this, 'init' ) );
 		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'add_options_page_metabox' ) );
@@ -433,7 +434,7 @@ class mbdb_Admin_Settings {
 			$mbdb_settings_metabox->add_field(array(
 				'id'	=> $id,
 				'name'	=>	$singular_name,
-				'default'	=>	mbdb_get_tax_grid_slug($singular_name, $id),
+				'default'	=>	mbdb_get_tax_grid_slug($name),
 				'sanitization_cb'	=> array( $this, 'sanitize_slug'),
 				'type'	=> 'text',
 				)
@@ -898,10 +899,11 @@ class mbdb_Admin_Settings {
 		foreach($taxonomies as $name => $taxonomy) {
 			$key = 'mbdb_book_grid_' . $name . '_slug';
 			if ( (!array_key_exists($key, $old_value)) || ($old_value[$key] != $new_value[$key]) ) {
-				// multi-site compatible
+			/*	// multi-site compatible
 				global $wp_rewrite;
 				$wp_rewrite->init(); //important...
-				$wp_rewrite->flush_rules();
+				$wp_rewrite->flush_rules(); */
+				flush_rewrite_rules();
 				break;
 			}
 		}
