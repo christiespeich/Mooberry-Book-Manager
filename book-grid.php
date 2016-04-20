@@ -343,7 +343,7 @@ function mbdb_book_grid_meta_boxes( ) {
  */
 function mbdb_get_group($level, $groups, $current_group, $selection, $selected_ids, $sort, $book_ids) { 
 	
-	do_action('mbdb_book_grid_pre+get_group', $level, $groups, $current_group, $selection, $selected_ids, $sort, $book_ids ); 
+	do_action('mbdb_book_grid_pre_get_group', $level, $groups, $current_group, $selection, $selected_ids, $sort, $book_ids ); 
 	
 	$books = array();
 	$taxonomies = get_object_taxonomies( 'mbdb_book', 'objects' );
