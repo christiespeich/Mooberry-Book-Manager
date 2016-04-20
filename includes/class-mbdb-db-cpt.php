@@ -61,10 +61,10 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				$data = $this->get_multiple_with_posts( $ids, $orderby, $order, $include_unpublished );
 			} else {
 				
-				
+				$table = $this->table_name();
 					
 				$sql =  "SELECT * 
-				FROM $this->table_name AS t
+				FROM $table AS t
 				JOIN " . $wpdb->posts . " p ON p.id = t." . $this->primary_key . "
 				WHERE p.id = $ids ";
 				/*
@@ -117,9 +117,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			$where .= " AND blog_id = $this->blog_id";
 		}
 */
-		
+		$table = $this->table_name();
 		$sql = $wpdb->prepare( "SELECT * 
-						FROM $this->table_name AS t
+						FROM $table AS t
 						$join
 						WHERE $this->primary_key IN ($key_ids) 
 						$where
@@ -156,8 +156,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			$where .= " AND blog_id = $this->blog_id";
 		}
 		*/
+		$table = $this->table_name();
 		$sql =  "SELECT * 
-				FROM $this->table_name AS t
+				FROM $table AS t
 				$join
 				$where
 				ORDER BY  
@@ -191,9 +192,10 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			$where = " AND blog_id = $this->blog_id";
 		}
 		*/
+		$table = $this->table_name();
 		$sql = $wpdb->prepare("SELECT * 
 						FROM {$wpdb->posts} AS p
-						JOIN {$this->table_name} AS a ON a.{$this->primary_key} = p.ID
+						JOIN {$table} AS a ON a.{$this->primary_key} = p.ID
 						WHERE post_name = %s  AND 
 						post_type = %s;",
 						$slug,
@@ -314,9 +316,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	
 	public function search_join( $join ) {
 		global $wpdb;
-		
+		$table = $this->table_name();
 		if( is_search() ) {
-			$join .= ' LEFT JOIN ' . $this->table_name . ' ON ' . $wpdb->posts . '.ID = ' . $this->table_name . '.' . $this->primary_key . ' ';
+			$join .= ' LEFT JOIN ' . $table . ' ON ' . $wpdb->posts . '.ID = ' . $table . '.' . $this->primary_key . ' ';
 	  }
 
 	  return $join;

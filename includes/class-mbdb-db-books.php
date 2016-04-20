@@ -96,6 +96,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		
 		
 		global $wpdb;
+		$table = $this->table_name();
 		
 		// validate inputs
 		
@@ -252,7 +253,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								// if -1 then get books that are NOT in any of this taxonomny
 								if ($tax_ids == -1) {
 									$select .=  ' "" AS name' . $tax_level . ', ';
-									$where .= ' and b.book_id not in (select book_id from ' . $this->table_name . ' as b 
+									$where .= ' and b.book_id not in (select book_id from ' . $table . ' as b 
 																		join ' . $wpdb->term_relationships . ' as tr3 on tr3.object_id = b.book_id 
 																		join ' . $wpdb->term_taxonomy . ' tt3 on tt3.term_taxonomy_id = tr3.term_taxonomy_id 
 																		where tt3.taxonomy = "mbdb_' . $tax . '" ) ';
@@ -297,7 +298,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		$orderby = apply_filters('mbdb_book_get_ordered_selection_orderby', $orderby, $sort, $order);
 		
 	
-		$sql = "$select b.book_id, p.post_title, b.cover, b.release_date, b.cover_id FROM  $this->table_name  as b  $join $where $orderby $order ";
+		$sql = "$select b.book_id, p.post_title, b.cover, b.release_date, b.cover_id FROM  $table  as b  $join $where $orderby $order ";
 		
 		$books =  $this->run_sql( $sql );
 		return apply_filters('mbdb_book_get_ordered_selection', $books, $selection, $selection_ids, $sort, $order, $taxonomy, $book_ids );
@@ -315,12 +316,13 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 
 public function search_where( $where ) {
 	global $wpdb;	
+	$table = $this->table_name();
 	if( is_search() ) {
 		$where = preg_replace(
 		   "/\([^(]*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
-		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $this->table_name . ".subtitle LIKE $1 ) OR (
-		   " . $this->table_name . ".excerpt LIKE $1) OR (
-		   " . $this->table_name . ".summary LIKE $1) OR (" . $this->table_name .".additional_info LIKE $1) ", $where);
+		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
+		   " . $table . ".excerpt LIKE $1) OR (
+		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where);
 		$where = parent::search_where( $where );
 	}
 	
@@ -335,8 +337,8 @@ public function search_where( $where ) {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		
 		global $charset_collate;
-		
-		$sql_create_table = "CREATE TABLE " . $this->table_name . " (
+		$table = $this->table_name();
+		$sql_create_table = "CREATE TABLE " . $table . " (
 			  book_id bigint(20) unsigned NOT NULL,
 			  subtitle varchar(100),
 			  summary longtext,
@@ -354,7 +356,7 @@ public function search_where( $where ) {
 	 
 		dbDelta( $sql_create_table );
 		
-		update_option( $this->table_name . '_db_version', $this->version );
+		update_option( $table . '_db_version', $this->version );
 		
 	}
 }
