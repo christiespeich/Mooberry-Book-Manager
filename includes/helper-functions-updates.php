@@ -520,15 +520,22 @@ function mbdb_upgrade_to_3_1($current_version) {
 			
 	}	else {
 		// user is NOT on multisite AND is NOT coming from a pre-3.0 version
-		// give option to re-import
-		$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
-		$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
-		$m2 = __('Migrate Data Now', 'mooberry-book-manager');
-		$m3 = __('Dismiss Notice', 'mooberry-book-manager');
-		$key = '3_1_remigrate';
 		
-		$message = $m1 . '<b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
-		mbdb_set_admin_notice($message, 'error', $key );
+		// if fresh 3.1 install, no need to import
+		if ($current_version == MBDB_PLUGIN_VERSION) {
+			update_option('mbdb_import_books', true);
+		} else {
+			// if coming from 3.0.x, give option to re-import
+			$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
+			$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
+			$m2 = __('Migrate Data Now', 'mooberry-book-manager');
+			$m3 = __('Dismiss Notice', 'mooberry-book-manager');
+			$key = '3_1_remigrate';
+			
+			$message = $m1 . '<b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
+			mbdb_set_admin_notice($message, 'error', $key );
+			
+		}
 		
 	}
 	

@@ -252,6 +252,12 @@ function _mbdb_activate() {
 	
 	MBDB()->books->create_table();
 	
+	// if this is a fresh 3.1 or higher install, no import necessary
+	$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
+	if ($current_version == '' || version_compare($current_version, '3.1', '>=') ) {
+		update_option('mbdb_import_books', true);
+	}
+	
 	mbdb_set_up_roles();
 
 	// insert defaults
@@ -319,6 +325,7 @@ function mbdb_new_blog($blog, $user_id, $domain, $path, $site_id, $meta ) {
 register_deactivation_hook( MBDB_PLUGIN_FILE, 'mbdb_deactivate' );
 function mbdb_deactivate( $networkwide ) {
 	global $blog_id;
+	global $wpdb;
 	
 	if (function_exists('is_multisite') && is_multisite()) {
         // check if it is a network activation - if so, run the activation function for each blog id
