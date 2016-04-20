@@ -225,10 +225,12 @@ function mbdb_set_admin_notice($message, $type, $key) {
 function mbdb_remove_admin_notice($key) {
 	$mbdb_admin_notices = get_option('mbdb_admin_notices');
 
-	if (array_key_exists($key, $mbdb_admin_notices)) {
-		unset($mbdb_admin_notices[$key]);
+	if (is_array($mbdb_admin_notices)) {
+		if (array_key_exists($key, $mbdb_admin_notices)) {
+			unset($mbdb_admin_notices[$key]);
+		}
+		update_option('mbdb_admin_notices', $mbdb_admin_notices);
 	}
-	update_option('mbdb_admin_notices', $mbdb_admin_notices);
 }
 	
 	
@@ -375,6 +377,9 @@ function mbdb_get_list( $options_key, $empty_option = 'yes' ) {
 function mbdb_create_array_options_list( $options_key, $key_field, $value_field, $mbdb_options = null ) {
 	if (!$mbdb_options) {
 		$mbdb_options = get_option('mbdb_options');
+	}
+	if (!is_array($mbdb_options)) {
+		$mbdb_options = array();
 	}
 	if (array_key_exists( $options_key, $mbdb_options ) ) {
 		// creates an array with key_field as the key and value_field as the value
