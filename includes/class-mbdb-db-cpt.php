@@ -300,10 +300,10 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				return false;
 			}
 			echo '<b>' . __('Success!', 'mooberry-book-manager') . '</b></p>';
-			mbdb_remove_admin_notice('3_1_migrate');
-			mbdb_remove_admin_notice('3_1_remigreate');
+			
 		}
-		
+		mbdb_remove_admin_notice('3_1_migrate');
+		mbdb_remove_admin_notice('3_1_remigreate');
 		return true;
 	}
 

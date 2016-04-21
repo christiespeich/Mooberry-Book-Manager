@@ -152,6 +152,20 @@ function mbdb_excerpt( $content ) {
 		}
 	}
 	
+	// v3.1
+	// if we're not on the admin side and it's a book post and main query
+	// don't display the excerpt
+	if ( get_post_type() == 'mbdb_book' && is_main_query() && !is_admin() ) {
+		
+		// this weeds out content in the sidebar and other odd places
+		// thanks joeytwiddle for this update
+		
+		if ( !in_the_loop() || !is_main_query() ) {
+			return $content;
+		}
+		return '';
+	}	
+	
 	return $content;
 }	
 	

@@ -506,8 +506,9 @@ function mbdb_upgrade_to_3_1($current_version) {
 				
 				$m = __('Upgrading to Mooberry Book Manager version 3.1 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
 				$m3 = __('Even if you have previously migrated the data (if you upgraded to version 3.0 and then rolled back to version 2.4.x), you must migrate again to ensure Mooberry Book Manaer will operate properly.');
+				$m4 = __('Changes made since migrating the first time may be lost.', 'mooberry-book-manager');
 				$m2 = __('Migrate Data Now', 'mooberry-book-manager');
-				$message = $m . '<p>' . $m3 . '</p><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a></p>';
+				$message = $m . '<p>' . $m3 . '<i>' . $m4 . '</i></p><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a></p>';
 				
 				
 				mbdb_set_admin_notice($message, 'error', '3_1_migrate');
