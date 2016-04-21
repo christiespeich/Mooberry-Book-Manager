@@ -21,7 +21,7 @@ abstract class MOOBD_Database {
 	//	$this->prefix = $wpdb->prefix; //$this->table_prefix();
 				
 				$this->table = $table_name;
-				error_log($this->table_name());
+				
 	//	$this->table_name = $wpdb->prefix . $table_name; //$this->table( $table_name );
 	//	$this->blog_id = $blog_id; //$this->current_blog_id();
 	}
