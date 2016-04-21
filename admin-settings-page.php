@@ -285,7 +285,7 @@ class mbdb_Admin_Settings {
 		// translatable text
 		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="http://localhost/wordpress/wp-admin/plugins.php?s=mooberry+book+manager+image+fixer">' . $description2 . '</a></span>.';
+		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 	'goodreads',
@@ -602,7 +602,7 @@ class mbdb_Admin_Settings {
 		// translatable text
 		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="http://localhost/wordpress/wp-admin/plugins.php?s=mooberry+book+manager+image+fixer">' . $description2 . '</a></span>.';
+		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 	'coming-soon',
@@ -642,7 +642,7 @@ class mbdb_Admin_Settings {
 		// translatable text
 		$description1 = __('Add any additional retailers that sell your books. If you need to restore images that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = $description1 . ' <a target="_new" href="http://localhost/wordpress/wp-admin/plugins.php?s=mooberry+book+manager+image+fixer">' . $description2 . '</a>.';
+		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
 		
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'retailers',
@@ -709,7 +709,7 @@ class mbdb_Admin_Settings {
 		// translatable text
 		$description1 = __('If you have free books for download, add any additional formats your books are available in. If you need to restore images that came with Mooberry Book Manager, download the', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = $description1 . ' <a target="_new" href="http://localhost/wordpress/wp-admin/plugins.php?s=mooberry+book+manager+image+fixer">' . $description2 . '</a>.';
+		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
   
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'formats',
