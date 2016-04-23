@@ -55,11 +55,11 @@ function mbdb_upgrade_versions() {
 		if (version_compare($current_version, '3.1', '<')) {
 			mbdb_upgrade_to_3_1($current_version);
 		}
-		/*
-		if (version_compare($current_version, '3.1.1', '<')) {
+		
+		if ($current_version != MBDB_PLUGIN_VERSION && version_compare(MBDB_PLUGIN_VERSION, '3.1.1', '=')) {
 			mbdb_upgrade_to_3_1_1();
 		}
-		*/
+		
 		/*
 		$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
 		$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
@@ -472,21 +472,8 @@ function mbdb_upgrade_to_3_0() {
 
 function mbdb_upgrade_to_3_1($current_version) {
 	
-	
-	/*
-	global $wpdb;
-	// drop the original primary key if it exsists
-	$results = $wpdb->query("SHOW TABLES LIKE '{$wpdb->base_prefix}mbdb_books'");
-	if ($results == 1) {
-		$wpdb->query( "ALTER TABLE {$wpdb->base_prefix}mbdb_books DROP PRIMARY KEY" );
-	}
-	// alter/create the table
-	MBDB()->books->create_table();
-	*/
-	
 	// force re-importing if on multisite OR if coming from a version < 3.0
 	if ( is_multisite()  ||  version_compare($current_version, '3.0', '<') ) {
-
 		
 		// truncate the table 
 		MBDB()->books->empty_table();
@@ -577,9 +564,10 @@ function mbdb_upgrade_to_3_1($current_version) {
 	wp_reset_postdata();
 }
 
-/*
+
 // only local and Tyler Tork need this update. TT does not use multisite.
 function mbdb_upgrade_to_3_1_1() {
+	
 	global $wpdb;
 	// drop the original primary key if it exsists
 	$results = $wpdb->query("SHOW TABLES LIKE '{$wpdb->prefix}mbdb_books'");
@@ -591,5 +579,5 @@ function mbdb_upgrade_to_3_1_1() {
 	
 	
 }
-*/
+
 
