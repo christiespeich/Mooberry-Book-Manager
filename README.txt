@@ -168,6 +168,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Fixed: Problems with W3 Total Cache (see **Other Notes** section for more info about using caching plugins with MBM)
 * Fixed: Not pulling grid default cover height from settings, always defaulting to 200
 * Improved: For new insallations, activation process simplified and sped up (images no longer uploaded to Media Library)
+* Added: Russian Ruble currency
 * Removed: unused images
 * Wordpress 4.5 Compatibility
 
