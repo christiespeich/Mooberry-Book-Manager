@@ -2,8 +2,8 @@
 **Contributors:** mooberrydreams  
 **Tags:** book, author, publisher, writer, books, writing, publishing, authors   
 **Requires at least:** 3.8.0  
-**Tested up to:** 4.3.1   
-**Stable tag:** 3.0   
+**Tested up to:** 4.5   
+**Stable tag:** 3.1   
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -57,6 +57,16 @@ Want regular updates?
 
 
 ## Changelog
+#### 3.1  
+* Fixed: Now compatible with Multisite, including Network Activation  
+* Fixed: Migration problems from version 3.0  
+* Fixed: Problems with W3 Total Cache   
+* Fixed: Not pulling grid default cover height from settings, always defaulting to 200  
+* Improved: For new insallations, activation process simplified and sped up (images no longer uploaded to Media Library)  
+* Added: Russian Ruble currency  
+* Removed: unused images  
+* Wordpress 4.5 Compatibility  
+
 #### 3.0 
 * Added: Book Grids can now be filtered and grouped by Editors, Illustrators, Cover Artists, and Publishers
 * Added: Book Grids can now be grouped by several levels
