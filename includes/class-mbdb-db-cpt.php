@@ -52,13 +52,13 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	}
 	
 	
-	public function get($ids = null, $orderby = null, $order = null, $include_unpublished = false) {
+	public function get($ids = null, $orderby = null, $order = null, $include_unpublished = false, $cache_results = true) {
 		global $wpdb;
 		if ($ids == null) {
-			$data = $this->get_all($orderby, $order, $include_unpublished);
+			$data = $this->get_all($orderby, $order, $include_unpublished, $cache_results);
 		} else {
 			if (is_array($ids)) {
-				$data = $this->get_multiple_with_posts( $ids, $orderby, $order, $include_unpublished );
+				$data = $this->get_multiple_with_posts( $ids, $orderby, $order, $include_unpublished, $cache_results );
 			} else {
 				
 				$table = $this->table_name();
@@ -80,8 +80,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				
 				global $wpdb;
 				$data =  $wpdb->get_row($sql);
-				
-				$this->set_cache( $data, $sql );
+				if ($cache_results) {
+					$this->set_cache( $data, $sql );
+				}
 
 			}
 		}
@@ -90,7 +91,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		return $data;
 	}
 	
-	private function get_multiple_with_posts( $ids, $orderby = null, $order = null, $include_unpublished = false) {
+	private function get_multiple_with_posts( $ids, $orderby = null, $order = null, $include_unpublished = false, $cache_results = true) {
 	
 		global $wpdb;
 		if ( !is_array( $ids ) ) {
@@ -129,12 +130,12 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 									$order))
 					);
 
-		return $this->run_sql($sql);
+		return $this->run_sql($sql, $cache_results);
 		
 	}
 
 	
-	protected function get_all ($orderby = null, $order = null, $include_unpublished = false ) {
+	protected function get_all ($orderby = null, $order = null, $include_unpublished = false, $cache_results = true ) {
 		
 		global $wpdb;
 		
@@ -165,12 +166,12 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				$orderby 
 				$order";
 
-		return $this->run_sql($sql);
+		return $this->run_sql($sql, $cache_results);
 	}
 	
-	public function get_data( $data_field, $id ) {
+	public function get_data( $data_field, $id, $cache_results = true ) {
 		if ( $this->column_exists($data_field) ) {
-			$data = $this->get( $id );
+			$data = $this->get( $id, $cache_results );
 			if ($data != null) {
 				return $data->{$data_field};
 			}
@@ -181,7 +182,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		return null;	
 	}
 	
-	public function get_by_slug( $slug ) {
+	public function get_by_slug( $slug, $cache_results = true ) {
 		global $wpdb;
 		
 		$slug = esc_sql( $slug );
@@ -201,7 +202,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 						$slug,
 						$this->post_type);
 				
-		$data = $this->run_sql($sql);
+		$data = $this->run_sql($sql, $cache_results);
 		if (count($data)==1) {
 			return $data[0];
 		} else {

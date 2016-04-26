@@ -72,7 +72,7 @@ abstract class MOOBD_Database {
 		return esc_sql( $order );
 	}
 	
-	protected  function run_sql( $sql ) {
+	protected  function run_sql( $sql, $cache_results = true ) {
 		global $wpdb;
 		//$sql = $wpdb->prepare( $sql );
 		
@@ -82,11 +82,13 @@ abstract class MOOBD_Database {
 		}
 
 		$data = $wpdb->get_results($sql);
-		$this->set_cache( $data, $sql );
+		if ($cache_results) {
+			$this->set_cache( $data, $sql );
+		}
 		return $data;
 	}
 	
-	 public function get( $value ) {
+	 public function get( $value, $cache_results = true ) {
 		global $wpdb;
 		/*$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
@@ -105,11 +107,13 @@ abstract class MOOBD_Database {
 		
 		
 		$data = $wpdb->get_row($sql);
-		$this->set_cache( $data, $sql );
+		if ($cache_results) {
+			$this->set_cache( $data, $sql );
+		}
 		return $data;
     }
 	
-	protected function get_by( $column, $row_id ) {
+	protected function get_by( $column, $row_id, $cache_results = true ) {
 		global $wpdb;
 		
 		$column = esc_sql( $column );
@@ -131,13 +135,15 @@ abstract class MOOBD_Database {
 		
 		$data = $wpdb->get_row( $sql );
 		
-		$this->set_cache( $data, $sql );
+		if ($cache_results) {
+			$this->set_cache( $data, $sql );
+		}
 		
 		return $data;
 		
 	}
 	
-	protected function get_multiple ( $values, $orderby = null, $order = null) {
+	protected function get_multiple ( $values, $orderby = null, $order = null, $cache_results = true) {
 		
 		$orderby = $this->validate_orderby( $orderby );
 		
@@ -159,11 +165,11 @@ abstract class MOOBD_Database {
 		
 		$sql =  $wpdb->prepare("SELECT * FROM $table WHERE $this->primary_key IN (%s)  ORDER BY %s %s;", implode(',',$values), $orderby, $order);
 		
-		return $this->run_sql($sql);
+		return $this->run_sql($sql, $cache_results);
 		
 	}
 	
-	protected function get_all ($orderby = null, $order = null ) {
+	protected function get_all ($orderby = null, $order = null, $cache_results = true ) {
 		global $wpdb; 
 		$orderby = $this->validate_orderby( $orderby );
 		
@@ -181,7 +187,7 @@ abstract class MOOBD_Database {
 						$orderby, 
 						$order);
 		
-		return $this->run_sql($sql);
+		return $this->run_sql($sql, $cache_results);
 	}
 	
 	public function get_count () {
