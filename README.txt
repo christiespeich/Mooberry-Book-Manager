@@ -136,6 +136,18 @@ There are cases though when you might want to have an Author field. You might be
 
 2. For more advanced handling of author names, use the Mooberry Book Manager Multi-Author plugin (coming soon). This will allow you to have a bio and photo of each author as well as advanced filtering and sorting on Book Grids based on author.
 
+= Does Mooberry Book Manager work with Wordpress Multi-Site? =
+
+Versions 2.4.4 and earlier work with Wordpress Multi-Site if you **don't** use Network Activation. If each blog activates Mooberry Book Manager themselves, it should work.
+
+Versions 3.0 - 3.0.4 does **not** work with Wordpress Multi-Site in any way.
+
+Versions 3.1 and above work with Wordpress Multi-Site both with and without Network Activation.
+
+= Does Mooberry Book Manager work with caching plugins? =
+
+See the **Other Notes** section for information about using caching plugins with Mooberry Book Manager.
+
 = Additional questions? =
 
 Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)  (note: the manual is not updated for version 3 at this time)
@@ -156,6 +168,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Fixed: Problems with W3 Total Cache (see **Other Notes** section for more info about using caching plugins with MBM)
 * Fixed: Not pulling grid default cover height from settings, always defaulting to 200
 * Improved: For new insallations, activation process simplified and sped up (images no longer uploaded to Media Library)
+* Added: Russian Ruble currency
 * Removed: unused images
 * Wordpress 4.5 Compatibility
 
@@ -252,6 +265,28 @@ Responsive Book Grids and more!
 Redesigned, responsive book page and much more!
 
 == Other Notes ==
+= Multi-Site Compatibility =
+
+* **Versions 2.4.4 and earlier** work with Wordpress Multi-Site if you **don't** use Network Activation. If each blog activates Mooberry Book Manager themselves, it should work.
+
+* **Versions 3.0 - 3.0.4** do **not** work with Wordpress Multi-Site in any way.
+
+* **Versions 3.1 and above** work with Wordpress Multi-Site both with and without Network Activation.
+
+= Caching Plugins Compatibility =
+
+**Versions 2.4.4 and earlier** should work with caching plugins as-is. If your book pages or book grids aren't refreshing when you add/update a book, you may need to manually clear your cache.
+
+**Versions 3.0 - 3.0.4** do **not** work with W3C Total Cache. An error will be thrown. These versions work okay with WP Super Cache.
+
+**Versions 3.1 and above** work with both W3C Total Cache and WP Super Cache with the following notes:
+
+* **W3C Total Cache** - You must turn on Object Caching in W3C Total Cache's settings for Mooberry Book Manager data to be cached. Book data cache is automatically cleared when a book is updated, added, or deleted so your book pages and grids should stay up-to-date.
+
+* **WP Super Cache** - When a book is updated, added, or deleted, the cache for the entire site is cleared. Unfortunately, WP Super Cache does not seem to have an option for selectively clearing some cache and not all of it.
+
+* Use another caching plugin?  If you are having problems using it with Mooberry Book Manager, please [contact us](http://www.mooberrydreams.com/contact/) and let us know what plugin you are using and what the issue is.
+
 = Translations =
 * English 
 

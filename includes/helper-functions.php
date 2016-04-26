@@ -33,9 +33,8 @@ function mbdb_sanitize_field( $field ) {
 }
 
 function mbdb_get_grid_cover_height( $postID = null ) {
-	// if there's no postID then it's a tax grid
 	// tax grids always use the default
-	if ($postID != null) {
+	if ( get_post_type() != 'mbdb_tax_grid' ) {
 		$mbdb_book_grid_cover_height_default = get_post_meta( $postID, '_mbdb_book_grid_cover_height_default', true);
 	} else {
 		$mbdb_book_grid_cover_height_default = 'yes';
@@ -226,10 +225,12 @@ function mbdb_set_admin_notice($message, $type, $key) {
 function mbdb_remove_admin_notice($key) {
 	$mbdb_admin_notices = get_option('mbdb_admin_notices');
 
-	if (array_key_exists($key, $mbdb_admin_notices)) {
-		unset($mbdb_admin_notices[$key]);
+	if (is_array($mbdb_admin_notices)) {
+		if (array_key_exists($key, $mbdb_admin_notices)) {
+			unset($mbdb_admin_notices[$key]);
+		}
+		update_option('mbdb_admin_notices', $mbdb_admin_notices);
 	}
-	update_option('mbdb_admin_notices', $mbdb_admin_notices);
 }
 	
 	
@@ -377,6 +378,9 @@ function mbdb_create_array_options_list( $options_key, $key_field, $value_field,
 	if (!$mbdb_options) {
 		$mbdb_options = get_option('mbdb_options');
 	}
+	if (!is_array($mbdb_options)) {
+		$mbdb_options = array();
+	}
 	if (array_key_exists( $options_key, $mbdb_options ) ) {
 		// creates an array with key_field as the key and value_field as the value
 		return array_column( $mbdb_options[ $options_key ], $value_field, $key_field );
@@ -443,6 +447,7 @@ function mbdb_get_currency_array() {
 		'NZD'   => __('New Zealand Dollar', 'mooberry-book-manager'),
 		'PHP'   => __('Philippine Peso', 'mooberry-book-manager'),
 		'PLN'   => __('Polish Zloty', 'mooberry-book-manager'),
+		'RUB'	=> __('Russian Rube', 'mooberry-book-manager'),
 		'SGD'   => __('Singapore Dollar', 'mooberry-book-manager'),
 		'ZAR'   => __('South African Rand', 'mooberry-book-manager'),
 		'SEK'   => __('Swedish Krona', 'mooberry-book-manager'),
@@ -474,6 +479,7 @@ function mbdb_get_currency_symbol_array() {
 		'NZD'   => '$',
 		'PHP'   => '₱',
 		'PLN'   => 'zł',
+		'RUB'	=> '₽',
 		'GBP'   => '£',
 		'SGD'   => '$',
 		'ZAR'	=> 'R',
@@ -879,35 +885,35 @@ function mbdb_set_default_tax_grid_slugs() {
 	$taxonomies = mbdb_tax_grid_objects(); //get_object_taxonomies( 'mbdb_book', 'objects' );
 	$mbdb_options = get_option('mbdb_options');
 	
-	//$reserved_terms = mbdb_wp_reserved_terms();
 	foreach($taxonomies as $name => $taxonomy) {
 		$key = 'mbdb_book_grid_' . $name . '_slug';
-		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $taxonomy->labels->singular_name, $name, $mbdb_options);
-		/*
-		$key = 'mbdb_book_grid_' . $name . '_slug';
-		if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
-			$slug = sanitize_title($taxonomy->labels->singular_name);
-			if ( in_array($slug, $reserved_terms) ) {
-				$slug = sanitize_title('book-' . $slug);
-			}
-			$mbdb_options[$key] = $slug;
-		}
-		*/
+		$mbdb_options[$key] = mbdb_get_tax_grid_slug( $name, $mbdb_options);
 	}
 	update_option('mbdb_options', $mbdb_options);
 }
 
-function mbdb_get_tax_grid_slug( $singular_name, $term, $mbdb_options = null ) {
+function mbdb_get_tax_grid_slug( $taxonomy, $mbdb_options = null ) {
+	
 	if ($mbdb_options == null) {
 		$mbdb_options = get_option('mbdb_options');
 	}
 	if (!is_array($mbdb_options)) {
 		$mbdb_options = array();
 	}
-	$key = 'mbdb_book_grid_' . $term . '_slug';
+	
+	$tax = get_taxonomy( $taxonomy );
+	if ($tax !== false ) {
+		$singular_name = $tax->labels->singular_name;
+	} else {
+		$singular_name = $taxonomy;
+	}
+	
+	$key = 'mbdb_book_grid_' . $taxonomy . '_slug';
+	
 	$reserved_terms = mbdb_wp_reserved_terms();
 	if (!array_key_exists($key, $mbdb_options) || $mbdb_options[$key] == '') {
-		$slug = $singular_name;
+		// must be sanitized before checking against reserved terms
+		$slug = sanitize_title($singular_name);
 		if ( in_array($slug, $reserved_terms) ) {
 			$slug = 'book-' . $slug;
 		}

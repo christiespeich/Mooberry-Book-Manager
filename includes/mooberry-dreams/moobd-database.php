@@ -3,10 +3,10 @@
 
 abstract class MOOBD_Database {
     protected $primary_key;
-	protected $table_name;
+	protected $table;
 	protected $version;
-	protected $prefix;
-	protected $blog_id;
+	//protected $prefix;
+	//protected $blog_id;
 	
 	//protected $cache_keys = array();
 	
@@ -17,10 +17,13 @@ abstract class MOOBD_Database {
 	
 	public function __construct( $table_name ) {
 		global $wpdb;
-		global $blog_id;
-		$this->prefix = $wpdb->base_prefix; //$this->table_prefix();
-		$this->table_name = $wpdb->base_prefix . $table_name; //$this->table( $table_name );
-		$this->blog_id = $blog_id; //$this->current_blog_id();
+	//	global $blog_id;
+	//	$this->prefix = $wpdb->prefix; //$this->table_prefix();
+				
+				$this->table = $table_name;
+				
+	//	$this->table_name = $wpdb->prefix . $table_name; //$this->table( $table_name );
+	//	$this->blog_id = $blog_id; //$this->current_blog_id();
 	}
 	
 	protected function columns_with_html() {
@@ -37,18 +40,14 @@ abstract class MOOBD_Database {
 		global $wpdb;
 		return $wpdb->blogid;
 	}
-	
-	final protected function table_prefix() {
-		global $wpdb;
-			return $wpdb->base_prefix;
-		
-	}
-	
-    final protected function table( $table_name ) {
-		
-        return $this->prefix . $table_name;
-    }
 	*/
+	
+	
+    final protected function table_name( ) {
+		global $wpdb;
+        return $wpdb->prefix . $this->table;
+    }
+	
 	
 	protected function get_column_defaults() {
 		return array();
@@ -89,12 +88,14 @@ abstract class MOOBD_Database {
 	
 	 public function get( $value ) {
 		global $wpdb;
-		$where = '';
+		/*$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = "AND blog_id = $this->blog_id";
-		}
+		}*/
 
-		$sql = $wpdb->prepare( "SELECT * FROM $this->table_name WHERE $this->primary_key = %s $where", $value );
+		$table = $this->table_name();
+		
+		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $this->primary_key = %s ", $value );
 		
 		
 		$cache = $this->get_cache($sql);
@@ -112,13 +113,14 @@ abstract class MOOBD_Database {
 		global $wpdb;
 		
 		$column = esc_sql( $column );
-		
+		/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = "AND blog_id = $this->blog_id";
 		}
-
-		$sql = $wpdb->prepare( "SELECT * FROM $this->table_name WHERE $column = %s $where LIMIT 1;", $row_id );
+*/
+		$table = $this->table_name();
+		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $column = %s LIMIT 1;", $row_id );
 		
 		
 		$cache = $this->get_cache($sql);
@@ -144,16 +146,18 @@ abstract class MOOBD_Database {
 		if ( ! is_array( $values ) ) {
 			$values  = array( $values );
 		}
-		
+		/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = "AND blog_id = $this->blog_id";
 		}
-
+*/
 		$values = array_map('esc_sql', $values);
 		$values = array_map('sanitize_title_for_query', $values);
 		
-		$sql =  $wpdb->prepare("SELECT * FROM $this->table_name WHERE $this->primary_key IN (%s) $where ORDER BY %s %s;", implode(',',$values), $orderby, $order);
+		$table = $this->table_name();
+		
+		$sql =  $wpdb->prepare("SELECT * FROM $table WHERE $this->primary_key IN (%s)  ORDER BY %s %s;", implode(',',$values), $orderby, $order);
 		
 		return $this->run_sql($sql);
 		
@@ -164,15 +168,15 @@ abstract class MOOBD_Database {
 		$orderby = $this->validate_orderby( $orderby );
 		
 		$order = $this->validate_order( $order );
-		
+		/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = "WHERE blog_id = $this->blog_id";
 		}
-
+*/
+		$table = $this->table_name();
 		$sql = $wpdb->prepare( "SELECT * 
-						FROM $this->table_name AS t
-						$where
+						FROM $table AS t
 						ORDER BY %s %s;",
 						$orderby, 
 						$order);
@@ -182,14 +186,14 @@ abstract class MOOBD_Database {
 	
 	public function get_count () {
 		global $wpdb;
-		
+		/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = "WHERE blog_id = $this->blog_id";
 		}
-
-		
-		$sql =  "SELECT count(*) AS number FROM $this->table_name $where";
+*/
+		$table = $this->table_name();
+		$sql =  "SELECT count(*) AS number FROM $table ";
 		if (count($results)>0) {
 			return $results[0]->number;
 		} else {
@@ -214,7 +218,7 @@ abstract class MOOBD_Database {
 			if ( ! $auto_increment ) {
 				$data[$this->primary_key] = $id;
 			}
-			$data['blog_id'] = $this->blog_id;
+			//$data['blog_id'] = $this->blog_id;
 			return $this->insert( $data, $type );
 			
 		} else {
@@ -245,8 +249,8 @@ abstract class MOOBD_Database {
 		$column_formats = array_merge( array_flip( $data_keys ), $column_formats );
 		
 		$this->clear_cache();
-		
-		$success = $wpdb->insert( $this->table_name, $data, $column_formats );
+		$table = $this->table_name();
+		$success = $wpdb->insert( $table, $data, $column_formats );
 		
 		do_action( 'mbdb_post_insert' . $type, $wpdb->insert_id, $data );
 
@@ -280,14 +284,14 @@ abstract class MOOBD_Database {
 		$column_formats = array_merge( array_flip( $data_keys ), $column_formats );
 		
 		$pk = array( $this->primary_key => $row_id );
-		
+		/*
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$pk['blog_id'] = $this->blog_id;
 		}
-		
+		*/
 		$this->clear_cache();
-	
-		$success = $wpdb->update( $this->table_name, $data, $pk, $column_formats );
+		$table = $this->table_name();
+		$success = $wpdb->update( $table, $data, $pk, $column_formats );
 		
 		do_action( 'mbdb_post_update' . $type, $data, $row_id, $success );
 		
@@ -308,14 +312,15 @@ abstract class MOOBD_Database {
 		}
 
 		$this->clear_cache();
-
+/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = "AND blog_id = $this->blog_id";
 		}
-
+*/
+		$table = $this->table_name();
 		
-        $success = $wpdb->query( $wpdb->prepare( "DELETE FROM $this->table_name WHERE $this->primary_key = %d $where", $value ) );
+        $success = $wpdb->query( $wpdb->prepare( "DELETE FROM $table WHERE $this->primary_key = %d ", $value ) );
 		
 		if (false === $success) {
 			return false;
@@ -327,8 +332,8 @@ abstract class MOOBD_Database {
 	public function empty_table() {
 		global $wpdb;
 		
-		
-		$success = $wpdb->query("TRUNCATE TABLE $this->table_name");
+		$table = $this->table_name();
+		$success = $wpdb->query("TRUNCATE TABLE $table");
 		if (false === $success) {
 			return false;
 		}
@@ -384,7 +389,8 @@ abstract class MOOBD_Database {
 	
 	protected function get_cache( $key ) {
 		//error_log('getting cache: ' . md5( serialize($key)) . ' = ' . $key);
-		$cache =  wp_cache_get( md5( serialize($key) ), $this->table_name );
+		$table = $this->table_name();
+		$cache =  wp_cache_get( md5( serialize($key) ), $table );
 		
 		return $cache;
 	}
@@ -392,10 +398,10 @@ abstract class MOOBD_Database {
 	protected function set_cache( $data, $sql ) {
 		$key = md5( serialize($sql));
 		//error_log('setting cache = : ' . $key . ' = ' . $sql);
-		
-		wp_cache_set( $key, $data, $this->table_name,  24*60*60);
+		$table = $this->table_name();
+		wp_cache_set( $key, $data, $table,  24*60*60);
 		$mbdb_cache = get_option('mbdb_cache');
-		$mbdb_cache[$this->table_name][] = $key;
+		$mbdb_cache[$table][] = $key;
 		update_option('mbdb_cache', $mbdb_cache);
 		
 		
@@ -405,12 +411,14 @@ abstract class MOOBD_Database {
 	//	error_log('clearing cache');
 		//$this->delete_cache($this->table_name);
 		$mbdb_cache = get_option('mbdb_cache');
-		if (array_key_exists($this->table_name, $mbdb_cache)) {
-			foreach ($mbdb_cache[$this->table_name] as $key) {
+		$table = $this->table_name();
+		
+		if (array_key_exists($table, $mbdb_cache)) {
+			foreach ($mbdb_cache[$table] as $key) {
 			//	error_log('deleting ' . $key);
-				wp_cache_delete($key, $this->table_name);
+				wp_cache_delete($key, $table);
 			}
-			unset($mbdb_cache[$this->table_name]);
+			unset($mbdb_cache[$table]);
 			update_option('mbdb_cache', $mbdb_cache);
 		}
 		
@@ -418,11 +426,11 @@ abstract class MOOBD_Database {
 		if (function_exists('wp_cache_clear_cache')) {
 			// check for multisite becase wp super cache assumes blog = 0 if not multisite
 			// but $this->blog_id will be 1 even if not multisite
-			if ( is_multisite() ) {
+		/*	if ( is_multisite() ) {
 				wp_cache_clear_cache($this->blog_id);
-			} else {
+			} else { */
 				wp_cache_clear_cache();
-			}
+			//}
 			
 		}
 

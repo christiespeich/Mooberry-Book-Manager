@@ -852,6 +852,7 @@ function mbdb_book_metaboxes(  ) {
 			'name'	=> _x('Link', 'noun', 'mooberry-book-manager'),
 			'id'	=> '_mbdb_downloadlink',
 			'type'	=> 'text_url',
+			'desc' => 'http://www.someWebsite.com/',
 			'attributes' =>  array(
 				'pattern' => mbdb_url_validation_pattern(),
 			),

@@ -66,6 +66,8 @@ class MBDB_Books extends MBDB_CPT {
 		return mbdb_get_random( $unpublished_books );
 	}
 	
-
+	public function get_table_name() {
+		return $this->db_object->table_name();
+	}
 	
 }

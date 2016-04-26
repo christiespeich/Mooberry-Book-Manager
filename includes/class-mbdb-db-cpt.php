@@ -61,16 +61,17 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				$data = $this->get_multiple_with_posts( $ids, $orderby, $order, $include_unpublished );
 			} else {
 				
-				
+				$table = $this->table_name();
 					
 				$sql =  "SELECT * 
-				FROM $this->table_name AS t
+				FROM $table AS t
 				JOIN " . $wpdb->posts . " p ON p.id = t." . $this->primary_key . "
 				WHERE p.id = $ids ";
+				/*
 				if ( $this->column_exists( 'blog_id' ) ) {
 					$sql .= " AND t.blog_id = " . $this->blog_id;
 				}
-		
+		*/
 				$cache = $this->get_cache($sql);
 				
 				if (false !== $cache) {
@@ -111,14 +112,14 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		// %d, %d, %d, [...]
 		$key_ids = $this->get_in_format( $ids, '%d' );
 		
-		
+		/*
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where .= " AND blog_id = $this->blog_id";
 		}
-
-		
+*/
+		$table = $this->table_name();
 		$sql = $wpdb->prepare( "SELECT * 
-						FROM $this->table_name AS t
+						FROM $table AS t
 						$join
 						WHERE $this->primary_key IN ($key_ids) 
 						$where
@@ -147,18 +148,18 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.' . $this->primary_key;
 		
 		if ( ! $include_unpublished ) {
-			$where = ' AND p.post_status = "publish" ';
+			$where = ' WHERE p.post_status = "publish" ';
 			
 		} 
-		
+		/*
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where .= " AND blog_id = $this->blog_id";
 		}
-		
+		*/
+		$table = $this->table_name();
 		$sql =  "SELECT * 
-				FROM $this->table_name AS t
+				FROM $table AS t
 				$join
-				WHERE blog_id = $this->blog_id
 				$where
 				ORDER BY  
 				$orderby 
@@ -185,16 +186,17 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		
 		$slug = esc_sql( $slug );
 		$slug = sanitize_title_for_query( $slug );
-	
+	/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
 			$where = " AND blog_id = $this->blog_id";
 		}
-		
+		*/
+		$table = $this->table_name();
 		$sql = $wpdb->prepare("SELECT * 
 						FROM {$wpdb->posts} AS p
-						JOIN {$this->table_name} AS a ON a.{$this->primary_key} = p.ID
-						WHERE post_name = %s {$where} AND 
+						JOIN {$table} AS a ON a.{$this->primary_key} = p.ID
+						WHERE post_name = %s  AND 
 						post_type = %s;",
 						$slug,
 						$this->post_type);
@@ -227,7 +229,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		}
 		
 		// no data to save. Not an error just no rows updated/inserted
-		if (!is_array($new_data)) {
+		if (!isset($new_data) || !is_array($new_data)) {
 			return 0;
 		}
 	
@@ -273,13 +275,13 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 			$post_data = get_post_meta($post->ID);
 			foreach ( $columns as $post_meta => $column) {
 				if (array_key_exists( $post_meta, $post_data)) {
-					$new_row[$column] = $post_data[$post_meta][0];
+					$new_row[$post_meta] = $post_data[$post_meta][0];
 				}
 				echo '.';
 			}
 			if (count($new_row)>0) {
 				
-				$new_row['blog_id'] = $this->blog_id;
+				//$new_row['blog_id'] = $this->blog_id;
 				$success = $this->save($new_row, $post->ID);
 			} else {
 				$success = true;
@@ -298,8 +300,10 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				return false;
 			}
 			echo '<b>' . __('Success!', 'mooberry-book-manager') . '</b></p>';
+			
 		}
-		
+		mbdb_remove_admin_notice('3_1_migrate');
+		mbdb_remove_admin_notice('3_1_remigreate');
 		return true;
 	}
 
@@ -308,20 +312,13 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	 *  
 	 ****************************************************************/
  
-	public function search_where( $where ) {
-		global $wpdb;	
-		if( is_search() ) {
-			if ( $this->column_exists( 'blog_id' ) ) {
-				$where .= " AND " . $this->table_name . ".blog_id = " . $this->blog_id . " ";
-			}
-		}
-	}
+	
 	
 	public function search_join( $join ) {
 		global $wpdb;
-		
+		$table = $this->table_name();
 		if( is_search() ) {
-			$join .= ' LEFT JOIN ' . $this->table_name . ' ON ' . $wpdb->posts . '.ID = ' . $this->table_name . '.' . $this->primary_key . ' ';
+			$join .= ' LEFT JOIN ' . $table . ' ON ' . $wpdb->posts . '.ID = ' . $table . '.' . $this->primary_key . ' ';
 	  }
 
 	  return $join;
