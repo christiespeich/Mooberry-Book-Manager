@@ -84,7 +84,7 @@ abstract class MOOBD_Database {
 		$data = $wpdb->get_results($sql);
 		if ($cache_results) {
 			$this->set_cache( $data, $sql );
-		}
+		} 
 		return $data;
 	}
 	
@@ -99,7 +99,7 @@ abstract class MOOBD_Database {
 		
 		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $this->primary_key = %s ", $value );
 		
-		
+	
 		$cache = $this->get_cache($sql);
 		if (false !== $cache) {
 			return $cache;
@@ -109,7 +109,7 @@ abstract class MOOBD_Database {
 		$data = $wpdb->get_row($sql);
 		if ($cache_results) {
 			$this->set_cache( $data, $sql );
-		}
+		} 
 		return $data;
     }
 	
@@ -339,6 +339,7 @@ abstract class MOOBD_Database {
 		global $wpdb;
 		
 		$table = $this->table_name();
+		$this->clear_cache();
 		$success = $wpdb->query("TRUNCATE TABLE $table");
 		if (false === $success) {
 			return false;
@@ -430,17 +431,12 @@ abstract class MOOBD_Database {
 		
 		// clear WP Super Cache
 		if (function_exists('wp_cache_clear_cache')) {
-			// check for multisite becase wp super cache assumes blog = 0 if not multisite
-			// but $this->blog_id will be 1 even if not multisite
-		/*	if ( is_multisite() ) {
-				wp_cache_clear_cache($this->blog_id);
-			} else { */
-				wp_cache_clear_cache();
-			//}
-			
+				wp_cache_clear_cache();		
 		}
 
 	}
+	
+	
 	
 	/*
 	// deletes all keys in the cache for a given group
