@@ -313,7 +313,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	 *  
 	 ****************************************************************/
  
-	
+	public function search_where( $where ) {
+		return $where;
+	}
 	
 	public function search_join( $join ) {
 		global $wpdb;
