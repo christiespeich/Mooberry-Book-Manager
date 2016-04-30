@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-04-26 08:19-0400\n"
+"POT-Creation-Date: 2016-04-30 08:04-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -515,38 +515,47 @@ msgstr ""
 msgid "Books not found"
 msgstr ""
 
-#: book-grid.php:647 book-widget.php:171 book.php:89 single-book.php:1150
+#: book-grid.php:647 book-widget.php:171 book.php:89 mbdb-widget.php:276
+#: single-book.php:1150
 msgid "Book Cover:"
 msgstr ""
 
-#: book-widget.php:14
+#: book-widget.php:14 book-widget2.php:15
 msgid ""
 "Shows the cover of the book of your choosing with a link to the book page"
 msgstr ""
 
-#: book-widget.php:17 includes/plugin-functions.php:518
+#: book-widget.php:17 book-widget2.php:18 includes/plugin-functions.php:518
 msgctxt "noun"
 msgid "Book"
 msgstr ""
 
-#: book-widget.php:44
+#: book-widget.php:44 book-widget2.php:33
 msgid "Random Book"
 msgstr ""
 
-#: book-widget.php:45
+#: book-widget.php:45 book-widget2.php:34
 msgid "Newest Book"
 msgstr ""
 
-#: book-widget.php:46
+#: book-widget.php:46 book-widget2.php:35
 msgid "Future Book"
 msgstr ""
 
-#: book-widget.php:47
+#: book-widget.php:47 book-widget2.php:36
 msgid "Specific Book"
 msgstr ""
 
-#: book-widget.php:139
+#: book-widget.php:139 mbdb-widget.php:247
 msgid "No books found"
+msgstr ""
+
+#: book-widget2.php:43 views/admin-book-widget.php:24
+msgid "Which book to show?"
+msgstr ""
+
+#: book-widget2.php:50 views/admin-book-widget.php:31
+msgid "Book:"
 msgstr ""
 
 #: book.php:30
@@ -1012,610 +1021,614 @@ msgid "Mexican Peso"
 msgstr ""
 
 #: includes/helper-functions.php:446
-msgid "Norwegian Krone"
+msgid "Nigerian Naira"
 msgstr ""
 
 #: includes/helper-functions.php:447
-msgid "New Zealand Dollar"
+msgid "Norwegian Krone"
 msgstr ""
 
 #: includes/helper-functions.php:448
-msgid "Philippine Peso"
+msgid "New Zealand Dollar"
 msgstr ""
 
 #: includes/helper-functions.php:449
-msgid "Polish Zloty"
+msgid "Philippine Peso"
 msgstr ""
 
 #: includes/helper-functions.php:450
-msgid "Russian Rube"
+msgid "Polish Zloty"
 msgstr ""
 
 #: includes/helper-functions.php:451
-msgid "Singapore Dollar"
+msgid "Russian Rube"
 msgstr ""
 
 #: includes/helper-functions.php:452
-msgid "South African Rand"
+msgid "Singapore Dollar"
 msgstr ""
 
 #: includes/helper-functions.php:453
-msgid "Swedish Krona"
+msgid "South African Rand"
 msgstr ""
 
 #: includes/helper-functions.php:454
-msgid "Swiss Franc"
+msgid "Swedish Krona"
 msgstr ""
 
 #: includes/helper-functions.php:455
-msgid "Taiwan New Dollar"
+msgid "Swiss Franc"
 msgstr ""
 
 #: includes/helper-functions.php:456
-msgid "Thai Baht"
+msgid "Taiwan New Dollar"
 msgstr ""
 
 #: includes/helper-functions.php:457
-msgid "Turkish Lira"
+msgid "Thai Baht"
 msgstr ""
 
 #: includes/helper-functions.php:458
-msgid "U.K. Pound Sterling"
+msgid "Turkish Lira"
 msgstr ""
 
 #: includes/helper-functions.php:459
+msgid "U.K. Pound Sterling"
+msgstr ""
+
+#: includes/helper-functions.php:460
 msgid "U.S. Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:498
+#: includes/helper-functions.php:500
 msgid "Abkhazian"
 msgstr ""
 
-#: includes/helper-functions.php:499
+#: includes/helper-functions.php:501
 msgid "Afar"
 msgstr ""
 
-#: includes/helper-functions.php:500
+#: includes/helper-functions.php:502
 msgid "Afrikaans"
 msgstr ""
 
-#: includes/helper-functions.php:501
+#: includes/helper-functions.php:503
 msgid "Albanian"
 msgstr ""
 
-#: includes/helper-functions.php:502
+#: includes/helper-functions.php:504
 msgid "Amharic"
 msgstr ""
 
-#: includes/helper-functions.php:503
+#: includes/helper-functions.php:505
 msgid "Arabic"
 msgstr ""
 
-#: includes/helper-functions.php:504
+#: includes/helper-functions.php:506
 msgid "Armenian"
 msgstr ""
 
-#: includes/helper-functions.php:505
+#: includes/helper-functions.php:507
 msgid "Assamese"
 msgstr ""
 
-#: includes/helper-functions.php:506
+#: includes/helper-functions.php:508
 msgid "Aymara"
 msgstr ""
 
-#: includes/helper-functions.php:507
+#: includes/helper-functions.php:509
 msgid "Azerbaijani"
 msgstr ""
 
-#: includes/helper-functions.php:508
+#: includes/helper-functions.php:510
 msgid "Bashkir"
 msgstr ""
 
-#: includes/helper-functions.php:509
+#: includes/helper-functions.php:511
 msgid "Basque"
 msgstr ""
 
-#: includes/helper-functions.php:510
+#: includes/helper-functions.php:512
 msgid "Bengali, Bangla"
 msgstr ""
 
-#: includes/helper-functions.php:511
+#: includes/helper-functions.php:513
 msgid "Bhutani"
 msgstr ""
 
-#: includes/helper-functions.php:512
+#: includes/helper-functions.php:514
 msgid "Bihari"
 msgstr ""
 
-#: includes/helper-functions.php:513
+#: includes/helper-functions.php:515
 msgid "Bislama"
 msgstr ""
 
-#: includes/helper-functions.php:514
+#: includes/helper-functions.php:516
 msgid "Breton"
 msgstr ""
 
-#: includes/helper-functions.php:515
+#: includes/helper-functions.php:517
 msgid "Bulgarian"
 msgstr ""
 
-#: includes/helper-functions.php:516
+#: includes/helper-functions.php:518
 msgid "Burmese"
 msgstr ""
 
-#: includes/helper-functions.php:517
+#: includes/helper-functions.php:519
 msgid "Byelorussian"
 msgstr ""
 
-#: includes/helper-functions.php:518
+#: includes/helper-functions.php:520
 msgid "Cambodian"
 msgstr ""
 
-#: includes/helper-functions.php:519
+#: includes/helper-functions.php:521
 msgid "Catalan"
 msgstr ""
 
-#: includes/helper-functions.php:520
+#: includes/helper-functions.php:522
 msgid "Chinese"
 msgstr ""
 
-#: includes/helper-functions.php:521
+#: includes/helper-functions.php:523
 msgid "Corsican"
 msgstr ""
 
-#: includes/helper-functions.php:522
+#: includes/helper-functions.php:524
 msgid "Croatian"
 msgstr ""
 
-#: includes/helper-functions.php:523
+#: includes/helper-functions.php:525
 msgid "Czech"
 msgstr ""
 
-#: includes/helper-functions.php:524
+#: includes/helper-functions.php:526
 msgid "Danish"
 msgstr ""
 
-#: includes/helper-functions.php:525
+#: includes/helper-functions.php:527
 msgid "Dutch"
 msgstr ""
 
-#: includes/helper-functions.php:526
+#: includes/helper-functions.php:528
 msgid "English"
 msgstr ""
 
-#: includes/helper-functions.php:527
+#: includes/helper-functions.php:529
 msgid "Esperanto"
 msgstr ""
 
-#: includes/helper-functions.php:528
+#: includes/helper-functions.php:530
 msgid "Estonian"
 msgstr ""
 
-#: includes/helper-functions.php:529
+#: includes/helper-functions.php:531
 msgid "Faeroese"
 msgstr ""
 
-#: includes/helper-functions.php:530
+#: includes/helper-functions.php:532
 msgid "Fiji"
 msgstr ""
 
-#: includes/helper-functions.php:531
+#: includes/helper-functions.php:533
 msgid "Finnish"
 msgstr ""
 
-#: includes/helper-functions.php:532
+#: includes/helper-functions.php:534
 msgid "French"
 msgstr ""
 
-#: includes/helper-functions.php:533
+#: includes/helper-functions.php:535
 msgid "Frisian"
 msgstr ""
 
-#: includes/helper-functions.php:534
+#: includes/helper-functions.php:536
 msgid "Gaelic (Scots Gaelic)"
 msgstr ""
 
-#: includes/helper-functions.php:535
+#: includes/helper-functions.php:537
 msgid "Galician"
 msgstr ""
 
-#: includes/helper-functions.php:536
+#: includes/helper-functions.php:538
 msgid "Georgian"
 msgstr ""
 
-#: includes/helper-functions.php:537
+#: includes/helper-functions.php:539
 msgid "German"
 msgstr ""
 
-#: includes/helper-functions.php:538
+#: includes/helper-functions.php:540
 msgid "Greek"
 msgstr ""
 
-#: includes/helper-functions.php:539
+#: includes/helper-functions.php:541
 msgid "Greenlandic"
 msgstr ""
 
-#: includes/helper-functions.php:540
+#: includes/helper-functions.php:542
 msgid "Guarani"
 msgstr ""
 
-#: includes/helper-functions.php:541
+#: includes/helper-functions.php:543
 msgid "Gujarati"
 msgstr ""
 
-#: includes/helper-functions.php:542
+#: includes/helper-functions.php:544
 msgid "Hausa"
 msgstr ""
 
-#: includes/helper-functions.php:543
+#: includes/helper-functions.php:545
 msgid "Hebrew"
 msgstr ""
 
-#: includes/helper-functions.php:544
+#: includes/helper-functions.php:546
 msgid "Hindi"
 msgstr ""
 
-#: includes/helper-functions.php:545
+#: includes/helper-functions.php:547
 msgid "Hungarian"
 msgstr ""
 
-#: includes/helper-functions.php:546
+#: includes/helper-functions.php:548
 msgid "Icelandic"
 msgstr ""
 
-#: includes/helper-functions.php:547
+#: includes/helper-functions.php:549
 msgid "Indonesian"
 msgstr ""
 
-#: includes/helper-functions.php:548
+#: includes/helper-functions.php:550
 msgid "Interlingua"
 msgstr ""
 
-#: includes/helper-functions.php:549
+#: includes/helper-functions.php:551
 msgid "Interlingue"
 msgstr ""
 
-#: includes/helper-functions.php:550
+#: includes/helper-functions.php:552
 msgid "Inupiak"
 msgstr ""
 
-#: includes/helper-functions.php:551
+#: includes/helper-functions.php:553
 msgid "Irish"
 msgstr ""
 
-#: includes/helper-functions.php:552
+#: includes/helper-functions.php:554
 msgid "Italian"
 msgstr ""
 
-#: includes/helper-functions.php:553
+#: includes/helper-functions.php:555
 msgid "Japanese"
 msgstr ""
 
-#: includes/helper-functions.php:554
+#: includes/helper-functions.php:556
 msgid "Javanese"
 msgstr ""
 
-#: includes/helper-functions.php:555
+#: includes/helper-functions.php:557
 msgid "Kannada"
 msgstr ""
 
-#: includes/helper-functions.php:556
+#: includes/helper-functions.php:558
 msgid "Kashmiri"
 msgstr ""
 
-#: includes/helper-functions.php:557
+#: includes/helper-functions.php:559
 msgid "Kazakh"
 msgstr ""
 
-#: includes/helper-functions.php:558
+#: includes/helper-functions.php:560
 msgid "Kinyarwanda"
 msgstr ""
 
-#: includes/helper-functions.php:559
+#: includes/helper-functions.php:561
 msgid "Kirghiz"
 msgstr ""
 
-#: includes/helper-functions.php:560
+#: includes/helper-functions.php:562
 msgid "Kirundi"
 msgstr ""
 
-#: includes/helper-functions.php:561
+#: includes/helper-functions.php:563
 msgid "Korean"
 msgstr ""
 
-#: includes/helper-functions.php:562
+#: includes/helper-functions.php:564
 msgid "Kurdish"
 msgstr ""
 
-#: includes/helper-functions.php:563
+#: includes/helper-functions.php:565
 msgid "Laothian"
 msgstr ""
 
-#: includes/helper-functions.php:564
+#: includes/helper-functions.php:566
 msgid "Latin"
 msgstr ""
 
-#: includes/helper-functions.php:565
+#: includes/helper-functions.php:567
 msgid "Latvian, Lettish"
 msgstr ""
 
-#: includes/helper-functions.php:566
+#: includes/helper-functions.php:568
 msgid "Lingala"
 msgstr ""
 
-#: includes/helper-functions.php:567
+#: includes/helper-functions.php:569
 msgid "Lithuanian"
 msgstr ""
 
-#: includes/helper-functions.php:568
+#: includes/helper-functions.php:570
 msgid "Macedonian"
 msgstr ""
 
-#: includes/helper-functions.php:569
+#: includes/helper-functions.php:571
 msgid "Malagasy"
 msgstr ""
 
-#: includes/helper-functions.php:570
+#: includes/helper-functions.php:572
 msgid "Malay"
 msgstr ""
 
-#: includes/helper-functions.php:571
+#: includes/helper-functions.php:573
 msgid "Malayalam"
 msgstr ""
 
-#: includes/helper-functions.php:572
+#: includes/helper-functions.php:574
 msgid "Maltese"
 msgstr ""
 
-#: includes/helper-functions.php:573
+#: includes/helper-functions.php:575
 msgid "Maori"
 msgstr ""
 
-#: includes/helper-functions.php:574
+#: includes/helper-functions.php:576
 msgid "Marathi"
 msgstr ""
 
-#: includes/helper-functions.php:575
+#: includes/helper-functions.php:577
 msgid "Moldavian"
 msgstr ""
 
-#: includes/helper-functions.php:576
+#: includes/helper-functions.php:578
 msgid "Mongolian"
 msgstr ""
 
-#: includes/helper-functions.php:577
+#: includes/helper-functions.php:579
 msgid "Nauru"
 msgstr ""
 
-#: includes/helper-functions.php:578
+#: includes/helper-functions.php:580
 msgid "Nepali"
 msgstr ""
 
-#: includes/helper-functions.php:579
+#: includes/helper-functions.php:581
 msgid "Norwegian"
 msgstr ""
 
-#: includes/helper-functions.php:580
+#: includes/helper-functions.php:582
 msgid "Occitan"
 msgstr ""
 
-#: includes/helper-functions.php:581
+#: includes/helper-functions.php:583
 msgid "Oriya"
 msgstr ""
 
-#: includes/helper-functions.php:582
+#: includes/helper-functions.php:584
 msgid "Oromo, Afan"
 msgstr ""
 
-#: includes/helper-functions.php:583
+#: includes/helper-functions.php:585
 msgid "Pashto, Pushto"
 msgstr ""
 
-#: includes/helper-functions.php:584
+#: includes/helper-functions.php:586
 msgid "Persian"
 msgstr ""
 
-#: includes/helper-functions.php:585
+#: includes/helper-functions.php:587
 msgid "Polish"
 msgstr ""
 
-#: includes/helper-functions.php:586
+#: includes/helper-functions.php:588
 msgid "Portuguese"
 msgstr ""
 
-#: includes/helper-functions.php:587
+#: includes/helper-functions.php:589
 msgid "Punjabi"
 msgstr ""
 
-#: includes/helper-functions.php:588
+#: includes/helper-functions.php:590
 msgid "Quechua"
 msgstr ""
 
-#: includes/helper-functions.php:589
+#: includes/helper-functions.php:591
 msgid "Rhaeto-Romance"
 msgstr ""
 
-#: includes/helper-functions.php:590
+#: includes/helper-functions.php:592
 msgid "Romanian"
 msgstr ""
 
-#: includes/helper-functions.php:591
+#: includes/helper-functions.php:593
 msgid "Russian"
 msgstr ""
 
-#: includes/helper-functions.php:592
+#: includes/helper-functions.php:594
 msgid "Samoan"
 msgstr ""
 
-#: includes/helper-functions.php:593
+#: includes/helper-functions.php:595
 msgid "Sangro"
 msgstr ""
 
-#: includes/helper-functions.php:594
+#: includes/helper-functions.php:596
 msgid "Sanskrit"
 msgstr ""
 
-#: includes/helper-functions.php:595
+#: includes/helper-functions.php:597
 msgid "Serbian"
 msgstr ""
 
-#: includes/helper-functions.php:596
+#: includes/helper-functions.php:598
 msgid "Serbo-Croatian"
 msgstr ""
 
-#: includes/helper-functions.php:597
+#: includes/helper-functions.php:599
 msgid "Sesotho"
 msgstr ""
 
-#: includes/helper-functions.php:598
+#: includes/helper-functions.php:600
 msgid "Setswana"
 msgstr ""
 
-#: includes/helper-functions.php:599
+#: includes/helper-functions.php:601
 msgid "Shona"
 msgstr ""
 
-#: includes/helper-functions.php:600
+#: includes/helper-functions.php:602
 msgid "Sindhi"
 msgstr ""
 
-#: includes/helper-functions.php:601
+#: includes/helper-functions.php:603
 msgid "Singhalese"
 msgstr ""
 
-#: includes/helper-functions.php:602
+#: includes/helper-functions.php:604
 msgid "Siswati"
 msgstr ""
 
-#: includes/helper-functions.php:603
+#: includes/helper-functions.php:605
 msgid "Slovak"
 msgstr ""
 
-#: includes/helper-functions.php:604
+#: includes/helper-functions.php:606
 msgid "Slovenian"
 msgstr ""
 
-#: includes/helper-functions.php:605
+#: includes/helper-functions.php:607
 msgid "Somali"
 msgstr ""
 
-#: includes/helper-functions.php:606
+#: includes/helper-functions.php:608
 msgid "Spanish"
 msgstr ""
 
-#: includes/helper-functions.php:607
+#: includes/helper-functions.php:609
 msgid "Sudanese"
 msgstr ""
 
-#: includes/helper-functions.php:608
+#: includes/helper-functions.php:610
 msgid "Swahili"
 msgstr ""
 
-#: includes/helper-functions.php:609
+#: includes/helper-functions.php:611
 msgid "Swedish"
 msgstr ""
 
-#: includes/helper-functions.php:610
+#: includes/helper-functions.php:612
 msgid "Tagalog"
 msgstr ""
 
-#: includes/helper-functions.php:611
+#: includes/helper-functions.php:613
 msgid "Tajik"
 msgstr ""
 
-#: includes/helper-functions.php:612
+#: includes/helper-functions.php:614
 msgid "Tamil"
 msgstr ""
 
-#: includes/helper-functions.php:613
+#: includes/helper-functions.php:615
 msgid "Tatar"
 msgstr ""
 
-#: includes/helper-functions.php:614
+#: includes/helper-functions.php:616
 msgid "Tegulu"
 msgstr ""
 
-#: includes/helper-functions.php:615
+#: includes/helper-functions.php:617
 msgid "Thai"
 msgstr ""
 
-#: includes/helper-functions.php:616
+#: includes/helper-functions.php:618
 msgid "Tibetan"
 msgstr ""
 
-#: includes/helper-functions.php:617
+#: includes/helper-functions.php:619
 msgid "Tigrinya"
 msgstr ""
 
-#: includes/helper-functions.php:618
+#: includes/helper-functions.php:620
 msgid "Tonga"
 msgstr ""
 
-#: includes/helper-functions.php:619
+#: includes/helper-functions.php:621
 msgid "Tsonga"
 msgstr ""
 
-#: includes/helper-functions.php:620
+#: includes/helper-functions.php:622
 msgid "Turkish"
 msgstr ""
 
-#: includes/helper-functions.php:621
+#: includes/helper-functions.php:623
 msgid "Turkmen"
 msgstr ""
 
-#: includes/helper-functions.php:622
+#: includes/helper-functions.php:624
 msgid "Twi"
 msgstr ""
 
-#: includes/helper-functions.php:623
+#: includes/helper-functions.php:625
 msgid "Ukrainian"
 msgstr ""
 
-#: includes/helper-functions.php:624
+#: includes/helper-functions.php:626
 msgid "Urdu"
 msgstr ""
 
-#: includes/helper-functions.php:625
+#: includes/helper-functions.php:627
 msgid "Uzbek"
 msgstr ""
 
-#: includes/helper-functions.php:626
+#: includes/helper-functions.php:628
 msgid "Vietnamese"
 msgstr ""
 
-#: includes/helper-functions.php:627
+#: includes/helper-functions.php:629
 msgid "Volapuk"
 msgstr ""
 
-#: includes/helper-functions.php:628
+#: includes/helper-functions.php:630
 msgid "Welsh"
 msgstr ""
 
-#: includes/helper-functions.php:629
+#: includes/helper-functions.php:631
 msgid "Wolof"
 msgstr ""
 
-#: includes/helper-functions.php:630
+#: includes/helper-functions.php:632
 msgid "Xhosa"
 msgstr ""
 
-#: includes/helper-functions.php:631
+#: includes/helper-functions.php:633
 msgid "Yiddish"
 msgstr ""
 
-#: includes/helper-functions.php:632
+#: includes/helper-functions.php:634
 msgid "Yoruba"
 msgstr ""
 
-#: includes/helper-functions.php:633
+#: includes/helper-functions.php:635
 msgid "Zulu"
 msgstr ""
 
-#: includes/helper-functions.php:702
+#: includes/helper-functions.php:704
 msgid "Librarian"
 msgstr ""
 
-#: includes/helper-functions.php:704
+#: includes/helper-functions.php:706
 msgid "Master Librarian"
 msgstr ""
 
@@ -2295,26 +2308,18 @@ msgid ""
 "up. This is completely optional. Thank you for the support."
 msgstr ""
 
-#: views/admin-book-widget.php:19
+#: views/admin-book-widget.php:19 views/admin-widget.php:19
 msgid "Widget Title:"
 msgstr ""
 
-#: views/admin-book-widget.php:24
-msgid "Which book to show?"
-msgstr ""
-
-#: views/admin-book-widget.php:31
-msgid "Book:"
-msgstr ""
-
-#: views/admin-book-widget.php:41
+#: views/admin-book-widget.php:41 views/admin-widget.php:26
 msgid "Show Book Title"
 msgstr ""
 
-#: views/admin-book-widget.php:46
+#: views/admin-book-widget.php:46 views/admin-widget.php:31
 msgid "Cover Size(pixels)"
 msgstr ""
 
-#: views/admin-book-widget.php:47
+#: views/admin-book-widget.php:47 views/admin-widget.php:32
 msgid "(minimum 50)"
 msgstr ""
