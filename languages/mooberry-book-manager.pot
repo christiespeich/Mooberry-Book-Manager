@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-04-30 08:04-0400\n"
+"POT-Creation-Date: 2016-04-30 14:02-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Mooberry Book Manager Book Page Settings"
 msgstr ""
 
-#: admin-settings-page.php:88 admin-settings-page.php:595
+#: admin-settings-page.php:88 admin-settings-page.php:594
 msgid "Book Page"
 msgstr ""
 
@@ -148,14 +148,14 @@ msgstr ""
 msgid "Page Template"
 msgstr ""
 
-#: admin-settings-page.php:286 admin-settings-page.php:603
+#: admin-settings-page.php:286 admin-settings-page.php:602
 msgid ""
 "If you need to restore the image that came with Mooberry Book Manager, "
 "download the "
 msgstr ""
 
-#: admin-settings-page.php:287 admin-settings-page.php:604
-#: admin-settings-page.php:644 admin-settings-page.php:711
+#: admin-settings-page.php:287 admin-settings-page.php:603
+#: admin-settings-page.php:643 admin-settings-page.php:710
 msgid "Mooberry Book Manager Image Fixer plugin"
 msgstr ""
 
@@ -163,9 +163,9 @@ msgstr ""
 msgid "Add to Goodreads Image"
 msgstr ""
 
-#: admin-settings-page.php:300 admin-settings-page.php:617
-#: admin-settings-page.php:676 admin-settings-page.php:740
-#: admin-settings-page.php:804
+#: admin-settings-page.php:300 admin-settings-page.php:616
+#: admin-settings-page.php:675 admin-settings-page.php:739
+#: admin-settings-page.php:803
 msgid "Choose or Upload File"
 msgstr ""
 
@@ -228,172 +228,172 @@ msgid ""
 "them lower-case, removing the spaces, etc."
 msgstr ""
 
-#: admin-settings-page.php:407
+#: admin-settings-page.php:406
 msgid "NOTE:"
 msgstr ""
 
-#: admin-settings-page.php:407
+#: admin-settings-page.php:406
 msgid "Wordpress reserved terms are not allowed here."
 msgstr ""
 
-#: admin-settings-page.php:408
+#: admin-settings-page.php:407
 msgid "Reserved Terms"
 msgstr ""
 
-#: admin-settings-page.php:409
+#: admin-settings-page.php:408
 msgid "See a list of reserved terms."
 msgstr ""
 
-#: admin-settings-page.php:421
+#: admin-settings-page.php:420
 msgid "TAXONOMY BOOK GRID URL SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:465
+#: admin-settings-page.php:464
 msgid "Add your publishers."
 msgstr ""
 
-#: admin-settings-page.php:467 admin-settings-page.php:476 book.php:36
-#: book.php:739 includes/helper-functions.php:102 single-book.php:1759
+#: admin-settings-page.php:466 admin-settings-page.php:475 book.php:36
+#: book.php:739 includes/helper-functions.php:102
 msgid "Publisher"
 msgstr ""
 
-#: admin-settings-page.php:468
+#: admin-settings-page.php:467
 msgid "Add New Publisher"
 msgstr ""
 
-#: admin-settings-page.php:469
+#: admin-settings-page.php:468
 msgid "Remove Publisher"
 msgstr ""
 
-#: admin-settings-page.php:486
+#: admin-settings-page.php:485
 msgid "Publisher Website"
 msgstr ""
 
-#: admin-settings-page.php:528
+#: admin-settings-page.php:527
 msgid "Add any additional formats your books are available in."
 msgstr ""
 
-#: admin-settings-page.php:530
+#: admin-settings-page.php:529
 msgid "Format"
 msgstr ""
 
-#: admin-settings-page.php:531
+#: admin-settings-page.php:530
 msgid "Add New Format"
 msgstr ""
 
-#: admin-settings-page.php:532 admin-settings-page.php:721
+#: admin-settings-page.php:531 admin-settings-page.php:720
 msgid "Remove Format"
 msgstr ""
 
-#: admin-settings-page.php:539
+#: admin-settings-page.php:538
 msgid "Format Name"
 msgstr ""
 
-#: admin-settings-page.php:582
+#: admin-settings-page.php:581
 msgid "IMAGE SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:590
+#: admin-settings-page.php:589
 msgid "Show Placeholder Cover On"
 msgstr ""
 
-#: admin-settings-page.php:593
+#: admin-settings-page.php:592
 msgid ""
 "The placeholder cover is used for books that do not have a cover selected."
 msgstr ""
 
-#: admin-settings-page.php:596
+#: admin-settings-page.php:595
 msgid "Widgets"
 msgstr ""
 
-#: admin-settings-page.php:609
+#: admin-settings-page.php:608
 msgid "Placeholder Cover Image"
 msgstr ""
 
-#: admin-settings-page.php:643
+#: admin-settings-page.php:642
 msgid ""
 "Add any additional retailers that sell your books. If you need to restore "
 "images that came with Mooberry Book Manager, download the "
 msgstr ""
 
-#: admin-settings-page.php:652 book.php:796
+#: admin-settings-page.php:651 book.php:796
 msgid "Retailer"
 msgstr ""
 
-#: admin-settings-page.php:653
+#: admin-settings-page.php:652
 msgid "Add Retailer"
 msgstr ""
 
-#: admin-settings-page.php:654
+#: admin-settings-page.php:653
 msgid "Remove Retailer"
 msgstr ""
 
-#: admin-settings-page.php:660
+#: admin-settings-page.php:659
 msgid "Retailer Name"
 msgstr ""
 
-#: admin-settings-page.php:669
+#: admin-settings-page.php:668
 msgid "Retailer Logo Image"
 msgstr ""
 
-#: admin-settings-page.php:710
+#: admin-settings-page.php:709
 msgid ""
 "If you have free books for download, add any additional formats your books "
 "are available in. If you need to restore images that came with Mooberry Book "
 "Manager, download the"
 msgstr ""
 
-#: admin-settings-page.php:719 admin-settings-page.php:727
+#: admin-settings-page.php:718 admin-settings-page.php:726
 msgctxt "noun: the format of a book"
 msgid "Format"
 msgstr ""
 
-#: admin-settings-page.php:720
+#: admin-settings-page.php:719
 msgid "Add Format"
 msgstr ""
 
-#: admin-settings-page.php:736
+#: admin-settings-page.php:735
 msgctxt "noun: the image that represents the format of a book"
 msgid "Format Image"
 msgstr ""
 
-#: admin-settings-page.php:776
+#: admin-settings-page.php:775
 msgid "Add Social Media Sites With Whom You Have Accounts."
 msgstr ""
 
-#: admin-settings-page.php:778
+#: admin-settings-page.php:777
 msgid "Social Media Site"
 msgstr ""
 
-#: admin-settings-page.php:779
+#: admin-settings-page.php:778
 msgid "Add New Social Media Site"
 msgstr ""
 
-#: admin-settings-page.php:780
+#: admin-settings-page.php:779
 msgid "Remove Social Media Site"
 msgstr ""
 
-#: admin-settings-page.php:787
+#: admin-settings-page.php:786
 msgid "Social Media Site Name"
 msgstr ""
 
-#: admin-settings-page.php:797
+#: admin-settings-page.php:796
 msgid "Social Media Logo Image"
 msgstr ""
 
-#: admin-settings-page.php:827
+#: admin-settings-page.php:826
 msgid "Mooberry Book Manager Social Media Options"
 msgstr ""
 
-#: admin-settings-page.php:828
+#: admin-settings-page.php:827
 msgid "Social Media"
 msgstr ""
 
-#: admin-settings-page.php:869
+#: admin-settings-page.php:868
 msgid "is a reserved term and not allowed. This field was not saved."
 msgstr ""
 
-#: admin-settings-page.php:930
+#: admin-settings-page.php:929
 msgid "Settings updated."
 msgstr ""
 
@@ -571,7 +571,7 @@ msgstr ""
 msgid "Genre"
 msgstr ""
 
-#: book.php:33 single-book.php:1755
+#: book.php:33
 msgid "Published"
 msgstr ""
 
@@ -589,7 +589,8 @@ msgstr ""
 msgid "Updated"
 msgstr ""
 
-#: book.php:100 single-book.php:253
+#: book.php:100
+msgctxt "short date format. see http://www.php.net/date"
 msgid "m/d/Y"
 msgstr ""
 
@@ -597,7 +598,7 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
-#: book.php:445 book.php:454 single-book.php:1787
+#: book.php:445 book.php:454
 msgid "Excerpt"
 msgstr ""
 
@@ -1733,7 +1734,6 @@ msgid "Book List"
 msgstr ""
 
 #: includes/plugin-functions.php:584 includes/plugin-functions.php:594
-#: single-book.php:1775
 msgid "Genres"
 msgstr ""
 
@@ -1798,7 +1798,6 @@ msgid "Genre list"
 msgstr ""
 
 #: includes/plugin-functions.php:621 includes/plugin-functions.php:631
-#: single-book.php:1779
 msgid "Tags"
 msgstr ""
 
@@ -1923,7 +1922,6 @@ msgid "Series list"
 msgstr ""
 
 #: includes/plugin-functions.php:693 includes/plugin-functions.php:703
-#: single-book.php:1763
 msgid "Editors"
 msgstr ""
 
@@ -1988,7 +1986,6 @@ msgid "Editor list"
 msgstr ""
 
 #: includes/plugin-functions.php:729 includes/plugin-functions.php:739
-#: single-book.php:1767
 msgid "Illustrators"
 msgstr ""
 
@@ -2053,7 +2050,6 @@ msgid "Illustrator list"
 msgstr ""
 
 #: includes/plugin-functions.php:765 includes/plugin-functions.php:775
-#: single-book.php:1771
 msgid "Cover Artists"
 msgstr ""
 
@@ -2129,7 +2125,13 @@ msgstr ""
 msgid "Are you sure you want to reset the Book Edit page?"
 msgstr ""
 
+#: single-book.php:253
+msgctxt "short date format. see http://php.net/date"
+msgid "m/d/Y"
+msgstr ""
+
 #: single-book.php:257
+msgctxt "long date format. see http://php.net/date"
 msgid "F j, Y"
 msgstr ""
 
@@ -2165,7 +2167,7 @@ msgstr ""
 msgid "wrote"
 msgstr ""
 
-#: single-book.php:1343 single-book.php:1716 single-book.php:1802
+#: single-book.php:1343 single-book.php:1721 single-book.php:1807
 msgid "Download Now:"
 msgstr ""
 
@@ -2173,32 +2175,72 @@ msgstr ""
 msgid "Buy Now:"
 msgstr ""
 
-#: single-book.php:1649
-msgid "ISBN"
+#: single-book.php:1647
+#, php-format
+msgctxt ""
+"%1$s is the currency symbol. %2$d is the price. To put currency after price, "
+"enter %2$d %1$s"
+msgid "%1$s %2$d"
 msgstr ""
 
-#: single-book.php:1652
-msgid "Size"
+#: single-book.php:1654
+msgid "ISBN:"
 msgstr ""
 
-#: single-book.php:1655
-msgid "Pages"
+#: single-book.php:1657
+msgid "Size:"
 msgstr ""
 
-#: single-book.php:1722
+#: single-book.php:1660
+msgid "Pages:"
+msgstr ""
+
+#: single-book.php:1727
 msgid "Part of the"
 msgstr ""
 
-#: single-book.php:1722
-msgid "series"
+#: single-book.php:1727
+msgid "series:"
 msgstr ""
 
-#: single-book.php:1726
-msgid "Editions"
+#: single-book.php:1731
+msgid "Editions:"
 msgstr ""
 
-#: single-book.php:1794
-msgid "Reviews"
+#: single-book.php:1760
+msgid "Published:"
+msgstr ""
+
+#: single-book.php:1764
+msgid "Publisher:"
+msgstr ""
+
+#: single-book.php:1768
+msgid "Editors:"
+msgstr ""
+
+#: single-book.php:1772
+msgid "Illustrators:"
+msgstr ""
+
+#: single-book.php:1776
+msgid "Cover Artists:"
+msgstr ""
+
+#: single-book.php:1780
+msgid "Genres:"
+msgstr ""
+
+#: single-book.php:1784
+msgid "Tags:"
+msgstr ""
+
+#: single-book.php:1792
+msgid "Excerpt:"
+msgstr ""
+
+#: single-book.php:1799
+msgid "Reviews:"
 msgstr ""
 
 #: tax-grid.php:71

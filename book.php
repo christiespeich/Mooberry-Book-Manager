@@ -97,7 +97,7 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 			if ( !empty( $data ) ) {
 				// TO DO validate data to be a date??
 				/* translators: short date format. see http://php.net/date */
-				echo apply_filters( 'mbdb_book_mbdb_published_column', date(__('m/d/Y'), strtotime( $data ) ), $column, $data, $book );
+				echo apply_filters( 'mbdb_book_mbdb_published_column', date(_x('m/d/Y', 'short date format. see http://www.php.net/date', 'mooberry-book-manager'), strtotime( $data ) ), $column, $data, $book );
 			}
 			do_action( 'mbdb_book_post_mbdb_published_column', $column, $data, $book );
 			break;

@@ -403,7 +403,6 @@ class mbdb_Admin_Settings {
 		// break up the description into multiple sections to keep the HTML
 		// out of the translatable text
 		$description1 = __('These will be used to build website URL for the Taxonomy Book Grids.  Text entered in these fields will be converted to "friendly URLs" by making them lower-case, removing the spaces, etc.', 'mooberry-book-manager');
-		/* translators: %s represents HTML for bolding. Please leave them in */
 		$description2 = '<b>' . __('NOTE:', 'mooberry-book-manager') . '</b> ' . __('Wordpress reserved terms are not allowed here.', 'mooberry-book-manager');
 		$description4 = __('Reserved Terms', 'mooberry-book-manager');
 		$description5 = __('See a list of reserved terms.', 'mooberry-book-manager');
