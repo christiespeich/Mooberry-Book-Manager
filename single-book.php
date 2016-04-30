@@ -1757,31 +1757,31 @@ function mbdb_shortcode_editions( $attr, $content) {
 				$book_page_layout .= '<div class="mbm-book-details-outer">';
 								$book_page_layout .= '<div class="mbm-book-details">';
 				if ($is_published ) {
-					$book_page_layout .= '<strong>' . __('Published:', 'mooberry-book-manager') . '</strong> [book_published format="default" blank=""]<br>';
+					$book_page_layout .= '<span class="mbm-book-details-published-label">' . __('Published:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-published-data">[book_published format="default" blank=""]</span><br>';
 				}
 				
 				if ($is_publisher  ) {
-					$book_page_layout .= '<strong>' . __('Publisher:','mooberry-book-manager') . '</strong> [book_publisher  blank=""]<br>';
+					$book_page_layout .= '<span class="mbm-book-details-publisher-label">' . __('Publisher:','mooberry-book-manager') . '</span> <span class="mbm-book-details-publisher-data">[book_publisher  blank=""]</span><br>';
 				}
 				
 				if ($is_editor  ) {
-					$book_page_layout .= '<strong>' . __('Editors:', 'mooberry-book-manager') . '</strong> <span>[book_editor delim="comma" blank=""]</span><br>';
+					$book_page_layout .= '<span class="mbm-book-details-editors-label">' . __('Editors:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-editors-data">[book_editor delim="comma" blank=""]</span><br>';
 				}
 				
 				if ($is_illustrator ) {
-					$book_page_layout .= '<strong>' . __('Illustrators:', 'mooberry-book-manager') . '</strong> <span>[book_illustrator delim="comma" blank=""]</span><br>';
+					$book_page_layout .= '<span class="mbm-book-details-illustrators-label">' . __('Illustrators:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-illustrators-data">[book_illustrator delim="comma" blank=""]</span><br>';
 				}
 				
 				if ($is_cover_artist ) {
-					$book_page_layout .= '<strong>' . __('Cover Artists:', 'mooberry-book-manager') . '</strong> <span>[book_cover_artist delim="comma" blank=""]</span><br>';
+					$book_page_layout .= '<span class="mbm-book-details-cover-artists-label">' . __('Cover Artists:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-cover-artists-data">[book_cover_artist delim="comma" blank=""]</span><br>';
 				}
 							
 				if ($is_genre ) {
-					$book_page_layout .= '<strong>' . __('Genres:','mooberry-book-manager') . '</strong> <span>[book_genre delim="comma" blank=""]</span><br>';
+					$book_page_layout .= '<span class="mbm-book-details-genres-label">' . __('Genres:','mooberry-book-manager') . '</span> <span class="mbm-book-details-genres-data">[book_genre delim="comma" blank=""]</span><br>';
 				}
 				
 				if ($is_tag ) {
-					$book_page_layout .= '<strong>' . __('Tags:','mooberry-book-manager') . '</strong> <span>[book_tags  delim="comma" blank=""]</span><br>';
+					$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __('Tags:','mooberry-book-manager') . '</span> <span class="mbm-book-details-tags-label">[book_tags  delim="comma" blank=""]</span><br>';
 				}
 				$book_page_layout .= '</div></div> <!-- mbm-book-details -->';
 			}

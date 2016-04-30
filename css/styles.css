@@ -110,6 +110,10 @@
 		padding: 2%;
 	}
 	
+#mbm-book-page .mbm-book-details-published-label, #mbm-book-page .mbm-book-details-publisher-label, #mbm-book-page .mbm-book-details-editors-label, #mbm-book-page .mbm-book-details-illustrators-label, #mbm-book-page .mbm-book-details-cover-artists-label, #mbm-book-page .mbm-book-details-genres-label, #mbm-book-page .mbm-book-details-tags-label {
+	font-weight: bold;
+}
+	
 	 #mbm-book-page .mbm-book-serieslist-before, #mbm-book-page .mbm-book-serieslist-link, #mbm-book-page .mbm-book-serieslist-after {
 		font-weight: bold;
 	}
