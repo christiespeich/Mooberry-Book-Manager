@@ -162,6 +162,10 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.1.3 =
+* Fixed: Internationalization errors
+* Fixed: Added spans and CSS classes around book details
+
 = 3.1.2 =
 * Added: Nigerian Naira currency
 * Fixed: Translations for Editions and Publication Date
