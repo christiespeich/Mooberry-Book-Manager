@@ -260,7 +260,7 @@ function mbdb_output_published($mbdb_published, $attr) {
 			$format = get_option('date_format');
 			break;
 	}
-		return apply_filters('mbdb_shortcode_published',  '<span class="mbm-book-published"><span class="mbm-book-published-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-published-text">' . date($format, strtotime($mbdb_published)) . '</span><span class="mbm-book-published-after">' .  esc_html($attr['after']) . '</span></span>');
+		return apply_filters('mbdb_shortcode_published',  '<span class="mbm-book-published"><span class="mbm-book-published-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-published-text">' .  date_i18n($format, strtotime($mbdb_published)) . '</span><span class="mbm-book-published-after">' .  esc_html($attr['after']) . '</span></span>');
 }
 
 
@@ -1803,6 +1803,8 @@ function mbdb_shortcode_editions( $attr, $content) {
 			}
 			
 			$book_page_layout .= '</div> <!-- mbm-book-page -->';
+			
+
 			
 			$content .= stripslashes($book_page_layout); 
 			$content = preg_replace('/\\n/', '<br>', $content);
