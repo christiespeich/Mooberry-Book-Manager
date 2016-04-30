@@ -649,7 +649,7 @@ function mbdb_book_metaboxes(  ) {
 			'name'	=>	__('Edition Title', 'mooberry-book-manager'),
 			'id'	=>	'_mbdb_edition_title',
 			'type'	=> 'text_medium',
-			'desc' => __('First Edition, Second Edition, etc.', 'mooberry-book-mananger'),
+			'desc' => __('First Edition, Second Edition, etc.', 'mooberry-book-manager'),
 		)
 	);
 		
