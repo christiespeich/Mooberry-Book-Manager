@@ -173,8 +173,9 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 */
 		
 		$select = 'SELECT DISTINCT ';
-		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = b.book_id ';
-		$where = ' WHERE p.post_status = "publish" ';
+		$from = ' FROM ' . $wpdb->posts . ' AS p ';
+		$join = ' LEFT JOIN ' . $table . ' AS b ON p.id = b.book_id ';
+		$where = ' WHERE p.post_status = "publish" and p.post_type = "mbdb_book" ';
 		$orderby = ' ORDER BY ';
 		
 		// if book_ids are sent, filter by them
@@ -216,7 +217,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 					$where .= ' AND ( tt.taxonomy = "mbdb_' . $selection . '" 
 									AND tt.term_id in ( ' . implode(', ', $selection_ids) . ' ) 
 									AND p.post_type = "mbdb_book" ) ';
-					$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr ON tr.object_id = b.book_id 
+					$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr ON tr.object_id = p.ID  
 								JOIN ' . $wpdb->term_taxonomy . ' AS tt  ON tt.term_taxonomy_id = tr.term_taxonomy_id ';
 				}
 				break;
@@ -264,7 +265,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 									$tax_ids = array_map('absint', $tax_ids);
 									$select .= 't' . $tax_level . '.name AS name' . $tax_level . ', ';
 									$where .= ' AND (tt' . $tax_level . '.taxonomy = "mbdb_' . $tax . '" AND tt' . $tax_level . '.term_id in (' . implode(',', $tax_ids) . ') ) ';
-									$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr' . $tax_level . ' ON tr' . $tax_level . '.object_id = b.book_id 
+									$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr' . $tax_level . ' ON tr' . $tax_level . '.object_id = p.ID 
 												JOIN ' . $wpdb->term_taxonomy . ' AS tt' . $tax_level . '  ON tt' . $tax_level . '.term_taxonomy_id = tr' . $tax_level . '.term_taxonomy_id 
 												JOIN ' . $wpdb->terms . ' AS t' . $tax_level . ' ON t' . $tax_level . '.term_id = tt' . $tax_level . '.term_id';
 								}
@@ -298,7 +299,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		$orderby = apply_filters('mbdb_book_get_ordered_selection_orderby', $orderby, $sort, $order);
 		
 	
-		$sql = "$select b.book_id, p.post_title, b.cover, b.release_date, b.cover_id FROM  $table  as b  $join $where $orderby $order ";
+		$sql = "$select p.ID, b.*, p.post_title $from  $join $where $orderby $order ";
+		
 		
 		$books =  $this->run_sql( $sql );
 		return apply_filters('mbdb_book_get_ordered_selection', $books, $selection, $selection_ids, $sort, $order, $taxonomy, $book_ids );
