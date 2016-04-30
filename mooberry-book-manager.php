@@ -5,7 +5,7 @@
   *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
-  *	 Version: 3.1
+  *	 Version: 3.1.2
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '3.1' );
+	define( 'MBDB_PLUGIN_VERSION', '3.1.2' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -79,6 +79,7 @@ require_once MBDB_PLUGIN_DIR . 'includes/scripts-and-styles.php';
 require_once MBDB_PLUGIN_DIR . 'book.php';
 require_once MBDB_PLUGIN_DIR . 'single-book.php';
 require_once MBDB_PLUGIN_DIR . 'book-grid.php';
+//require_once MBDB_PLUGIN_DIR . 'mbdb-widget.php';
 require_once MBDB_PLUGIN_DIR . 'book-widget.php';
 require_once MBDB_PLUGIN_DIR . 'admin-settings-page.php';
 require_once MBDB_PLUGIN_DIR . 'tax-grid.php';
