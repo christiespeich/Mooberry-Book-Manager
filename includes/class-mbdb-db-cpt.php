@@ -64,8 +64,8 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				$table = $this->table_name();
 					
 				$sql =  "SELECT * 
-				FROM " . $wpdb->posts . " AS p
-				LEFT JOIN $table AS t  ON p.id = t." . $this->primary_key . "
+				FROM $table AS t
+				JOIN " . $wpdb->posts . " p ON p.id = t." . $this->primary_key . "
 				WHERE p.id = $ids ";
 				/*
 				if ( $this->column_exists( 'blog_id' ) ) {
@@ -313,9 +313,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 	 *  
 	 ****************************************************************/
  
-	public function search_where ($where ) {
-		return $where;
-	}
+	
 	
 	public function search_join( $join ) {
 		global $wpdb;
