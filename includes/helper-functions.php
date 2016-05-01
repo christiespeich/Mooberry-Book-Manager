@@ -66,8 +66,10 @@ function mbdb_get_cover( $image_src, $location ) {
 		return $image_src;
 	}
 	
+	$placeholder_options = array_keys( mbdb_placeholder_cover_options() );
+	
 	// validate location
-	if ( !in_array($location, array( 'widget', 'page' ) ) ) {
+	if ( !in_array($location, $placeholder_options ) ) {
 		return '';
 	}
 	
@@ -134,6 +136,14 @@ function mbdb_book_grid_group_by_options() {
 			'editor'	=> 	__('Editor', 'mooberry-book-manager'),
 			'cover_artist'	=> __('Cover Artist', 'mooberry-book-manager'),
 			'illustrator'	=> __('Illustrator', 'mooberry-book-manager'),
+			)
+		);
+}
+
+function mbdb_placeholder_cover_options() {
+	return apply_filters('mbdb_placeholder_cover_options', array(
+			'page' 		=> 	__('Book Page', 'mooberry-book-manager'),
+			'widget'	=>	__('Widgets', 'mooberry-book-manager'),
 			)
 		);
 }
