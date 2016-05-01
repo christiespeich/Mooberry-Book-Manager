@@ -148,24 +148,9 @@ class mbdb_book_widget extends WP_Widget {
 				do_action('mbdb_widget_pre_link', $book_link);
 				echo '<A class="mbm-widget-link" HREF="' . esc_url($book_link) . '"> ';
 			}
-			if (!$image_src || $image_src == '') { 
-				// v3.0 check for placeholder image setting
-				$mbdb_options = get_option('mbdb_options');
-				if (array_key_exists('show_placeholder_cover', $mbdb_options)) {
-					$show_placeholder_cover = $mbdb_options['show_placeholder_cover']; //mbdb_get_option('show_placeholder_cover');
-				} else {
-					$show_placeholder_cover = array();
-				}
-				if (is_array($show_placeholder_cover)) {
-					if (in_array('widget', $show_placeholder_cover)) {
-						if (array_key_exists('coming-soon', $mbdb_options)) {
-							$image_src = $mbdb_options['coming-soon']; //mbdb_get_option('coming-soon');
-						} else {
-							$image_src = '';
-						}
-					}
-				}
-			}
+			
+			$image_src = mbdb_get_cover( $image_src, 'widget' );
+			
 			if ($image_src && $image_src !== '') {
 				do_action('mbdb_widget_pre_image', $image_src);
 				$alt = mbdb_get_alt_text( $image_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . $mbdb_book_title);
