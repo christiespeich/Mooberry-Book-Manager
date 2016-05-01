@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Represents the view for the widget administration dashboard.
+ * Represents the view for the template class widget administration dashboard.
  *
- * This includes the header, options, and other information that should provide
- * The User Interface to the end user.
  *
  * @package   Book_Manager
  * @author    Mooberry Dreams <bookmanager@mooberrydreams.com>
@@ -15,7 +13,7 @@
  
 ?>
 
-<p>
+		<p>
 		<label for="<?php echo $this->get_field_id('mbdb_widget_title'); ?>"><?php _e('Widget Title:', 'mooberry-book-manager'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('mbdb_widget_title'); ?>" name="<?php echo $this->get_field_name('mbdb_widget_title'); ?>" type="text" value="<?php echo esc_html($this->widgetTitle); ?>" />
 		</p>
@@ -32,7 +30,4 @@
 		<input style="width:100px" id="<?php echo $this->get_field_id('mbdb_widget_cover_size'); ?>" name="<?php echo $this->get_field_name('mbdb_widget_cover_size'); ?>" type="number" min="50" value="<?php echo esc_attr($this->coverSize); ?>" /> <span class="fielddescription"><?php _e('(minimum 50)', 'mooberry-book-manager'); ?></span>
 		
 		</p>
-		
-			<?php do_action('mbdb_book_widget_fields', $instance, $this); 
-			$this->displayAdditionalFields( $instance );
-		?>
+	

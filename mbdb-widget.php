@@ -1,11 +1,13 @@
 <?php
 /**
- *  This file does the book widget  
+ *  This file is the base template class for all MBDB Book Widgets
+ *  
+ *  Added v3.1.x
  *  
  */
  
  
-class mbdb_widget extends WP_Widget {
+abstract class mbdb_widget extends WP_Widget {
 	
 	protected $coverSize;
 	protected $displayBookTitle;
@@ -15,18 +17,15 @@ class mbdb_widget extends WP_Widget {
 	
 
 	// constructor
-	// 3.1 -- added customize_selected_refresh for WP 4.5
+
 	function __construct( $title, $widget_ops) {
-		/*$widget_ops = array('classname' => 'mbdb_book_widget2', 
-							'description' => __('Shows the cover of the book of your choosing with a link to the book page', 'mooberry-book-manager'),
-							 'customize_selective_refresh' => true,);
-		*/
+		
 		parent::__construct($widget_ops['classname'], $title, $widget_ops  );
 
 	}
 
 	// widget form creation
-	function form($instance) {	
+	final function form($instance) {	
 		$instance = wp_parse_args((array) $instance);
 		// Check values
 		if( $instance) {
@@ -49,37 +48,28 @@ class mbdb_widget extends WP_Widget {
 			 do_action('mbdb_widget_post_set_defaults'); 
 		}
 		
-		/*$options = apply_filters('mbdb_book_widget_options', array('random' => __('Random Book', 'mooberry-book-manager'),
-							'newest'	=>	__('Newest Book', 'mooberry-book-manager'),
-							'coming-soon'	=>	__('Future Book', 'mooberry-book-manager'),
-							'specific'	=>	__('Specific Book', 'mooberry-book-manager')
-						)
-					);
-							
-		$widget_type_dropdown = mbdb_dropdown($this->get_field_id('mbdb_widget_type'), $options, $mbdb_widget_type, 'no', 0, $this->get_field_name('mbdb_widget_type'));
-		*/
+		// display the form
+		do_action('mbdb_widget_pre_form', $instance, $this);
+		
 		include( plugin_dir_path(__FILE__)  . '/views/admin-widget.php');
+		
+		do_action('mbdb_book_post_form', $instance, $this); 
+		
+		$this->displayAdditionalFields( $instance );
 	}
 
+	
 	// widget update
-	function update($new_instance, $old_instance) {
+	final function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		do_action('mbdb_widget_pre_update', $new_instance, $old_instance);
 		
 		$instance['mbdb_widget_title'] = strip_tags($new_instance['mbdb_widget_title']);
-		
-		//$instance['mbdb_bookID'] = strip_tags($new_instance['mbdb_bookID']);
-		
 		$instance['mbdb_widget_show_title'] = strip_tags($new_instance['mbdb_widget_show_title']);
-		
-		//$instance['mbdb_widget_type'] = strip_tags($new_instance['mbdb_widget_type']);
-		
-		
 		
 		if ($new_instance['mbdb_widget_cover_size'] < 50) {
 			$new_instance['mbdb_widget_cover_size'] = 50;
 		}
-		
 		$instance['mbdb_widget_cover_size'] = strip_tags($new_instance['mbdb_widget_cover_size']);
 		
 		$instance = $this->updateAdditionalFields( $instance, $new_instance );
@@ -88,49 +78,24 @@ class mbdb_widget extends WP_Widget {
 		
 		return apply_filters('mbdb_widget_update', $instance, $new_instance);
 	}
+	
 
 	// widget display
-	function widget($args, $instance) {
+	final function widget($args, $instance) {
 		extract($args);
 		
-		//$this->bookID  = $instance['mbdb_bookID'];
-		
-		//$mbdb_widget_type = apply_filters('mbdb_widget_type', $instance['mbdb_widget_type']);
+		if ( !$this->displayWidget() ) {
+			return;
+		}
 		
 		$this->widgetTitle = apply_filters('mbdb_widget_title', $instance['mbdb_widget_title']);
 		$this->displayBookTitle = apply_filters('mbdb_widget_show_title', $instance['mbdb_widget_show_title']);
 		$this->coverSize = apply_filters('mbdb_widget_cover_size', $instance['mbdb_widget_cover_size']);
 		
-		$this->setAdditionalFields( $instance );
-		
+		$this->getAdditionalFields( $instance );
 	
 		$book = null;
 		do_action('mbdb_widget_pre_get_books', $instance);
-		
-/*
-		switch ($mbdb_widget_type) {
-			case 'random':
-				// get book ID of a random book
-				$book = apply_filters('mbdb_widget_random_book_list', MBDB()->books->get_random_book(), $instance);
-				break;
-		
-			case "newest":
-				// get book ID of most recent book
-				
-				$book = apply_filters('mbdb_widget_newest_book_list', MBDB()->books->get_most_recent_book(), $instance);
-				break;
-			
-			case "coming-soon":
-				// get books with future or blank release dates
-				$book = apply_filters('mbdb_widget_coming_soon_book_list', MBDB()->books->get_upcoming_book(), $instance); 
-				break;
-			
-			case "specific":
-				// make sure seected book is still a valid book
-				$book = apply_filters('mbdb_widget_specific_book_list', MBDB()->books->get($mbdb_bookID), $instance); 				
-				break;
-		}
-		*/
 		
 		$book = $this->selectBook($instance);
 		
@@ -138,26 +103,24 @@ class mbdb_widget extends WP_Widget {
 		
 		do_action('mbdb_widget_post_get_books', $instance, $book);
 		
+		if ( $book == null && !$this->displayNoBook ) {
+			return;
+		}
+		
 		do_action('mbdb_widget_pre_display');
+
 		//output
 		echo $before_widget;
 		
 		echo $before_title . esc_html($this->widgetTitle) . $after_title;
 				
 		$this->outputBook( $book, $instance );
+		
+		$this->outputAdditionalFields( $book, $instance );
 		 
 		echo $after_widget;
 		
 		do_action('mbdb_widget_post_display');
-	}
-	
-	
-	function getCoverSize( ) {
-		return  $this->coverSize;
-	}
-	
-	function setCoverSize( $value ) {
-		$this->coverSize = $value;
 	}
 	
 	function getCover( $image_src ) {
