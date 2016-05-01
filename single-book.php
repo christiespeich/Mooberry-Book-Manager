@@ -1177,29 +1177,14 @@ function mbdb_shortcode_cover( $attr, $content) {
 	$image_src = '';							
 	$image_src = mbdb_get_book_data('cover', $attr['book']);
 	if ($image_src === false) {
-		// v3.0 check for placeholder image setting
-		$mbdb_options = get_option('mbdb_options');
-		if (array_key_exists('show_placeholder_cover', $mbdb_options)) {
-			$show_placeholder_cover = $mbdb_options['show_placeholder_cover']; //mbdb_get_option('show_placeholder_cover');
-		} else {
-			$show_placeholder_cover = array();
-		}
-		if (is_array($show_placeholder_cover)) {
-			if (in_array('page', $show_placeholder_cover)) {
-				if (array_key_exists('coming-soon', $mbdb_options)) {
-					$image_src = $mbdb_options['coming-soon']; //mbdb_get_option('coming-soon');
-				} else {
-					$image_src = '';
-				}
-			} else {
-				return mbdb_blank_output('cover', '');
-			}
-		} else {
-			return mbdb_blank_output('cover', '');
-		}
+		$image_src = mbdb_get_cover( $image_src, 'page' );
 	}
-	return mbdb_output_cover( $image_src, $attr );
 	
+	if ( $image_src == '' ) {
+		return mbdb_blank_output( 'cover', '' );
+	} else {
+		return mbdb_output_cover( $image_src, $attr );
+	}
 }
 
 /*********************************************

@@ -590,10 +590,7 @@ class mbdb_Admin_Settings {
 				'type'	=> 'multicheck',
 				'select_all_button' => false,
 				'desc'	=>	__('The placeholder cover is used for books that do not have a cover selected.', 'mooberry-book-manager'),
-				'options'	=> array(
-								'page' => __('Book Page', 'mooberry-book-manager'),
-								'widget'	=>	__('Widgets', 'mooberry-book-manager'),
-				),
+				'options'	=> mbdb_placeholder_cover_options(),
 			)
 		);
 		
