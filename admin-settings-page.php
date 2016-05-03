@@ -155,11 +155,13 @@ class mbdb_Admin_Settings {
 		do_action('mbdb_settings_post_tab_display', $this->tab);
 		
 		// About Mooberry boxes
+
 		echo '<div id="mbdb_about_mooberry"><div class="mbdb_box">			<h3>' . __('Need help with Mooberry Book Manager?', 'mooberry-book-manager') . '</h3>';
 		include('views/admin-about-mooberry.php');
 		echo '</div>';
 		include('views/admin-about-mooberry-story.php');
 		echo '</div>';
+		
 			
 		// metabox
 		if ($this->tab == 'mbdb_migrate') {
@@ -942,6 +944,8 @@ class mbdb_Admin_Settings {
 		throw new Exception( 'Invalid property: ' . $field );
 	}
 	
+
+	
 } // end class
 
 /**
@@ -981,5 +985,5 @@ function mbdb_reset_meta_boxes() {
 
 
 // Get it started
-$admin_settings = mbdb_admin();
+$mbdb_admin_settings = mbdb_admin();
 

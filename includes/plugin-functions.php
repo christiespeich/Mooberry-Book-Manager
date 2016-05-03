@@ -52,7 +52,7 @@ function mbdb_init() {
  */
 add_action( 'widgets_init', 'mbdb_register_widgets' );
 function mbdb_register_widgets() {
-	return register_widget( 'mbdb_book_widget' );
+	return register_widget( 'mbdb_book_widget2' );
 }
 
 

@@ -992,6 +992,8 @@ function mbdb_get_alt_text( $imageID, $default_alt) {
 }
 
 
+
+
 function mbdb_wp_reserved_terms() {
 	return array(
 		'attachment', 

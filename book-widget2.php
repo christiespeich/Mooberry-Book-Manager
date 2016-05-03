@@ -7,6 +7,8 @@
  
 class mbdb_book_widget2 extends mbdb_widget {
 
+	protected $widgetType;
+	
 	// constructor
 	// 3.1 -- added customize_selected_refresh for WP 4.5
 	function __construct() {
@@ -17,6 +19,11 @@ class mbdb_book_widget2 extends mbdb_widget {
 		
 		parent::__construct( 'Mooberry Book Manager '. _x('Book', 'noun', 'mooberry-book-manager'), $widget_ops  );
 
+	}
+	
+	function getAdditionalFields( $instance ) {
+		$this->bookID  = $instance['mbdb_bookID'];
+		$this->widgetType = apply_filters('mbdb_widget_type', $instance['mbdb_widget_type']);
 	}
 
 	function setAdditionalFields ( $instance ) {
@@ -38,24 +45,8 @@ class mbdb_book_widget2 extends mbdb_widget {
 					);
 							
 		$widget_type_dropdown = mbdb_dropdown($this->get_field_id('mbdb_widget_type'), $options, $this->widgetType, 'no', 0, $this->get_field_name('mbdb_widget_type'));
-		?>
-		<p>
-		<label for="<?php echo $this->get_field_id('mbdb_widget_type'); ?>"><?php _e('Which book to show?', 'mooberry-book-manager'); ?></label>
-		<?php echo $widget_type_dropdown; ?>
-		</p>
 		
-		<div  id="<?php echo $this->get_field_id('bookdropdown'); ?>" style="display:<?php echo ($this->widgetType=='specific') ? 'block' : 'none'; ?>">
-		
-		<p>
-		<label for="<?php echo $this->get_field_id('mbdb_bookID'); ?>"><?php _e('Book:', 'mooberry-book-manager'); ?></label>
-		<select name="<?php echo $this->get_field_name('mbdb_bookID'); ?>" id="<?php echo $this->get_field_id('mbdb_bookID'); ?>">
-			<option value="0"></option>
-			<?php mbdb_get_book_dropdown(esc_attr($instance['mbdb_bookID'])); ?>
-		
-		</select>
-		</P>
-		</div>	
-		<?php
+		include( plugin_dir_path(__FILE__)  . '/views/admin-widget-book.php');
 	}
 	
 	function updateAdditionalFields( $instance, $new_instance ) {
