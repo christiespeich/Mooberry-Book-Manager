@@ -165,6 +165,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 = 3.1.3 =
 * Fixed: Internationalization errors
 * Fixed: Added spans and CSS classes around book details
+* Fixed: Sort by series order if on series tax grid
 
 = 3.1.2 =
 * Added: Nigerian Naira currency
