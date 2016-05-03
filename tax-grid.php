@@ -77,7 +77,12 @@ $groups[1] = 'none';
 $groups[2] = 'none';
 //$current_group = array($selection => 0, 'none' => 0);
 $current_group = array( 'none' => 0);
-$sort = mbdb_set_sort($groups, 'titleA');
+// sort by series if viewing series grid
+if ( $taxonomy == 'mbdb_series') {
+	$sort = mbdb_set_sort($groups, 'series_order');
+} else {
+	$sort = mbdb_set_sort($groups, 'titleA');
+}
 
 // set sort varialbles
 //list( $orderby, $order ) = MBDB()->books->get_sort_fields( $sort );
