@@ -3,6 +3,10 @@
 		<?php echo $widget_type_dropdown; ?>
 		</p>
 		
+		<?php 
+			do_action('mbdb_book_widget_add_fields', $instance, $this);
+		?>
+		
 		<div  id="<?php echo $this->get_field_id('bookdropdown'); ?>" style="display:<?php echo ($this->widgetType=='specific') ? 'block' : 'none'; ?>">
 		
 		<p>
