@@ -590,10 +590,7 @@ class mbdb_Admin_Settings {
 				'type'	=> 'multicheck',
 				'select_all_button' => false,
 				'desc'	=>	__('The placeholder cover is used for books that do not have a cover selected.', 'mooberry-book-manager'),
-				'options'	=> array(
-								'page' => __('Book Page', 'mooberry-book-manager'),
-								'widget'	=>	__('Widgets', 'mooberry-book-manager'),
-				),
+				'options'	=> mbdb_placeholder_cover_options(),
 			)
 		);
 		
@@ -715,7 +712,7 @@ class mbdb_Admin_Settings {
 				'type'        => 'group',
 				'desc'			=> $description,
 				'options'     => array(
-					'group_title'   => _x('Format', 'noun: the format of a book', 'mooberry-book-manager') . ' {#}',  // since version 1.1.4, {#} gets replaced by row number
+					'group_title'   => __('Format Name',  'mooberry-book-manager') . ' {#}',  // since version 1.1.4, {#} gets replaced by row number
 					'add_button'    => __('Add Format', 'mooberry-book-manager'),
 					'remove_button' => __('Remove Format', 'mooberry-book-manager'),
 					'sortable'      => false, // beta

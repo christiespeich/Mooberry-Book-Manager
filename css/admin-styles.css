@@ -1,3 +1,12 @@
+div[id*="-mbdb"] h2.hndle.ui-sortable-handle, div[id^="mbdb"] h2.hndle.ui-sortable-handle, .cmb2-options-page .cmb2-metabox-title  {
+	background: #9667a4;
+	color: white;
+}
+
+.toggle-indicator {
+	color: white;
+}
+
 .cmb-repeat-group-wrap .cmb-row:not(:last-of-type){
 	border: none !important; 
 	}
@@ -11,14 +20,23 @@
     padding: 5px;
 
 }
-.cmb-repeatable-group .cmb-group-title, .cmb2-options-page .cmb2-metabox-title {
-	 background-color: #9667a4;
+.cmb-repeatable-group .cmb-group-title {
+	 background-color: rgb(197, 157, 185);
     color: white;
 }
+
 
 .cmb-remove-row .dashicons.dashicons-arrow-down-alt2, .cmb-remove-row .dashicons.dashicons-arrow-up-alt2 {
 	font-size: 1em;
 	vertical-align: middle;
+}
+
+#side-sortables .cmb2-wrap>.cmb-field-list>.cmb-row, .inner-sidebar .cmb2-wrap>.cmb-field-list>.cmb-row {
+	padding: .5em 0;
+}
+
+#side-sortables .cmb2-wrap>.cmb-field-list>.cmb-row, .inner-sidebar .cmb2-wrap>.cmb-field-list>.cmb-row {
+	padding-bottom: 0;
 }
 
 .mbdb_box {
@@ -86,6 +104,11 @@ div.cmb-row.cmb-type-text.cmb2-id--mbdb-author-sort-selection.table-layout  {
 .shortcode_description, .shortcode_argument_description {
 	font-style: italic;
 	
+}
+
+.cmb-td > p.cmb2-metabox-description {
+	font-style: italic;
+	color: #aaa;
 }
 
 .fielddescription {
