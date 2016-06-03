@@ -52,7 +52,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 		$instance = parent::update( $new_instance, $old_instance);
 		$instance['mbdb_bookID'] = strip_tags($new_instance['mbdb_bookID']);
 		$instance['mbdb_widget_type'] = strip_tags($new_instance['mbdb_widget_type']);
-		return $instance;
+		return apply_filters('mbdb_book_widget_update', $instance);
 	}
 	
 	 function widget( $args, $instance ) {
@@ -67,7 +67,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 	
 	protected function selectBook( $instance ) {
 		$book = null;
-		$filter_bookIDs = apply_filters('mbdb_widget_filter_bookIDs', null, $instance, $this);
+		$filter_bookIDs = apply_filters('mbdb_book_widget_filter_bookIDs', null, $instance, $this);
 		error_log($this->widgetType);
 		switch ($this->widgetType) {
 		
@@ -93,7 +93,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 				break;
 		}
 		
-		return $book;
+		return apply_filters('mbdb_book_widget_book', $book, $this->widgetType);
 	}
 	
 	function getWidgetType() {
