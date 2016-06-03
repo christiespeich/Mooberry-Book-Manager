@@ -43,7 +43,7 @@ abstract class MOOBD_Database {
 	*/
 	
 	
-    final protected function table_name( ) {
+    final public function table_name( ) {
 		global $wpdb;
         return $wpdb->prefix . $this->table;
     }
