@@ -99,6 +99,10 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		}
 		$ids = array_map('absint', $ids);
 		
+		if (count($ids)==0) {
+			return null;
+		}
+		
 		$orderby = $this->validate_orderby( $orderby );
 		
 		$order = $this->validate_order( $order );
