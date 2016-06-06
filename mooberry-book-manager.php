@@ -79,8 +79,8 @@ require_once MBDB_PLUGIN_DIR . 'includes/scripts-and-styles.php';
 require_once MBDB_PLUGIN_DIR . 'book.php';
 require_once MBDB_PLUGIN_DIR . 'single-book.php';
 require_once MBDB_PLUGIN_DIR . 'book-grid.php';
-//require_once MBDB_PLUGIN_DIR . 'mbdb-widget.php';
-require_once MBDB_PLUGIN_DIR . 'book-widget.php';
+require_once MBDB_PLUGIN_DIR . 'mbdb-widget.php';
+require_once MBDB_PLUGIN_DIR . 'book-widget2.php';
 require_once MBDB_PLUGIN_DIR . 'admin-settings-page.php';
 require_once MBDB_PLUGIN_DIR . 'tax-grid.php';
 
