@@ -66,6 +66,8 @@ if ( file_exists( MBDB_PLUGIN_DIR . 'includes/cmb2/init.php' ) ) {
 
 require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
 require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/moobd-database.php';
+require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/software-licensing.php';
+
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-cpt.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-books.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
@@ -124,7 +126,7 @@ final class Mooberry_Book_Manager {
 	public static function instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mooberry_Book_Manager ) ) {
 			self::$instance = new Mooberry_Book_Manager;
-			self::$instance->books  = new MBDB_Books();			
+			self::$instance->books  = new MBDB_Books();
 		}
 		return self::$instance;
 	}
