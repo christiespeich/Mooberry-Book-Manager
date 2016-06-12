@@ -297,8 +297,11 @@ function mbdb_output_goodreads($mbdb_goodreads, $attr) {
 		}
 		$alt = mbdb_get_alt_text( $imageID, __('Add to Goodreads', 'mooberry-book-manager') ); */
 		$alt = __('Add to Goodreads', 'mooberry-book-manager');
-		
-		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><img class="mbm-book-goodreads-image" src="' . esc_url($mbdb_options['goodreads']) . '"' . $alt . '/></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>');
+		$url = esc_url($mbdb_options['goodreads']);
+		if (is_ssl()) {
+			$url = preg_replace('/^http:/', 'https:', $url);
+		}
+		return apply_filters('mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html($attr['label']) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url($mbdb_goodreads) . '" target="_new"><img class="mbm-book-goodreads-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-goodreads-after">' . esc_html($attr['after']) . '</span></div>');
 	}
 }
 /**
