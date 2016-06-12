@@ -4,7 +4,7 @@ Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.5
-Stable tag: 3.1.2    
+Stable tag: 3.2    
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,6 +166,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Fixed: Internationalization errors
 * Fixed: Added spans and CSS classes around book details
 * Fixed: Sort by series order if on series tax grid
+* Fixed: Uses SSL for Goodreads and Coming Soon images if necessary
 * Improved: Added color to better separate sections of admin screens
 * Added: Support for extension licensing 
 * Added: Support for Advanced Widgets
