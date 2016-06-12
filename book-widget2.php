@@ -7,7 +7,7 @@
  
 class mbdb_book_widget2 extends mbdb_widget {
 
-	protected $widgetType;
+	public $widgetType;
 	
 	// constructor
 	// 3.1 -- added customize_selected_refresh for WP 4.5
@@ -52,12 +52,12 @@ class mbdb_book_widget2 extends mbdb_widget {
 		$instance = parent::update( $new_instance, $old_instance);
 		$instance['mbdb_bookID'] = strip_tags($new_instance['mbdb_bookID']);
 		$instance['mbdb_widget_type'] = strip_tags($new_instance['mbdb_widget_type']);
-		return apply_filters('mbdb_book_widget_update', $instance);
+		return apply_filters('mbdb_book_widget_update', $instance, $new_instance);
 	}
 	
 	 function widget( $args, $instance ) {
 		
-		error_log('widget functio in child class');
+		
 		$this->bookID  = $instance['mbdb_bookID'];
 		$this->widgetType = apply_filters('mbdb_widget_type', $instance['mbdb_widget_type']);
 		
@@ -68,7 +68,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 	protected function selectBook( $instance ) {
 		$book = null;
 		$filter_bookIDs = apply_filters('mbdb_book_widget_filter_bookIDs', null, $instance, $this);
-		error_log($this->widgetType);
+	
 		switch ($this->widgetType) {
 		
 			case "newest":
