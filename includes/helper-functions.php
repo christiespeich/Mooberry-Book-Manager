@@ -83,7 +83,11 @@ function mbdb_get_cover( $image_src, $location ) {
 	if ( is_array( $show_placeholder_cover) ) {
 		if ( in_array( $location, $show_placeholder_cover ) ) {
 			if ( array_key_exists( 'coming-soon', $mbdb_options ) ) {
-				return $mbdb_options['coming-soon'];
+				$url = $mbdb_options['coming-soon'];
+				if (is_ssl()) {
+					$url = preg_replace('/^http:/', 'https:', $url);
+				}
+				return $url;
 			}
 		}
 	}
@@ -990,6 +994,8 @@ function mbdb_get_alt_text( $imageID, $default_alt) {
 	}	
 	return ' alt="' . esc_attr($alt) . '" ';
 }
+
+
 
 
 function mbdb_wp_reserved_terms() {

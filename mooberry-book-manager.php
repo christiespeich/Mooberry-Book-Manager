@@ -5,7 +5,7 @@
   *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
-  *	 Version: 3.1.2
+  *	 Version: 3.2
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -26,7 +26,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 3.1
+  * @version 3.2
   */
   
 // Exit if accessed directly
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '3.1.2' );
+	define( 'MBDB_PLUGIN_VERSION', '3.2' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -66,6 +66,8 @@ if ( file_exists( MBDB_PLUGIN_DIR . 'includes/cmb2/init.php' ) ) {
 
 require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
 require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/moobd-database.php';
+require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/software-licensing.php';
+
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-cpt.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-books.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
@@ -79,8 +81,8 @@ require_once MBDB_PLUGIN_DIR . 'includes/scripts-and-styles.php';
 require_once MBDB_PLUGIN_DIR . 'book.php';
 require_once MBDB_PLUGIN_DIR . 'single-book.php';
 require_once MBDB_PLUGIN_DIR . 'book-grid.php';
-//require_once MBDB_PLUGIN_DIR . 'mbdb-widget.php';
-require_once MBDB_PLUGIN_DIR . 'book-widget.php';
+require_once MBDB_PLUGIN_DIR . 'mbdb-widget.php';
+require_once MBDB_PLUGIN_DIR . 'book-widget2.php';
 require_once MBDB_PLUGIN_DIR . 'admin-settings-page.php';
 require_once MBDB_PLUGIN_DIR . 'tax-grid.php';
 
@@ -124,7 +126,7 @@ final class Mooberry_Book_Manager {
 	public static function instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mooberry_Book_Manager ) ) {
 			self::$instance = new Mooberry_Book_Manager;
-			self::$instance->books  = new MBDB_Books();			
+			self::$instance->books  = new MBDB_Books();
 		}
 		return self::$instance;
 	}
