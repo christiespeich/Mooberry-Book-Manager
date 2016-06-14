@@ -166,13 +166,13 @@ class MBDB_License {
 				$show_activate = true;
 				switch ($details->error) {
 					case 'no_activations_left':
-						$status = 'No activations left';
+						$status = __('No activations left', 'mooberry-book-manager');
 						break;
 					case 'item_name_mismatch':
-						$status = 'Wrong Key';
+						$status = __('Wrong Key', 'mooberry-book-manager');
 						break;
 					case 'expired':
-						$status = 'expired';
+						$status = __('expired', 'mooberry-book-manager');
 						break;
 					}
 			} else {		
@@ -240,12 +240,7 @@ class MBDB_License {
 	 */
 	public function activate_license() {
 		
-/*		if ( ! isset( $_GET['page'] ) || $_GET['page'] != 'mbdb_license_key' ) {
-			return;
-		}
-		if ( ! isset( $_GET['settings-updated' ) || $_['settings-updated'] != true ) {
-			return;
-		} */
+
 		// change this to match settings
 		if ( ! isset( $_POST['option_page'] ) || $_POST['option_page'] != 'mbdb_license_keys' )  {
 			return;
