@@ -162,6 +162,9 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.2.1 =
+* Fixed: Bugs in extension licensing support
+
 = 3.2 =
 * Fixed: Internationalization errors
 * Fixed: Added spans and CSS classes around book details
