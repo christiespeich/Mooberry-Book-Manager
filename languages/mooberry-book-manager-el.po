@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-06-12 16:40-0400\n"
+"POT-Creation-Date: 2016-06-14 00:05-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -1719,15 +1719,27 @@ msgstr ""
 msgid "License Keys"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:188
+#: includes/mooberry-dreams/software-licensing.php:169
+msgid "No activations left"
+msgstr ""
+
+#: includes/mooberry-dreams/software-licensing.php:172
+msgid "Wrong Key"
+msgstr ""
+
+#: includes/mooberry-dreams/software-licensing.php:175
+msgid "expired"
+msgstr ""
+
+#: includes/mooberry-dreams/software-licensing.php:205
 msgid "Deactivate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:190
+#: includes/mooberry-dreams/software-licensing.php:207
 msgid "Activate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:430
+#: includes/mooberry-dreams/software-licensing.php:478
 #, php-format
 msgid ""
 "You have invalid or expired license keys for Mooberry Book Manager. Please "
@@ -1735,7 +1747,7 @@ msgid ""
 "correct this issue."
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:469
+#: includes/mooberry-dreams/software-licensing.php:517
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
