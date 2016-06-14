@@ -136,7 +136,9 @@ class MBDB_License {
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 			
 		
-			<form action="options.php" method="post">
+		<!--	  <form action="options.php" method="post">  -->
+		<form method="post">
+			 
 				<?php settings_fields('mbdb_license_keys'); ?>
 				<?php do_settings_sections('mbdb_license_keys'); ?>
 				 
@@ -159,26 +161,41 @@ class MBDB_License {
 		if ( !is_object( $details ) ) {
 			$show_activate = true;	
 			$status = 'inactive';
-			
 		} else {
-			$status = $details->license;
-			switch ($details->license) {
-				case 'site_inactive':
-				case 'inactive':
-					if ( $details->activations_left > 0 || $details->activations_left == 'unlimited' ) {
-						$show_activate = true;
-				
+			if (isset($details->error) ) {
+				$show_activate = true;
+				switch ($details->error) {
+					case 'no_activations_left':
+						$status = 'No activations left';
+						break;
+					case 'item_name_mismatch':
+						$status = 'Wrong Key';
+						break;
+					case 'expired':
+						$status = 'expired';
+						break;
 					}
-					break;				
-				case 'valid':
-					$show_deactivate = true;
-					$color = "green";
-					break;
-				
+			} else {		
+				$status = $details->license;
+				switch ($details->license) {
+					case 'site_inactive':
+					case 'inactive':
+					
+						if ( $details->activations_left > 0 || $details->activations_left == 'unlimited' ) {
+							$show_activate = true;
+					
+						}
+						break;				
+					case 'valid':
+						$show_deactivate = true;
+						$color = "green";
+						break;
+					
+				}
+					
 			}
-				
 		}
-				
+					
 		
 ?>
 			<input id="<?php echo $id; ?>" name="mbdb_license[<?php echo $id; ?>]" size="40" type="text" value="<?php echo $options[$id]; ?>" />
@@ -186,8 +203,9 @@ class MBDB_License {
 			<label id="<?php echo $this->item_shortname; ?>_status" style="text-transform:uppercase;font-weight:bold;color:<?php echo $color; ?>"><?php echo $options[$id] == '' ? '' : $status; ?></label> 
 			
 			<input type="submit" class="button-secondary"  name="btn_deactivate_<?php echo  $this->item_shortname; ?>" <?php echo ($show_deactivate ? '' : 'style="display:none;"'); ?>  value="<?php  _e('Deactivate', 'mooberry-book-manager'); ?>" />
+	
+			<input type="submit" class="button-secondary"  name="btn_activate_<?php echo $this->item_shortname; ?>" <?php echo ($show_activate ? '' : 'style="display:none;"');  ?>  value="<?php  _e('Activate', 'mooberry-book-manager');  ?>"/> 
 			
-			<input type="submit" class="button-secondary"  name="btn_activate_<?php echo $this->item_shortname; ?>" <?php echo ($show_activate ? '' : 'style="display:none;"');  ?>  value="<?php  _e('Activate', 'mooberry-book-manager');  ?>"/>
 	
 <?php
 	
@@ -222,24 +240,45 @@ class MBDB_License {
 	 */
 	public function activate_license() {
 		
+/*		if ( ! isset( $_GET['page'] ) || $_GET['page'] != 'mbdb_license_key' ) {
+			return;
+		}
+		if ( ! isset( $_GET['settings-updated' ) || $_['settings-updated'] != true ) {
+			return;
+		} */
 		// change this to match settings
-		if ( ! isset( $_POST['option_page'] ) || $_POST['option_page'] != 'mbdb_license_key' )  {
+		if ( ! isset( $_POST['option_page'] ) || $_POST['option_page'] != 'mbdb_license_keys' )  {
 			return;
 		}
 
 
+	
 		// change 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 		
+	
 
-		if ( empty( $_POST['mbdb_license'][ $this->item_shortname . '_license_key'] ) ) {
-
-			delete_option( $this->item_shortname . '_license_active' );
-
+		// are we activating this key?
+		if ( !isset( $_POST['btn_activate_' . $this->item_shortname] ) ) {
 			return;
+		}
+		
+	
 
+		// if the license key is blank or it's different than the last one,
+		// clean out the cached results
+		if ( empty( $_POST['mbdb_license'][ $this->item_shortname . '_license_key'] ) ) {
+			delete_option( $this->item_shortname . '_license_active' );
+			
+			return;
+		}
+		
+		$mbdb_license = get_option('mbdb_license');
+		if ( $mbdb_license[ $this->item_shortname . '_license_key' ] != $_POST['mbdb_license'][ $this->item_shortname . '_license_key'] ) {
+			delete_option( $this->item_shortname . '_license_active' );
+			
 		}
 
 		foreach ( $_POST as $key => $value ) {
@@ -249,6 +288,8 @@ class MBDB_License {
 				return;
 			}
 		}
+		
+		
 
 		$details = get_option( $this->item_shortname . '_license_active' );
 
@@ -258,10 +299,15 @@ class MBDB_License {
 
 		$license = sanitize_text_field( $_POST['mbdb_license'][ $this->item_shortname . '_license_key'] );
 
+		$mbdb_license[ $this->item_shortname . '_license_key' ] = $license;
+		update_option('mbdb_license', $mbdb_license);
+
+		
 		if( empty( $license ) ) {
 			return;
 		}
-
+		
+		
 		// Data to send to the API
 		$api_params = array(
 			'edd_action' => 'activate_license',
@@ -294,8 +340,10 @@ class MBDB_License {
 		
 		
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+		
 
 		update_option( $this->item_shortname . '_license_active', $license_data );
+		
 
 	}
 	
@@ -306,7 +354,7 @@ class MBDB_License {
 	 * @return  void
 	 */
 	public function deactivate_license() {
-		if ( ! isset( $_POST['option_page'] ) || $_POST['option_page'] != 'mbdb_license_key'  )
+		if ( ! isset( $_POST['option_page'] ) || $_POST['option_page'] != 'mbdb_license_keys'  )
 			return;
 
 		if ( ! isset( $_POST['mbdb_license'][ $this->item_shortname . '_license_key'] ) )
@@ -348,6 +396,11 @@ class MBDB_License {
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 			delete_option( $this->item_shortname . '_license_active' );
+			
+			$mbdb_license = get_option('mbdb_license');
+			
+			$mbdb_license[ $this->item_shortname . '_license_key' ] = '';
+			update_option( 'mbdb_license', $mbdb_license );
 
 		}
 	}
