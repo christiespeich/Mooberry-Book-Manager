@@ -186,6 +186,7 @@ function mbdb_excerpt( $content ) {
  * @param string $template
  * @return string $template
  */
+ // NOTE Eventually split this out so it can be used in MA
 add_filter( 'template_include', 'mbdb_single_template' );
 function mbdb_single_template( $template ) {
 
