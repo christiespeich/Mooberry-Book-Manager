@@ -562,6 +562,7 @@ function mbdb_output_taxonomy($classname, $mbdb_terms, $permalink, $taxonomy, $a
 	$list .= $before;
 	
 	foreach ($mbdb_terms as $term) {
+		
 		$list .= '<a class="' . $classname . '-link" href="';
 		
 		// check if using permalinks
@@ -572,6 +573,14 @@ function mbdb_output_taxonomy($classname, $mbdb_terms, $permalink, $taxonomy, $a
 		}
 		
 		$list .= '"><span class="' . $classname . '-text">' . $term->name . '</span></a>';
+		
+		if ( in_array( $term->taxonomy, mbdb_taxonomies_with_websites() ) ) {
+			$website = get_term_meta( $term->term_id, $term->taxonomy . '_website', true);
+			if ($website != '' ) {
+				$list .= ' (<a class="' . $classname . '-website" href="' . $website . '">' . __('Website', 'mooberry-book-manager') . '</a>)';
+			}
+		}
+		
 		$list .= $delim;
 	}
 	

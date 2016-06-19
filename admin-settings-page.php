@@ -3,6 +3,8 @@
  * Admin Settings Page
  * This class is taken directly from the CMB2 example
  * and customized for MBDB
+ *
+ * @since 3.0
  */
 class mbdb_Admin_Settings {
 	
@@ -41,10 +43,16 @@ class mbdb_Admin_Settings {
 	 */
 	protected $options_page = '';
 	
+	/**
+	 * Subpages
+	 * @var array
+	 * @since 3.0
+	 */
 	protected $sub_pages = array();
 
 	/**
 	 * Constructor
+	 *
 	 * @since 3.0
 	 */
 	public function __construct() {
