@@ -278,6 +278,9 @@ function mbdb_remove_admin_notice($key) {
 	}
 }
 
+function mbdb_taxonomies_with_websites() {
+		return array('mbdb_cover_artist', 'mbdb_editor', 'mbdb_illustrator');
+}
 
 // for users with PHP <5.5
 if(!function_exists("array_column")) {
