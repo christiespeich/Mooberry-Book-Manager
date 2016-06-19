@@ -390,21 +390,31 @@ function mbdb_edit_cover_artist_grid_description_field( $term ) {
 
 function mbdb_taxonomy_grid_description_field( $taxonomy ) {
 	 wp_nonce_field( basename( __FILE__ ), $taxonomy .'_grid_description_nonce' ); 
-	 $slug = mbdb_get_tax_grid_slug( $taxonomy)
+	 $slug = mbdb_get_tax_grid_slug( $taxonomy);
 	 
 	 ?>
-
+	 
+<?php
+if ( in_array( $taxonomy, mbdb_taxonomies_with_websites() ) ) {
+?>
+	<div class="form-field">
+        <label for="<?php echo $taxonomy; ?>_website"><?php _e( 'Website', 'mooberry-book-manager' ); ?></label>
+		<input type="text" name="<?php echo $taxonomy . '_website'; ?>" id="<?php echo $taxonomy . '_website'; ?>" />
+    </div>
+<?php
+}
+?>
     <div class="form-field">
-        <label for="mbdb_<?php echo $taxonomy; ?>_book_grid_description"><?php _e( 'Book Grid Description', 'mooberry-book-manager' ); ?></label>
+        <label for="<?php echo $taxonomy; ?>_book_grid_description"><?php _e( 'Book Grid Description', 'mooberry-book-manager' ); ?></label>
 		<?php wp_editor( '',  $taxonomy . '_book_grid_description', array('textarea_rows'=>5)); ?>
-		<p><?php _e('The Book Grid Description is displayed above the auto-generated grid for this page, ex. ', 'mooberry-book-manager'); ?><?php echo home_url($slug . '/' . $taxonomy . '-slug'); ?>
+		<p><?php _e('The Book Grid Description is displayed above the auto-generated grid for this page, ex. ', 'mooberry-book-manager'); ?><?php echo home_url($slug . '/' . $taxonomy . '-slug'); ?></p>
         
     </div>
 	
 	<div class="form-field">
-        <label for="mbdb_<?php echo $taxonomy; ?>_book_grid_description_bottom"><?php _e( 'Book Grid Description (Bottom)', 'mooberry-book-manager' ); ?></label>
+        <label for="<?php echo $taxonomy; ?>_book_grid_description_bottom"><?php _e( 'Book Grid Description (Bottom)', 'mooberry-book-manager' ); ?></label>
 		<?php wp_editor( '', $taxonomy . '_book_grid_description_bottom', array('textarea_rows'=>5)); ?>
-		<p><?php _e('The bottom Book Grid Description is displayed below the auto-generated grid for this page, ex. ', 'mooberry-book-manager'); ?><?php echo home_url($slug . '/' . $taxonomy . '-slug'); ?>
+		<p><?php _e('The bottom Book Grid Description is displayed below the auto-generated grid for this page, ex. ', 'mooberry-book-manager'); ?><?php echo home_url($slug . '/' . $taxonomy . '-slug'); ?></p>
         
     </div>
 <?php 
@@ -418,19 +428,30 @@ function mbdb_edit_taxonomy_grid_description_field( $term, $taxonomy ) {
 		$description = get_term_meta( $term->term_id,  $taxonomy .'_book_grid_description', true );
 		$description_bottom = get_term_meta( $term->term_id,  $taxonomy .'_book_grid_description_bottom', true );
 		
-		$slug = mbdb_get_tax_grid_slug( $taxonomy)
-		
-		
-		
-		
+		$slug = mbdb_get_tax_grid_slug( $taxonomy);
+	
+		wp_nonce_field( basename( __FILE__ ),  $taxonomy . '_grid_description_nonce' ); 
 	  ?>
 
+<?php
+if ( in_array( $taxonomy, mbdb_taxonomies_with_websites() ) ) {
+	$website = get_term_meta( $term->term_id, $taxonomy . '_website', true);
+		
+?>
+	<tr class="form-field">
+			<th scope="row"><label for="<?php echo $taxonomy; ?>_website"><?php _e( 'Website', 'mooberry-book-manager' ); ?></label></th>
+		<td><input type="text" id="<?php echo $taxonomy . '_website'; ?>" name="<?php echo $taxonomy . '_website'; ?>" value="<?php echo $website; ?>" />
+		<p class="description"></p>
+		</td>
+	</tr>
+<?php
+}
+?>	  
+	  
 		<tr class="form-field">
-			<th scope="row"><label for="mbdb_<?php echo $taxonomy; ?>_book_grid_description"><?php _e( 'Book Grid Description', 'mooberry-book-manager' ); ?></label></th>
+			<th scope="row"><label for="<?php echo $taxonomy; ?>_book_grid_description"><?php _e( 'Book Grid Description', 'mooberry-book-manager' ); ?></label></th>
 			<td>
-				<?php 
-				wp_nonce_field( basename( __FILE__ ),  $taxonomy . '_grid_description_nonce' ); 
-				
+				<?php 	
 				wp_editor( $description,  $taxonomy . '_book_grid_description', array('textarea_rows' => 5));
 				?>
 				<p class="description"><?php _e('The Book Grid Description is displayed above the auto-generated grid for this page, ', 'mooberry-book-manager'); ?><A target="_new" href="<?php echo home_url($slug . '/' . $term->slug); ?>"><?php echo home_url($slug . '/' . $term->slug); ?></a></p>
@@ -453,9 +474,12 @@ function mbdb_edit_taxonomy_grid_description_field( $term, $taxonomy ) {
 
 function mbdb_save_taxonomy_book_grid_description( $term_id, $taxonomy ) {
 
+
+
     if ( ! isset( $_POST[ $taxonomy . '_grid_description_nonce'] ) || ! wp_verify_nonce( $_POST[ $taxonomy . '_grid_description_nonce'], basename( __FILE__ ) ) ) {
         return;
 	}
+
 	
 	$old_description = get_term_meta( $term_id,  $taxonomy . '_book_grid_description', true );
     
@@ -479,6 +503,19 @@ function mbdb_save_taxonomy_book_grid_description( $term_id, $taxonomy ) {
    else {
 	   if ( $old_description_bottom !== $new_description_bottom ) {
         update_term_meta( $term_id,  $taxonomy . '_book_grid_description_bottom', $new_description_bottom );
+	   }
+   }
+
+   if ( in_array( $taxonomy, mbdb_taxonomies_with_websites()) ) {
+	   $old_website = get_term_meta( $term_id, $taxonomy . '_website', true);
+	   $new_website = isset( $_POST[ $taxonomy . '_website'] ) ? $_POST[ $taxonomy . '_website'] : '';
+	   
+	   if ($old_website && $new_website == '') {
+		   delete_term_meta( $term_id, $taxonomy . '_website' );
+	   } else {
+		   if ( $old_website !== $new_website ) {
+			   update_term_meta( $term_id, $taxonomy . '_website', $new_website );
+		   }
 	   }
    }
 }
@@ -796,7 +833,11 @@ function mbdb_register_taxonomies() {
 			
 			register_meta( 'term',  $name . '_book_grid_descripion', 'mbdb_sanitize_book_grid_description' );
 			register_meta( 'term', $name . '_book_grid_description_bottom', 'mbdb_sanitize_book_grid_description' );
-			
+			   
+			if (in_array($name, mbdb_taxonomies_with_websites() ) ) {
+				
+				register_meta( 'term', $name . '_website', 'mbdb_sanitize_url');
+			}
 		
 			add_action(  $name . '_add_form_fields', 'mbdb_new_' . $pretty_name . '_grid_description_field' );
 			add_action( 'edit_' . $name,   'mbdb_save_' . $pretty_name . '_book_grid_description' );
@@ -812,6 +853,12 @@ function mbdb_register_taxonomies() {
 
 function mbdb_sanitize_book_grid_description( $description) {
 	return balanceTags(wp_kses_post($description), true);
+}
+
+function mbdb_sanitize_url( $url ) {
+	//return esc_url($url);
+	return $url;
+
 }
 
 /******************* end term meta ******************************************/
