@@ -1,11 +1,29 @@
 jQuery( document ).ready(function() {
 	
 	
+	
+	jQuery('#publish').bind('click', mbdb_save_book_list_order);
+	
 	// bind the change event on all the drop downs in the book grid section
 	jQuery('#cmb2-metabox-mbdb_book_grid_metabox').children().find('select').bind('change', displayChange);
 	
 	// set visibility of everything as needed
 	displayChange();
+	
+	jQuery('.cmb2-id--mbdb-book-grid-custom input').bind( 'change', book_selection_change );
+	
+	// make the grid sortable
+	jQuery('#_mbdb_book_grid_book_list').sortable({
+		opacity: 0.5,
+		placeholder : 'ui-state-highlight',
+		cursor: 'pointer',
+		create: mbdb_book_list_order_update,
+		update: mbdb_book_list_order_update,
+		deactivate: function () {
+				window.unsaved_changes = true;
+			}
+	});
+	
 });
 
 function displayChange () {
@@ -15,6 +33,7 @@ function displayChange () {
 		var label1 = text_to_translate.label1;
 		var label2 = text_to_translate.label2;
 		var group_by_options = text_to_translate.groupby;
+		var custom_sort = text_to_translate.custom_sort;
 		
 		var selected = [];
 		
@@ -24,6 +43,8 @@ function displayChange () {
 		jQuery('.cmb2-id--mbdb-book-grid-order').show();
 		jQuery('.cmb2-id--mbdb-book-grid-cover-height-default').show();
 		
+		
+		// SELECT 
 		// books to show and convert _ to -
 		var books = jQuery('#_mbdb_book_grid_books').val().replace('_','-');
 
@@ -41,11 +62,14 @@ function displayChange () {
 			// jQuery('.cmb2-id--mbdb-book-grid-custom-select').hide();
 		// }
 		
+		// GROUP BY 
 		
 		// hide the warning by default
 		jQuery('.cmb2-id--mbdb-book-grid-warning').hide();
+		
 		level = 1;
 		var groupby_dropdown = jQuery('#_mbdb_book_grid_group_by_level_' + level);
+		
 		// loop through all visible groupby drop downs
 		// groupby_downdown = current groupby drop down
 		while (groupby_dropdown.is(':visible')) {
@@ -115,8 +139,20 @@ function displayChange () {
 		// and hide the others
 		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').nextAll("[class$='-group-by']").not('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').hide();
 		*/
-				
-				
+			
+
+		// ORDER BY
+			
+		// Add custom when selecting custom books
+		if (jQuery('#_mbdb_book_grid_books').val() == 'custom') {
+			// only add if it's not already there
+			if (jQuery("#_mbdb_book_grid_order option[value='custom']").length == 0 ) {
+				jQuery('#_mbdb_book_grid_order').append(jQuery('<option></option>').val('custom').html(custom_sort));
+			}
+		} else {
+			jQuery("#_mbdb_book_grid_order option[value='custom']").remove();
+		}
+		
 		// order should be hidden if series is selected
 		// get the last visible group-by drop down
 		if (jQuery('.cmb2-id--mbdb-book-grid-group-by-level-1').nextAll("[class*='-group-by-level']").andSelf().filter(':visible:last').find('select').val() == 'series') {
@@ -124,6 +160,16 @@ function displayChange () {
 		} else {
 			jQuery('.cmb2-id--mbdb-book-grid-order').show();
 		}
+		
+		// if order is visible and set to custom, show the sorting grid
+		
+		if ( jQuery('.cmb2-id--mbdb-book-grid-order').is(":visible") && jQuery('#_mbdb_book_grid_order').val() == 'custom' ) {
+			jQuery('#_mbdb_bookd_grid_custom_order').show();
+		} else {
+			jQuery('#_mbdb_bookd_grid_custom_order').hide();
+		}
+		
+		
 		
 		// cover height 
 		if (jQuery('#_mbdb_book_grid_cover_height_default').val() == 'yes') {
@@ -139,4 +185,63 @@ function displayChange () {
 		// hide all the book grid divs if "no" is selected
 		jQuery('.cmb2-id--mbdb-book-grid-display').nextAll('div').hide();
 	}
+}
+
+
+function book_selection_change() {
+	
+	book_list = jQuery('#_mbdb_book_grid_book_list');
+	
+	// empty check list
+	jQuery( '#_mbdb_book_grid_book_list li').remove();
+	
+	// add all selected books
+	console.log(jQuery('.cmb2-id--mbdb-book-grid-custom input:checkbox:checked'));
+	jQuery('.cmb2-id--mbdb-book-grid-custom input:checkbox:checked').each( function () {
+		console.log(jQuery(this).val());
+		var li = jQuery('<li>')
+			.attr('id', 'mbdb_custom_book_order_book_' + jQuery(this).val() )
+			.addClass('ui-state-default')
+			.text( jQuery(this).next('label').text() )
+			.prepend('<span class="ui-icon"></span>')
+			.appendTo(book_list);
+			mbdb_book_list_order_update();
+			/*
+			book_list.append('<li id="' + jQuery(this).val() + '">' & jQuery(this).next('label').text() + '<li>');
+			//.text( jQuery(this).next('label').text() )
+			*/
+			console.log(li);
+		});
+	
+	
+}
+
+function mbdb_book_list_order_update() {
+	console.log('update');
+	// remove all the classes and add ui-icon on all of the items in the grid
+	jQuery('#_mbdb_book_grid_book_list li span').removeClass().addClass('ui-icon');
+	// add a down arrow to the first item
+	jQuery('#_mbdb_book_grid_book_list li:first span').addClass('ui-icon-arrowthick-1-s');
+	// add an up arrow to the last item
+	jQuery('#_mbdb_book_grid_book_list li:last span').addClass('ui-icon-arrowthick-1-n');
+	// add an up and down arrow to any non-first and non-last item
+	jQuery('#_mbdb_book_grid_book_list li').not(':first').not(':last').children('span').addClass('ui-icon-arrowthick-2-n-s');
+}
+
+// save the sorted grid via ajax
+function mbdb_save_book_list_order() {
+	var data = {
+			'action': 'save_book_list_order',
+			'pageID': jQuery('#post_ID').val(),
+			'books': jQuery('#_mbdb_book_grid_book_list').sortable('serialize'),
+			'security': book_grid_ajax_object.security
+	};
+	
+	jQuery.post(ajax_object.ajax_url, data, mbdb_book_list_order_after_save);
+}
+    
+// function that's called after the save grid ajax
+// not really anything to do...
+function mbdb_book_list_order_after_save() {
+	
 }

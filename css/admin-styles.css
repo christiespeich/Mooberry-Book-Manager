@@ -1,3 +1,26 @@
+/* sortable books */
+#_mbdb_book_grid_book_list li {
+	margin: 0 3px 3px 3px;	
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    height: 18px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#_mbdb_book_grid_book_list {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    width: 60%;
+}
+
+#_mbdb_book_grid_book_list li span {
+    position: absolute;
+    margin-left: -1.3em;
+}
+
 div[id*="-mbdb"] h2.hndle.ui-sortable-handle, div[id^="mbdb"] h2.hndle.ui-sortable-handle, .cmb2-options-page .cmb2-metabox-title  {
 	background: #9667a4;
 	color: white;

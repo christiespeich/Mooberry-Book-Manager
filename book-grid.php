@@ -151,6 +151,7 @@ function mbdb_book_grid_meta_boxes( ) {
 			'id'	=> '_mbdb_book_grid_order',
 			'type'	=> 'select',
 			'options'	=> mbdb_book_grid_order_options(),
+			'after'	=> '<div id="_mbdb_bookd_grid_custom_order" style="display:none;">Book List:<ul id="_mbdb_book_grid_book_list">' . mbdb_output_book_grid_custom_order() . '</ul></div>',
 		)
 	);
 	
@@ -201,6 +202,53 @@ function mbdb_book_grid_meta_boxes( ) {
 	$mbdb_book_grid_metabox = apply_filters('mbdb_book_grid_meta_boxes', $mbdb_book_grid_metabox);
 		
 }
+
+function mbdb_output_book_grid_custom_order( ) //$id, $object_id, $a) {
+	
+	$output = '';
+	
+	$custom_order = get_post_meta( $object_id, 'mbdb_output_book_grid_custom_order', true);
+	
+	foreach ( $custom_order as $book ) {
+	
+		$output .= '<li id="mbdb_custom_book_order_book_' . $book . '" class="ui-state-default"><span class="ui-icon"></span>' . 
+			get_the_title( $book ) . '</li>';
+	}
+	return $output;
+	
+}
+
+
+
+
+// ajax save book list order
+add_action( 'wp_ajax_save_book_list_order', 'mbdb_save_book_list_order' );	
+function mbdb_save_book_list_order() {
+	
+
+	$nonce = $_POST['security'];
+
+	// check to see if the submitted nonce matches with the
+	// generated nonce we created earlier
+	if ( ! wp_verify_nonce( $nonce, 'mbdb_book_grid_ajax_nonce' ) ) {
+		die ( );
+	}
+
+	// check for books to be blank
+	if (isset($_POST['books']) && $_POST['books'] != '') {
+	
+		// $_POST['posts']  = "mbdb_custom_book_order_book[]=2131&mbdb_custom_book_order_book[]=2135&mbdb_custom_book_order_book[]=2133&mbdb_custom_book_order_book[]=2243&mbdb_custom_book_order_book[]=2245&mbdb_custom_book_order_book[]=2247&mbdb_custom_book_order_book[]=2249&mbdb_custom_book_order_book[]=2251&mbdb_custom_book_order_book[]=2253&mbdb_custom_book_order_book[]=2255&mbdb_custom_book_order_book[]=2257&mbdb_custom_book_order_book[]=2259"
+		
+		// parse_str($_POST['books']) creates variable $mbdb_custom_book_order_book which is an array of book ids
+		parse_str($_POST['books']);
+	
+		update_post_meta($_POST['pageID'], '_mbdb_book_grid_order_custom', $mbdb_custom_book_order_book);
+	}
+	
+}
+
+
+
 
 /****************************************************************************
 		GET DATA
