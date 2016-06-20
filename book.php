@@ -51,6 +51,9 @@ function set_up_mbdb_book_columns( $columns ) {
  *  
  *  @return nothing. data is printed directly to screen
  *  
+ *  @since 3.3	Added divs around output to support quick/bulk editing
+ *  			Used date format from options to format release date
+ *  
  *  @access public
  */
 add_action( 'manage_mbdb_book_posts_custom_column', 'populate_mbdb_book_columns', 10, 2 );
@@ -94,11 +97,15 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 		// release date: use short format
 		case 'release_date':
 			do_action('mbdb_book_pre_mbdb_published_column', $column, $data, $book );
+			echo '<div id="release_date-' . $post_id . '">';
 			if ( !empty( $data ) ) {
-				// TO DO validate data to be a date??
-				/* translators: short date format. see http://php.net/date */
-				echo apply_filters( 'mbdb_book_mbdb_published_column', date(_x('m/d/Y', 'short date format. see http://www.php.net/date', 'mooberry-book-manager'), strtotime( $data ) ), $column, $data, $book );
+				$format = get_option('date_format');
+				echo apply_filters( 'mbdb_book_mbdb_published_column', 	date_i18n($format, strtotime($data)), $column, $data, $book );
+				echo '<span id="release_date_format-' . $post_id . '" style="display:none;">' . date('Y-m-d', strtotime( $data)) . '</span>';
+				
 			}
+			echo '</div>';
+			
 			do_action( 'mbdb_book_post_mbdb_published_column', $column, $data, $book );
 			break;
 		// publisher: display publisher name
@@ -106,15 +113,206 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 		case 'publisher_id':
 			$publisher = mbdb_get_publisher_info( $data );
 			do_action('mbdb_book_pre_mbdb_publisher_column', $column, $publisher, $book );
+			echo '<div id="publisher-' . $post_id . '">';
 			echo apply_filters('mbdb_book_mbdb_publisher_column', $publisher['name'], $column, $publisher, $book );
+			echo '<span id="publisher_id-' . $post_id . '" style="display:none;">' . $data . '</span>';
+			echo '</div>';
 			do_action('mbdb_book_post_mbdb_publisher_column', $column, $publisher, $book );
 			break;
 		default:
 			do_action('mbdb_book_pre_mbdb_' . $column . '_column', $column, $data, $book );
+			echo '<div id="' . $column . '-' . $post_id . '">';
 			echo apply_filters('mbdb_book_mbdb_' . $column . '_column', $data, $book, $post_id, $column );
+			echo '</div>';
 			do_action('mbdb_book_post_mbdb_' . $column . '_column', $column, $data, $book );
 	}	
 }
+
+
+
+
+/**
+ *  
+ *  Adds Quick/Bulk Edit options to Books menu
+ *  
+ *  @param [in] $column_name 	The column being edited
+ *  @param [in] $post_type 		The post type
+ *  
+ *  @since 	3.3
+ *  
+ */
+add_action( 'bulk_edit_custom_box', 'mbdb_bulk_edit_books', 1, 2 );
+function mbdb_bulk_edit_books( $column_name, $post_type ) {
+	if ( $post_type !== 'mbdb_book' ) {
+		return;
+	}
+	
+	switch ($column_name) {
+		case 'publisher_id':
+			$publishers = mbdb_get_publishers();
+	?>
+		<fieldset class="inline-edit-col-left">
+						<div class="inline-edit-col">
+							<label>
+								<span class="title"><?php _e('Publisher', 'mooberry-book-manager'); ?></span>
+								<span class="input-text-wrap">
+									<?php echo mbdb_dropdown('_mbdb_publisherID', $publishers, $selected = null, 'no',  -1, '_mbdb_publisherID' ); ?>
+								</span>
+							</label>
+						</div>
+					</fieldset>
+		<?php
+			break;
+	}
+	
+}
+
+add_action( 'quick_edit_custom_box', 'mbdb_quick_edit_books', 1, 2 );	
+function mbdb_quick_edit_books( $column_name, $post_type ) {
+	if ( $post_type !== 'mbdb_book' ) {
+		return;
+	}
+	
+	mbdb_bulk_edit_books( $column_name, $post_type );
+	
+	switch ($column_name) {
+		
+		case 'release_date':
+	?>
+		<fieldset>
+						<div class="inline-edit-col">
+							<label>
+								<span class="title"><?php _e('Release Date', 'mooberry-book-manager'); ?></span>
+								<span class="input-text-wrap">
+									<input type="text" value="" id="_mbdb_published" name="_mbdb_published" style="width:10em;">
+								(<strong>mm/dd/yyyy</strong> or <strong>dd-mm-yyyy</strong> or <strong>yyyy-mm-dd</strong>)</span>
+							</label>
+						</div>
+					</fieldset>
+	<?php
+			break;
+		case 'series_order':
+	?>
+		<fieldset >
+						<div class="inline-edit-col">
+							<label>
+								<span class="title"><?php _e('Series Order', 'mooberry-book-manager'); ?></span>
+								<span class="input-text-wrap">
+									<input type="text" value="" name="_mbdb_series_order" id="_mbdb_series_order" style="width:3.5em;">
+								</span>
+							</label>
+						</div>
+					</fieldset>
+	<?php
+			break; 
+		
+	}
+}
+
+/**
+ * Saving your 'Quick Edit' data is exactly like saving custom data
+ * when editing a post, using the 'save_post' hook. With that said,
+ * you may have already set this up. If you're not sure, and your
+ * 'Quick Edit' data is not saving, odds are you need to hook into
+ * the 'save_post' action.
+ *
+ * The 'save_post' action passes 2 arguments: the $post_id (an integer)
+ * and the $post information (an object).
+ */
+add_action( 'save_post', 'mbdb_quick_edit_save_post', 10, 2 );
+function mbdb_quick_edit_save_post( $post_id, $post ) {
+	// pointless if $_POST is empty (this happens on bulk edit)
+	if ( empty( $_POST ) )
+		return $post_id;
+		
+	// verify quick edit nonce
+	if ( isset( $_POST[ '_inline_edit' ] ) && ! wp_verify_nonce( $_POST[ '_inline_edit' ], 'inlineeditnonce' ) )
+		return $post_id;
+			
+	// don't save for autosave
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		return $post_id;
+		
+	// dont save for revisions
+	if ( isset( $post->post_type ) && $post->post_type == 'revision' )
+		return $post_id;
+	
+	if ($post->post_type !== 'mbdb_book') {
+		return $post_id;
+	}
+	
+	global $mbdb_edit_book;
+	
+	if ( array_key_exists( '_mbdb_published', $_POST ) ) {
+		if ($_POST['_mbdb_published'] != '') {
+			$published = strtotime($_POST['_mbdb_published']);
+		
+			if ($published !== false) {
+				$_POST['_mbdb_published'] = date('Y-m-d',$published);
+			}
+		}
+	}
+	
+	$custom_fields = array( '_mbdb_published', '_mbdb_series_order', '_mbdb_publisherID' );
+	
+	foreach( $custom_fields as $field ) {
+		if ( array_key_exists( $field, $_POST ) ) {
+			if (MBDB()->books->in_custom_table( $field ) ) {
+				$mbdb_edit_book[$field] = $_POST[ $field ];
+			} else {
+				update_post_meta( $post_id, $field, $_POST[ $field ] );
+			}
+		}
+	}
+
+	MBDB()->books->save( $mbdb_edit_book, $post_id );	
+}
+
+/**
+ * Saving the 'Bulk Edit' data is a little trickier because we have
+ * to get JavaScript involved. WordPress saves their bulk edit data
+ * via AJAX so, guess what, so do we.
+ *
+ * Your javascript will run an AJAX function to save your data.
+ * This is the WordPress AJAX function that will handle and save your data.
+ */
+add_action( 'wp_ajax_bulk_quick_save_bulk_edit', 'mbdb_save_bulk_edit' );
+function mbdb_save_bulk_edit() {
+	// we need the post IDs
+	$post_ids = ( isset( $_POST[ 'post_ids' ] ) && !empty( $_POST[ 'post_ids' ] ) ) ? $_POST[ 'post_ids' ] : NULL;
+		
+	// if we have post IDs
+	if ( empty( $post_ids ) || !is_array( $post_ids ) ) {
+		return;
+	}
+	
+	// get the custom fields
+	$custom_fields = array( '_mbdb_publisherID'  );
+	global $mbdb_edit_book;
+	
+	// update for each post ID
+	foreach( $post_ids as $post_id ) {
+		foreach( $custom_fields as $field ) {
+			// if it has a value, doesn't update if empty on bulk
+			if ( isset( $_POST[ $field ] ) && !empty( $_POST[ $field ] ) ) {			
+				if (MBDB()->books->in_custom_table( $field ) ) {
+					$mbdb_edit_book[$field] = $_POST[ $field ];
+				} else {
+					update_post_meta( $post_id, $field, $_POST[ $field ] );
+				}
+			}
+			
+		}
+		MBDB()->books->save( $mbdb_edit_book, $post_id );	
+	}
+	
+	
+}
+
+
+	
+
+	
 
 /**********************************************************
  * 
@@ -175,6 +373,7 @@ add_action('save_post_mbdb_book', 'mbdb_save_book');
 
  add_action('save_post', 'mbdb_save_book_custom_table', 20);
 function mbdb_save_book_custom_table( $post_id, $post = null ) {
+	
 	if (!get_post_type() == 'mbdb_book') {
 		return;
 	}
