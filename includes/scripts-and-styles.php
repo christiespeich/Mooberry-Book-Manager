@@ -15,6 +15,19 @@ function mbdb_register_widget_script( $page_hook ) {
 		wp_enqueue_script( 'mbdb-admin-widget',  MBDB_PLUGIN_URL . 'includes/js/admin-widget.js', '', mbdb_get_enqueue_version());		
 		
 	}
+	
+	$current_screen = get_current_screen();
+	if (!$current_screen) {
+		return;
+	}
+	$post_type = $current_screen->post_type;
+	$base = $current_screen->base;
+	
+	if ($base == 'edit' && $post_type == 'mbdb_book') {
+		
+		 
+		wp_enqueue_script('mbdb-admin-book-quick-bulk-edit', MBDB_PLUGIN_URL . 'includes/js/admin-book-quick-bulk-edit.js', array( 'jquery', 'inline-edit-post' ), mbdb_get_enqueue_version());
+	}
 }
 
 
