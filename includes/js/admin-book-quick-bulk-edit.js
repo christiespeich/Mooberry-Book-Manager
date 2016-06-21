@@ -44,6 +44,18 @@ jQuery( document ).ready(function() {
 			// set the publisher
 			$edit_row.find( 'select[name="_mbdb_publisherID"]' ).val( $publisher_id );
 			
+			// get the subtitle
+			var $subtitle = jQuery( '#subtitle-' + $post_id).text();
+			
+			// set the subtitle
+			$edit_row.find( 'input[name="_mbdb_subtitle"]' ).val( $subtitle);
+			
+			// get the goodreads link
+			var $goodreads = jQuery( '#goodreads-' + $post_id).text();
+			
+			// set goodreads
+			$edit_row.find( 'input[name="_mbdb_goodreads"]' ).val( $goodreads );
+			
 		}
 		
 	};

@@ -96,6 +96,9 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 			break;
 		// release date: use short format
 		case 'release_date':
+			// output 2 hidden fields for fields we want to be able to quick edit even if they aren't shown
+			echo '<span id="subtitle-' . $post_id . '" style="display:none;">' . $book->subtitle . '</span>';
+			echo '<span id="goodreads-' . $post_id . '" style="display:none;">' . $book->goodreads . '</span>';
 			do_action('mbdb_book_pre_mbdb_published_column', $column, $data, $book );
 			echo '<div id="release_date-' . $post_id . '">';
 			if ( !empty( $data ) ) {
@@ -179,7 +182,25 @@ function mbdb_quick_edit_books( $column_name, $post_type ) {
 		
 		case 'release_date':
 	?>
-		<fieldset>
+		<fieldset style="width:50%;">
+						<div class="inline-edit-col">
+							<label>
+								<span class="title"><?php _e('Subtitle', 'mooberry-book-manager'); ?></span>
+								<span class="input-text-wrap">
+									<input type="text" value="" id="_mbdb_subtitle" name="_mbdb_subtitle"></span>
+							</label>
+						</div>
+		</fieldset>
+		<fieldset style="width:50%;">
+						<div class="inline-edit-col">
+							<label>
+								<span class="title"><?php _e('Goodreads', 'mooberry-book-manager'); ?></span>
+								<span class="input-text-wrap">
+									<input type="text" value="" id="_mbdb_goodreads" name="_mbdb_goodreads"></span>
+							</label>
+						</div>
+		</fieldset>
+		<fieldset style="width:50%;">
 						<div class="inline-edit-col">
 							<label>
 								<span class="title"><?php _e('Release Date', 'mooberry-book-manager'); ?></span>
@@ -193,7 +214,7 @@ function mbdb_quick_edit_books( $column_name, $post_type ) {
 			break;
 		case 'series_order':
 	?>
-		<fieldset >
+		<fieldset style="width:50%;" >
 						<div class="inline-edit-col">
 							<label>
 								<span class="title"><?php _e('Series Order', 'mooberry-book-manager'); ?></span>
@@ -253,7 +274,7 @@ function mbdb_quick_edit_save_post( $post_id, $post ) {
 		}
 	}
 	
-	$custom_fields = array( '_mbdb_published', '_mbdb_series_order', '_mbdb_publisherID' );
+	$custom_fields = array( '_mbdb_published', '_mbdb_series_order', '_mbdb_publisherID', '_mbdb_subtitle', '_mbdb_goodreads' );
 	
 	foreach( $custom_fields as $field ) {
 		if ( array_key_exists( $field, $_POST ) ) {
