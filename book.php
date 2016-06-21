@@ -196,7 +196,7 @@ function mbdb_quick_edit_books( $column_name, $post_type ) {
 							<label>
 								<span class="title"><?php _e('Goodreads', 'mooberry-book-manager'); ?></span>
 								<span class="input-text-wrap">
-									<input type="text" value="" id="_mbdb_goodreads" name="_mbdb_goodreads"></span>
+									<input type="text" pattern="^(https?:\/\/)?www.goodreads.com.*" value="" id="_mbdb_goodreads" name="_mbdb_goodreads"></span>
 							</label>
 						</div>
 		</fieldset>
@@ -219,7 +219,7 @@ function mbdb_quick_edit_books( $column_name, $post_type ) {
 							<label>
 								<span class="title"><?php _e('Series Order', 'mooberry-book-manager'); ?></span>
 								<span class="input-text-wrap">
-									<input type="text" value="" name="_mbdb_series_order" id="_mbdb_series_order" style="width:3.5em;">
+									<input type="number" value="" step="any" min="0" name="_mbdb_series_order" id="_mbdb_series_order" style="width:3.5em;">
 								</span>
 							</label>
 						</div>
@@ -281,7 +281,7 @@ function mbdb_quick_edit_save_post( $post_id, $post ) {
 			if (MBDB()->books->in_custom_table( $field ) ) {
 				$mbdb_edit_book[$field] = $_POST[ $field ];
 			} else {
-				update_post_meta( $post_id, $field, $_POST[ $field ] );
+				update_post_meta( $post_id, $field, sanitize_text_field($_POST[ $field ] ));
 			}
 		}
 	}
@@ -319,7 +319,7 @@ function mbdb_save_bulk_edit() {
 				if (MBDB()->books->in_custom_table( $field ) ) {
 					$mbdb_edit_book[$field] = $_POST[ $field ];
 				} else {
-					update_post_meta( $post_id, $field, $_POST[ $field ] );
+					update_post_meta( $post_id, $field, sanitize_text_field( $_POST[ $field ] ) );
 				}
 			}
 			
