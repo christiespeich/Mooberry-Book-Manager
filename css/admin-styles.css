@@ -7,6 +7,12 @@ div[id*="-mbdb"] h2.hndle.ui-sortable-handle, div[id^="mbdb"] h2.hndle.ui-sortab
 	color: white;
 }
 
+.post-type-mbdb_book #wpbody-content .bulk-edit-row-post .inline-edit-col-right, .post-type-mbdb_book #wpbody-content .quick-edit-row-page .inline-edit-col-right {
+	width: 100%;
+}
+
+
+
 .cmb-repeat-group-wrap .cmb-row:not(:last-of-type){
 	border: none !important; 
 	}

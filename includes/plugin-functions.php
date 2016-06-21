@@ -720,6 +720,7 @@ function mbdb_register_taxonomies() {
 				'rewrite' => array(	'slug' => 'mbdb_editors' ),
 				'public' => true, //false,
 				'show_admin_column' => true,
+									'show_in_quick_edit'	=> 	false,
 				'update_count_callback' => '_update_post_term_count',
 				'capabilities'	=> array(
 					'manage_terms' => 'manage_categories',
@@ -756,6 +757,7 @@ function mbdb_register_taxonomies() {
 				'rewrite' => array(	'slug' => 'mbdb_illustrators' ),
 				'public' => true, //false,
 				'show_admin_column' => true,
+									'show_in_quick_edit'	=> 	false,
 				'update_count_callback' => '_update_post_term_count',
 				'capabilities'	=> array(
 					'manage_terms' => 'manage_categories',
@@ -792,6 +794,7 @@ function mbdb_register_taxonomies() {
 				'rewrite' => array(	'slug' => 'mbdb_cover_artists' ),
 				'public' => true, //false,
 				'show_admin_column' => true,
+									'show_in_quick_edit'	=> 	false,
 				'update_count_callback' => '_update_post_term_count',
 				'capabilities'	=> array(
 					'manage_terms' => 'manage_categories',
