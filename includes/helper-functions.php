@@ -127,7 +127,7 @@ function mbdb_book_grid_order_options() {
 			'pubdateD'	=> __('Publication Date (newest first)', 'mooberry-book-manager'),
 			'titleA'	=> __('Title (A-Z)', 'mooberry-book-manager'),
 			'titleD'	=> __('Title (Z-A)', 'mooberry-book-manager'),
-			'custom'	=>	__('Custom', 'mooberr-book-manager')));
+			'custom'	=>	__('Custom', 'mooberry-book-manager')));
 }
 	
 	
