@@ -151,7 +151,7 @@ function mbdb_book_grid_meta_boxes( ) {
 			'id'	=> '_mbdb_book_grid_order',
 			'type'	=> 'select',
 			'options'	=> mbdb_book_grid_order_options(),
-			'after'	=> '<div id="_mbdb_bookd_grid_custom_order" style="display:none;">Book List:<ul id="_mbdb_book_grid_book_list">' . mbdb_output_book_grid_custom_order() . '</ul></div>',
+			'after'	=> '<div id="_mbdb_bookd_grid_custom_order" style="display:none; font-weight:bold; padding-top: 2em; padding-bottom: 2em;">' . __('Drag and drop the books into the order you want:', 'mooberry-book-manager') . '<ul id="_mbdb_book_grid_book_list">' . mbdb_output_book_grid_custom_order() . '</ul></div>',
 		)
 	);
 	
@@ -203,11 +203,23 @@ function mbdb_book_grid_meta_boxes( ) {
 		
 }
 
-function mbdb_output_book_grid_custom_order( ) //$id, $object_id, $a) {
+function mbdb_output_book_grid_custom_order( ) { //$id, $object_id, $a) {
+	
+	
+	if (!isset($_POST['post']) ) {
+		if (!isset($_GET['post']) ) {
+			return '';
+		} else {
+			$post_id = $_GET['post'];
+		}
+	} else {
+		$post_id = $_POST['post'];
+	}
 	
 	$output = '';
 	
-	$custom_order = get_post_meta( $object_id, 'mbdb_output_book_grid_custom_order', true);
+	
+	$custom_order = get_post_meta( $post_id , '_mbdb_book_grid_order_custom', true);
 	
 	foreach ( $custom_order as $book ) {
 	
@@ -340,6 +352,25 @@ function mbdb_save_book_list_order() {
 	$books = mbdb_get_group($level, $groups, $current_group, $selection, $selected_ids, $sort, null); 
 	
 	// $books now contains the complete array of books to display in the grid
+	
+	// if the sort is custom, we have to manually sort the books now
+	if ($sort == 'custom') {
+		if (array_key_exists('_mbdb_book_grid_order_custom', $mbdb_book_grid_meta_data) ) {
+			$sort_order = unserialize($mbdb_book_grid_meta_data['_mbdb_book_grid_order_custom'][0]);
+			$sorted_books = array();
+			$book_ids = array();
+			foreach ($books as $key => $book) {
+				$book_ids[$book->book_id] = $key;
+			}
+			foreach ($sort_order as $book_id) {
+				$sorted_books[] = $books[$book_ids[$book_id]];
+				
+			}
+			$books = $sorted_books; 
+		}
+	}
+	
+	
 	
 	// get the display output content
 	$content =  mbdb_display_grid($books, 0);

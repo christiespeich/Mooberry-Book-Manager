@@ -143,8 +143,8 @@ function displayChange () {
 
 		// ORDER BY
 			
-		// Add custom when selecting custom books
-		if (jQuery('#_mbdb_book_grid_books').val() == 'custom') {
+		// Add custom when selecting custom books and not grouping
+		if (jQuery('#_mbdb_book_grid_books').val() == 'custom' && jQuery('#_mbdb_book_grid_group_by_level_1').val() == 'none') {
 			// only add if it's not already there
 			if (jQuery("#_mbdb_book_grid_order option[value='custom']").length == 0 ) {
 				jQuery('#_mbdb_book_grid_order').append(jQuery('<option></option>').val('custom').html(custom_sort));
