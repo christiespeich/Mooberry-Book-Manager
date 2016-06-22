@@ -4,6 +4,8 @@ add_action( 'admin_head', 'mbdb_register_admin_styles' );
 function mbdb_register_admin_styles() {
 	wp_register_style( 'mbdb-admin-styles', MBDB_PLUGIN_URL .  'css/admin-styles.css', '', mbdb_get_enqueue_version()  );
 	wp_enqueue_style( 'mbdb-admin-styles' );
+	
+	wp_enqueue_style('mbds-jquery-ui-css', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
 }
 
 add_action( 'admin_enqueue_scripts', 'mbdb_register_widget_script');
@@ -47,10 +49,16 @@ function mbdb_register_script() {
 		$text_to_translate = array(
 							'label1' => __('Group Books Within', 'mooberry-book-manager'),
 							'label2' => __('By', 'mooberry-book-manager'),
-							'groupby' => $group_by_options);
+							'groupby' => $group_by_options,
+							'custom_sort' => __('Custom', 'mooberry-book-manager') );
 		wp_register_script( 'mbdb-admin-book-grid', MBDB_PLUGIN_URL .  'includes/js/admin-book-grid.js', array('jquery'), mbdb_get_enqueue_version()); 
 		wp_localize_script( 'mbdb-admin-book-grid', 'text_to_translate', $text_to_translate );
+		wp_localize_script( 'mbdb-admin-book-grid', 'book_grid_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'security' => wp_create_nonce( 'mbdb_book_grid_ajax_nonce' ) ) );
+	
 		wp_enqueue_script( 'mbdb-admin-book-grid' ); 
+		// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
+		
+		wp_enqueue_script('jquery-ui-sortable');
 	}
 
 	
