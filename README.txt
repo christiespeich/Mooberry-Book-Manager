@@ -4,7 +4,7 @@ Donate link: http://www.mooberrydreams.com/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.5.2 
-Stable tag: 3.2.1    
+Stable tag: 3.3    
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,17 +64,20 @@ To Add a Widget:
 
 Additonal questions?
 
-Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)  (note: the manual is not updated for version 3 at this time)
+Check out the [documentation and support page.](http://www.bookmanager.mooberrydreams.com/support/)
 
-**Coming Soon**  
+**Now Available**  
 
-* Mooberry Book Manager Media Kit -- automagically create a media kit and get help writing press releases for your books  
+* [Additional Images](http://www.bookmanager.mooberrydreams.com/downloads/additional-images/) - Display additional images for a book beyond a single book cover, and add a video trailer.
 
-* Mooberry Book Manager Multi-Author -- support multiple authors, useful for small publishers or authors with more than one pen name  
+* [Advanced Widgets](http://www.bookmanager.mooberrydreams.com/downloads/advanced-widgets/) - Adds two additional sidebar widgets, as well as additional functionality to the existing Book Widget included with Mooberry Book Manager.
 
-* Mooberry Book Manager Customizer -- customize the book pages and more  
+* [Multi-Author](http://www.bookmanager.mooberrydreams.com/downloads/multi-author/) - Makes Mooberry Book Manager work for publishers, authors with multiple pen names, author groups, or for any other website that lists books by more than one author.
 
-If you have suggestions for a new add-on, feel free to email me at bookmanager@mooberrydreams.com. 
+* [Retail Links Redirect](http://www.bookmanager.mooberrydreams.com/downloads/retail-links-redirect/) - Magically redirects readers to retailers so you don't have to update your e-books after publishing.
+ 
+
+More extensions coming soon. If you have suggestions for a new extension, feel free to email me at bookmanager@mooberrydreams.com. 
 
 **Want regular updates?**  
 
@@ -150,7 +153,7 @@ See the **Other Notes** section for information about using caching plugins with
 
 = Additional questions? =
 
-Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-manager-support/) (PDF format)  (note: the manual is not updated for version 3 at this time)
+Check out the [documentation and support page.](http://www.bookmanager.mooberrydreams.com/support/)
 
 
 == Screenshots ==
@@ -162,6 +165,11 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.3 =
+* Added: Ability to custom sort book grids (choose Select Books and Group By None and Sort By Custom)
+* Added: Quick/Bulk Edit fields to update publisher, release date, series order, subtitle, and Goodreads link
+* Added: Ability to add website for Cover Artists, Editors, and Illustrators (WordPress 4.4+ required)
+
 = 3.2.1 =
 * Fixed: Bugs in extension licensing support
 
@@ -217,57 +225,7 @@ Download the [User Manual](http://www.mooberrydreams.com/support/mooberry-book-m
 * Improved: Formats & Editions box defaults to closed on Book Edit page. Entering all this info looks intimidating and probably 95% of authors don't want/need this info on the website anyway.
 * Improved: Added up/down buttons on repeated fields on Edit Book page to allow re-ordering (reviews, retailer links, download links, and editions)
 
-= 2.4.2 =
-* Fixed: Switched from site_url to home_url to create series grid link on book page (caused a problem when Wordpress is installed in a different directory than web URL)
-* Improved: Reduced size of included images. Hopefully will help 500 errors on activation.
 
-
-= 2.4.1 =
-* Fixed: Error about non-object sometimes happening (grid styles)
-
-
-= 2.4 =
-* Added: South African Rand (ZAR/R) to currency dropdown options
-* Added: Ability to update the user who created the book (may need to enable "author" in the Screen Options)
-* Updated: Compliant with Wordpress 4.4 update
-
-
-= 2.3 =
-* New: Added Russian translation
-* New: Added Italian translation
-* New: Buy Links on the bottom of the book page are now hidden if the excerpt is collapsed
-* New: Added Editors, Illustrators, and Cover Artists
-* Fixed: Remove roles when uninstalled
-
-
-= 2.2 =
-* New: Added Spanish translation
-* Fixed: Compliant with Wordpress 4.3 (and works for < Wordpress 4.3)
-* Fixed: Retailer images missing since version 2.0 restored
-* Fixed: Improved translation string for Series and Genre grids for more flexibility
-
-
-= 2.1 = 
-* New: Book Grids are now responsive
-* New: Added Serbo–Croatian translation
-* New: Choose which theme template to use for your book pages
-* Improved: Filter Book Grids by tag
-* Improved: Group Book Grids by tag
-* Changed: Book Grids cover height configurable, instead of number of book per row
-
-
-= 2.0.1 =
-* Fixed: Flushes rewrite rules
-
-= 2.0 =
-* New: Added General Settings, Publisher Settings, and Edition Formats Settings
-* New: Added Editions to book pages 
-* New: Added Librarian and Master Librarian Roles
-* New: Added French translation
-* Improved: Redesigned layout of Book Page
-* Improved: Blank data defaults and labels no longer display on Book Page
-* Improved: Added Comments support to books
-* Fixed: Moved tags to new custom taxonomy instead of using post tags.
 
 For revision history of older versions, please see changelog.md
 
@@ -327,7 +285,7 @@ Redesigned, responsive book page and much more!
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
 
-* Thanks to Yves for providing the French translation!
+* Thanks to Cyrille Sanson-Stern for providing the French translation!
 
 * Thanks to [Web Hosting Geeks](http://www.webhostinggeeks.com/) for the Serbo-Croatian translation!
 

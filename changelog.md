@@ -1,3 +1,54 @@
+#### 2.4.2 
+* Fixed: Switched from site_url to home_url to create series grid link on book page (caused a problem when Wordpress is installed in a different directory than web URL)
+* Improved: Reduced size of included images. Hopefully will help 500 errors on activation.
+
+
+#### 2.4.1 
+* Fixed: Error about non-object sometimes happening (grid styles)
+
+
+= 2.4 
+* Added: South African Rand (ZAR/R) to currency dropdown options
+* Added: Ability to update the user who created the book (may need to enable "author" in the Screen Options)
+* Updated: Compliant with Wordpress 4.4 update
+
+
+#### 2.3 
+* New: Added Russian translation
+* New: Added Italian translation
+* New: Buy Links on the bottom of the book page are now hidden if the excerpt is collapsed
+* New: Added Editors, Illustrators, and Cover Artists
+* Fixed: Remove roles when uninstalled
+
+
+#### 2.2 
+* New: Added Spanish translation
+* Fixed: Compliant with Wordpress 4.3 (and works for < Wordpress 4.3)
+* Fixed: Retailer images missing since version 2.0 restored
+* Fixed: Improved translation string for Series and Genre grids for more flexibility
+
+
+#### 2.1 
+* New: Book Grids are now responsive
+* New: Added Serbo–Croatian translation
+* New: Choose which theme template to use for your book pages
+* Improved: Filter Book Grids by tag
+* Improved: Group Book Grids by tag
+* Changed: Book Grids cover height configurable, instead of number of book per row
+
+
+#### 2.0.1 
+* Fixed: Flushes rewrite rules
+
+#### 2.0 
+* New: Added General Settings, Publisher Settings, and Edition Formats Settings
+* New: Added Editions to book pages 
+* New: Added Librarian and Master Librarian Roles
+* New: Added French translation
+* Improved: Redesigned layout of Book Page
+* Improved: Blank data defaults and labels no longer display on Book Page
+* Improved: Added Comments support to books
+* Fixed: Moved tags to new custom taxonomy instead of using post tags.
 
 #### 1.3.2   
 * Added 9 new retailers   
