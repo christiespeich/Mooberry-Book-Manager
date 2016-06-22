@@ -220,11 +220,12 @@ function mbdb_output_book_grid_custom_order( ) { //$id, $object_id, $a) {
 	
 	
 	$custom_order = get_post_meta( $post_id , '_mbdb_book_grid_order_custom', true);
-	
+	if ($custom_order) {
 	foreach ( $custom_order as $book ) {
 	
 		$output .= '<li id="mbdb_custom_book_order_book_' . $book . '" class="ui-state-default"><span class="ui-icon"></span>' . 
 			get_the_title( $book ) . '</li>';
+	}
 	}
 	return $output;
 	
