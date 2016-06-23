@@ -520,7 +520,7 @@ function mbdb_upgrade_to_3_1($current_version) {
 			$m3 = __('Dismiss Notice', 'mooberry-book-manager');
 			$key = '3_1_remigrate';
 			
-			$message = $m1 . '<b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
+			$message = $m1 . '<br><b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
 			mbdb_set_admin_notice($message, 'error', $key );
 			
 		}

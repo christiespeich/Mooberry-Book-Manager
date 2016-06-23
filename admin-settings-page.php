@@ -259,7 +259,7 @@ class mbdb_Admin_Settings {
 			echo '<h3>' . __('Note: This page for users of previous versions of Mooberry Book Manager only.', 'mooberry-book-manager') . '</h3>';
 			echo '<h4>' . __('Data already migrated. Mooberry Book Manager 3.0 is ready to use!', 'mooberry-book-manager') . '</h4>';
 			echo __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.  ', 'mooberry-book-manager');
-			echo '<b>' . __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager') . '</b>';
+			echo '<br><b>' . __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager') . '</b>';
 			echo '<p><a href="#"  id="mbdb_3_1_remigrate" class="button">' . __('Re-Migrate Data Now', 'mooberry-book-manager'). '</a></p> ';
 			echo '<div id="results"></div>';
 			return;
