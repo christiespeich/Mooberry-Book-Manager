@@ -17,6 +17,7 @@
 			if ($parent_base == 'mbdb_options') {
 		?>
 		<h3><?php _e('Extensions Available Now', 'mooberry-book-manager'); ?></h3>
+		<p><?php _e('Check out <a target="_new" href="http://bookmanager.mooberrydreams.com/">our website</a> to learn more about these extensions so Mooberry Book Manager can save you more time!', 'mooberry-book-manager'); ?></p>
 		<ul>
 			<li><a target="_new" href="http://www.bookmanager.mooberrydreams.com/downloads/additional-images/"><?php _e('Additional Images', 'mooberry-book-manager'); ?></a></li>
 			<li><a target="_new" href="http://www.bookmanager.mooberrydreams.com/downloads/advanced-widgets/"><?php _e('Advanced Widgets', 'mooberry-book-manager'); ?></a></li>
