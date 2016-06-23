@@ -165,6 +165,12 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.3.2 =
+* Fixed: Translation fixes
+
+= 3.3.1 =
+* Fixed: Bug with custom sort
+
 = 3.3 =
 * Added: Ability to custom sort book grids (choose Select Books and Group By None and Sort By Custom)
 * Added: Quick/Bulk Edit fields to update publisher, release date, series order, subtitle, and Goodreads link
