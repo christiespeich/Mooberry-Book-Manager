@@ -460,6 +460,7 @@ function mbdb_shortcode_excerpt($attr, $content) {
  *  
  *  
  *  @since 2.0
+ *  @since 3.3.3 Added do_shortcode
  *  
  *  @param [string] $mbdb_additional_info string to output
  *  @param [array] $attr                 Parameters
