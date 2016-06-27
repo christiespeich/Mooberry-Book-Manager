@@ -165,6 +165,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.3.4 =
+* Fixed: Translation error on editions pricing
+* Fixed: always show Activate button on extensions page unless deactivate button is displayed
+
 = 3.3.3 =
 * Fixed: Added shortcode support to Additional Information
 
