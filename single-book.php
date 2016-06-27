@@ -471,7 +471,7 @@ function mbdb_shortcode_excerpt($attr, $content) {
 function mbdb_output_additional_info($mbdb_additional_info, $attr) {
 	 
 	 $html_output = '<div class="mbm-book-additional-info">';
-	 $html_output .= wpautop(wp_kses_post($mbdb_additional_info));
+	 $html_output .= do_shortcode(wpautop(wp_kses_post($mbdb_additional_info)));
 	 $html_output .= '</div>';
 	 return apply_filters('mbdb_shortcode_additional_info', $html_output);
 }
