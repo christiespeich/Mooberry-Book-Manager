@@ -148,6 +148,8 @@ class MBDB_License {
 		<?php
 	}
 	
+	// v3.3.4 always show activate button unless deactivate button should be there
+	// v3.3.4 add default/catch all for other errors
 	function display_field() {
 		$options = get_option('mbdb_license');
 		$id = $this->item_shortname . '_license_key';
@@ -156,14 +158,14 @@ class MBDB_License {
 		$details = get_option( $this->item_shortname . '_license_active' );
 	
 		$show_deactivate = false;
-		$show_activate = false;
+		$show_activate = true;
 		$color = 'red';
 		if ( !is_object( $details ) ) {
-			$show_activate = true;	
+			
 			$status = 'inactive';
 		} else {
 			if (isset($details->error) ) {
-				$show_activate = true;
+			
 				switch ($details->error) {
 					case 'no_activations_left':
 						$status = __('No activations left', 'mooberry-book-manager');
@@ -174,6 +176,9 @@ class MBDB_License {
 					case 'expired':
 						$status = __('expired', 'mooberry-book-manager');
 						break;
+					default:
+						$status = $details->error;
+						break;
 					}
 			} else {		
 				$status = $details->license;
@@ -181,13 +186,13 @@ class MBDB_License {
 					case 'site_inactive':
 					case 'inactive':
 					
-						if ( $details->activations_left > 0 || $details->activations_left == 'unlimited' ) {
-							$show_activate = true;
-					
+						if ( $details->activations_left == 0 && $details->activations_left != 'unlimited' ) {
+							$show_activate = false;		
 						}
 						break;				
 					case 'valid':
 						$show_deactivate = true;
+						$show_activate = false;
 						$color = "green";
 						break;
 					
