@@ -385,7 +385,7 @@ add_action('save_post_mbdb_book', 'mbdb_save_book');
 	remove_action('save_post', 'mbdb_save_book_custom_table');
 
 	// update the post, which calls save_post again
-	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  balanceTags($summary, true), 'post_content' => '[mbdb_book]' ) );
+	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  strip_tags($summary), 'post_content' => '[mbdb_book]' ) );
 
 	// re-hook this function and mbdb_save_book_custom_table 
 	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
@@ -642,6 +642,7 @@ function mbdb_book_metaboxes(  ) {
 			'name'    => __('Summary', 'mooberry-book-manager'),
 			'id'      => '_mbdb_summary',
 			'type'    => 'wysiwyg',
+			'sanitization_cb'	=> false,
 			'options' => array(  
 				'wpautop' => true, // use wpautop?
 				'media_buttons' => true, // show insert/upload button(s)
@@ -674,6 +675,7 @@ function mbdb_book_metaboxes(  ) {
 		'name'    => __('Excerpt', 'mooberry-book-manager'),
 		'id'      => '_mbdb_excerpt',
 		'type'    => 'wysiwyg',
+		'sanitization_cb'	=> false,
 		'options' => array(  
 			'wpautop' => true, // use wpautop?
 			'media_buttons' => true, // show insert/upload button(s)
@@ -889,6 +891,7 @@ function mbdb_book_metaboxes(  ) {
 		'name'    => __('Additional Information', 'mooberry-book-manager'),
 		'id'      => '_mbdb_additional_info',
 		'type'    => 'wysiwyg',
+		'sanitization_cb'	=> false,
 		'description' => __('Any additional information you want to display on the page. Will be shown at the bottom of the page, after the reviews.', 'mooberry-book-manager'),
 		'options' => array(  
 			'wpautop' => true, // use wpautop?

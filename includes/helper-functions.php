@@ -283,6 +283,24 @@ function mbdb_taxonomies_with_websites() {
 		return array('mbdb_cover_artist', 'mbdb_editor', 'mbdb_illustrator');
 }
 
+
+// 3.3.6
+// add autoembed to CMB2 fields
+function mbdb_get_wysiwyg_output( $content ) {
+    global $wp_embed;
+
+    $content = $wp_embed->autoembed( $content );
+    $content = $wp_embed->run_shortcode( $content );
+    $content = do_shortcode( $content );
+    $content = wpautop( $content );
+
+    return $content;
+}
+
+
+
+
+
 // for users with PHP <5.5
 if(!function_exists("array_column")) {
 	

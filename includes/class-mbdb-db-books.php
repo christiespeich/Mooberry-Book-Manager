@@ -9,7 +9,27 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		
 		parent::__construct( 'mbdb_books' );
 		
-
+		add_filter('wp_kses_allowed_html', array($this, 'kses_allowed_html'), 10, 2);
+	}
+	
+	function kses_allowed_html( $allowed_tags, $context ) {
+		
+		if ($context != 'mbdb_book') {
+			return $allowed_tags;
+		}
+		// start with post allowed tags
+		global $allowedposttags;
+		
+		$allowed_tags = $allowedposttags;
+		$allowed_tags['iframe'] = array(
+			'src'             => array(),
+			'height'          => array(),
+			'width'           => array(),
+			'frameborder'     => array(),
+			'allowfullscreen' => array(),
+		);
+		
+		return $allowed_tags;
 	}
 	
 	protected function get_columns() {

@@ -24,7 +24,12 @@ abstract class MOOBD_Database {
 				
 	//	$this->table_name = $wpdb->prefix . $table_name; //$this->table( $table_name );
 	//	$this->blog_id = $blog_id; //$this->current_blog_id();
+	
+	
 	}
+	
+	
+			
 	
 	protected function columns_with_html() {
 		return array();
@@ -376,13 +381,19 @@ abstract class MOOBD_Database {
         return strtotime( $date . ' GMT' );
     }
 	
-	protected function sanitize_field( $column, $value ) {
+	protected function sanitize_field( $column, $value, $context = null ) {
+		
 		// same data should be sanitized and some should retain HTML
 		if ($this->allows_html($column)) {
-			$value = wp_kses_post($value);
+			if ( $context == null ) {
+				$value = wp_kses_post($value);
+			} else {
+				$value = wp_kses($value, $context );
+			}
 		} else {
 			$value = mbdb_sanitize_field($value);	
 		}
+		
 		// values should be entered into the database as nulls not blanks
 		// this affects fields such as published date and series order
 		// this became a problem after adding in the override_remove hook

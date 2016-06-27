@@ -127,7 +127,14 @@ function mbdb_blank_output( $classname, $blank_output) {
  *  @access public
  */
 function mbdb_output_summary($book_data, $attr) {
-	return apply_filters('mbdb_shortcode_summary', '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">' . do_shortcode(wpautop(wp_kses_post($book_data))) . '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>');
+	
+	$output = '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">';
+	$output .= mbdb_get_wysiwyg_output( $book_data);
+	//. do_shortcode(wpautop(wp_kses_post($book_data))) . 
+	
+	$output .= '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>';
+	
+	return apply_filters('mbdb_shortcode_summary', $output);
 }
 
 /**
@@ -391,11 +398,14 @@ function mbdb_output_excerpt($mbdb_excerpt, $attr) {
 	 }
 	$html_output = '<div class="mbm-book-excerpt">
 		<span class="mbm-book-excerpt-label">' . esc_html($attr['label']) . '</span>
-		<span class="mbm-book-excerpt-text">' . do_shortcode(wp_kses_post($excerpt1));
+		<span class="mbm-book-excerpt-text">';
+	$html_output .= mbdb_get_wysiwyg_output($excerpt1);
 	
 	if (trim($excerpt2) != '' ) {
 		$html_output .= '<a name="more" class="mbm-book-excerpt-read-more">' . __('READ MORE', 'mooberry-book-manager') . '</a>
-	<span class="mbm-book-excerpt-text-hidden">' . do_shortcode(wp_kses_post($excerpt2)) . '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
+	<span class="mbm-book-excerpt-text-hidden">';
+	$html_output .= mbdb_get_wysiwyg_output($excerpt2);
+	$html_output .= '<a class="mbm-book-excerpt-collapse" name="collapse">' . __('COLLAPSE', 'mooberry-book-manager') . '</a></span>';
 	}
 	
 	$html_output .=' </span><span class="mbm-book-excerpt-after">' . esc_html($attr['after']) . '</span></div>';
@@ -472,7 +482,7 @@ function mbdb_shortcode_excerpt($attr, $content) {
 function mbdb_output_additional_info($mbdb_additional_info, $attr) {
 	 
 	 $html_output = '<div class="mbm-book-additional-info">';
-	 $html_output .= do_shortcode(wpautop(wp_kses_post($mbdb_additional_info)));
+	 $html_output .= mbdb_get_wysiwyg_output( $mbdb_additional_info ); //do_shortcode(wpautop(wp_kses_post($mbdb_additional_info)));
 	 $html_output .= '</div>';
 	 return apply_filters('mbdb_shortcode_additional_info', $html_output);
 }

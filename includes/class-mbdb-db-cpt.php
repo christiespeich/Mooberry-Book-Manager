@@ -229,7 +229,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		foreach( $data as $post_meta => $value ) {
 			if (array_key_exists($post_meta, $columns)) {
 				$column = $columns[ $post_meta ];
-				$new_data[ $column ] = $this->sanitize_field( $column, $value);
+				$new_data[ $column ] = $this->sanitize_field( $column, $value, 'mbdb_book');
 			}
 		}
 		
