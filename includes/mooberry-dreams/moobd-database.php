@@ -382,6 +382,7 @@ abstract class MOOBD_Database {
     }
 	
 	protected function sanitize_field( $column, $value, $context = null ) {
+	
 		// same data should be sanitized and some should retain HTML
 		if ($this->allows_html($column)) {
 			if ( $context == null ) {
@@ -392,6 +393,7 @@ abstract class MOOBD_Database {
 		} else {
 			$value = mbdb_sanitize_field($value);	
 		}
+	
 		// values should be entered into the database as nulls not blanks
 		// this affects fields such as published date and series order
 		// this became a problem after adding in the override_remove hook
