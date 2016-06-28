@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-06-21 21:46-0400\n"
+"POT-Creation-Date: 2016-06-28 08:12-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -21,76 +21,9 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: includes/cmb2\n"
-
-#: OLD/admin-book-widget.php:19 views/admin-widget.php:17
-msgid "Widget Title:"
-msgstr "Название виджета:"
-
-#: OLD/admin-book-widget.php:24 views/admin-widget-book.php:2
-msgid "Which book to show?"
-msgstr "Какие книги показывать?"
-
-#: OLD/admin-book-widget.php:31 views/admin-widget-book.php:13
-msgid "Book:"
-msgstr "Книга:"
-
-#: OLD/admin-book-widget.php:41 views/admin-widget.php:24
-msgid "Show Book Title"
-msgstr "Показать название книги"
-
-#: OLD/admin-book-widget.php:46 views/admin-widget.php:29
-msgid "Cover Size(pixels)"
-msgstr "Размер обложки (пикселей)"
-
-#: OLD/admin-book-widget.php:47 views/admin-widget.php:30
-msgid "(minimum 50)"
-msgstr "(минимум 50)"
-
-#: OLD/book-widget.php:14 book-widget2.php:17
-msgid ""
-"Shows the cover of the book of your choosing with a link to the book page"
-msgstr "Показывает обложку книги по вашему выбору со ссылкой на страницу книги"
-
-#: OLD/book-widget.php:17 includes/plugin-functions.php:556
-msgctxt "noun"
-msgid "Book"
-msgstr "Книга"
-
-#: OLD/book-widget.php:44 book-widget2.php:38
-msgid "Random Book"
-msgstr "Случайная книга"
-
-#: OLD/book-widget.php:45 book-widget2.php:39
-msgid "Newest Book"
-msgstr "Новая книга"
-
-#: OLD/book-widget.php:46 book-widget2.php:40
-msgid "Future Book"
-msgstr "Ожидаемая книга"
-
-#: OLD/book-widget.php:47 book-widget2.php:41
-msgid "Specific Book"
-msgstr "Специфическая книга"
-
-#: OLD/book-widget.php:139 mbdb-widget.php:164
-msgid "No books found"
-msgstr "Книги не найдены"
-
-#: OLD/book-widget.php:156 book-grid.php:726 book.php:92 mbdb-widget.php:191
-#: single-book.php:1162
-msgid "Book Cover:"
-msgstr ""
-
-#: OLD/licensing-settings.php:59
-msgid "Mooberry Book Manager Extension Licenses"
-msgstr ""
-
-#: OLD/licensing-settings.php:134
-msgid "Licenses updated."
-msgstr ""
 
 #: admin-settings-page.php:60
 msgid "Mooberry Book Manager Settings"
@@ -320,7 +253,7 @@ msgid "Add your publishers."
 msgstr "Добавляйте своих издателей."
 
 #: admin-settings-page.php:476 admin-settings-page.php:485 book.php:36
-#: book.php:160 book.php:959 includes/helper-functions.php:140
+#: book.php:160 book.php:962 includes/helper-functions.php:140
 msgid "Publisher"
 msgstr "Издатель"
 
@@ -379,7 +312,7 @@ msgid ""
 "images that came with Mooberry Book Manager, download the "
 msgstr ""
 
-#: admin-settings-page.php:658 book.php:1016
+#: admin-settings-page.php:658 book.php:1019
 msgid "Retailer"
 msgstr "Магазин"
 
@@ -546,45 +479,70 @@ msgstr ""
 msgid "This displays under the book grid."
 msgstr ""
 
-#: book-grid.php:487
+#: book-grid.php:488
 msgid "No Publisher Specified"
 msgstr ""
 
-#: book-grid.php:503
+#: book-grid.php:504
 msgid "Published by "
 msgstr ""
 
-#: book-grid.php:545
+#: book-grid.php:546
 msgid "Uncategorized"
 msgstr "Без категории"
 
-#: book-grid.php:548
+#: book-grid.php:549
 msgid "Standalones"
 msgstr "Как есть"
 
-#: book-grid.php:551
+#: book-grid.php:552
 msgid "Untagged"
 msgstr "без тегов"
 
-#: book-grid.php:554
+#: book-grid.php:555
 msgid "No Editor Specified"
 msgstr ""
 
-#: book-grid.php:557
+#: book-grid.php:558
 msgid "No Illustrator Specified"
 msgstr ""
 
-#: book-grid.php:560
+#: book-grid.php:561
 msgid "No Cover Artist Specified"
 msgstr ""
 
-#: book-grid.php:700
+#: book-grid.php:701
 msgid "Books not found"
 msgstr "Книга не найдена"
+
+#: book-grid.php:727 book.php:92 mbdb-widget.php:191 single-book.php:1173
+msgid "Book Cover:"
+msgstr ""
+
+#: book-widget2.php:17
+msgid ""
+"Shows the cover of the book of your choosing with a link to the book page"
+msgstr "Показывает обложку книги по вашему выбору со ссылкой на страницу книги"
 
 #: book-widget2.php:19
 msgid "Mooberry Book Manager Book"
 msgstr ""
+
+#: book-widget2.php:38
+msgid "Random Book"
+msgstr "Случайная книга"
+
+#: book-widget2.php:39
+msgid "Newest Book"
+msgstr "Новая книга"
+
+#: book-widget2.php:40
+msgid "Future Book"
+msgstr "Ожидаемая книга"
+
+#: book-widget2.php:41
+msgid "Specific Book"
+msgstr "Специфическая книга"
 
 #: book.php:30
 msgid "Title"
@@ -609,7 +567,7 @@ msgstr "Издана"
 msgid "Series"
 msgstr "Серии"
 
-#: book.php:35 book.php:220 book.php:979
+#: book.php:35 book.php:220 book.php:982
 msgid "Series Order"
 msgstr "Заказ серий"
 
@@ -617,7 +575,7 @@ msgstr "Заказ серий"
 msgid "Updated"
 msgstr "Обновление"
 
-#: book.php:188 book.php:942
+#: book.php:188 book.php:945
 msgid "Subtitle"
 msgstr "Подзаголовок"
 
@@ -625,7 +583,7 @@ msgstr "Подзаголовок"
 msgid "Goodreads"
 msgstr ""
 
-#: book.php:206 book.php:949
+#: book.php:206 book.php:952
 msgid "Release Date"
 msgstr "Дата выпуска"
 
@@ -633,56 +591,56 @@ msgstr "Дата выпуска"
 msgid "Summary"
 msgstr "Краткое описание"
 
-#: book.php:665 book.php:674
+#: book.php:666 book.php:675
 msgid "Excerpt"
 msgstr "Отрывок"
 
-#: book.php:697
+#: book.php:699
 msgctxt "noun: book reviews"
 msgid "Reviews"
 msgstr ""
 
-#: book.php:709
+#: book.php:711
 msgid "Add reviews of your book"
 msgstr "Добавить отзывы на вашу книгу"
 
-#: book.php:711
+#: book.php:713
 msgctxt "noun"
 msgid "Reviews"
 msgstr "Отзывы"
 
-#: book.php:712
+#: book.php:714
 msgid "Add Review"
 msgstr "Добавить отзыв"
 
-#: book.php:713
+#: book.php:715
 msgid "Remove Review"
 msgstr "Удалить отзыв"
 
-#: book.php:720
+#: book.php:722
 msgid "Reviewer Name"
 msgstr "Имя рецендента"
 
-#: book.php:728
+#: book.php:730
 msgctxt "noun: URL to book review"
 msgid "Review Link"
 msgstr ""
 
-#: book.php:739
+#: book.php:741
 msgctxt "noun: name of website of book review"
 msgid "Review Website Name"
 msgstr ""
 
-#: book.php:746
+#: book.php:748
 msgctxt "noun: book review"
 msgid "Review"
 msgstr ""
 
-#: book.php:756
+#: book.php:758
 msgid "Formats and Editions"
 msgstr "Форматы и выпуски"
 
-#: book.php:767
+#: book.php:769
 msgid ""
 "List the details of your book's hardcover, paperback, and e-book editions. "
 "Everything is optional except the format."
@@ -690,73 +648,73 @@ msgstr ""
 "Подробности издания книги - в твердом переплете, в мягкой обложке, и "
 "электронная книга. Заполнять не обязательно, за исключением формата."
 
-#: book.php:769
+#: book.php:771
 msgid "Edition"
 msgstr "Издание"
 
-#: book.php:770
+#: book.php:772
 msgid "Add New Edition"
 msgstr "Добавить новое издание"
 
-#: book.php:771
+#: book.php:773
 msgid "Remove Edition"
 msgstr "Удалить издание"
 
-#: book.php:778
+#: book.php:780
 msgctxt "noun: format of a book"
 msgid "Format"
 msgstr ""
 
-#: book.php:783 book.php:1067
+#: book.php:785 book.php:1070
 msgid "Add more formats in Settings"
 msgstr ""
 
-#: book.php:788
+#: book.php:790
 msgid "EAN/ISBN"
 msgstr "EAN/ISBN"
 
-#: book.php:795
+#: book.php:797
 msgid "Language"
 msgstr "Язык"
 
-#: book.php:804
+#: book.php:806
 msgid "Number of Pages"
 msgstr "Количество страниц"
 
-#: book.php:816
+#: book.php:818
 msgid "Height"
 msgstr "Высота"
 
-#: book.php:828
+#: book.php:830
 msgid "Width"
 msgstr "Ширина"
 
-#: book.php:840
+#: book.php:842
 msgctxt "units of measurement"
 msgid "Unit"
 msgstr "Единицы измерения"
 
-#: book.php:849
+#: book.php:851
 msgid "Suggested Retail Price"
 msgstr "Рекомендуемая розничная цена"
 
-#: book.php:860
+#: book.php:862
 msgid "Currency"
 msgstr "Валюта"
 
-#: book.php:869
+#: book.php:871
 msgid "Edition Title"
 msgstr "Наименование издания"
 
-#: book.php:872
+#: book.php:874
 msgid "First Edition, Second Edition, etc."
 msgstr "Первое издание, второе издание..."
 
-#: book.php:880 book.php:889
+#: book.php:882 book.php:891
 msgid "Additional Information"
 msgstr "Дополнительная информация"
 
-#: book.php:892
+#: book.php:895
 msgid ""
 "Any additional information you want to display on the page. Will be shown at "
 "the bottom of the page, after the reviews."
@@ -764,69 +722,69 @@ msgstr ""
 "Любая дополнительная информация которую вы хотите отобразить. Она будет "
 "показана в нижней части страницы, после отзывов."
 
-#: book.php:912
+#: book.php:915
 msgctxt "noun"
 msgid "Cover"
 msgstr "Обложка"
 
-#: book.php:922
+#: book.php:925
 msgctxt "noun"
 msgid "Book Cover"
 msgstr "Книжная обложка"
 
-#: book.php:933
+#: book.php:936
 msgid "Book Details"
 msgstr "Детали книги"
 
-#: book.php:963
+#: book.php:966
 msgid "Set up Publishers in Settings."
 msgstr "Произведите настройку издательств"
 
-#: book.php:968
+#: book.php:971
 msgid "Goodreads Link"
 msgstr "Cсылка на Goodreads"
 
-#: book.php:981
+#: book.php:984
 msgid "(leave blank if not part of a series)"
 msgstr "(оставьте пустым, если нет серий)"
 
-#: book.php:994
+#: book.php:997
 msgctxt "noun: URLs to book retailers"
 msgid "Retailer Links"
 msgstr ""
 
-#: book.php:1005
+#: book.php:1008
 msgid "Add links where readers can purchase your book"
 msgstr "Добавьте ссылки, где читатели могут приобрести книгу"
 
-#: book.php:1007
+#: book.php:1010
 msgctxt "noun"
 msgid "Retailer Link"
 msgstr "Ссылка магазина"
 
-#: book.php:1008
+#: book.php:1011
 msgid "Add Retailer Link"
 msgstr "Добавить Ссылку магазина"
 
-#: book.php:1009
+#: book.php:1012
 msgid "Remove Retailer Link"
 msgstr "Удалить Ссылку магазина"
 
-#: book.php:1021
+#: book.php:1024
 msgid "Add more retailers in Settings"
 msgstr ""
 
-#: book.php:1026
+#: book.php:1029
 msgctxt "noun: URL"
 msgid "Link"
 msgstr ""
 
-#: book.php:1039
+#: book.php:1042
 msgctxt "noun"
 msgid "Download Links"
 msgstr "Ссылка для загрузки"
 
-#: book.php:1051
+#: book.php:1054
 msgid ""
 "If your book is available to download for free, add the links for each "
 "format."
@@ -834,25 +792,25 @@ msgstr ""
 "Если книга доступна для бесплатной загрузки, добавьте ссылку для каждого "
 "формата."
 
-#: book.php:1053
+#: book.php:1056
 msgctxt "noun"
 msgid "Download Link"
 msgstr "Ссылка для Загрузки"
 
-#: book.php:1054
+#: book.php:1057
 msgid "Add Download Link"
 msgstr "Добавить ссылку для загрузки"
 
-#: book.php:1055
+#: book.php:1058
 msgid "Remove Download Link"
 msgstr "Удалить ссылку для загрузки"
 
-#: book.php:1062
+#: book.php:1065
 msgctxt "noun"
 msgid "Format"
 msgstr "Формат"
 
-#: book.php:1072
+#: book.php:1075
 msgctxt "noun"
 msgid "Link"
 msgstr "Ссылка"
@@ -1007,679 +965,679 @@ msgstr ""
 msgid "Default"
 msgstr "По умолчанию"
 
-#: includes/helper-functions.php:453
+#: includes/helper-functions.php:471
 msgid "inches (in)"
 msgstr "дюймов (in)"
 
-#: includes/helper-functions.php:454
+#: includes/helper-functions.php:472
 msgid "centimeters (cm)"
 msgstr "сантиметров (см)"
 
-#: includes/helper-functions.php:455
+#: includes/helper-functions.php:473
 msgid "millimeters (mm)"
 msgstr "миллиметров (мм)"
 
-#: includes/helper-functions.php:481
+#: includes/helper-functions.php:499
 msgid "Australian Dollar"
 msgstr "Australian Dollar"
 
-#: includes/helper-functions.php:482
+#: includes/helper-functions.php:500
 msgid "Brazilian Real "
 msgstr "Brazilian Real "
 
-#: includes/helper-functions.php:483
+#: includes/helper-functions.php:501
 msgid "Canadian Dollar"
 msgstr "Canadian Dollar"
 
-#: includes/helper-functions.php:484
+#: includes/helper-functions.php:502
 msgid "Czech Koruna"
 msgstr "Czech Koruna"
 
-#: includes/helper-functions.php:485
+#: includes/helper-functions.php:503
 msgid "Danish Krone"
 msgstr "Danish Krone"
 
-#: includes/helper-functions.php:486
+#: includes/helper-functions.php:504
 msgid "Euro"
 msgstr "Euro"
 
-#: includes/helper-functions.php:487
+#: includes/helper-functions.php:505
 msgid "Hong Kong Dollar"
 msgstr "Hong Kong Dollar"
 
-#: includes/helper-functions.php:488
+#: includes/helper-functions.php:506
 msgid "Hungarian Forint"
 msgstr ""
 
-#: includes/helper-functions.php:489
+#: includes/helper-functions.php:507
 msgid "Indian Rupee"
 msgstr ""
 
-#: includes/helper-functions.php:490
+#: includes/helper-functions.php:508
 msgid "Israeli New Sheqel"
 msgstr "Israeli New Sheqel"
 
-#: includes/helper-functions.php:491
+#: includes/helper-functions.php:509
 msgid "Japanese Yen"
 msgstr "Japanese Yen"
 
-#: includes/helper-functions.php:492
+#: includes/helper-functions.php:510
 msgid "Malaysian Ringgit"
 msgstr "Malaysian Ringgit"
 
-#: includes/helper-functions.php:493
+#: includes/helper-functions.php:511
 msgid "Mexican Peso"
 msgstr "Mexican Peso"
 
-#: includes/helper-functions.php:494
+#: includes/helper-functions.php:512
 msgid "Nigerian Naira"
 msgstr ""
 
-#: includes/helper-functions.php:495
+#: includes/helper-functions.php:513
 msgid "Norwegian Krone"
 msgstr "Norwegian Krone"
 
-#: includes/helper-functions.php:496
+#: includes/helper-functions.php:514
 msgid "New Zealand Dollar"
 msgstr "New Zealand Dollar"
 
-#: includes/helper-functions.php:497
+#: includes/helper-functions.php:515
 msgid "Philippine Peso"
 msgstr "Philippine Peso"
 
-#: includes/helper-functions.php:498
+#: includes/helper-functions.php:516
 msgid "Polish Zloty"
 msgstr "Polish Zloty"
 
-#: includes/helper-functions.php:499
+#: includes/helper-functions.php:517
 msgid "Russian Rube"
 msgstr ""
 
-#: includes/helper-functions.php:500
+#: includes/helper-functions.php:518
 msgid "Singapore Dollar"
 msgstr "Singapore Dollar"
 
-#: includes/helper-functions.php:501
+#: includes/helper-functions.php:519
 msgid "South African Rand"
 msgstr ""
 
-#: includes/helper-functions.php:502
+#: includes/helper-functions.php:520
 msgid "Swedish Krona"
 msgstr "Swedish Krona"
 
-#: includes/helper-functions.php:503
+#: includes/helper-functions.php:521
 msgid "Swiss Franc"
 msgstr "Swiss Franc"
 
-#: includes/helper-functions.php:504
+#: includes/helper-functions.php:522
 msgid "Taiwan New Dollar"
 msgstr "Taiwan New Dollar"
 
-#: includes/helper-functions.php:505
+#: includes/helper-functions.php:523
 msgid "Thai Baht"
 msgstr "Thai Baht"
 
-#: includes/helper-functions.php:506
+#: includes/helper-functions.php:524
 msgid "Turkish Lira"
 msgstr "Turkish Lira"
 
-#: includes/helper-functions.php:507
+#: includes/helper-functions.php:525
 msgid "U.K. Pound Sterling"
 msgstr "U.K. Pound Sterling"
 
-#: includes/helper-functions.php:508
+#: includes/helper-functions.php:526
 msgid "U.S. Dollar"
 msgstr "U.S. Dollar"
 
-#: includes/helper-functions.php:549
+#: includes/helper-functions.php:567
 msgid "Abkhazian"
 msgstr "Abkhazian"
 
-#: includes/helper-functions.php:550
+#: includes/helper-functions.php:568
 msgid "Afar"
 msgstr "Afar"
 
-#: includes/helper-functions.php:551
+#: includes/helper-functions.php:569
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
-#: includes/helper-functions.php:552
+#: includes/helper-functions.php:570
 msgid "Albanian"
 msgstr "Albanian"
 
-#: includes/helper-functions.php:553
+#: includes/helper-functions.php:571
 msgid "Amharic"
 msgstr "Amharic"
 
-#: includes/helper-functions.php:554
+#: includes/helper-functions.php:572
 msgid "Arabic"
 msgstr "Arabic"
 
-#: includes/helper-functions.php:555
+#: includes/helper-functions.php:573
 msgid "Armenian"
 msgstr "Armenian"
 
-#: includes/helper-functions.php:556
+#: includes/helper-functions.php:574
 msgid "Assamese"
 msgstr "Assamese"
 
-#: includes/helper-functions.php:557
+#: includes/helper-functions.php:575
 msgid "Aymara"
 msgstr "Aymara"
 
-#: includes/helper-functions.php:558
+#: includes/helper-functions.php:576
 msgid "Azerbaijani"
 msgstr "Azerbaijani"
 
-#: includes/helper-functions.php:559
+#: includes/helper-functions.php:577
 msgid "Bashkir"
 msgstr "Bashkir"
 
-#: includes/helper-functions.php:560
+#: includes/helper-functions.php:578
 msgid "Basque"
 msgstr "Basque"
 
-#: includes/helper-functions.php:561
+#: includes/helper-functions.php:579
 msgid "Bengali, Bangla"
 msgstr "Bengali, Bangla"
 
-#: includes/helper-functions.php:562
+#: includes/helper-functions.php:580
 msgid "Bhutani"
 msgstr "Bhutani"
 
-#: includes/helper-functions.php:563
+#: includes/helper-functions.php:581
 msgid "Bihari"
 msgstr "Bihari"
 
-#: includes/helper-functions.php:564
+#: includes/helper-functions.php:582
 msgid "Bislama"
 msgstr "Bislama"
 
-#: includes/helper-functions.php:565
+#: includes/helper-functions.php:583
 msgid "Breton"
 msgstr "Breton"
 
-#: includes/helper-functions.php:566
+#: includes/helper-functions.php:584
 msgid "Bulgarian"
 msgstr "Bulgarian"
 
-#: includes/helper-functions.php:567
+#: includes/helper-functions.php:585
 msgid "Burmese"
 msgstr "Burmese"
 
-#: includes/helper-functions.php:568
+#: includes/helper-functions.php:586
 msgid "Byelorussian"
 msgstr "Byelorussian"
 
-#: includes/helper-functions.php:569
+#: includes/helper-functions.php:587
 msgid "Cambodian"
 msgstr "Cambodian"
 
-#: includes/helper-functions.php:570
+#: includes/helper-functions.php:588
 msgid "Catalan"
 msgstr "Catalan"
 
-#: includes/helper-functions.php:571
+#: includes/helper-functions.php:589
 msgid "Chinese"
 msgstr "Chinese"
 
-#: includes/helper-functions.php:572
+#: includes/helper-functions.php:590
 msgid "Corsican"
 msgstr "Corsican"
 
-#: includes/helper-functions.php:573
+#: includes/helper-functions.php:591
 msgid "Croatian"
 msgstr "Croatian"
 
-#: includes/helper-functions.php:574
+#: includes/helper-functions.php:592
 msgid "Czech"
 msgstr "Czech"
 
-#: includes/helper-functions.php:575
+#: includes/helper-functions.php:593
 msgid "Danish"
 msgstr "Danish"
 
-#: includes/helper-functions.php:576
+#: includes/helper-functions.php:594
 msgid "Dutch"
 msgstr "Dutch"
 
-#: includes/helper-functions.php:577
+#: includes/helper-functions.php:595
 msgid "English"
 msgstr "English"
 
-#: includes/helper-functions.php:578
+#: includes/helper-functions.php:596
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: includes/helper-functions.php:579
+#: includes/helper-functions.php:597
 msgid "Estonian"
 msgstr "Estonian"
 
-#: includes/helper-functions.php:580
+#: includes/helper-functions.php:598
 msgid "Faeroese"
 msgstr "Faeroese"
 
-#: includes/helper-functions.php:581
+#: includes/helper-functions.php:599
 msgid "Fiji"
 msgstr "Fiji"
 
-#: includes/helper-functions.php:582
+#: includes/helper-functions.php:600
 msgid "Finnish"
 msgstr "Finnish"
 
-#: includes/helper-functions.php:583
+#: includes/helper-functions.php:601
 msgid "French"
 msgstr "French"
 
-#: includes/helper-functions.php:584
+#: includes/helper-functions.php:602
 msgid "Frisian"
 msgstr "Frisian"
 
-#: includes/helper-functions.php:585
+#: includes/helper-functions.php:603
 msgid "Gaelic (Scots Gaelic)"
 msgstr "Gaelic (Scots Gaelic)"
 
-#: includes/helper-functions.php:586
+#: includes/helper-functions.php:604
 msgid "Galician"
 msgstr "Galician"
 
-#: includes/helper-functions.php:587
+#: includes/helper-functions.php:605
 msgid "Georgian"
 msgstr "Georgian"
 
-#: includes/helper-functions.php:588
+#: includes/helper-functions.php:606
 msgid "German"
 msgstr "German"
 
-#: includes/helper-functions.php:589
+#: includes/helper-functions.php:607
 msgid "Greek"
 msgstr "Greek"
 
-#: includes/helper-functions.php:590
+#: includes/helper-functions.php:608
 msgid "Greenlandic"
 msgstr "Greenlandic"
 
-#: includes/helper-functions.php:591
+#: includes/helper-functions.php:609
 msgid "Guarani"
 msgstr "Guarani"
 
-#: includes/helper-functions.php:592
+#: includes/helper-functions.php:610
 msgid "Gujarati"
 msgstr "Gujarati"
 
-#: includes/helper-functions.php:593
+#: includes/helper-functions.php:611
 msgid "Hausa"
 msgstr "Hausa"
 
-#: includes/helper-functions.php:594
+#: includes/helper-functions.php:612
 msgid "Hebrew"
 msgstr "Hebrew"
 
-#: includes/helper-functions.php:595
+#: includes/helper-functions.php:613
 msgid "Hindi"
 msgstr "Hindi"
 
-#: includes/helper-functions.php:596
+#: includes/helper-functions.php:614
 msgid "Hungarian"
 msgstr "Hungarian"
 
-#: includes/helper-functions.php:597
+#: includes/helper-functions.php:615
 msgid "Icelandic"
 msgstr "Icelandic"
 
-#: includes/helper-functions.php:598
+#: includes/helper-functions.php:616
 msgid "Indonesian"
 msgstr "Indonesian"
 
-#: includes/helper-functions.php:599
+#: includes/helper-functions.php:617
 msgid "Interlingua"
 msgstr "Interlingua"
 
-#: includes/helper-functions.php:600
+#: includes/helper-functions.php:618
 msgid "Interlingue"
 msgstr "Interlingue"
 
-#: includes/helper-functions.php:601
+#: includes/helper-functions.php:619
 msgid "Inupiak"
 msgstr "Inupiak"
 
-#: includes/helper-functions.php:602
+#: includes/helper-functions.php:620
 msgid "Irish"
 msgstr "Irish"
 
-#: includes/helper-functions.php:603
+#: includes/helper-functions.php:621
 msgid "Italian"
 msgstr "Italian"
 
-#: includes/helper-functions.php:604
+#: includes/helper-functions.php:622
 msgid "Japanese"
 msgstr "Japanese"
 
-#: includes/helper-functions.php:605
+#: includes/helper-functions.php:623
 msgid "Javanese"
 msgstr "Javanese"
 
-#: includes/helper-functions.php:606
+#: includes/helper-functions.php:624
 msgid "Kannada"
 msgstr "Kannada"
 
-#: includes/helper-functions.php:607
+#: includes/helper-functions.php:625
 msgid "Kashmiri"
 msgstr "Kashmiri"
 
-#: includes/helper-functions.php:608
+#: includes/helper-functions.php:626
 msgid "Kazakh"
 msgstr "Kazakh"
 
-#: includes/helper-functions.php:609
+#: includes/helper-functions.php:627
 msgid "Kinyarwanda"
 msgstr "Kinyarwanda"
 
-#: includes/helper-functions.php:610
+#: includes/helper-functions.php:628
 msgid "Kirghiz"
 msgstr "Kirghiz"
 
-#: includes/helper-functions.php:611
+#: includes/helper-functions.php:629
 msgid "Kirundi"
 msgstr "Kirundi"
 
-#: includes/helper-functions.php:612
+#: includes/helper-functions.php:630
 msgid "Korean"
 msgstr "Korean"
 
-#: includes/helper-functions.php:613
+#: includes/helper-functions.php:631
 msgid "Kurdish"
 msgstr "Kurdish"
 
-#: includes/helper-functions.php:614
+#: includes/helper-functions.php:632
 msgid "Laothian"
 msgstr "Laothian"
 
-#: includes/helper-functions.php:615
+#: includes/helper-functions.php:633
 msgid "Latin"
 msgstr "Latin"
 
-#: includes/helper-functions.php:616
+#: includes/helper-functions.php:634
 msgid "Latvian, Lettish"
 msgstr "Latvian, Lettish"
 
-#: includes/helper-functions.php:617
+#: includes/helper-functions.php:635
 msgid "Lingala"
 msgstr "Lingala"
 
-#: includes/helper-functions.php:618
+#: includes/helper-functions.php:636
 msgid "Lithuanian"
 msgstr "Lithuanian"
 
-#: includes/helper-functions.php:619
+#: includes/helper-functions.php:637
 msgid "Macedonian"
 msgstr "Macedonian"
 
-#: includes/helper-functions.php:620
+#: includes/helper-functions.php:638
 msgid "Malagasy"
 msgstr "Malagasy"
 
-#: includes/helper-functions.php:621
+#: includes/helper-functions.php:639
 msgid "Malay"
 msgstr "Malay"
 
-#: includes/helper-functions.php:622
+#: includes/helper-functions.php:640
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: includes/helper-functions.php:623
+#: includes/helper-functions.php:641
 msgid "Maltese"
 msgstr "Maltese"
 
-#: includes/helper-functions.php:624
+#: includes/helper-functions.php:642
 msgid "Maori"
 msgstr "Maori"
 
-#: includes/helper-functions.php:625
+#: includes/helper-functions.php:643
 msgid "Marathi"
 msgstr "Marathi"
 
-#: includes/helper-functions.php:626
+#: includes/helper-functions.php:644
 msgid "Moldavian"
 msgstr "Moldavian"
 
-#: includes/helper-functions.php:627
+#: includes/helper-functions.php:645
 msgid "Mongolian"
 msgstr "Mongolian"
 
-#: includes/helper-functions.php:628
+#: includes/helper-functions.php:646
 msgid "Nauru"
 msgstr "Nauru"
 
-#: includes/helper-functions.php:629
+#: includes/helper-functions.php:647
 msgid "Nepali"
 msgstr "Nepali"
 
-#: includes/helper-functions.php:630
+#: includes/helper-functions.php:648
 msgid "Norwegian"
 msgstr "Norwegian"
 
-#: includes/helper-functions.php:631
+#: includes/helper-functions.php:649
 msgid "Occitan"
 msgstr "Occitan"
 
-#: includes/helper-functions.php:632
+#: includes/helper-functions.php:650
 msgid "Oriya"
 msgstr "Oriya"
 
-#: includes/helper-functions.php:633
+#: includes/helper-functions.php:651
 msgid "Oromo, Afan"
 msgstr "Oromo, Afan"
 
-#: includes/helper-functions.php:634
+#: includes/helper-functions.php:652
 msgid "Pashto, Pushto"
 msgstr "Pashto, Pushto"
 
-#: includes/helper-functions.php:635
+#: includes/helper-functions.php:653
 msgid "Persian"
 msgstr "Persian"
 
-#: includes/helper-functions.php:636
+#: includes/helper-functions.php:654
 msgid "Polish"
 msgstr "Polish"
 
-#: includes/helper-functions.php:637
+#: includes/helper-functions.php:655
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: includes/helper-functions.php:638
+#: includes/helper-functions.php:656
 msgid "Punjabi"
 msgstr "Punjabi"
 
-#: includes/helper-functions.php:639
+#: includes/helper-functions.php:657
 msgid "Quechua"
 msgstr "Quechua"
 
-#: includes/helper-functions.php:640
+#: includes/helper-functions.php:658
 msgid "Rhaeto-Romance"
 msgstr "Rhaeto-Romance"
 
-#: includes/helper-functions.php:641
+#: includes/helper-functions.php:659
 msgid "Romanian"
 msgstr "Romanian"
 
-#: includes/helper-functions.php:642
+#: includes/helper-functions.php:660
 msgid "Russian"
 msgstr "Русский"
 
-#: includes/helper-functions.php:643
+#: includes/helper-functions.php:661
 msgid "Samoan"
 msgstr "Samoan"
 
-#: includes/helper-functions.php:644
+#: includes/helper-functions.php:662
 msgid "Sangro"
 msgstr "Sangro"
 
-#: includes/helper-functions.php:645
+#: includes/helper-functions.php:663
 msgid "Sanskrit"
 msgstr "Sanskrit"
 
-#: includes/helper-functions.php:646
+#: includes/helper-functions.php:664
 msgid "Serbian"
 msgstr "Serbian"
 
-#: includes/helper-functions.php:647
+#: includes/helper-functions.php:665
 msgid "Serbo-Croatian"
 msgstr "Serbo-Croatian"
 
-#: includes/helper-functions.php:648
+#: includes/helper-functions.php:666
 msgid "Sesotho"
 msgstr "Sesotho"
 
-#: includes/helper-functions.php:649
+#: includes/helper-functions.php:667
 msgid "Setswana"
 msgstr "Setswana"
 
-#: includes/helper-functions.php:650
+#: includes/helper-functions.php:668
 msgid "Shona"
 msgstr "Shona"
 
-#: includes/helper-functions.php:651
+#: includes/helper-functions.php:669
 msgid "Sindhi"
 msgstr "Sindhi"
 
-#: includes/helper-functions.php:652
+#: includes/helper-functions.php:670
 msgid "Singhalese"
 msgstr "Singhalese"
 
-#: includes/helper-functions.php:653
+#: includes/helper-functions.php:671
 msgid "Siswati"
 msgstr "Siswati"
 
-#: includes/helper-functions.php:654
+#: includes/helper-functions.php:672
 msgid "Slovak"
 msgstr "Slovak"
 
-#: includes/helper-functions.php:655
+#: includes/helper-functions.php:673
 msgid "Slovenian"
 msgstr "Slovenian"
 
-#: includes/helper-functions.php:656
+#: includes/helper-functions.php:674
 msgid "Somali"
 msgstr "Somali"
 
-#: includes/helper-functions.php:657
+#: includes/helper-functions.php:675
 msgid "Spanish"
 msgstr "Spanish"
 
-#: includes/helper-functions.php:658
+#: includes/helper-functions.php:676
 msgid "Sudanese"
 msgstr "Sudanese"
 
-#: includes/helper-functions.php:659
+#: includes/helper-functions.php:677
 msgid "Swahili"
 msgstr "Swahili"
 
-#: includes/helper-functions.php:660
+#: includes/helper-functions.php:678
 msgid "Swedish"
 msgstr "Swedish"
 
-#: includes/helper-functions.php:661
+#: includes/helper-functions.php:679
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: includes/helper-functions.php:662
+#: includes/helper-functions.php:680
 msgid "Tajik"
 msgstr "Tajik"
 
-#: includes/helper-functions.php:663
+#: includes/helper-functions.php:681
 msgid "Tamil"
 msgstr "Tamil"
 
-#: includes/helper-functions.php:664
+#: includes/helper-functions.php:682
 msgid "Tatar"
 msgstr "Tatar"
 
-#: includes/helper-functions.php:665
+#: includes/helper-functions.php:683
 msgid "Tegulu"
 msgstr "Tegulu"
 
-#: includes/helper-functions.php:666
+#: includes/helper-functions.php:684
 msgid "Thai"
 msgstr "Thai"
 
-#: includes/helper-functions.php:667
+#: includes/helper-functions.php:685
 msgid "Tibetan"
 msgstr "Tibetan"
 
-#: includes/helper-functions.php:668
+#: includes/helper-functions.php:686
 msgid "Tigrinya"
 msgstr "Tigrinya"
 
-#: includes/helper-functions.php:669
+#: includes/helper-functions.php:687
 msgid "Tonga"
 msgstr "Tonga"
 
-#: includes/helper-functions.php:670
+#: includes/helper-functions.php:688
 msgid "Tsonga"
 msgstr "Tsonga"
 
-#: includes/helper-functions.php:671
+#: includes/helper-functions.php:689
 msgid "Turkish"
 msgstr "Turkish"
 
-#: includes/helper-functions.php:672
+#: includes/helper-functions.php:690
 msgid "Turkmen"
 msgstr "Turkmen"
 
-#: includes/helper-functions.php:673
+#: includes/helper-functions.php:691
 msgid "Twi"
 msgstr "Twi"
 
-#: includes/helper-functions.php:674
+#: includes/helper-functions.php:692
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
-#: includes/helper-functions.php:675
+#: includes/helper-functions.php:693
 msgid "Urdu"
 msgstr "Urdu"
 
-#: includes/helper-functions.php:676
+#: includes/helper-functions.php:694
 msgid "Uzbek"
 msgstr "Uzbek"
 
-#: includes/helper-functions.php:677
+#: includes/helper-functions.php:695
 msgid "Vietnamese"
 msgstr "Vietnamese"
 
-#: includes/helper-functions.php:678
+#: includes/helper-functions.php:696
 msgid "Volapuk"
 msgstr "Volapuk"
 
-#: includes/helper-functions.php:679
+#: includes/helper-functions.php:697
 msgid "Welsh"
 msgstr "Welsh"
 
-#: includes/helper-functions.php:680
+#: includes/helper-functions.php:698
 msgid "Wolof"
 msgstr "Wolof"
 
-#: includes/helper-functions.php:681
+#: includes/helper-functions.php:699
 msgid "Xhosa"
 msgstr "Xhosa"
 
-#: includes/helper-functions.php:682
+#: includes/helper-functions.php:700
 msgid "Yiddish"
 msgstr "Yiddish"
 
-#: includes/helper-functions.php:683
+#: includes/helper-functions.php:701
 msgid "Yoruba"
 msgstr "Yoruba"
 
-#: includes/helper-functions.php:684
+#: includes/helper-functions.php:702
 msgid "Zulu"
 msgstr "Zulu"
 
-#: includes/helper-functions.php:748
+#: includes/helper-functions.php:766
 msgid "Librarian"
 msgstr "Библиотекарь"
 
-#: includes/helper-functions.php:750
+#: includes/helper-functions.php:768
 msgid "Master Librarian"
 msgstr "Мастер Библиотекарь"
 
@@ -1712,27 +1670,36 @@ msgstr ""
 msgid "License Keys"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:169
+#: includes/mooberry-dreams/software-licensing.php:165
+#: includes/mooberry-dreams/software-licensing.php:188
+msgid "inactive"
+msgstr ""
+
+#: includes/mooberry-dreams/software-licensing.php:171
 msgid "No activations left"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:172
+#: includes/mooberry-dreams/software-licensing.php:174
 msgid "Wrong Key"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:175
+#: includes/mooberry-dreams/software-licensing.php:177
 msgid "expired"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:205
+#: includes/mooberry-dreams/software-licensing.php:197
+msgid "valid"
+msgstr ""
+
+#: includes/mooberry-dreams/software-licensing.php:211
 msgid "Deactivate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:207
+#: includes/mooberry-dreams/software-licensing.php:213
 msgid "Activate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:478
+#: includes/mooberry-dreams/software-licensing.php:484
 #, php-format
 msgid ""
 "You have invalid or expired license keys for Mooberry Book Manager. Please "
@@ -1740,7 +1707,7 @@ msgid ""
 "correct this issue."
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:517
+#: includes/mooberry-dreams/software-licensing.php:523
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
@@ -1751,7 +1718,7 @@ msgid ""
 msgstr ""
 
 #: includes/plugin-functions.php:401 includes/plugin-functions.php:442
-#: single-book.php:580
+#: single-book.php:591
 msgid "Website"
 msgstr ""
 
@@ -1792,6 +1759,11 @@ msgstr ""
 msgctxt "noun"
 msgid "Books"
 msgstr "Книги"
+
+#: includes/plugin-functions.php:556
+msgctxt "noun"
+msgid "Book"
+msgstr "Книга"
 
 #: includes/plugin-functions.php:558
 msgid "All Books"
@@ -2241,57 +2213,61 @@ msgstr ""
 msgid "Are you sure you want to reset the Book Edit page?"
 msgstr ""
 
-#: single-book.php:253
+#: mbdb-widget.php:164
+msgid "No books found"
+msgstr "Книги не найдены"
+
+#: single-book.php:260
 msgctxt "short date format. see http://php.net/date"
 msgid "m/d/Y"
 msgstr ""
 
-#: single-book.php:257
+#: single-book.php:264
 msgctxt "long date format. see http://php.net/date"
 msgid "F j, Y"
 msgstr ""
 
-#: single-book.php:299
+#: single-book.php:306
 msgid "Add to Goodreads"
 msgstr ""
 
-#: single-book.php:341
+#: single-book.php:348
 msgid "View on Goodreads"
 msgstr "Посмотреть на Goodreads"
 
-#: single-book.php:397
+#: single-book.php:405
 msgid "READ MORE"
 msgstr "Читать далее"
 
-#: single-book.php:398
+#: single-book.php:408
 msgid "COLLAPSE"
 msgstr "Свернуть"
 
-#: single-book.php:1062
+#: single-book.php:1073
 msgid "Part of the "
 msgstr "Часть из"
 
-#: single-book.php:1063
+#: single-book.php:1074
 msgid " series:"
 msgstr "серии:"
 
-#: single-book.php:1217
+#: single-book.php:1228
 msgid "on "
 msgstr "на "
 
-#: single-book.php:1233
+#: single-book.php:1244
 msgid "wrote"
 msgstr "написал"
 
-#: single-book.php:1340 single-book.php:1718 single-book.php:1804
+#: single-book.php:1351 single-book.php:1729 single-book.php:1815
 msgid "Download Now:"
 msgstr "Загрузить:"
 
-#: single-book.php:1433
+#: single-book.php:1444
 msgid "Buy Now:"
 msgstr ""
 
-#: single-book.php:1644
+#: single-book.php:1655
 #, php-format
 msgctxt ""
 "%1$s is the currency symbol. %2$d is the price. To put currency after price, "
@@ -2299,63 +2275,63 @@ msgctxt ""
 msgid "%1$s %2$d"
 msgstr ""
 
-#: single-book.php:1651
+#: single-book.php:1662
 msgid "ISBN:"
 msgstr ""
 
-#: single-book.php:1654
+#: single-book.php:1665
 msgid "Size:"
 msgstr ""
 
-#: single-book.php:1657
+#: single-book.php:1668
 msgid "Pages:"
 msgstr ""
 
-#: single-book.php:1724
+#: single-book.php:1735
 msgid "Part of the"
 msgstr "Часть из"
 
-#: single-book.php:1724
+#: single-book.php:1735
 msgid "series:"
 msgstr ""
 
-#: single-book.php:1728
+#: single-book.php:1739
 msgid "Editions:"
 msgstr ""
 
-#: single-book.php:1757
+#: single-book.php:1768
 msgid "Published:"
 msgstr ""
 
-#: single-book.php:1761
+#: single-book.php:1772
 msgid "Publisher:"
 msgstr ""
 
-#: single-book.php:1765
+#: single-book.php:1776
 msgid "Editors:"
 msgstr ""
 
-#: single-book.php:1769
+#: single-book.php:1780
 msgid "Illustrators:"
 msgstr ""
 
-#: single-book.php:1773
+#: single-book.php:1784
 msgid "Cover Artists:"
 msgstr ""
 
-#: single-book.php:1777
+#: single-book.php:1788
 msgid "Genres:"
 msgstr ""
 
-#: single-book.php:1781
+#: single-book.php:1792
 msgid "Tags:"
 msgstr ""
 
-#: single-book.php:1789
+#: single-book.php:1800
 msgid "Excerpt:"
 msgstr ""
 
-#: single-book.php:1796
+#: single-book.php:1807
 msgid "Reviews:"
 msgstr ""
 
@@ -2451,36 +2427,59 @@ msgstr ""
 #: views/admin-about-mooberry.php:20
 msgid ""
 "Check out <a target=\"_new\" href=\"http://bookmanager.mooberrydreams.com/"
-"\">our website</a> to learn more about\n"
-"\t\tthese extensions so Mooberry Book\n"
-"\t\tManager can save you more time!"
+"\">our website</a> to learn more about these extensions so Mooberry Book "
+"Manager can save you more time!"
 msgstr ""
 
-#: views/admin-about-mooberry.php:24
+#: views/admin-about-mooberry.php:22
 msgid "Additional Images"
 msgstr ""
 
-#: views/admin-about-mooberry.php:25
+#: views/admin-about-mooberry.php:23
 msgid "Advanced Widgets"
 msgstr ""
 
-#: views/admin-about-mooberry.php:26
+#: views/admin-about-mooberry.php:24
 msgid "Multi-Author"
 msgstr ""
 
-#: views/admin-about-mooberry.php:27
+#: views/admin-about-mooberry.php:25
 msgid "Retail Links Redirect"
 msgstr ""
 
-#: views/admin-about-mooberry.php:31
+#: views/admin-about-mooberry.php:29
 msgid "Tip Jar"
 msgstr ""
 
-#: views/admin-about-mooberry.php:32
+#: views/admin-about-mooberry.php:30
 msgid ""
 "You can help support this plugin by leaving a tip in any amount from $1 on "
 "up. This is completely optional. Thank you for the support."
 msgstr ""
+
+#: views/admin-widget-book.php:2
+msgid "Which book to show?"
+msgstr "Какие книги показывать?"
+
+#: views/admin-widget-book.php:13
+msgid "Book:"
+msgstr "Книга:"
+
+#: views/admin-widget.php:17
+msgid "Widget Title:"
+msgstr "Название виджета:"
+
+#: views/admin-widget.php:24
+msgid "Show Book Title"
+msgstr "Показать название книги"
+
+#: views/admin-widget.php:29
+msgid "Cover Size(pixels)"
+msgstr "Размер обложки (пикселей)"
+
+#: views/admin-widget.php:30
+msgid "(minimum 50)"
+msgstr "(минимум 50)"
 
 #~ msgid "m/d/Y"
 #~ msgstr "м/д/г"

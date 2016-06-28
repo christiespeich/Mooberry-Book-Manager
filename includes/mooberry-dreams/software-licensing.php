@@ -162,7 +162,7 @@ class MBDB_License {
 		$color = 'red';
 		if ( !is_object( $details ) ) {
 			
-			$status = 'inactive';
+			$status = __('inactive', 'mooberry-book-manager');
 		} else {
 			if (isset($details->error) ) {
 			
@@ -185,7 +185,7 @@ class MBDB_License {
 				switch ($details->license) {
 					case 'site_inactive':
 					case 'inactive':
-					
+						$status = __('inactive', 'mooberry-book-manager');
 						if ( $details->activations_left == 0 && $details->activations_left != 'unlimited' ) {
 							$show_activate = false;		
 						}
@@ -194,6 +194,7 @@ class MBDB_License {
 						$show_deactivate = true;
 						$show_activate = false;
 						$color = "green";
+						$status = __('valid', 'mooberry-book-manager');
 						break;
 					
 				}
