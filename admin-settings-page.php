@@ -779,18 +779,18 @@ class mbdb_Admin_Settings {
 		$metabox->add_field(array(
 				'id'	=>	'social_media',
 				'type'	=> 	'group',
-				'desc'	=>	__('Add Social Media Sites With Whom You Have Accounts.', 'mooberry-book-manager-social-media-list'),
+				'desc'	=>	__('Add Social Media Sites With Whom You Have Accounts.', 'mooberry-book-manager'),
 				'options'	=> array(
-					'group_title'	=>	__('Social Media Site', 'mooberry-book-manager-social-media-list') . ' {#}', // {#} gets replaced by row number
-					'add_button'	=>	__('Add New Social Media Site', 'mooberry-book-manager-social-media-list'),
-					'remove_button'	=>	__('Remove Social Media Site', 'mooberry-book-manager-social-media-list'),
+					'group_title'	=>	__('Social Media Site', 'mooberry-book-manager') . ' {#}', // {#} gets replaced by row number
+					'add_button'	=>	__('Add New Social Media Site', 'mooberry-book-manager'),
+					'remove_button'	=>	__('Remove Social Media Site', 'mooberry-book-manager'),
 					'sortable'	=>false,
 				),
 			)
 		);
 		
 		$metabox->add_group_field( 'social_media', array(
-				'name'	=> __('Social Media Site Name', 'mooberry-book-manager-social-media-list'),
+				'name'	=> __('Social Media Site Name', 'mooberry-book-manager'),
 				'id'	=>	'name',
 				'type'	=>	'text_medium',
 				'attributes'	=>	array(	
@@ -800,14 +800,14 @@ class mbdb_Admin_Settings {
 		);
 		
 		$metabox->add_group_field( 'social_media', array(
-				'name'	=>	__( 'Social Media Logo Image', 'mooberry-book-manager-social-media-list'),
+				'name'	=>	__( 'Social Media Logo Image', 'mooberry-book-manager'),
 				'id'	=>	'image',
 				'type' => 'file',
 				'attributes' => array(
 					'size'	=> 45
 				),
 				'options'	=> array(
-					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager-social-media-list'),
+					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
 				),
 			)
 		);
