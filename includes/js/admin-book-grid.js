@@ -273,7 +273,7 @@ function update_book_grid_preview() {
 	jQuery('#mbdb_preview_loading').show(); 
 			jQuery('#mbdb_book_grid_preview').empty();
 		jQuery('#cmb2-metabox-mbdb_book_grid_metabox').find(':input').prop('disabled', true);
-		
+		jQuery('#_mbdb_book_grid_book_list').sortable('disable');
 	var selected_options = {};
 		jQuery('#cmb2-metabox-mbdb_book_grid_metabox').children().find('select').each (function() {
 				//selected_options.push(jQuery(this).val());
@@ -333,6 +333,7 @@ function update_book_grid_preview() {
 		jQuery(	'#mbdb_update_preview' ).prop('disabled', true);
 		jQuery('#mbdb_preview_loading').hide();
 		jQuery('#cmb2-metabox-mbdb_book_grid_metabox').find(':input').prop('disabled', false);
+		jQuery('#_mbdb_book_grid_book_list').sortable('enable');
 		content = jQuery(data);
 		jQuery('#mbdb_book_grid_preview').empty().append(data);
 	});
