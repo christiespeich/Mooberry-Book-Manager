@@ -32,14 +32,7 @@ function mbdb_sanitize_field( $field ) {
 	return strip_tags( stripslashes( $field ) );
 }
 
-function mbdb_get_grid_cover_height( $postID = null ) {
-	// tax grids always use the default
-	if ( get_post_type() != 'mbdb_tax_grid' ) {
-		$mbdb_book_grid_cover_height_default = get_post_meta( $postID, '_mbdb_book_grid_cover_height_default', true);
-	} else {
-		$mbdb_book_grid_cover_height_default = 'yes';
-	}
-	
+function mbdb_get_grid_cover_height2( $mbdb_book_grid_cover_height_default, $mbdb_book_grid_cover_height ) {
 	// if getting the default, pull from options
 	// otherwise pull from the specific page's settings
 	if ($mbdb_book_grid_cover_height_default == 'yes') {
@@ -47,15 +40,29 @@ function mbdb_get_grid_cover_height( $postID = null ) {
 		if (isset($mbdb_options['mbdb_default_cover_height'])) {
 			$mbdb_book_grid_cover_height = $mbdb_options['mbdb_default_cover_height'];
 		}
-	} else {
-		$mbdb_book_grid_cover_height = get_post_meta( $postID, '_mbdb_book_grid_cover_height', true);
-	}
+	} 
 	
 	// if the height isn't set for some reason, default to 200
 	if (!isset($mbdb_book_grid_cover_height) || $mbdb_book_grid_cover_height == '') {
 		$mbdb_book_grid_cover_height = apply_filters('mbdb_book_grid_cover_height_default', 200);
 	}
 	return $mbdb_book_grid_cover_height;
+}
+
+
+
+function mbdb_get_grid_cover_height( $postID = null ) {
+	// tax grids always use the default
+	if ( get_post_type() != 'mbdb_tax_grid' ) {
+		$mbdb_book_grid_cover_height_default = get_post_meta( $postID, '_mbdb_book_grid_cover_height_default', true);
+		$mbdb_book_grid_cover_height = get_post_meta( $postID, '_mbdb_book_grid_cover_height', true);
+	} else {
+		$mbdb_book_grid_cover_height_default = 'yes';
+		$mbdb_book_grid_cover_height = '';
+	}
+	
+	return mbdb_get_grid_cover_height2( $mbdb_book_grid_cover_height_default, $mbdb_book_grid_cover_height );
+	
 }
 
 // v3.1.3
@@ -738,28 +745,44 @@ function mbdb_set_up_roles() {
 	$contributor_level = apply_filters('mbdb_contributor_level_capabilities', array(
 				'edit_mbdb_books',
 				'edit_mbdb_book',
+				'edit_mbdb_book_grid',
+				'edit_mbdb_book_grids',
 				'delete_mbdb_books',
 				'delete_mbdb_book',
-				'manage_mbdb_books')
+				'delete_mbdb_book_grid',
+				'delete_mbdb_book_grids',
+				'manage_mbdb_books',
+				'manage_mbdb_book_grids')
 	);
 	
 	$base_level = apply_filters('mbdb_base_level_capabilities', array(		
 				'publish_mbdb_books',
 				'publish_mbdb_book',
+				'publish_mbdb_book_grid',
+				'publish_mbdb_book_grids',
 				'edit_published_mbdb_book',
 				'edit_published_mbdb_books',
+				'edit_published_mbdb_book_grid',
+				'edit_published_mbdb_book_grids',
 				'delete_published_mbdb_book',
 				'delete_published_mbdb_books',
+				'delete_published_mbdb_book_grid',
+				'delete_published_mbdb_book_grids',
 				'upload_files',
 				'manage_mbdb_books',
+				'manage_mbdb_book_grids',
 				'read')
 	);
 	
 	$master_level = apply_filters('mbdb_master_level_capabilities', array(		
 				'edit_others_mbdb_books',
-				'edit_others_mbdb_books',
+				'edit_others_mbdb_book',
 				'delete_others_mbdb_books',
-				'delete_others_mbdb_book')
+				'delete_others_mbdb_book',
+				'edit_others_mbdb_book_grids',
+				'edit_others_mbdb_book_grid',
+				'delete_others_mbdb_book_grids',
+				'delete_others_mbdb_book_grid')
 	);
 	
 	remove_role('mbdb_librarian');

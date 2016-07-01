@@ -19,20 +19,24 @@
  *  
  *  
  *  @since 1.0
+ *  @since 3.4 Remove Display Yes/No and Additional Info
  *  
  *  @access public
  */
 add_filter( 'cmb2_meta_boxes', 'mbdb_book_grid_meta_boxes' );
 function mbdb_book_grid_meta_boxes( ) {
+	
 	$mbdb_book_grid_metabox = new_cmb2_box( array(
 		'id'			=> 'mbdb_book_grid_metabox',
 		'title'			=> __('Book Grid Settings', 'mooberry-book-manager'),
-		'object_types'	=> array( 'page' ),
+		'object_types'	=> array('mbdb_book_grid'), //array( 'page' ),
 		'context'		=> 'normal',
 		'priority'		=> 'default',
 		'show_names'	=> true)
 	);
-		
+	
+	//3.4
+		/*
 	$mbdb_book_grid_metabox->add_field( array(
 			'name'	=> __('Display Books on This Page?', 'mooberry-book-manager'),
 			'id'	=> '_mbdb_book_grid_display',
@@ -44,7 +48,7 @@ function mbdb_book_grid_meta_boxes( ) {
 			),
 		)
 	);
-	
+	*/
 	$mbdb_book_grid_metabox->add_field( array(
 			'name' 	=> __('Books to Display', 'mooberry-book-manager'),
 			'id' 	=> '_mbdb_book_grid_books',
@@ -179,6 +183,8 @@ function mbdb_book_grid_meta_boxes( ) {
 		)
 	);
 	
+	//3.4
+	/*
 	$mbdb_book_grid_metabox->add_field( array(
 			'name'	=> __('Additional Content (bottom)', 'mooberry-book-manager'),
 			'id'	=> '_mbdb_book_grid_description_bottom',
@@ -198,7 +204,7 @@ function mbdb_book_grid_meta_boxes( ) {
 			),
 		)
 	);
-	
+*/	
 	$mbdb_book_grid_metabox = apply_filters('mbdb_book_grid_meta_boxes', $mbdb_book_grid_metabox);
 		
 }
@@ -260,8 +266,139 @@ function mbdb_save_book_list_order() {
 	
 }
 
+/***********************************************
+ *  preview meta box
+ *  
+ *  @since 3.4
+ *  
+ **********************************************/
+ add_action( 'add_meta_boxes', 'mbdb_book_grid_preview_meta_box' );
+ function mbdb_book_grid_preview_meta_box() {
+	 add_meta_box( 'mbdb_book_grid_preview_metabox',
+					__('Preview', 'mooberry-book-manager'),
+					'mbdb_book_grid_preview_metabox_display',
+					'mbdb_book_grid',
+					'normal',
+					'low'
+				);
+	
+	add_meta_box( 'mbdb_book_grid_shortcode_metabox',
+					__('Shortcode', 'mooberry-book-manager'),
+					'mbdb_book_grid_shortcode_metabox_display',
+					'mbdb_book_grid',
+					'side',
+					'default'
+				);
+ }
+ 
+ function mbdb_book_grid_preview_metabox_display( $post ) {
 
+	//echo '<a class="button" id="mbdb_update_preview">Show Preview</a>';
+?>
+	<input type="button" class="button button-secondary" id="mbdb_update_preview" value="<?php _e('Show Preview'); ?>" />
+	<img id="mbdb_preview_loading" style="display:none;" src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"/><div id="mbdb_book_grid_preview">
+	<?php echo mbdb_bookgrid_content( $post->ID ); ?>
+	</div>
+<?php
+ }
+ 
+ function mbdb_book_grid_shortcode_metabox_display( $post ) {
+?>
+<p><label for="mbdb_book_grid_shortcode"><?php _e('Copy this code into a page, blog post, etc. to display this book grid.', 'mooberry-book-manager'); ?></label></p>
+	<input type="text" readonly="readonly" class="widefat" id="mbdb_book_grid_shortcode" value="[mbm_book_grid id='<?php echo $post->ID ?>']" />
+<?php
+ }
+ 
+  
+ 
+ /******************************************************
+  *  
+  *  AJAX function to update the preview
+  *  
+  *  @since 3.4
+  *  
+  ******************************************************/
+add_action( 'wp_ajax_mbdb_update_book_grid_preview', 'mbdb_update_book_grid_preview' );
+function mbdb_update_book_grid_preview() {
+	//check_ajax_referer( 'mbdb_book_grid_preview_ajax_nonce', 'security' );
+	
+	$grid_id = $_POST['gridID'];
+	error_log(print_r($_POST['grid_options'], true));
+	
+	// turn $_POST['grid_options'] into format for mbdb_bookgrid_content:
+	// [ id ] = Array(
+	//		[ 0 ] = value
+	// )
+	
+	$grid_options = array_map( 'mbdb_make_array', $_POST['grid_options']);
+	error_log('preview ajax function');
+	error_log(print_r($grid_options, true));
+	
+	 echo mbdb_bookgrid_content( 0, $grid_options);
+	
+	wp_die(); 
+	
+}
+ 
+ function mbdb_make_array( $element ) {
+	 if (is_array($element) ) {
+		 return array(serialize($element));
+	 } else {
+		return array($element);
+	 }
+ }
 
+/**************************************************************
+ *  		SHORTCODE
+ *  
+ *  @since 3.4
+ *  
+ *************************************************************/
+add_shortcode( 'mbm_book_grid', 'mbdb_shortcode_book_grid'  );
+function mbdb_shortcode_book_grid( $attr, $content ) {
+	$attr = shortcode_atts(array('id' => ''), $attr);
+	if ($attr['id'] == '') {
+		return '';
+	}
+	return mbdb_bookgrid_content( $attr['id'] );
+}
+ 
+// add shortcode button to editor
+add_action('media_buttons', 'mbdb_add_book_grid_shortcode_button', 30);
+function mbdb_add_book_grid_shortcode_button() {
+	$args = array('posts_per_page' => -1,
+				'post_type' => 'mbdb_book_grid',
+				'post_status'=>	'publish',
+				'orderby' => 'post_title',
+				'order' => 'ASC'
+			);
+	
+	$results = get_posts(  $args );
+	$grids = array();
+	foreach( $results as $grid ) {
+		$grids[$grid->ID] = $grid->post_title;
+	}
+	wp_reset_postdata();
+?><style>
+	.ui-dialog { z-index: 99999 !important; }
+   
+	.ui-dialog .ui-dialog-titlebar-close span { margin-left: -8px; margin-top: -8px; }
+  </style>
+	<a href="#" id="mbdb_add_book_grid" class="button">Add Book Grid</a>
+	<div id="mbdb_book_grid_shortcode_dialog" title="<?php _e('Add Book Grid', 'mooberry-book-manager'); ?>">
+  
+ 
+      <label for="mbdb_book_grids">Book Grid:</label>
+	  <?php echo mbdb_dropdown( 'mbdb_book_grids', $grids, null, 'no' ); ?>
+      
+ 
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+ </div>
+	<?php
+	
+}
+ 
 
 /****************************************************************************
 		GET DATA
@@ -273,18 +410,33 @@ function mbdb_save_book_list_order() {
  *  
  *  
  *  @since 1.0
+ *  @since 3.4 added book grid id and otpions parameters
  *  
  *  @return content to be displayed
  *  
  *  @access public
  */
- function mbdb_bookgrid_content() {
+ function mbdb_bookgrid_content( $book_grid_id = null, $options = null ) {
 	global $post;
 	$content ='';
 	
-	$mbdb_book_grid_meta_data = get_post_meta( $post->ID  );
+	if ($book_grid_id === null) {
+		global $post;
+		$book_grid_id = $post->ID;
+	} 
 	
-
+	if ( $book_grid_id === 0  ) {
+		$mbdb_book_grid_meta_data = $options;
+	} else {
+		$mbdb_book_grid_meta_data = get_post_meta( $book_grid_id  );
+	}
+	
+	if ($mbdb_book_grid_meta_data == null) {
+		return;
+	}
+	
+	error_log('bookgrid_content');
+	error_log(print_r($mbdb_book_grid_meta_data, true));
 	// VALIDATE THE INPUTS
 	// make sure the group value is valid. ie it could be "author" but the author plugin has since been deactivated.
 	// loop through the group by levels
@@ -374,7 +526,17 @@ function mbdb_save_book_list_order() {
 	
 	
 	// get the display output content
-	$content =  mbdb_display_grid($books, 0);
+	if (!array_key_exists('_mbdb_book_grid_cover_height_default', $mbdb_book_grid_meta_data)) {
+		$default = 'yes';
+	} else {
+		$default = $mbdb_book_grid_meta_data['_mbdb_book_grid_cover_height_default'][0];
+	}
+	if (!array_key_exists('_mbdb_book_grid_cover_height', $mbdb_book_grid_meta_data)) {
+		$height = 200;
+	} else {
+		$height = $mbdb_book_grid_meta_data['_mbdb_book_grid_cover_height'][0];
+	}
+	$content =  mbdb_display_grid($books, 0, $book_grid_id, $default, $height);
 
 	// find all the book grid's postmeta so we can display it in comments for debugging purposes
 	$grid_values = array();
@@ -634,6 +796,7 @@ function mbdb_set_sort($groups, $sort) {
  *  @since 1.0
  *  @since 2.0 made responsive
  *  @since 3.0 re-factored
+ *  @since 3.4 added book_grid_id and cover_height parameters
  *  
  *  @param [array] $mbdb_books nested array of books in grid
  *  @param [int] $l           current level to display
@@ -642,8 +805,9 @@ function mbdb_set_sort($groups, $sort) {
  *  
  *  @access public
  */
-function mbdb_display_grid($mbdb_books,  $l) {
+function mbdb_display_grid($mbdb_books,  $l, $book_grid_id = null, $cover_height_default = null, $cover_height = null ) {
 	
+			
 	// grab the coming soon image
 	$mbdb_options = get_option('mbdb_options');
 	//$mbdb_options = mbdb_get_options('mbdb_options'); //('mbdb_options');
@@ -666,7 +830,7 @@ function mbdb_display_grid($mbdb_books,  $l) {
 			if ( gettype( $mbdb_books[$the_key[0]] ) == 'object') {
 				foreach ($mbdb_books as $book) {
 					do_action('mbdb_book_grid_pre_div',  $l);
-					$content .= mbdb_output_grid_book($book, $coming_soon_image);
+					$content .= mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id, $cover_height_default, $cover_height );
 				}
 				$content .= '</div>'; 
 				do_action('mbdb_book_grid_post_div', $l);
@@ -692,7 +856,7 @@ function mbdb_display_grid($mbdb_books,  $l) {
 			}	
 			if ( gettype( $set ) != 'object') {
 				do_action('mbdb_book_grid_pre_recursion',$set,  $l+1);
-				$content .= mbdb_display_grid($set,  $l+1);
+				$content .= mbdb_display_grid($set,  $l+1, $book_grid_id, $cover_height );
 				do_action('mbdb_book_grid_post_recursion', $set,  $l+1);
 			} 
 		}
@@ -713,6 +877,7 @@ function mbdb_display_grid($mbdb_books,  $l) {
  *  @since 1.0
  *  @since 2.0 made responsive
  *  @since 3.0 re-factored, added alt text
+ *  @since 3.4 added book grid id and height parameters and cover height into specific HTML tags
  *  
  *  @param [obj] $book              book object
  *  @param [string] $coming_soon_image coming soon image
@@ -721,17 +886,28 @@ function mbdb_display_grid($mbdb_books,  $l) {
  *  
  *  @access public
  */
-function mbdb_output_grid_book($book, $coming_soon_image) {
+function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, $cover_height_default = null, $cover_height = null ) {
 
+	if ($book_grid_id === null) {
+		global $post;
+		$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height($post->ID);
+	} else {
+		$mbdb_book_grid_cover_height = mbdb_get_grid_cover_height2( $cover_height_default, $cover_height);
+	}
+	
+	
+	
+	
+	
 	$image = $book->cover; 
 	$default_alt = __('Book Cover:', 'mooberry-book-manager') . ' ' . $book->post_title;
 	
-	$content = '<span class="mbdb_float_grid">';
+	$content = '<span class="mbdb_float_grid" style="height: ' . ($mbdb_book_grid_cover_height + 50) . 'px; width: ' . $mbdb_book_grid_cover_height . 'px;">';
 	if ($image) {
 		$alt = mbdb_get_alt_text( $book->cover_id, $default_alt );
 		$content .= '<div class="mbdb_grid_image">';
 		$content = apply_filters('mbdb_book_grid_pre_image', $content, $book->book_id, $image);
-		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img  src="' . esc_url($image) . '" ' . $alt . ' ></a>';
+		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($image) . '" ' . $alt . ' ></a>';
 		$content = apply_filters('mbdb_book_grid_post_image', $content, $book->book_id, $image);
 		$content .= '</div>';
 		
@@ -740,10 +916,10 @@ function mbdb_output_grid_book($book, $coming_soon_image) {
 			$alt = mbdb_get_alt_text( 0, $default_alt );
 			$content .= '<div class="mbdb_grid_image">';
 			$content = apply_filters('mbdb_book_grid_pre_placeholder_image', $content, $book->book_id, $coming_soon_image);
-			$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img src="' . esc_url($coming_soon_image) . '" ' . $alt . ' ></a></div>';
+			$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($coming_soon_image) . '" ' . $alt . ' ></a></div>';
 			$content = apply_filters('mbdb_book_grid_post_placeholder_image', $content, $book->book_id, $coming_soon_image);
 		} else {
-			$content .= '<div class="mbdb_grid_no_image">';
+			$content .= '<div class="mbdb_grid_no_image" style="height: ' . $mbdb_book_grid_cover_height . 'px; width: ' . $mbdb_book_grid_cover_height . ';">';
 			$content = apply_filters('mbdb_book_grid_no_image', $content, $book->book_id);
 			$content .= '</div>';
 		}

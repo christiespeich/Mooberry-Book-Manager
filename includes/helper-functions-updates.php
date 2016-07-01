@@ -580,4 +580,11 @@ function mbdb_upgrade_to_3_1_1() {
 	
 }
 
+function mbdb_upgrade_to_3_4() {
+	
+	// grab new roles for Book Grids CPT
+	mbdb_set_up_roles();
+	
+}
+
 
