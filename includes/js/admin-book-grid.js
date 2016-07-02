@@ -6,21 +6,28 @@ jQuery( document ).ready(function() {
 	
 	jQuery('#mbdb_update_preview').bind('click', update_book_grid_preview);
 	
-	// select entire shortcode if field is clicked on
 	
+	// enable the button if the height is changed or a checkbox is checked/unchecked
+	jQuery('#_mbdb_book_grid_cover_height').on('change', function () {
+		jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
+	});
+	jQuery('#cmb2-metabox-mbdb_book_grid_metabox [type="checkbox"]').on('change', function () {
+		jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
+	});
+	
+	// select entire shortcode if field is clicked on
 	jQuery("#mbdb_book_grid_shortcode").click(function () {
 			jQuery(this).select();
 	});
 	
-	// enable the button if the height is changed
-	jQuery('#_mbdb_book_grid_cover_height').bind('change', update_cover_height);
-	
+		
 	// bind the change event on all the drop downs in the book grid section
 	jQuery('#cmb2-metabox-mbdb_book_grid_metabox').children().find('select').bind('change', displayChange);
 	
 	// set visibility of everything as needed
 	displayChange();
 	
+	// update the custom sorted book list when a book is selected/unselected
 	jQuery('.cmb2-id--mbdb-book-grid-custom input').bind( 'change', book_selection_change );
 	
 	// make the grid sortable
@@ -37,10 +44,6 @@ jQuery( document ).ready(function() {
 	
 	
 });
-
-function update_cover_height() {
-	jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
-}
 
 function displayChange () {
 //	if (jQuery('#_mbdb_book_grid_display').val() == 'yes') {
@@ -247,7 +250,8 @@ function mbdb_book_list_order_update() {
 	// add an up and down arrow to any non-first and non-last item
 	jQuery('#_mbdb_book_grid_book_list li').not(':first').not(':last').children('span').addClass('ui-icon-arrowthick-2-n-s');
 	
-		jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
+	// enable the preview button
+	jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
 }
 
 // save the sorted grid via ajax
@@ -259,33 +263,41 @@ function mbdb_save_book_list_order() {
 			'security': book_grid_ajax_object.security
 	};
 	
-	jQuery.post(ajax_object.ajax_url, data, mbdb_book_list_order_after_save);
+	jQuery.post(ajax_object.ajax_url, data);
 }
     
-// function that's called after the save grid ajax
-// not really anything to do...
-function mbdb_book_list_order_after_save() {
-	
-}
+
 
 // update the grid via ajax
 function update_book_grid_preview() {
-	jQuery('#mbdb_preview_loading').show(); 
-			jQuery('#mbdb_book_grid_preview').empty();
+	
+		// show the loading gif
+		jQuery('#mbdb_preview_loading').show(); 
+		
+		// clear out the preview 
+		jQuery('#mbdb_book_grid_preview').empty();
+		
+		// disable all inputs while generating the preview
 		jQuery('#cmb2-metabox-mbdb_book_grid_metabox').find(':input').prop('disabled', true);
 		jQuery('#_mbdb_book_grid_book_list').sortable('disable');
-	var selected_options = {};
+		
+		
+		// grab all the values from all the select tags
+		var selected_options = {};
 		jQuery('#cmb2-metabox-mbdb_book_grid_metabox').children().find('select').each (function() {
 				//selected_options.push(jQuery(this).val());
-				console.log(jQuery(this)[0].id);
+			//	console.log(jQuery(this)[0].id);
 				selected_options[jQuery(this)[0].id] = jQuery(this).val();
 			
 			});
 		
+		// grab the cover height
 		selected_options['_mbdb_book_grid_cover_height'] = jQuery('#_mbdb_book_grid_cover_height').val();
 		//selected_option['_mbdb_book_grid_order_custom'] = jQuery('#_mbdb_book_grid_book_list').sortable('serialize');
 		
-		console.log(jQuery('#_mbdb_book_grid_book_list').sortable('toArray'));
+	//	console.log(jQuery('#_mbdb_book_grid_book_list').sortable('toArray'));
+		
+		// grab the custom sort list
 		// this puts it into array of ('_mbdb_custom_book_order_book_ID1', '_mbdb_custom_book_order_book_ID2', ... )
 		book_list = jQuery('#_mbdb_book_grid_book_list').sortable('toArray');
 		
@@ -300,6 +312,22 @@ function update_book_grid_preview() {
 		
 		//console.log( jQuery('#cmb2-metabox-mbdb_book_grid_metabox').find(':input') );
 		
+		// get all the multi-check boxes	
+		// this does it dynamically to pick up author from MA, etc.
+		jQuery(	'[name^="_mbdb_book_grid_"]:checked').each( function() {
+			name = jQuery(this).attr('name').replace('[]','');
+			sanitized_element = name.replace('_mbdb_book_grid_', '').replace('-','_');
+			// this checks to see if the array exists and if not initializes it
+			eval(sanitized_element + ' = ( typeof ' + sanitized_element + ' != "undefined" && ' + sanitized_element + ' instanceof Array ) ? ' + sanitized_element + ' : [];');
+			
+			eval( sanitized_element + '.push(jQuery(this).val());' );
+			
+			eval( 'selected_options[ "' + name + '"] = ' + sanitized_element);
+			
+		
+		});
+		
+		/*
 		selection_names = ['custom', 'genre', 'series', 'tag', 'publisher', 'editor', 'illustrator', 'cover-artist'];
 		
 		selection_names.forEach( function( element, index, array) {
@@ -317,12 +345,13 @@ function update_book_grid_preview() {
 			
 
 		});
-		console.log(JSON.stringify(selected_options));
+		*/
+		//console.log(JSON.stringify(selected_options));
 				
 	var data = {
 		'gridID': jQuery('#post_ID').val(),
-		'action': 'mbdb_update_book_grid_preview'
-		,'grid_options': selected_options
+		'action': 'mbdb_update_book_grid_preview',
+		'grid_options': selected_options
 	};
 	
 	var update_preview = jQuery.post(ajax_object.ajax_url, data);

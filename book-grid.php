@@ -226,12 +226,13 @@ function mbdb_output_book_grid_custom_order( ) { //$id, $object_id, $a) {
 	
 	
 	$custom_order = get_post_meta( $post_id , '_mbdb_book_grid_order_custom', true);
+	error_log(print_r($custom_order, true));
 	if ($custom_order) {
-	foreach ( $custom_order as $book ) {
+		foreach ( $custom_order as $book ) {
 	
-		$output .= '<li id="mbdb_custom_book_order_book_' . $book . '" class="ui-state-default"><span class="ui-icon"></span>' . 
+			$output .= '<li id="mbdb_custom_book_order_book_' . $book . '" class="ui-state-default"><span class="ui-icon"></span>' . 
 			get_the_title( $book ) . '</li>';
-	}
+		}
 	}
 	return $output;
 	
@@ -264,6 +265,7 @@ function mbdb_save_book_list_order() {
 		update_post_meta($_POST['pageID'], '_mbdb_book_grid_order_custom', $mbdb_custom_book_order_book);
 	}
 	
+	wp_die();
 }
 
 /***********************************************
@@ -322,17 +324,14 @@ add_action( 'wp_ajax_mbdb_update_book_grid_preview', 'mbdb_update_book_grid_prev
 function mbdb_update_book_grid_preview() {
 	//check_ajax_referer( 'mbdb_book_grid_preview_ajax_nonce', 'security' );
 	
-	$grid_id = $_POST['gridID'];
-	error_log(print_r($_POST['grid_options'], true));
-	
+
 	// turn $_POST['grid_options'] into format for mbdb_bookgrid_content:
 	// [ id ] = Array(
 	//		[ 0 ] = value
 	// )
 	
 	$grid_options = array_map( 'mbdb_make_array', $_POST['grid_options']);
-	error_log('preview ajax function');
-	error_log(print_r($grid_options, true));
+	
 	
 	 echo mbdb_bookgrid_content( 0, $grid_options);
 	
@@ -366,6 +365,9 @@ function mbdb_shortcode_book_grid( $attr, $content ) {
 // add shortcode button to editor
 add_action('media_buttons', 'mbdb_add_book_grid_shortcode_button', 30);
 function mbdb_add_book_grid_shortcode_button() {
+	if (!in_array(get_post_type(), array( 'page', 'post') ) ) {
+		return;
+	}	
 	$args = array('posts_per_page' => -1,
 				'post_type' => 'mbdb_book_grid',
 				'post_status'=>	'publish',
@@ -420,11 +422,15 @@ function mbdb_add_book_grid_shortcode_button() {
 	global $post;
 	$content ='';
 	
+	// if book_grid_id is null this is coming from an old page with a book grid on it
+	// not from the shortcode. This shouldn't happen any more
 	if ($book_grid_id === null) {
 		global $post;
 		$book_grid_id = $post->ID;
 	} 
 	
+	// if book_grid_id is 0 this is coming from the preview on the book grid screen
+	// and the settings should come from $options not the database
 	if ( $book_grid_id === 0  ) {
 		$mbdb_book_grid_meta_data = $options;
 	} else {
@@ -434,9 +440,8 @@ function mbdb_add_book_grid_shortcode_button() {
 	if ($mbdb_book_grid_meta_data == null) {
 		return;
 	}
-	
-	error_log('bookgrid_content');
 	error_log(print_r($mbdb_book_grid_meta_data, true));
+	
 	// VALIDATE THE INPUTS
 	// make sure the group value is valid. ie it could be "author" but the author plugin has since been deactivated.
 	// loop through the group by levels
@@ -524,8 +529,7 @@ function mbdb_add_book_grid_shortcode_button() {
 	}
 	
 	
-	
-	// get the display output content
+		// get the display output content
 	if (!array_key_exists('_mbdb_book_grid_cover_height_default', $mbdb_book_grid_meta_data)) {
 		$default = 'yes';
 	} else {
@@ -536,6 +540,7 @@ function mbdb_add_book_grid_shortcode_button() {
 	} else {
 		$height = $mbdb_book_grid_meta_data['_mbdb_book_grid_cover_height'][0];
 	}
+	
 	$content =  mbdb_display_grid($books, 0, $book_grid_id, $default, $height);
 
 	// find all the book grid's postmeta so we can display it in comments for debugging purposes
@@ -856,7 +861,7 @@ function mbdb_display_grid($mbdb_books,  $l, $book_grid_id = null, $cover_height
 			}	
 			if ( gettype( $set ) != 'object') {
 				do_action('mbdb_book_grid_pre_recursion',$set,  $l+1);
-				$content .= mbdb_display_grid($set,  $l+1, $book_grid_id, $cover_height );
+				$content .= mbdb_display_grid($set,  $l+1, $book_grid_id, $cover_height_default, $cover_height );
 				do_action('mbdb_book_grid_post_recursion', $set,  $l+1);
 			} 
 		}

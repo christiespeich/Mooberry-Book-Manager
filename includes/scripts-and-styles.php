@@ -128,7 +128,13 @@ function mbdb_register_styles() {
 
 add_action('wp_enqueue_media', 'mbdb_include_media_button');
 function mbdb_include_media_button() {
+	$button_label = array(
+			'add_button' => __('Insert Shortcode', 'mooberry-book-manager'),
+			'cancel_button'	=> __('Cancel', 'mooberry-book-manager'),
+			);
+	
     wp_enqueue_script('mbdb-media-button', MBDB_PLUGIN_URL . 'includes/js/media-buttons.js', array('jquery'), mbdb_get_enqueue_version(), true);
+	wp_localize_script( 'mbdb-media-button', 'button_label', $button_label );	
 }
 
 

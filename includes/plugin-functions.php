@@ -76,8 +76,8 @@ function mbdb_register_widgets() {
 // tc_post_list_content should be unique enough to the Customizr theme
 // that it doesn't affect anything else?
 
-add_filter( 'tc_post_list_content', 'mbdb_content' );
-add_filter( 'the_content', 'mbdb_content', 50, 1 );
+//add_filter( 'tc_post_list_content', 'mbdb_content' );
+//add_filter( 'the_content', 'mbdb_content', 50, 1 );
 function mbdb_content( $content ) {
 	
 	global $post;

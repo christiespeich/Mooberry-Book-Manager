@@ -33,6 +33,7 @@ function mbdb_sanitize_field( $field ) {
 }
 
 function mbdb_get_grid_cover_height2( $mbdb_book_grid_cover_height_default, $mbdb_book_grid_cover_height ) {
+	
 	// if getting the default, pull from options
 	// otherwise pull from the specific page's settings
 	if ($mbdb_book_grid_cover_height_default == 'yes') {

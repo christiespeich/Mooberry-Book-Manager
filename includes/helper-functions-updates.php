@@ -60,6 +60,10 @@ function mbdb_upgrade_versions() {
 			mbdb_upgrade_to_3_1_1();
 		}
 		
+		if (version_compare($current_version, '3.4', '<')) {
+			mbdb_upgrade_to_3_4();
+		}
+		
 		/*
 		$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
 		$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
@@ -584,6 +588,80 @@ function mbdb_upgrade_to_3_4() {
 	
 	// grab new roles for Book Grids CPT
 	mbdb_set_up_roles();
+	
+	
+	// Migrate Book Grids to new Book Grids CPT
+	
+	// 1. loop through all the pages with a book grid
+	$grid_pages = get_posts(array(
+								'posts_per_page' => -1,
+								'post_type' => 'page',
+								'post_status'	=> 'publish',
+								'meta_query'	=>	array(
+										array(
+											'key'	=>	'_mbdb_book_grid_display',
+											'value'	=>	'yes',
+											'compare'	=>	'=',
+										),
+									),	
+							)
+					);
+			
+	foreach($grid_pages as $page) {
+		// 2. Create a new Book Grid
+		// sometimes this runs twice so dont insert double posts
+		$book_grid_exists = get_posts(array(
+								'posts_per_page' => -1,
+								'post_type' => 'mbdb_book_grid',
+								'post_status'	=> 'publish',
+								'name'	=> sanitize_title(__('Imported Book Grid: ', 'mooberry-book-manager') . $page->post_title)
+							)
+					);
+					
+		if (count($book_grid_exists) == 0) {
+			$book_grid_id = wp_insert_post(  array(
+						'post_title' => __('Imported Book Grid: ', 'mooberry-book-manager') . $page->post_title,
+						'post_type' => 'mbdb_book_grid',
+						'post_status' => 'publish',
+						'comment_status' => 'closed',
+						'ping_status'	=>	'closed',
+						'post_content' => '',
+						)
+					);
+		} else {
+			$book_grid_id = $book_grid_exists[0]->ID;
+		}
+		
+				
+		// 3. Update postmeta table with new grid id instead of page id
+		// 3a. Get all post meta data for the page
+		$page_data = get_post_meta( $page->ID );
+		
+		// 3b. Loop through each one
+		foreach ($page_data as $key => $meta_data) {
+			// 3c. If it's a book grid meta data, copy it to a post meta with the grid id
+		
+			if (substr($key, 0, 16) == '_mbdb_book_grid_') {
+				if (is_serialized( $meta_data[0] ) ) {
+					$meta_data[0] = unserialize($meta_data[0]);
+				}
+				update_post_meta($book_grid_id, $key, $meta_data[0]);
+			}
+			
+		}
+		// 4. Add shortcode at the end of the page's content
+		$content = $page->post_content . "\r\n\r\n" . '[mbm_book_grid id="' . $book_grid_id . '"]';
+		
+		// 5. Add Additional Info at the end of the page's content
+		if (array_key_exists('_mbdb_book_grid_description_bottom', $page_data)) {
+			$content .= "\r\n\r\n" . $page_data['_mbdb_book_grid_description_bottom'][0];
+		}
+		
+		// 6. Update page content
+		wp_update_post( array( 'ID' => $page->ID, 'post_content' => $content ) );
+		
+	}
+	wp_reset_postdata();
 	
 }
 
