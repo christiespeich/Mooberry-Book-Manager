@@ -15,6 +15,9 @@ add_action( 'plugins_loaded', 'mbdb_load_textdomain' );
 function mbdb_load_textdomain() {
 
 	load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+	
+	// load the settings
+	$mbdb_admin_settings = mbdb_admin();
 }
 
 /**
