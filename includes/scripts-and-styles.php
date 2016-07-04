@@ -28,7 +28,7 @@ function mbdb_register_widget_script( $page_hook ) {
 	
 	if ($base == 'edit' && $post_type == 'mbdb_book') {
 		
-		 
+		
 		wp_enqueue_script('mbdb-admin-book-quick-bulk-edit', MBDB_PLUGIN_URL . 'includes/js/admin-book-quick-bulk-edit.js', array( 'jquery', 'inline-edit-post' ), mbdb_get_enqueue_version());
 	}
 }
@@ -132,7 +132,7 @@ function mbdb_include_media_button() {
 			'add_button' => __('Insert Shortcode', 'mooberry-book-manager'),
 			'cancel_button'	=> __('Cancel', 'mooberry-book-manager'),
 			);
-	
+	wp_enqueue_script('jquery-ui-dialog');
     wp_enqueue_script('mbdb-media-button', MBDB_PLUGIN_URL . 'includes/js/media-buttons.js', array('jquery'), mbdb_get_enqueue_version(), true);
 	wp_localize_script( 'mbdb-media-button', 'button_label', $button_label );	
 }
