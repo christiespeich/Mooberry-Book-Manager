@@ -226,7 +226,7 @@ function mbdb_output_book_grid_custom_order( ) { //$id, $object_id, $a) {
 	
 	
 	$custom_order = get_post_meta( $post_id , '_mbdb_book_grid_order_custom', true);
-	error_log(print_r($custom_order, true));
+	
 	if ($custom_order) {
 		foreach ( $custom_order as $book ) {
 	
@@ -440,7 +440,7 @@ function mbdb_add_book_grid_shortcode_button() {
 	if ($mbdb_book_grid_meta_data == null) {
 		return;
 	}
-	error_log(print_r($mbdb_book_grid_meta_data, true));
+	
 	
 	// VALIDATE THE INPUTS
 	// make sure the group value is valid. ie it could be "author" but the author plugin has since been deactivated.
@@ -514,7 +514,9 @@ function mbdb_add_book_grid_shortcode_button() {
 	// if the sort is custom, we have to manually sort the books now
 	if ($sort == 'custom') {
 		if (array_key_exists('_mbdb_book_grid_order_custom', $mbdb_book_grid_meta_data) ) {
+			
 			$sort_order = unserialize($mbdb_book_grid_meta_data['_mbdb_book_grid_order_custom'][0]);
+			
 			$sorted_books = array();
 			$book_ids = array();
 			foreach ($books as $key => $book) {
