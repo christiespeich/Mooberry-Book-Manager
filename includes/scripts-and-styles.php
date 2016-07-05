@@ -5,6 +5,9 @@ function mbdb_register_admin_styles() {
 	wp_register_style( 'mbdb-admin-styles', MBDB_PLUGIN_URL .  'css/admin-styles.css', '', mbdb_get_enqueue_version()  );
 	wp_enqueue_style( 'mbdb-admin-styles' );
 	
+	wp_register_style( 'mbdb-admin-book-grid-styles', MBDB_PLUGIN_URL .  'css/book-grid.css', '', mbdb_get_enqueue_version()  );
+	wp_enqueue_style( 'mbdb-admin-book-grid-styles' );
+	
 	wp_enqueue_style('mbds-jquery-ui-css', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
 }
 
@@ -25,7 +28,7 @@ function mbdb_register_widget_script( $page_hook ) {
 	
 	if ($base == 'edit' && $post_type == 'mbdb_book') {
 		
-		 
+		
 		wp_enqueue_script('mbdb-admin-book-quick-bulk-edit', MBDB_PLUGIN_URL . 'includes/js/admin-book-quick-bulk-edit.js', array( 'jquery', 'inline-edit-post' ), mbdb_get_enqueue_version());
 	}
 }
@@ -43,7 +46,7 @@ function mbdb_register_script() {
 	$post_type = $current_screen->post_type;
 	$base = $current_screen->base;
 	
-	if ($parent_base == 'edit' && $post_type == 'page' && $base == 'post') {
+	if ($parent_base == 'edit' && $post_type == 'mbdb_book_grid' && $base == 'post') {
 		// admin-book-grid
 		$group_by_options = mbdb_book_grid_group_by_options();
 		$text_to_translate = array(
@@ -97,6 +100,7 @@ function mbdb_register_script() {
 							'ajax_url' => admin_url( 'admin-ajax.php' ),
 							'dismiss_ajax_nonce' => wp_create_nonce('mbdb_admin_notice_dismiss_ajax_nonce'),
 							'remigrate_ajax_nonce' => wp_create_nonce('mbdb_admin_notice_3_1_remigrate_ajax_nonce'),
+							'book_grid_placeholder_dismiss_nonce' => wp_create_nonce('mbdb_book_grid_placeholder_dismiss_ajax_nonce'),
 							'redirect_url' => admin_url('admin.php?page=mbdb_migrate')
 						) 
 					);
@@ -114,12 +118,28 @@ add_action( 'wp_enqueue_scripts', 'mbdb_register_styles', 15 );
 function mbdb_register_styles() {
 	wp_register_style( 'mbdb-styles', MBDB_PLUGIN_URL .  'css/styles.css', '', mbdb_get_enqueue_version() ) ;
 	wp_enqueue_style( 'mbdb-styles' );
+	
+	wp_register_style( 'mbdb-book-grid-styles', MBDB_PLUGIN_URL .  'css/book-grid.css', '', mbdb_get_enqueue_version()  );
+	wp_enqueue_style( 'mbdb-book-grid-styles' );
+	
 	wp_enqueue_script('single-book', MBDB_PLUGIN_URL . 'includes/js/single-book.js', array('jquery'), mbdb_get_enqueue_version());
 	
 	
 }
 
-add_action('wp_head', 'mbdb_grid_styles');
+add_action('wp_enqueue_media', 'mbdb_include_media_button');
+function mbdb_include_media_button() {
+	$button_label = array(
+			'add_button' => __('Insert Shortcode', 'mooberry-book-manager'),
+			'cancel_button'	=> __('Cancel', 'mooberry-book-manager'),
+			);
+	wp_enqueue_script('jquery-ui-dialog');
+    wp_enqueue_script('mbdb-media-button', MBDB_PLUGIN_URL . 'includes/js/media-buttons.js', array('jquery'), mbdb_get_enqueue_version(), true);
+	wp_localize_script( 'mbdb-media-button', 'button_label', $button_label );	
+}
+
+
+//add_action('wp_head', 'mbdb_grid_styles');
 function mbdb_grid_styles() {
 	global $post;
 	if ($post) {

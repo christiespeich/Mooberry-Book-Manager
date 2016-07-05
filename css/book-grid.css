@@ -1,0 +1,42 @@
+.mbm-book-grid-heading1, .mbm-book-grid-heading2, .mbm-book-grid-heading3 {
+		clear: left;
+}
+
+.mbm-book-grid-div {
+	display: table;
+}
+	
+.mbdb_float_grid {
+	float: left;
+/*	height: 250px; 
+	width: 200px; */
+	padding: 10px;
+	margin-bottom:25px;
+/*	border: 1px solid red;   */
+	
+}
+	
+	.mbdb_grid_image img {
+	/* height: 200px; */
+		
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+		
+/*	 border: 1px solid red;  */
+}
+
+.mbdb_grid_no_image {
+/*	border: 1px solid red;  */
+/*	height: 200px;
+	width: 200px; */
+
+
+}
+
+.mbdb_grid_title {
+		display: block;
+		text-align: center;
+		
+	/*	border: 1px solid red;*/
+	}

@@ -992,6 +992,5 @@ function mbdb_reset_meta_boxes() {
 }
 
 
-// Get it started
-$mbdb_admin_settings = mbdb_admin();
+
 

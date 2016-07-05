@@ -15,6 +15,9 @@ add_action( 'plugins_loaded', 'mbdb_load_textdomain' );
 function mbdb_load_textdomain() {
 
 	load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+	
+	// load the settings
+	$mbdb_admin_settings = mbdb_admin();
 }
 
 /**
@@ -31,14 +34,19 @@ function mbdb_load_textdomain() {
 add_action( 'init', 'mbdb_init' );	
 function mbdb_init() {
 	
+	// these still have to run even if ajax
 	mbdb_register_cpts();
 	mbdb_register_taxonomies();
+	
+	// Exit function if doing an AJAX request
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        return;
+    }
 	
 	mbdb_add_tax_grid();
 	
 	mbdb_upgrade_versions();
 	
-	//mbdb_set_default_tax_grid_slugs();
 }
 
 /**
@@ -76,8 +84,8 @@ function mbdb_register_widgets() {
 // tc_post_list_content should be unique enough to the Customizr theme
 // that it doesn't affect anything else?
 
-add_filter( 'tc_post_list_content', 'mbdb_content' );
-add_filter( 'the_content', 'mbdb_content', 50, 1 );
+//add_filter( 'tc_post_list_content', 'mbdb_content' );
+//add_filter( 'the_content', 'mbdb_content', 50, 1 );
 function mbdb_content( $content ) {
 	
 	global $post;
@@ -592,7 +600,47 @@ function mbdb_register_cpts() {
 				) 
 			)
 		);
-	
+		
+		// added 3.4 ?
+		register_post_type( 'mbdb_book_grid', apply_filters( 'mbdb_book_grid_cpt', array(
+			'label' => __( 'Book Grids',  'mooberry-book-manager' ),
+			'show_ui' => true,
+			'show_in_menu' => true, //'edit.php?post_type=mbdb_book', 
+			'show_in_admin_bar'	=> true,
+			'menu_icon' => 'dashicons-screenoptions',
+			'menu_position' => 20,
+			'show_in_nav_menus' => false,
+			'publicly_queryable' => false,
+			'exclude_from_search'	=> true,
+			'has_archive' => false,
+			'capability_type' => array( 'mbdb_book_grid', 'mbdb_book_grids' ),
+			'map_meta_cap' => true,
+			'hierarchical' => false,
+			'rewrite' => false, //array( 'slug' => 'book' ),
+			'query_var' => false,
+			'can_export'	=> true,
+			'supports' => array( 'title' ),
+			'labels' => array (
+				'name' => __( 'Book Grids', 'mooberry-book-manager' ),
+				'singular_name' => __( 'Book Grid', 'mooberry-book-manager' ),
+				'all_items' => __( 'All Book Grids', 'mooberry-book-manager' ),
+				'add_new' => __( 'Add New', 'mooberry-book-manager' ),
+				'add_new_item' => __( 'Add New Book Grid', 'mooberry-book-manager' ),
+				'edit' => __( 'Edit', 'mooberry-book-manager' ),
+				'edit_item' => __( 'Edit Book Grid', 'mooberry-book-manager' ),
+				'new_item' => __( 'New Book Grid', 'mooberry-book-manager' ),
+				'view' => __( 'View Book Grid', 'mooberry-book-manager' ),
+				'view_item' => __( 'View Book Grid', 'mooberry-book-manager' ),
+				'search_items' => __( 'Search Book Grids', 'mooberry-book-manager' ),
+				'not_found' => __( 'No Book Grids Found', 'mooberry-book-manager' ),
+				'not_found_in_trash' => __( 'No Book Grids Found in Trash', 'mooberry-book-manager' ),
+				'parent' => __( 'Parent Book Grid', 'mooberry-book-manager' ),
+				'filter_items_list'     => __( 'Filter Book Grid List', 'mooberry-book-manager' ),
+				'items_list_navigation' => __( 'Book Grid List Navigation', 'mooberry-book-manager' ),
+				'items_list'            => __( 'Book Grid List', 'mooberry-book-manager' ),
+				),
+			) )
+		);
 }
 
 /**

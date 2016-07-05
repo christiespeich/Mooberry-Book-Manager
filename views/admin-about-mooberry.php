@@ -27,14 +27,10 @@
 		
 			<?php } ?>
 		<h3><?php _e('Tip Jar', 'mooberry-book-manager'); ?></h3>
-		<p><?php _e('You can help support this plugin by leaving a tip in any amount from $1 on up. This is completely optional. Thank you for the support.', 'mooberry-book-manager'); ?>
+		<p><?php _e('You can help support this plugin by leaving a tip in any amount. This is completely optional. Thank you for the support.', 'mooberry-book-manager'); ?>
 </p>
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_new">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="QQQ59JX5S3S3U">
-<input type="image" src="<?php echo MBDB_PLUGIN_URL . '/includes/assets/Leave_Tip_button.gif'; ?>" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+
+<a target="_new" href="https://www.paypal.me/mooberrydreams"><img src="<?php echo MBDB_PLUGIN_URL . '/includes/assets/Leave_Tip_button.gif'; ?>" border="0" alt="PayPal - The safer, easier way to pay online!"></a>
 <?php // version 3.0
 if ($parent_base == 'mbdb_options') {
 		?>

@@ -10,6 +10,10 @@ jQuery( document ).ready(function() {
 	
 		mbdb_admin_3_1_remigrate();
 	});
+	
+	jQuery('#mbdb_book_grid_placeholder_dismiss').click(function (e) {
+		mbdb_book_grid_placeholder_dismiss();
+	});
 });
 
 
@@ -41,4 +45,20 @@ function mbdb_admin_3_1_remigrate() {
 		window.location.href = mbdb_admin_notice_ajax.redirect_url;
 	});
 	
+}
+
+function mbdb_book_grid_placeholder_dismiss() {
+	
+	jQuery('#mbdb_book_grid_dismiss_loader').show();
+	
+	var data = {
+		'action':	'mbdb_book_grid_placeholder_dismiss',
+		'security':	mbdb_admin_notice_ajax.book_grid_placeholder_dismiss_nonce
+	};
+	
+	var mbdb_book_grid_dismiss = jQuery.post(mbdb_admin_notice_ajax.ajax_url, data);
+	
+	mbdb_book_grid_dismiss.done( function ( data ) {
+		jQuery('#mbdb_book_grid_placeholder').hide();
+	});
 }
