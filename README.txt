@@ -167,6 +167,8 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 == Changelog ==
 = 3.4 = 
 * Added: Book Grid Shortcodes. See the [documentation](http://www.bookmanager.mooberrydreams.com/docs/category/mooberry-book-manager/book-grids/) for details
+* Fixed: translation errors
+* Fixed: ignore AJAX on some init functions
 
 = 3.3.8 =
 * Fixed: translation errors
