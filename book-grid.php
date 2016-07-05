@@ -23,8 +23,9 @@
  *  
  *  @access public
  */
-add_filter( 'cmb2_meta_boxes', 'mbdb_book_grid_meta_boxes' );
+add_action( 'cmb2_admin_init', 'mbdb_book_grid_meta_boxes' );
 function mbdb_book_grid_meta_boxes( ) {
+	
 	
 	$mbdb_book_grid_metabox = new_cmb2_box( array(
 		'id'			=> 'mbdb_book_grid_metabox',

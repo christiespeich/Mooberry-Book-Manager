@@ -622,8 +622,10 @@ function mbdb_display_mbdb_metabox($post, $args) {
  *  
  *  @access public
  */
-add_filter( 'cmb2_meta_boxes', 'mbdb_book_metaboxes', 30 );
+add_action( 'cmb2_admin_init', 'mbdb_book_metaboxes', 30 );
 function mbdb_book_metaboxes(  ) {
+	
+	
 	$mbdb_options = get_option( 'mbdb_options' );
 	
 	// SUMMARY
