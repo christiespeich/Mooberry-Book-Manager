@@ -1,10 +1,11 @@
 <?php
  /**
   *  Plugin Name: Mooberry Book Manager
-  *  Plugin URI: http://www.mooberrydreams.com/products/mooberry-book-manager/
+  *  Plugin URI: http://bookmanager.mooberrydreams.com/
   *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
+  *  Donate Link: https://www.paypal.me/mooberrydreams/
   *	 Version: 3.4
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
