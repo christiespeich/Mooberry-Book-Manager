@@ -12,6 +12,59 @@
 	META BOXES
 ******************************************************************/
 
+/**
+ *  
+ *  Keep a placholder metabox for book grids on pages
+ *  but allow user to dismiss it
+ *  
+ *  @since 3.4
+ */
+ add_action( 'add_meta_boxes', 'mbdb_book_grid_placeholder_metabox', 10 );
+function mbdb_book_grid_placeholder_metabox() {
+	$mbdb_options = get_option('mbdb_options');
+	if (array_key_exists('dismiss_book_grids_notice', $mbdb_options) && $mbdb_options['dismiss_book_grids_notice'] == 'yes') {
+		return;
+	}
+	
+	add_meta_box( 'mbdb_book_grid_placeholder', 
+				__('Book Grid Settings', 'mooberry-book-manager'), 
+				'mbdb_display_book_grid_placeholder_metabox', 
+				'page', 
+				'normal', 
+				'default' );
+}
+
+function mbdb_display_book_grid_placeholder_metabox($post, $args) {
+	?>
+	<p><?php _e('Looking for the Book Grid Settings?  As of version 3.4, there is now separate menu in your Dashboard for adding Book Grids.', 'mooberry-book-manager'); ?></p>
+	<a class="button" id="mbdb_book_grid_placeholder_dismiss"><?php _e('Dismiss this notice', 'mooberry-book-manager'); ?></a>
+	<img id="mbdb_book_grid_dismiss_loader" style="display:none;" src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"/>
+	<?php
+
+}
+
+// ajax dismiss notice
+add_action( 'wp_ajax_mbdb_book_grid_placeholder_dismiss', 'mbdb_book_grid_placeholder_dismiss' );	
+function mbdb_book_grid_placeholder_dismiss() {
+
+	$nonce = $_POST['security'];
+
+	// check to see if the submitted nonce matches with the
+	// generated nonce we created earlier
+	if ( ! wp_verify_nonce( $nonce, 'mbdb_book_grid_placeholder_dismiss_ajax_nonce' ) ) {
+		die ( );
+	}
+	
+	
+	// update the option
+	$mbdb_options = get_option('mbdb_options');
+	$mbdb_options['dismiss_book_grids_notice'] = 'yes';
+	update_option('mbdb_options', $mbdb_options);
+	
+	
+	wp_die();
+}
+
 
 /**
  *  Creates metabox to be added to pages for book grids
