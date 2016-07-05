@@ -34,14 +34,19 @@ function mbdb_load_textdomain() {
 add_action( 'init', 'mbdb_init' );	
 function mbdb_init() {
 	
+	// these still have to run even if ajax
 	mbdb_register_cpts();
 	mbdb_register_taxonomies();
+	
+	// Exit function if doing an AJAX request
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        return;
+    }
 	
 	mbdb_add_tax_grid();
 	
 	mbdb_upgrade_versions();
 	
-	//mbdb_set_default_tax_grid_slugs();
 }
 
 /**
