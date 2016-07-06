@@ -681,7 +681,7 @@ function mbdb_upgrade_to_3_4() {
 			// 6. Update page content
 			wp_update_post( array( 'ID' => $page->ID, 'post_content' => $content ) );
 			
-			echo 'done!</p>';
+			echo __('done!', 'mooberry-book-manager') . '</p>';
 			flush();
 			
 		} 
