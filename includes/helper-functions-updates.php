@@ -60,7 +60,7 @@ function mbdb_upgrade_versions() {
 			mbdb_upgrade_to_3_1_1();
 		}
 		
-		if (version_compare($current_version, '3.4', '<')) {
+		if (version_compare($current_version, '3.4.1', '<')) {
 			$upgrading = get_option('mbdb_upgrading_to_3_4');
 			
 			if ($upgrading == 'yes') {

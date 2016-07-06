@@ -1,10 +1,10 @@
 === Mooberry Book Manager ===
 Contributors: mooberrydreams
-Donate link: http://www.mooberrydreams.com/
+Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.5.3 
-Stable tag: 3.4    
+Stable tag: 3.4.1    
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.4.1 =
+* Fixed: AJAX needed for updating... but prevent updating from running more than once
+
 = 3.4 = 
 * Added: Book Grid Shortcodes. See the [documentation](http://www.bookmanager.mooberrydreams.com/docs/category/mooberry-book-manager/book-grids/) for details
 * Fixed: translation errors
