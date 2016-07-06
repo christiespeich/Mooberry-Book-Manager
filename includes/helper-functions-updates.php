@@ -60,27 +60,30 @@ function mbdb_upgrade_versions() {
 			mbdb_upgrade_to_3_1_1();
 		}
 		
-		if (version_compare($current_version, '3.4.1', '<')) {
-			$upgrading = get_option('mbdb_upgrading_to_3_4');
+		if (version_compare($current_version, '3.4.2', '<')) {
+			/*$upgrading = get_option('mbdb_upgrading_to_3_4');
 			
 			if ($upgrading == 'yes') {
 				return;
 			}			
 			update_option('mbdb_upgrading_to_3_4', 'yes');
 			mbdb_upgrade_to_3_4();
-			delete_option('mbdb_upgrading_to_3_4');
+			delete_option('mbdb_upgrading_to_3_4'); */
+			
+				
+				
+			$m = __('Upgrading to Mooberry Book Manager version 3.4.2 requires migrating your Book Grids. Without migrating, your Book Grids won\'t appear on your site.', 'mooberry-book-manager');
+				
+				$m2 = __('Migrate Book Grids Now', 'mooberry-book-manager');
+				$message = $m . '<p><a href="admin.php?page=mbdb_migrate_grids" id="mbdb_3_4_2_migrate" class="button">' . $m2 . '</a></p>';
+				
+				
+				mbdb_set_admin_notice($message, 'error', '3_4_2_migrate');
+				
+				
 		}
 		
-		/*
-		$m1 = __('You may choose to re-migrate your data from version 2 if you\'ve noticed issues with your books\' information.', 'mooberry-book-manager');
-		$m4 = __('Changes you\'ve made since migrating may be lost.', 'mooberry-book-manager');
-		$m2 = __('Migrate Data Now', 'mooberry-book-manager');
-		$m3 = __('Dismiss Notice', 'mooberry-book-manager');
-		$key = '3_1_remigrate';
 		
-		$message = $m1 . '<b>' . $m4 . '</b><p><a href="#" id="mbdb_3_1_remigrate" class="button">' . $m2 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $m3 . '</a></p>';
-		mbdb_set_admin_notice($message, 'error', $key );
-	*/
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
@@ -621,7 +624,7 @@ function mbdb_upgrade_to_3_4() {
 	foreach($data as $page) {
 		// 2. Create a new Book Grid
 		// sometimes this runs twice so dont insert double posts
-		
+		echo '<p>Importing Grid on Page ' . $page->post_title . '...';
 		
 		$title =  sanitize_title(__('Imported Book Grid: ', 'mooberry-book-manager') . $page->post_name);
 		$sql2 = "select * from wp_posts where post_type='mbdb_book_grid' and post_status='publish' and post_name='" . $title . "'";
@@ -657,6 +660,8 @@ function mbdb_upgrade_to_3_4() {
 				// 3c. If it's a book grid meta data, copy it to a post meta with the grid id
 			
 				if (substr($key, 0, 16) == '_mbdb_book_grid_') {
+					echo '.';
+					
 					if (is_serialized( $meta_data[0] ) ) {
 						$meta_data[0] = unserialize($meta_data[0]);
 					}
@@ -675,11 +680,17 @@ function mbdb_upgrade_to_3_4() {
 			
 			// 6. Update page content
 			wp_update_post( array( 'ID' => $page->ID, 'post_content' => $content ) );
+			
+			echo 'done!</p>';
+			flush();
+			
 		} 
 			
 	}
 	
-
+	echo '<script language="javascript"> jQuery("#mbdb_migrate_books_loading").hide();</script>';
+	
+	mbdb_remove_admin_notice('3_4_2_migrate');
 }
 
 

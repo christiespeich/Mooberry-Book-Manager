@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.5.3 
-Stable tag: 3.4.1    
+Stable tag: 3.4.2    
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.4.2 =
+* Fixed: Moved book grid migration to a separate page instead of auto-running on update
+
 = 3.4.1 =
 * Fixed: AJAX needed for updating... but prevent updating from running more than once
 
