@@ -125,6 +125,7 @@ class mbdb_Admin_Settings {
 		
 		// show migrate book grids page if version is 3.4.2
 		$import_grids = get_option('mbdb_migrate_grids');
+		if (!$import_grids) {
 			$pages['mbdb_migrate_grids'] = array ( 'page_title'	=>	__('Mooberry Book Manager Book Grid Migration', 'mooberry-book-manager'),
 														'menu_title'	=>	__('Migrate Book Grids', 'mooberry-book-manager')
 												);
