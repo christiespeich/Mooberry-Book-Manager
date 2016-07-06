@@ -176,7 +176,7 @@ abstract class mbdb_widget extends WP_Widget {
 	}
 	
 	protected function outputCover ($book, $book_link, $bookTitle, $instance) {
-		$image_src = $book->cover;
+	
 		$image_id = $book->cover_id;
 		
 		if ( $book_link != '' ) {
@@ -184,6 +184,13 @@ abstract class mbdb_widget extends WP_Widget {
 			echo '<A class="mbm-widget-link" HREF="' . esc_url($book_link) . '"> ';
 		}
 		
+		// 3.4.1 -- uses get_attachemnt_image_src
+		$image_src = '';
+		$attachment_src = wp_get_attachment_image_src ( $image_id, 'medium' );
+		if ( $attachment_src !== false) {
+			$image_src = $attachment_src[0];
+		}
+	
 		$image_src = mbdb_get_cover( $image_src, 'widget' );
 		
 		if ($image_src && $image_src !== '') {

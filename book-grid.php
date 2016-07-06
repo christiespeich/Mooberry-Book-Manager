@@ -959,17 +959,18 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 	
 	
 	
-	
-	$image = $book->cover; 
+	// 3.4.1 -- uses get_attachemnt_image_src
+	//$image = $book->cover; 
+	$image = wp_get_attachment_image_src ($book->cover_id, 'large');
 	$default_alt = __('Book Cover:', 'mooberry-book-manager') . ' ' . $book->post_title;
 	
 	$content = '<span class="mbdb_float_grid" style="height: ' . ($mbdb_book_grid_cover_height + 50) . 'px; width: ' . $mbdb_book_grid_cover_height . 'px;">';
 	if ($image) {
 		$alt = mbdb_get_alt_text( $book->cover_id, $default_alt );
 		$content .= '<div class="mbdb_grid_image">';
-		$content = apply_filters('mbdb_book_grid_pre_image', $content, $book->book_id, $image);
-		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($image) . '" ' . $alt . ' ></a>';
-		$content = apply_filters('mbdb_book_grid_post_image', $content, $book->book_id, $image);
+		$content = apply_filters('mbdb_book_grid_pre_image', $content, $book->book_id, $image[0]);
+		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($image[0]) . '" ' . $alt . ' ></a>';
+		$content = apply_filters('mbdb_book_grid_post_image', $content, $book->book_id, $image[0]);
 		$content .= '</div>';
 		
 	} else {
