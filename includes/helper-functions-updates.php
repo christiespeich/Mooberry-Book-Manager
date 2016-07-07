@@ -70,7 +70,7 @@ function mbdb_upgrade_versions() {
 			mbdb_upgrade_to_3_4();
 			delete_option('mbdb_upgrading_to_3_4'); */
 			
-				
+				delete_option('mbdb_migrate_grids');
 				
 			$m = __('Upgrading to Mooberry Book Manager version 3.4.3 requires migrating your Book Grids. Without migrating, your Book Grids won\'t appear on your site.', 'mooberry-book-manager');
 				
@@ -619,7 +619,7 @@ function mbdb_upgrade_to_3_4() {
 		*/			
 	
 	
-	$data = $wpdb->query("select p.* from {$wpdb->prefix}postmeta as pm join {$wpdb->prefix}posts as p on p.ID = pm.post_id where meta_key = '_mbdb_book_grid_display' and meta_value = 'yes' and p.post_type = 'page' and p.post_status = 'publish' order by p.ID");
+	$data = $wpdb->get_results("select p.* from {$wpdb->prefix}postmeta as pm join {$wpdb->prefix}posts as p on p.ID = pm.post_id where meta_key = '_mbdb_book_grid_display' and meta_value = 'yes' and p.post_type = 'page' and p.post_status = 'publish' order by p.ID");
 	
 	foreach($data as $page) {
 		// 2. Create a new Book Grid
@@ -628,7 +628,7 @@ function mbdb_upgrade_to_3_4() {
 		
 		$title =  sanitize_title(__('Imported Book Grid: ', 'mooberry-book-manager') . $page->post_name);
 		
-		$book_grid_exists = $wpdb->query("select * from {$wpdb->prefix}posts where post_type='mbdb_book_grid' and post_status='publish' and post_name='" . $title . "'");
+		$book_grid_exists = $wpdb->get_results("select * from {$wpdb->prefix}posts where post_type='mbdb_book_grid' and post_status='publish' and post_name='" . $title . "'");
 		
 		/*$book_grid_exists = get_posts(array(
 								'post_type' => 'mbdb_book_grid',
