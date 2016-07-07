@@ -1198,7 +1198,7 @@ function mbdb_shortcode_cover( $attr, $content) {
 								'wrap' => 'yes',
 								'book' => ''), $attr);
 	$image_src = '';
-	// 3.4.1 -- uses get_attachemnt_image_src
+	// 3.4.4 -- uses get_attachemnt_image_src
 	$cover_id = mbdb_get_book_data('cover_id', $attr['book']);
 	if ($cover_id !== false) {
 		$attachment_src = wp_get_attachment_image_src ( $cover_id, 'large' );

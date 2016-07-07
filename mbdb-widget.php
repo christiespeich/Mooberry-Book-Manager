@@ -184,7 +184,7 @@ abstract class mbdb_widget extends WP_Widget {
 			echo '<A class="mbm-widget-link" HREF="' . esc_url($book_link) . '"> ';
 		}
 		
-		// 3.4.1 -- uses get_attachemnt_image_src
+		// 3.4.4 -- uses get_attachemnt_image_src
 		$image_src = '';
 		$attachment_src = wp_get_attachment_image_src ( $image_id, 'medium' );
 		if ( $attachment_src !== false) {

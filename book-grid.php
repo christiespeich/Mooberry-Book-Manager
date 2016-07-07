@@ -959,7 +959,7 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 	
 	
 	
-	// 3.4.1 -- uses get_attachemnt_image_src
+	// 3.4.4 -- uses get_attachemnt_image_src
 	//$image = $book->cover; 
 	$image = wp_get_attachment_image_src ($book->cover_id, 'large');
 	$default_alt = __('Book Cover:', 'mooberry-book-manager') . ' ' . $book->post_title;
