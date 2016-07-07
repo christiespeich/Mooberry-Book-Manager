@@ -609,15 +609,15 @@ function mbdb_add_book_grid_shortcode_button() {
 	$content = '<!-- Grid Parameters:
 				' . print_r($grid_values, true) . ' -->' . $content;
 				
-
+/*
 	// add on bottom text
 	if (array_key_exists('_mbdb_book_grid_description_bottom', $mbdb_book_grid_meta_data)) {
 		$book_grid_description_bottom = $mbdb_book_grid_meta_data[ '_mbdb_book_grid_description_bottom'][0];
 	} else {
 		$book_grid_description_bottom = '';
 	}
-	
-	return $content . $book_grid_description_bottom;
+	*/
+	return $content; // . $book_grid_description_bottom;
 	
 }
 
