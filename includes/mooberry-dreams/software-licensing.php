@@ -94,10 +94,8 @@ class MBDB_License {
 	 * @since 0.1.0
 	 */
 	public function add_options_page() {
-		
-		$subpages = array_column($GLOBALS['submenu']['mbdb_options'], 2);
-	
-		if (array_search('mbdb_license_keys', $subpages) === false) {
+		global $submenu;
+		if (!mbdb_in_array_r('mbdb_license_keys', $submenu['mbdb_options'])) {
 			$sub_page_hook = add_submenu_page( 'mbdb_options', 
 							__( 'Mooberry Book Manager Extension License Keys', 'mooberry-book-manager' ), 
 							__('License Keys', 'mooberry-book-manager'), 
