@@ -1197,11 +1197,17 @@ function mbdb_shortcode_cover( $attr, $content) {
 								'align' => 'right',
 								'wrap' => 'yes',
 								'book' => ''), $attr);
-	$image_src = '';							
-	$image_src = mbdb_get_book_data('cover', $attr['book']);
-	if ($image_src === false) {
-		$image_src = mbdb_get_cover( $image_src, 'page' );
-	}
+	$image_src = '';
+	// 3.4.4 -- uses get_attachemnt_image_src
+	$cover_id = mbdb_get_book_data('cover_id', $attr['book']);
+	if ($cover_id !== false) {
+		$attachment_src = wp_get_attachment_image_src ( $cover_id, 'large' );
+		if ( $attachment_src !== false) {
+			$image_src = $attachment_src[0];
+		}
+	} 
+	
+	$image_src = mbdb_get_cover( $image_src, 'page' );
 	
 	if ( $image_src == '' ) {
 		return mbdb_blank_output( 'cover', '' );

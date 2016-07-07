@@ -89,8 +89,15 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 		case 'cover':
 			do_action( 'mbdb_book_pre_mbdb_cover_column', $column, $data, $book );
 			if ( $data != '' ) {
-				$alt = mbdb_get_alt_text( $book->cover_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . get_the_title($post_id) );
-				echo apply_filters( 'mbdb_book_mbdb_cover_column', '<IMG SRC="' . esc_url($data) . '" width="100" ' . $alt . ' />', $column, $data, $book );
+				// 3.4.4 -- uses get_attachemnt_image_src
+				$image_src = '';
+				$image_id = $book->cover_id;
+				$attachment_src = wp_get_attachment_image_src ( $image_id, 'medium' );
+				if ( $attachment_src !== false) {
+					$image_src = $attachment_src[0];
+				}
+				$alt = mbdb_get_alt_text( $image_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . get_the_title($post_id) );
+				echo apply_filters( 'mbdb_book_mbdb_cover_column', '<img src="' . esc_url($image_src) . '" width="100" ' . $alt . ' />', $column, $data, $book );
 			}
 			do_action('mbdb_book_post_mbdb_cover_column', $column, $data, $book );
 			break;
