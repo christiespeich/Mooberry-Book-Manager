@@ -1,6 +1,6 @@
 <?php
-add_action( 'admin_head', 'mbdb_register_admin_styles');
-add_action( 'admin_enqueue_scripts', 'mbdb_register_admin_styles');	 
+add_action( 'admin_head', 'mbdb_register_admin_styles', 90);
+add_action( 'admin_enqueue_scripts', 'mbdb_register_admin_styles', 90);	 
 function mbdb_register_admin_styles() {
 	wp_register_style( 'mbdb-admin-styles', MBDB_PLUGIN_URL .  'css/admin-styles.css', '', mbdb_get_enqueue_version()  );
 	wp_enqueue_style( 'mbdb-admin-styles' );
