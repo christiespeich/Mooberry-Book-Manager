@@ -617,9 +617,9 @@ function mbdb_upgrade_to_3_4() {
 							)
 					);
 		*/			
-	$sql = "select p.* from wp_postmeta as pm join wp_posts as p on p.ID = pm.post_id where meta_key = '_mbdb_book_grid_display' and meta_value = 'yes' and p.post_type = 'page' and p.post_status = 'publish' order by p.ID";
 	
-	$data = $wpdb->get_results($sql);
+	
+	$data = $wpdb->query("select p.* from {$wpdb->prefix}postmeta as pm join {$wpdb->prefix}posts as p on p.ID = pm.post_id where meta_key = '_mbdb_book_grid_display' and meta_value = 'yes' and p.post_type = 'page' and p.post_status = 'publish' order by p.ID");
 	
 	foreach($data as $page) {
 		// 2. Create a new Book Grid
@@ -627,8 +627,8 @@ function mbdb_upgrade_to_3_4() {
 		echo '<p>Importing Grid on Page ' . $page->post_title . '...';
 		
 		$title =  sanitize_title(__('Imported Book Grid: ', 'mooberry-book-manager') . $page->post_name);
-		$sql2 = "select * from wp_posts where post_type='mbdb_book_grid' and post_status='publish' and post_name='" . $title . "'";
-		$book_grid_exists = $wpdb->get_results($sql2);
+		
+		$book_grid_exists = $wpdb->query("select * from {$wpdb->prefix}posts where post_type='mbdb_book_grid' and post_status='publish' and post_name='" . $title . "'");
 		
 		/*$book_grid_exists = get_posts(array(
 								'post_type' => 'mbdb_book_grid',
