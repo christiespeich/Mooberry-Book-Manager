@@ -291,7 +291,7 @@ class mbdb_Admin_Settings {
 	function migrate_grids() {
 		$import_grids = get_option('mbdb_migrate_grids');
 		if ($import_grids) {
-			echo '<h4>' . __('Note: Book Grids have already been migrated. Mooberry Book Manager 3.4.2 is ready to use!', 'mooberry-book-manger') . '</h4>';
+			echo '<h4>' . __('Note: Book Grids have already been migrated. Mooberry Book Manager 3.4.3 is ready to use!', 'mooberry-book-manger') . '</h4>';
 			return;
 		}
 		
@@ -299,7 +299,7 @@ class mbdb_Admin_Settings {
 		echo '<img id="mbdb_migrate_books_loading" src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif"/>';
 		flush();
 		mbdb_upgrade_to_3_4();
-		echo '<h4>' . __('Success! Mooberry Book Manager version 3.4.2 is ready to use!', 'mooberry-book-manager') . '</h4>  <a href="edit.php?post_type=mbdb_book_grid">' . __('Click here to see your book grids.', 'mooberry-book-manager') . '</a>';
+		echo '<h4>' . __('Success! Mooberry Book Manager version 3.4.3 is ready to use!', 'mooberry-book-manager') . '</h4>  <a href="edit.php?post_type=mbdb_book_grid">' . __('Click here to see your book grids.', 'mooberry-book-manager') . '</a>';
 		update_option('mbdb_migrate_grids', true);
 	}
 	

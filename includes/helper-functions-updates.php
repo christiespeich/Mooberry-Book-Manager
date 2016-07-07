@@ -60,7 +60,7 @@ function mbdb_upgrade_versions() {
 			mbdb_upgrade_to_3_1_1();
 		}
 		
-		if (version_compare($current_version, '3.4.2', '<')) {
+		if (version_compare($current_version, '3.4.3', '<')) {
 			/*$upgrading = get_option('mbdb_upgrading_to_3_4');
 			
 			if ($upgrading == 'yes') {
@@ -72,7 +72,7 @@ function mbdb_upgrade_versions() {
 			
 				
 				
-			$m = __('Upgrading to Mooberry Book Manager version 3.4.2 requires migrating your Book Grids. Without migrating, your Book Grids won\'t appear on your site.', 'mooberry-book-manager');
+			$m = __('Upgrading to Mooberry Book Manager version 3.4.3 requires migrating your Book Grids. Without migrating, your Book Grids won\'t appear on your site.', 'mooberry-book-manager');
 				
 				$m2 = __('Migrate Book Grids Now', 'mooberry-book-manager');
 				$message = $m . '<p><a href="admin.php?page=mbdb_migrate_grids" id="mbdb_3_4_2_migrate" class="button">' . $m2 . '</a></p>';
