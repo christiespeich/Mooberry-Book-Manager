@@ -38,10 +38,6 @@ function mbdb_init() {
 	mbdb_register_cpts();
 	mbdb_register_taxonomies();
 	
-	// Exit function if doing an AJAX request
-    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-        return;
-    }
 	
 	mbdb_add_tax_grid();
 	

@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'admin_head', 'mbdb_register_admin_styles' );	 
+add_action( 'admin_enqueue_scripts', 'mbdb_register_admin_styles', 5 );	 
 function mbdb_register_admin_styles() {
 	wp_register_style( 'mbdb-admin-styles', MBDB_PLUGIN_URL .  'css/admin-styles.css', '', mbdb_get_enqueue_version()  );
 	wp_enqueue_style( 'mbdb-admin-styles' );
@@ -136,6 +136,7 @@ function mbdb_include_media_button() {
 	wp_enqueue_script('jquery-ui-dialog');
     wp_enqueue_script('mbdb-media-button', MBDB_PLUGIN_URL . 'includes/js/media-buttons.js', array('jquery'), mbdb_get_enqueue_version(), true);
 	wp_localize_script( 'mbdb-media-button', 'button_label', $button_label );	
+	wp_enqueue_style('mbds-jquery-ui-css-dialog', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
 }
 
 

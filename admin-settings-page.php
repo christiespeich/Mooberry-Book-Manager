@@ -122,6 +122,14 @@ class mbdb_Admin_Settings {
 												'menu_title'	=>	__('Migrate Data', 'mooberry-book-manager')
 												);
 		}
+		
+		// show migrate book grids page if version is 3.4.2
+		$import_grids = get_option('mbdb_migrate_grids');
+		if (!$import_grids) {
+			$pages['mbdb_migrate_grids'] = array ( 'page_title'	=>	__('Mooberry Book Manager Book Grid Migration', 'mooberry-book-manager'),
+														'menu_title'	=>	__('Migrate Book Grids', 'mooberry-book-manager')
+												);
+		}
 		$pages = apply_filters('mbdb_settings_pages', $pages);
 		
 															
@@ -174,6 +182,11 @@ class mbdb_Admin_Settings {
 		// metabox
 		if ($this->tab == 'mbdb_migrate') {
 			$this->migrate_data();
+			return;
+		}
+		
+		if ($this->tab == 'mbdb_migrate_grids') {
+			$this->migrate_grids();
 			return;
 		}
 		do_action('mbdb_settings_before_metabox', $this->tab, $this->metabox_id);
@@ -273,6 +286,21 @@ class mbdb_Admin_Settings {
 			global $wpdb;
 			echo '<h4>' . sprintf(__('An error occured while migrating data to version 3.0. Please contact Mooberry Dreams at %s with the following error message.', 'mooberry-book-manager'), '<A HREF="mailto:bookmanager@mooberrydreams.com">bookmanager@mooberrydreams.com</A>') . '</h4><p><h4><b>' . __('Error:', 'mooberry-book-manager') . '</b></h3> <h3>' . $wpdb->last_error . '</h4></p>';
 		}
+	}
+	
+	function migrate_grids() {
+		$import_grids = get_option('mbdb_migrate_grids');
+		if ($import_grids) {
+			echo '<h4>' . __('Note: Book Grids have already been migrated. Mooberry Book Manager 3.4.3 is ready to use!', 'mooberry-book-manger') . '</h4>';
+			return;
+		}
+		
+		echo '<h4>' . __('Migrating Book Grids...please wait...', 'mooberry-book-manger') . '</h4>';
+		echo '<img id="mbdb_migrate_books_loading" src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif"/>';
+		flush();
+		mbdb_upgrade_to_3_4();
+		echo '<h4>' . __('Success! Mooberry Book Manager version 3.4.3 is ready to use!', 'mooberry-book-manager') . '</h4>  <a href="edit.php?post_type=mbdb_book_grid">' . __('Click here to see your book grids.', 'mooberry-book-manager') . '</a>';
+		update_option('mbdb_migrate_grids', true);
 	}
 	
 	function mbdb_book_page_settings( $mbdb_settings_metabox ) {
