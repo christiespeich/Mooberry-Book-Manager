@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.5.3 
-Stable tag: 3.4.5    
+Stable tag: 3.4.6    
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.4.6 =
+* Fixed: Price no longer rounds to nearest whole number
+* Updated: language files
+
 = 3.4.5 =
 * Fixed: No more double-outputting the Additional Content under book grids
 * Fixed: broken styling on editing pages
