@@ -308,6 +308,9 @@ function mbdb_get_wysiwyg_output( $content ) {
 
 // multi-dimensional array searching
  function mbdb_in_array_r($needle, $haystack, $strict = false) {
+	 if ( !is_array($haystack) ) {
+		 return false;
+	 }
 		foreach ($haystack as $item) {
 			if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && mbdb_in_array_r($needle, $item, $strict))) {
 				return true;
