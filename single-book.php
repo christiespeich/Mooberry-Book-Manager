@@ -1795,7 +1795,7 @@ function mbdb_shortcode_editions( $attr, $content) {
 				}
 				
 				if ($is_tag ) {
-					$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __('Tags:','mooberry-book-manager') . '</span> <span class="mbm-book-details-tags-label">[book_tags  delim="comma" blank=""]</span><br>';
+					$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __('Tags:','mooberry-book-manager') . '</span> <span class="mbm-book-details-tags-data">[book_tags  delim="comma" blank=""]</span><br>';
 				}
 				$book_page_layout .= '</div></div> <!-- mbm-book-details -->';
 			}
