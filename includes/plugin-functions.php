@@ -18,6 +18,10 @@ function mbdb_load_textdomain() {
 	
 	// load the settings
 	$mbdb_admin_settings = mbdb_admin();
+	
+	// check if SuperCache is installed
+	define('MBDB_SUPERCACHE', function_exists('wp_cache_manager'));
+	
 }
 
 /**

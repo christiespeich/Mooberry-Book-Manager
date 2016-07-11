@@ -81,15 +81,23 @@ abstract class MOOBD_Database {
 		global $wpdb;
 		//$sql = $wpdb->prepare( $sql );
 		
-		$cache = $this->get_cache($sql);
-		if (false !== $cache) {
-			return $cache;
-		}
-
-		$data = $wpdb->get_results($sql);
-		if ($cache_results) {
-			$this->set_cache( $data, $sql );
+		// never use cache when supercache is installed
+		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+			$cache = $this->get_cache($sql);
+			if (false !== $cache) {
+				return $cache;
+			}
 		} 
+		
+		$data = $wpdb->get_results($sql);
+		
+		// never use cache when supercache is installed
+		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+			if ($cache_results) {
+				$this->set_cache( $data, $sql );
+			} 
+		}
+		
 		return $data;
 	}
 	
@@ -104,12 +112,13 @@ abstract class MOOBD_Database {
 		
 		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $this->primary_key = %s ", $value );
 		
-	
-		$cache = $this->get_cache($sql);
-		if (false !== $cache) {
-			return $cache;
-		}
-		
+		// never use cache when supercache is installed
+		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {	
+			$cache = $this->get_cache($sql);
+			if (false !== $cache) {
+				return $cache;
+			}
+		} 
 		
 		$data = $wpdb->get_row($sql);
 		if ($cache_results) {
@@ -131,19 +140,22 @@ abstract class MOOBD_Database {
 		$table = $this->table_name();
 		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $column = %s LIMIT 1;", $row_id );
 		
-		
-		$cache = $this->get_cache($sql);
-		
-		if (false !== $cache) {
-			return $cache;
-		}
-		
+		// never use cache when supercache is installed
+		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+			$cache = $this->get_cache($sql);
+			
+			if (false !== $cache) {
+				return $cache;
+			}
+		} 
 		$data = $wpdb->get_row( $sql );
-		
-		if ($cache_results) {
-			$this->set_cache( $data, $sql );
+
+		// never use cache when supercache is installed
+		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {		
+			if ($cache_results) {
+				$this->set_cache( $data, $sql );
+			}
 		}
-		
 		return $data;
 		
 	}
@@ -426,7 +438,10 @@ abstract class MOOBD_Database {
 	}
 	
 	protected function clear_cache() {
-	//	error_log('clearing cache');
+		if ( defined('MBDB_SUPERCACHE') && MBDB_SUPERCACHE ) {
+			return;
+		}
+		
 		//$this->delete_cache($this->table_name);
 		$mbdb_cache = get_option('mbdb_cache');
 		$table = $this->table_name();

@@ -72,18 +72,23 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 					$sql .= " AND t.blog_id = " . $this->blog_id;
 				}
 		*/
-				$cache = $this->get_cache($sql);
-				
-				if (false !== $cache) {
-					return $cache;
-				}
+
+				// never use cache when supercache is installed
+				if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+					$cache = $this->get_cache($sql);
+					if (false !== $cache) {
+						return $cache;
+					}
+				} 
 				
 				global $wpdb;
 				$data =  $wpdb->get_row($sql);
-				if ($cache_results) {
-					$this->set_cache( $data, $sql );
+				// never use cache when supercache is installed
+				if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+					if ($cache_results) {
+						$this->set_cache( $data, $sql );
+					}
 				}
-
 			}
 		}
 		
