@@ -5,6 +5,8 @@ abstract class MOOBD_Database {
     protected $primary_key;
 	protected $table;
 	protected $version;
+	protected $flush_on_update = false;
+	
 	//protected $prefix;
 	//protected $blog_id;
 	
@@ -81,22 +83,18 @@ abstract class MOOBD_Database {
 		global $wpdb;
 		//$sql = $wpdb->prepare( $sql );
 		
-		// never use cache when supercache is installed
-		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
 			$cache = $this->get_cache($sql);
 			if (false !== $cache) {
 				return $cache;
 			}
-		} 
+	
 		
 		$data = $wpdb->get_results($sql);
 		
-		// never use cache when supercache is installed
-		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+		
 			if ($cache_results) {
 				$this->set_cache( $data, $sql );
 			} 
-		}
 		
 		return $data;
 	}
@@ -112,13 +110,10 @@ abstract class MOOBD_Database {
 		
 		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $this->primary_key = %s ", $value );
 		
-		// never use cache when supercache is installed
-		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {	
 			$cache = $this->get_cache($sql);
 			if (false !== $cache) {
 				return $cache;
 			}
-		} 
 		
 		$data = $wpdb->get_row($sql);
 		if ($cache_results) {
@@ -140,22 +135,16 @@ abstract class MOOBD_Database {
 		$table = $this->table_name();
 		$sql = $wpdb->prepare( "SELECT * FROM $table WHERE $column = %s LIMIT 1;", $row_id );
 		
-		// never use cache when supercache is installed
-		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
 			$cache = $this->get_cache($sql);
 			
 			if (false !== $cache) {
 				return $cache;
 			}
-		} 
 		$data = $wpdb->get_row( $sql );
 
-		// never use cache when supercache is installed
-		if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {		
 			if ($cache_results) {
 				$this->set_cache( $data, $sql );
 			}
-		}
 		return $data;
 		
 	}
@@ -430,19 +419,14 @@ abstract class MOOBD_Database {
 		//error_log('setting cache = : ' . $key . ' = ' . $sql);
 		$table = $this->table_name();
 		wp_cache_set( $key, $data, $table,  24*60*60);
-		$mbdb_cache = get_option('mbdb_cache');
-		$mbdb_cache[$table][] = $key;
-		update_option('mbdb_cache', $mbdb_cache);
+		
 		
 		
 	}
 	
 	protected function clear_cache() {
-		if ( defined('MBDB_SUPERCACHE') && MBDB_SUPERCACHE ) {
-			return;
-		}
 		
-		//$this->delete_cache($this->table_name);
+	/* 	//$this->delete_cache($this->table_name);
 		$mbdb_cache = get_option('mbdb_cache');
 		$table = $this->table_name();
 		
@@ -453,7 +437,18 @@ abstract class MOOBD_Database {
 			}
 			unset($mbdb_cache[$table]);
 			update_option('mbdb_cache', $mbdb_cache);
+		} */
+		
+		if ( !$this->flush_on_update) {
+			return;
 		}
+		
+		
+		// unfortunately must flush entire cache because WP does not provide a way
+		// to clear cache in a group, only by key
+		wp_cache_flush();
+		
+		
 		
 		// clear WP Super Cache
 		if (function_exists('wp_cache_clear_cache')) {

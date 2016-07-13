@@ -25,6 +25,9 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		
 		add_action( 'before_delete_post', array( $this, 'post_deleted') );
 		
+		$this->flush_on_update = true;
+		
+		
 		parent::__construct( $table_name );
 			
 	}
@@ -51,7 +54,6 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		}
 	}
 	
-	
 	public function get($ids = null, $orderby = null, $order = null, $include_unpublished = false, $cache_results = true) {
 		global $wpdb;
 		if ($ids == null) {
@@ -73,22 +75,17 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 				}
 		*/
 
-				// never use cache when supercache is installed
-				if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
+				
 					$cache = $this->get_cache($sql);
 					if (false !== $cache) {
 						return $cache;
 					}
-				} 
 				
 				global $wpdb;
 				$data =  $wpdb->get_row($sql);
-				// never use cache when supercache is installed
-				if (!defined('MBDB_SUPERCACHE') || !MBDB_SUPERCACHE) {
-					if ($cache_results) {
-						$this->set_cache( $data, $sql );
-					}
-				}
+				if ($cache_results) {
+					$this->set_cache( $data, $sql );
+				}	
 			}
 		}
 		

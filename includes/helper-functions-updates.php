@@ -83,6 +83,10 @@ function mbdb_upgrade_versions() {
 				
 		}
 		
+		if (version_compare($current_version, '3.4.8', '<')) {
+			delete_option('mbdb_cache');
+		}
+		
 		
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
