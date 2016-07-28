@@ -1434,7 +1434,6 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 		if (array_key_exists('retailers', $mbdb_options)) {
 			foreach($mbdb_options['retailers'] as $r) {
 				if ($r['uniqueID'] == $mbdb_buylink['_mbdb_retailerID']) {
-					$mbdb_buylink = apply_filters('mbdb_buy_links_output', $mbdb_buylink);
 					//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
 					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
 					if (array_key_exists('image', $r) && $r['image']!='') {

@@ -769,7 +769,7 @@ function mbdb_get_books_by_taxonomy($level, $groups, $current_group, $selection,
 				$empty = apply_filters('mbdb_book_grid_uncategorized_heading', __('Uncategorized', 'mooberry-book-manager'));
 				break;
 			case 'series':
-				$empty = apply_filters('mbdb_book_grid_standalones_heading', __('Stand-Alone Books', 'mooberry-book-manager'));
+				$empty = apply_filters('mbdb_book_grid_standalones_heading', __('Standalones', 'mooberry-book-manager'));
 				break;
 			case 'tag':
 				$empty = apply_filters('mbdb_book_grid_untagged_heading', __('Untagged', 'mooberry-book-manager'));
