@@ -167,6 +167,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 == Changelog ==
 = 3.4.8 =
 * Fixed: error with caching that would evenutally cause an out of memory error
+
 = 3.4.7 =
 * Fixed: Ignore all object caching with Supercache is installed. (supercache still considers memcache use experimental)
 * Fixed: Tags no longer displayed as bold on book page
