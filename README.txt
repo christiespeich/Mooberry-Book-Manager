@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
-Tested up to: 4.5.3 
-Stable tag: 3.4.8    
+Tested up to: 4.6   
+Stable tag: 3.4.9     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,8 +165,15 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.4.9 =
+* Updated: Updates for Wordpress 4.6
+* Fixed: Allow price to be entered with commas (ie 1,99 vs 1.99)
+* Updated: New retailer logo images
+* Fixed: Standalones => Stand-Alone Books
+
 = 3.4.8 =
-* Fixed: error with caching that would evenutally cause an out of memory error
+* Fixed: error with caching that would eventually cause an out of memory error
+
 = 3.4.7 =
 * Fixed: Ignore all object caching with Supercache is installed. (supercache still considers memcache use experimental)
 * Fixed: Tags no longer displayed as bold on book page

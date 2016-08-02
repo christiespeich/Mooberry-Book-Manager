@@ -14,7 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'plugins_loaded', 'mbdb_load_textdomain' );
 function mbdb_load_textdomain() {
 
-	load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+	// pre 4.6 compatibility
+	global $wp_version;
+	if (version_compare($wp_version, '4.6', '<')) {
+		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+	}
 	
 	// load the settings
 	$mbdb_admin_settings = mbdb_admin();
@@ -495,8 +499,7 @@ function mbdb_save_taxonomy_book_grid_description( $term_id, $taxonomy ) {
 
    if ( $old_description && '' === $new_description ) {
        delete_term_meta( $term_id,  $taxonomy . '_book_grid_description' );
-   }
-   else {
+   } else {
 	   if ( $old_description !== $new_description ) {
         update_term_meta( $term_id,  $taxonomy . '_book_grid_description', $new_description );
 	   }
@@ -507,8 +510,7 @@ function mbdb_save_taxonomy_book_grid_description( $term_id, $taxonomy ) {
 
    if ( $old_description_bottom && '' === $new_description_bottom ) {
        delete_term_meta( $term_id,  $taxonomy . '_book_grid_description_bottom' );
-   }
-   else {
+   } else {
 	   if ( $old_description_bottom !== $new_description_bottom ) {
         update_term_meta( $term_id,  $taxonomy . '_book_grid_description_bottom', $new_description_bottom );
 	   }
@@ -879,15 +881,49 @@ function mbdb_register_taxonomies() {
 	if (  function_exists( 'get_term_meta' ) ) {
 		$taxonomies = get_object_taxonomies( 'mbdb_book', 'objects' );
 		foreach($taxonomies as $name => $taxonomy) {
-			
+		
 			$pretty_name = str_replace('mbdb_', '', $name);
 			
-			register_meta( 'term',  $name . '_book_grid_descripion', 'mbdb_sanitize_book_grid_description' );
-			register_meta( 'term', $name . '_book_grid_description_bottom', 'mbdb_sanitize_book_grid_description' );
+			$args = array(
+				'sanitize_callback' => 'mbdb_sanitize_book_grid_description',
+				'type' => 'string',
+				'description' => 'This text will be displayed above the auto-generated book grid.',
+				'single' => true,
+				'show_in_rest' => true,
+			);
+		
+			
+			register_meta( 'term',  $name . '_book_grid_description', $args );
+			// Pre-WordPress 4.6 compatibility
+			if ( ! has_filter( 'sanitize_term_meta_' . $name . '_book_grid_description' ) ) {
+				add_filter( 'sanitize_term_meta_' . $name . '_book_grid_description', 'mbdb_sanitize_book_grid_description', 10, 4 );
+			}
+			 
+			 
+			
+			$args['description'] = 'This text will be displayed below the auto-generated book grid.';
+			register_meta( 'term', $name . '_book_grid_description_bottom', $args );
+			// Pre-WordPress 4.6 compatibility
+			if ( ! has_filter( 'sanitize_term_meta_' . $name . '_book_grid_description_bottom' ) ) {
+				add_filter( 'sanitize_term_meta_' . $name . '_book_grid_description_bottom', 'mbdb_sanitize_book_grid_description', 10, 4 );
+			}
+			    
 			   
 			if (in_array($name, mbdb_taxonomies_with_websites() ) ) {
-				
-				register_meta( 'term', $name . '_website', 'mbdb_sanitize_url');
+				$args = array(
+					'sanitize_callback' => 'mbdb_sanitize_url',
+					'type' => 'string',
+					'description' => 'The website for this ' . $pretty_name,
+					'single' => true,
+					'show_in_rest' => true,
+				);
+				register_meta( 'term', $name . '_website', $args);
+				// Pre-WordPress 4.6 compatibility
+				if ( ! has_filter( 'sanitize_term_meta_' . $name . '_website' ) ) {
+					add_filter( 'sanitize_term_meta_' . $name . '_website', 'mbdb_sanitize_url', 10, 4 );
+				}
+					
+			   
 			}
 		
 			add_action(  $name . '_add_form_fields', 'mbdb_new_' . $pretty_name . '_grid_description_field' );

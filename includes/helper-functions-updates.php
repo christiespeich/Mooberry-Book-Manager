@@ -87,6 +87,14 @@ function mbdb_upgrade_versions() {
 			delete_option('mbdb_cache');
 		}
 		
+		if (version_compare($current_version, '3.4.9', '<')) {
+			$key = '3_4_9_new_images';
+			$message = __('New retailer logo images for Mooberry Book Manager are available. ', 'mooberry-book-manager');
+			$message .= '<a target="_new" href="http://wp.me/p4eHMh-cz">' . __('Click here to learn more.', 'mooberry-book-manager') . '</a>';
+			$message .= '&nbsp;&nbsp;<a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . __('Dismiss this notice', 'mooberry-book-manager') . '</a>';
+			mbdb_set_admin_notice($message, 'updated', $key );
+		}
+		
 		
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);

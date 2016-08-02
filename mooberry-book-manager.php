@@ -6,7 +6,7 @@
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
   *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *	 Version: 3.4.8
+  *	 Version: 3.4.9
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -27,7 +27,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 3.4.8
+  * @version 3.4.9
   */
   
 // Exit if accessed directly
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '3.4.8' );
+	define( 'MBDB_PLUGIN_VERSION', '3.4.9' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -241,12 +241,22 @@ function mbdb_flush_rewrite_rules_multisite() {
 	}
 
 	// ...and we're probably still friends.
-	$sites = wp_get_sites( array(  'limit' => 1000 ) );
+	// 4.6 compatibility
+	if (function_exists('get_sites')) {
+		$sites = get_sites( array( 'limit' => 1000 ) );
+	} else {
+		$sites = wp_get_sites( array(  'limit' => 1000 ) );
+	}
 	
 	foreach( $sites as $site ) {
-		
-		switch_to_blog( $site['blog_id'] );
-		delete_blog_option( $site['blog_id'], 'rewrite_rules' );
+		// 4.6 compatibility
+		if (function_exists('get_sites')) {
+			$blogID = $site->id;
+		} else {
+			$blogID = $site['blog_id'];
+		}
+		switch_to_blog( $blogID );
+		delete_blog_option( $blogID, 'rewrite_rules' );
 		restore_current_blog();
 	}
 }
