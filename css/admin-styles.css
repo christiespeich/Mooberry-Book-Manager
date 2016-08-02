@@ -21,6 +21,10 @@
     margin-left: -1.3em;
 }
 
+.cmb-repeat-group-wrap .cmb-remove-field-row, .cmb-repeat-group-wrap .cmb-repeat-group-field, .postbox-container .cmb-remove-field-row, .postbox-container .cmb-repeat-group-field {
+	padding-top: 0;
+}
+
 div[id*="-mbdb"] h2.hndle.ui-sortable-handle, div[id^="mbdb"] h2.hndle.ui-sortable-handle, .cmb2-options-page .cmb2-metabox-title  {
 	background: #9667a4;
 	color: white;
