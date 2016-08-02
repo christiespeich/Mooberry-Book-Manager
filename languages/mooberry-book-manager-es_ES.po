@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-07-08 10:00-0400\n"
+"POT-Creation-Date: 2016-08-02 10:04-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Mooberry Book Manager Book Grid Settings"
 msgstr ""
 
-#: admin-settings-page.php:99 includes/plugin-functions.php:621
+#: admin-settings-page.php:99 includes/plugin-functions.php:627
 msgid "Book Grid"
 msgstr ""
 
@@ -120,7 +120,7 @@ msgid ""
 "issues with your books' information.  "
 msgstr ""
 
-#: admin-settings-page.php:275 includes/helper-functions-updates.php:532
+#: admin-settings-page.php:275 includes/helper-functions-updates.php:544
 msgid "Changes you've made since migrating may be lost."
 msgstr ""
 
@@ -429,7 +429,7 @@ msgid ""
 "separate menu in your Dashboard for adding Book Grids."
 msgstr ""
 
-#: book-grid.php:40
+#: book-grid.php:40 includes/helper-functions-updates.php:94
 msgid "Dismiss this notice"
 msgstr ""
 
@@ -536,8 +536,8 @@ msgid "Uncategorized"
 msgstr "SIn categorizar"
 
 #: book-grid.php:772
-msgid "Standalones"
-msgstr "Autoconclusivos"
+msgid "Stand-Alone Books"
+msgstr ""
 
 #: book-grid.php:775
 msgid "Untagged"
@@ -599,7 +599,7 @@ msgid "Cover"
 msgstr "Portada"
 
 #: book.php:32 includes/helper-functions.php:145
-#: includes/plugin-functions.php:667
+#: includes/plugin-functions.php:673
 msgid "Genre"
 msgstr "Género"
 
@@ -608,8 +608,8 @@ msgid "Published"
 msgstr "Publicado"
 
 #: book.php:34 includes/helper-functions.php:146
-#: includes/plugin-functions.php:739 includes/plugin-functions.php:740
-#: includes/plugin-functions.php:749
+#: includes/plugin-functions.php:745 includes/plugin-functions.php:746
+#: includes/plugin-functions.php:755
 msgid "Series"
 msgstr "Serie"
 
@@ -861,15 +861,15 @@ msgctxt "noun"
 msgid "Link"
 msgstr "Enlace"
 
-#: includes/class-mbdb-db-cpt.php:278
+#: includes/class-mbdb-db-cpt.php:280
 msgid "Migrating"
 msgstr ""
 
-#: includes/class-mbdb-db-cpt.php:304
+#: includes/class-mbdb-db-cpt.php:306
 msgid "Error!"
 msgstr ""
 
-#: includes/class-mbdb-db-cpt.php:307
+#: includes/class-mbdb-db-cpt.php:309
 msgid "Success!"
 msgstr ""
 
@@ -883,44 +883,52 @@ msgstr ""
 msgid "Migrate Book Grids Now"
 msgstr ""
 
-#: includes/helper-functions-updates.php:508
+#: includes/helper-functions-updates.php:92
+msgid "New retailer logo images for Mooberry Book Manager are available. "
+msgstr ""
+
+#: includes/helper-functions-updates.php:93
+msgid "Click here to learn more."
+msgstr ""
+
+#: includes/helper-functions-updates.php:520
 msgid ""
 "Upgrading to Mooberry Book Manager version 3.1 requires some data migration "
 "before Mooberry Book Manager will operate properly."
 msgstr ""
 
-#: includes/helper-functions-updates.php:509
+#: includes/helper-functions-updates.php:521
 msgid ""
 "Even if you have previously migrated the data (if you upgraded to version "
 "3.0 and then rolled back to version 2.4.x), you must migrate again to ensure "
 "Mooberry Book Manaer will operate properly."
 msgstr ""
 
-#: includes/helper-functions-updates.php:510
+#: includes/helper-functions-updates.php:522
 msgid "Changes made since migrating the first time may be lost."
 msgstr ""
 
-#: includes/helper-functions-updates.php:511
-#: includes/helper-functions-updates.php:533 includes/plugin-functions.php:271
+#: includes/helper-functions-updates.php:523
+#: includes/helper-functions-updates.php:545 includes/plugin-functions.php:279
 msgid "Migrate Data Now"
 msgstr ""
 
-#: includes/helper-functions-updates.php:531
+#: includes/helper-functions-updates.php:543
 msgid ""
 "You may choose to re-migrate your data from version 2 if you've noticed "
 "issues with your books' information."
 msgstr ""
 
-#: includes/helper-functions-updates.php:534
+#: includes/helper-functions-updates.php:546
 msgid "Dismiss Notice"
 msgstr ""
 
-#: includes/helper-functions-updates.php:629
-#: includes/helper-functions-updates.php:644
+#: includes/helper-functions-updates.php:641
+#: includes/helper-functions-updates.php:656
 msgid "Imported Book Grid: "
 msgstr ""
 
-#: includes/helper-functions-updates.php:684
+#: includes/helper-functions-updates.php:696
 msgid "done!"
 msgstr ""
 
@@ -1007,19 +1015,19 @@ msgstr ""
 msgid "None"
 msgstr "Ninguno"
 
-#: includes/helper-functions.php:147 includes/plugin-functions.php:704
+#: includes/helper-functions.php:147 includes/plugin-functions.php:710
 msgid "Tag"
 msgstr "Etiqueta"
 
-#: includes/helper-functions.php:149 includes/plugin-functions.php:777
+#: includes/helper-functions.php:149 includes/plugin-functions.php:783
 msgid "Editor"
 msgstr ""
 
-#: includes/helper-functions.php:150 includes/plugin-functions.php:851
+#: includes/helper-functions.php:150 includes/plugin-functions.php:857
 msgid "Cover Artist"
 msgstr ""
 
-#: includes/helper-functions.php:151 includes/plugin-functions.php:814
+#: includes/helper-functions.php:151 includes/plugin-functions.php:820
 msgid "Illustrator"
 msgstr ""
 
@@ -1031,679 +1039,679 @@ msgstr ""
 msgid "Default"
 msgstr "Predeterminado"
 
-#: includes/helper-functions.php:488
+#: includes/helper-functions.php:491
 msgid "inches (in)"
 msgstr "pulgadas"
 
-#: includes/helper-functions.php:489
+#: includes/helper-functions.php:492
 msgid "centimeters (cm)"
 msgstr "centímetros"
 
-#: includes/helper-functions.php:490
+#: includes/helper-functions.php:493
 msgid "millimeters (mm)"
 msgstr "milímetros"
 
-#: includes/helper-functions.php:516
+#: includes/helper-functions.php:519
 msgid "Australian Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:517
+#: includes/helper-functions.php:520
 msgid "Brazilian Real "
 msgstr ""
 
-#: includes/helper-functions.php:518
+#: includes/helper-functions.php:521
 msgid "Canadian Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:519
+#: includes/helper-functions.php:522
 msgid "Czech Koruna"
 msgstr ""
 
-#: includes/helper-functions.php:520
+#: includes/helper-functions.php:523
 msgid "Danish Krone"
 msgstr ""
 
-#: includes/helper-functions.php:521
+#: includes/helper-functions.php:524
 msgid "Euro"
 msgstr ""
 
-#: includes/helper-functions.php:522
+#: includes/helper-functions.php:525
 msgid "Hong Kong Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:523
+#: includes/helper-functions.php:526
 msgid "Hungarian Forint"
 msgstr ""
 
-#: includes/helper-functions.php:524
+#: includes/helper-functions.php:527
 msgid "Indian Rupee"
 msgstr ""
 
-#: includes/helper-functions.php:525
+#: includes/helper-functions.php:528
 msgid "Israeli New Sheqel"
 msgstr ""
 
-#: includes/helper-functions.php:526
+#: includes/helper-functions.php:529
 msgid "Japanese Yen"
 msgstr ""
 
-#: includes/helper-functions.php:527
+#: includes/helper-functions.php:530
 msgid "Malaysian Ringgit"
 msgstr ""
 
-#: includes/helper-functions.php:528
+#: includes/helper-functions.php:531
 msgid "Mexican Peso"
 msgstr ""
 
-#: includes/helper-functions.php:529
+#: includes/helper-functions.php:532
 msgid "Nigerian Naira"
 msgstr ""
 
-#: includes/helper-functions.php:530
+#: includes/helper-functions.php:533
 msgid "Norwegian Krone"
 msgstr ""
 
-#: includes/helper-functions.php:531
+#: includes/helper-functions.php:534
 msgid "New Zealand Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:532
+#: includes/helper-functions.php:535
 msgid "Philippine Peso"
 msgstr ""
 
-#: includes/helper-functions.php:533
+#: includes/helper-functions.php:536
 msgid "Polish Zloty"
 msgstr ""
 
-#: includes/helper-functions.php:534
+#: includes/helper-functions.php:537
 msgid "Russian Rube"
 msgstr ""
 
-#: includes/helper-functions.php:535
+#: includes/helper-functions.php:538
 msgid "Singapore Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:536
+#: includes/helper-functions.php:539
 msgid "South African Rand"
 msgstr ""
 
-#: includes/helper-functions.php:537
+#: includes/helper-functions.php:540
 msgid "Swedish Krona"
 msgstr ""
 
-#: includes/helper-functions.php:538
+#: includes/helper-functions.php:541
 msgid "Swiss Franc"
 msgstr ""
 
-#: includes/helper-functions.php:539
+#: includes/helper-functions.php:542
 msgid "Taiwan New Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:540
+#: includes/helper-functions.php:543
 msgid "Thai Baht"
 msgstr ""
 
-#: includes/helper-functions.php:541
+#: includes/helper-functions.php:544
 msgid "Turkish Lira"
 msgstr ""
 
-#: includes/helper-functions.php:542
+#: includes/helper-functions.php:545
 msgid "U.K. Pound Sterling"
 msgstr ""
 
-#: includes/helper-functions.php:543
+#: includes/helper-functions.php:546
 msgid "U.S. Dollar"
 msgstr ""
 
-#: includes/helper-functions.php:584
+#: includes/helper-functions.php:587
 msgid "Abkhazian"
 msgstr ""
 
-#: includes/helper-functions.php:585
+#: includes/helper-functions.php:588
 msgid "Afar"
 msgstr ""
 
-#: includes/helper-functions.php:586
+#: includes/helper-functions.php:589
 msgid "Afrikaans"
 msgstr ""
 
-#: includes/helper-functions.php:587
+#: includes/helper-functions.php:590
 msgid "Albanian"
 msgstr ""
 
-#: includes/helper-functions.php:588
+#: includes/helper-functions.php:591
 msgid "Amharic"
 msgstr ""
 
-#: includes/helper-functions.php:589
+#: includes/helper-functions.php:592
 msgid "Arabic"
 msgstr ""
 
-#: includes/helper-functions.php:590
+#: includes/helper-functions.php:593
 msgid "Armenian"
 msgstr ""
 
-#: includes/helper-functions.php:591
+#: includes/helper-functions.php:594
 msgid "Assamese"
 msgstr ""
 
-#: includes/helper-functions.php:592
+#: includes/helper-functions.php:595
 msgid "Aymara"
 msgstr ""
 
-#: includes/helper-functions.php:593
+#: includes/helper-functions.php:596
 msgid "Azerbaijani"
 msgstr ""
 
-#: includes/helper-functions.php:594
+#: includes/helper-functions.php:597
 msgid "Bashkir"
 msgstr ""
 
-#: includes/helper-functions.php:595
+#: includes/helper-functions.php:598
 msgid "Basque"
 msgstr ""
 
-#: includes/helper-functions.php:596
+#: includes/helper-functions.php:599
 msgid "Bengali, Bangla"
 msgstr ""
 
-#: includes/helper-functions.php:597
+#: includes/helper-functions.php:600
 msgid "Bhutani"
 msgstr ""
 
-#: includes/helper-functions.php:598
+#: includes/helper-functions.php:601
 msgid "Bihari"
 msgstr ""
 
-#: includes/helper-functions.php:599
+#: includes/helper-functions.php:602
 msgid "Bislama"
 msgstr ""
 
-#: includes/helper-functions.php:600
+#: includes/helper-functions.php:603
 msgid "Breton"
 msgstr ""
 
-#: includes/helper-functions.php:601
+#: includes/helper-functions.php:604
 msgid "Bulgarian"
 msgstr ""
 
-#: includes/helper-functions.php:602
+#: includes/helper-functions.php:605
 msgid "Burmese"
 msgstr ""
 
-#: includes/helper-functions.php:603
+#: includes/helper-functions.php:606
 msgid "Byelorussian"
 msgstr ""
 
-#: includes/helper-functions.php:604
+#: includes/helper-functions.php:607
 msgid "Cambodian"
 msgstr ""
 
-#: includes/helper-functions.php:605
+#: includes/helper-functions.php:608
 msgid "Catalan"
 msgstr ""
 
-#: includes/helper-functions.php:606
+#: includes/helper-functions.php:609
 msgid "Chinese"
 msgstr ""
 
-#: includes/helper-functions.php:607
+#: includes/helper-functions.php:610
 msgid "Corsican"
 msgstr ""
 
-#: includes/helper-functions.php:608
+#: includes/helper-functions.php:611
 msgid "Croatian"
 msgstr ""
 
-#: includes/helper-functions.php:609
+#: includes/helper-functions.php:612
 msgid "Czech"
 msgstr ""
 
-#: includes/helper-functions.php:610
+#: includes/helper-functions.php:613
 msgid "Danish"
 msgstr ""
 
-#: includes/helper-functions.php:611
+#: includes/helper-functions.php:614
 msgid "Dutch"
 msgstr ""
 
-#: includes/helper-functions.php:612
+#: includes/helper-functions.php:615
 msgid "English"
 msgstr ""
 
-#: includes/helper-functions.php:613
+#: includes/helper-functions.php:616
 msgid "Esperanto"
 msgstr ""
 
-#: includes/helper-functions.php:614
+#: includes/helper-functions.php:617
 msgid "Estonian"
 msgstr ""
 
-#: includes/helper-functions.php:615
+#: includes/helper-functions.php:618
 msgid "Faeroese"
 msgstr ""
 
-#: includes/helper-functions.php:616
+#: includes/helper-functions.php:619
 msgid "Fiji"
 msgstr ""
 
-#: includes/helper-functions.php:617
+#: includes/helper-functions.php:620
 msgid "Finnish"
 msgstr ""
 
-#: includes/helper-functions.php:618
+#: includes/helper-functions.php:621
 msgid "French"
 msgstr ""
 
-#: includes/helper-functions.php:619
+#: includes/helper-functions.php:622
 msgid "Frisian"
 msgstr ""
 
-#: includes/helper-functions.php:620
+#: includes/helper-functions.php:623
 msgid "Gaelic (Scots Gaelic)"
 msgstr ""
 
-#: includes/helper-functions.php:621
+#: includes/helper-functions.php:624
 msgid "Galician"
 msgstr ""
 
-#: includes/helper-functions.php:622
+#: includes/helper-functions.php:625
 msgid "Georgian"
 msgstr ""
 
-#: includes/helper-functions.php:623
+#: includes/helper-functions.php:626
 msgid "German"
 msgstr ""
 
-#: includes/helper-functions.php:624
+#: includes/helper-functions.php:627
 msgid "Greek"
 msgstr ""
 
-#: includes/helper-functions.php:625
+#: includes/helper-functions.php:628
 msgid "Greenlandic"
 msgstr ""
 
-#: includes/helper-functions.php:626
+#: includes/helper-functions.php:629
 msgid "Guarani"
 msgstr ""
 
-#: includes/helper-functions.php:627
+#: includes/helper-functions.php:630
 msgid "Gujarati"
 msgstr ""
 
-#: includes/helper-functions.php:628
+#: includes/helper-functions.php:631
 msgid "Hausa"
 msgstr ""
 
-#: includes/helper-functions.php:629
+#: includes/helper-functions.php:632
 msgid "Hebrew"
 msgstr ""
 
-#: includes/helper-functions.php:630
+#: includes/helper-functions.php:633
 msgid "Hindi"
 msgstr ""
 
-#: includes/helper-functions.php:631
+#: includes/helper-functions.php:634
 msgid "Hungarian"
 msgstr ""
 
-#: includes/helper-functions.php:632
+#: includes/helper-functions.php:635
 msgid "Icelandic"
 msgstr ""
 
-#: includes/helper-functions.php:633
+#: includes/helper-functions.php:636
 msgid "Indonesian"
 msgstr ""
 
-#: includes/helper-functions.php:634
+#: includes/helper-functions.php:637
 msgid "Interlingua"
 msgstr ""
 
-#: includes/helper-functions.php:635
+#: includes/helper-functions.php:638
 msgid "Interlingue"
 msgstr ""
 
-#: includes/helper-functions.php:636
+#: includes/helper-functions.php:639
 msgid "Inupiak"
 msgstr ""
 
-#: includes/helper-functions.php:637
+#: includes/helper-functions.php:640
 msgid "Irish"
 msgstr ""
 
-#: includes/helper-functions.php:638
+#: includes/helper-functions.php:641
 msgid "Italian"
 msgstr ""
 
-#: includes/helper-functions.php:639
+#: includes/helper-functions.php:642
 msgid "Japanese"
 msgstr ""
 
-#: includes/helper-functions.php:640
+#: includes/helper-functions.php:643
 msgid "Javanese"
 msgstr ""
 
-#: includes/helper-functions.php:641
+#: includes/helper-functions.php:644
 msgid "Kannada"
 msgstr ""
 
-#: includes/helper-functions.php:642
+#: includes/helper-functions.php:645
 msgid "Kashmiri"
 msgstr ""
 
-#: includes/helper-functions.php:643
+#: includes/helper-functions.php:646
 msgid "Kazakh"
 msgstr ""
 
-#: includes/helper-functions.php:644
+#: includes/helper-functions.php:647
 msgid "Kinyarwanda"
 msgstr ""
 
-#: includes/helper-functions.php:645
+#: includes/helper-functions.php:648
 msgid "Kirghiz"
 msgstr ""
 
-#: includes/helper-functions.php:646
+#: includes/helper-functions.php:649
 msgid "Kirundi"
 msgstr ""
 
-#: includes/helper-functions.php:647
+#: includes/helper-functions.php:650
 msgid "Korean"
 msgstr ""
 
-#: includes/helper-functions.php:648
+#: includes/helper-functions.php:651
 msgid "Kurdish"
 msgstr ""
 
-#: includes/helper-functions.php:649
+#: includes/helper-functions.php:652
 msgid "Laothian"
 msgstr ""
 
-#: includes/helper-functions.php:650
+#: includes/helper-functions.php:653
 msgid "Latin"
 msgstr ""
 
-#: includes/helper-functions.php:651
+#: includes/helper-functions.php:654
 msgid "Latvian, Lettish"
 msgstr ""
 
-#: includes/helper-functions.php:652
+#: includes/helper-functions.php:655
 msgid "Lingala"
 msgstr ""
 
-#: includes/helper-functions.php:653
+#: includes/helper-functions.php:656
 msgid "Lithuanian"
 msgstr ""
 
-#: includes/helper-functions.php:654
+#: includes/helper-functions.php:657
 msgid "Macedonian"
 msgstr ""
 
-#: includes/helper-functions.php:655
+#: includes/helper-functions.php:658
 msgid "Malagasy"
 msgstr ""
 
-#: includes/helper-functions.php:656
+#: includes/helper-functions.php:659
 msgid "Malay"
 msgstr ""
 
-#: includes/helper-functions.php:657
+#: includes/helper-functions.php:660
 msgid "Malayalam"
 msgstr ""
 
-#: includes/helper-functions.php:658
+#: includes/helper-functions.php:661
 msgid "Maltese"
 msgstr ""
 
-#: includes/helper-functions.php:659
+#: includes/helper-functions.php:662
 msgid "Maori"
 msgstr ""
 
-#: includes/helper-functions.php:660
+#: includes/helper-functions.php:663
 msgid "Marathi"
 msgstr ""
 
-#: includes/helper-functions.php:661
+#: includes/helper-functions.php:664
 msgid "Moldavian"
 msgstr ""
 
-#: includes/helper-functions.php:662
+#: includes/helper-functions.php:665
 msgid "Mongolian"
 msgstr ""
 
-#: includes/helper-functions.php:663
+#: includes/helper-functions.php:666
 msgid "Nauru"
 msgstr ""
 
-#: includes/helper-functions.php:664
+#: includes/helper-functions.php:667
 msgid "Nepali"
 msgstr ""
 
-#: includes/helper-functions.php:665
+#: includes/helper-functions.php:668
 msgid "Norwegian"
 msgstr ""
 
-#: includes/helper-functions.php:666
+#: includes/helper-functions.php:669
 msgid "Occitan"
 msgstr ""
 
-#: includes/helper-functions.php:667
+#: includes/helper-functions.php:670
 msgid "Oriya"
 msgstr ""
 
-#: includes/helper-functions.php:668
+#: includes/helper-functions.php:671
 msgid "Oromo, Afan"
 msgstr ""
 
-#: includes/helper-functions.php:669
+#: includes/helper-functions.php:672
 msgid "Pashto, Pushto"
 msgstr ""
 
-#: includes/helper-functions.php:670
+#: includes/helper-functions.php:673
 msgid "Persian"
 msgstr ""
 
-#: includes/helper-functions.php:671
+#: includes/helper-functions.php:674
 msgid "Polish"
 msgstr ""
 
-#: includes/helper-functions.php:672
+#: includes/helper-functions.php:675
 msgid "Portuguese"
 msgstr ""
 
-#: includes/helper-functions.php:673
+#: includes/helper-functions.php:676
 msgid "Punjabi"
 msgstr ""
 
-#: includes/helper-functions.php:674
+#: includes/helper-functions.php:677
 msgid "Quechua"
 msgstr ""
 
-#: includes/helper-functions.php:675
+#: includes/helper-functions.php:678
 msgid "Rhaeto-Romance"
 msgstr ""
 
-#: includes/helper-functions.php:676
+#: includes/helper-functions.php:679
 msgid "Romanian"
 msgstr ""
 
-#: includes/helper-functions.php:677
+#: includes/helper-functions.php:680
 msgid "Russian"
 msgstr ""
 
-#: includes/helper-functions.php:678
+#: includes/helper-functions.php:681
 msgid "Samoan"
 msgstr ""
 
-#: includes/helper-functions.php:679
+#: includes/helper-functions.php:682
 msgid "Sangro"
 msgstr ""
 
-#: includes/helper-functions.php:680
+#: includes/helper-functions.php:683
 msgid "Sanskrit"
 msgstr ""
 
-#: includes/helper-functions.php:681
+#: includes/helper-functions.php:684
 msgid "Serbian"
 msgstr ""
 
-#: includes/helper-functions.php:682
+#: includes/helper-functions.php:685
 msgid "Serbo-Croatian"
 msgstr ""
 
-#: includes/helper-functions.php:683
+#: includes/helper-functions.php:686
 msgid "Sesotho"
 msgstr ""
 
-#: includes/helper-functions.php:684
+#: includes/helper-functions.php:687
 msgid "Setswana"
 msgstr ""
 
-#: includes/helper-functions.php:685
+#: includes/helper-functions.php:688
 msgid "Shona"
 msgstr ""
 
-#: includes/helper-functions.php:686
+#: includes/helper-functions.php:689
 msgid "Sindhi"
 msgstr ""
 
-#: includes/helper-functions.php:687
+#: includes/helper-functions.php:690
 msgid "Singhalese"
 msgstr ""
 
-#: includes/helper-functions.php:688
+#: includes/helper-functions.php:691
 msgid "Siswati"
 msgstr ""
 
-#: includes/helper-functions.php:689
+#: includes/helper-functions.php:692
 msgid "Slovak"
 msgstr ""
 
-#: includes/helper-functions.php:690
+#: includes/helper-functions.php:693
 msgid "Slovenian"
 msgstr ""
 
-#: includes/helper-functions.php:691
+#: includes/helper-functions.php:694
 msgid "Somali"
 msgstr ""
 
-#: includes/helper-functions.php:692
+#: includes/helper-functions.php:695
 msgid "Spanish"
 msgstr ""
 
-#: includes/helper-functions.php:693
+#: includes/helper-functions.php:696
 msgid "Sudanese"
 msgstr ""
 
-#: includes/helper-functions.php:694
+#: includes/helper-functions.php:697
 msgid "Swahili"
 msgstr ""
 
-#: includes/helper-functions.php:695
+#: includes/helper-functions.php:698
 msgid "Swedish"
 msgstr ""
 
-#: includes/helper-functions.php:696
+#: includes/helper-functions.php:699
 msgid "Tagalog"
 msgstr ""
 
-#: includes/helper-functions.php:697
+#: includes/helper-functions.php:700
 msgid "Tajik"
 msgstr ""
 
-#: includes/helper-functions.php:698
+#: includes/helper-functions.php:701
 msgid "Tamil"
 msgstr ""
 
-#: includes/helper-functions.php:699
+#: includes/helper-functions.php:702
 msgid "Tatar"
 msgstr ""
 
-#: includes/helper-functions.php:700
+#: includes/helper-functions.php:703
 msgid "Tegulu"
 msgstr ""
 
-#: includes/helper-functions.php:701
+#: includes/helper-functions.php:704
 msgid "Thai"
 msgstr ""
 
-#: includes/helper-functions.php:702
+#: includes/helper-functions.php:705
 msgid "Tibetan"
 msgstr ""
 
-#: includes/helper-functions.php:703
+#: includes/helper-functions.php:706
 msgid "Tigrinya"
 msgstr ""
 
-#: includes/helper-functions.php:704
+#: includes/helper-functions.php:707
 msgid "Tonga"
 msgstr ""
 
-#: includes/helper-functions.php:705
+#: includes/helper-functions.php:708
 msgid "Tsonga"
 msgstr ""
 
-#: includes/helper-functions.php:706
+#: includes/helper-functions.php:709
 msgid "Turkish"
 msgstr ""
 
-#: includes/helper-functions.php:707
+#: includes/helper-functions.php:710
 msgid "Turkmen"
 msgstr ""
 
-#: includes/helper-functions.php:708
+#: includes/helper-functions.php:711
 msgid "Twi"
 msgstr ""
 
-#: includes/helper-functions.php:709
+#: includes/helper-functions.php:712
 msgid "Ukrainian"
 msgstr ""
 
-#: includes/helper-functions.php:710
+#: includes/helper-functions.php:713
 msgid "Urdu"
 msgstr ""
 
-#: includes/helper-functions.php:711
+#: includes/helper-functions.php:714
 msgid "Uzbek"
 msgstr ""
 
-#: includes/helper-functions.php:712
+#: includes/helper-functions.php:715
 msgid "Vietnamese"
 msgstr ""
 
-#: includes/helper-functions.php:713
+#: includes/helper-functions.php:716
 msgid "Volapuk"
 msgstr ""
 
-#: includes/helper-functions.php:714
+#: includes/helper-functions.php:717
 msgid "Welsh"
 msgstr ""
 
-#: includes/helper-functions.php:715
+#: includes/helper-functions.php:718
 msgid "Wolof"
 msgstr ""
 
-#: includes/helper-functions.php:716
+#: includes/helper-functions.php:719
 msgid "Xhosa"
 msgstr ""
 
-#: includes/helper-functions.php:717
+#: includes/helper-functions.php:720
 msgid "Yiddish"
 msgstr ""
 
-#: includes/helper-functions.php:718
+#: includes/helper-functions.php:721
 msgid "Yoruba"
 msgstr ""
 
-#: includes/helper-functions.php:719
+#: includes/helper-functions.php:722
 msgid "Zulu"
 msgstr ""
 
-#: includes/helper-functions.php:799
+#: includes/helper-functions.php:802
 msgid "Librarian"
 msgstr "Bibliotecario"
 
-#: includes/helper-functions.php:801
+#: includes/helper-functions.php:804
 msgid "Master Librarian"
 msgstr "Bibliotecario mayor"
 
@@ -1728,44 +1736,44 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:100
+#: includes/mooberry-dreams/software-licensing.php:103
 msgid "Mooberry Book Manager Extension License Keys"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:101
+#: includes/mooberry-dreams/software-licensing.php:104
 msgid "License Keys"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:163
-#: includes/mooberry-dreams/software-licensing.php:186
+#: includes/mooberry-dreams/software-licensing.php:166
+#: includes/mooberry-dreams/software-licensing.php:189
 msgid "inactive"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:169
+#: includes/mooberry-dreams/software-licensing.php:172
 msgid "No activations left"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:172
+#: includes/mooberry-dreams/software-licensing.php:175
 msgid "Wrong Key"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:175
+#: includes/mooberry-dreams/software-licensing.php:178
 msgid "expired"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:195
+#: includes/mooberry-dreams/software-licensing.php:198
 msgid "valid"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:209
+#: includes/mooberry-dreams/software-licensing.php:212
 msgid "Deactivate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:211
+#: includes/mooberry-dreams/software-licensing.php:214
 msgid "Activate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:482
+#: includes/mooberry-dreams/software-licensing.php:485
 #, php-format
 msgid ""
 "You have invalid or expired license keys for Mooberry Book Manager. Please "
@@ -1773,549 +1781,549 @@ msgid ""
 "correct this issue."
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:521
+#: includes/mooberry-dreams/software-licensing.php:524
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
-#: includes/plugin-functions.php:270
+#: includes/plugin-functions.php:278
 msgid ""
 "Upgrading to Mooberry Book Manager version 3.0 requires some data migration "
 "before Mooberry Book Manager will operate properly."
 msgstr ""
 
-#: includes/plugin-functions.php:405 includes/plugin-functions.php:446
+#: includes/plugin-functions.php:413 includes/plugin-functions.php:454
 #: single-book.php:591
 msgid "Website"
 msgstr ""
 
-#: includes/plugin-functions.php:412 includes/plugin-functions.php:456
+#: includes/plugin-functions.php:420 includes/plugin-functions.php:464
 msgid "Book Grid Description"
 msgstr ""
 
-#: includes/plugin-functions.php:414
+#: includes/plugin-functions.php:422
 msgid ""
 "The Book Grid Description is displayed above the auto-generated grid for "
 "this page, ex. "
 msgstr ""
 
-#: includes/plugin-functions.php:419 includes/plugin-functions.php:466
+#: includes/plugin-functions.php:427 includes/plugin-functions.php:474
 msgid "Book Grid Description (Bottom)"
 msgstr ""
 
-#: includes/plugin-functions.php:421
+#: includes/plugin-functions.php:429
 msgid ""
 "The bottom Book Grid Description is displayed below the auto-generated grid "
 "for this page, ex. "
 msgstr ""
 
-#: includes/plugin-functions.php:461
+#: includes/plugin-functions.php:469
 msgid ""
 "The Book Grid Description is displayed above the auto-generated grid for "
 "this page, "
 msgstr ""
 
-#: includes/plugin-functions.php:472
+#: includes/plugin-functions.php:480
 msgid ""
 "The bottom Book Grid Description is displayed below the auto-generated grid "
 "for this page, "
 msgstr ""
 
-#: includes/plugin-functions.php:543 includes/plugin-functions.php:559
-#: includes/plugin-functions.php:561
+#: includes/plugin-functions.php:549 includes/plugin-functions.php:565
+#: includes/plugin-functions.php:567
 msgctxt "noun"
 msgid "Books"
 msgstr "Libros"
 
-#: includes/plugin-functions.php:560
+#: includes/plugin-functions.php:566
 msgctxt "noun"
 msgid "Book"
 msgstr "Libro"
 
-#: includes/plugin-functions.php:562
+#: includes/plugin-functions.php:568
 msgid "All Books"
 msgstr "Todos los libros"
 
-#: includes/plugin-functions.php:563 includes/plugin-functions.php:623
+#: includes/plugin-functions.php:569 includes/plugin-functions.php:629
 msgid "Add New"
 msgstr "Añadir nuevo"
 
-#: includes/plugin-functions.php:564
+#: includes/plugin-functions.php:570
 msgid "Add New Book"
 msgstr "Añadir libro nuevo"
 
-#: includes/plugin-functions.php:565 includes/plugin-functions.php:625
+#: includes/plugin-functions.php:571 includes/plugin-functions.php:631
 msgid "Edit"
 msgstr "Editar"
 
-#: includes/plugin-functions.php:566
+#: includes/plugin-functions.php:572
 msgid "Edit Book"
 msgstr "Editar libro"
 
-#: includes/plugin-functions.php:567
+#: includes/plugin-functions.php:573
 msgid "New Book"
 msgstr "Libro nuevo"
 
-#: includes/plugin-functions.php:568 includes/plugin-functions.php:569
+#: includes/plugin-functions.php:574 includes/plugin-functions.php:575
 msgid "View Book"
 msgstr "Ver libro"
 
-#: includes/plugin-functions.php:570
+#: includes/plugin-functions.php:576
 msgid "Search Books"
 msgstr "Buscar libros"
 
-#: includes/plugin-functions.php:571
+#: includes/plugin-functions.php:577
 msgid "No Books Found"
 msgstr "No se encontró ningún libro"
 
-#: includes/plugin-functions.php:572
+#: includes/plugin-functions.php:578
 msgid "No Books Found in Trash"
 msgstr "No se encontró ningún libro en la papelera"
 
-#: includes/plugin-functions.php:573
+#: includes/plugin-functions.php:579
 msgid "Parent Book"
 msgstr "Libro padre"
 
-#: includes/plugin-functions.php:574
+#: includes/plugin-functions.php:580
 msgid "Filter Book List"
 msgstr ""
 
-#: includes/plugin-functions.php:575
+#: includes/plugin-functions.php:581
 msgid "Book List Navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:576
+#: includes/plugin-functions.php:582
 msgid "Book List"
 msgstr ""
 
-#: includes/plugin-functions.php:602 includes/plugin-functions.php:620
+#: includes/plugin-functions.php:608 includes/plugin-functions.php:626
 msgid "Book Grids"
 msgstr ""
 
-#: includes/plugin-functions.php:622
+#: includes/plugin-functions.php:628
 msgid "All Book Grids"
 msgstr ""
 
-#: includes/plugin-functions.php:624
+#: includes/plugin-functions.php:630
 msgid "Add New Book Grid"
 msgstr ""
 
-#: includes/plugin-functions.php:626
+#: includes/plugin-functions.php:632
 msgid "Edit Book Grid"
 msgstr ""
 
-#: includes/plugin-functions.php:627
+#: includes/plugin-functions.php:633
 msgid "New Book Grid"
 msgstr ""
 
-#: includes/plugin-functions.php:628 includes/plugin-functions.php:629
+#: includes/plugin-functions.php:634 includes/plugin-functions.php:635
 msgid "View Book Grid"
 msgstr ""
 
-#: includes/plugin-functions.php:630
+#: includes/plugin-functions.php:636
 msgid "Search Book Grids"
 msgstr ""
 
-#: includes/plugin-functions.php:631
+#: includes/plugin-functions.php:637
 msgid "No Book Grids Found"
 msgstr ""
 
-#: includes/plugin-functions.php:632
+#: includes/plugin-functions.php:638
 msgid "No Book Grids Found in Trash"
 msgstr ""
 
-#: includes/plugin-functions.php:633
+#: includes/plugin-functions.php:639
 msgid "Parent Book Grid"
 msgstr ""
 
-#: includes/plugin-functions.php:634
+#: includes/plugin-functions.php:640
 msgid "Filter Book Grid List"
 msgstr ""
 
-#: includes/plugin-functions.php:635
+#: includes/plugin-functions.php:641
 msgid "Book Grid List Navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:636
+#: includes/plugin-functions.php:642
 msgid "Book Grid List"
 msgstr ""
 
-#: includes/plugin-functions.php:666 includes/plugin-functions.php:676
+#: includes/plugin-functions.php:672 includes/plugin-functions.php:682
 msgid "Genres"
 msgstr "Géneros"
 
-#: includes/plugin-functions.php:668
+#: includes/plugin-functions.php:674
 msgid "Search Genres"
 msgstr "Buscar géneros"
 
-#: includes/plugin-functions.php:669
+#: includes/plugin-functions.php:675
 msgid "All Genres"
 msgstr "Todos los géneros"
 
-#: includes/plugin-functions.php:670
+#: includes/plugin-functions.php:676
 msgid "Parent Genre"
 msgstr "Género padre"
 
-#: includes/plugin-functions.php:671
+#: includes/plugin-functions.php:677
 msgid "Parent Genre:"
 msgstr "Género padre:"
 
-#: includes/plugin-functions.php:672
+#: includes/plugin-functions.php:678
 msgid "Edit Genre"
 msgstr "Editar género"
 
-#: includes/plugin-functions.php:673
+#: includes/plugin-functions.php:679
 msgid "Update Genre"
 msgstr "Actualizar género"
 
-#: includes/plugin-functions.php:674
+#: includes/plugin-functions.php:680
 msgid "Add New Genre"
 msgstr "Añadir nuevo género"
 
-#: includes/plugin-functions.php:675
+#: includes/plugin-functions.php:681
 msgid "New Genre Name"
 msgstr "Nombre del nuevo género"
 
-#: includes/plugin-functions.php:677
+#: includes/plugin-functions.php:683
 msgid "Popular Genres"
 msgstr "Géneros populares"
 
-#: includes/plugin-functions.php:678
+#: includes/plugin-functions.php:684
 msgid "Separate genres with commas"
 msgstr "Separar géneros con comas"
 
-#: includes/plugin-functions.php:679
+#: includes/plugin-functions.php:685
 msgid "Add or remove genres"
 msgstr "Añadir o eliminar géneros"
 
-#: includes/plugin-functions.php:680
+#: includes/plugin-functions.php:686
 msgid "Choose from the most used genres"
 msgstr "Elegir de los géneros más usados"
 
-#: includes/plugin-functions.php:681
+#: includes/plugin-functions.php:687
 msgid "No genres found"
 msgstr "No se encontró ningún género"
 
-#: includes/plugin-functions.php:682
+#: includes/plugin-functions.php:688
 msgid "Genre navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:683
+#: includes/plugin-functions.php:689
 msgid "Genre list"
 msgstr ""
 
-#: includes/plugin-functions.php:703 includes/plugin-functions.php:713
+#: includes/plugin-functions.php:709 includes/plugin-functions.php:719
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: includes/plugin-functions.php:705
+#: includes/plugin-functions.php:711
 msgid "Search Tags"
 msgstr "Buscar etiquetas"
 
-#: includes/plugin-functions.php:706
+#: includes/plugin-functions.php:712
 msgid "All Tags"
 msgstr "Todas las etiquetas"
 
-#: includes/plugin-functions.php:707
+#: includes/plugin-functions.php:713
 msgid "Parent Tag"
 msgstr "Etiqueta madre"
 
-#: includes/plugin-functions.php:708
+#: includes/plugin-functions.php:714
 msgid "Parent Tag:"
 msgstr "Etiqueta madre:"
 
-#: includes/plugin-functions.php:709
+#: includes/plugin-functions.php:715
 msgid "Edit Tag"
 msgstr "Editar etiqueta"
 
-#: includes/plugin-functions.php:710
+#: includes/plugin-functions.php:716
 msgid "Update Tag"
 msgstr "Actualizar etiqueta"
 
-#: includes/plugin-functions.php:711
+#: includes/plugin-functions.php:717
 msgid "Add New Tag"
 msgstr "Añadir nueva etiqueta"
 
-#: includes/plugin-functions.php:712
+#: includes/plugin-functions.php:718
 msgid "New Tag Name"
 msgstr "Nombre de la nueva etiqueta"
 
-#: includes/plugin-functions.php:714
+#: includes/plugin-functions.php:720
 msgid "Popular Tags"
 msgstr "Etiquetas populares"
 
-#: includes/plugin-functions.php:715
+#: includes/plugin-functions.php:721
 msgid "Separate tags with commas"
 msgstr "Separar etiquetas con comas"
 
-#: includes/plugin-functions.php:716
+#: includes/plugin-functions.php:722
 msgid "Add or remove tags"
 msgstr "Añadir o eliminar etiquetas"
 
-#: includes/plugin-functions.php:717
+#: includes/plugin-functions.php:723
 msgid "Choose from the most used tags"
 msgstr "Elegir de las etiquetas más usadas"
 
-#: includes/plugin-functions.php:718
+#: includes/plugin-functions.php:724
 msgid "No tags found"
 msgstr "No se encontraron etiquetas"
 
-#: includes/plugin-functions.php:719
+#: includes/plugin-functions.php:725
 msgid "Tag navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:720
+#: includes/plugin-functions.php:726
 msgid "Tag list"
 msgstr ""
 
-#: includes/plugin-functions.php:741
+#: includes/plugin-functions.php:747
 msgid "Search Series"
 msgstr "Buscar serie"
 
-#: includes/plugin-functions.php:742
+#: includes/plugin-functions.php:748
 msgid "All Series"
 msgstr "Todas las series"
 
-#: includes/plugin-functions.php:743
+#: includes/plugin-functions.php:749
 msgid "Parent Series"
 msgstr "Serie madre"
 
-#: includes/plugin-functions.php:744
+#: includes/plugin-functions.php:750
 msgid "Parent Series:"
 msgstr "Serie madre:"
 
-#: includes/plugin-functions.php:745
+#: includes/plugin-functions.php:751
 msgid "Edit Series"
 msgstr "Editar serie"
 
-#: includes/plugin-functions.php:746
+#: includes/plugin-functions.php:752
 msgid "Update Series"
 msgstr "Actualizar serie"
 
-#: includes/plugin-functions.php:747
+#: includes/plugin-functions.php:753
 msgid "Add New Series"
 msgstr "Añadir serie"
 
-#: includes/plugin-functions.php:748
+#: includes/plugin-functions.php:754
 msgid "New Series Name"
 msgstr "Nombre de la nueva serie"
 
-#: includes/plugin-functions.php:750
+#: includes/plugin-functions.php:756
 msgid "Popular Series"
 msgstr "Series populares"
 
-#: includes/plugin-functions.php:751
+#: includes/plugin-functions.php:757
 msgid "Separate series with commas"
 msgstr "Separar series con comas"
 
-#: includes/plugin-functions.php:752
+#: includes/plugin-functions.php:758
 msgid "Add or remove series"
 msgstr "Añadir o eliminar series"
 
-#: includes/plugin-functions.php:753
+#: includes/plugin-functions.php:759
 msgid "Choose from the most used series"
 msgstr "Elegir de las series más usadas"
 
-#: includes/plugin-functions.php:754
+#: includes/plugin-functions.php:760
 msgid "No Series found"
 msgstr "No se encontró la serie"
 
-#: includes/plugin-functions.php:755
+#: includes/plugin-functions.php:761
 msgid "Series navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:756
+#: includes/plugin-functions.php:762
 msgid "Series list"
 msgstr ""
 
-#: includes/plugin-functions.php:776 includes/plugin-functions.php:786
+#: includes/plugin-functions.php:782 includes/plugin-functions.php:792
 msgid "Editors"
 msgstr ""
 
-#: includes/plugin-functions.php:778
+#: includes/plugin-functions.php:784
 msgid "Search Editors"
 msgstr ""
 
-#: includes/plugin-functions.php:779
+#: includes/plugin-functions.php:785
 msgid "All Editors"
 msgstr ""
 
-#: includes/plugin-functions.php:780
+#: includes/plugin-functions.php:786
 msgid "Parent Editor"
 msgstr ""
 
-#: includes/plugin-functions.php:781
+#: includes/plugin-functions.php:787
 msgid "Parent Editor:"
 msgstr ""
 
-#: includes/plugin-functions.php:782
+#: includes/plugin-functions.php:788
 msgid "Edit Editor"
 msgstr ""
 
-#: includes/plugin-functions.php:783
+#: includes/plugin-functions.php:789
 msgid "Update Editor"
 msgstr ""
 
-#: includes/plugin-functions.php:784
+#: includes/plugin-functions.php:790
 msgid "Add New Editor"
 msgstr ""
 
-#: includes/plugin-functions.php:785
+#: includes/plugin-functions.php:791
 msgid "New Editor Name"
 msgstr ""
 
-#: includes/plugin-functions.php:787
+#: includes/plugin-functions.php:793
 msgid "Popular Editors"
 msgstr ""
 
-#: includes/plugin-functions.php:788
+#: includes/plugin-functions.php:794
 msgid "Separate Editors with commas"
 msgstr ""
 
-#: includes/plugin-functions.php:789
+#: includes/plugin-functions.php:795
 msgid "Add or remove Editors"
 msgstr ""
 
-#: includes/plugin-functions.php:790
+#: includes/plugin-functions.php:796
 msgid "Choose from the most used Editors"
 msgstr ""
 
-#: includes/plugin-functions.php:791
+#: includes/plugin-functions.php:797
 msgid "No Editors found"
 msgstr ""
 
-#: includes/plugin-functions.php:792
+#: includes/plugin-functions.php:798
 msgid "Edtior navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:793
+#: includes/plugin-functions.php:799
 msgid "Editor list"
 msgstr ""
 
-#: includes/plugin-functions.php:813 includes/plugin-functions.php:823
+#: includes/plugin-functions.php:819 includes/plugin-functions.php:829
 msgid "Illustrators"
 msgstr ""
 
-#: includes/plugin-functions.php:815
+#: includes/plugin-functions.php:821
 msgid "Search Illustrators"
 msgstr ""
 
-#: includes/plugin-functions.php:816
+#: includes/plugin-functions.php:822
 msgid "All Illustrators"
 msgstr ""
 
-#: includes/plugin-functions.php:817
+#: includes/plugin-functions.php:823
 msgid "Parent Illustrator"
 msgstr ""
 
-#: includes/plugin-functions.php:818
+#: includes/plugin-functions.php:824
 msgid "Parent Illustrator:"
 msgstr ""
 
-#: includes/plugin-functions.php:819
+#: includes/plugin-functions.php:825
 msgid "Edit Illustrator"
 msgstr ""
 
-#: includes/plugin-functions.php:820
+#: includes/plugin-functions.php:826
 msgid "Update Illustrator"
 msgstr ""
 
-#: includes/plugin-functions.php:821
+#: includes/plugin-functions.php:827
 msgid "Add New Illustrator"
 msgstr ""
 
-#: includes/plugin-functions.php:822
+#: includes/plugin-functions.php:828
 msgid "New Illustrator Name"
 msgstr ""
 
-#: includes/plugin-functions.php:824
+#: includes/plugin-functions.php:830
 msgid "Popular Illustrators"
 msgstr ""
 
-#: includes/plugin-functions.php:825
+#: includes/plugin-functions.php:831
 msgid "Separate Illustrators with commas"
 msgstr ""
 
-#: includes/plugin-functions.php:826
+#: includes/plugin-functions.php:832
 msgid "Add or remove Illustrators"
 msgstr ""
 
-#: includes/plugin-functions.php:827
+#: includes/plugin-functions.php:833
 msgid "Choose from the most used Illustrators"
 msgstr ""
 
-#: includes/plugin-functions.php:828
+#: includes/plugin-functions.php:834
 msgid "No Illustrators found"
 msgstr ""
 
-#: includes/plugin-functions.php:829
+#: includes/plugin-functions.php:835
 msgid "Illustrator navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:830
+#: includes/plugin-functions.php:836
 msgid "Illustrator list"
 msgstr ""
 
-#: includes/plugin-functions.php:850 includes/plugin-functions.php:860
+#: includes/plugin-functions.php:856 includes/plugin-functions.php:866
 msgid "Cover Artists"
 msgstr ""
 
-#: includes/plugin-functions.php:852
+#: includes/plugin-functions.php:858
 msgid "Search Cover Artists"
 msgstr ""
 
-#: includes/plugin-functions.php:853
+#: includes/plugin-functions.php:859
 msgid "All Cover Artists"
 msgstr ""
 
-#: includes/plugin-functions.php:854
+#: includes/plugin-functions.php:860
 msgid "Parent Cover Artist"
 msgstr ""
 
-#: includes/plugin-functions.php:855
+#: includes/plugin-functions.php:861
 msgid "Parent Cover Artist:"
 msgstr ""
 
-#: includes/plugin-functions.php:856
+#: includes/plugin-functions.php:862
 msgid "Edit Cover Artist"
 msgstr ""
 
-#: includes/plugin-functions.php:857
+#: includes/plugin-functions.php:863
 msgid "Update Cover Artist"
 msgstr ""
 
-#: includes/plugin-functions.php:858
+#: includes/plugin-functions.php:864
 msgid "Add New Cover Artist"
 msgstr ""
 
-#: includes/plugin-functions.php:859
+#: includes/plugin-functions.php:865
 msgid "New Cover Artist Name"
 msgstr ""
 
-#: includes/plugin-functions.php:861
+#: includes/plugin-functions.php:867
 msgid "Popular Cover Artists"
 msgstr ""
 
-#: includes/plugin-functions.php:862
+#: includes/plugin-functions.php:868
 msgid "Separate Cover Artists with commas"
 msgstr ""
 
-#: includes/plugin-functions.php:863
+#: includes/plugin-functions.php:869
 msgid "Add or remove Cover Artists"
 msgstr ""
 
-#: includes/plugin-functions.php:864
+#: includes/plugin-functions.php:870
 msgid "Choose from the most used Cover Artists"
 msgstr ""
 
-#: includes/plugin-functions.php:865
+#: includes/plugin-functions.php:871
 msgid "No Cover Artists found"
 msgstr ""
 
-#: includes/plugin-functions.php:866
+#: includes/plugin-functions.php:872
 msgid "Cover Artist navigation"
 msgstr ""
 
-#: includes/plugin-functions.php:867
+#: includes/plugin-functions.php:873
 msgid "Cover Artist list"
 msgstr ""
 
@@ -2385,15 +2393,15 @@ msgstr "dijo en "
 msgid "wrote"
 msgstr " "
 
-#: single-book.php:1357 single-book.php:1735 single-book.php:1821
+#: single-book.php:1357 single-book.php:1737 single-book.php:1823
 msgid "Download Now:"
 msgstr "Descargar ahora:"
 
-#: single-book.php:1450
+#: single-book.php:1451
 msgid "Buy Now:"
 msgstr ""
 
-#: single-book.php:1661
+#: single-book.php:1663
 #, php-format
 msgctxt ""
 "%1$s is the currency symbol. %2$01.2f is the price. To put currency after "
@@ -2401,63 +2409,63 @@ msgctxt ""
 msgid "%1$s %2$01.2f"
 msgstr ""
 
-#: single-book.php:1668
+#: single-book.php:1670
 msgid "ISBN:"
 msgstr ""
 
-#: single-book.php:1671
+#: single-book.php:1673
 msgid "Size:"
 msgstr ""
 
-#: single-book.php:1674
+#: single-book.php:1676
 msgid "Pages:"
 msgstr ""
 
-#: single-book.php:1741
+#: single-book.php:1743
 msgid "Part of the"
 msgstr "Parte de la serie"
 
-#: single-book.php:1741
+#: single-book.php:1743
 msgid "series:"
 msgstr ""
 
-#: single-book.php:1745
+#: single-book.php:1747
 msgid "Editions:"
 msgstr ""
 
-#: single-book.php:1774
+#: single-book.php:1776
 msgid "Published:"
 msgstr ""
 
-#: single-book.php:1778
+#: single-book.php:1780
 msgid "Publisher:"
 msgstr ""
 
-#: single-book.php:1782
+#: single-book.php:1784
 msgid "Editors:"
 msgstr ""
 
-#: single-book.php:1786
+#: single-book.php:1788
 msgid "Illustrators:"
 msgstr ""
 
-#: single-book.php:1790
+#: single-book.php:1792
 msgid "Cover Artists:"
 msgstr ""
 
-#: single-book.php:1794
+#: single-book.php:1796
 msgid "Genres:"
 msgstr ""
 
-#: single-book.php:1798
+#: single-book.php:1800
 msgid "Tags:"
 msgstr ""
 
-#: single-book.php:1806
+#: single-book.php:1808
 msgid "Excerpt:"
 msgstr ""
 
-#: single-book.php:1813
+#: single-book.php:1815
 msgid "Reviews:"
 msgstr ""
 
@@ -2606,6 +2614,9 @@ msgstr "Tamaño de la portada (píxeles)"
 #: views/admin-widget.php:30
 msgid "(minimum 50)"
 msgstr "(Mínimo 50)"
+
+#~ msgid "Standalones"
+#~ msgstr "Autoconclusivos"
 
 #~ msgid "Display Books on This Page?"
 #~ msgstr "¿Mostrar libros en esta página?"
