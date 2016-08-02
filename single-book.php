@@ -1655,6 +1655,7 @@ function mbdb_output_editions($mbdb_editions, $attr) {
 			$output_html .= ' - <span class="mbm-book-editions-title">' . $edition['_mbdb_edition_title'] . '</span>';
 		}
 		if ($is_price && $edition['_mbdb_retail_price'] != '0.00') {
+			$edition['_mbdb_retail_price'] = str_replace(',', '.', $edition['_mbdb_retail_price']);
 			$price = number_format_i18n($edition['_mbdb_retail_price'], 2);
 			$symbol = mbdb_get_currency_symbol($edition['_mbdb_currency']);
 			$output_html .= ': <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
