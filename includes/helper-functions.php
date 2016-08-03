@@ -324,7 +324,10 @@ function mbdb_get_wysiwyg_output( $content ) {
 // for users with PHP <5.5
 if(!function_exists("array_column")) {
 	
-	function array_column($array,$column_name, $key = null) {
+	function array_column($array, $column_name, $key = null) {
+		if (!is_array($array)) {
+			return null;
+		}
 		
 		if ($key == null) {
 			return array_map(function($element) use($column_name){return $element[$column_name];}, $array);
