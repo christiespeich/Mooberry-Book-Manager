@@ -1654,13 +1654,13 @@ function mbdb_output_editions($mbdb_editions, $attr) {
 		if ($is_title) {
 			$output_html .= ' - <span class="mbm-book-editions-title">' . $edition['_mbdb_edition_title'] . '</span>';
 		}
-		if ($is_price && $edition['_mbdb_retail_price'] != '0.00') {
+		if ($is_price && $edition['_mbdb_retail_price'] != '0.00' && $edition['_mbdb_retail_price'] != '0,00') {
 			$edition['_mbdb_retail_price'] = str_replace(',', '.', $edition['_mbdb_retail_price']);
 			$price = number_format_i18n($edition['_mbdb_retail_price'], 2);
 			$symbol = mbdb_get_currency_symbol($edition['_mbdb_currency']);
 			$output_html .= ': <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
-			/* translators: %1$s is the currency symbol. %2$01.2f is the price. To put currency after price, enter %2$01.2f %1$s */
-			$output_html .= sprintf( _x('%1$s %2$01.2f', '%1$s is the currency symbol. %2$01.2f is the price. To put currency after price, enter %2$01.2f %1$s', 'mooberry-book-manager'), $symbol, $price);
+			/* translators: %1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s */
+			$output_html .= sprintf( _x('%1$s %2$s', '%1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s', 'mooberry-book-manager'), $symbol, $price);
 			$output_html .= '</span></span>';
 		}
 		if ($is_isbn || ($is_height && $is_width) || $is_pages) {
