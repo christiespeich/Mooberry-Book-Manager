@@ -72,7 +72,7 @@ require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/software-licensing.php'
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-cpt.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-books.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
-require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-book.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-books.php';
 
 require_once MBDB_PLUGIN_DIR . 'includes/helper-functions.php';
 require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-updates.php';
