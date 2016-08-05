@@ -72,6 +72,19 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		);
 	}
 	
+	public function add_new( $title ) {
+		
+		$book_id = wp_insert_post( array( 'post_title' => $title, 'post_type' => 'mbdb_book' ) );
+		
+		if ($book_id == 0) {
+			return null;
+		} else {
+			return $book_id;
+		}
+		
+	}
+	
+	
 	private function get_sort_fields( $sort ) {
 		switch ($sort) {
 			case 'titleA':
