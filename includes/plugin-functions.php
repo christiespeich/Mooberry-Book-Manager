@@ -42,7 +42,7 @@ function mbdb_load_textdomain() {
 add_action( 'init', 'mbdb_init' );	
 function mbdb_init() {
 	
-	// these still have to run even if ajax
+	
 	mbdb_register_cpts();
 	mbdb_register_taxonomies();
 	
