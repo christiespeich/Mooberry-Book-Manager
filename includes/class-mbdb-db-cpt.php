@@ -327,7 +327,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database {
 		global $wpdb;
 		$table = $this->table_name();
 		if( is_search() ) {
-			$join .= ' LEFT JOIN ' . $table . ' ON ' . $wpdb->posts . '.ID = ' . $table . '.' . $this->primary_key . ' ';
+			$join .= ' LEFT JOIN ' . $table . ' AS mbdb ON ' . $wpdb->posts . '.ID = mbdb.'  . $this->primary_key . ' ';
 	  }
 
 	  return $join;
