@@ -74,6 +74,12 @@ require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-books.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
 require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-books.php';
 
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-book.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-edition.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-review.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-book-link.php';
+require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-publisher.php';
+
 require_once MBDB_PLUGIN_DIR . 'includes/helper-functions.php';
 require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-updates.php';
 require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-validation.php';
@@ -111,6 +117,11 @@ final class Mooberry_Book_Manager {
 	 * @since 3.0
 	 */
 	public $books;
+	
+	public $edition_formats;
+	public $retailers;
+	public $formats;
+	public $publishers;
 
 	/**
 	 * Main Mooberry_Book_Manager Instance
@@ -128,6 +139,14 @@ final class Mooberry_Book_Manager {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mooberry_Book_Manager ) ) {
 			self::$instance = new Mooberry_Book_Manager;
 			self::$instance->books  = new MBDB_Books();
+			
+			$mbdb_options = get_option('mbdb_options');
+		
+			self::$instance->edition_formats = mbdb_create_array_from_options( 'editions', 'uniqueID', $mbdb_options );
+			self::$instance->retailers = mbdb_create_array_from_options( 'retailers', 'uniqueID', $mbdb_options );
+			self::$instance->formats = mbdb_create_array_from_options( 'formats', 'uniqueID', $mbdb_options );
+			self::$instance->publishers = mbdb_create_array_from_options( 'publishers', 'uniqueID', $mbdb_options );
+			
 		}
 		return self::$instance;
 	}
