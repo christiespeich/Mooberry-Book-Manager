@@ -263,7 +263,7 @@ function mbdb_save_book_list_order() {
 			'security': book_grid_ajax_object.security
 	};
 	
-	jQuery.post(ajax_object.ajax_url, data);
+	jQuery.post(book_grid_ajax_object.ajax_url, data);
 }
     
 
@@ -354,7 +354,7 @@ function update_book_grid_preview() {
 		'grid_options': selected_options
 	};
 	
-	var update_preview = jQuery.post(ajax_object.ajax_url, data);
+	var update_preview = jQuery.post(book_grid_ajax_object.ajax_url, data);
 	
 	
 	
