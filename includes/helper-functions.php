@@ -16,6 +16,19 @@ function mbdb_get_enqueue_version() {
 	}
 }
 
+// v3.5 ??
+function mbdb_get_array_data( $key, $array, $default = '' ) {
+	if ( !is_array($array) ) {
+		return $default;
+	}
+	if ( array_key_exists( $key, $array ) ) {
+		return $array[ $key ];
+	} else {
+		return $default;
+	}
+}
+	
+
 function mbdb_format_date($field) {
 	if ($field == null or $field == '') {
 		return $field;
@@ -64,6 +77,36 @@ function mbdb_get_grid_cover_height( $postID = null ) {
 	
 	return mbdb_get_grid_cover_height2( $mbdb_book_grid_cover_height_default, $mbdb_book_grid_cover_height );
 	
+}
+
+// v3.5 ??
+function mbdb_get_placeholder_cover( $context ) {
+// validate location
+		$placeholder_options = array_keys( mbdb_placeholder_cover_options() );
+		if ( !in_array($context, $placeholder_options ) ) {
+			return '';
+		}
+		
+		//v3.0 check for placeholder image setting
+		$mbdb_options = get_option('mbdb_options');
+		if (array_key_exists( 'show_placeholder_cover', $mbdb_options ) ) {
+			$show_placeholder_cover = $mbdb_options[ 'show_placeholder_cover' ];
+		} else {
+			return '';
+		}
+		
+		if ( is_array( $show_placeholder_cover) ) {
+			if ( in_array( $context, $show_placeholder_cover ) ) {
+				if ( array_key_exists( 'coming-soon', $mbdb_options ) ) {
+					$url = $mbdb_options['coming-soon'];
+					if (is_ssl()) {
+						$url = preg_replace('/^http:/', 'https:', $url);
+					}
+					return $url;
+				}
+			}
+		}
+		return '';
 }
 
 // v3.1.3
@@ -387,10 +430,39 @@ function mbdb_get_book_array($orderby = 'post_title', $direction = 'ASC') {
 }
 
 
+// turn the publishers array from [0]['unqiueID'] = '',
+//								  [0]['name'] = '',
+//								  [0]['link'] = ''
+// into array like this			[uniqueID] => { ['name'],
+//												['link'], }
+//			
+function mbdb_create_array_with_ids( $array, $id_key ) {
+	// get an array of uniqueIDs
+	$keys = array_column( $array, $id_key );
+
+	// map uniqueIDs to the rest of the publisher info
+	return array_combine( $keys, $array );
+}
+
+
+function mbdb_create_array_from_options( $options_key, $id_key, $mbdb_options = null ) {
+	if ($mbdb_options == null) {
+		$mbdb_options = get_option('mbdb_options');
+	}
+	if (array_key_exists( $options_key, $mbdb_options ) ) {
+		return mbdb_create_array_with_ids( $mbdb_options[ $options_key ], $id_key );
+	}
+	return array();
+}
+
 
 // returns array with publisher info
 // returns null if no publisherID found
 function mbdb_get_publisher_info( $publisherID, $mbdb_options = null ) {
+	$publishers = mbdb_create_array_from_options( 'publishers', 'uniqueID', $mbdb_options );
+	
+	
+	/*
 	if ($mbdb_options == null) {
 		$mbdb_options = get_option('mbdb_options');
 	}
@@ -400,21 +472,22 @@ function mbdb_get_publisher_info( $publisherID, $mbdb_options = null ) {
 		//								  [1]['name'] = ''
 		// into array like this			[uniqueID] => { ['name'],
 		//												['link'] }
-		
+		$publishers = mbdb_create_array_with_ids( $mbdb_options['publishers'], 'uniqueID' );
+		*/
+		/*
 		// get an array of uniqueIDs
 		$keys = array_column( $mbdb_options['publishers'], 'uniqueID' );
 		
 		// map uniqueIDs to the rest of the publisher info
 		$publishers = array_combine( $keys, $mbdb_options['publishers'] );
+		*/
+		
 		
 		// return the publisher with the ID
 		if (array_key_exists( $publisherID, $publishers ) ) {
 			return $publishers[ $publisherID ];
-			} else {
-			return null;
-		}
-		
-	}
+		} 
+
 	return null;
 }
 
