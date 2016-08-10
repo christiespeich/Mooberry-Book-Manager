@@ -364,6 +364,23 @@ function mbdb_save_bulk_edit() {
  */
 add_action('save_post_mbdb_book', 'mbdb_save_book');
  function mbdb_save_book( $post_id, $post = null ) {
+	 	
+	// Autosave, do nothing
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+	}
+	// AJAX? Not used here
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return;
+	}
+	// Check user permissions
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+	}
+	// Return if it's a post revision
+	if (  wp_is_post_revision( $post_id) || wp_is_post_autosave( $post_id ) ) {
+			return;
+	 }
 	 
 	// if the post object is null then we are creating a new book
 	// and must pull values from the GET/POST vars ???
@@ -385,30 +402,51 @@ add_action('save_post_mbdb_book', 'mbdb_save_book');
 		}
 	}
 	
-	
 	// unhook this function so it doesn't loop infinitely
 	// and mbdb_save_book_custom_table so it doesn't run twice
 	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
-	remove_action('save_post', 'mbdb_save_book_custom_table');
-
+	remove_action('save_post', 'mbdb_save_book_custom_table', 20 );
+	
+	// add pre and post actions to allow other plugins to remove save_post actions
+	do_action( 'mbdb_pre_update_book_post' );
+	
 	// update the post, which calls save_post again
 	wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  strip_tags($summary), 'post_content' => '[mbdb_book]' ) );
 
+	// add pre and post actions to allow other plugins to remove save_post actions
+	do_action( 'mbdb_post_update_book_post' );
+	
 	// re-hook this function and mbdb_save_book_custom_table 
 	add_action( 'save_post_mbdb_book', 'mbdb_save_book' );	
-	 add_action('save_post', 'mbdb_save_book_custom_table', 20);
+	add_action('save_post', 'mbdb_save_book_custom_table', 20);
 }
 
- add_action('save_post', 'mbdb_save_book_custom_table', 20);
-function mbdb_save_book_custom_table( $post_id, $post = null ) {
+add_action('save_post', 'mbdb_save_book_custom_table', 20);
+function mbdb_save_book_custom_table( $post_id) {
 	
 	if (!get_post_type() == 'mbdb_book') {
 		return;
 	}
-
+		
+	// Autosave, do nothing
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+	}
+	// AJAX? Not used here
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return;
+	}
+	// Check user permissions
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+	}
+	// Return if it's a post revision
+	if (  wp_is_post_revision( $post_id) || wp_is_post_autosave( $post_id ) ) {
+			return;
+	 }
+	
 	// save custom database fields to database
 	global $mbdb_edit_book;
-	
 	
 	MBDB()->books->save( $mbdb_edit_book, $post_id );
 
