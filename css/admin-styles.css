@@ -1,3 +1,14 @@
+/* Hide Parent drop down on non-hierarchial taxonomies */
+#newmbdb_genre_parent, .taxonomy-mbdb_genre #parent, .taxonomy-mbdb_genre label[for=parent], 
+#newmbdb_series_parent, .taxonomy-mbdb_series #parent, .taxonomy-mbdb_series label[for=parent], 
+#newmbdb_tag_parent, .taxonomy-mbdb_tag #parent, .taxonomy-mbdb_tag label[for=parent], 
+#newmbdb_editor_parent, .taxonomy-mbdb_editor #parent, .taxonomy-mbdb_editor label[for=parent], 
+#newmbdb_cover_artist_parent, .taxonomy-mbdb_cover_artist #parent, .taxonomy-mbdb_cover_artist label[for=parent], 
+#newmbdb_illustrator_parent, .taxonomy-mbdb_illustrator #parent, .taxonomy-mbdb_illustrator label[for=parent] { 
+	display:none; 
+}
+
+
 /* sortable books */
 #_mbdb_book_grid_book_list li {
 	margin: 0 3px 3px 3px;	
