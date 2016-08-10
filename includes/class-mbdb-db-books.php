@@ -79,9 +79,32 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		if ($book_id == 0) {
 			return null;
 		} else {
-			return $book_id;
+			return new MBDB_Book($book_id);
 		}
 		
+	}
+	
+	public function save_object( $book ) {
+		$data = array(
+			'_mbdb_summary' => $book->summary,
+			'_mbdb_excerpt' => $book->excerpt,
+			'_mbdb_subtitle' => $book->subtitle,
+			'_mbdb_published' => $book->release_date,
+			'_mbdb_goodreads' => $book->goodreads,
+			'_mbdb_series_order' => $book->series_order,
+			'_mbdb_cover' => $book->cover,
+			'_mbdb_cover_id' => $book->cover_id,
+			'_mbdb_additional_info' => $book->additional_info
+		);
+			
+		if ( $book->has_publisher() ) {
+			$data['_mbdb_publisher_id'] = $book->publisher->id;
+		} else {
+			$data['_mbdb_publisher_id'] = 0;
+		}
+		
+		// save taxonomies, editions, reviews, buy links, and download links?
+		return parent::save(  $data, $book->book_id );
 	}
 	
 	
