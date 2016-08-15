@@ -95,6 +95,18 @@ function mbdb_upgrade_versions() {
 			mbdb_set_admin_notice($message, 'updated', $key );
 		}
 		
+		if ( version_compare( $current_version, '3.4.12', '<')) {
+			$key = '3_4_12_tax_fix';
+			$button1 = __('Fix it now', 'mooberry-book-manager');
+			$button2 = __('I didn\'t have this problem. Dismiss this notice.', 'mooberry-book-manager');
+			$message = '<p>' . __('Had a problem with genres, tags, series, etc. turning into numbers after the Mooberry Book Manager 3.4.11 update?', 'mooberry-book-manager') . '</p>';
+			$message .= '<p><b>' . __('Please Note:', 'mooberry-book-manager') . '</b> ' . __('If you have genres, tags, series, editors, illustrators, or cover artists that are actually supposed to be numbers, this fix may affect them. Please check you books after running the fix and re-set them if necessary. I apologize for the inconvenience.', 'mooberry-book-manager') . '</p>';
+			
+			$message .= '<p><a href="#" class="button" id="mbdb_3_4_12_update">' . $button1 . '</a> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . $button2 . '</a> <img style="display:none;" id="mbdb_3_4_12_loading" src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif"/></p>';
+			mbdb_set_admin_notice($message, 'updated', $key);
+			
+		}
+		
 		
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
@@ -705,4 +717,92 @@ function mbdb_upgrade_to_3_4() {
 	mbdb_remove_admin_notice('3_4_2_migrate');
 }
 
+
+// fix taxonomy turned into numbers problem caused by 3.4.11
+add_action('wp_ajax_mbdb_3_4_12_update', 'mbdb_3_4_12_update');
+function mbdb_3_4_12_update() {
+	$nonce = $_POST['security'];
+
+	// check to see if the submitted nonce matches with the
+	// generated nonce we created earlier
+	if ( ! wp_verify_nonce( $nonce, 'mbdb_3_4_12_update_nonce' ) ) {
+		die ( );
+	}
+
+	// get all books that have been edited since 8/10
+	$books = get_posts( array(
+						'posts_per_page' => -1,
+						'post_type' => 'mbdb_book',
+						'post_status'=>	'publish',
+						'date_query' => array(
+							array(
+								'column' => 'post_modified_gmt',
+								'after'  => array(
+									'year'	=>	'2016',
+									'month'	=>	'8',
+									'day'	=>	'10',
+									),
+							),
+						),
+					)
+				);
+
+	$taxonomies = array('mbdb_genre', 'mbdb_series', 'mbdb_tag', 'mbdb_editor', 'mbdb_illustrator', 'mbdb_cover_artist');
+
+	foreach ($books as $book) {
+			foreach ($taxonomies as $taxonomy) {
+				$new_terms = array();
+				$terms = wp_get_object_terms( $book->ID, $taxonomy );
+				if ( is_wp_error( $terms ) ) {
+					break;
+				}
+
+				foreach ( $terms as $term ) {
+					if ( is_numeric($term->name) ) {
+						$actual_term = get_term( $term->name, $taxonomy );
+						if ( is_wp_error( $actual_term) || $actual_term == null) {
+							break;
+						}
+						$new_terms[] = $actual_term->term_id;
+					} else {
+						$new_terms[] = $term->term_id;
+					}
+				}
+				wp_set_object_terms( $book->ID, $new_terms, $taxonomy );
+			}
+	}
+		
+	$terms_to_delete = array();
+	foreach ($taxonomies as $taxonomy) {
+		global $wp_version;
+		if (version_compare($wp_version, '4.5', '<')) {
+			$terms = get_terms( $taxnomy, array(
+										'hide_empty' => false,
+										) );
+		} else {
+			$terms = get_terms( array(
+				'taxonomy' => $taxonomy,
+				'hide_empty' => false,
+			) );
+		}
+
+		foreach ($terms as $term) {
+			if (is_numeric($term->name) && $term->count == 0) {
+				$terms_to_delete[$taxonomy][] = $term->term_id;
+			}
+				
+		}
+	}
+	
+	// now that	the taxonomies are fixed, delete the added numeric terms
+	foreach ($terms_to_delete as $taxonomy => $terms) {
+		foreach ( $terms as $term_id ) {
+			wp_delete_term( $term_id, $taxonomy );
+		}
+	}
+	
+	mbdb_remove_admin_notice('3_4_12_tax_fix');
+	wp_die();
+	
+}
 

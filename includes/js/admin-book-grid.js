@@ -233,7 +233,7 @@ function book_selection_change() {
 			book_list.append('<li id="' + jQuery(this).val() + '">' & jQuery(this).next('label').text() + '<li>');
 			//.text( jQuery(this).next('label').text() )
 			*/
-			console.log(li);
+		
 		});
 	
 	jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
