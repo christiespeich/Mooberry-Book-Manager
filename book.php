@@ -386,6 +386,7 @@ add_action('save_post_mbdb_book', 'mbdb_save_book');
 	}
 	
 	
+	
 	// unhook this function so it doesn't loop infinitely
 	// and mbdb_save_book_custom_table so it doesn't run twice
 	remove_action( 'save_post_mbdb_book', 'mbdb_save_book' );
@@ -597,6 +598,52 @@ add_action('add_meta_boxes_mbdb_book', 'mbdb_reorder_taxonomy_boxes');
 
 	
 }
+
+// 3.4.12
+// when taxonomies are displayed as checkboxes instead of like tags, they take
+// ids as input but when they are like tags, they take names as input
+// because the taxonomies have been displayed like categories evn though they
+// are not hierarchical, the id to name has to be translated upon saving
+add_action( 'admin_init', 'mbdb_switch_tax_ids_and_name');
+function mbdb_switch_tax_ids_and_name() {
+	if ( !isset( $_POST['post_type'] ) || $_POST['post_type'] != 'mbdb_book') {
+		return;
+	}
+	if ( isset( $_POST[ '_inline_edit' ] ) ) {
+		return;
+	}
+	
+	if( isset( $_POST['tax_input'] ) && is_array( $_POST['tax_input'] ) ) {
+		$new_tax_input = array();
+		foreach( $_POST['tax_input'] as $tax => $terms) {
+			if( is_array( $terms ) ) {
+			  $taxonomy = get_taxonomy( $tax );
+			 
+			  //if( !$taxonomy->hierarchical ) {
+				if ( in_array($taxonomy->name, array('mbdb_genre', 'mbdb_series', 'mbdb_cover_artist', 'mbdb_tag', 'mbdb_editor', 'mbdb_illustrator'))) {
+					
+				 // $terms = array_map( 'intval', array_filter( $terms ) );
+				 $term_names = array();
+				 foreach( $terms as $term_id ) {
+					 $term = get_term($term_id);
+					 if ( !is_wp_error($term) ) {
+						 $term_names[] = $term->name;
+					 }
+				 }
+				 //$terms = array_map( 'get_term', $terms );
+			  }
+			}	
+			
+		
+			$new_tax_input[$tax] = $term_names;
+			
+		}
+		$_POST['tax_input'] = $new_tax_input;
+	}
+	
+}
+
+
 
 /**
  *  Add meta box for "Need help with Mooberry Book Manager?"

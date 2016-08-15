@@ -14,6 +14,10 @@ jQuery( document ).ready(function() {
 	jQuery('#mbdb_book_grid_placeholder_dismiss').click(function (e) {
 		mbdb_book_grid_placeholder_dismiss();
 	});
+	
+	jQuery('#mbdb_3_4_12_update').click(function (e) {
+		mbdb_3_4_12_update();
+	});
 });
 
 
@@ -60,5 +64,25 @@ function mbdb_book_grid_placeholder_dismiss() {
 	
 	mbdb_book_grid_dismiss.done( function ( data ) {
 		jQuery('#mbdb_book_grid_placeholder').hide();
+	});
+}
+
+function mbdb_3_4_12_update() {
+	jQuery('#mbdb_3_4_12_loading').show();
+	var original_url = window.location.href;
+	var data = {
+		'action':	'mbdb_3_4_12_update',
+		'security':	mbdb_admin_notice_ajax.mbdb_3_4_12_update_nonce
+	};
+	
+	var mbdb_3_4_12_update = jQuery.post( mbdb_admin_notice_ajax.ajax_url, data );
+	
+	mbdb_3_4_12_update.done( function (data ) {
+		//jQuery('#3_4_12_tax_fix').hide();
+	});
+	
+	mbdb_3_4_12_update.always ( function (data) {
+	//	jQuery('#mbdb_3_4_12_loading').hide();
+		window.location.href = original_url;
 	});
 }
