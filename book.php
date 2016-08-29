@@ -152,21 +152,29 @@ function populate_mbdb_book_columns( $column, $post_id ) {
  *  
  */
 add_action( 'bulk_edit_custom_box', 'mbdb_bulk_edit_books', 1, 2 );
-function mbdb_bulk_edit_books( $column_name, $post_type ) {
+function mbdb_bulk_edit_books( $column_name, $post_type, $quick_edit = false ) {
 	if ( $post_type !== 'mbdb_book' ) {
 		return;
 	}
 	
 	switch ($column_name) {
 		case 'publisher_id':
-			$publishers = mbdb_get_publishers();
+			if ( $quick_edit ) {
+				$publishers = mbdb_get_publishers();
+			} else {
+				$publishers = array(
+									'0'			=>	__('— No Change —', 'mooberry-book-manager'),
+									'-1'		=>	__('— No Publisher —', 'mooberry-book-manager'),
+								) + mbdb_get_publishers( 'no' );
+			}
+			
 	?>
 		<fieldset class="inline-edit-col-left">
 						<div class="inline-edit-col">
 							<label>
 								<span class="title"><?php _e('Publisher', 'mooberry-book-manager'); ?></span>
 								<span class="input-text-wrap">
-									<?php echo mbdb_dropdown('_mbdb_publisherID', $publishers, $selected = null, 'no',  -1, '_mbdb_publisherID' ); ?>
+									<?php echo mbdb_dropdown('_mbdb_publisherID', $publishers, '0', 'no',  -1, '_mbdb_publisherID' ); ?>
 								</span>
 							</label>
 						</div>
@@ -183,7 +191,7 @@ function mbdb_quick_edit_books( $column_name, $post_type ) {
 		return;
 	}
 	
-	mbdb_bulk_edit_books( $column_name, $post_type );
+	mbdb_bulk_edit_books( $column_name, $post_type, true );
 	
 	switch ($column_name) {
 		
@@ -271,6 +279,7 @@ function mbdb_quick_edit_save_post( $post_id, $post ) {
 	
 	global $mbdb_edit_book;
 	
+	// format published date
 	if ( array_key_exists( '_mbdb_published', $_POST ) ) {
 		if ($_POST['_mbdb_published'] != '') {
 			$published = strtotime($_POST['_mbdb_published']);
@@ -315,7 +324,8 @@ function mbdb_save_bulk_edit() {
 	}
 	
 	// get the custom fields
-	$custom_fields = array( '_mbdb_publisherID'  );
+	$custom_fields = array( '_mbdb_publisherID' );
+	
 	global $mbdb_edit_book;
 	
 	// update for each post ID
