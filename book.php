@@ -324,14 +324,7 @@ function mbdb_save_bulk_edit() {
 	}
 	
 	// get the custom fields
-	$custom_fields = array( );
-	
-	// add publisherID is no change is NOT selected
-	//if (array_key_exists( '_mbdb_publisherID', $_POST ) ) {
-	//	if ( $_POST['_mbdb_publisherID'] != '-1' ) {
-			array_push($custom_fields, '_mbdb_publisherID');
-	//	}
-	//}
+	$custom_fields = array( '_mbdb_publisherID' );
 	
 	global $mbdb_edit_book;
 	
