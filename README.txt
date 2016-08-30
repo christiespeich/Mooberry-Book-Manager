@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.6   
-Stable tag: 3.4.12     
+Stable tag: 3.4.13     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,11 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.4.13 =
+* Fixed: Error with Bulk Edit that was overwriting Publisher
+* Fixed: Select/Deselect All Books button on Book Grids was not working with custom sort
+* Fixed: Select/Deselect All buttons on Book Grids were not enabling/disabling Preview button
+
 = 3.4.12 =
 * Fixed: error with genres, series, tags, editors, illustrators, and cover artsts appearing as numbers (load any page in the Dashboard to see a notice about running a fix)
 
