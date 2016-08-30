@@ -14,6 +14,9 @@ jQuery( document ).ready(function() {
 	jQuery('#cmb2-metabox-mbdb_book_grid_metabox [type="checkbox"]').on('change', function () {
 		jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
 	});
+	jQuery('#cmb2-metabox-mbdb_book_grid_metabox .cmb-multicheck-toggle').on('click', function () {
+		jQuery(	'#mbdb_update_preview' ).prop('disabled', false);
+	});
 	
 	// select entire shortcode if field is clicked on
 	jQuery("#mbdb_book_grid_shortcode").click(function () {
@@ -29,6 +32,14 @@ jQuery( document ).ready(function() {
 	
 	// update the custom sorted book list when a book is selected/unselected
 	jQuery('.cmb2-id--mbdb-book-grid-custom input').bind( 'change', book_selection_change );
+	jQuery('#cmb2-metabox-mbdb_book_grid_metabox .cmb2-id--mbdb-book-grid-custom .cmb-multicheck-toggle' ).on('click', function() {
+			// this forces the click handler for the select all button to run AFTER cmb2's click handler so that
+			// by the time book_selection_change runs, the checkboxes have been toggled
+			setTimeout(function() {
+				  book_selection_change();
+				}, 0);
+	});
+	
 	
 	// make the grid sortable
 	jQuery('#_mbdb_book_grid_book_list').sortable({
@@ -210,7 +221,6 @@ function displayChange () {
 	
 }
 
-
 function book_selection_change() {
 	
 	book_list = jQuery('#_mbdb_book_grid_book_list');
@@ -221,7 +231,6 @@ function book_selection_change() {
 	// add all selected books
 	
 	jQuery('.cmb2-id--mbdb-book-grid-custom input:checkbox:checked').each( function () {
-		
 		var li = jQuery('<li>')
 			.attr('id', 'mbdb_custom_book_order_book_' + jQuery(this).val() )
 			.addClass('ui-state-default')
@@ -229,10 +238,6 @@ function book_selection_change() {
 			.prepend('<span class="ui-icon"></span>')
 			.appendTo(book_list);
 			mbdb_book_list_order_update();
-			/*
-			book_list.append('<li id="' + jQuery(this).val() + '">' & jQuery(this).next('label').text() + '<li>');
-			//.text( jQuery(this).next('label').text() )
-			*/
 		
 		});
 	
