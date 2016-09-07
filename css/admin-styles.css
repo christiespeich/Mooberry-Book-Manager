@@ -31,6 +31,12 @@
     margin-left: -1.3em;
 }
 
+.mbdb_info_icon {
+
+	height: 15px;
+	margin-left: 5px;
+}
+
 .cmb-repeat-group-wrap .cmb-remove-field-row, .cmb-repeat-group-wrap .cmb-repeat-group-field, .postbox-container .cmb-remove-field-row, .postbox-container .cmb-repeat-group-field {
 	padding-top: 0;
 }

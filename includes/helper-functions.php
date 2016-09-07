@@ -305,7 +305,6 @@ function mbdb_get_wysiwyg_output( $content ) {
     return $content;
 }
 
-
 // multi-dimensional array searching
  function mbdb_in_array_r($needle, $haystack, $strict = false) {
 	 if ( !is_array($haystack) ) {
@@ -320,7 +319,36 @@ function mbdb_get_wysiwyg_output( $content ) {
 		return false;
 	}
 
+// 3.5
+function mbdb_affiliate_fields( $group, $metabox ) {
+	$metabox->add_group_field( $group, array(
+				'id' => 'affiliate_code',
+				'name'	=>	__('Affiliate Code','mooberry-book-manager'),
+				'type' => 'text',
+				'description' => __('If you are an Affiliate for this retailer, enter the exact code that needs to be added to the URL to use your affiliate link.', 'mooberry-book-manager'),
+				'attributes'	=>	array(
+							'style'	=>	'width:100em;',
+							),
+			)
+		);
+		
+	$info_button = '<img onClick="window.open(\'' . MBDB_PLUGIN_URL . 'includes/affiliate-code-position.html' . '\', \'' . __('Affiliate Code Position', 'mooberry-book-manager') . '\',  \'width=800, height=300, left=550, top=250, scrollbars=yes\'); return false;"	class="mbdb_info_icon mbdb_affiliate_position_info" src="' . MBDB_PLUGIN_URL . 'includes/assets/info.png">';
+	
+	$metabox->add_group_field( $group, array(
+				'id'	=> 'affiliate_position',
+				'name'	=>	__('Affiliate Code Position', 'mooberry-book-manager') . $info_button,
+				'type'	=>	'radio_inline',
+				'options'	=> array(
+							'after'	=>	__('After Book Link', 'mooberry-book-manager'),
+							'before' => __('Before Book Link', 'mooberry-book-manager'),
+							),
+						)
+					);
+					
+	return $metabox;
+}
 
+	
 // for users with PHP <5.5
 if(!function_exists("array_column")) {
 	

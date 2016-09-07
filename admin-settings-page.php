@@ -652,9 +652,7 @@ class mbdb_Admin_Settings {
 				),
 			)
 		);
-		
-		
-		
+
 		return apply_filters('mbdb_settings_general_settings', $mbdb_settings_metabox);
 	}
 
@@ -721,6 +719,9 @@ class mbdb_Admin_Settings {
 				),
 			)
 		);
+		
+	
+		$mbdb_settings_metabox = mbdb_affiliate_fields( 'retailers', $mbdb_settings_metabox );
 		
 		
 		return apply_filters('mbdb_settings_retailer_fields', $mbdb_settings_metabox);

@@ -1434,7 +1434,28 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 		if (array_key_exists('retailers', $mbdb_options)) {
 			foreach($mbdb_options['retailers'] as $r) {
 				if ($r['uniqueID'] == $mbdb_buylink['_mbdb_retailerID']) {
+					// 3.5 this filter for backwards compatibility
 					$mbdb_buylink = apply_filters('mbdb_buy_links_output', $mbdb_buylink, $r);
+					// 3.5 add affiliate codes
+					$mbdb_buylink = apply_filters('mbdb_buy_links_pre_affiliate_code', $mbdb_buylink, $r);
+					$retailer = apply_filters('mbdb_buy_links_retailer_pre_affiliate_code', $r, $mbdb_buylink);
+					// Does the retailer have an affiliate code?
+					if (array_key_exists('affiliate_code', $retailer) && $retailer['affiliate_code'] != '') {
+						
+						// default to after
+						if (!array_key_exists('affiliate_position', $retailer) || $retailer['affiliate_position'] == '') {
+							$retailer['affiliate_position'] = 'after';
+						}
+						
+						// append or prepend the code
+						if ($retailer['affiliate_position'] == 'before') {
+							$mbdb_buylink['_mbdb_buylink'] = $retailer['affiliate_code'] . $mbdb_buylink['_mbdb_buylink'];
+						} else {
+							$mbdb_buylink['_mbdb_buylink'] .= $retailer['affiliate_code'];
+						}
+					}		
+					$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $r);
+					$retailer = apply_filters('mbdb_buy_links_retailer_post_affiliate_code', $r, $mbdb_buylink);
 					//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
 					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
 					if (array_key_exists('image', $r) && $r['image']!='') {
