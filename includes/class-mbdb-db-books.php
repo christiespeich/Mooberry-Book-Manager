@@ -359,7 +359,9 @@ public function search_where( $where ) {
 		   "/\([^(]*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
 		   " . $table . ".excerpt LIKE $1) OR (
-		$where = parent::search_where( $where );
+		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) 
+		   " . $publisher_ids, $where);
+		$where = parent::search_where( apply_filters('mbdb_book_search_where', $where, $term) );	
 	}
 	
 	return $where;
