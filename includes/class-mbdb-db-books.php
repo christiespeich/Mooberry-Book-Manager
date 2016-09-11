@@ -338,11 +338,27 @@ public function search_where( $where ) {
 	global $wpdb;	
 	$table = $this->table_name();
 	if( is_search() ) {
+		
+		// get the search term
+		$term = '';
+		$match =  preg_match("/\([^(]*post_title\s+LIKE\s*\'\%([^\'\%]+)\%\'\s*\)/", $where, $matches);
+		if (count($matches)>1) {
+			$term = $matches[1];
+		}
+		
+		// add in publishers
+		$publisher_ids = '';
+		$publishers = mbdb_get_publishers('no');
+		$publishers_found = preg_grep("/$term/", array_map('strtolower',$publishers)); 
+		if ( count($publishers_found) > 0 ) {
+			$keys = "'" . implode("','", array_keys($publishers_found)) . "'";
+			$publisher_ids = ' OR (' . $table .  '.publisher_id IN (' . $keys . ') ) ';
+		}
+		
 		$where = preg_replace(
 		   "/\([^(]*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
 		   " . $table . ".excerpt LIKE $1) OR (
-		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where);
 		$where = parent::search_where( $where );
 	}
 	
