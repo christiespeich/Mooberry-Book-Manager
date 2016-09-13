@@ -428,7 +428,15 @@ function mbdb_output_excerpt($mbdb_excerpt, $attr) {
  *  
  */
 function mbdb_get_excerpt_data($book = '') {
-	return mbdb_get_book_data('excerpt', $book);
+	// get exerpt or kindle preview text
+	// return false if not entered
+	$excerpt_type = mbdb_get_book_data('excerpt_type', $book);
+	
+	if ( $excerpt_type == 'kindle' ) {
+		return mbdb_get_book_data('kindle_preview', $book);
+	} else {
+		return mbdb_get_book_data('excerpt', $book);
+	}
 }
 
 /**

@@ -38,6 +38,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'subtitle' => '%s',
 			'summary' => '%s',
 			'excerpt' => '%s',
+			'excerpt_type'	=>	'%s',
+			'kindle_preview'	=>	'%s',
 			'additional_info' => '%s',
 			'cover_id' => '%d',
 			'cover' => '%s',
@@ -53,6 +55,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return array(
 			'_mbdb_summary' => 'summary',
 			'_mbdb_excerpt' => 'excerpt',
+			'_mbdb_excerpt_type'	=>	'excerpt_type',
+			'_mbdb_kindle_preview'	=>	'kindle_preview',
 			'_mbdb_additional_info' => 'additional_info',
 			'_mbdb_subtitle' => 'subtitle',
 			'_mbdb_cover' => 'cover',
@@ -69,6 +73,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'summary',
 			'excerpt',
 			'additional_info',
+			'kindle_preview',
 		);
 	}
 	
@@ -380,7 +385,9 @@ public function search_where( $where ) {
 			  book_id bigint(20) unsigned NOT NULL,
 			  subtitle varchar(100),
 			  summary longtext,
+			  excerpt_type varchar(100),
 			  excerpt longtext,
+			  kindle_preview longtext,
 			  additional_info longtext,
 			  cover_id bigint(20) unsigned,
 			  cover longtext,
