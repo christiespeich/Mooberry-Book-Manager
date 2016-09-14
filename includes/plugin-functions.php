@@ -14,11 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'plugins_loaded', 'mbdb_load_textdomain' );
 function mbdb_load_textdomain() {
 
-	// pre 4.6 compatibility
-	global $wp_version;
-	if (version_compare($wp_version, '4.6', '<')) {
-		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
-	}
+	load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
 	
 	// load the settings
 	$mbdb_admin_settings = mbdb_admin();
