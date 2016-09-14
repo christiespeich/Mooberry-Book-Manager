@@ -440,7 +440,7 @@ function mbdb_add_book_grid_shortcode_button() {
    
 	.ui-dialog .ui-dialog-titlebar-close span { margin-left: -8px; margin-top: -8px; }
   </style>
-	<a href="#" id="mbdb_add_book_grid" class="button">Add Book Grid</a>
+	<a href="#" id="mbdb_add_book_grid" class="button"><?php _e('Add Book Grid', 'mooberry-book-manager'); ?></a>
 	<div id="mbdb_book_grid_shortcode_dialog" title="<?php _e('Add Book Grid', 'mooberry-book-manager'); ?>">
   
  

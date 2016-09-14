@@ -220,8 +220,6 @@ abstract class MOOBD_Database {
 			$type = '_' . $type;
 		}
 		
-	
-		
 		$results = $this->get( $id );
 		
 		if ($results == null || empty($results) ) {

@@ -152,7 +152,7 @@ function mbdb_excerpt( $content ) {
 		}
 	
 		global $post;
-		return $post->post_content;
+		return do_shortcode($post->post_content);
 	}
 
 	// if we're in the admin side and the post type is mbdb_book then we're showign the list of books

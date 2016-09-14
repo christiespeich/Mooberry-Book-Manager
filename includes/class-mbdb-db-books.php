@@ -38,6 +38,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'subtitle' => '%s',
 			'summary' => '%s',
 			'excerpt' => '%s',
+			'excerpt_type'	=>	'%s',
+			'kindle_preview'	=>	'%s',
 			'additional_info' => '%s',
 			'cover_id' => '%d',
 			'cover' => '%s',
@@ -53,6 +55,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return array(
 			'_mbdb_summary' => 'summary',
 			'_mbdb_excerpt' => 'excerpt',
+			'_mbdb_excerpt_type'	=>	'excerpt_type',
+			'_mbdb_kindle_preview'	=>	'kindle_preview',
 			'_mbdb_additional_info' => 'additional_info',
 			'_mbdb_subtitle' => 'subtitle',
 			'_mbdb_cover' => 'cover',
@@ -69,6 +73,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'summary',
 			'excerpt',
 			'additional_info',
+			'kindle_preview',
 		);
 	}
 	
@@ -338,12 +343,30 @@ public function search_where( $where ) {
 	global $wpdb;	
 	$table = $this->table_name();
 	if( is_search() ) {
+		
+		// get the search term
+		$term = '';
+		$match =  preg_match("/\([^(]*post_title\s+LIKE\s*\'\%([^\'\%]+)\%\'\s*\)/", $where, $matches);
+		if (count($matches)>1) {
+			$term = $matches[1];
+		}
+		
+		// add in publishers
+		$publisher_ids = '';
+		$publishers = mbdb_get_publishers('no');
+		$publishers_found = preg_grep("/$term/", array_map('strtolower',$publishers)); 
+		if ( count($publishers_found) > 0 ) {
+			$keys = "'" . implode("','", array_keys($publishers_found)) . "'";
+			$publisher_ids = ' OR (' . $table .  '.publisher_id IN (' . $keys . ') ) ';
+		}
+		
 		$where = preg_replace(
 		   "/\([^(]*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
 		   " . $table . ".excerpt LIKE $1) OR (
-		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where);
-		$where = parent::search_where( $where );
+		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) 
+		   " . $publisher_ids, $where);
+		$where = parent::search_where( apply_filters('mbdb_book_search_where', $where, $term) );	
 	}
 	
 	return $where;
@@ -362,7 +385,9 @@ public function search_where( $where ) {
 			  book_id bigint(20) unsigned NOT NULL,
 			  subtitle varchar(100),
 			  summary longtext,
+			  excerpt_type varchar(100),
 			  excerpt longtext,
+			  kindle_preview longtext,
 			  additional_info longtext,
 			  cover_id bigint(20) unsigned,
 			  cover longtext,

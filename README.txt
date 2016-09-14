@@ -165,6 +165,12 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5 =
+* Improved: Better affiliate handling -- now set affiliate codes on the Retailers page
+* Improved: Added publisher column to searches
+* Added: Ability to use Kindle Live Preview for excerpt
+* Fixed: process shortcodes in excerpts too
+
 = 3.4.13 =
 * Fixed: Error with Bulk Edit that was overwriting Publisher
 * Fixed: Select/Deselect All Books button on Book Grids was not working with custom sort

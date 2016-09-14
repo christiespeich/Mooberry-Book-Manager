@@ -733,7 +733,21 @@ function mbdb_book_metaboxes(  ) {
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'high',	
-		'show_names'    => false, // Show field names on the left
+		'show_names'    => true, // Show field names on the left
+		)
+	);
+	
+	$info_button = '<img onClick="window.open(\'' . MBDB_PLUGIN_URL . 'includes/excerpt_type.html' . '\', \'' . __('Excerpt Type', 'mooberry-book-manager') . '\',  \'width=800, height=900, left=550, top=50, scrollbars=yes\'); return false;"	class="mbdb_info_icon mbdb_excerpt_type_info" src="' . MBDB_PLUGIN_URL . 'includes/assets/info.png">';
+	
+	$mbdb_excerpt_metabox->add_field( array(
+		'name'	=>	__('Excerpt Style', 'mooberry-book-manager') . $info_button,
+		'id'	=>	'_mbdb_excerpt_type',
+		'default'	=>	'text',
+		'type'	=>	'select',
+		'options'	=> array(
+						'text'	=> __('Enter Excerpt Directly', 'mooberry-book-manager'),
+						'kindle'	=>	__( 'Use Kindle Live Preview', 'mooberry-book-manager'),
+					),
 		)
 	);
 	
@@ -755,7 +769,14 @@ function mbdb_book_metaboxes(  ) {
 			'quicktags' => true // load Quicktags, can be used to pass settings directly to Quicktags using an array()   
 			)
 		)
+	);
 	
+	$mbdb_excerpt_metabox->add_field( array(
+		'name'    => __('Kindle Live Preview Code', 'mooberry-book-manager'),
+		'id'      => '_mbdb_kindle_preview',
+		'type'    => 'textarea',
+		'sanitization_cb'	=> false,
+		)
 	);
 	
 	
