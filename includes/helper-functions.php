@@ -353,24 +353,24 @@ function mbdb_affiliate_fields( $group, $metabox ) {
 if(!function_exists("array_column")) {
 	
 	function array_column($array, $column_name, $key = null) {
-		if (!is_array($array)) {
+		if ( !is_array( $array ) ) {
 			return null;
 		}
 		
-		if ($key == null) {
-			return array_map(function($element) use($column_name){return $element[$column_name];}, $array);
-		} else {
-			$new_array = array();
-			
-			foreach ($array as $element) {
-				$new_array[$element[$key]] = $element[$column_name];
+		$new_array = array();
+		foreach ( $array as $element ) {
+			if ( array_key_exists( $column_name, $element ) ) {
+				if ($key == null) {
+						$new_array[] = $element[$column_name];
+				} else {
+					if ( array_key_exists( $key, $element ) ) {
+						$new_array[$element[$key]] = $element[$column_name];
+					}
+				}		
 			}
-			
-			return $new_array;
 		}
-		
-	}
-	
+		return $new_array;
+	}	
 }
 
 
@@ -499,8 +499,11 @@ function mbdb_create_array_options_list( $options_key, $key_field, $value_field,
 	}
 	if (array_key_exists( $options_key, $mbdb_options ) ) {
 		// creates an array with key_field as the key and value_field as the value
-		return array_column( $mbdb_options[ $options_key ], $value_field, $key_field );
-		} else {
+		
+		$array =  array_column( $mbdb_options[ $options_key ], $value_field, $key_field );
+		
+		return $array;
+	} else {
 		return array();
 	}
 }
