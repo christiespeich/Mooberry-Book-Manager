@@ -383,7 +383,7 @@ public function search_where( $where ) {
 		$table = $this->table_name();
 		$sql_create_table = "CREATE TABLE " . $table . " (
 			  book_id bigint(20) unsigned NOT NULL,
-			  subtitle varchar(100),
+			  subtitle varchar(255),
 			  summary longtext,
 			  excerpt_type varchar(100),
 			  excerpt longtext,
