@@ -165,6 +165,12 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.2 =
+* Fixed: Subtitles can now be 255 characters
+* Fixed: Compatible with earlier versions of PHP
+* Fixed: translations added for book grid headings for genre, series, tags, etc.
+* Updated: changed book grid headings for genre, series, tags, etc. for easier translation
+
 = 3.5.1 =
 * Fixed: translations not loading
 
