@@ -129,6 +129,16 @@ function populate_mbdb_book_columns( $column, $post_id ) {
 			echo '</div>';
 			do_action('mbdb_book_post_mbdb_publisher_column', $column, $publisher, $book );
 			break;
+		case 'series_order':
+			do_action('mbdb_book_pre_mbdb_' . $column . '_column', $column, $data, $book );
+			echo '<div id="' . $column . '-' . $post_id . '">';
+			if ( $data != '' ) {
+				$data = floatval( $data );
+			}
+			echo apply_filters('mbdb_book_mbdb_' . $column . '_column', $data, $book, $post_id, $column );
+			echo '</div>';
+			do_action('mbdb_book_post_mbdb_' . $column . '_column', $column, $data, $book );
+			break; 
 		default:
 			do_action('mbdb_book_pre_mbdb_' . $column . '_column', $column, $data, $book );
 			echo '<div id="' . $column . '-' . $post_id . '">';

@@ -46,7 +46,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'release_date' => '%s',
 			'publisher_id' => '%s',
 			'goodreads' => '%s',
-			'series_order' => '%d',
+			'series_order' => '%f',
 			//'blog_id'	=> '%d',
 		);
 	}
@@ -100,6 +100,17 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return apply_filters('mbdb_book_sort_fields', $sort_fields, $sort);
 	}
 	
+	// truncate trailing zeros from series order
+	public function get_data_by_post_meta( $post_meta, $id ) {
+		$data = parent::get_data_by_post_meta( $post_meta, $id );
+		
+		if ( $post_meta == '_mbdb_series_order' && $data !== false && $data != '' ) {
+			return floatval( $data );
+		}
+		
+		return $data;
+	}
+			
 	
 	public function get_ordered_selection( $selection, $selection_ids, $sort, $book_ids = null, $taxonomy = null ) {
 	
@@ -394,7 +405,7 @@ public function search_where( $where ) {
 			  release_date date,
 			  publisher_id char(13),
 			  goodreads longtext,
-			  series_order tinyint unsigned,
+			  series_order decimal(6,2), 
 			  PRIMARY KEY  (book_id),
 			  KEY release_date (release_date)
 		 ) $charset_collate; ";
