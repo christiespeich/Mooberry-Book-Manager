@@ -583,6 +583,8 @@ function mbdb_register_cpts() {
 				'filter_items_list'     => __( 'Filter Book List', 'mooberry-book-manager' ),
 				'items_list_navigation' => __( 'Book List Navigation', 'mooberry-book-manager' ),
 				'items_list'            => __( 'Book List', 'mooberry-book-manager' ),
+				'view items'	=>	__('View Books', 'mooberry-book-manager'),
+				'attributes'	=>	__('Book Attributes', 'mooberry-book-manager'),
 				),
 			) )
 		);
@@ -643,6 +645,8 @@ function mbdb_register_cpts() {
 				'filter_items_list'     => __( 'Filter Book Grid List', 'mooberry-book-manager' ),
 				'items_list_navigation' => __( 'Book Grid List Navigation', 'mooberry-book-manager' ),
 				'items_list'            => __( 'Book Grid List', 'mooberry-book-manager' ),
+				'view items'	=>	__('View Book Grids', 'mooberry-book-manager'),
+				'attributes'	=>	__('Book Grid Attributes', 'mooberry-book-manager'),
 				),
 			) )
 		);
