@@ -298,9 +298,11 @@ function mbdb_get_wysiwyg_output( $content ) {
     global $wp_embed;
 
     $content = $wp_embed->autoembed( $content );
-    $content = $wp_embed->run_shortcode( $content );
+	$content = $wp_embed->run_shortcode( $content );
+	$content = wpautop( $content );
+    
     $content = do_shortcode( $content );
-    $content = wpautop( $content );
+   
 
     return $content;
 }
