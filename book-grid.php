@@ -971,7 +971,7 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 		$alt = mbdb_get_alt_text( $book->cover_id, $default_alt );
 		$content .= '<div class="mbdb_grid_image">';
 		$content = apply_filters('mbdb_book_grid_pre_image', $content, $book->book_id, $image[0]);
-		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($image[0]) . '" ' . $alt . ' ></a>';
+		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($image[0]) . '" ' . $alt . ' /></a>';
 		$content = apply_filters('mbdb_book_grid_post_image', $content, $book->book_id, $image[0]);
 		$content .= '</div>';
 		
@@ -980,7 +980,7 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 			$alt = mbdb_get_alt_text( 0, $default_alt );
 			$content .= '<div class="mbdb_grid_image">';
 			$content = apply_filters('mbdb_book_grid_pre_placeholder_image', $content, $book->book_id, $coming_soon_image);
-			$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($coming_soon_image) . '" ' . $alt . ' ></a></div>';
+			$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($coming_soon_image) . '" ' . $alt . ' /></a></div>';
 			$content = apply_filters('mbdb_book_grid_post_placeholder_image', $content, $book->book_id, $coming_soon_image);
 		} else {
 			$content .= '<div class="mbdb_grid_no_image" style="height: ' . $mbdb_book_grid_cover_height . 'px; width: ' . $mbdb_book_grid_cover_height . ';">';
