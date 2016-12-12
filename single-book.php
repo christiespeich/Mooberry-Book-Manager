@@ -1231,6 +1231,12 @@ function mbdb_shortcode_cover( $attr, $content) {
 function mbdb_output_reviews($mbdb_reviews, $attr) {
 	$review_html = '';
 	foreach ($mbdb_reviews as $review) {
+		// 3.5.4
+		$review_text = mbdb_check_field('mbdb_review', $review);
+		// if not review, skip to the next one
+		if ( !$review_text ) {
+			continue;
+		}
 		$reviewer_name = mbdb_check_field('mbdb_reviewer_name', $review);
 		$review_url = mbdb_check_field('mbdb_review_url', $review);
 		$review_website = mbdb_check_field('mbdb_review_website', $review);
