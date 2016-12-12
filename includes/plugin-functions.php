@@ -190,7 +190,6 @@ function mbdb_excerpt( $content ) {
  * @access public
  * @since 2.1
  * @since 3.0 Added support for tax grid template as well. Changed from single_template to template_include filter
- * @since 3.5.4 Checks if this is a search and bails if so
  *
  * @param string $template
  * @return string $template
@@ -199,12 +198,6 @@ function mbdb_excerpt( $content ) {
 add_filter( 'template_include', 'mbdb_single_template' );
 function mbdb_single_template( $template ) {
 
-	// if a search, return what we got in
-	global $wp_query;
-	if ( $wp_query->is_search() ) {
-		return $template;
-	}
-	
 	// if not a book or tax grid, return what we got in
 	if ( get_post_type() != 'mbdb_book' && get_post_type() != 'mbdb_tax_grid' ) {
 		return $template;
