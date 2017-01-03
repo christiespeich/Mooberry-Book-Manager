@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 3.5.4     
+Stable tag: 3.5.5     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.5 =
+* Updated: Users in Author Wordpress role can now add new genres, tags, series, editors, cover artists, and illustrators
+
 = 3.5.4 =
 * Fixed: Book Grid can now be used on book pages
 * Fixed: When a search is done, the proper template is used when a book is on of the results
