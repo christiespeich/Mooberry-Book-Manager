@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-12-12 14:21-0500\n"
+"POT-Creation-Date: 2017-01-03 14:40-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -537,8 +537,8 @@ msgid "No Publisher Specified"
 msgstr "Δεν έχει οριστεί εκδότης"
 
 #: book-grid.php:727
-msgid "Published by "
-msgstr "Εκδόσεις "
+msgid "Published by"
+msgstr ""
 
 #: book-grid.php:769
 msgid "Uncategorized"
@@ -2717,6 +2717,9 @@ msgstr "Μέγεθος εξώφυλλου(pixels)"
 #: views/admin-widget.php:30
 msgid "(minimum 50)"
 msgstr "(το λιγότερο 50)"
+
+#~ msgid "Published by "
+#~ msgstr "Εκδόσεις "
 
 #~ msgid "Standalones"
 #~ msgstr "Ατομικά"

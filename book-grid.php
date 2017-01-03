@@ -724,7 +724,7 @@ function mbdb_get_group($level, $groups, $current_group, $selection, $selected_i
 			// only return results if are any so that headers of empty groups
 			// aren't displayed
 			if (count($results)>0) {
-				$books[ apply_filters('mbdb_book_grid_heading', __('Published by ', 'mooberry-book-manager') . $publisher['name'])] = $results;
+				$books[ apply_filters('mbdb_book_grid_heading', __('Published by', 'mooberry-book-manager') . ' ' . $publisher['name'])] = $results;
 			}
 		}
 	}

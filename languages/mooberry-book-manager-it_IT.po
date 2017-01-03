@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2016-12-12 14:22-0500\n"
+"POT-Creation-Date: 2017-01-03 14:40-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -528,7 +528,7 @@ msgid "No Publisher Specified"
 msgstr ""
 
 #: book-grid.php:727
-msgid "Published by "
+msgid "Published by"
 msgstr ""
 
 #: book-grid.php:769
