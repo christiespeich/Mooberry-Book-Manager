@@ -436,16 +436,16 @@ function mbdb_add_book_grid_shortcode_button() {
 	}
 	wp_reset_postdata();
 ?><style>
-	.ui-dialog { z-index: 99999 !important; }
+	<!-- .ui-dialog { z-index: 99999 !important; } -->
    
 	.ui-dialog .ui-dialog-titlebar-close span { margin-left: -8px; margin-top: -8px; }
   </style>
-	<a href="#" id="mbdb_add_book_grid" class="button"><?php _e('Add Book Grid', 'mooberry-book-manager'); ?></a>
-	<div id="mbdb_book_grid_shortcode_dialog" title="<?php _e('Add Book Grid', 'mooberry-book-manager'); ?>">
+	<a href="#" id="mbdb_add_book_grid_<?php echo $editor_id; ?>" class="button"><?php _e('Add Book Grid', 'mooberry-book-manager'); ?></a>
+	<div id="mbdb_book_grid_shortcode_dialog_<?php echo $editor_id; ?>" title="<?php _e('Add Book Grid', 'mooberry-book-manager'); ?>">
   
  
-      <label for="mbdb_book_grids">Book Grid:</label>
-	  <?php echo mbdb_dropdown( 'mbdb_book_grids', $grids, null, 'no' ); ?>
+      <label for="mbdb_book_grids"><?php _e('Book Grid:', 'mooberry-book-manager'); ?></label>
+	  <?php echo mbdb_dropdown( 'mbdb_book_grids_' . $editor_id, $grids, null, 'no' ); ?>
       
  
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
@@ -814,7 +814,8 @@ function mbdb_get_books_by_taxonomy($level, $groups, $current_group, $selection,
 				$heading = $term->name . ' ' . $taxonomy->labels->singular_name;
 			} else {
 				*/
-				$heading = $taxonomy->labels->singular_name . ': ' . $term->name;	
+				$heading = sprintf( _x( '%1$s: %2$s', '%1$s is the taxonomy name (Genre, Tag, etc.) and %2$s is the item ( romance, mystery, etc. )', 'mooberry-book-manager'), $taxonomy->labels->singular_name , $term->name );	
+				
 		//	}
 			$books[ apply_filters('mbdb_book_grid_heading', $heading )] = $results;
 		}
