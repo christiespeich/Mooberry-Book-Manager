@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2017-01-06 22:57-0500\n"
+"POT-Creation-Date: 2017-01-13 11:54-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Borisa Djuraskovic <borisad@webhostinghub.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -119,7 +119,7 @@ msgid ""
 "issues with your books' information.  "
 msgstr ""
 
-#: admin-settings-page.php:275 includes/helper-functions-updates.php:570
+#: admin-settings-page.php:275 includes/helper-functions-updates.php:616
 msgid "Changes you've made since migrating may be lost."
 msgstr ""
 
@@ -953,44 +953,44 @@ msgid ""
 "apologize for the inconvenience."
 msgstr ""
 
-#: includes/helper-functions-updates.php:546
+#: includes/helper-functions-updates.php:592
 msgid ""
 "Upgrading to Mooberry Book Manager version 3.1 requires some data migration "
 "before Mooberry Book Manager will operate properly."
 msgstr ""
 
-#: includes/helper-functions-updates.php:547
+#: includes/helper-functions-updates.php:593
 msgid ""
 "Even if you have previously migrated the data (if you upgraded to version "
 "3.0 and then rolled back to version 2.4.x), you must migrate again to ensure "
 "Mooberry Book Manaer will operate properly."
 msgstr ""
 
-#: includes/helper-functions-updates.php:548
+#: includes/helper-functions-updates.php:594
 msgid "Changes made since migrating the first time may be lost."
 msgstr ""
 
-#: includes/helper-functions-updates.php:549
-#: includes/helper-functions-updates.php:571 includes/plugin-functions.php:282
+#: includes/helper-functions-updates.php:595
+#: includes/helper-functions-updates.php:617 includes/plugin-functions.php:282
 msgid "Migrate Data Now"
 msgstr ""
 
-#: includes/helper-functions-updates.php:569
+#: includes/helper-functions-updates.php:615
 msgid ""
 "You may choose to re-migrate your data from version 2 if you've noticed "
 "issues with your books' information."
 msgstr ""
 
-#: includes/helper-functions-updates.php:572
+#: includes/helper-functions-updates.php:618
 msgid "Dismiss Notice"
 msgstr ""
 
-#: includes/helper-functions-updates.php:667
-#: includes/helper-functions-updates.php:682
+#: includes/helper-functions-updates.php:713
+#: includes/helper-functions-updates.php:728
 msgid "Imported Book Grid: "
 msgstr ""
 
-#: includes/helper-functions-updates.php:722
+#: includes/helper-functions-updates.php:768
 msgid "done!"
 msgstr ""
 
@@ -2491,15 +2491,19 @@ msgstr "na"
 msgid "wrote"
 msgstr "napisao"
 
-#: single-book.php:1371 single-book.php:1772 single-book.php:1858
+#: single-book.php:1363 single-book.php:1484
+msgid "Available on"
+msgstr ""
+
+#: single-book.php:1378 single-book.php:1784 single-book.php:1870
 msgid "Download Now:"
 msgstr "Preuzmite sada:"
 
-#: single-book.php:1486
+#: single-book.php:1498
 msgid "Buy Now:"
 msgstr ""
 
-#: single-book.php:1698
+#: single-book.php:1710
 #, php-format
 msgctxt ""
 "%1$s is the currency symbol. %2$s is the price. To put currency after price, "
@@ -2507,63 +2511,63 @@ msgctxt ""
 msgid "%1$s %2$s"
 msgstr ""
 
-#: single-book.php:1705
+#: single-book.php:1717
 msgid "ISBN:"
 msgstr ""
 
-#: single-book.php:1708
+#: single-book.php:1720
 msgid "Size:"
 msgstr ""
 
-#: single-book.php:1711
+#: single-book.php:1723
 msgid "Pages:"
 msgstr ""
 
-#: single-book.php:1778
+#: single-book.php:1790
 msgid "Part of the"
 msgstr "Deo od"
 
-#: single-book.php:1778
+#: single-book.php:1790
 msgid "series:"
 msgstr ""
 
-#: single-book.php:1782
+#: single-book.php:1794
 msgid "Editions:"
 msgstr ""
 
-#: single-book.php:1811
+#: single-book.php:1823
 msgid "Published:"
 msgstr ""
 
-#: single-book.php:1815
+#: single-book.php:1827
 msgid "Publisher:"
 msgstr ""
 
-#: single-book.php:1819
+#: single-book.php:1831
 msgid "Editors:"
 msgstr ""
 
-#: single-book.php:1823
+#: single-book.php:1835
 msgid "Illustrators:"
 msgstr ""
 
-#: single-book.php:1827
+#: single-book.php:1839
 msgid "Cover Artists:"
 msgstr ""
 
-#: single-book.php:1831
+#: single-book.php:1843
 msgid "Genres:"
 msgstr ""
 
-#: single-book.php:1835
+#: single-book.php:1847
 msgid "Tags:"
 msgstr ""
 
-#: single-book.php:1843
+#: single-book.php:1855
 msgid "Excerpt:"
 msgstr ""
 
-#: single-book.php:1850
+#: single-book.php:1862
 msgid "Reviews:"
 msgstr ""
 
