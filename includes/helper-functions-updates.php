@@ -122,6 +122,52 @@ function mbdb_upgrade_versions() {
 			MBDB()->books->create_table();
 		}
 		
+		if ( version_compare( $current_version, '3.5.6', '<')) {
+			$mbdb_options = get_option('mbdb_options');
+			if ( array_key_exists( 'retailers', $mbdb_options) ) {
+		
+				// create an array of uniqueIDs
+				$existing_uniqueIDs = array_column( $mbdb_options['retailers'], 'uniqueID' );
+				
+				// ** change image for amazon **	
+				$path = MBDB_PLUGIN_URL . 'includes/assets/amazon.png';
+				$key = array_search('1', $existing_uniqueIDs);
+				if ( $key !== false  ) {
+					$mbdb_options['retailers'][$key]['image'] = $path;
+					$mbdb_options['retailers'][$key]['image_id'] = 0;
+				}
+				
+				// ** change image for kindle **
+				$path = MBDB_PLUGIN_URL . 'includes/assets/kindle.jpg';
+				$key = array_search('13', $existing_uniqueIDs);
+				if ( $key !== false  ) {
+					$mbdb_options['retailers'][$key]['image'] = $path;
+					$mbdb_options['retailers'][$key]['image_id'] = 0;
+				}
+			}
+			
+			if ( array_key_exists( 'formats', $mbdb_options) ) {
+				// create an array of uniqueIDs
+				$existing_uniqueIDs = array_column( $mbdb_options['formats'], 'uniqueID' );
+				
+			
+				// ** change image for kindle **
+				$path = MBDB_PLUGIN_URL . 'includes/assets/kindle.jpg';
+				$key = array_search('2', $existing_uniqueIDs);
+				if ( $key !== false  ) {
+					$mbdb_options['formats'][$key]['image'] = $path;
+					$mbdb_options['formats'][$key]['image_id'] = 0;
+				}
+			
+			
+			}
+			
+			
+			update_option( 'mbdb_options', $mbdb_options );
+		}
+			
+	
+		
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }

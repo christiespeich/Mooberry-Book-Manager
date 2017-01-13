@@ -1290,7 +1290,18 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
  *  
  */
 function mbdb_get_reviews_data($book = '') {
-	return mbdb_get_book_data(	'_mbdb_reviews', $book);
+	$reviews = mbdb_get_book_data(	'_mbdb_reviews', $book);
+	if ( $reviews !== false ) {
+		if ( is_array($reviews) ) {
+			foreach ( $reviews as $review ) {
+				if ( $review != '' && ( is_array($review) && count($review) > 0 ) ) {
+					return $reviews;
+				}
+			}
+			return false;			
+		}
+	}
+	return $reviews;
 }
 
 /**
@@ -1330,10 +1341,15 @@ function mbdb_get_downloadlinks_data( $book ) {
 	$bookID = mbdb_get_book_ID($book);
 	if ($bookID != 0) {
 		$mbdb_downloadlinks = get_post_meta( $bookID, '_mbdb_downloadlinks', true);
-		if (($mbdb_downloadlinks=='') || (!array_key_exists(0, $mbdb_downloadlinks))) { 
+	
+	if (($mbdb_downloadlinks=='') || (!array_key_exists(0, $mbdb_downloadlinks))) { 
 			return false;
 		} else {
-			return $mbdb_downloadlinks;
+			if ( count($mbdb_downloadlinks) == 1 && $mbdb_downloadlinks[0]['_mbdb_formatID'] == 0 ) {
+				return false;
+			} else {
+				return $mbdb_downloadlinks;
+			}
 		}
 	} else {
 		return false;
@@ -1342,6 +1358,7 @@ function mbdb_get_downloadlinks_data( $book ) {
 
 // v3.0 added alt text
 function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
+	
 	$classname = 'mbm-book-download-links';
 	$mbdb_options = get_option( 'mbdb_options' );
 	$download_links_html = '<UL class="' . $classname . '-list" style="list-style-type:none;">';
@@ -1356,7 +1373,14 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 			foreach($mbdb_options['formats'] as $r) {
 				if ($r['uniqueID'] == $mbdb_downloadlink['_mbdb_formatID']) {
 		
-					$download_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '"><A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
+					$download_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
+				
+				// 3.5.6
+					if ( $r['uniqueID'] == '2' ) {
+						$download_links_html .= __('Available on', 'mooberry-book-manager') . ' ';
+					}
+					
+					$download_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
 					if (array_key_exists('image', $r) && $r['image']!='') {
 						if (array_key_exists('imageID', $r)) {
 							$imageID = $r['imageID'];
@@ -1471,6 +1495,11 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 					$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $r);
 					$retailer = apply_filters('mbdb_buy_links_retailer_post_affiliate_code', $r, $mbdb_buylink);
 					//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
+					
+					// 3.5.6
+					if ( $r['uniqueID'] == '13' ) {
+						$buy_links_html .= __('Available on', 'mooberry-book-manager') . ' <br/>';
+					}
 					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
 					if (array_key_exists('image', $r) && $r['image']!='') {
 						
@@ -1649,9 +1678,10 @@ function mbdb_shortcode_links($attr, $content) {
 	$editions = mbdb_get_book_data(	'_mbdb_editions', $book);
 	// the only way to know for sure there are no editions is to check 
 	// for the existance of the format field
+	
 	if ($editions !== false) {
 		foreach ($editions as $edition) {
-			if (array_key_exists('_mbdb_format', $edition)) {
+			if (array_key_exists('_mbdb_format', $edition) && $edition['_mbdb_format'] != '0') {
 				return $editions;
 			}
 		}

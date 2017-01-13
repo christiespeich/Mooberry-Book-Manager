@@ -321,10 +321,11 @@ class mbdb_Admin_Settings {
 		);
 		// split up the descriptions to keep the html out of the
 		// translatable text
+		/*
 		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
 		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
-		
+		*/
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 	'goodreads',
 				'name'	=>	__('Add to Goodreads Image', 'mooberry-book-manager'),
@@ -332,7 +333,7 @@ class mbdb_Admin_Settings {
 				'attributes' => array(
 					'style'	=>	'width:300px',
 				),
-				'after_row'=> $description,
+			//	'after_row'=> $description,
 				'options'	=> array(
 					'url'	=> false,
 					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
@@ -634,10 +635,11 @@ class mbdb_Admin_Settings {
 		
 		// split up the descriptions to keep the html out of the
 		// translatable text
+		/*
 		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
 		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
-		
+		*/
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 	'coming-soon',
 				'name'	=>	__('Placeholder Cover Image', 'mooberry-book-manager'),
@@ -645,7 +647,7 @@ class mbdb_Admin_Settings {
 				'attributes' => array(
 					'style'	=>	'width:300px',
 				),
-				'after_row'	=>	$description,
+			//	'after_row'	=>	$description,
 				'options'	=> array(
 					'url'	=> false,
 					'add_upload_file_text' => __('Choose or Upload File', 'mooberry-book-manager'),
@@ -672,14 +674,15 @@ class mbdb_Admin_Settings {
 		
 		// split up the descriptions to keep the html out of the
 		// translatable text
+		/*
 		$description1 = __('Add any additional retailers that sell your books. If you need to restore images that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
 		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
-		
+		*/
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'retailers',
 				'type'        => 'group',
-				'desc'			=>	$description,
+			//	'desc'			=>	$description,
 				'options'     => array(
 					'group_title'   => __('Retailer', 'mooberry-book-manager') . ' {#}',  // since version 1.1.4, {#} gets replaced by row number
 					'add_button'    =>  __('Add Retailer', 'mooberry-book-manager'),
@@ -742,14 +745,15 @@ class mbdb_Admin_Settings {
 	function  mbdb_formats($mbdb_settings_metabox) {
 		// split up the descriptiosn to keep the HTML out of the 
 		// translatable text
+		/*
 		$description1 = __('If you have free books for download, add any additional formats your books are available in. If you need to restore images that came with Mooberry Book Manager, download the', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
 		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
-  
+  */
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'formats',
 				'type'        => 'group',
-				'desc'			=> $description,
+				//'desc'			=> $description,
 				'options'     => array(
 					'group_title'   => __('Format Name',  'mooberry-book-manager') . ' {#}',  // since version 1.1.4, {#} gets replaced by row number
 					'add_button'    => __('Add Format', 'mooberry-book-manager'),
