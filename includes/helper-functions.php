@@ -952,6 +952,7 @@ function mbdb_insert_defaults( $default_values, $options_key, &$mbdb_options, $p
 function mbdb_get_default_retailers() {
 	// v 2.4.2 updated file names
 	$default_retailers = array();
+	
 	$default_retailers[] = array('name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png');
 	$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png');
 	$default_retailers[] = array('name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png');
@@ -964,7 +965,8 @@ function mbdb_get_default_retailers() {
 	$default_retailers[] = array('name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.png' );
 	$default_retailers[] = array('name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.png' );
 	$default_retailers[] = array('name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.png' );
-	$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.png' );
+	// 3.5.6 kindle.jpg
+	$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.jpg' );
 	$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
 	
 	return apply_filters('mbdb_default_retailers', $default_retailers);
@@ -1010,7 +1012,8 @@ function mbdb_insert_default_retailers( &$mbdb_options ) {
 function mbdb_get_default_formats() {
 	$default_formats = array();
 	$default_formats[] = array('name' => 'ePub', 'uniqueID' => 1, 'image' => 'epub.png');
-	$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 2, 'image' => 'amazon-kindle.png');
+	// 3.5.6 kindle.jpg
+	$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 2, 'image' => 'kindle.jpg');
 	$default_formats[] = array('name' => 'PDF', 'uniqueID' => 3, 'image' => 'pdficon.png');
 	
 	return apply_filters('mbdb_default_formats', $default_formats);
