@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 3.5.5     
+Stable tag: 3.5.6     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,14 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.6 =
+* Updated: New Amazon and Kindle images to comply with Amazon's trademark usage policies
+* Updated: added "Available on" verbage above Kindle image to comply with Amazon's trademakr usage policies
+* Updated: License checker for extensions (per Easy Digital Downloads update)
+* Fixed: errors with Add Book Grid popup when there are multiple on the page (ie the book edit page)
+* Fixed: translation issues on book grids groupe dby taxonomy
+* Fixed: Ensure "Download Now", "Editions", and "Reviews" don't display if there is no data
+
 = 3.5.5 =
 * Updated: Users in Author Wordpress role can now add new genres, tags, series, editors, cover artists, and illustrators
 
