@@ -973,7 +973,7 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 		$content .= '<div class="mbdb_grid_image">';
 		$content = apply_filters('mbdb_book_grid_pre_image', $content, $book->book_id, $image[0]);
 		$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($image[0]) . '" ' . $alt . ' /></a>';
-		$content = apply_filters('mbdb_book_grid_post_image', $content, $book->book_id, $image[0]);
+		$content = apply_filters('mbdb_book_grid_post_image', $content, $book->book_id, $image[0], $book);
 		$content .= '</div>';
 		
 	} else {
@@ -982,10 +982,10 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 			$content .= '<div class="mbdb_grid_image">';
 			$content = apply_filters('mbdb_book_grid_pre_placeholder_image', $content, $book->book_id, $coming_soon_image);
 			$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '"><img style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($coming_soon_image) . '" ' . $alt . ' /></a></div>';
-			$content = apply_filters('mbdb_book_grid_post_placeholder_image', $content, $book->book_id, $coming_soon_image);
+			$content = apply_filters('mbdb_book_grid_post_placeholder_image', $content, $book->book_id, $coming_soon_image, $book);
 		} else {
 			$content .= '<div class="mbdb_grid_no_image" style="height: ' . $mbdb_book_grid_cover_height . 'px; width: ' . $mbdb_book_grid_cover_height . ';">';
-			$content = apply_filters('mbdb_book_grid_no_image', $content, $book->book_id);
+			$content = apply_filters('mbdb_book_grid_no_image', $content, $book->book_id, $book);
 			$content .= '</div>';
 		}
 	}
@@ -994,7 +994,7 @@ function mbdb_output_grid_book($book, $coming_soon_image, $book_grid_id = null, 
 	$content .= '<span class="mbdb_grid_title">';
 	$content = apply_filters('mbdb_book_grid_pre_link', $content, $book->book_id, $book->post_title);
 	$content .= '<a class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->book_id)) . '">' . esc_html($book->post_title) . '</a>';
-	$content = apply_filters('mbdb_book_grid_post_link', $content, $book->book_id, $book->post_title);
+	$content = apply_filters('mbdb_book_grid_post_link', $content, $book->book_id, $book->post_title, $book);
 	$content .= '</span></span>';
 
 	return $content;
