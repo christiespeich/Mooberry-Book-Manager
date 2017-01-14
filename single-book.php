@@ -1377,7 +1377,7 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 				
 				// 3.5.6
 					if ( $r['uniqueID'] == '2' ) {
-						$download_links_html .= __('Available on', 'mooberry-book-manager') . ' ';
+						$download_links_html .= '<span style="float:right;">' . __('Available on', 'mooberry-book-manager') . '<br/> ';
 					}
 					
 					$download_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_downloadlink['_mbdb_downloadlink']) . '">';
@@ -1398,7 +1398,11 @@ function mbdb_output_downloadlinks($mbdb_downloadlinks, $attr) {
 					} else {
 						$download_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
 					}
-					$download_links_html .= '</a></li>';
+					$download_links_html .= '</a>';
+					if ( $r['uniqueID'] == '2' ) {
+						$download_links_html .= '</span>';
+					}
+					$download_links_html  .= '</li>';
 				}			
 			}
 		}
@@ -1498,7 +1502,7 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 					
 					// 3.5.6
 					if ( $r['uniqueID'] == '13' ) {
-						$buy_links_html .= __('Available on', 'mooberry-book-manager') . ' <br/>';
+						$buy_links_html .= '<span style="float:left;">' . __('Available on', 'mooberry-book-manager') . ' <br/>';
 					}
 					$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink['_mbdb_buylink']) . '" TARGET="_new">';
 					if (array_key_exists('image', $r) && $r['image']!='') {
@@ -1519,6 +1523,9 @@ function mbdb_output_buylinks( $mbdb_buylinks, $attr) {
 						$buy_links_html .= '<span class="' . $classname . '-text">' . esc_html($r['name']) . '</span>';
 					}
 					$buy_links_html .= '</a>';
+					if ( $r['uniqueID'] == '13' ) {
+						$buy_links_html .= '</span>';
+					}
 					//$buy_links_html .= '</li>';
 				}			
 			}
