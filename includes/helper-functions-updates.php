@@ -161,13 +161,13 @@ function mbdb_upgrade_versions() {
 			
 			
 			}
-			
-			
 			update_option( 'mbdb_options', $mbdb_options );
-		}
-			
-	
+		}	
 		
+		if ( version_compare( $current_version, '3.5.9', '<')) {
+			
+			mbdb_set_up_roles();
+		}
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }

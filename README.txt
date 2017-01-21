@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 3.5.8     
+Stable tag: 3.5.9     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,11 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.9 =
+* Updated: compatibility for upcoming version
+* Added: finer tuning of taxonomy capabilties
+* Added: Jr Librarian role, correlates to Contributor WP role
+
 = 3.5.8 =
 * Fixed: Problem with GeneratePress theme and Cover Artist/Illustrator/Editor websites
 * Updated: Updated book grid filters
