@@ -801,7 +801,13 @@ function mbdb_set_up_roles() {
 				'delete_mbdb_book_grid',
 				'delete_mbdb_book_grids',
 				'manage_mbdb_books',
-				'manage_mbdb_book_grids')
+				'manage_mbdb_book_grids',
+				'assign_genre_terms',
+				'assign_tag_terms',
+				'assign_cover_artist_terms',
+				'assign_series_terms',
+				'assign_illutrator_terms',
+				'assign_editor_terms')
 	);
 	
 	$base_level = apply_filters('mbdb_base_level_capabilities', array(		
@@ -820,7 +826,13 @@ function mbdb_set_up_roles() {
 				'upload_files',
 				'manage_mbdb_books',
 				'manage_mbdb_book_grids',
-				'read')
+				'read',
+				'manage_genre_terms',
+				'manage_series_terms',
+				'manage_tag_terms',
+				'manage_cover_artist_terms',
+				'manage_illustrator_terms',
+				'manage_editor_terms')
 	);
 	
 	$master_level = apply_filters('mbdb_master_level_capabilities', array(		
@@ -856,6 +868,9 @@ function mbdb_set_up_roles() {
 			$role->add_cap($capability);
 		}
 	}
+	
+	$admin = get_role('administrator');
+	$admin->add_cap('manage_mbm');
 	
 }
 

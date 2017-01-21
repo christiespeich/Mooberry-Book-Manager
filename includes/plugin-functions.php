@@ -663,7 +663,7 @@ function mbdb_register_cpts() {
  *
  */
 function mbdb_register_taxonomies() {
-	register_taxonomy( 'mbdb_genre', 'mbdb_book', apply_filters( 'mdbd_genre_taxonomy', array(
+	register_taxonomy( 'mbdb_genre', 'mbdb_book', apply_filters( 'mbdb_genre_taxonomy', array(
 				//'rewrite' => false, 
 				'rewrite' => array(	'slug' => 'mbdb_genres' ),
 				'public' => true, //false,
@@ -671,10 +671,10 @@ function mbdb_register_taxonomies() {
 				'update_count_callback' => '_update_post_term_count',
 					'meta_box_cb' => 'post_categories_meta_box',
 				'capabilities'	=> array(
-					'manage_terms' => 'manage_mbdb_books', //'manage_categories',
-					'edit_terms'   =>  'manage_mbdb_books', //'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
+					'manage_terms' => 'manage_genre_terms', //'manage_categories',
+					'edit_terms'   =>  'manage_genre_terms', //'manage_categories',
+					'delete_terms' => 'manage_genre_terms',
+					'assign_terms' => 'assign_genre_terms',				
 				),
 				'labels' => array(
 					'name' => __( 'Genres', 'mooberry-book-manager' ),
@@ -701,7 +701,7 @@ function mbdb_register_taxonomies() {
 		)
 	);
 
-	register_taxonomy( 'mbdb_tag', 'mbdb_book', apply_filters( 'mdbd_tag_taxonomy', array(
+	register_taxonomy( 'mbdb_tag', 'mbdb_book', apply_filters( 'mbdb_tag_taxonomy', array(
 				'rewrite' => array(	'slug' => 'mbdb_tags' ),
 			//	'rewrite'	=>	false,
 				'public'	=> true, //false,
@@ -709,10 +709,10 @@ function mbdb_register_taxonomies() {
 				'update_count_callback' => '_update_post_term_count',
 					'meta_box_cb' => 'post_categories_meta_box',
 				'capabilities'	=> array(
-					'manage_terms' => 'manage_mbdb_books', //'manage_categories',
-					'edit_terms'   => 'manage_mbdb_books', //'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
+					'manage_terms' => 'manage_tag_terms', //'manage_categories',
+					'edit_terms'   => 'manage_tag_terms', //'manage_categories',
+					'delete_terms' => 'manage_tag_terms',
+					'assign_terms' => 'assign_tag_terms',				
 				),
 				'labels' => array(
 					'name' => __( 'Tags', 'mooberry-book-manager' ),
@@ -746,10 +746,10 @@ function mbdb_register_taxonomies() {
 				'update_count_callback' => '_update_post_term_count',
 					'meta_box_cb' => 'post_categories_meta_box',
 				'capabilities'	=> array(
-					'manage_terms' => 'manage_mbdb_books', //'manage_categories',
-					'edit_terms'   => 'manage_mbdb_books', //'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
+					'manage_terms' => 'manage_series_terms', //'manage_categories',
+					'edit_terms'   => 'manage_series_terms', //'manage_categories',
+					'delete_terms' => 'manage_series_terms',
+					'assign_terms' => 'assign_series_terms',				
 				),
 				'labels' => array(
 					'name' => __( 'Series', 'mooberry-book-manager' ),
@@ -784,10 +784,10 @@ function mbdb_register_taxonomies() {
 				'update_count_callback' => '_update_post_term_count',
 					'meta_box_cb' => 'post_categories_meta_box',
 				'capabilities'	=> array(
-					'manage_terms' => 'manage_mbdb_books', //'manage_categories',
-					'edit_terms'   => 'manage_mbdb_books', //'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
+					'manage_terms' => 'manage_editor_terms', //'manage_categories',
+					'edit_terms'   => 'manage_editor_terms', //'manage_categories',
+					'delete_terms' => 'manage_editor_terms',
+					'assign_terms' => 'assign_editor_terms',				
 				),
 				'labels' => array(
 					'name' => __( 'Editors', 'mooberry-book-manager' ),
@@ -822,10 +822,10 @@ function mbdb_register_taxonomies() {
 				'update_count_callback' => '_update_post_term_count',
 					'meta_box_cb' => 'post_categories_meta_box',
 				'capabilities'	=> array(
-					'manage_terms' => 'manage_mbdb_books', //'manage_categories',
-					'edit_terms'   => 'manage_mbdb_books', //'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
+					'manage_terms' => 'manage_illustrator_terms', //'manage_categories',
+					'edit_terms'   => 'manage_illustrator_terms', //'manage_categories',
+					'delete_terms' => 'manage_illustrator_terms',
+					'assign_terms' => 'assign_illustrator_terms',				
 				),
 				'labels' => array(
 					'name' => __( 'Illustrators', 'mooberry-book-manager' ),
@@ -860,10 +860,10 @@ function mbdb_register_taxonomies() {
 				'update_count_callback' => '_update_post_term_count',
 					'meta_box_cb' => 'post_categories_meta_box',
 				'capabilities'	=> array(
-					'manage_terms' => 'manage_mbdb_books', //'manage_categories',
-					'edit_terms'   => 'manage_mbdb_books', //'manage_categories',
-					'delete_terms' => 'manage_categories',
-					'assign_terms' => 'manage_mbdb_books',				
+					'manage_terms' => 'manage_cover_artist_terms', //'manage_categories',
+					'edit_terms'   => 'manage_cover_artist_terms', //'manage_categories',
+					'delete_terms' => 'manage_cover_artist_terms',
+					'assign_terms' => 'assign_cover_artist_terms',				
 				),
 				'labels' => array(
 					'name' => __( 'Cover Artists', 'mooberry-book-manager' ),
