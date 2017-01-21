@@ -102,7 +102,7 @@ class MBDB_License {
 			$sub_page_hook = add_submenu_page( 'mbdb_options', 
 							__( 'Mooberry Book Manager Extension License Keys', 'mooberry-book-manager' ), 
 							__('License Keys', 'mooberry-book-manager'), 
-							'manage_options', 
+							'manage_mbm', 
 							'mbdb_license_keys', 
 							array( $this, 'admin_page_display') );
 			
@@ -256,7 +256,7 @@ class MBDB_License {
 
 	
 		// change 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'manage_mbm' ) ) {
 			return;
 		}
 		
@@ -364,7 +364,7 @@ class MBDB_License {
 
 		
 
-		if( ! current_user_can( 'manage_options' ) ) {
+		if( ! current_user_can( 'manage_mbm' ) ) {
 			return;
 		}
 
@@ -469,7 +469,7 @@ class MBDB_License {
 			return;
 		}
 
-		if( ! current_user_can( 'manage_options' ) ) {
+		if( ! current_user_can( 'manage_mbm' ) ) {
 			return;
 		}
 
