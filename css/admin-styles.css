@@ -128,7 +128,8 @@ div.cmb-row.cmb-type-text.cmb2-id--mbdb-author-sort-selection.table-layout  {
 	
 }
 
-.cmb-td > p.cmb2-metabox-description {
+/* only set on book edit page not the settings page */
+.post-type-mbdb_book  .cmb-td > p.cmb2-metabox-description {
 	font-style: italic;
 	color: #aaa;
 }
