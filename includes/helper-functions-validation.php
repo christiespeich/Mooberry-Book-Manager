@@ -141,15 +141,18 @@ function mbdb_msg_if_invalid( $flag, $fieldname, $group, $message ) {
 }
 
 	
-function mbdb_error_message( $message ) {
+function mbdb_error_message( $message, $post_id = null ) {
+	if ( !$post_id ) {
+		$post_id = $_POST['post_ID'];
+	}
 	 // set the message
 	$notice = get_option( 'mbdb_notice' );
-	$notice[$_POST['post_ID']] = $message;
+	$notice[$post_id] = $message;
 	update_option( 'mbdb_notice', $notice);
 	
 	// change it to pending not updated
 	global $wpdb;
-	$wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $_POST['post_ID'] ) );
+	$wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $post_id ) );
 	
 	// filter the query URL to change the published message
 	add_filter( 'redirect_post_location', create_function( '$location', 'return esc_url_raw(add_query_arg("message", "0", $location));' ) );
