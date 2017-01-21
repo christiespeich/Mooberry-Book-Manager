@@ -169,6 +169,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 * Updated: compatibility for upcoming version
 * Added: finer tuning of taxonomy capabilties
 * Added: Jr Librarian role, correlates to Contributor WP role
+* Added: MBM Admin role
 
 = 3.5.8 =
 * Fixed: Problem with GeneratePress theme and Cover Artist/Illustrator/Editor websites
