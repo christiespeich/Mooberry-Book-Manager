@@ -218,3 +218,8 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 phpdoc.dist.xml
+export.dat
+export.html
+export.zip
+export.mbdb
+export.txt

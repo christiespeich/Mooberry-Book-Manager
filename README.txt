@@ -165,6 +165,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.10 =
+* Changed: Excerpt removed from search
+
 = 3.5.9 =
 * Updated: compatibility for upcoming version
 * Added: finer tuning of taxonomy capabilties
