@@ -196,7 +196,7 @@ abstract class mbdb_widget extends WP_Widget {
 		if ($image_src && $image_src !== '') {
 			do_action('mbdb_widget_pre_image', $image_src);
 			$alt = mbdb_get_alt_text( $image_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . $bookTitle);
-			echo '<div style="' . apply_filters('mbdb_book_widget_cover_span_style', 'padding:0;margin:0;', $instance) . '"><img class="mbm-widget-cover" style="' . apply_filters('mbdb_book_widget_cover_style', 'width:' . esc_attr($this->coverSize) . 'px;margin:10px 0;') . '" src="' . esc_url($image_src) . '" ' . $alt . '  /> </div>';
+			echo '<div style="' . apply_filters('mbdb_book_widget_cover_span_style', 'padding:0;margin:0;', $instance) . '"><img class="mbm-widget-cover" style="' . apply_filters('mbdb_book_widget_cover_style', 'width:' . esc_attr($this->coverSize) . 'px;margin:10px 0;', $instance) . '" src="' . esc_url($image_src) . '" ' . $alt . '  /> </div>';
 			do_action('mbdb_widget_post_image', $image_src);
 		}
 		if ($book_link != '') {

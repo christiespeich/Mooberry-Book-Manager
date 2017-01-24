@@ -1018,11 +1018,12 @@ function mbdb_book_metaboxes(  ) {
 		)
 	);
 	
-	$mbdb_cover_image_metabox->add_field( array(
+	$mbdb_cover_image_metabox->add_field( apply_filters('mbdb_cover_image_metabox_args', array(
 		 'name' => _x('Book Cover', 'noun', 'mooberry-book-manager'),
 		'id' => '_mbdb_cover',
 		'type' => 'file',
 		'allow' => array(  'attachment' ) // limit to just attachments with array( 'attachment' )
+		) 
 		)
 	);
 	
