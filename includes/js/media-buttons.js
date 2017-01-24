@@ -25,8 +25,8 @@ jQuery( document ).ready(function() {
        // allFields.removeClass( "ui-state-error" );
       } */
     });
-	
-	jQuery("#mbdb_add_book_grid" ).button().on( "click", function() {
+	//jQuery("#mbdb_add_book_grid" ).button().on( "click", function() {
+	jQuery("[id^=mbdb_add_book_grid_]" ).button().on( "click", function() {
      // because there could be multiple editors with shortcode buttons
 		// we have to use RegEx to extract the name of the editor
 		// to know we're getting the right one

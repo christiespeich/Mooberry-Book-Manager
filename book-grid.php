@@ -417,9 +417,9 @@ function mbdb_shortcode_book_grid( $attr, $content ) {
 }
  
 // add shortcode button to editor
-add_action('media_buttons', 'mbdb_add_book_grid_shortcode_button', 30);
-function mbdb_add_book_grid_shortcode_button() {
-	if (!in_array(get_post_type(), array( 'page', 'post') ) ) {
+add_action('media_buttons', 'mbdb_add_book_grid_shortcode_button', 30, 1);
+function mbdb_add_book_grid_shortcode_button( $editor_id) {
+	if (!in_array(get_post_type(), array( 'page', 'post', 'mbdb_book') ) ) {
 		return;
 	}	
 	$args = array('posts_per_page' => -1,
@@ -440,7 +440,7 @@ function mbdb_add_book_grid_shortcode_button() {
    
 	.ui-dialog .ui-dialog-titlebar-close span { margin-left: -8px; margin-top: -8px; }
   </style>
-	<a href="#" id="mbdb_add_book_grid_<?php echo $editor_id; ?>" class="button"><?php _e('Add Book Grid', 'mooberry-book-manager'); ?></a>
+	<a  id="mbdb_add_book_grid_<?php echo $editor_id; ?>" class="button"><?php _e('Add Book Grid', 'mooberry-book-manager'); ?></a>
 	<div id="mbdb_book_grid_shortcode_dialog_<?php echo $editor_id; ?>" title="<?php _e('Add Book Grid', 'mooberry-book-manager'); ?>">
   
  
