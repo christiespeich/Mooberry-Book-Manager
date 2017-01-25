@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 3.5.9     
+Stable tag: 3.5.11     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,12 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.11 = 
+* Fixed: Bug about missing argument in Advanced Widgets
+* Fixed: Bugs wth Add Book Grid button
+* Updated: Added Add Book Grid button to summaries, excerpts, additional info on book pages
+* Fixed: Don't cache random widgets
+
 = 3.5.10 =
 * Changed: Excerpt removed from search
 
