@@ -948,6 +948,7 @@ function mbdb_book_metaboxes(  ) {
 			'name'	=>	__('Suggested Retail Price', 'mooberry-book-manager'),
 			'id'	=>	'_mbdb_retail_price',
 			'type'	=> 'text_small',
+			'desc'	=>	__('Do not enter the currency symbol. That will be determined by the currency selected below.', 'mooberry-book-manager'),
 			'attributes' => array(
 					'pattern' => '^\d*([.,]\d{2}$)?',
 					'min' => 0
