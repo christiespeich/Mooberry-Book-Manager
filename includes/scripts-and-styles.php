@@ -77,7 +77,7 @@ function mbdb_register_script() {
 	if ($post_type == 'mbdb_book' && $base == 'post') {
 		// admin-book
 		wp_register_script( 'mbdb-admin-book', MBDB_PLUGIN_URL .   'includes/js/admin-book.js', '', mbdb_get_enqueue_version());
-		wp_localize_script( 'mbdb-admin-book', 'display_editions', 'no');
+		wp_localize_script( 'mbdb-admin-book', 'display_editions', apply_filters('mbdb_display_editions', 'no'));
 		wp_enqueue_script( 'mbdb-admin-book');
 		
 	}
