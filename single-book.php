@@ -596,7 +596,7 @@ function mbdb_output_taxonomy($classname, $mbdb_terms, $permalink, $taxonomy, $a
 		if ( in_array( $term->taxonomy, mbdb_taxonomies_with_websites() ) ) {
 			$website = get_term_meta( $term->term_id, $term->taxonomy . '_website', true);
 			if ($website != '' ) {
-				$list .= ' (<a class="' . $classname . '-website" href="' . $website . '">' . __('Website', 'mooberry-book-manager') . '</a>)';
+				$list .= ' (<a class="' . $classname . '-website" href="' . $website . '" target="_new">' . __('Website', 'mooberry-book-manager') . '</a>)';
 			}
 		}
 		
@@ -1005,7 +1005,7 @@ function mbdb_output_publisher($book_data, $attr) {
 	if (empty($mbdb_publisherwebsite)) {
 		$text = '<span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span>';
 	} else {
-		$text = '<A class="mbm-book-publisher-link" HREF="' . esc_url($mbdb_publisherwebsite) . '"><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span></a>';
+		$text = '<A class="mbm-book-publisher-link" HREF="' . esc_url($mbdb_publisherwebsite) . '" target="_new"><span class="mbm-book-publisher-text">' . esc_html($mbdb_publisher) . '</span></a>';
 	}
 	
 	return apply_filters('mbdb_shortcode_publisher',  '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html($attr['label']) . '</span>' . $text . '<span class="mbm-book-publisher-after">' . esc_html($attr['after']) . '</span></span>'); 
@@ -1248,7 +1248,7 @@ function mbdb_output_reviews($mbdb_reviews, $attr) {
 			$review_html .= __('on ','mooberry-book-manager');
 		}
 		if ($review_url) {
-			$review_html .= '<A class="mbm-book-reviews-link" HREF="' . esc_url($review['mbdb_review_url']) . '"><span class="mbm-book-reviews-website">';
+			$review_html .= '<A class="mbm-book-reviews-link" HREF="' . esc_url($review['mbdb_review_url']) . '" target="_new"><span class="mbm-book-reviews-website">';
 			if (!$review_website) {
 				$review_html .= esc_html($review['mbdb_review_url']);	
 			} else {
@@ -1731,7 +1731,7 @@ function mbdb_output_editions($mbdb_editions, $attr) {
 		}
 		if ($is_price && $edition['_mbdb_retail_price'] != '0.00' && $edition['_mbdb_retail_price'] != '0,00') {
 			$edition['_mbdb_retail_price'] = str_replace(',', '.', $edition['_mbdb_retail_price']);
-			$price = number_format_i18n((int)$edition['_mbdb_retail_price'], 2);
+			$price = number_format_i18n($edition['_mbdb_retail_price'], 2);
 			$symbol = mbdb_get_currency_symbol($edition['_mbdb_currency']);
 			$output_html .= ': <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
 			/* translators: %1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s */
