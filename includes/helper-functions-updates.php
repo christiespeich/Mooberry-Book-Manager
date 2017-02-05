@@ -168,6 +168,10 @@ function mbdb_upgrade_versions() {
 			
 			mbdb_set_up_roles();
 		}
+		
+		if ( version_compare( $current_version, '3.5.13.1', '<')) {
+			mbdb_set_up_roles();
+		}
 	
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
