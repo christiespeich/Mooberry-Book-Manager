@@ -806,7 +806,7 @@ function mbdb_set_up_roles() {
 				'assign_tag_terms',
 				'assign_cover_artist_terms',
 				'assign_series_terms',
-				'assign_illutrator_terms',
+				'assign_illustrator_terms',
 				'assign_editor_terms')
 	);
 	
