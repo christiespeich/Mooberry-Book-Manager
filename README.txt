@@ -167,6 +167,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 == Changelog ==
 = 3.5.13 =
 * Fixed: Publisher, Illustrator, Cover Artist, Editor, and Review website links open new browser tab
+* Fixed: Illustrator permissions
 
 = 3.5.12 =
 * Updated: Put a note to not use currency symbol in price
