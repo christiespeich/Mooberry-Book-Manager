@@ -1745,7 +1745,7 @@ function mbdb_output_editions($mbdb_editions, $attr) {
 				$output_html .= '<strong>' . __('ISBN:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-isbn">' . $edition['_mbdb_isbn'] . '</span><br/>';
 			}
 			if ($is_height && $is_width) {
-				$output_html .= '<strong>' . __('Size:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-size"><span class="mbm-book-editions-height">' . number_format_i18n($edition['_mbdb_width']) . '</span>x<span class="mbm-book-editions-width">' . number_format_i18n($edition['_mbdb_height']) . '</span> <span class="mbm-book-editions-unit">' . $edition['_mbdb_unit'] . '</span></span><br/>';
+				$output_html .= '<strong>' . __('Size:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-size"><span class="mbm-book-editions-height">' . number_format_i18n($edition['_mbdb_width'], 2) . '</span>x<span class="mbm-book-editions-width">' . number_format_i18n($edition['_mbdb_height'], 2) . '</span> <span class="mbm-book-editions-unit">' . $edition['_mbdb_unit'] . '</span></span><br/>';
 			}
 			if ($is_pages) {
 				$output_html .= '<strong>' . __('Pages:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-length">' . number_format_i18n($edition['_mbdb_length']) . '</span>';
@@ -1843,8 +1843,8 @@ function mbdb_shortcode_editions( $attr, $content) {
 			$is_editor = (mbdb_get_taxonomy_data('mbdb_editor') === false ? false : true);
 			$is_illustrator = (mbdb_get_taxonomy_data('mbdb_illustrator') === false ? false : true);
 			$is_cover_artist = (mbdb_get_taxonomy_data('mbdb_cover_artist') === false ? false : true);
-			
-			if ($is_published || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist ) {
+			$display_details = apply_filters('mbdb_display_book_details', $is_published || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist);
+			if ($display_details ) {
 				$book_page_layout .= '<div class="mbm-book-details-outer">';
 								$book_page_layout .= '<div class="mbm-book-details">';
 				if ($is_published ) {
@@ -1874,6 +1874,9 @@ function mbdb_shortcode_editions( $attr, $content) {
 				if ($is_tag ) {
 					$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __('Tags:','mooberry-book-manager') . '</span> <span class="mbm-book-details-tags-data">[book_tags  delim="comma" blank=""]</span><br/>';
 				}
+				
+				$book_page_layout = apply_filters('mbdb_extra_book_details', $book_page_layout);
+				
 				$book_page_layout .= '</div></div> <!-- mbm-book-details -->';
 			}
 			
