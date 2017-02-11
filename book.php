@@ -780,11 +780,19 @@ function mbdb_book_metaboxes(  ) {
 			)
 		)
 	);
-	
+	/*
 	$mbdb_excerpt_metabox->add_field( array(
 		'name'    => __('Kindle Live Preview Code', 'mooberry-book-manager'),
 		'id'      => '_mbdb_kindle_preview',
 		'type'    => 'textarea',
+		'sanitization_cb'	=> false,
+		)
+	);
+	*/
+	$mbdb_excerpt_metabox->add_field( array(
+		'name'	=>	__('ASIN', 'mooberry-book-manager'),
+		'id'	=>	'_mbdb_kindle_preview',
+		'type'	=>	'text_small',
 		'sanitization_cb'	=> false,
 		)
 	);
@@ -981,7 +989,7 @@ function mbdb_book_metaboxes(  ) {
 		'object_types'  => array( 'mbdb_book', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'high',
-		'show_names'    => false, // Show field names on the left
+		'show_names'    => true, // Show field names on the left
 		)
 	);
 	

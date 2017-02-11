@@ -23,6 +23,7 @@ add_shortcode( 'book_cover_artist', 'mbdb_shortcode_cover_artist');
 add_shortcode( 'book_links', 'mbdb_shortcode_links');
 add_shortcode( 'book_editions', 'mbdb_shortcode_editions');
 add_shortcode( 'mbdb_book', 'mbdb_shortcode_book');
+add_shortcode( 'book_kindle_preview', 'mbdb_kindle_preview');
 		
 /******************************************************************
  *  
@@ -431,9 +432,29 @@ function mbdb_get_excerpt_data($book = '') {
 	// get exerpt or kindle preview text
 	// return false if not entered
 	$excerpt_type = mbdb_get_book_data('excerpt_type', $book);
-	
+
 	if ( $excerpt_type == 'kindle' ) {
-		return mbdb_get_book_data('kindle_preview', $book);
+		//$asin = mbdb_get_book_data('kindle_asin', $book);
+		$preview_code = mbdb_get_book_data('kindle_preview', $book);
+		
+		if ( strpos($preview_code, 'iframe' ) !== false || strpos($preview_code, 'href') !== false  ) {
+			
+			// iframe or link, convert into a ASIN
+			preg_match_all('/asin=([a-zA-Z0-9]*)&/', $preview_code, $matches);
+			
+			if ( count( $matches ) > 1 ) {
+				$asin = $matches[1][0];
+				$bookID = mbdb_get_book_ID( $book );
+				$update_book['_mbdb_kindle_preview'] = $asin;
+				MBDB()->books->save( array('_mbdb_kindle_preview' => $asin), $bookID );
+			} else {
+				$asin = '';
+			}
+		} else {
+			$asin = $preview_code;
+		}
+		
+		return $asin;
 	} else {
 		return mbdb_get_book_data('excerpt', $book);
 	}
@@ -465,7 +486,12 @@ function mbdb_shortcode_excerpt($attr, $content) {
 	if ($mbdb_excerpt === false) {
 		return mbdb_blank_output('excerpt', $attr['blank']);
 	} else {
-		return mbdb_output_excerpt($mbdb_excerpt, $attr);
+		$excerpt_type = mbdb_get_book_data('excerpt_type', $attr['book']);
+		if ( $excerpt_type == 'kindle' ) {
+			return do_shortcode('[book_kindle_preview asin="' . $mbdb_excerpt . '"]');
+		} else {
+			return mbdb_output_excerpt($mbdb_excerpt, $attr);
+		}
 	}
 }
 
@@ -1787,6 +1813,19 @@ function mbdb_shortcode_editions( $attr, $content) {
 	}
 }
 
+
+
+
+
+function mbdb_kindle_preview( $attr, $content ) {
+	$attr = shortcode_atts(array(
+								'asin'	=>	'',
+								'affiliate'	=>	'',
+								), $attr);
+							
+	return '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">Excerpt:</span><iframe type="text/html" width="336" height="550" frameborder="0" allowfullscreen style="max-width:100%" src="https://read.amazon.com/kp/card?asin=' . esc_attr($attr['asin']) . '&preview=inline&linkCode=kpe&tag=' . esc_attr($attr['affiliate']) . '" ></iframe></div>';
+	
+}
 
 
 

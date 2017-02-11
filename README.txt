@@ -167,6 +167,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 == Changelog ==
 = 3.5.14 = 
 * Fixed: Width/Height in Editions no longer rounds to nearest whole number
+* Updated: Kindle Live Preview now uses ASIN instead of iframe code
 
 = 3.5.13 =
 * Fixed: Publisher, Illustrator, Cover Artist, Editor, and Review website links open new browser tab

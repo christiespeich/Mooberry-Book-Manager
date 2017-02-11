@@ -132,6 +132,8 @@ div.cmb-row.cmb-type-text.cmb2-id--mbdb-author-sort-selection.table-layout  {
 .post-type-mbdb_book  .cmb-td > p.cmb2-metabox-description {
 	font-style: italic;
 	color: #aaa;
+	padding-top: 0;
+	padding-bottom: 1em;
 }
 
 .fielddescription {
