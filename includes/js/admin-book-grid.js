@@ -324,11 +324,11 @@ function update_book_grid_preview() {
 		// for each multicheck make an array of the selected items
 		multicheck.forEach( function ( element, index, array ) {
 			unsanitized_element = element.replace('_','-');
-			eval ( element + ' = [];');
+			eval ( 'field_' + element + ' = [];');
 			
 			jQuery(	'[name^="_mbdb_book_grid_' + unsanitized_element + '"]:checked').each( function() {
-				eval( element + '.push(jQuery(this).val());' );
-				eval( 'selected_options[ "_mbdb_book_grid_' + unsanitized_element + '"] = ' + element);
+				eval( 'field_' +element + '.push(jQuery(this).val());' );
+				eval( 'selected_options[ "_mbdb_book_grid_' + unsanitized_element + '"] = ' + 'field_' + element);
 			});
 		});	
 			
