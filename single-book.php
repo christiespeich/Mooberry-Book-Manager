@@ -226,7 +226,8 @@ function mbdb_get_published_data($book = '' ) {
  */
 function mbdb_shortcode_published($attr, $content) {
 	$attr = shortcode_atts(array('format' => 'short',
-									'label' => '',
+									'published_label' => __('Published:', 'mooberry-book-manager'),
+									'unpublished_label'	=> __('Available on:', 'mooberry-book-manager'),
 									'after' => '',
 									'blank' => '',
 									'book' => ''), $attr);	
@@ -268,7 +269,12 @@ function mbdb_output_published($mbdb_published, $attr) {
 			$format = get_option('date_format');
 			break;
 	}
-		return apply_filters('mbdb_shortcode_published',  '<span class="mbm-book-published"><span class="mbm-book-published-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-published-text">' .  date_i18n($format, strtotime($mbdb_published)) . '</span><span class="mbm-book-published-after">' .  esc_html($attr['after']) . '</span></span>');
+	if (  strtotime($mbdb_published) <= strtotime('now') ) {
+		$label = $attr['published_label'];
+	} else {
+		$label = $attr['unpublished_label'];
+	}
+		return apply_filters('mbdb_shortcode_published',  '<span class="mbm-book-published"><span class="mbm-book-details-published-label"><span class="mbm-book-published-label">' . esc_html($label) . '</span></span> <span class="mbm-book-published-text">' .  date_i18n($format, strtotime($mbdb_published)) . '</span><span class="mbm-book-published-after">' .  esc_html($attr['after']) . '</span></span>');
 }
 
 
@@ -394,6 +400,22 @@ function mbdb_output_excerpt($mbdb_excerpt, $attr) {
 			if (preg_match('/^(.*<\/p>)(.*?)/sU', $mbdb_excerpt, $match)) {
 				$excerpt1 = $match[1];
 				$excerpt2 = $match[2];
+			} else {
+				// if we're here there's probably no paragraph tags for whatever reason
+				// so take teh first 1000 characters ending on a sentence
+				if (preg_match('/^(.{1,1000}[.?!"”])(.*)/s', $mbdb_excerpt, $match)) {
+					$excerpt1 = $match[1];
+					$excerpt2 = $match[2];
+				} else {
+					// just grab the first 1000 characters no matter where that ends up
+					if ( strlen( $excerpt ) > 1000 )  {
+						$excerpt1 = substr( $excerpt, 0, 999 );
+						$excerpt2 = substr( $excerpt, 1000);
+					} else {
+						$excerpt1 = $excerpt;
+						$excerpt2 = '';
+					}
+				}
 			}
 		}
 	 }
@@ -1887,7 +1909,8 @@ function mbdb_kindle_preview( $attr, $content ) {
 				$book_page_layout .= '<div class="mbm-book-details-outer">';
 								$book_page_layout .= '<div class="mbm-book-details">';
 				if ($is_published ) {
-					$book_page_layout .= '<span class="mbm-book-details-published-label">' . __('Published:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-published-data">[book_published format="default" blank=""]</span><br/>';
+					//$book_page_layout .= '<span class="mbm-book-details-published-label">' . __('Published:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-published-data">[book_published format="default" blank=""]</span><br/>';
+					$book_page_layout .= '<span class="mbm-book-details-published-data">[book_published format="default" blank=""]</span><br/>';
 				}
 				
 				if ($is_publisher  ) {
