@@ -354,7 +354,6 @@ public function search_where( $where ) {
 	global $wpdb;	
 	$table = $this->table_name();
 	if( is_search() ) {
-		
 		// get the search term
 		$term = '';
 		$match =  preg_match("/\([^(]*post_title\s+LIKE\s*\'\%([^\'\%]+)\%\'\s*\)/", $where, $matches);

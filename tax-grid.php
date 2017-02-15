@@ -50,62 +50,62 @@ function mbdb_add_query_vars($query_vars) {
 
 add_shortcode('mbdb_tax_grid', 'mbdb_tax_grid_content');
 function mbdb_tax_grid_content($attr, $content) {
-$attr = shortcode_atts(array('taxonomy' => '',
-								'term' => ''), $attr);
-								
-global $wp_query;
-	
-if ( isset($wp_query->query_vars['the-term'] ) ) {
-	$term = trim( urldecode( $wp_query->query_vars['the-term'] ), '/' );
-} else {
-	$term = $attr['term'];
-}
-if ( isset( $wp_query->query_vars['the-taxonomy'] ) ) {
-	$taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/' );
-} else {
-	$taxonomy = $attr['taxonomy'];
-}
+	$attr = shortcode_atts(array('taxonomy' => '',
+									'term' => ''), $attr);
+									
+	global $wp_query;
+		
+	if ( isset($wp_query->query_vars['the-term'] ) ) {
+		$term = trim( urldecode( $wp_query->query_vars['the-term'] ), '/' );
+	} else {
+		$term = $attr['term'];
+	}
+	if ( isset( $wp_query->query_vars['the-taxonomy'] ) ) {
+		$taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/' );
+	} else {
+		$taxonomy = $attr['taxonomy'];
+	}
 
-if ($taxonomy == '' || $term == '') {
+	if ($taxonomy == '' || $term == '') {
 
-	return __('There was an error!', 'mooberry-book-manager');
-}
+		return __('There was an error!', 'mooberry-book-manager');
+	}
 
-$selection = str_replace('mbdb_', '', $taxonomy);
-//$groups[1] = $selection;
-$groups[1] = 'none';
-$groups[2] = 'none';
-//$current_group = array($selection => 0, 'none' => 0);
-$current_group = array( 'none' => 0);
-// sort by series if viewing series grid
-if ( $taxonomy == 'mbdb_series') {
-	$sort = mbdb_set_sort($groups, 'series_order');
-} else {
-	$sort = mbdb_set_sort($groups, 'titleA');
-}
+	$selection = str_replace('mbdb_', '', $taxonomy);
+	//$groups[1] = $selection;
+	$groups[1] = 'none';
+	$groups[2] = 'none';
+	//$current_group = array($selection => 0, 'none' => 0);
+	$current_group = array( 'none' => 0);
+	// sort by series if viewing series grid
+	if ( $taxonomy == 'mbdb_series') {
+		$sort = mbdb_set_sort($groups, 'series_order');
+	} else {
+		$sort = mbdb_set_sort($groups, 'titleA');
+	}
 
-// set sort varialbles
-//list( $orderby, $order ) = MBDB()->books->get_sort_fields( $sort );
+	// set sort varialbles
+	//list( $orderby, $order ) = MBDB()->books->get_sort_fields( $sort );
 
-// get id
-$term_obj = get_term_by( 'slug', $term, $taxonomy);
-if ($term_obj != null) {
-	$selected_ids = array((int) $term_obj->term_id);
-} else {
-	$selected_ids = null;
-}
+	// get id
+	$term_obj = get_term_by( 'slug', $term, $taxonomy);
+	if ($term_obj != null) {
+		$selected_ids = array((int) $term_obj->term_id);
+	} else {
+		$selected_ids = null;
+	}
 
-$books = apply_filters('mbdb_tax_grid_get_group', mbdb_get_group(1, $groups, $current_group, $selection, $selected_ids, $sort, null ), $groups, $current_group, $selection, $selected_ids, $sort, $term); //$orderby, $order, null);
+	$books = apply_filters('mbdb_tax_grid_get_group', mbdb_get_group(1, $groups, $current_group, $selection, $selected_ids, $sort, null ), $groups, $current_group, $selection, $selected_ids, $sort, $term); //$orderby, $order, null);
 
-/********************* term meta ***************************************/
-if (  function_exists( 'get_term_meta' ) ) {
-	$content = '<p>' . get_term_meta( $selected_ids[0], $taxonomy . '_book_grid_description', true ) . '</p>';
-	$content2 = '<p>' . get_term_meta ($selected_ids[0], $taxonomy . '_book_grid_description_bottom', true ) . '</p>';
-} else {
-	$content = '';
-	$content2 = '';
-}
-return $content  . mbdb_display_grid($books, 0) . $content2;
+	/********************* term meta ***************************************/
+	if (  function_exists( 'get_term_meta' ) ) {
+		$content = '<p>' . get_term_meta( $selected_ids[0], $taxonomy . '_book_grid_description', true ) . '</p>';
+		$content2 = '<p>' . get_term_meta ($selected_ids[0], $taxonomy . '_book_grid_description_bottom', true ) . '</p>';
+	} else {
+		$content = '';
+		$content2 = '';
+	}
+	return $content  . mbdb_display_grid($books, 0) . $content2;
 }
 
 
@@ -123,8 +123,9 @@ function mbdb_tax_grid_breadcrumb( $trail, $args) {
 }
 
 // this is for themes that use the updated wp_title filters
-add_filter( 'wp_title_parts', 'mbdb_tax_grid_document_title', 99, 1);
+add_filter( 'wp_title_parts', 'mbdb_tax_grid_document_title', 98, 1);
 function mbdb_tax_grid_document_title( $title ) {
+
 	$title[0] =  mbdb_tax_grid_document_title_pre44( $title[0] );
 	return $title;
 	
@@ -134,6 +135,7 @@ function mbdb_tax_grid_document_title( $title ) {
 // priority 20 puts it after Yoast SEO
 add_filter( 'wp_title', 'mbdb_tax_grid_document_title_pre44', 20, 1);
 function mbdb_tax_grid_document_title_pre44( $title) {
+
 	if (get_post_type() == 'mbdb_tax_grid') {
 		$title =  mbdb_get_tax_title( $title);
 	}
@@ -156,6 +158,7 @@ function mbdb_tax_grid_title( $content, $id = null ) {
 } 
 
 function mbdb_get_tax_title( $content ) {
+
 	global $wp_query;
 	if ( isset( $wp_query->query_vars['the-term'] ) ) {
 			$mbdb_term = trim( urldecode( $wp_query->query_vars['the-term'] ), '/');
