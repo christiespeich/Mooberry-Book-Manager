@@ -142,10 +142,16 @@ font-style: italic;
 margin: 0;
 }
 
-/* set book list multi check for book grid page to be horizontal */
-.cmb2-id--mbdb-book-grid-custom-select li,.cmb2-id--mbdb-book-grid-genre li, .cmb2-id--mbdb-book-grid-series li, .cmb2-id--mbdb-book-grid-tag li  {
-	display: inline-table;
-	margin-right: 10px;
+/* set book list multi check for book grid page to be in a scrolling box */
+div[class*="cmb2-id--mbdb-book-grid-"] ul.cmb2-checkbox-list {
+	/*display: inline-table;
+	margin-right: 10px; */
+	height: 105px;
+   border: 1px solid #ccc; 
+   overflow: auto;
+   padding: 10px;
+   font-size: small;
+   text-align: left;
 }
 
 
