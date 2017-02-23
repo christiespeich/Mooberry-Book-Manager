@@ -1,5 +1,15 @@
 <?php
 
+
+add_filter( 'body_class', 'mbdb_tax_grid_page_class' );
+function mbdb_tax_grid_page_class( $classes ) {
+	
+	if ( get_post_type() == 'mbdb_tax_grid' ) {
+		$classes[] = 'page';
+	}
+	return $classes;
+}
+
 // Set up redirects to series/{series-name} based on query vars
 // same for genres and tags
 // this is so the book grid can be displayed instead of 

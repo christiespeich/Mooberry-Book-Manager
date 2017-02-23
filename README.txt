@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, books, writing, publishing, authors, library, book store, book management
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 3.5.15     
+Stable tag: 3.5.16     
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 3.5.16 =
+* Fixed: Adds page class to tax grid pages to better fit with themes
+
 = 3.5.15 =
 * Fixed: handle splitting excerpts even if no paragraph tags exists
 * Updated: Change label to "Available on" for books that aren't published yet
