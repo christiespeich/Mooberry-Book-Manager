@@ -337,7 +337,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/software-licensing.php';		
 		
 		
-		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-rest-books-controller.php';
+		//require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-rest-books-controller.php';
 		
 		require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
 		
