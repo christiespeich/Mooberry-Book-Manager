@@ -9,9 +9,9 @@
 // installed.  This function is no longer used in version 4.0 because the activation
 // function is now inside a class
 // So this function doesn't have to do anything, it just has to exist
-//function mbdb_activate() {
+function mbdb_activate() {
 	
-//}
+}
 
 // if in development, return the time so that it forces a reload
 // otherwise return the current plugin version so a reload is only forced if it's an update
