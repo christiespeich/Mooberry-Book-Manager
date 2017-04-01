@@ -171,6 +171,10 @@ function mbdb_update_versions() {
 	if ( version_compare( $current_version, '4.0', '<')) {
 		update_4_0();
 	}
+	
+	if ( version_compare( $current_version, '4.0.1', '<')) {
+		flush_rewrite_rules();
+	}
 
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
