@@ -23,13 +23,11 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		// priority 20 puts it after Yoast SEO
 		add_filter( 'wp_title', array( $this, 'document_title_pre44' ) , 20, 1);
 		add_filter('tc_title_text', array( $this, 'title' ) );
-		add_filter('the_title', array( $this, 'title' ) );	
+		add_filter('the_title', array( $this, 'title' ), 99, 2 );	
+		
 		
 	}
 	
-
-	
-
 	
 	// Set up redirects to series/{series-name} based on query vars
 	// same for genres and tags
@@ -58,6 +56,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 			
 			//$new_rules['mbdb_series/([^/]*)/?$'] =  'mbdb_tax_grid/test/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 			//$new_rules[$name . '/([^/]*)/?$'] =  'mbdb_tax_grid/test/?x=x&the-taxonomy=' . $name . '&the-term=$matches[1]&post_type=mbdb_tax_grid';
+			$new_rules[$name . '/([^/]*)/?$'] =   'index.php?page_id=' . $page_id . '&the-taxonomy=' . $name . '&the-term=$matches[1]';
 		}
 		
 		if (count($new_rules)>0) {
@@ -169,6 +168,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		//print_r($post->ID);
 		//if (get_post_type() == 'mbdb_tax_grid') {
 		$page_id = MBDB()->options->tax_grid_page;
+		
 		if ( $post && $post->ID == $page_id ) {
 			$title =  $this->get_tax_title( $title);
 		}
@@ -181,9 +181,11 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 	// just one tag, genre, or series
 	//add_filter('tc_the_title', 'mbdb_tax_grid_title');
 	public function title( $content, $id = null ) {
-		global $post;
+		
+		
 		$page_id = MBDB()->options->tax_grid_page;
-		if ( is_main_query() && in_the_loop() && $post->ID == $page_id ) { //get_post_type() == 'mbdb_tax_grid' ) {
+		if ( is_page( $page_id) && $id == $page_id ) {
+		//if ( is_main_query() && in_the_loop() && $post->ID == $page_id ) { //get_post_type() == 'mbdb_tax_grid' ) {
 			$content = apply_filters('mbdb_tax_grid_title', $this->get_tax_title($content));
 		}
 		return $content;
@@ -198,6 +200,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 					$term = get_term_by('slug', $mbdb_term, $mbdb_taxonomy);			
 					$taxonomy = get_taxonomy($mbdb_taxonomy);
 					if (isset($term) && isset($taxonomy) && $term != null && $taxonomy !=null) {
+					
 						switch ($mbdb_taxonomy) {
 							case 'mbdb_series':
 								$content = apply_filters('mbdb_book_grid_' . $mbdb_taxonomy . '_title', sprintf( _x( '%1$s %2$s', '%1$s = name of series, %2$s = "Series"', 'mooberry-book-manager'), $term->name, $taxonomy->labels->singular_name), $term, $taxonomy);
@@ -225,6 +228,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 					}
 				}
 			}
+			
 		return $content;
 	}	
 	

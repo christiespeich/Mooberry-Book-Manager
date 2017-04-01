@@ -353,13 +353,17 @@ function mbdb_get_book_ID( $slug = '' ) {
 			return $post->ID;
 		} 
 	} else {
-		$book = MBDB()->books->get_by_slug($slug); 
-
+	//	$book = MBDB()->books->get_by_slug($slug); 
+$book = null;
 		if ( $book ) {
 			return $book->book_id;
 		} 
 	}
 	return 0;
+}
+
+function mbdb_blank_output($classname, $blank_output) {
+	return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html($blank_output) . '</span></span>');
 }
 
 function mbdb_affiliate_fields( $key, $metabox ) {
