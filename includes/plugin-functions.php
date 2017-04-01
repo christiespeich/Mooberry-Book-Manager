@@ -15,8 +15,8 @@
 	 *
 	 * @return void
 	 */
- register_activation_hook(MBDB_PLUGIN_FILE,  'mbdb_activate' );
- function mbdb_activate( $networkwide ) {
+ register_activation_hook(MBDB_PLUGIN_FILE,  'mbdb_activate_plugin' );
+ function mbdb_activate_plugin( $networkwide ) {
 		
 		global $blog_id;
 		global $wpdb;

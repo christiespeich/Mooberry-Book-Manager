@@ -459,3 +459,12 @@ function remove_tax_grid_from_page_links( $args ) {
 	}
 	return $args;
 }
+
+// This function is required for backwards compatibility with the extensions
+// that check for this function to exist to determine if Mooberry Book Manager is
+// installed.  This function is no longer used in version 4.0 because the activation
+// function is now inside a class
+// So this function doesn't have to do anything, it just has to exist
+function mbdb_activate() {
+	
+}
