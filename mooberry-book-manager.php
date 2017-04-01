@@ -1,12 +1,12 @@
 <?php
  /**
-  *  Plugin Name: Mooberry Book Manager
+  *  Plugin Name: Mooberry Book Manager 4.0
   *  Plugin URI: http://bookmanager.mooberrydreams.com/
   *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more. 
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
   *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *	 Version: 3.5.16
+  *	 Version: 4.0
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -27,16 +27,16 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 3.5.16
+  * @version 4.0
   */
   
-// Exit if accessed directly
+ // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
  
- 
+ //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '3.5.16' );
+	define( 'MBDB_PLUGIN_VERSION', '4.0' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -58,43 +58,20 @@ if ( ! defined( 'MBDB_PLUGIN_FILE' ) ) {
 	define( 'MBDB_PLUGIN_FILE', __FILE__ );
 } 
 
-// Load in CMB2
-if ( file_exists( MBDB_PLUGIN_DIR . 'includes/cmb2/init.php' ) ) {
-	require_once MBDB_PLUGIN_DIR . 'includes/cmb2/init.php';
-} elseif ( file_exists( MBDB_PLUGIN_DIR . 'includes/CMB2/init.php' ) ) {
-	require_once MBDB_PLUGIN_DIR . 'includes/CMB2/init.php';
+// plugin setting constants
+if ( !defined('MBDB_GRID_COVER_HEIGHT_DEFAULT') ) {
+	define( 'MBDB_GRID_COVER_HEIGHT_DEFAULT', apply_filters( 'mbdb_book_grid_cover_height_default', 200 ) );
+}
+if ( !defined('MBDB_GRID_COVER_HEIGHT_MIN') ) {
+	define( 'MBDB_GRID_COVER_HEIGHT_MIN', apply_filters('mbdb_book_grid_cover_min_height', 50 ) );
 }
 
-require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
-require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/moobd-database.php';
-require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/software-licensing.php';
-
-require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-cpt.php';
-require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-db-books.php';
-require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
-require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-book.php';
-
-require_once MBDB_PLUGIN_DIR . 'includes/helper-functions.php';
-require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-updates.php';
-require_once MBDB_PLUGIN_DIR . 'includes/helper-functions-validation.php';
-require_once MBDB_PLUGIN_DIR . 'includes/scripts-and-styles.php';
-
-require_once MBDB_PLUGIN_DIR . 'book.php';
-require_once MBDB_PLUGIN_DIR . 'single-book.php';
-require_once MBDB_PLUGIN_DIR . 'book-grid.php';
-require_once MBDB_PLUGIN_DIR . 'mbdb-widget.php';
-require_once MBDB_PLUGIN_DIR . 'book-widget2.php';
-require_once MBDB_PLUGIN_DIR . 'admin-settings-page.php';
-require_once MBDB_PLUGIN_DIR . 'tax-grid.php';
-
-
-if ( ! class_exists( 'Mooberry_Book_Manager' ) ) :
 
 /**
- * Main Mooberry_Book_Manager Class
- *
- * @since 3.0
+ * Include the core class responsible for loading all necessary components of the plugin.
  */
+//require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-loader.php';
+//require_once MBDB_PLUGIN_DIR . 'includes/class-mooberry-book-manager.php';
 final class Mooberry_Book_Manager {
 	/** Singleton *************************************************************/
 
@@ -110,7 +87,24 @@ final class Mooberry_Book_Manager {
 	 * @var object
 	 * @since 3.0
 	 */
+	
+	// this is strictly for backwards compatibilty with original 4 extension plugins
 	public $books;
+	
+	public $books_db;
+	public $book_grid_db;
+	public $book_CPT;
+	public $book_grid_CPT;
+	public $tax_grid_page;
+	public $book_factory;
+//	public $widget_factory;
+	public $grid_factory;
+	
+	public $settings_menu;
+	
+	public $helper_functions;
+	public $options;
+	
 
 	/**
 	 * Main Mooberry_Book_Manager Instance
@@ -125,11 +119,77 @@ final class Mooberry_Book_Manager {
 	 * @return The one true Mooberry_Book_Manager
 	 */
 	public static function instance() {
+		////error_log('MBDB');
+	/* 	$trace = debug_backtrace();
+      if (isset($trace[1])) {
+          // $trace[0] is ourself
+          // $trace[1] is our caller
+          // and so on...
+          ////error_log(var_dump($trace[1]));
+
+          //error_log( "called by {$trace[1]['file']} :: {$trace[1]['function']} on line {$trace[1]['line']}" );
+
+      } */
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mooberry_Book_Manager ) ) {
 			self::$instance = new Mooberry_Book_Manager;
+			
+		// //error_log('making instance');
+			add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
+			add_action( 'admin_notices', array( self::$instance, 'admin_notices' ) );
+			
+			// require files
+			self::$instance->require_plugin_files();
+			
+			self::$instance->options = new Mooberry_Book_Manager_Options();
+			self::$instance->helper_functions = new Mooberry_Book_Manager_Helper_Functions();
+			self::$instance->books_db = new MBDB_DB_Books();
+			self::$instance->book_grid_db = new MBDB_DB_Book_Grid();
+			self::$instance->book_factory = new Mooberry_Book_Manager_Simple_Book_Factory();
+			
+			// strictly for backwards compatibility
 			self::$instance->books  = new MBDB_Books();
+			////error_log('create CPT object');
+			
+			//self::$instance->book_CPT = new Mooberry_Book_Manager_Book_CPT();
+			
+			$book_CPT = new Mooberry_Book_Manager_Book_CPT();
+			
+			self::$instance->grid_factory = apply_filters( 'mbdb_grid_factory', new Mooberry_Book_Manager_Simple_Grid_Factory() );
+			
+			self::$instance->book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT(  );
+			//$book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT();
+			
+			//self::$instance->tax_grid_CPT = new Mooberry_Book_Manager_Tax_Grid_CPT( $grid_factory );
+			//$tax_grid_CPT = new Mooberry_Book_Manager_Tax_Grid_CPT();
+			self::$instance->tax_grid_page = new Mooberry_Book_Manager_Tax_Grid_Page( );
+			
+			//self::$instance->widget_factory = new Mooberry_Book_Manager_Simple_Widget_Factory();
+			if ( is_admin() ) {
+				// set up menus
+				//self::$instance->settings_menu = new Mooberry_Book_Manager_Settings_Menu();
+				add_action(  'admin_menu', array( self::$instance, 'add_options_page' ), 8 );
+				self::$instance->settings_menu = self::$instance->mbm_admin();
+				//$settings_menu = self::$instance->mbm_admin();
+			}
+		//	//error_log(print_r( self::$instance, true) );
+		
 		}
+		
 		return self::$instance;
+	}
+
+	/**
+	 * Helper function to get/return the Myprefix_Admin object
+	 * @since  0.1.0
+	 * @return Myprefix_Admin object
+	 */
+	public function mbm_admin() {
+		static $object = null;
+		if ( is_null( $object ) ) {
+			$object = new Mooberry_Book_Manager_Core_Settings();
+		}
+
+		return $object;
 	}
 
 	/**
@@ -156,10 +216,147 @@ final class Mooberry_Book_Manager {
 		// Unserializing instances of the class is forbidden
 		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '3.0' );
 	}
+	
+	public static function plugins_loaded() {
+		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+		
+		// check if SuperCache is installed
+		define('MBDB_SUPERCACHE', function_exists('wp_cache_manager'));
+		define('MBDB_WPSEO_INSTALLED', defined( 'WPSEO_FILE' ) );
+		
+		if ( defined( 'MBDBMA_PLUGIN_VERSION' ) && version_compare( MBDBMA_PLUGIN_VERSION, '1.7', '<' ) ) {
+			$message = __('You must update MBM Multi-Author to be compatible with MBM version 4.0', 'mooberry-book-manager');
+			MBDB()->helper_functions->set_admin_notice( $message, 'error', 'mbdb_update_mbdbma');
+		}
+	}
+	
+	public static function admin_notices() {
+		$notices  = get_option('mbdb_admin_notices');
+		if (is_array($notices)) {
+			foreach ($notices as $key => $notice) {
+			  echo "<div class='notice {$notice['type']}' id='{$key}'><p>{$notice['message']}</p></div>";
+			}
+		}
+	}
+	
+	/**
+	 * Init
+	 *
+	 * Registers Custom Post Types and Taxonomies
+	 * Verifies Tax Grid is installed correctly
+	 * Does upgrade routines
+	 *
+	 * @access public
+	 * @since 1.0
+	 * @return void
+	 */
 
-}
+	public static function init() {
+		
+		// let CPTs register themselves
+		// MBDB()->book_CPT->register();
+		// MBDB()->book_grid_CPT->register();
+		// MBDB()->tax_grid_CPT->add_tax_grid();
+		
+	/*	
+		mbdb_register_cpts();
+		mbdb_register_taxonomies();
+		
+		
+		
+		
+		mbdb_upgrade_versions();
+	*/
+		
+	}
+		
+	public function add_options_page() {
+		$this->options_page = add_menu_page( __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), 'manage_mbm', 'mbdb_options', array( self::$instance->settings_menu , 'admin_page_display' ) );
+	}
 
-endif; // End if class_exists check
+	
+	private function require_plugin_files() {
+		// Load in CMB2
+		if ( file_exists( MBDB_PLUGIN_DIR . 'includes/cmb2/init.php' ) ) {
+			require_once MBDB_PLUGIN_DIR . 'includes/cmb2/init.php';
+		} elseif ( file_exists( MBDB_PLUGIN_DIR . 'includes/CMB2/init.php' ) ) {
+			require_once MBDB_PLUGIN_DIR . 'includes/CMB2/init.php';
+		}
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/wp-background-processing/wp-background-processing.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/depreciated-functions.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-books.php';
+		
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-helper-functions.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/updates.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-object.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-cpt.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-taxonomy.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-cpt.php';
+		//require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-grid-cpt.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-grid-cpt.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-tax-grid-page.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-cpt-object.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-basic.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-grid.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-grid.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-tax-grid.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-simple-grid-factory.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-simple-book-factory.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-download-format.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-edition-format.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-retailer.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-link.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-buy-link.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-download-link.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-review.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-publisher.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-edition.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-social-media-site.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-options.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-list.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/moobd-database.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/interface-mbm-data-storage-behavior.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-db-cpt.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-cmb-cpt.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-db-books.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-db-book-grid.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-widget.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-widget.php';
+		//require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-simple-widget-factory.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-cpt.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/software-licensing.php';		
+		
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-rest-books-controller.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
+		
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-import-process.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-settings.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-core-settings.php';
+		
+		
+		
+		//require_once MBDB_PLUGIN_DIR . 'includes/CMB2-grid/Cmb2GridPlugin.php';
+		
+		//require_once MBDB_PLUGIN_DIR . 'mooberry-book-manager-custom-fields.php';
+		//require_once MBDB_PLUGIN_DIR . 'includes/custom-fields/custom-fields.php';
+	}
+	
+	
+	
+
+} // class
 
 
 
@@ -179,185 +376,86 @@ function MBDB() {
 	return Mooberry_Book_Manager::instance();
 }
 
-// Get MBDB Running
-MBDB();
-
-/**
- * Activation
- * 
- * Runs on plugin activation
- * - Creates custom tables
- * - Inserts default images
- * - Running the init() functions
- * - flushing the rewrite rules
- *
- * @since 1.0
- * @since 3.1 	Multi-site compatibility
- * @return void
- */
-// NOTE: DO NOT change the name of this function because it is required for
-// the add ons to check dependency
-
-
-register_activation_hook(basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), 'mbdb_activate'  );
-function mbdb_activate( $networkwide ) {
-	global $blog_id;
-	global $wpdb;
+if ( !isset($mbdb) ) {
 	
-	
-	// create the table for the entire site if multisite
-	
-
-	if (function_exists('is_multisite') && is_multisite()) {
-        // check if it is a network activation - if so, run the activation function for each blog id
-        if ( $networkwide ) {
-            $old_blog = $blog_id;
-            // Get all blog ids
-            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-			//$sites = wp_get_sites( array(  'limit' => 1000 ) );
-			//error_log(print_r($blogids, true));
-			
-            foreach ($blogids as $blog) {
-                switch_to_blog($blog);
-                _mbdb_activate();
-				
-				if (!wp_is_large_network() ) {
-					delete_blog_option( $blog, 'rewrite_rules' );
-				}
-            }
-            switch_to_blog($old_blog);
-			//mbdb_flush_rewrite_rules_multisite();
-            return;
-        }   
-    } 
-    _mbdb_activate();      
-	flush_rewrite_rules();
+	$mbdb = MBDB();
 }
 
-function mbdb_flush_rewrite_rules_multisite() {
-	// Much better...
-	if ( wp_is_large_network() ) {
-		return;
-	}
 
-	// ...and we're probably still friends.
-	// 4.6 compatibility
-	if (function_exists('get_sites')) {
-		$sites = get_sites( array( 'limit' => 1000 ) );
-	} else {
-		$sites = wp_get_sites( array(  'limit' => 1000 ) );
-	}
+
+function mbdb_convert($size)
+{
+    $unit=array('b','kb','mb','gb','tb','pb');
+    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+}
+
+
+
+
+// for users with PHP <5.5
+// (this can't be in a class)
+if(!function_exists("array_column")) {
 	
-	foreach( $sites as $site ) {
-		// 4.6 compatibility
-		if (function_exists('get_sites')) {
-			$blogID = $site->id;
-		} else {
-			$blogID = $site['blog_id'];
+	function array_column($array, $column_name, $key = null) {
+		if ( !is_array( $array ) ) {
+			return null;
 		}
-		switch_to_blog( $blogID );
-		delete_blog_option( $blogID, 'rewrite_rules' );
-		restore_current_blog();
-	}
-}
-// blog-specific activation tasks
-// v3.1 split out into separate function for multisite compatibility
-function _mbdb_activate() {
-	
-	MBDB()->books->create_table();
-	
-	// if this is a fresh 3.1 or higher install, no import necessary
-	$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
-	if ($current_version == '' || version_compare($current_version, '3.1', '>=') ) {
-		update_option('mbdb_import_books', true);
-	}
-	
-	mbdb_set_up_roles();
-
-	// insert defaults
-	
-	$mbdb_options = get_option( 'mbdb_options' );
-	
-	if (!is_array($mbdb_options)) {
-		$mbdb_options = array();
-	}
-
-	mbdb_insert_default_formats( $mbdb_options );
-	mbdb_insert_default_edition_formats( $mbdb_options );
-	mbdb_insert_default_social_media ( $mbdb_options );
-	mbdb_insert_default_retailers( $mbdb_options );
-	
-	$path = MBDB_PLUGIN_URL . 'includes/assets/';
-	
-	$mbdb_options['coming-soon'] = $path . 'coming_soon_blue.jpg';
-	$mbdb_options['goodreads'] = $path . 'goodreads.png';
-	
-	//mbdb_insert_image( 'coming-soon', 'coming_soon_blue.jpg', $mbdb_options );
-	//mbdb_insert_image( 'goodreads', 'goodreads.png', $mbdb_options );
-	
-	
-	update_option( 'mbdb_options', $mbdb_options );
-	
-	
-	// SET DEFAULT OPTIONS FOR GRID SLUGS
-	mbdb_set_default_tax_grid_slugs();
-	
-	
-	mbdb_init();
-
-	
-}
-
-// activate MBM for any new blogs added to multisite
-// v3.1
-add_action( 'wpmu_new_blog', 'mbdb_new_blog', 10, 6);        
-function mbdb_new_blog($blog, $user_id, $domain, $path, $site_id, $meta ) {
-	//wp_die('Network Activation Not Supported.');
-	
-	global $blog_id;
-
-    if (is_plugin_active_for_network('mooberry-book-manager/mooberry-book-manager.php')) {
-        $old_blog = $blog_id;
-        switch_to_blog($blog);
-
-        _mbdb_activate($blog);
-		delete_blog_option( $blog, 'rewrite_rules' );
-        switch_to_blog($old_blog);
-    }
-	
-}
-
-/**
- * Deactivation
- * 
- * Runs on plugin deactivation
- * - flushing the rewrite rules
- *
- * @since 1.0
- * @return void
- */
-register_deactivation_hook( MBDB_PLUGIN_FILE, 'mbdb_deactivate' );
-function mbdb_deactivate( $networkwide ) {
-	global $blog_id;
-	global $wpdb;
-	
-	if (function_exists('is_multisite') && is_multisite()) {
-        // check if it is a network activation - if so, run the activation function for each blog id
-        if ( $networkwide ) {
-            $old_blog = $blog_id;
-            // Get all blog ids
-            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-            foreach ($blogids as $blog) {
-				switch_to_blog($blog);
-				delete_blog_option( $blog, 'rewrite_rules' );
-				//flush_rewrite_rules();
+		
+		$new_array = array();
+		foreach ( $array as $element ) {
+			if ( array_key_exists( $column_name, $element ) ) {
+				if ($key == null) {
+						$new_array[] = $element[$column_name];
+				} else {
+					if ( array_key_exists( $key, $element ) ) {
+						$new_array[$element[$key]] = $element[$column_name];
+					}
+				}		
 			}
-			 switch_to_blog($old_blog);
-            return;
-        }   
-    } 
-	flush_rewrite_rules();
+		}
+		return $new_array;
+	}	
+}
+/* add_filter('posts_where','mbdb_search_where' );
+function mbdb_search_where ( $where ) {
+	print_r($where);
+	return $where;
+} */
+
+
+add_filter('wp_nav_menu_objects',  'remove_tax_grid_page_from_menu' , 99, 2);
+ function remove_tax_grid_page_from_menu($sorted_menu_objects, $args) {
+ 
+    // check for the right menu to remove the menu item from
+    // here we check for theme location of 'secondary-menu'
+    // alternatively you can check for menu name ($args->menu == 'menu_name')
+    // if ($args->theme_location != 'secondary-menu')  
+        // return $sorted_menu_objects;
+	$page_id = MBDB()->options->tax_grid_page;
+    // remove the menu item that has a title of 'Uncategorized'
+    foreach ($sorted_menu_objects as $key => $menu_object) {
+
+        // can also check for $menu_object->url for example
+        // see all properties to test against:
+         
+        if ($menu_object->object_id == $page_id) {
+            unset($sorted_menu_objects[$key]);
+            break;
+        }
+    }
+
+    return $sorted_menu_objects;
 }
 
-
-
+add_filter('wp_page_menu_args', 'remove_tax_grid_from_page_links');
+function remove_tax_grid_from_page_links( $args ) {
+	
+	$page_id = MBDB()->options->tax_grid_page;
+	
+	if ( array_key_exists('exclude', $args) ) {
+		$args['exclude'] = $args['exclude'] . ',' . $page_id;
+	} else {
+		$args['exclude'] = $page_id;
+	}
+	return $args;
+}

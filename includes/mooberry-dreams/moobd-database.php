@@ -14,6 +14,8 @@ abstract class MOOBD_Database {
 	
 	protected abstract function get_columns();
 	protected abstract function create_table();
+	public static function create_the_table() {
+	}
 	
 	//public abstract function import();
 	
@@ -31,7 +33,7 @@ abstract class MOOBD_Database {
 	}
 	
 	
-			
+
 	
 	protected function columns_with_html() {
 		return array();
@@ -149,7 +151,7 @@ abstract class MOOBD_Database {
 		
 	}
 	
-	protected function get_multiple ( $values, $orderby = null, $order = null, $cache_results = true) {
+	protected function get_multiple ( $values, $orderby = null, $order = null, $cache_results = false) {
 		
 		$orderby = $this->validate_orderby( $orderby );
 		
@@ -168,14 +170,15 @@ abstract class MOOBD_Database {
 		$values = array_map('sanitize_title_for_query', $values);
 		
 		$table = $this->table_name();
-		
+		global $wpdb;
 		$sql =  $wpdb->prepare("SELECT * FROM $table WHERE $this->primary_key IN (%s)  ORDER BY %s %s;", implode(',',$values), $orderby, $order);
 		
 		return $this->run_sql($sql, $cache_results);
 		
 	}
 	
-	protected function get_all ($orderby = null, $order = null, $cache_results = true ) {
+	// public for MA compat
+	public function get_all ($orderby = null, $order = null, $cache_results = true ) {
 		global $wpdb; 
 		$orderby = $this->validate_orderby( $orderby );
 		
@@ -229,9 +232,11 @@ abstract class MOOBD_Database {
 				$data[$this->primary_key] = $id;
 			}
 			//$data['blog_id'] = $this->blog_id;
+			//error_log('inserting into database');
 			return $this->insert( $data, $type );
 			
 		} else {
+			//error_log('updating database');
 			return $this->update( $id, $data, $type );
 		}
 	}
@@ -390,7 +395,7 @@ abstract class MOOBD_Database {
 				$value = wp_kses(stripslashes_deep($value), $context );
 			}
 		} else {
-			$value = mbdb_sanitize_field($value);	
+			$value = strip_tags( stripslashes( $value ) );	
 		}
 	
 		// values should be entered into the database as nulls not blanks
@@ -405,18 +410,18 @@ abstract class MOOBD_Database {
 	
 	
 	protected function get_cache( $key ) {
-		//error_log('getting cache: ' . md5( serialize($key)) . ' = ' . $key);
+		////error_log('getting cache: ' . md5( serialize($key)) . ' = ' . $key);
 		$table = $this->table_name();
 		$cache =  wp_cache_get( md5( serialize($key) ), $table );
 		
 		return $cache;
 	}
 	
-	protected function set_cache( $data, $sql ) {
+	protected function set_cache( $data, $sql, $expires = 86400 ) {
 		$key = md5( serialize($sql));
-		//error_log('setting cache = : ' . $key . ' = ' . $sql);
+		////error_log('setting cache = : ' . $key . ' = ' . $sql);
 		$table = $this->table_name();
-		wp_cache_set( $key, $data, $table,  24*60*60);
+		wp_cache_set( $key, $data, $table,  $expires );
 		
 		
 		
@@ -430,7 +435,7 @@ abstract class MOOBD_Database {
 		
 		if (array_key_exists($table, $mbdb_cache)) {
 			foreach ($mbdb_cache[$table] as $key) {
-			//	error_log('deleting ' . $key);
+			//	//error_log('deleting ' . $key);
 				wp_cache_delete($key, $table);
 			}
 			unset($mbdb_cache[$table]);

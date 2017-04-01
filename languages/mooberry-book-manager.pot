@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2017-01-13 11:53-0500\n"
+"POT-Creation-Date: 2017-04-01 08:58-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -26,541 +26,1377 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: includes/cmb2\n"
 "X-Poedit-SearchPathExcluded-1: docs\n"
 
-#: admin-settings-page.php:60
-msgid "Mooberry Book Manager Settings"
-msgstr ""
-
-#: admin-settings-page.php:92
+#: includes/admin/class-mbm-core-settings.php:48
 msgid "Mooberry Book Manager General Settings"
 msgstr ""
 
-#: admin-settings-page.php:93
+#: includes/admin/class-mbm-core-settings.php:49
 msgid "General Settings"
 msgstr ""
 
-#: admin-settings-page.php:95
+#: includes/admin/class-mbm-core-settings.php:51
 msgid "Mooberry Book Manager Book Page Settings"
 msgstr ""
 
-#: admin-settings-page.php:96 includes/helper-functions.php:158
+#: includes/admin/class-mbm-core-settings.php:52
+#: includes/class-mbm-helper-functions.php:275
 msgid "Book Page"
 msgstr ""
 
-#: admin-settings-page.php:98
+#: includes/admin/class-mbm-core-settings.php:54
 msgid "Mooberry Book Manager Book Grid Settings"
 msgstr ""
 
-#: admin-settings-page.php:99 includes/plugin-functions.php:632
+#: includes/admin/class-mbm-core-settings.php:55
+#: includes/class-mbm-book-grid-cpt.php:28
 msgid "Book Grid"
 msgstr ""
 
-#: admin-settings-page.php:101
+#: includes/admin/class-mbm-core-settings.php:57
 msgid "Mooberry Book Manager Publishers"
 msgstr ""
 
-#: admin-settings-page.php:102
+#: includes/admin/class-mbm-core-settings.php:58
 msgid "Publishers"
 msgstr ""
 
-#: admin-settings-page.php:104
+#: includes/admin/class-mbm-core-settings.php:60
 msgid "Mooberry Book Manager Retailers"
 msgstr ""
 
-#: admin-settings-page.php:105
+#: includes/admin/class-mbm-core-settings.php:61
 msgid "Retailers"
 msgstr ""
 
-#: admin-settings-page.php:107
+#: includes/admin/class-mbm-core-settings.php:63
 msgid "Mooberry Book Manager E-book Formats"
 msgstr ""
 
-#: admin-settings-page.php:108
+#: includes/admin/class-mbm-core-settings.php:64
 msgctxt "noun"
 msgid "E-book Formats"
 msgstr ""
 
-#: admin-settings-page.php:110
+#: includes/admin/class-mbm-core-settings.php:66
 msgid "Mooberry Book Manager Edition Formats"
 msgstr ""
 
-#: admin-settings-page.php:111
+#: includes/admin/class-mbm-core-settings.php:67
 msgid "Edition Formats"
 msgstr ""
 
-#: admin-settings-page.php:121
+#: includes/admin/class-mbm-core-settings.php:69
+msgid "Mooberry Book Manager Import/Export Books"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:70
+msgid "Import / Export"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:78
 msgid "Mooberry Book Manager v3.0 Data Migration"
 msgstr ""
 
-#: admin-settings-page.php:122
+#: includes/admin/class-mbm-core-settings.php:79
 msgid "Migrate Data"
 msgstr ""
 
-#: admin-settings-page.php:129
+#: includes/admin/class-mbm-core-settings.php:86
 msgid "Mooberry Book Manager Book Grid Migration"
 msgstr ""
 
-#: admin-settings-page.php:130
+#: includes/admin/class-mbm-core-settings.php:87
 msgid "Migrate Book Grids"
 msgstr ""
 
-#: admin-settings-page.php:175 book.php:680
-msgid "Need help with Mooberry Book Manager?"
-msgstr ""
-
-#: admin-settings-page.php:272
+#: includes/admin/class-mbm-core-settings.php:164
 msgid ""
 "Note: This page for users of previous versions of Mooberry Book Manager only."
 msgstr ""
 
-#: admin-settings-page.php:273
+#: includes/admin/class-mbm-core-settings.php:165
 msgid "Data already migrated. Mooberry Book Manager 3.0 is ready to use!"
 msgstr ""
 
-#: admin-settings-page.php:274
+#: includes/admin/class-mbm-core-settings.php:166
 msgid ""
 "You may choose to re-migrate your data from version 2 if you've noticed "
 "issues with your books' information.  "
 msgstr ""
 
-#: admin-settings-page.php:275 includes/helper-functions-updates.php:616
+#: includes/admin/class-mbm-core-settings.php:167 includes/updates.php:619
 msgid "Changes you've made since migrating may be lost."
 msgstr ""
 
-#: admin-settings-page.php:276
+#: includes/admin/class-mbm-core-settings.php:168
 msgid "Re-Migrate Data Now"
 msgstr ""
 
-#: admin-settings-page.php:280
+#: includes/admin/class-mbm-core-settings.php:172
 msgid "Migrating Data..."
 msgstr ""
 
-#: admin-settings-page.php:283
+#: includes/admin/class-mbm-core-settings.php:175
 msgid "Success! Mooberry Book Manager version 3.0 is ready to use!"
 msgstr ""
 
-#: admin-settings-page.php:287
+#: includes/admin/class-mbm-core-settings.php:179
 #, php-format
 msgid ""
 "An error occured while migrating data to version 3.0. Please contact "
 "Mooberry Dreams at %s with the following error message."
 msgstr ""
 
-#: admin-settings-page.php:287
+#: includes/admin/class-mbm-core-settings.php:179
 msgid "Error:"
 msgstr ""
 
-#: admin-settings-page.php:294
+#: includes/admin/class-mbm-core-settings.php:186
 msgid ""
 "Note: Book Grids have already been migrated. Mooberry Book Manager 3.4.3 is "
 "ready to use!"
 msgstr ""
 
-#: admin-settings-page.php:298
+#: includes/admin/class-mbm-core-settings.php:190
 msgid "Migrating Book Grids...please wait..."
 msgstr ""
 
-#: admin-settings-page.php:302
+#: includes/admin/class-mbm-core-settings.php:194
 msgid "Success! Mooberry Book Manager version 3.4.3 is ready to use!"
 msgstr ""
 
-#: admin-settings-page.php:302
+#: includes/admin/class-mbm-core-settings.php:194
 msgid "Click here to see your book grids."
 msgstr ""
 
-#: admin-settings-page.php:310
+#: includes/admin/class-mbm-core-settings.php:202
 msgid "BOOK PAGE SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:316 admin-settings-page.php:434
+#: includes/admin/class-mbm-core-settings.php:208
 msgid "Page Template"
 msgstr ""
 
-#: admin-settings-page.php:324 admin-settings-page.php:637
-msgid ""
-"If you need to restore the image that came with Mooberry Book Manager, "
-"download the "
-msgstr ""
-
-#: admin-settings-page.php:325 admin-settings-page.php:638
-#: admin-settings-page.php:676 admin-settings-page.php:746
-msgid "Mooberry Book Manager Image Fixer plugin"
-msgstr ""
-
-#: admin-settings-page.php:330
+#: includes/admin/class-mbm-core-settings.php:223
 msgid "Add to Goodreads Image"
 msgstr ""
 
-#: admin-settings-page.php:338 admin-settings-page.php:651
-#: admin-settings-page.php:708 admin-settings-page.php:775
-#: admin-settings-page.php:839
+#: includes/admin/class-mbm-core-settings.php:231
+#: includes/admin/class-mbm-core-settings.php:589
+#: includes/admin/class-mbm-core-settings.php:646
+#: includes/admin/class-mbm-core-settings.php:714
+#: includes/admin/class-mbm-core-settings.php:778
 msgid "Choose or Upload File"
 msgstr ""
 
-#: admin-settings-page.php:345
+#: includes/admin/class-mbm-core-settings.php:238
 msgid "Reset Book Edit Page"
 msgstr ""
 
-#: admin-settings-page.php:347
+#: includes/admin/class-mbm-core-settings.php:240
 msgid ""
 "If you've reordered the boxes on the Book Edit page, this will revert them "
 "to their default positions."
 msgstr ""
 
-#: admin-settings-page.php:348
+#: includes/admin/class-mbm-core-settings.php:241
 msgid "Reset"
 msgstr ""
 
-#: admin-settings-page.php:357
+#: includes/admin/class-mbm-core-settings.php:250
 msgid "DEFAULT SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:363
+#: includes/admin/class-mbm-core-settings.php:256
 msgid "Default Unit of Measurement"
 msgstr ""
 
-#: admin-settings-page.php:371
+#: includes/admin/class-mbm-core-settings.php:264
 msgid "Default Currency"
 msgstr ""
 
-#: admin-settings-page.php:379
+#: includes/admin/class-mbm-core-settings.php:272
 msgid "Default Language"
 msgstr ""
 
-#: admin-settings-page.php:406
+#: includes/admin/class-mbm-core-settings.php:282
+msgid "SEO SETTINGS"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:288
+msgid "Override Wordpress SEO (Yoast) settings for the following fields:"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:316
 msgid "BOOK GRID DEFAULT SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:408
+#: includes/admin/class-mbm-core-settings.php:318
 msgid ""
 "This setting will be used on all Taxonomy Grids. It's also used on any grids "
 "that do not override the default setting."
 msgstr ""
 
-#: admin-settings-page.php:414
+#: includes/admin/class-mbm-core-settings.php:324
 msgid "Default Cover Height (px)"
 msgstr ""
 
-#: admin-settings-page.php:427
-msgid "TAXONOMY GRID TEMPLATE SETTINGS"
+#: includes/admin/class-mbm-core-settings.php:337
+msgid "TAXONOMY GRID SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:429
-msgid "This template will be used to display the Taxonomy Book Grids."
+#: includes/admin/class-mbm-core-settings.php:339
+msgid ""
+"This page will be used to display the Taxonomy Book Grids. A page has "
+"already been set up with the necessary code for this purpose, but if you "
+"have accidently deleted it and need to create a new one, click the Create "
+"button."
 msgstr ""
 
-#: admin-settings-page.php:443
+#: includes/admin/class-mbm-core-settings.php:339
+msgid ""
+"To change the template used for the taxonomy grids, edit this page and set "
+"the <b>Template</b> in the <b>Page Attributes</b> section."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:359
+msgid "Page"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:363
+msgid "Create a new page"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:369
 msgid ""
 "These will be used to build website URL for the Taxonomy Book Grids.  Text "
 "entered in these fields will be converted to \"friendly URLs\" by making "
 "them lower-case, removing the spaces, etc."
 msgstr ""
 
-#: admin-settings-page.php:444
+#: includes/admin/class-mbm-core-settings.php:370
 msgid "NOTE:"
 msgstr ""
 
-#: admin-settings-page.php:444
+#: includes/admin/class-mbm-core-settings.php:370
 msgid "Wordpress reserved terms are not allowed here."
 msgstr ""
 
-#: admin-settings-page.php:445
+#: includes/admin/class-mbm-core-settings.php:371
 msgid "Reserved Terms"
 msgstr ""
 
-#: admin-settings-page.php:446
+#: includes/admin/class-mbm-core-settings.php:372
 msgid "See a list of reserved terms."
 msgstr ""
 
-#: admin-settings-page.php:458
+#: includes/admin/class-mbm-core-settings.php:384
 msgid "TAXONOMY BOOK GRID URL SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:502
+#: includes/admin/class-mbm-core-settings.php:444
 msgid "Add your publishers."
 msgstr ""
 
-#: admin-settings-page.php:504 admin-settings-page.php:513 book.php:36
-#: book.php:185 book.php:1059 includes/helper-functions.php:148
+#: includes/admin/class-mbm-core-settings.php:446
+#: includes/admin/class-mbm-core-settings.php:455
+#: includes/class-mbm-book-cpt.php:236 includes/class-mbm-book-cpt.php:246
+#: includes/class-mbm-book-cpt.php:654 includes/class-mbm-book-grid-cpt.php:95
 msgid "Publisher"
 msgstr ""
 
-#: admin-settings-page.php:505
+#: includes/admin/class-mbm-core-settings.php:447
 msgid "Add New Publisher"
 msgstr ""
 
-#: admin-settings-page.php:506
+#: includes/admin/class-mbm-core-settings.php:448
 msgid "Remove Publisher"
 msgstr ""
 
-#: admin-settings-page.php:523
+#: includes/admin/class-mbm-core-settings.php:465
 msgid "Publisher Website"
 msgstr ""
 
-#: admin-settings-page.php:565
+#: includes/admin/class-mbm-core-settings.php:507
 msgid "Add any additional formats your books are available in."
 msgstr ""
 
-#: admin-settings-page.php:567
+#: includes/admin/class-mbm-core-settings.php:509
 msgid "Format"
 msgstr ""
 
-#: admin-settings-page.php:568
+#: includes/admin/class-mbm-core-settings.php:510
 msgid "Add New Format"
 msgstr ""
 
-#: admin-settings-page.php:569 admin-settings-page.php:756
+#: includes/admin/class-mbm-core-settings.php:511
+#: includes/admin/class-mbm-core-settings.php:695
 msgid "Remove Format"
 msgstr ""
 
-#: admin-settings-page.php:576 admin-settings-page.php:754
+#: includes/admin/class-mbm-core-settings.php:518
+#: includes/admin/class-mbm-core-settings.php:693
 msgid "Format Name"
 msgstr ""
 
-#: admin-settings-page.php:619
+#: includes/admin/class-mbm-core-settings.php:557
 msgid "IMAGE SETTINGS"
 msgstr ""
 
-#: admin-settings-page.php:627
+#: includes/admin/class-mbm-core-settings.php:565
 msgid "Show Placeholder Cover On"
 msgstr ""
 
-#: admin-settings-page.php:630
+#: includes/admin/class-mbm-core-settings.php:568
 msgid ""
 "The placeholder cover is used for books that do not have a cover selected."
 msgstr ""
 
-#: admin-settings-page.php:643
+#: includes/admin/class-mbm-core-settings.php:581
 msgid "Placeholder Cover Image"
 msgstr ""
 
-#: admin-settings-page.php:675
-msgid ""
-"Add any additional retailers that sell your books. If you need to restore "
-"images that came with Mooberry Book Manager, download the "
-msgstr ""
-
-#: admin-settings-page.php:684 book.php:1116
+#: includes/admin/class-mbm-core-settings.php:622
+#: includes/class-mbm-book-cpt.php:724
 msgid "Retailer"
 msgstr ""
 
-#: admin-settings-page.php:685
+#: includes/admin/class-mbm-core-settings.php:623
 msgid "Add Retailer"
 msgstr ""
 
-#: admin-settings-page.php:686
+#: includes/admin/class-mbm-core-settings.php:624
 msgid "Remove Retailer"
 msgstr ""
 
-#: admin-settings-page.php:692
+#: includes/admin/class-mbm-core-settings.php:630
 msgid "Retailer Name"
 msgstr ""
 
-#: admin-settings-page.php:701
+#: includes/admin/class-mbm-core-settings.php:639
 msgid "Retailer Logo Image"
 msgstr ""
 
-#: admin-settings-page.php:745
-msgid ""
-"If you have free books for download, add any additional formats your books "
-"are available in. If you need to restore images that came with Mooberry Book "
-"Manager, download the"
-msgstr ""
-
-#: admin-settings-page.php:755
+#: includes/admin/class-mbm-core-settings.php:694
 msgid "Add Format"
 msgstr ""
 
-#: admin-settings-page.php:762
+#: includes/admin/class-mbm-core-settings.php:701
 msgctxt "noun: the format of a book"
 msgid "Format"
 msgstr ""
 
-#: admin-settings-page.php:771
+#: includes/admin/class-mbm-core-settings.php:710
 msgctxt "noun: the image that represents the format of a book"
 msgid "Format Image"
 msgstr ""
 
-#: admin-settings-page.php:811
+#: includes/admin/class-mbm-core-settings.php:750
 msgid "Add Social Media Sites With Whom You Have Accounts."
 msgstr ""
 
-#: admin-settings-page.php:813
+#: includes/admin/class-mbm-core-settings.php:752
 msgid "Social Media Site"
 msgstr ""
 
-#: admin-settings-page.php:814
+#: includes/admin/class-mbm-core-settings.php:753
 msgid "Add New Social Media Site"
 msgstr ""
 
-#: admin-settings-page.php:815
+#: includes/admin/class-mbm-core-settings.php:754
 msgid "Remove Social Media Site"
 msgstr ""
 
-#: admin-settings-page.php:822
+#: includes/admin/class-mbm-core-settings.php:761
 msgid "Social Media Site Name"
 msgstr ""
 
-#: admin-settings-page.php:832
+#: includes/admin/class-mbm-core-settings.php:771
 msgid "Social Media Logo Image"
 msgstr ""
 
-#: admin-settings-page.php:862
+#: includes/admin/class-mbm-core-settings.php:802
 msgid "Mooberry Book Manager Social Media Options"
 msgstr ""
 
-#: admin-settings-page.php:863
+#: includes/admin/class-mbm-core-settings.php:803
 msgid "Social Media"
 msgstr ""
 
-#: admin-settings-page.php:904
+#: includes/admin/class-mbm-core-settings.php:854
+msgid ""
+"Books will be imported in the background. You may leave this page while they "
+"are importing. A notice will be displayed while books are importing."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:857
+msgid ""
+"Please wait for the current batch of imports to finish before importing more."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:858
+msgid "Cancel Import"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:869
+msgid "IMPORT FROM GOOGLE BOOKS"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:870
+msgid "Enter ISBNs, one per line, to import books."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:872
+msgid "Import from Google"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:874
+msgid "IMPORT FROM FILE"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:875
+msgid "Choose an export file from Mooberry Book Manager."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:888
+msgid ""
+"Please wait for the current batch of imports to finish before exporting more."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:894
+msgid ""
+"This will create a text file with all of the books entered into Mooberry "
+"Book Manager. Books that are in Draft Mode or in the Trash will not be "
+"exported.  Options for filtering which books to export will be coming in a "
+"future update."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:957
+#: includes/admin/class-mbm-core-settings.php:971
+msgid "Invalid file format"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:960
+#, php-format
+msgid "Importing %d books."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:981
+#, php-format
+msgid "%s added to queue!"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:998
+msgid "export"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1000
+msgid "import"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1005
+#, php-format
+msgid ""
+"If you would like to %s books entered with Mooberry Book Manager, please use "
+"the Import/Export page in the Mooberry Book Manager settings menu."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1013
+msgid "Import"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1014
+msgid "Export"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1058
 msgid "is a reserved term and not allowed. This field was not saved."
 msgstr ""
 
-#: admin-settings-page.php:965
-msgid "Settings updated."
+#: includes/admin/class-mbm-import-process.php:13
+msgid "Books currently being imported."
 msgstr ""
 
-#: book-grid.php:30 book-grid.php:85
-msgid "Book Grid Settings"
+#: includes/admin/class-mbm-import-process.php:14
+msgid "Cancel Import on the Import/Export Page"
 msgstr ""
 
-#: book-grid.php:39
-msgid ""
-"Looking for the Book Grid Settings?  As of version 3.4, there is now "
-"separate menu in your Dashboard for adding Book Grids."
+#: includes/admin/class-mbm-import-process.php:95
+msgid "Book import complete!"
 msgstr ""
 
-#: book-grid.php:40 includes/helper-functions-updates.php:94
+#: includes/admin/class-mbm-import-process.php:96
+#: includes/class-mbm-book-grid-cpt.php:362 includes/updates.php:93
 msgid "Dismiss this notice"
 msgstr ""
 
-#: book-grid.php:107
-msgid "Books to Display"
+#: includes/admin/class-mbm-settings.php:67 mooberry-book-manager.php:274
+msgid "Mooberry Book Manager Settings"
 msgstr ""
 
-#: book-grid.php:115 includes/helper-functions.php:119
+#: includes/admin/class-mbm-settings.php:162
+#: includes/class-mbm-book-cpt.php:824
+msgid "Need help with Mooberry Book Manager?"
+msgstr ""
+
+#: includes/admin/class-mbm-settings.php:257
+msgid "Settings updated."
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:3
+msgid "Also From Mooberry Dreams"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:5
+msgid ""
+"Make it easy for readers to find stories on your blog, including older ones."
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:7
+msgid "Group posts into a single story"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:8
+msgid "Display a table of contents"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:9
+msgid "Easily re-arrange the order of the chapters within the story"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:10
+msgid "Draw attention to your story with sidebar widgets"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:11
+msgid "Organize stories by genre and/or series"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry-story.php:13
+msgid "Download Now"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:4
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:5
+msgid "FAQs"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:6
+msgid "Support Forum"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:19
+msgid "Extensions Available Now"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:20
+msgid ""
+"Check out <a target=\"_new\" href=\"http://bookmanager.mooberrydreams.com/"
+"\">our website</a> to learn more about these extensions so Mooberry Book "
+"Manager can save you more time!"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:22
+msgid "Additional Images"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:23
+msgid "Advanced Widgets"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:24
+msgid "Multi-Author"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:25
+msgid "Retail Links Redirect"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:29
+msgid "Tip Jar"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:30
+msgid ""
+"You can help support this plugin by leaving a tip in any amount. This is "
+"completely optional. Thank you for the support."
+msgstr ""
+
+#: includes/admin/views/admin-widget-book.php:2
+msgid "Which book to show?"
+msgstr ""
+
+#: includes/admin/views/admin-widget-book.php:13
+msgid "Book:"
+msgstr ""
+
+#: includes/admin/views/admin-widget.php:17
+msgid "Widget Title:"
+msgstr ""
+
+#: includes/admin/views/admin-widget.php:24
+msgid "Show Book Title"
+msgstr ""
+
+#: includes/admin/views/admin-widget.php:29
+msgid "Cover Size(pixels)"
+msgstr ""
+
+#: includes/admin/views/admin-widget.php:30
+msgid "(minimum 50)"
+msgstr ""
+
+#: includes/admin/views/book-grid-shortcode-button.php:6
+#: includes/admin/views/book-grid-shortcode-button.php:7
+msgid "Add Book Grid"
+msgstr ""
+
+#: includes/admin/views/book-grid-shortcode-button.php:10
+msgid "Book Grid:"
+msgstr ""
+
+#: includes/class-mbm-book-basic.php:252 includes/class-mbm-book-basic.php:282
+#: includes/class-mbm-book-grid.php:592 includes/class-mbm-book-grid.php:622
+#: includes/class-mbm-book-link.php:76 includes/class-mbm-book-link.php:104
+#: includes/class-mbm-book-list.php:191 includes/class-mbm-book.php:380
+#: includes/class-mbm-book.php:410 includes/class-mbm-buy-link.php:90
+#: includes/class-mbm-buy-link.php:120 includes/class-mbm-cpt.php:601
+#: includes/class-mbm-download-format.php:141
+#: includes/class-mbm-download-format.php:172
+#: includes/class-mbm-download-link.php:89
+#: includes/class-mbm-edition-format.php:121
+#: includes/class-mbm-edition-format.php:152 includes/class-mbm-edition.php:170
+#: includes/class-mbm-edition.php:200 includes/class-mbm-options.php:655
+#: includes/class-mbm-options2.php:602 includes/class-mbm-publisher.php:130
+#: includes/class-mbm-publisher.php:161 includes/class-mbm-retailer.php:163
+#: includes/class-mbm-retailer.php:194 includes/class-mbm-review.php:90
+#: includes/class-mbm-review.php:120
+#: includes/class-mbm-social-media-site.php:114
+#: includes/class-mbm-social-media-site.php:145
+#: includes/class-mbm-taxonomy.php:111
+#, php-format
+msgid "Can't get property %s"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:26
+msgid "Book"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:27
+msgid "Books"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:117 includes/class-mbm-book-grid-cpt.php:92
+msgid "Genre"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:117
+msgid "Genres"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:126 includes/class-mbm-book-grid-cpt.php:93
+msgid "Series"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:137 includes/class-mbm-book-grid-cpt.php:94
+msgid "Tag"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:137
+msgid "Tags"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:150 includes/class-mbm-book-grid-cpt.php:96
+msgid "Editor"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:150
+msgid "Editors"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:161 includes/class-mbm-book-grid-cpt.php:98
+msgid "Illustrator"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:161
+msgid "Illustrators"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:170 includes/class-mbm-book-grid-cpt.php:97
+msgid "Cover Artist"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:170
+msgid "Cover Artists"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:228
+msgid "— No Change —"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:229
+msgid "— No Publisher —"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:253 includes/class-mbm-book-cpt.php:629
+msgid "Release Date"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:260 includes/class-mbm-book-cpt.php:678
+msgid "Series Order"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:272 includes/class-mbm-book-cpt.php:281
+msgid "Summary"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:305 includes/class-mbm-book-cpt.php:328
+msgid "Excerpt"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:313
+msgid "Excerpt Type"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:316
+msgid "Excerpt Style"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:321
+msgid "Enter Excerpt Directly"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:322
+msgid "Use Kindle Live Preview"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:356
+msgid "ASIN"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:367
+msgctxt "noun: book reviews"
+msgid "Reviews"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:379
+msgid "Add reviews of your book"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:381
+msgctxt "noun"
+msgid "Reviews"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:382
+msgid "Add Review"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:383
+msgid "Remove Review"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:390
+msgid "Reviewer Name"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:398
+msgctxt "noun: URL to book review"
+msgid "Review Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:409
+msgctxt "noun: name of website of book review"
+msgid "Review Website Name"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:416
+msgctxt "noun: book review"
+msgid "Review"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:426
+msgid "Formats and Editions"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:437
+msgid ""
+"List the details of your book's hardcover, paperback, and e-book editions. "
+"Everything is optional except the format."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:439
+msgid "Edition"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:440
+msgid "Add New Edition"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:441
+msgid "Remove Edition"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:453
+msgctxt "noun: format of a book"
+msgid "Format"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:458 includes/class-mbm-book-cpt.php:781
+msgid "Add more formats in Settings"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:463
+msgid "EAN/ISBN"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:470
+msgid "Language"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:479
+msgid "Number of Pages"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:491
+msgid "Height"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:503
+msgid "Width"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:515
+msgctxt "units of measurement"
+msgid "Unit"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:524
+msgid "Suggested Retail Price"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:527
+msgid ""
+"Do not enter the currency symbol. That will be determined by the currency "
+"selected below."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:536
+msgid "Currency"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:545
+msgid "Edition Title"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:548
+msgid "First Edition, Second Edition, etc."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:556 includes/class-mbm-book-cpt.php:565
+msgid "Additional Information"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:569
+msgid ""
+"Any additional information you want to display on the page. Will be shown at "
+"the bottom of the page, after the reviews."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:589
+msgctxt "noun"
+msgid "Cover"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:599
+msgctxt "noun"
+msgid "Book Cover"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:613
+msgid "Book Details"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:622
+msgid "Subtitle"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:658
+msgid "Set up Publishers in Settings."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:667
+msgid "Goodreads Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:680
+msgid "(leave blank if not part of a series)"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:696
+msgctxt "noun: URLs to book retailers"
+msgid "Retailer Links"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:707
+msgid "Add links where readers can purchase your book"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:709
+msgctxt "noun"
+msgid "Retailer Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:710
+msgid "Add Retailer Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:711
+msgid "Remove Retailer Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:729
+msgid "Add more retailers in Settings"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:734
+msgctxt "noun: URL"
+msgid "Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:747
+msgctxt "noun"
+msgid "Download Links"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:759
+msgid ""
+"If your book is available to download for free, add the links for each "
+"format."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:761
+msgctxt "noun"
+msgid "Download Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:762
+msgid "Add Download Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:763
+msgid "Remove Download Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:776
+msgctxt "noun"
+msgid "Format"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:786
+msgctxt "noun"
+msgid "Link"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:844 includes/class-mbm-book-cpt.php:1709
+#: includes/shortcodes.php:345
+msgid "Website"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:859
+msgid "Book Grid Description"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:860
+msgid ""
+"The Book Grid Description is displayed above the auto-generated grid for "
+"this page, ex. "
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:879
+msgid "Book Grid Description (Bottom)"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:880
+msgid ""
+"The Book Grid Description is displayed below the auto-generated grid for "
+"this page, ex. "
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1174
+#, php-format
+msgid "Editions require at least the format. Please check edition #%s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1194
+#, php-format
+msgid ""
+"If width or height is specified, both must be. Please check edition #%s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1248
+#, php-format
+msgid ""
+"Reviews require review text and at least one other field. Please check "
+"review #%s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1264
+#, php-format
+msgid ""
+"Download links require all fields filled out. Please check download link #%s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1277
+#, php-format
+msgid ""
+"Retailer links require all fields filled out. Please check retailer link #%s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1292
+#, php-format
+msgid ""
+"Social Media Links require all fields filled out. Please check social media "
+"link #%s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1328
+msgid "Standalone book"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1330
+#, php-format
+msgid "Book %d in the %s series"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1334
+#, php-format
+msgid "in the %s genre"
+msgid_plural "in the %s genres"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-mbm-book-cpt.php:1337
+#, php-format
+msgid "Available from %s."
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1355 includes/class-mbm-book-cpt.php:1446
+#: includes/class-mbm-book-grid.php:805 includes/class-mbm-widget.php:198
+#: includes/shortcodes.php:82
+msgid "Book Cover:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1516 includes/shortcodes.php:152
+msgid "Published:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1517 includes/shortcodes.php:153
+msgid "Available on:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1530 includes/shortcodes.php:166
+msgctxt "short date format. see http://php.net/date"
+msgid "m/d/Y"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1534 includes/shortcodes.php:170
+msgctxt "long date format. see http://php.net/date"
+msgid "F j, Y"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1550 includes/shortcodes.php:186
+msgid "View on Goodreads"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1566 includes/shortcodes.php:202
+msgid "Add to Goodreads"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1633 includes/shortcodes.php:269
+msgid "READ MORE"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1636 includes/shortcodes.php:272
+msgid "COLLAPSE"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1772 includes/shortcodes.php:408
+msgid "on "
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1788 includes/shortcodes.php:424
+msgid "wrote"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1858 includes/class-mbm-book-cpt.php:1929
+#: includes/shortcodes.php:494 includes/shortcodes.php:565
+msgid "Available on"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1874 includes/shortcodes.php:510
+msgid "Buy Now:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:1937 includes/class-mbm-book-cpt.php:2234
+#: includes/class-mbm-book-cpt.php:2336 includes/shortcodes.php:573
+#: includes/shortcodes.php:870 includes/shortcodes.php:972
+msgid "Download Now:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2027 includes/shortcodes.php:663
+msgid "Part of the "
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2028 includes/shortcodes.php:664
+msgid " series:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2183 includes/shortcodes.php:819
+#, php-format
+msgctxt ""
+"%1$s is the currency symbol. %2$s is the price. To put currency after price, "
+"enter %2$s %1$s"
+msgid "%1$s %2$s"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2190 includes/shortcodes.php:826
+msgid "ISBN:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2193 includes/shortcodes.php:829
+msgid "Size:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2196 includes/shortcodes.php:832
+msgid "Pages:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2240 includes/shortcodes.php:876
+msgid "Part of the"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2240 includes/shortcodes.php:876
+msgid "series:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2245 includes/shortcodes.php:881
+msgid "Editions:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2282 includes/shortcodes.php:918
+msgid "Publisher:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2286 includes/shortcodes.php:922
+msgid "Editors:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2290 includes/shortcodes.php:926
+msgid "Illustrators:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2294 includes/shortcodes.php:930
+msgid "Cover Artists:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2298 includes/shortcodes.php:934
+msgid "Genres:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2302 includes/shortcodes.php:938
+msgid "Tags:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2313 includes/shortcodes.php:949
+msgid "Excerpt:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2320 includes/shortcodes.php:956
+msgid "Reviews:"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:29
+msgid "Book Grids"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:64
+msgid "All"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:65
+msgid "All Published"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:66
+msgid "All Coming Soon"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:67
+#: includes/class-mbm-book-grid-cpt.php:140
 msgid "Select Books"
 msgstr ""
 
-#: book-grid.php:124 includes/helper-functions.php:120
+#: includes/class-mbm-book-grid-cpt.php:68
+#: includes/class-mbm-book-grid-cpt.php:149
 msgid "Select Genres"
 msgstr ""
 
-#: book-grid.php:132 includes/helper-functions.php:121
+#: includes/class-mbm-book-grid-cpt.php:69
+#: includes/class-mbm-book-grid-cpt.php:157
 msgid "Select Series"
 msgstr ""
 
-#: book-grid.php:140 includes/helper-functions.php:122
+#: includes/class-mbm-book-grid-cpt.php:70
+#: includes/class-mbm-book-grid-cpt.php:165
 msgid "Select Tags"
 msgstr ""
 
-#: book-grid.php:148 includes/helper-functions.php:123
+#: includes/class-mbm-book-grid-cpt.php:71
+#: includes/class-mbm-book-grid-cpt.php:174
 msgid "Select Publishers"
 msgstr ""
 
-#: book-grid.php:156 includes/helper-functions.php:124
+#: includes/class-mbm-book-grid-cpt.php:72
+#: includes/class-mbm-book-grid-cpt.php:182
 msgid "Select Editors"
 msgstr ""
 
-#: book-grid.php:164 includes/helper-functions.php:125
+#: includes/class-mbm-book-grid-cpt.php:73
+#: includes/class-mbm-book-grid-cpt.php:190
 msgid "Select Illustrators"
 msgstr ""
 
-#: book-grid.php:172 includes/helper-functions.php:126
+#: includes/class-mbm-book-grid-cpt.php:74
+#: includes/class-mbm-book-grid-cpt.php:198
 msgid "Select Cover Artists"
 msgstr ""
 
-#: book-grid.php:185
+#: includes/class-mbm-book-grid-cpt.php:81
+msgid "Publication Date (oldest first)"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:82
+msgid "Publication Date (newest first)"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:83
+msgid "Title (A-Z)"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:84
+msgid "Title (Z-A)"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:85 includes/plugin-functions.php:352
+msgid "Custom"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:91
+msgid "None"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:109
+#: includes/class-mbm-book-grid-cpt.php:352
+msgid "Book Grid Settings"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:118
+msgid "Books to Display"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:211
 msgid "Group Books By"
 msgstr ""
 
-#: book-grid.php:195
+#: includes/class-mbm-book-grid-cpt.php:228
 msgid ""
 "Warning: Setting more than 5 levels could cause the page to timeout and not "
 "display."
 msgstr ""
 
-#: book-grid.php:208
+#: includes/class-mbm-book-grid-cpt.php:241
 msgid "Order By"
 msgstr ""
 
-#: book-grid.php:212
+#: includes/class-mbm-book-grid-cpt.php:248
 msgid "Drag and drop the books into the order you want:"
 msgstr ""
 
-#: book-grid.php:217
+#: includes/class-mbm-book-grid-cpt.php:253
 msgid "Use default cover height?"
 msgstr ""
 
-#: book-grid.php:222
+#: includes/class-mbm-book-grid-cpt.php:261
 msgid "Yes"
 msgstr ""
 
-#: book-grid.php:223
+#: includes/class-mbm-book-grid-cpt.php:262
 msgid "No"
 msgstr ""
 
-#: book-grid.php:229
+#: includes/class-mbm-book-grid-cpt.php:268
 msgid "Book Cover Height (px)"
 msgstr ""
 
-#: book-grid.php:334
+#: includes/class-mbm-book-grid-cpt.php:293
 msgid "Preview"
 msgstr ""
 
-#: book-grid.php:342
+#: includes/class-mbm-book-grid-cpt.php:301
 msgid "Shortcode"
 msgstr ""
 
-#: book-grid.php:354
+#: includes/class-mbm-book-grid-cpt.php:313
 msgid "Show Preview"
 msgstr ""
 
-#: book-grid.php:363
+#: includes/class-mbm-book-grid-cpt.php:330
 msgid "Copy this code into a page, blog post, etc. to display this book grid."
 msgstr ""
 
-#: book-grid.php:443 book-grid.php:444
-msgid "Add Book Grid"
+#: includes/class-mbm-book-grid-cpt.php:361
+msgid ""
+"Looking for the Book Grid Settings?  As of version 3.4, there is now "
+"separate menu in your Dashboard for adding Book Grids."
 msgstr ""
 
-#: book-grid.php:447
-msgid "Book Grid:"
-msgstr ""
-
-#: book-grid.php:711
+#: includes/class-mbm-book-grid.php:440
 msgid "No Publisher Specified"
 msgstr ""
 
-#: book-grid.php:727
+#: includes/class-mbm-book-grid.php:458
 msgid "Published by"
 msgstr ""
 
-#: book-grid.php:769
+#: includes/class-mbm-book-grid.php:507
 msgid "Uncategorized"
 msgstr ""
 
-#: book-grid.php:772
+#: includes/class-mbm-book-grid.php:510
 msgid "Stand-Alone Books"
 msgstr ""
 
-#: book-grid.php:775
+#: includes/class-mbm-book-grid.php:513
 msgid "Untagged"
 msgstr ""
 
-#: book-grid.php:778
+#: includes/class-mbm-book-grid.php:516
 msgid "No Editor Specified"
 msgstr ""
 
-#: book-grid.php:781
+#: includes/class-mbm-book-grid.php:519
 msgid "No Illustrator Specified"
 msgstr ""
 
-#: book-grid.php:784
+#: includes/class-mbm-book-grid.php:522
 msgid "No Cover Artist Specified"
 msgstr ""
 
-#: book-grid.php:817
+#: includes/class-mbm-book-grid.php:556
 #, php-format
 msgctxt ""
 "%1$s is the taxonomy name (Genre, Tag, etc.) and %2$s is the item ( romance, "
@@ -568,1222 +1404,965 @@ msgctxt ""
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: book-grid.php:929
+#: includes/class-mbm-book-grid.php:699
 msgid "Books not found"
 msgstr ""
 
-#: book-grid.php:968 book.php:99 mbdb-widget.php:198 single-book.php:1181
-msgid "Book Cover:"
-msgstr ""
-
-#: book-widget2.php:17
+#: includes/class-mbm-book-widget.php:17
 msgid ""
 "Shows the cover of the book of your choosing with a link to the book page"
 msgstr ""
 
-#: book-widget2.php:19
+#: includes/class-mbm-book-widget.php:19
 msgid "Mooberry Book Manager Book"
 msgstr ""
 
-#: book-widget2.php:38
+#: includes/class-mbm-book-widget.php:37
 msgid "Random Book"
 msgstr ""
 
-#: book-widget2.php:39
+#: includes/class-mbm-book-widget.php:38
 msgid "Newest Book"
 msgstr ""
 
-#: book-widget2.php:40
+#: includes/class-mbm-book-widget.php:39
 msgid "Future Book"
 msgstr ""
 
-#: book-widget2.php:41
+#: includes/class-mbm-book-widget.php:40
 msgid "Specific Book"
 msgstr ""
 
-#: book.php:30
-msgid "Title"
+#: includes/class-mbm-cpt.php:87 includes/class-mbm-taxonomy.php:55
+#, php-format
+msgid "All %s"
 msgstr ""
 
-#: book.php:31
-msgid "Cover"
+#: includes/class-mbm-cpt.php:88
+msgid "Add New"
 msgstr ""
 
-#: book.php:32 includes/helper-functions.php:145
-#: includes/plugin-functions.php:681
-msgid "Genre"
+#: includes/class-mbm-cpt.php:89 includes/class-mbm-taxonomy.php:60
+#, php-format
+msgid "Add New %s"
 msgstr ""
 
-#: book.php:33
-msgid "Published"
+#: includes/class-mbm-cpt.php:90
+msgid "Edit"
 msgstr ""
 
-#: book.php:34 includes/helper-functions.php:146
-#: includes/plugin-functions.php:755 includes/plugin-functions.php:756
-#: includes/plugin-functions.php:765
-msgid "Series"
+#: includes/class-mbm-cpt.php:91 includes/class-mbm-taxonomy.php:58
+#, php-format
+msgid "Edit %s"
 msgstr ""
 
-#: book.php:35 book.php:245 book.php:1079
-msgid "Series Order"
+#: includes/class-mbm-cpt.php:92
+#, php-format
+msgid "New %s"
 msgstr ""
 
-#: book.php:37
-msgid "Updated"
+#: includes/class-mbm-cpt.php:93 includes/class-mbm-cpt.php:94
+#: includes/class-mbm-cpt.php:102
+#, php-format
+msgid "View %s"
 msgstr ""
 
-#: book.php:176
-msgid "— No Change —"
+#: includes/class-mbm-cpt.php:95 includes/class-mbm-taxonomy.php:54
+#, php-format
+msgid "Search %s"
 msgstr ""
 
-#: book.php:177
-msgid "— No Publisher —"
+#: includes/class-mbm-cpt.php:96
+#, php-format
+msgid "No %s Found"
 msgstr ""
 
-#: book.php:213 book.php:1042
-msgid "Subtitle"
+#: includes/class-mbm-cpt.php:97
+#, php-format
+msgid "No %s Found in Trash"
 msgstr ""
 
-#: book.php:222
-msgid "Goodreads"
+#: includes/class-mbm-cpt.php:98 includes/class-mbm-taxonomy.php:56
+#, php-format
+msgid "Parent %s"
 msgstr ""
 
-#: book.php:231 book.php:1049
-msgid "Release Date"
+#: includes/class-mbm-cpt.php:99
+msgid "Filter $s List"
 msgstr ""
 
-#: book.php:709 book.php:718
-msgid "Summary"
+#: includes/class-mbm-cpt.php:100
+#, php-format
+msgid "%s List Navigation"
 msgstr ""
 
-#: book.php:742 book.php:765
-msgid "Excerpt"
+#: includes/class-mbm-cpt.php:101
+#, php-format
+msgid "%s List"
 msgstr ""
 
-#: book.php:750
-msgid "Excerpt Type"
+#: includes/class-mbm-cpt.php:103
+#, php-format
+msgid "%s Attributes"
 msgstr ""
 
-#: book.php:753
-msgid "Excerpt Style"
-msgstr ""
-
-#: book.php:758
-msgid "Enter Excerpt Directly"
-msgstr ""
-
-#: book.php:759
-msgid "Use Kindle Live Preview"
-msgstr ""
-
-#: book.php:785
-msgid "Kindle Live Preview Code"
-msgstr ""
-
-#: book.php:796
-msgctxt "noun: book reviews"
-msgid "Reviews"
-msgstr ""
-
-#: book.php:808
-msgid "Add reviews of your book"
-msgstr ""
-
-#: book.php:810
-msgctxt "noun"
-msgid "Reviews"
-msgstr ""
-
-#: book.php:811
-msgid "Add Review"
-msgstr ""
-
-#: book.php:812
-msgid "Remove Review"
-msgstr ""
-
-#: book.php:819
-msgid "Reviewer Name"
-msgstr ""
-
-#: book.php:827
-msgctxt "noun: URL to book review"
-msgid "Review Link"
-msgstr ""
-
-#: book.php:838
-msgctxt "noun: name of website of book review"
-msgid "Review Website Name"
-msgstr ""
-
-#: book.php:845
-msgctxt "noun: book review"
-msgid "Review"
-msgstr ""
-
-#: book.php:855
-msgid "Formats and Editions"
-msgstr ""
-
-#: book.php:866
-msgid ""
-"List the details of your book's hardcover, paperback, and e-book editions. "
-"Everything is optional except the format."
-msgstr ""
-
-#: book.php:868
-msgid "Edition"
-msgstr ""
-
-#: book.php:869
-msgid "Add New Edition"
-msgstr ""
-
-#: book.php:870
-msgid "Remove Edition"
-msgstr ""
-
-#: book.php:877
-msgctxt "noun: format of a book"
-msgid "Format"
-msgstr ""
-
-#: book.php:882 book.php:1167
-msgid "Add more formats in Settings"
-msgstr ""
-
-#: book.php:887
-msgid "EAN/ISBN"
-msgstr ""
-
-#: book.php:894
-msgid "Language"
-msgstr ""
-
-#: book.php:903
-msgid "Number of Pages"
-msgstr ""
-
-#: book.php:915
-msgid "Height"
-msgstr ""
-
-#: book.php:927
-msgid "Width"
-msgstr ""
-
-#: book.php:939
-msgctxt "units of measurement"
-msgid "Unit"
-msgstr ""
-
-#: book.php:948
-msgid "Suggested Retail Price"
-msgstr ""
-
-#: book.php:959
-msgid "Currency"
-msgstr ""
-
-#: book.php:968
-msgid "Edition Title"
-msgstr ""
-
-#: book.php:971
-msgid "First Edition, Second Edition, etc."
-msgstr ""
-
-#: book.php:979 book.php:988
-msgid "Additional Information"
-msgstr ""
-
-#: book.php:992
-msgid ""
-"Any additional information you want to display on the page. Will be shown at "
-"the bottom of the page, after the reviews."
-msgstr ""
-
-#: book.php:1012
-msgctxt "noun"
-msgid "Cover"
-msgstr ""
-
-#: book.php:1022
-msgctxt "noun"
-msgid "Book Cover"
-msgstr ""
-
-#: book.php:1033
-msgid "Book Details"
-msgstr ""
-
-#: book.php:1063
-msgid "Set up Publishers in Settings."
-msgstr ""
-
-#: book.php:1068
-msgid "Goodreads Link"
-msgstr ""
-
-#: book.php:1081
-msgid "(leave blank if not part of a series)"
-msgstr ""
-
-#: book.php:1094
-msgctxt "noun: URLs to book retailers"
-msgid "Retailer Links"
-msgstr ""
-
-#: book.php:1105
-msgid "Add links where readers can purchase your book"
-msgstr ""
-
-#: book.php:1107
-msgctxt "noun"
-msgid "Retailer Link"
-msgstr ""
-
-#: book.php:1108
-msgid "Add Retailer Link"
-msgstr ""
-
-#: book.php:1109
-msgid "Remove Retailer Link"
-msgstr ""
-
-#: book.php:1121
-msgid "Add more retailers in Settings"
-msgstr ""
-
-#: book.php:1126
-msgctxt "noun: URL"
-msgid "Link"
-msgstr ""
-
-#: book.php:1139
-msgctxt "noun"
-msgid "Download Links"
-msgstr ""
-
-#: book.php:1151
-msgid ""
-"If your book is available to download for free, add the links for each "
-"format."
-msgstr ""
-
-#: book.php:1153
-msgctxt "noun"
-msgid "Download Link"
-msgstr ""
-
-#: book.php:1154
-msgid "Add Download Link"
-msgstr ""
-
-#: book.php:1155
-msgid "Remove Download Link"
-msgstr ""
-
-#: book.php:1162
-msgctxt "noun"
-msgid "Format"
-msgstr ""
-
-#: book.php:1172
-msgctxt "noun"
-msgid "Link"
-msgstr ""
-
-#: includes/class-mbdb-db-cpt.php:280
+#: includes/class-mbm-db-cpt.php:242
 msgid "Migrating"
 msgstr ""
 
-#: includes/class-mbdb-db-cpt.php:306
+#: includes/class-mbm-db-cpt.php:268
 msgid "Error!"
 msgstr ""
 
-#: includes/class-mbdb-db-cpt.php:309
+#: includes/class-mbm-db-cpt.php:271
 msgid "Success!"
 msgstr ""
 
-#: includes/helper-functions-updates.php:75
-msgid ""
-"Upgrading to Mooberry Book Manager version 3.4.3 requires migrating your "
-"Book Grids. Without migrating, your Book Grids won't appear on your site."
-msgstr ""
-
-#: includes/helper-functions-updates.php:77
-msgid "Migrate Book Grids Now"
-msgstr ""
-
-#: includes/helper-functions-updates.php:92
-msgid "New retailer logo images for Mooberry Book Manager are available. "
-msgstr ""
-
-#: includes/helper-functions-updates.php:93
-msgid "Click here to learn more."
-msgstr ""
-
-#: includes/helper-functions-updates.php:100
-msgid "Fix it now"
-msgstr ""
-
-#: includes/helper-functions-updates.php:101
-msgid "I didn't have this problem. Dismiss this notice."
-msgstr ""
-
-#: includes/helper-functions-updates.php:102
-msgid ""
-"Had a problem with genres, tags, series, etc. turning into numbers after the "
-"Mooberry Book Manager 3.4.11 update?"
-msgstr ""
-
-#: includes/helper-functions-updates.php:103
-msgid "Please Note:"
-msgstr ""
-
-#: includes/helper-functions-updates.php:103
-msgid ""
-"If you have genres, tags, series, editors, illustrators, or cover artists "
-"that are actually supposed to be numbers, this fix may affect them. Please "
-"check you books after running the fix and re-set them if necessary. I "
-"apologize for the inconvenience."
-msgstr ""
-
-#: includes/helper-functions-updates.php:592
-msgid ""
-"Upgrading to Mooberry Book Manager version 3.1 requires some data migration "
-"before Mooberry Book Manager will operate properly."
-msgstr ""
-
-#: includes/helper-functions-updates.php:593
-msgid ""
-"Even if you have previously migrated the data (if you upgraded to version "
-"3.0 and then rolled back to version 2.4.x), you must migrate again to ensure "
-"Mooberry Book Manaer will operate properly."
-msgstr ""
-
-#: includes/helper-functions-updates.php:594
-msgid "Changes made since migrating the first time may be lost."
-msgstr ""
-
-#: includes/helper-functions-updates.php:595
-#: includes/helper-functions-updates.php:617 includes/plugin-functions.php:282
-msgid "Migrate Data Now"
-msgstr ""
-
-#: includes/helper-functions-updates.php:615
-msgid ""
-"You may choose to re-migrate your data from version 2 if you've noticed "
-"issues with your books' information."
-msgstr ""
-
-#: includes/helper-functions-updates.php:618
-msgid "Dismiss Notice"
-msgstr ""
-
-#: includes/helper-functions-updates.php:713
-#: includes/helper-functions-updates.php:728
-msgid "Imported Book Grid: "
-msgstr ""
-
-#: includes/helper-functions-updates.php:768
-msgid "done!"
-msgstr ""
-
-#: includes/helper-functions-validation.php:30
+#: includes/class-mbm-download-link.php:119 includes/class-mbm-options.php:669
+#: includes/class-mbm-options2.php:616
 #, php-format
-msgid "Editions require at least the format. Please check edition #%s."
+msgid "Can't set property %s"
 msgstr ""
 
-#: includes/helper-functions-validation.php:45
-#, php-format
-msgid ""
-"If width or height is specified, both must be. Please check edition #%s."
-msgstr ""
-
-#: includes/helper-functions-validation.php:83
-#, php-format
-msgid ""
-"Reviews require review text and at least one other field. Please check "
-"review #%s."
-msgstr ""
-
-#: includes/helper-functions-validation.php:90
-#, php-format
-msgid ""
-"Download links require all fields filled out. Please check download link #%s."
-msgstr ""
-
-#: includes/helper-functions-validation.php:96
-#, php-format
-msgid ""
-"Retailer links require all fields filled out. Please check retailer link #%s."
-msgstr ""
-
-#: includes/helper-functions-validation.php:103
-#, php-format
-msgid ""
-"Social Media Links require all fields filled out. Please check social media "
-"link #%s."
-msgstr ""
-
-#: includes/helper-functions.php:116
-msgid "All"
-msgstr ""
-
-#: includes/helper-functions.php:117
-msgid "All Published"
-msgstr ""
-
-#: includes/helper-functions.php:118
-msgid "All Coming Soon"
-msgstr ""
-
-#: includes/helper-functions.php:134
-msgid "Publication Date (oldest first)"
-msgstr ""
-
-#: includes/helper-functions.php:135
-msgid "Publication Date (newest first)"
-msgstr ""
-
-#: includes/helper-functions.php:136
-msgid "Title (A-Z)"
-msgstr ""
-
-#: includes/helper-functions.php:137
-msgid "Title (Z-A)"
-msgstr ""
-
-#: includes/helper-functions.php:138 includes/scripts-and-styles.php:64
-msgid "Custom"
-msgstr ""
-
-#: includes/helper-functions.php:144
-msgid "None"
-msgstr ""
-
-#: includes/helper-functions.php:147 includes/plugin-functions.php:719
-msgid "Tag"
-msgstr ""
-
-#: includes/helper-functions.php:149 includes/plugin-functions.php:794
-msgid "Editor"
-msgstr ""
-
-#: includes/helper-functions.php:150 includes/plugin-functions.php:870
-msgid "Cover Artist"
-msgstr ""
-
-#: includes/helper-functions.php:151 includes/plugin-functions.php:832
-msgid "Illustrator"
-msgstr ""
-
-#: includes/helper-functions.php:159
-msgid "Widgets"
-msgstr ""
-
-#: includes/helper-functions.php:200
-msgid "Default"
-msgstr ""
-
-#: includes/helper-functions.php:328
+#: includes/class-mbm-helper-functions.php:119
 msgid "Affiliate Code"
 msgstr ""
 
-#: includes/helper-functions.php:330
+#: includes/class-mbm-helper-functions.php:121
 msgid ""
 "If you are an Affiliate for this retailer, enter the exact code that needs "
 "to be added to the URL to use your affiliate link."
 msgstr ""
 
-#: includes/helper-functions.php:337 includes/helper-functions.php:341
+#: includes/class-mbm-helper-functions.php:128
+#: includes/class-mbm-helper-functions.php:132
 msgid "Affiliate Code Position"
 msgstr ""
 
-#: includes/helper-functions.php:344
+#: includes/class-mbm-helper-functions.php:135
 msgid "After Book Link"
 msgstr ""
 
-#: includes/helper-functions.php:345
+#: includes/class-mbm-helper-functions.php:136
 msgid "Before Book Link"
 msgstr ""
 
-#: includes/helper-functions.php:527
-msgid "inches (in)"
+#: includes/class-mbm-helper-functions.php:151
+msgid "Default"
 msgstr ""
 
-#: includes/helper-functions.php:528
-msgid "centimeters (cm)"
+#: includes/class-mbm-helper-functions.php:276
+msgid "Widgets"
 msgstr ""
 
-#: includes/helper-functions.php:529
-msgid "millimeters (mm)"
+#: includes/class-mbm-helper-functions.php:283
+msgid "Open Graph"
 msgstr ""
 
-#: includes/helper-functions.php:555
-msgid "Australian Dollar"
+#: includes/class-mbm-helper-functions.php:284
+msgid "Twitter Card"
 msgstr ""
 
-#: includes/helper-functions.php:556
-msgid "Brazilian Real "
+#: includes/class-mbm-helper-functions.php:285
+msgid "Meta Description"
 msgstr ""
 
-#: includes/helper-functions.php:557
-msgid "Canadian Dollar"
+#: includes/class-mbm-helper-functions.php:577
+msgid ""
+"MBM Tax Grid Page. Do NOT remove this page or edit it except to change "
+"template."
 msgstr ""
 
-#: includes/helper-functions.php:558
-msgid "Czech Koruna"
-msgstr ""
-
-#: includes/helper-functions.php:559
-msgid "Danish Krone"
-msgstr ""
-
-#: includes/helper-functions.php:560
-msgid "Euro"
-msgstr ""
-
-#: includes/helper-functions.php:561
-msgid "Hong Kong Dollar"
-msgstr ""
-
-#: includes/helper-functions.php:562
-msgid "Hungarian Forint"
-msgstr ""
-
-#: includes/helper-functions.php:563
-msgid "Indian Rupee"
-msgstr ""
-
-#: includes/helper-functions.php:564
-msgid "Israeli New Sheqel"
-msgstr ""
-
-#: includes/helper-functions.php:565
-msgid "Japanese Yen"
-msgstr ""
-
-#: includes/helper-functions.php:566
-msgid "Malaysian Ringgit"
-msgstr ""
-
-#: includes/helper-functions.php:567
-msgid "Mexican Peso"
-msgstr ""
-
-#: includes/helper-functions.php:568
-msgid "Nigerian Naira"
-msgstr ""
-
-#: includes/helper-functions.php:569
-msgid "Norwegian Krone"
-msgstr ""
-
-#: includes/helper-functions.php:570
-msgid "New Zealand Dollar"
-msgstr ""
-
-#: includes/helper-functions.php:571
-msgid "Philippine Peso"
-msgstr ""
-
-#: includes/helper-functions.php:572
-msgid "Polish Zloty"
-msgstr ""
-
-#: includes/helper-functions.php:573
-msgid "Russian Rube"
-msgstr ""
-
-#: includes/helper-functions.php:574
-msgid "Singapore Dollar"
-msgstr ""
-
-#: includes/helper-functions.php:575
-msgid "South African Rand"
-msgstr ""
-
-#: includes/helper-functions.php:576
-msgid "Swedish Krona"
-msgstr ""
-
-#: includes/helper-functions.php:577
-msgid "Swiss Franc"
-msgstr ""
-
-#: includes/helper-functions.php:578
-msgid "Taiwan New Dollar"
-msgstr ""
-
-#: includes/helper-functions.php:579
-msgid "Thai Baht"
-msgstr ""
-
-#: includes/helper-functions.php:580
-msgid "Turkish Lira"
-msgstr ""
-
-#: includes/helper-functions.php:581
-msgid "U.K. Pound Sterling"
-msgstr ""
-
-#: includes/helper-functions.php:582
-msgid "U.S. Dollar"
-msgstr ""
-
-#: includes/helper-functions.php:623
+#: includes/class-mbm-options.php:252 includes/class-mbm-options2.php:218
 msgid "Abkhazian"
 msgstr ""
 
-#: includes/helper-functions.php:624
+#: includes/class-mbm-options.php:253 includes/class-mbm-options2.php:219
 msgid "Afar"
 msgstr ""
 
-#: includes/helper-functions.php:625
+#: includes/class-mbm-options.php:254 includes/class-mbm-options2.php:220
 msgid "Afrikaans"
 msgstr ""
 
-#: includes/helper-functions.php:626
+#: includes/class-mbm-options.php:255 includes/class-mbm-options2.php:221
 msgid "Albanian"
 msgstr ""
 
-#: includes/helper-functions.php:627
+#: includes/class-mbm-options.php:256 includes/class-mbm-options2.php:222
 msgid "Amharic"
 msgstr ""
 
-#: includes/helper-functions.php:628
+#: includes/class-mbm-options.php:257 includes/class-mbm-options2.php:223
 msgid "Arabic"
 msgstr ""
 
-#: includes/helper-functions.php:629
+#: includes/class-mbm-options.php:258 includes/class-mbm-options2.php:224
 msgid "Armenian"
 msgstr ""
 
-#: includes/helper-functions.php:630
+#: includes/class-mbm-options.php:259 includes/class-mbm-options2.php:225
 msgid "Assamese"
 msgstr ""
 
-#: includes/helper-functions.php:631
+#: includes/class-mbm-options.php:260 includes/class-mbm-options2.php:226
 msgid "Aymara"
 msgstr ""
 
-#: includes/helper-functions.php:632
+#: includes/class-mbm-options.php:261 includes/class-mbm-options2.php:227
 msgid "Azerbaijani"
 msgstr ""
 
-#: includes/helper-functions.php:633
+#: includes/class-mbm-options.php:262 includes/class-mbm-options2.php:228
 msgid "Bashkir"
 msgstr ""
 
-#: includes/helper-functions.php:634
+#: includes/class-mbm-options.php:263 includes/class-mbm-options2.php:229
 msgid "Basque"
 msgstr ""
 
-#: includes/helper-functions.php:635
+#: includes/class-mbm-options.php:264 includes/class-mbm-options2.php:230
 msgid "Bengali, Bangla"
 msgstr ""
 
-#: includes/helper-functions.php:636
+#: includes/class-mbm-options.php:265 includes/class-mbm-options2.php:231
 msgid "Bhutani"
 msgstr ""
 
-#: includes/helper-functions.php:637
+#: includes/class-mbm-options.php:266 includes/class-mbm-options2.php:232
 msgid "Bihari"
 msgstr ""
 
-#: includes/helper-functions.php:638
+#: includes/class-mbm-options.php:267 includes/class-mbm-options2.php:233
 msgid "Bislama"
 msgstr ""
 
-#: includes/helper-functions.php:639
+#: includes/class-mbm-options.php:268 includes/class-mbm-options2.php:234
 msgid "Breton"
 msgstr ""
 
-#: includes/helper-functions.php:640
+#: includes/class-mbm-options.php:269 includes/class-mbm-options2.php:235
 msgid "Bulgarian"
 msgstr ""
 
-#: includes/helper-functions.php:641
+#: includes/class-mbm-options.php:270 includes/class-mbm-options2.php:236
 msgid "Burmese"
 msgstr ""
 
-#: includes/helper-functions.php:642
+#: includes/class-mbm-options.php:271 includes/class-mbm-options2.php:237
 msgid "Byelorussian"
 msgstr ""
 
-#: includes/helper-functions.php:643
+#: includes/class-mbm-options.php:272 includes/class-mbm-options2.php:238
 msgid "Cambodian"
 msgstr ""
 
-#: includes/helper-functions.php:644
+#: includes/class-mbm-options.php:273 includes/class-mbm-options2.php:239
 msgid "Catalan"
 msgstr ""
 
-#: includes/helper-functions.php:645
+#: includes/class-mbm-options.php:274 includes/class-mbm-options2.php:240
 msgid "Chinese"
 msgstr ""
 
-#: includes/helper-functions.php:646
+#: includes/class-mbm-options.php:275 includes/class-mbm-options2.php:241
 msgid "Corsican"
 msgstr ""
 
-#: includes/helper-functions.php:647
+#: includes/class-mbm-options.php:276 includes/class-mbm-options2.php:242
 msgid "Croatian"
 msgstr ""
 
-#: includes/helper-functions.php:648
+#: includes/class-mbm-options.php:277 includes/class-mbm-options2.php:243
 msgid "Czech"
 msgstr ""
 
-#: includes/helper-functions.php:649
+#: includes/class-mbm-options.php:278 includes/class-mbm-options2.php:244
 msgid "Danish"
 msgstr ""
 
-#: includes/helper-functions.php:650
+#: includes/class-mbm-options.php:279 includes/class-mbm-options2.php:245
 msgid "Dutch"
 msgstr ""
 
-#: includes/helper-functions.php:651
+#: includes/class-mbm-options.php:280 includes/class-mbm-options2.php:246
 msgid "English"
 msgstr ""
 
-#: includes/helper-functions.php:652
+#: includes/class-mbm-options.php:281 includes/class-mbm-options2.php:247
 msgid "Esperanto"
 msgstr ""
 
-#: includes/helper-functions.php:653
+#: includes/class-mbm-options.php:282 includes/class-mbm-options2.php:248
 msgid "Estonian"
 msgstr ""
 
-#: includes/helper-functions.php:654
+#: includes/class-mbm-options.php:283 includes/class-mbm-options2.php:249
 msgid "Faeroese"
 msgstr ""
 
-#: includes/helper-functions.php:655
+#: includes/class-mbm-options.php:284 includes/class-mbm-options2.php:250
 msgid "Fiji"
 msgstr ""
 
-#: includes/helper-functions.php:656
+#: includes/class-mbm-options.php:285 includes/class-mbm-options2.php:251
 msgid "Finnish"
 msgstr ""
 
-#: includes/helper-functions.php:657
+#: includes/class-mbm-options.php:286 includes/class-mbm-options2.php:252
 msgid "French"
 msgstr ""
 
-#: includes/helper-functions.php:658
+#: includes/class-mbm-options.php:287 includes/class-mbm-options2.php:253
 msgid "Frisian"
 msgstr ""
 
-#: includes/helper-functions.php:659
+#: includes/class-mbm-options.php:288 includes/class-mbm-options2.php:254
 msgid "Gaelic (Scots Gaelic)"
 msgstr ""
 
-#: includes/helper-functions.php:660
+#: includes/class-mbm-options.php:289 includes/class-mbm-options2.php:255
 msgid "Galician"
 msgstr ""
 
-#: includes/helper-functions.php:661
+#: includes/class-mbm-options.php:290 includes/class-mbm-options2.php:256
 msgid "Georgian"
 msgstr ""
 
-#: includes/helper-functions.php:662
+#: includes/class-mbm-options.php:291 includes/class-mbm-options2.php:257
 msgid "German"
 msgstr ""
 
-#: includes/helper-functions.php:663
+#: includes/class-mbm-options.php:292 includes/class-mbm-options2.php:258
 msgid "Greek"
 msgstr ""
 
-#: includes/helper-functions.php:664
+#: includes/class-mbm-options.php:293 includes/class-mbm-options2.php:259
 msgid "Greenlandic"
 msgstr ""
 
-#: includes/helper-functions.php:665
+#: includes/class-mbm-options.php:294 includes/class-mbm-options2.php:260
 msgid "Guarani"
 msgstr ""
 
-#: includes/helper-functions.php:666
+#: includes/class-mbm-options.php:295 includes/class-mbm-options2.php:261
 msgid "Gujarati"
 msgstr ""
 
-#: includes/helper-functions.php:667
+#: includes/class-mbm-options.php:296 includes/class-mbm-options2.php:262
 msgid "Hausa"
 msgstr ""
 
-#: includes/helper-functions.php:668
+#: includes/class-mbm-options.php:297 includes/class-mbm-options2.php:263
 msgid "Hebrew"
 msgstr ""
 
-#: includes/helper-functions.php:669
+#: includes/class-mbm-options.php:298 includes/class-mbm-options2.php:264
 msgid "Hindi"
 msgstr ""
 
-#: includes/helper-functions.php:670
+#: includes/class-mbm-options.php:299 includes/class-mbm-options2.php:265
 msgid "Hungarian"
 msgstr ""
 
-#: includes/helper-functions.php:671
+#: includes/class-mbm-options.php:300 includes/class-mbm-options2.php:266
 msgid "Icelandic"
 msgstr ""
 
-#: includes/helper-functions.php:672
+#: includes/class-mbm-options.php:301 includes/class-mbm-options2.php:267
 msgid "Indonesian"
 msgstr ""
 
-#: includes/helper-functions.php:673
+#: includes/class-mbm-options.php:302 includes/class-mbm-options2.php:268
 msgid "Interlingua"
 msgstr ""
 
-#: includes/helper-functions.php:674
+#: includes/class-mbm-options.php:303 includes/class-mbm-options2.php:269
 msgid "Interlingue"
 msgstr ""
 
-#: includes/helper-functions.php:675
+#: includes/class-mbm-options.php:304 includes/class-mbm-options2.php:270
 msgid "Inupiak"
 msgstr ""
 
-#: includes/helper-functions.php:676
+#: includes/class-mbm-options.php:305 includes/class-mbm-options2.php:271
 msgid "Irish"
 msgstr ""
 
-#: includes/helper-functions.php:677
+#: includes/class-mbm-options.php:306 includes/class-mbm-options2.php:272
 msgid "Italian"
 msgstr ""
 
-#: includes/helper-functions.php:678
+#: includes/class-mbm-options.php:307 includes/class-mbm-options2.php:273
 msgid "Japanese"
 msgstr ""
 
-#: includes/helper-functions.php:679
+#: includes/class-mbm-options.php:308 includes/class-mbm-options2.php:274
 msgid "Javanese"
 msgstr ""
 
-#: includes/helper-functions.php:680
+#: includes/class-mbm-options.php:309 includes/class-mbm-options2.php:275
 msgid "Kannada"
 msgstr ""
 
-#: includes/helper-functions.php:681
+#: includes/class-mbm-options.php:310 includes/class-mbm-options2.php:276
 msgid "Kashmiri"
 msgstr ""
 
-#: includes/helper-functions.php:682
+#: includes/class-mbm-options.php:311 includes/class-mbm-options2.php:277
 msgid "Kazakh"
 msgstr ""
 
-#: includes/helper-functions.php:683
+#: includes/class-mbm-options.php:312 includes/class-mbm-options2.php:278
 msgid "Kinyarwanda"
 msgstr ""
 
-#: includes/helper-functions.php:684
+#: includes/class-mbm-options.php:313 includes/class-mbm-options2.php:279
 msgid "Kirghiz"
 msgstr ""
 
-#: includes/helper-functions.php:685
+#: includes/class-mbm-options.php:314 includes/class-mbm-options2.php:280
 msgid "Kirundi"
 msgstr ""
 
-#: includes/helper-functions.php:686
+#: includes/class-mbm-options.php:315 includes/class-mbm-options2.php:281
 msgid "Korean"
 msgstr ""
 
-#: includes/helper-functions.php:687
+#: includes/class-mbm-options.php:316 includes/class-mbm-options2.php:282
 msgid "Kurdish"
 msgstr ""
 
-#: includes/helper-functions.php:688
+#: includes/class-mbm-options.php:317 includes/class-mbm-options2.php:283
 msgid "Laothian"
 msgstr ""
 
-#: includes/helper-functions.php:689
+#: includes/class-mbm-options.php:318 includes/class-mbm-options2.php:284
 msgid "Latin"
 msgstr ""
 
-#: includes/helper-functions.php:690
+#: includes/class-mbm-options.php:319 includes/class-mbm-options2.php:285
 msgid "Latvian, Lettish"
 msgstr ""
 
-#: includes/helper-functions.php:691
+#: includes/class-mbm-options.php:320 includes/class-mbm-options2.php:286
 msgid "Lingala"
 msgstr ""
 
-#: includes/helper-functions.php:692
+#: includes/class-mbm-options.php:321 includes/class-mbm-options2.php:287
 msgid "Lithuanian"
 msgstr ""
 
-#: includes/helper-functions.php:693
+#: includes/class-mbm-options.php:322 includes/class-mbm-options2.php:288
 msgid "Macedonian"
 msgstr ""
 
-#: includes/helper-functions.php:694
+#: includes/class-mbm-options.php:323 includes/class-mbm-options2.php:289
 msgid "Malagasy"
 msgstr ""
 
-#: includes/helper-functions.php:695
+#: includes/class-mbm-options.php:324 includes/class-mbm-options2.php:290
 msgid "Malay"
 msgstr ""
 
-#: includes/helper-functions.php:696
+#: includes/class-mbm-options.php:325 includes/class-mbm-options2.php:291
 msgid "Malayalam"
 msgstr ""
 
-#: includes/helper-functions.php:697
+#: includes/class-mbm-options.php:326 includes/class-mbm-options2.php:292
 msgid "Maltese"
 msgstr ""
 
-#: includes/helper-functions.php:698
+#: includes/class-mbm-options.php:327 includes/class-mbm-options2.php:293
 msgid "Maori"
 msgstr ""
 
-#: includes/helper-functions.php:699
+#: includes/class-mbm-options.php:328 includes/class-mbm-options2.php:294
 msgid "Marathi"
 msgstr ""
 
-#: includes/helper-functions.php:700
+#: includes/class-mbm-options.php:329 includes/class-mbm-options2.php:295
 msgid "Moldavian"
 msgstr ""
 
-#: includes/helper-functions.php:701
+#: includes/class-mbm-options.php:330 includes/class-mbm-options2.php:296
 msgid "Mongolian"
 msgstr ""
 
-#: includes/helper-functions.php:702
+#: includes/class-mbm-options.php:331 includes/class-mbm-options2.php:297
 msgid "Nauru"
 msgstr ""
 
-#: includes/helper-functions.php:703
+#: includes/class-mbm-options.php:332 includes/class-mbm-options2.php:298
 msgid "Nepali"
 msgstr ""
 
-#: includes/helper-functions.php:704
+#: includes/class-mbm-options.php:333 includes/class-mbm-options2.php:299
 msgid "Norwegian"
 msgstr ""
 
-#: includes/helper-functions.php:705
+#: includes/class-mbm-options.php:334 includes/class-mbm-options2.php:300
 msgid "Occitan"
 msgstr ""
 
-#: includes/helper-functions.php:706
+#: includes/class-mbm-options.php:335 includes/class-mbm-options2.php:301
 msgid "Oriya"
 msgstr ""
 
-#: includes/helper-functions.php:707
+#: includes/class-mbm-options.php:336 includes/class-mbm-options2.php:302
 msgid "Oromo, Afan"
 msgstr ""
 
-#: includes/helper-functions.php:708
+#: includes/class-mbm-options.php:337 includes/class-mbm-options2.php:303
 msgid "Pashto, Pushto"
 msgstr ""
 
-#: includes/helper-functions.php:709
+#: includes/class-mbm-options.php:338 includes/class-mbm-options2.php:304
 msgid "Persian"
 msgstr ""
 
-#: includes/helper-functions.php:710
+#: includes/class-mbm-options.php:339 includes/class-mbm-options2.php:305
 msgid "Polish"
 msgstr ""
 
-#: includes/helper-functions.php:711
+#: includes/class-mbm-options.php:340 includes/class-mbm-options2.php:306
 msgid "Portuguese"
 msgstr ""
 
-#: includes/helper-functions.php:712
+#: includes/class-mbm-options.php:341 includes/class-mbm-options2.php:307
 msgid "Punjabi"
 msgstr ""
 
-#: includes/helper-functions.php:713
+#: includes/class-mbm-options.php:342 includes/class-mbm-options2.php:308
 msgid "Quechua"
 msgstr ""
 
-#: includes/helper-functions.php:714
+#: includes/class-mbm-options.php:343 includes/class-mbm-options2.php:309
 msgid "Rhaeto-Romance"
 msgstr ""
 
-#: includes/helper-functions.php:715
+#: includes/class-mbm-options.php:344 includes/class-mbm-options2.php:310
 msgid "Romanian"
 msgstr ""
 
-#: includes/helper-functions.php:716
+#: includes/class-mbm-options.php:345 includes/class-mbm-options2.php:311
 msgid "Russian"
 msgstr ""
 
-#: includes/helper-functions.php:717
+#: includes/class-mbm-options.php:346 includes/class-mbm-options2.php:312
 msgid "Samoan"
 msgstr ""
 
-#: includes/helper-functions.php:718
+#: includes/class-mbm-options.php:347 includes/class-mbm-options2.php:313
 msgid "Sangro"
 msgstr ""
 
-#: includes/helper-functions.php:719
+#: includes/class-mbm-options.php:348 includes/class-mbm-options2.php:314
 msgid "Sanskrit"
 msgstr ""
 
-#: includes/helper-functions.php:720
+#: includes/class-mbm-options.php:349 includes/class-mbm-options2.php:315
 msgid "Serbian"
 msgstr ""
 
-#: includes/helper-functions.php:721
+#: includes/class-mbm-options.php:350 includes/class-mbm-options2.php:316
 msgid "Serbo-Croatian"
 msgstr ""
 
-#: includes/helper-functions.php:722
+#: includes/class-mbm-options.php:351 includes/class-mbm-options2.php:317
 msgid "Sesotho"
 msgstr ""
 
-#: includes/helper-functions.php:723
+#: includes/class-mbm-options.php:352 includes/class-mbm-options2.php:318
 msgid "Setswana"
 msgstr ""
 
-#: includes/helper-functions.php:724
+#: includes/class-mbm-options.php:353 includes/class-mbm-options2.php:319
 msgid "Shona"
 msgstr ""
 
-#: includes/helper-functions.php:725
+#: includes/class-mbm-options.php:354 includes/class-mbm-options2.php:320
 msgid "Sindhi"
 msgstr ""
 
-#: includes/helper-functions.php:726
+#: includes/class-mbm-options.php:355 includes/class-mbm-options2.php:321
 msgid "Singhalese"
 msgstr ""
 
-#: includes/helper-functions.php:727
+#: includes/class-mbm-options.php:356 includes/class-mbm-options2.php:322
 msgid "Siswati"
 msgstr ""
 
-#: includes/helper-functions.php:728
+#: includes/class-mbm-options.php:357 includes/class-mbm-options2.php:323
 msgid "Slovak"
 msgstr ""
 
-#: includes/helper-functions.php:729
+#: includes/class-mbm-options.php:358 includes/class-mbm-options2.php:324
 msgid "Slovenian"
 msgstr ""
 
-#: includes/helper-functions.php:730
+#: includes/class-mbm-options.php:359 includes/class-mbm-options2.php:325
 msgid "Somali"
 msgstr ""
 
-#: includes/helper-functions.php:731
+#: includes/class-mbm-options.php:360 includes/class-mbm-options2.php:326
 msgid "Spanish"
 msgstr ""
 
-#: includes/helper-functions.php:732
+#: includes/class-mbm-options.php:361 includes/class-mbm-options2.php:327
 msgid "Sudanese"
 msgstr ""
 
-#: includes/helper-functions.php:733
+#: includes/class-mbm-options.php:362 includes/class-mbm-options2.php:328
 msgid "Swahili"
 msgstr ""
 
-#: includes/helper-functions.php:734
+#: includes/class-mbm-options.php:363 includes/class-mbm-options2.php:329
 msgid "Swedish"
 msgstr ""
 
-#: includes/helper-functions.php:735
+#: includes/class-mbm-options.php:364 includes/class-mbm-options2.php:330
 msgid "Tagalog"
 msgstr ""
 
-#: includes/helper-functions.php:736
+#: includes/class-mbm-options.php:365 includes/class-mbm-options2.php:331
 msgid "Tajik"
 msgstr ""
 
-#: includes/helper-functions.php:737
+#: includes/class-mbm-options.php:366 includes/class-mbm-options2.php:332
 msgid "Tamil"
 msgstr ""
 
-#: includes/helper-functions.php:738
+#: includes/class-mbm-options.php:367 includes/class-mbm-options2.php:333
 msgid "Tatar"
 msgstr ""
 
-#: includes/helper-functions.php:739
+#: includes/class-mbm-options.php:368 includes/class-mbm-options2.php:334
 msgid "Tegulu"
 msgstr ""
 
-#: includes/helper-functions.php:740
+#: includes/class-mbm-options.php:369 includes/class-mbm-options2.php:335
 msgid "Thai"
 msgstr ""
 
-#: includes/helper-functions.php:741
+#: includes/class-mbm-options.php:370 includes/class-mbm-options2.php:336
 msgid "Tibetan"
 msgstr ""
 
-#: includes/helper-functions.php:742
+#: includes/class-mbm-options.php:371 includes/class-mbm-options2.php:337
 msgid "Tigrinya"
 msgstr ""
 
-#: includes/helper-functions.php:743
+#: includes/class-mbm-options.php:372 includes/class-mbm-options2.php:338
 msgid "Tonga"
 msgstr ""
 
-#: includes/helper-functions.php:744
+#: includes/class-mbm-options.php:373 includes/class-mbm-options2.php:339
 msgid "Tsonga"
 msgstr ""
 
-#: includes/helper-functions.php:745
+#: includes/class-mbm-options.php:374 includes/class-mbm-options2.php:340
 msgid "Turkish"
 msgstr ""
 
-#: includes/helper-functions.php:746
+#: includes/class-mbm-options.php:375 includes/class-mbm-options2.php:341
 msgid "Turkmen"
 msgstr ""
 
-#: includes/helper-functions.php:747
+#: includes/class-mbm-options.php:376 includes/class-mbm-options2.php:342
 msgid "Twi"
 msgstr ""
 
-#: includes/helper-functions.php:748
+#: includes/class-mbm-options.php:377 includes/class-mbm-options2.php:343
 msgid "Ukrainian"
 msgstr ""
 
-#: includes/helper-functions.php:749
+#: includes/class-mbm-options.php:378 includes/class-mbm-options2.php:344
 msgid "Urdu"
 msgstr ""
 
-#: includes/helper-functions.php:750
+#: includes/class-mbm-options.php:379 includes/class-mbm-options2.php:345
 msgid "Uzbek"
 msgstr ""
 
-#: includes/helper-functions.php:751
+#: includes/class-mbm-options.php:380 includes/class-mbm-options2.php:346
 msgid "Vietnamese"
 msgstr ""
 
-#: includes/helper-functions.php:752
+#: includes/class-mbm-options.php:381 includes/class-mbm-options2.php:347
 msgid "Volapuk"
 msgstr ""
 
-#: includes/helper-functions.php:753
+#: includes/class-mbm-options.php:382 includes/class-mbm-options2.php:348
 msgid "Welsh"
 msgstr ""
 
-#: includes/helper-functions.php:754
+#: includes/class-mbm-options.php:383 includes/class-mbm-options2.php:349
 msgid "Wolof"
 msgstr ""
 
-#: includes/helper-functions.php:755
+#: includes/class-mbm-options.php:384 includes/class-mbm-options2.php:350
 msgid "Xhosa"
 msgstr ""
 
-#: includes/helper-functions.php:756
+#: includes/class-mbm-options.php:385 includes/class-mbm-options2.php:351
 msgid "Yiddish"
 msgstr ""
 
-#: includes/helper-functions.php:757
+#: includes/class-mbm-options.php:386 includes/class-mbm-options2.php:352
 msgid "Yoruba"
 msgstr ""
 
-#: includes/helper-functions.php:758
+#: includes/class-mbm-options.php:387 includes/class-mbm-options2.php:353
 msgid "Zulu"
 msgstr ""
 
-#: includes/helper-functions.php:838
-msgid "Librarian"
+#: includes/class-mbm-options.php:408 includes/class-mbm-options2.php:370
+msgid "inches (in)"
 msgstr ""
 
-#: includes/helper-functions.php:840
-msgid "Master Librarian"
+#: includes/class-mbm-options.php:409 includes/class-mbm-options2.php:371
+msgid "centimeters (cm)"
+msgstr ""
+
+#: includes/class-mbm-options.php:410 includes/class-mbm-options2.php:372
+msgid "millimeters (mm)"
+msgstr ""
+
+#: includes/class-mbm-options.php:430 includes/class-mbm-options2.php:389
+msgid "Australian Dollar"
+msgstr ""
+
+#: includes/class-mbm-options.php:431 includes/class-mbm-options2.php:390
+msgid "Brazilian Real "
+msgstr ""
+
+#: includes/class-mbm-options.php:432 includes/class-mbm-options2.php:391
+msgid "Canadian Dollar"
+msgstr ""
+
+#: includes/class-mbm-options.php:433 includes/class-mbm-options2.php:392
+msgid "Czech Koruna"
+msgstr ""
+
+#: includes/class-mbm-options.php:434 includes/class-mbm-options2.php:393
+msgid "Danish Krone"
+msgstr ""
+
+#: includes/class-mbm-options.php:435 includes/class-mbm-options2.php:394
+msgid "Euro"
+msgstr ""
+
+#: includes/class-mbm-options.php:436 includes/class-mbm-options2.php:395
+msgid "Hong Kong Dollar"
+msgstr ""
+
+#: includes/class-mbm-options.php:437 includes/class-mbm-options2.php:396
+msgid "Hungarian Forint"
+msgstr ""
+
+#: includes/class-mbm-options.php:438 includes/class-mbm-options2.php:397
+msgid "Indian Rupee"
+msgstr ""
+
+#: includes/class-mbm-options.php:439 includes/class-mbm-options2.php:398
+msgid "Israeli New Sheqel"
+msgstr ""
+
+#: includes/class-mbm-options.php:440 includes/class-mbm-options2.php:399
+msgid "Japanese Yen"
+msgstr ""
+
+#: includes/class-mbm-options.php:441 includes/class-mbm-options2.php:400
+msgid "Malaysian Ringgit"
+msgstr ""
+
+#: includes/class-mbm-options.php:442 includes/class-mbm-options2.php:401
+msgid "Mexican Peso"
+msgstr ""
+
+#: includes/class-mbm-options.php:443 includes/class-mbm-options2.php:402
+msgid "Nigerian Naira"
+msgstr ""
+
+#: includes/class-mbm-options.php:444 includes/class-mbm-options2.php:403
+msgid "Norwegian Krone"
+msgstr ""
+
+#: includes/class-mbm-options.php:445 includes/class-mbm-options2.php:404
+msgid "New Zealand Dollar"
+msgstr ""
+
+#: includes/class-mbm-options.php:446 includes/class-mbm-options2.php:405
+msgid "Philippine Peso"
+msgstr ""
+
+#: includes/class-mbm-options.php:447 includes/class-mbm-options2.php:406
+msgid "Polish Zloty"
+msgstr ""
+
+#: includes/class-mbm-options.php:448 includes/class-mbm-options2.php:407
+msgid "Russian Rube"
+msgstr ""
+
+#: includes/class-mbm-options.php:449 includes/class-mbm-options2.php:408
+msgid "Singapore Dollar"
+msgstr ""
+
+#: includes/class-mbm-options.php:450 includes/class-mbm-options2.php:409
+msgid "South African Rand"
+msgstr ""
+
+#: includes/class-mbm-options.php:451 includes/class-mbm-options2.php:410
+msgid "Swedish Krona"
+msgstr ""
+
+#: includes/class-mbm-options.php:452 includes/class-mbm-options2.php:411
+msgid "Swiss Franc"
+msgstr ""
+
+#: includes/class-mbm-options.php:453 includes/class-mbm-options2.php:412
+msgid "Taiwan New Dollar"
+msgstr ""
+
+#: includes/class-mbm-options.php:454 includes/class-mbm-options2.php:413
+msgid "Thai Baht"
+msgstr ""
+
+#: includes/class-mbm-options.php:455 includes/class-mbm-options2.php:414
+msgid "Turkish Lira"
+msgstr ""
+
+#: includes/class-mbm-options.php:456 includes/class-mbm-options2.php:415
+msgid "U.K. Pound Sterling"
+msgstr ""
+
+#: includes/class-mbm-options.php:457 includes/class-mbm-options2.php:416
+msgid "U.S. Dollar"
+msgstr ""
+
+#: includes/class-mbm-rest-books-controller.php:41
+#: includes/class-mbm-rest-books-controller.php:85
+msgid "You cannot view the post resource."
+msgstr ""
+
+#: includes/class-mbm-rest-books-controller.php:186
+msgid "Unique identifier for the object."
+msgstr ""
+
+#: includes/class-mbm-rest-books-controller.php:192
+msgid "The content for the object."
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:93
+msgid "There was an error!"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:203
+#, php-format
+msgctxt "%1$s = name of series, %2$s = \"Series\""
+msgid "%1$s %2$s"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:206
+#, php-format
+msgctxt "%1$s = name of genre, %2$s = \"Genre\""
+msgid "%1$s %2$s"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:209
+#, php-format
+msgid "Books Tagged With %s"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:212
+#, php-format
+msgid "Books Edited By %s"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:215
+#, php-format
+msgid "Books Illustrated By %s"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:218
+#, php-format
+msgid "Book Covers By %s"
+msgstr ""
+
+#: includes/class-mbm-tax-grid-page.php:224
+msgid "Not Found"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:52 includes/class-mbm-taxonomy.php:53
+#: includes/class-mbm-taxonomy.php:62
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:57
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:59
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:61
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:63
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:64
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:65
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:66
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:67
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:68
+#, php-format
+msgid "%s navigation"
+msgstr ""
+
+#: includes/class-mbm-taxonomy.php:69
+#, php-format
+msgid "%s list"
+msgstr ""
+
+#: includes/class-mbm-widget.php:176
+msgid "No books found"
+msgstr ""
+
+#: includes/depreciated-functions.php:87
+msgid ""
+"Upgrading to Mooberry Book Manager version 3.0 requires some data migration "
+"before Mooberry Book Manager will operate properly."
+msgstr ""
+
+#: includes/depreciated-functions.php:88 includes/updates.php:598
+#: includes/updates.php:620
+msgid "Migrate Data Now"
 msgstr ""
 
 #: includes/mooberry-dreams/EDD_SL_Plugin_Updater.php:201
@@ -1815,36 +2394,36 @@ msgstr ""
 msgid "License Keys"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:166
-#: includes/mooberry-dreams/software-licensing.php:189
+#: includes/mooberry-dreams/software-licensing.php:168
+#: includes/mooberry-dreams/software-licensing.php:191
 msgid "inactive"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:172
+#: includes/mooberry-dreams/software-licensing.php:174
 msgid "No activations left"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:175
+#: includes/mooberry-dreams/software-licensing.php:177
 msgid "Wrong Key"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:178
+#: includes/mooberry-dreams/software-licensing.php:180
 msgid "expired"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:198
+#: includes/mooberry-dreams/software-licensing.php:200
 msgid "valid"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:212
+#: includes/mooberry-dreams/software-licensing.php:214
 msgid "Deactivate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:214
+#: includes/mooberry-dreams/software-licensing.php:216
 msgid "Activate"
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:485
+#: includes/mooberry-dreams/software-licensing.php:487
 #, php-format
 msgid ""
 "You have invalid or expired license keys for Mooberry Book Manager. Please "
@@ -1852,856 +2431,138 @@ msgid ""
 "correct this issue."
 msgstr ""
 
-#: includes/mooberry-dreams/software-licensing.php:524
+#: includes/mooberry-dreams/software-licensing.php:526
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
-#: includes/plugin-functions.php:281
-msgid ""
-"Upgrading to Mooberry Book Manager version 3.0 requires some data migration "
-"before Mooberry Book Manager will operate properly."
+#: includes/plugin-functions.php:242
+msgid "Librarian"
 msgstr ""
 
-#: includes/plugin-functions.php:416 includes/plugin-functions.php:457
-#: single-book.php:599
-msgid "Website"
+#: includes/plugin-functions.php:244
+msgid "Master Librarian"
 msgstr ""
 
-#: includes/plugin-functions.php:423 includes/plugin-functions.php:467
-msgid "Book Grid Description"
-msgstr ""
-
-#: includes/plugin-functions.php:425
-msgid ""
-"The Book Grid Description is displayed above the auto-generated grid for "
-"this page, ex. "
-msgstr ""
-
-#: includes/plugin-functions.php:430 includes/plugin-functions.php:477
-msgid "Book Grid Description (Bottom)"
-msgstr ""
-
-#: includes/plugin-functions.php:432
-msgid ""
-"The bottom Book Grid Description is displayed below the auto-generated grid "
-"for this page, ex. "
-msgstr ""
-
-#: includes/plugin-functions.php:472
-msgid ""
-"The Book Grid Description is displayed above the auto-generated grid for "
-"this page, "
-msgstr ""
-
-#: includes/plugin-functions.php:483
-msgid ""
-"The bottom Book Grid Description is displayed below the auto-generated grid "
-"for this page, "
-msgstr ""
-
-#: includes/plugin-functions.php:552 includes/plugin-functions.php:568
-#: includes/plugin-functions.php:570
-msgctxt "noun"
-msgid "Books"
-msgstr ""
-
-#: includes/plugin-functions.php:569
-msgctxt "noun"
-msgid "Book"
-msgstr ""
-
-#: includes/plugin-functions.php:571
-msgid "All Books"
-msgstr ""
-
-#: includes/plugin-functions.php:572 includes/plugin-functions.php:634
-msgid "Add New"
-msgstr ""
-
-#: includes/plugin-functions.php:573
-msgid "Add New Book"
-msgstr ""
-
-#: includes/plugin-functions.php:574 includes/plugin-functions.php:636
-msgid "Edit"
-msgstr ""
-
-#: includes/plugin-functions.php:575
-msgid "Edit Book"
-msgstr ""
-
-#: includes/plugin-functions.php:576
-msgid "New Book"
-msgstr ""
-
-#: includes/plugin-functions.php:577 includes/plugin-functions.php:578
-msgid "View Book"
-msgstr ""
-
-#: includes/plugin-functions.php:579
-msgid "Search Books"
-msgstr ""
-
-#: includes/plugin-functions.php:580
-msgid "No Books Found"
-msgstr ""
-
-#: includes/plugin-functions.php:581
-msgid "No Books Found in Trash"
-msgstr ""
-
-#: includes/plugin-functions.php:582
-msgid "Parent Book"
-msgstr ""
-
-#: includes/plugin-functions.php:583
-msgid "Filter Book List"
-msgstr ""
-
-#: includes/plugin-functions.php:584
-msgid "Book List Navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:585
-msgid "Book List"
-msgstr ""
-
-#: includes/plugin-functions.php:586
-msgid "View Books"
-msgstr ""
-
-#: includes/plugin-functions.php:587
-msgid "Book Attributes"
-msgstr ""
-
-#: includes/plugin-functions.php:613 includes/plugin-functions.php:631
-msgid "Book Grids"
-msgstr ""
-
-#: includes/plugin-functions.php:633
-msgid "All Book Grids"
-msgstr ""
-
-#: includes/plugin-functions.php:635
-msgid "Add New Book Grid"
-msgstr ""
-
-#: includes/plugin-functions.php:637
-msgid "Edit Book Grid"
-msgstr ""
-
-#: includes/plugin-functions.php:638
-msgid "New Book Grid"
-msgstr ""
-
-#: includes/plugin-functions.php:639 includes/plugin-functions.php:640
-msgid "View Book Grid"
-msgstr ""
-
-#: includes/plugin-functions.php:641
-msgid "Search Book Grids"
-msgstr ""
-
-#: includes/plugin-functions.php:642
-msgid "No Book Grids Found"
-msgstr ""
-
-#: includes/plugin-functions.php:643
-msgid "No Book Grids Found in Trash"
-msgstr ""
-
-#: includes/plugin-functions.php:644
-msgid "Parent Book Grid"
-msgstr ""
-
-#: includes/plugin-functions.php:645
-msgid "Filter Book Grid List"
-msgstr ""
-
-#: includes/plugin-functions.php:646
-msgid "Book Grid List Navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:647
-msgid "Book Grid List"
-msgstr ""
-
-#: includes/plugin-functions.php:648
-msgid "View Book Grids"
-msgstr ""
-
-#: includes/plugin-functions.php:649
-msgid "Book Grid Attributes"
-msgstr ""
-
-#: includes/plugin-functions.php:680 includes/plugin-functions.php:690
-msgid "Genres"
-msgstr ""
-
-#: includes/plugin-functions.php:682
-msgid "Search Genres"
-msgstr ""
-
-#: includes/plugin-functions.php:683
-msgid "All Genres"
-msgstr ""
-
-#: includes/plugin-functions.php:684
-msgid "Parent Genre"
-msgstr ""
-
-#: includes/plugin-functions.php:685
-msgid "Parent Genre:"
-msgstr ""
-
-#: includes/plugin-functions.php:686
-msgid "Edit Genre"
-msgstr ""
-
-#: includes/plugin-functions.php:687
-msgid "Update Genre"
-msgstr ""
-
-#: includes/plugin-functions.php:688
-msgid "Add New Genre"
-msgstr ""
-
-#: includes/plugin-functions.php:689
-msgid "New Genre Name"
-msgstr ""
-
-#: includes/plugin-functions.php:691
-msgid "Popular Genres"
-msgstr ""
-
-#: includes/plugin-functions.php:692
-msgid "Separate genres with commas"
-msgstr ""
-
-#: includes/plugin-functions.php:693
-msgid "Add or remove genres"
-msgstr ""
-
-#: includes/plugin-functions.php:694
-msgid "Choose from the most used genres"
-msgstr ""
-
-#: includes/plugin-functions.php:695
-msgid "No genres found"
-msgstr ""
-
-#: includes/plugin-functions.php:696
-msgid "Genre navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:697
-msgid "Genre list"
-msgstr ""
-
-#: includes/plugin-functions.php:718 includes/plugin-functions.php:728
-msgid "Tags"
-msgstr ""
-
-#: includes/plugin-functions.php:720
-msgid "Search Tags"
-msgstr ""
-
-#: includes/plugin-functions.php:721
-msgid "All Tags"
-msgstr ""
-
-#: includes/plugin-functions.php:722
-msgid "Parent Tag"
-msgstr ""
-
-#: includes/plugin-functions.php:723
-msgid "Parent Tag:"
-msgstr ""
-
-#: includes/plugin-functions.php:724
-msgid "Edit Tag"
-msgstr ""
-
-#: includes/plugin-functions.php:725
-msgid "Update Tag"
-msgstr ""
-
-#: includes/plugin-functions.php:726
-msgid "Add New Tag"
-msgstr ""
-
-#: includes/plugin-functions.php:727
-msgid "New Tag Name"
-msgstr ""
-
-#: includes/plugin-functions.php:729
-msgid "Popular Tags"
-msgstr ""
-
-#: includes/plugin-functions.php:730
-msgid "Separate tags with commas"
-msgstr ""
-
-#: includes/plugin-functions.php:731
-msgid "Add or remove tags"
-msgstr ""
-
-#: includes/plugin-functions.php:732
-msgid "Choose from the most used tags"
-msgstr ""
-
-#: includes/plugin-functions.php:733
-msgid "No tags found"
-msgstr ""
-
-#: includes/plugin-functions.php:734
-msgid "Tag navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:735
-msgid "Tag list"
-msgstr ""
-
-#: includes/plugin-functions.php:757
-msgid "Search Series"
-msgstr ""
-
-#: includes/plugin-functions.php:758
-msgid "All Series"
-msgstr ""
-
-#: includes/plugin-functions.php:759
-msgid "Parent Series"
-msgstr ""
-
-#: includes/plugin-functions.php:760
-msgid "Parent Series:"
-msgstr ""
-
-#: includes/plugin-functions.php:761
-msgid "Edit Series"
-msgstr ""
-
-#: includes/plugin-functions.php:762
-msgid "Update Series"
-msgstr ""
-
-#: includes/plugin-functions.php:763
-msgid "Add New Series"
-msgstr ""
-
-#: includes/plugin-functions.php:764
-msgid "New Series Name"
-msgstr ""
-
-#: includes/plugin-functions.php:766
-msgid "Popular Series"
-msgstr ""
-
-#: includes/plugin-functions.php:767
-msgid "Separate series with commas"
-msgstr ""
-
-#: includes/plugin-functions.php:768
-msgid "Add or remove series"
-msgstr ""
-
-#: includes/plugin-functions.php:769
-msgid "Choose from the most used series"
-msgstr ""
-
-#: includes/plugin-functions.php:770
-msgid "No Series found"
-msgstr ""
-
-#: includes/plugin-functions.php:771
-msgid "Series navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:772
-msgid "Series list"
-msgstr ""
-
-#: includes/plugin-functions.php:793 includes/plugin-functions.php:803
-msgid "Editors"
-msgstr ""
-
-#: includes/plugin-functions.php:795
-msgid "Search Editors"
-msgstr ""
-
-#: includes/plugin-functions.php:796
-msgid "All Editors"
-msgstr ""
-
-#: includes/plugin-functions.php:797
-msgid "Parent Editor"
-msgstr ""
-
-#: includes/plugin-functions.php:798
-msgid "Parent Editor:"
-msgstr ""
-
-#: includes/plugin-functions.php:799
-msgid "Edit Editor"
-msgstr ""
-
-#: includes/plugin-functions.php:800
-msgid "Update Editor"
-msgstr ""
-
-#: includes/plugin-functions.php:801
-msgid "Add New Editor"
-msgstr ""
-
-#: includes/plugin-functions.php:802
-msgid "New Editor Name"
-msgstr ""
-
-#: includes/plugin-functions.php:804
-msgid "Popular Editors"
-msgstr ""
-
-#: includes/plugin-functions.php:805
-msgid "Separate Editors with commas"
-msgstr ""
-
-#: includes/plugin-functions.php:806
-msgid "Add or remove Editors"
-msgstr ""
-
-#: includes/plugin-functions.php:807
-msgid "Choose from the most used Editors"
-msgstr ""
-
-#: includes/plugin-functions.php:808
-msgid "No Editors found"
-msgstr ""
-
-#: includes/plugin-functions.php:809
-msgid "Edtior navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:810
-msgid "Editor list"
-msgstr ""
-
-#: includes/plugin-functions.php:831 includes/plugin-functions.php:841
-msgid "Illustrators"
-msgstr ""
-
-#: includes/plugin-functions.php:833
-msgid "Search Illustrators"
-msgstr ""
-
-#: includes/plugin-functions.php:834
-msgid "All Illustrators"
-msgstr ""
-
-#: includes/plugin-functions.php:835
-msgid "Parent Illustrator"
-msgstr ""
-
-#: includes/plugin-functions.php:836
-msgid "Parent Illustrator:"
-msgstr ""
-
-#: includes/plugin-functions.php:837
-msgid "Edit Illustrator"
-msgstr ""
-
-#: includes/plugin-functions.php:838
-msgid "Update Illustrator"
-msgstr ""
-
-#: includes/plugin-functions.php:839
-msgid "Add New Illustrator"
-msgstr ""
-
-#: includes/plugin-functions.php:840
-msgid "New Illustrator Name"
-msgstr ""
-
-#: includes/plugin-functions.php:842
-msgid "Popular Illustrators"
-msgstr ""
-
-#: includes/plugin-functions.php:843
-msgid "Separate Illustrators with commas"
-msgstr ""
-
-#: includes/plugin-functions.php:844
-msgid "Add or remove Illustrators"
-msgstr ""
-
-#: includes/plugin-functions.php:845
-msgid "Choose from the most used Illustrators"
-msgstr ""
-
-#: includes/plugin-functions.php:846
-msgid "No Illustrators found"
-msgstr ""
-
-#: includes/plugin-functions.php:847
-msgid "Illustrator navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:848
-msgid "Illustrator list"
-msgstr ""
-
-#: includes/plugin-functions.php:869 includes/plugin-functions.php:879
-msgid "Cover Artists"
-msgstr ""
-
-#: includes/plugin-functions.php:871
-msgid "Search Cover Artists"
-msgstr ""
-
-#: includes/plugin-functions.php:872
-msgid "All Cover Artists"
-msgstr ""
-
-#: includes/plugin-functions.php:873
-msgid "Parent Cover Artist"
-msgstr ""
-
-#: includes/plugin-functions.php:874
-msgid "Parent Cover Artist:"
-msgstr ""
-
-#: includes/plugin-functions.php:875
-msgid "Edit Cover Artist"
-msgstr ""
-
-#: includes/plugin-functions.php:876
-msgid "Update Cover Artist"
-msgstr ""
-
-#: includes/plugin-functions.php:877
-msgid "Add New Cover Artist"
-msgstr ""
-
-#: includes/plugin-functions.php:878
-msgid "New Cover Artist Name"
-msgstr ""
-
-#: includes/plugin-functions.php:880
-msgid "Popular Cover Artists"
-msgstr ""
-
-#: includes/plugin-functions.php:881
-msgid "Separate Cover Artists with commas"
-msgstr ""
-
-#: includes/plugin-functions.php:882
-msgid "Add or remove Cover Artists"
-msgstr ""
-
-#: includes/plugin-functions.php:883
-msgid "Choose from the most used Cover Artists"
-msgstr ""
-
-#: includes/plugin-functions.php:884
-msgid "No Cover Artists found"
-msgstr ""
-
-#: includes/plugin-functions.php:885
-msgid "Cover Artist navigation"
-msgstr ""
-
-#: includes/plugin-functions.php:886
-msgid "Cover Artist list"
-msgstr ""
-
-#: includes/scripts-and-styles.php:61
+#: includes/plugin-functions.php:349
 msgid "Group Books Within"
 msgstr ""
 
-#: includes/scripts-and-styles.php:62
+#: includes/plugin-functions.php:350
 msgid "By"
 msgstr ""
 
-#: includes/scripts-and-styles.php:92
+#: includes/plugin-functions.php:382
 msgid "Are you sure you want to reset the Book Edit page?"
 msgstr ""
 
-#: includes/scripts-and-styles.php:142
+#: includes/plugin-functions.php:383
+msgid "Are you sure your want to cancel the book import?"
+msgstr ""
+
+#: includes/plugin-functions.php:384
+#, php-format
+msgid ""
+"Tax Grid Page creation failed. Manually create a page with  this shortcode "
+"in the content %s. Then come back here and choose that page from the drop "
+"down list."
+msgstr ""
+
+#: includes/plugin-functions.php:385
+msgid "Tax Grid Page created."
+msgstr ""
+
+#: includes/plugin-functions.php:429
 msgid "Insert Shortcode"
 msgstr ""
 
-#: includes/scripts-and-styles.php:143
+#: includes/plugin-functions.php:430
 msgid "Cancel"
 msgstr ""
 
-#: mbdb-widget.php:164
-msgid "No books found"
-msgstr ""
-
-#: single-book.php:260
-msgctxt "short date format. see http://php.net/date"
-msgid "m/d/Y"
-msgstr ""
-
-#: single-book.php:264
-msgctxt "long date format. see http://php.net/date"
-msgid "F j, Y"
-msgstr ""
-
-#: single-book.php:306
-msgid "Add to Goodreads"
-msgstr ""
-
-#: single-book.php:348
-msgid "View on Goodreads"
-msgstr ""
-
-#: single-book.php:405
-msgid "READ MORE"
-msgstr ""
-
-#: single-book.php:408
-msgid "COLLAPSE"
-msgstr ""
-
-#: single-book.php:1081
-msgid "Part of the "
-msgstr ""
-
-#: single-book.php:1082
-msgid " series:"
-msgstr ""
-
-#: single-book.php:1248
-msgid "on "
-msgstr ""
-
-#: single-book.php:1264
-msgid "wrote"
-msgstr ""
-
-#: single-book.php:1363 single-book.php:1484
-msgid "Available on"
-msgstr ""
-
-#: single-book.php:1378 single-book.php:1784 single-book.php:1870
-msgid "Download Now:"
-msgstr ""
-
-#: single-book.php:1498
-msgid "Buy Now:"
-msgstr ""
-
-#: single-book.php:1710
-#, php-format
-msgctxt ""
-"%1$s is the currency symbol. %2$s is the price. To put currency after price, "
-"enter %2$s %1$s"
-msgid "%1$s %2$s"
-msgstr ""
-
-#: single-book.php:1717
-msgid "ISBN:"
-msgstr ""
-
-#: single-book.php:1720
-msgid "Size:"
-msgstr ""
-
-#: single-book.php:1723
-msgid "Pages:"
-msgstr ""
-
-#: single-book.php:1790
-msgid "Part of the"
-msgstr ""
-
-#: single-book.php:1790
-msgid "series:"
-msgstr ""
-
-#: single-book.php:1794
-msgid "Editions:"
-msgstr ""
-
-#: single-book.php:1823
-msgid "Published:"
-msgstr ""
-
-#: single-book.php:1827
-msgid "Publisher:"
-msgstr ""
-
-#: single-book.php:1831
-msgid "Editors:"
-msgstr ""
-
-#: single-book.php:1835
-msgid "Illustrators:"
-msgstr ""
-
-#: single-book.php:1839
-msgid "Cover Artists:"
-msgstr ""
-
-#: single-book.php:1843
-msgid "Genres:"
-msgstr ""
-
-#: single-book.php:1847
-msgid "Tags:"
-msgstr ""
-
-#: single-book.php:1855
-msgid "Excerpt:"
-msgstr ""
-
-#: single-book.php:1862
-msgid "Reviews:"
-msgstr ""
-
-#: tax-grid.php:71
-msgid "There was an error!"
-msgstr ""
-
-#: tax-grid.php:169
-#, php-format
-msgctxt "%1$s = name of series, %2$s = \"Series\""
-msgid "%1$s %2$s"
-msgstr ""
-
-#: tax-grid.php:172
-#, php-format
-msgctxt "%1$s = name of genre, %2$s = \"Genre\""
-msgid "%1$s %2$s"
-msgstr ""
-
-#: tax-grid.php:175
-#, php-format
-msgid "Books Tagged With %s"
-msgstr ""
-
-#: tax-grid.php:178
-#, php-format
-msgid "Books Edited By %s"
-msgstr ""
-
-#: tax-grid.php:181
-#, php-format
-msgid "Books Illustrated By %s"
-msgstr ""
-
-#: tax-grid.php:184
-#, php-format
-msgid "Book Covers By %s"
-msgstr ""
-
-#: tax-grid.php:190
-msgid "Not Found"
-msgstr ""
-
-#: views/admin-about-mooberry-story.php:3
-msgid "Also From Mooberry Dreams"
-msgstr ""
-
-#: views/admin-about-mooberry-story.php:5
+#: includes/updates.php:74
 msgid ""
-"Make it easy for readers to find stories on your blog, including older ones."
+"Upgrading to Mooberry Book Manager version 3.4.3 requires migrating your "
+"Book Grids. Without migrating, your Book Grids won't appear on your site."
 msgstr ""
 
-#: views/admin-about-mooberry-story.php:7
-msgid "Group posts into a single story"
+#: includes/updates.php:76
+msgid "Migrate Book Grids Now"
 msgstr ""
 
-#: views/admin-about-mooberry-story.php:8
-msgid "Display a table of contents"
+#: includes/updates.php:91
+msgid "New retailer logo images for Mooberry Book Manager are available. "
 msgstr ""
 
-#: views/admin-about-mooberry-story.php:9
-msgid "Easily re-arrange the order of the chapters within the story"
+#: includes/updates.php:92
+msgid "Click here to learn more."
 msgstr ""
 
-#: views/admin-about-mooberry-story.php:10
-msgid "Draw attention to your story with sidebar widgets"
+#: includes/updates.php:99
+msgid "Fix it now"
 msgstr ""
 
-#: views/admin-about-mooberry-story.php:11
-msgid "Organize stories by genre and/or series"
+#: includes/updates.php:100
+msgid "I didn't have this problem. Dismiss this notice."
 msgstr ""
 
-#: views/admin-about-mooberry-story.php:13
-msgid "Download Now"
-msgstr ""
-
-#: views/admin-about-mooberry.php:4
-msgid "Documentation"
-msgstr ""
-
-#: views/admin-about-mooberry.php:5
-msgid "FAQs"
-msgstr ""
-
-#: views/admin-about-mooberry.php:6
-msgid "Support Forum"
-msgstr ""
-
-#: views/admin-about-mooberry.php:19
-msgid "Extensions Available Now"
-msgstr ""
-
-#: views/admin-about-mooberry.php:20
+#: includes/updates.php:101
 msgid ""
-"Check out <a target=\"_new\" href=\"http://bookmanager.mooberrydreams.com/"
-"\">our website</a> to learn more about these extensions so Mooberry Book "
-"Manager can save you more time!"
+"Had a problem with genres, tags, series, etc. turning into numbers after the "
+"Mooberry Book Manager 3.4.11 update?"
 msgstr ""
 
-#: views/admin-about-mooberry.php:22
-msgid "Additional Images"
+#: includes/updates.php:102
+msgid "Please Note:"
 msgstr ""
 
-#: views/admin-about-mooberry.php:23
-msgid "Advanced Widgets"
-msgstr ""
-
-#: views/admin-about-mooberry.php:24
-msgid "Multi-Author"
-msgstr ""
-
-#: views/admin-about-mooberry.php:25
-msgid "Retail Links Redirect"
-msgstr ""
-
-#: views/admin-about-mooberry.php:29
-msgid "Tip Jar"
-msgstr ""
-
-#: views/admin-about-mooberry.php:30
+#: includes/updates.php:102
 msgid ""
-"You can help support this plugin by leaving a tip in any amount. This is "
-"completely optional. Thank you for the support."
+"If you have genres, tags, series, editors, illustrators, or cover artists "
+"that are actually supposed to be numbers, this fix may affect them. Please "
+"check you books after running the fix and re-set them if necessary. I "
+"apologize for the inconvenience."
 msgstr ""
 
-#: views/admin-widget-book.php:2
-msgid "Which book to show?"
+#: includes/updates.php:595
+msgid ""
+"Upgrading to Mooberry Book Manager version 3.1 requires some data migration "
+"before Mooberry Book Manager will operate properly."
 msgstr ""
 
-#: views/admin-widget-book.php:13
-msgid "Book:"
+#: includes/updates.php:596
+msgid ""
+"Even if you have previously migrated the data (if you upgraded to version "
+"3.0 and then rolled back to version 2.4.x), you must migrate again to ensure "
+"Mooberry Book Manaer will operate properly."
 msgstr ""
 
-#: views/admin-widget.php:17
-msgid "Widget Title:"
+#: includes/updates.php:597
+msgid "Changes made since migrating the first time may be lost."
 msgstr ""
 
-#: views/admin-widget.php:24
-msgid "Show Book Title"
+#: includes/updates.php:618
+msgid ""
+"You may choose to re-migrate your data from version 2 if you've noticed "
+"issues with your books' information."
 msgstr ""
 
-#: views/admin-widget.php:29
-msgid "Cover Size(pixels)"
+#: includes/updates.php:621
+msgid "Dismiss Notice"
 msgstr ""
 
-#: views/admin-widget.php:30
-msgid "(minimum 50)"
+#: includes/updates.php:716 includes/updates.php:731
+msgid "Imported Book Grid: "
+msgstr ""
+
+#: includes/updates.php:771
+msgid "done!"
+msgstr ""
+
+#: includes/wp-background-processing/classes/wp-background-process.php:424
+#, php-format
+msgid "Every %d Minutes"
+msgstr ""
+
+#: mooberry-book-manager.php:228
+msgid "You must update MBM Multi-Author to be compatible with MBM version 4.0"
 msgstr ""

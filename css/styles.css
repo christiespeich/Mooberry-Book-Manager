@@ -72,9 +72,9 @@
 #mbm-book-page .mbm-book-details-published-label, #mbm-book-page .mbm-book-details-publisher-label, #mbm-book-page .mbm-book-details-editors-label, #mbm-book-page .mbm-book-details-illustrators-label, #mbm-book-page .mbm-book-details-cover-artists-label, #mbm-book-page .mbm-book-details-genres-label, #mbm-book-page .mbm-book-details-tags-label {
 	font-weight: bold;
 }
-
+	
 /* Generate Press theme was having a problem this fixed */
- #mbm-book-page a.mbm-book-cover-artist-website:before , #mbm-book-page a.mbm-book-cover-artist-website:after, a.mbm-book-cover-artist-website:after, #mbm-book-page a.mbm-book-editor-website:before, #mbm-book-page a.mbm-book-editor-website:after, #mbm-book-page a.mbm-book-illustrator-website:before, #mbm-book-page a.mbm-book-illustrator-website:after {
+	#mbm-book-page a.mbm-book-cover-artist-website:before, #mbm-book-page a.mbm-book-cover-artist-website:after, #mbm-book-page a.mbm-book-editor-website:before, #mbm-book-page a.mbm-book-editor-website:after, #mbm-book-page a.mbm-book-illustrator-website:before, #mbm-book-page a.mbm-book-illustrator-website:after {
 		content: initial;
 	}
 	
@@ -300,6 +300,8 @@
 		margin: 0;
 			
 	}
+	
+
 	
 	#mbm-book-page .mbm-book-excerpt {
 		margin-bottom: 15px;

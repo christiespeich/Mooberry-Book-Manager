@@ -1,0 +1,34 @@
+
+.mbdb_box {
+	width:250px; 
+	/*float:right;  */
+	border: 2px solid #845a90; 
+	box-shadow: 0 1px 1px rgba(0,0,0,.04); 
+	background-color: white;
+		padding: 8px 12px;
+		margin-bottom: 20px;
+}
+
+#mbdb_about_mooberry {
+	/* width: 45%; */
+	float: right;
+	margin-right: 25px;
+	
+}
+
+#mbdb_option_metabox {
+		width: 50%; 
+		float: left;
+}
+	
+	
+#book_page_options_metabox {
+	width: 50%;
+	float: left;
+}
+
+.wrap.cmb2-options-page.mbdb_options {
+	float: left;
+	 width: 50%; 
+	
+}

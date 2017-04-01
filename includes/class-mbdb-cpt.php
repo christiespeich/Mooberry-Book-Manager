@@ -1,105 +1,97 @@
 <?php
-/**
- * Customer Object
- *
- * @package     EDD
- * @subpackage  Classes/Customer
- * @copyright   Copyright (c) 2015, Chris Klosowski
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.3
-*/
-
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-/**
- * EDD_Customer Class
- *
- * @since 2.3
- */
+// backwards compatibility
 abstract class MBDB_CPT {
 
 	protected $db_object;
 	
-	abstract public function __construct();
-	
-	
-	
-	public function get( $id, $orderby = null, $order = null, $include_unpublished = false ) {
-		return $this->db_object->get ( $id, $orderby, $order, $include_unpublished );
-	}
-	
-	public function get_all( $orderby = null, $order = null, $include_unpublished = false) {
-		return $this->db_object->get( null, $orderby, $order, $include_unpublished );
-	}
-		
-	public function get_data( $data_field, $id) {
-		return $this->db_object->get_data( $data_field, $id );
-	}
-	
-	public function get_data_by_post_meta( $post_meta, $id ) {
-		return $this->db_object->get_data_by_post_meta( $post_meta, $id );
-	}
-	
-	
-	
-	public function get_by_slug( $slug ) {
-		$data = $this->db_object->get_by_slug($slug);
-		return $data;
-	}
-	
-	public function save( $data, $id ) {
-		
-		$success = $this->db_object->save( $data, $id );
-		
-		if ($success === false) {
-			return false;
-		} else {
-			return $success;
-		}
-		
-	}
-	
-
-	/*
-	public function save_data_by_post_meta( $post_meta, $value, $id ) {
-		$column = $this->post_meta_to_column( $post_meta );
-		if ( $column !== false ) {
-			$value = $this->sanitize_field( $column, $value );
-			$success = $this->db_object->save( array( $column => $value ), $id );
-			if ($success === false) {
-				return false;
-			} else {
-				return $success;
-			}
-		} else {
-			return false;
-		}
-		
-	}
-	*/
-	
-	
-	public function in_custom_table( $post_meta ) {
-		$column = $this->db_object->post_meta_to_column( $post_meta );
-		if ($column === false) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	
-	public function import() {
-		return $this->db_object->import();
-	}
-	
 	public function create_table() {
-		$this->db_object->create_table();
+		return $this->db_object->create_table();
 	}
 	
-	public function empty_table() {
-		$this->db_object->empty_table();
+	// bckwds compatibility with MA
+	//public function get_all( $order_by, $order ) {
+	public function get_all ($orderby = null, $order = null, $include_unpublished = false, $cache_results = true ) {
+		
+		global $wpdb;
+		
+		//	$orderby = $this->validate_orderby( $orderby );
+		if ($orderby == null) {
+			$orderby = $this->primary_key;
+		}
+		//$order = $this->db_object->validate_order( $order );
+		
+		$where = '';
+		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.author_id';
+		
+		if ( ! $include_unpublished ) {
+			$where = ' WHERE p.post_status = "publish" ';
+			
+		} 
+		/*
+		if ( $this->column_exists( 'blog_id' ) ) {
+			$where .= " AND blog_id = $this->blog_id";
+		}
+		*/
+		$table = $this->db_object->table_name();
+		$sql =  "SELECT * 
+				FROM $table AS t
+				$join
+				$where
+				ORDER BY  
+				$orderby 
+				$order";
+
+		
+			global $wpdb;
+		return  $wpdb->get_results($sql);
 	}
+	
+	
+	public function get_data_by_post_meta( $post_meta, $id) {
+		$data = $this->db_object->get( $id );
+		if ($data == null) {
+			return false;
+		}
+		$column = $this->post_meta_to_column($post_meta);
+		if ( $column !== false ) {		
+			return $data->{$column};
+		}
+		
+		return false;
+	}
+	
+	public function post_meta_to_column( $post_meta ) {
+		$fields = $this->db_object->map_postmeta_to_columns();
+		if ( array_key_exists( $post_meta, $fields ) ) {
+			return $fields[$post_meta];
+		} else {
+			return false;
+		}
+	}
+	
+	public function in_custom_table( $data_field ) {
+		$fields = $this->db_object->map_postmeta_to_columns();
+		return ( array_key_exists( $data_field, $fields ) );
+		
+	}
+	
+	public function save( $object, $id) {
+		////error_log('mbdb_cpt->save');
+		$this->db_object->save($object, $id);
+	}
+	
+	public function get( $id ) {
+		if ( !is_array($id) ) {
+			return $this->db_object->get($id);
+		} else {
+			return $this->db_object->get_multiple_authors($id);
+			
+		}
+	}
+	
+	public function get_data( $data_field, $id ) {
+		return $this->db_object->get_data( $data_field, $id, false );
+	}
+	
 	
 }

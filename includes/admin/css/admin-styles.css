@@ -1,0 +1,228 @@
+/* Hide Parent drop down on non-hierarchial taxonomies */
+#newmbdb_genre_parent, .taxonomy-mbdb_genre #parent, .taxonomy-mbdb_genre label[for=parent], 
+#newmbdb_series_parent, .taxonomy-mbdb_series #parent, .taxonomy-mbdb_series label[for=parent], 
+#newmbdb_tag_parent, .taxonomy-mbdb_tag #parent, .taxonomy-mbdb_tag label[for=parent], 
+#newmbdb_editor_parent, .taxonomy-mbdb_editor #parent, .taxonomy-mbdb_editor label[for=parent], 
+#newmbdb_cover_artist_parent, .taxonomy-mbdb_cover_artist #parent, .taxonomy-mbdb_cover_artist label[for=parent], 
+#newmbdb_illustrator_parent, .taxonomy-mbdb_illustrator #parent, .taxonomy-mbdb_illustrator label[for=parent] { 
+	display:none; 
+}
+
+.mbm-validation-error {
+	font-size: 1.5em;
+	color: red;
+	font-weight: bold;
+}
+
+/* sortable books */
+#_mbdb_book_grid_book_list li {
+	margin: 0 3px 3px 3px;	
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.4em;
+    height: 18px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#_mbdb_book_grid_book_list {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    width: 60%;
+}
+
+#_mbdb_book_grid_book_list li span {
+    position: absolute;
+    margin-left: -1.3em;
+}
+
+.mbdb_info_icon {
+
+	height: 15px;
+	margin-left: 5px;
+}
+
+.cmb-repeat-group-wrap .cmb-remove-field-row, .cmb-repeat-group-wrap .cmb-repeat-group-field, .postbox-container .cmb-remove-field-row, .postbox-container .cmb-repeat-group-field {
+	padding-top: 0;
+}
+
+div[id*="-mbdb"] h2.hndle.ui-sortable-handle, div[id^="mbdb"] h2.hndle.ui-sortable-handle, .cmb2-options-page .cmb2-metabox-title  {
+	background: #9667a4;
+	color: white;
+}
+
+.toggle-indicator {
+	color: white;
+}
+
+.post-type-mbdb_book #wpbody-content .bulk-edit-row-post .inline-edit-col-right, .post-type-mbdb_book #wpbody-content .quick-edit-row-page .inline-edit-col-right {
+	width: 100%;
+}
+
+
+
+.cmb-repeat-group-wrap .cmb-row:not(:last-of-type){
+	border: none !important; 
+	}
+
+.cmb-td input {
+	float:left;
+}
+
+.cmb2-options-page .cmb2-metabox-title {
+	font-size: 1em;
+    padding: 5px;
+
+}
+.cmb-repeatable-group .cmb-group-title {
+	 background-color: rgb(197, 157, 185);
+    color: white;
+}
+
+
+.cmb-remove-row .dashicons.dashicons-arrow-down-alt2, .cmb-remove-row .dashicons.dashicons-arrow-up-alt2 {
+	font-size: 1em;
+	vertical-align: middle;
+}
+
+#side-sortables .cmb2-wrap>.cmb-field-list>.cmb-row, .inner-sidebar .cmb2-wrap>.cmb-field-list>.cmb-row {
+	padding: .5em 0;
+}
+
+#side-sortables .cmb2-wrap>.cmb-field-list>.cmb-row, .inner-sidebar .cmb2-wrap>.cmb-field-list>.cmb-row {
+	padding-bottom: 0;
+}
+
+#side-sortables 	.cmb-wrap  {
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+
+#side-sortables .cmb-th label:after {
+	border: 0px;
+	padding: 0px;
+}
+
+#side-sortables .cmb-th {
+	padding: 0px;
+}
+
+.postbox-container .cmb-row:not(:last-of-type) {
+	border: 0px;
+}
+
+
+.cmb-row {
+	margin: 0px;
+	padding: 0px;
+}
+
+div.cmb-row.cmb-type-text.cmb2-id--mbdb-author-sort-selection.table-layout  {
+	padding: 0px;
+ }
+/*
+#mbdb_shortcode_selector {
+	width: 45%;
+	float: left;
+	padding: 5px;
+}
+*/
+.shortcode_description, .shortcode_argument_description {
+	font-style: italic;
+	
+}
+
+/* only set on book edit page not the settings page */
+.post-type-mbdb_book  .cmb-td > p.cmb2-metabox-description {
+	font-style: italic;
+	color: #aaa;
+	padding-top: 0;
+	padding-bottom: 1em;
+}
+
+.fielddescription {
+color: #aaa;
+font-style: italic;
+margin: 0;
+}
+
+
+/* set book list multi check for book grid page to be horizontal */
+.cmb2-id--mbdb-book-grid-custom  ul.cmb2-checkbox-list,.cmb2-id--mbdb-book-grid-genre  ul.cmb2-checkbox-list, .cmb2-id--mbdb-book-grid-series  ul.cmb2-checkbox-list, .cmb2-id--mbdb-book-grid-tag  ul.cmb2-checkbox-list, .cmb2-id--mbdb-book-grid-publisher  ul.cmb2-checkbox-list,.cmb2-id--mbdb-book-grid-editor  ul.cmb2-checkbox-list, .cmb2-id--mbdb-book-grid-illustrator  ul.cmb2-checkbox-list, .cmb2-id--mbdb-book-grid-cover-artist  ul.cmb2-checkbox-list   {
+	/*display: inline-table;
+	margin-right: 10px; */
+	height: 105px;
+   border: 1px solid #ccc; 
+   overflow: auto;
+   padding: 10px;
+   font-size: small;
+   text-align: left;
+}
+
+
+
+/* indent nested group bys */
+.cmb2-id--mbdb-book-grid-genre-tag-group-by, .cmb2-id--mbdb-book-grid-tag-genre-group-by {
+	margin-left: 100px;
+}
+
+.cmb2-id--mbdb-book-grid-genre-group-by, .cmb2-id--mbdb-book-grid-tag-group-by {
+	margin-left: 50px;
+}
+
+
+
+
+/* set genre list multi check for book grid page to be horizontal 
+.cmb2-id--mbdb-book-grid-genre li {
+	display: inline-table;
+	margin-right: 10px;
+}
+
+/* set series list multi check for book grid page to be horizontal 
+.cmb2-id--mbdb-book-grid-series li {
+	display: inline-table;
+	margin-right: 10px;
+}
+*/
+
+/*.cmb2-id-mbdb-book-grid-slug-settings-title p.cmb2-metabox-description, .cmb2-id-mbdb-book-grid-template-settings-title 
+*/
+p.cmb2-metabox-description {
+	color: black;
+	font-style: normal;
+}
+
+.cmb2-metabox button.dashicons-before.dashicons-no-alt.cmb-remove-group-row {
+	left: -10px;
+}
+
+/* Import model pop up box */
+.mbdb_import_pop_up_black_overlay {
+  display: none; 
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80);
+}
+.mooberry-book-manager-settings_page_mbdb_import_export .mbdb_import_pop_up {
+  display: none; 
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 16px solid orange;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
+}

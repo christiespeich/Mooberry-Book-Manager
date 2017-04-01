@@ -1,0 +1,114 @@
+<?php
+//require_once '../helper-functions.php';
+
+$reserved_terms = array(
+		'attachment', 
+		'attachment_id', 
+		'author', 
+		'author_name', 
+		'calendar', 
+		'cat', 
+		'category', 
+		'category__and', 
+		'category__in', 
+		'category__not_in', 
+		'category_name', 
+		'comments_per_page', 
+		'comments_popup', 
+		'customize_messenger_channel', 
+		'customized', 
+		'cpage', 
+		'day', 
+		'debug', 
+		'error', 
+		'exact', 
+		'feed', 
+		'hour', 
+		'link_category', 
+		'm', 
+		'minute', 
+		'monthnum', 
+		'more', 
+		'name', 
+		'nav_menu', 
+		'nonce', 
+		'nopaging', 
+		'offset', 
+		'order', 
+		'orderby', 
+		'p', 
+		'page', 
+		'page_id', 
+		'paged', 
+		'pagename', 
+		'pb', 
+		'perm', 
+		'post', 
+		'post__in', 
+		'post__not_in', 
+		'post_format', 
+		'post_mime_type', 
+		'post_status', 
+		'post_tag', 
+		'post_type', 
+		'posts', 
+		'posts_per_archive_page', 
+		'posts_per_page', 
+		'preview', 
+		'robots', 
+		's', 
+		'search', 
+		'second', 
+		'sentence', 
+		'showposts', 
+		'static', 
+		'subpost', 
+		'subpost_id', 
+		'tag', 
+		'tag__and', 
+		'tag__in', 
+		'tag__not_in', 
+		'tag_id', 
+		'tag_slug__and', 
+		'tag_slug__in', 
+		'taxonomy', 
+		'tb', 
+		'term', 
+		'terms', 
+		'theme', 
+		'title', 
+		'type', 
+		'w', 
+		'withcomments', 
+		'withoutcomments', 
+		'year', 
+	);
+?>
+<html>
+<head>
+<title>Wordpress Reserved Terms</title>
+<style>
+ul{
+    width:400px;
+}
+li{
+    float:left;
+    margin:0 10px 10px 0;
+    width:175px;
+}
+li:nth-child(even){
+    margin-right:0;
+}
+</style>
+</head>
+<body>
+<h2>Wordpress Reserved Terms</h2>
+<ul id="reserved_terms" >
+<?php foreach ($reserved_terms as $term) { ?>
+	 <li> <?php echo $term; ?></li>
+<?php
+}
+?>
+</ul>
+</body>
+</html>

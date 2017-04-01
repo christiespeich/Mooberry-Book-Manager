@@ -98,7 +98,7 @@ class MBDB_License {
 		if (!array_key_exists('mbdb_options', $submenu)) {
 			return;
 		}
-		if (!mbdb_in_array_r('mbdb_license_keys', $submenu['mbdb_options'])) {
+		if (!$this->in_array_r('mbdb_license_keys', $submenu['mbdb_options'])) {
 			$sub_page_hook = add_submenu_page( 'mbdb_options', 
 							__( 'Mooberry Book Manager Extension License Keys', 'mooberry-book-manager' ), 
 							__('License Keys', 'mooberry-book-manager'), 
@@ -155,7 +155,9 @@ class MBDB_License {
 		$options = get_option('mbdb_license');
 		$id = $this->item_shortname . '_license_key';
 		echo "";
-		
+		if ( !array_key_exists( $id, $options ) ) {
+			$options[$id] = '';
+		}
 		$details = get_option( $this->item_shortname . '_license_active' );
 	
 		$show_deactivate = false;
@@ -527,6 +529,18 @@ class MBDB_License {
 
 	}
 	
+// multi-dimensional array searching
+private function in_array_r($needle, $haystack, $strict = false) {
+	 if ( !is_array($haystack) ) {
+		 return false;
+	 }
+		foreach ($haystack as $item) {
+			if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && $this->in_array_r($needle, $item, $strict))) {
+				return true;
+			}
+		}
 
+		return false;
+	}
 
 }
