@@ -639,7 +639,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			}
 			if ( in_array( $image_size, array( 'medium', 'large' ) ) ) {
                 $heights[ $image_size ] = get_option( $image_size . '_size_h' );
-				
 			} elseif ( isset( $_wp_additional_image_sizes[ $image_size ] ) ) {
                 $heights[ $image_size ] = $_wp_additional_image_sizes[ $image_size ]['height'];	
 			}
@@ -649,8 +648,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		$this->wp_size = '';
 		foreach ( $heights as $this->wp_size => $height ) {
+			
 			 if ( $height >= $this->cover_height ) {
-				break;
+				 //&& $widths[$this->wp_size] <= $height ) {
+					 if ( ( !array_key_exists( $this->wp_size, $_wp_additional_image_sizes) ) || ( array_key_exists( $this->wp_size, $_wp_additional_image_sizes) && !$_wp_additional_image_sizes[$this->wp_size]['crop'] ) ) {
+						break;
+					 }
 			}
 		}
 		
