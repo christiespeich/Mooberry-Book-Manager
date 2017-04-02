@@ -125,11 +125,11 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 			if ( function_exists( 'get_term_meta' ) ) {
 				$before = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description', true );
 				if ( $before != '' ) {
-					$grid_output = '<p>' . $before . '</p>' . $grid_output;
+					$grid_output = '<p>' . do_shortcode(esc_html($before)) . '</p>' . $grid_output;
 				}
 				$after = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description_bottom', true );
 				if ( $after != '' ) {
-					$grid_output = $grid_output . '<p>' . $after . '</p>';
+					$grid_output = $grid_output . '<p>' . do_shortcode(esc_html($after)) . '</p>';
 				}
 			}
 		}			
