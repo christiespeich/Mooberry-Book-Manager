@@ -175,6 +175,11 @@ function mbdb_update_versions() {
 	if ( version_compare( $current_version, '4.0.1', '<')) {
 		flush_rewrite_rules();
 	}
+	
+	if ( version_compare( $current_version, '4.0.2', '<')) {
+		update_4_0_2();
+	}
+
 
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
@@ -877,9 +882,9 @@ function update_4_0() {
 	global $wpdb;
 	
 	// update term meta
-	$wpdb->query('update wp_termmeta set meta_key = "mbdb_tax_grid_description" where meta_key like "%_book_grid_description"');
-	$wpdb->query('update wp_termmeta set meta_key = "mbdb_tax_grid_description_bottom" where meta_key like "%_book_grid_description_bottom"');
-	$wpdb->query('update wp_termmeta set meta_key = "mbdb_website" where meta_key like "mbdb_%_website"');
+	$wpdb->query('update ' . $wpdb->prefix . 'termmeta set meta_key = "mbdb_tax_grid_description" where meta_key like "%_book_grid_description"');
+	$wpdb->query('update ' . $wpdb->prefix . 'termmeta set meta_key = "mbdb_tax_grid_description_bottom" where meta_key like "%_book_grid_description_bottom"');
+	$wpdb->query('update ' . $wpdb->prefix . 'termmeta set meta_key = "mbdb_website" where meta_key like "mbdb_%_website"');
 	
 	// create seo options
 	$mbdb_options = get_option('mbdb_options');
@@ -893,8 +898,16 @@ function update_4_0() {
 	}
 	MBDB()->helper_functions->create_tax_grid_page ( $template );
 	flush_rewrite_rules();
-	
-	
 		
+}
+
+function update_4_0_2() {
+	global $wpdb;
+	
+	// update term meta (use the prefix this time)
+	$wpdb->query('update ' . $wpdb->prefix . 'termmeta set meta_key = "mbdb_tax_grid_description" where meta_key like "%_book_grid_description"');
+	$wpdb->query('update ' . $wpdb->prefix . 'termmeta set meta_key = "mbdb_tax_grid_description_bottom" where meta_key like "%_book_grid_description_bottom"');
+	$wpdb->query('update ' . $wpdb->prefix . 'termmeta set meta_key = "mbdb_website" where meta_key like "mbdb_%_website"');
+	
 }
 
