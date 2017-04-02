@@ -6,7 +6,7 @@
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
   *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *	 Version: 4.0.2
+  *	 Version: 4.0.3
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -27,7 +27,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 4.0.2
+  * @version 4.0.3
   */
   
  // Exit if accessed directly
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.0.2' );
+	define( 'MBDB_PLUGIN_VERSION', '4.0.3' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -66,6 +66,14 @@ if ( !defined('MBDB_GRID_COVER_HEIGHT_MIN') ) {
 	define( 'MBDB_GRID_COVER_HEIGHT_MIN', apply_filters('mbdb_book_grid_cover_min_height', 50 ) );
 }
 
+// This function is required for backwards compatibility with the extensions
+// that check for this function to exist to determine if Mooberry Book Manager is
+// installed.  This function is no longer used in version 4.0 because the activation
+// function is now inside a class
+// So this function doesn't have to do anything, it just has to exist
+function mbdb_activate() {
+	
+}
 
 /**
  * Include the core class responsible for loading all necessary components of the plugin.
@@ -460,11 +468,3 @@ function remove_tax_grid_from_page_links( $args ) {
 	return $args;
 }
 
-// This function is required for backwards compatibility with the extensions
-// that check for this function to exist to determine if Mooberry Book Manager is
-// installed.  This function is no longer used in version 4.0 because the activation
-// function is now inside a class
-// So this function doesn't have to do anything, it just has to exist
-function mbdb_activate() {
-	
-}

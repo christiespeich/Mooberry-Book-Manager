@@ -1336,8 +1336,13 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 					if ( $this->data_object->has_buy_links() ) {
 						$retailer_info = ' ' . sprintf( __('Available from %s.', 'mooberry-book-manager'), $this->data_object->get_retailer_list() );
 					}
+					
+					$summary = $this->data_object->summary;
+					if ( strlen($summary) > 150 ) {
+						$summary = substr( $summary, 0, 150 ) . '...';
+					}
 						
-					echo '<meta name="description" content="' . esc_attr( apply_filters('mbdb_book_meta_description', $series_info . $genre_info . '.' . $retailer_info, $this->data_object ) ) . ' ' . esc_attr( $this->data_object->summary) . '">';
+					echo '<meta name="description" content="' . esc_attr( apply_filters('mbdb_book_meta_description', $series_info . $genre_info . '.' . $retailer_info, $this->data_object ) ) . ' ' . esc_attr( $summary) . '">';
 				}
 				
 				if ( $this->data_object->has_cover() ) {
@@ -1370,7 +1375,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			
 					<meta property="og:url" content="<?php echo esc_attr($this->data_object->permalink); ?> " />
 					<meta property="og:title" content="<?php echo esc_attr($this->data_object->title); ?>" />
-					<meta property="og:description" content="<?php echo esc_attr($this->data_object->summary); ?>" />
+					<meta property="og:description" content="<?php echo esc_attr($summary); ?>" />
 			<?php
 				}
 				if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'twitter' ) ) {

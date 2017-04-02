@@ -25,6 +25,18 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		add_filter('tc_title_text', array( $this, 'title' ) );
 		add_filter('the_title', array( $this, 'title' ), 99, 2 );	
 		
+		add_filter('wpseo_opengraph_title', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_opengraph_url', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_opengraph_desc', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_opengraph_image', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_twitter_title', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_twitter_card_type', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_twitter_description', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_twitter_image', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_metadesc', array( $this, 'override_wp_seo_meta') );
+		
+		add_filter('wp_head', array($this, 'meta_tags') );
+		
 		
 	}
 	
@@ -125,11 +137,11 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 			if ( function_exists( 'get_term_meta' ) ) {
 				$before = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description', true );
 				if ( $before != '' ) {
-					$grid_output = '<p>' . do_shortcode(esc_html($before)) . '</p>' . $grid_output;
+					$grid_output = '<p>' . do_shortcode(($before)) . '</p>' . $grid_output;
 				}
 				$after = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description_bottom', true );
 				if ( $after != '' ) {
-					$grid_output = $grid_output . '<p>' . do_shortcode(esc_html($after)) . '</p>';
+					$grid_output = $grid_output . '<p>' . do_shortcode(($after)) . '</p>';
 				}
 			}
 		}			
@@ -232,6 +244,50 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		return $content;
 	}	
 	
+
+	public function override_wp_seo_meta( $tag ) {
+		$page_id = MBDB()->options->tax_grid_page;
+		global $post;
+		if ( is_page( $page_id) && $post->ID == $page_id ) {
+					return '';
+		}
+			return $tag;
+	}
+
+	public function meta_tags() {
+		
+		global $post;
+		global $wp_query;
+		$page_id = MBDB()->options->tax_grid_page;
+		if ( is_page( $page_id) && $post->ID == $page_id ) {
+			$title = $this->get_tax_title( '' );
+			$url = '';
+			$mbdb_term = '';
+			if ( isset( $wp_query->query_vars['the-taxonomy'] ) ) {
+					$mbdb_taxonomy = trim( urldecode( $wp_query->query_vars['the-taxonomy'] ), '/');
+					$term = get_term_by('slug', $mbdb_term, $mbdb_taxonomy);			
+					$taxonomy = get_taxonomy($mbdb_taxonomy);
+					$url = MBDB()->options->get_tax_grid_slug( $taxonomy->name );
+			}
+			if ( isset( $wp_query->query_vars['the-term'] ) ) {
+				$mbdb_term =  urldecode( $wp_query->query_vars['the-term'] );
+			}			
+			$site_name = get_bloginfo('name');
+			
+?>
+			<meta name="description" content="<?php echo esc_attr($title); ?>" />
+			<meta property="og:title" content="<?php echo esc_attr($title . ' | ' . $site_name); ?>" />
+			<meta property="og:url" content="<?php echo esc_attr(home_url( $url . '/' . $mbdb_term) ); ?>" />
+			<meta property="og:description" content="<?php echo esc_attr($title); ?>" />
+			
+			<meta name="twitter:card" content="summary">	
+			<meta name="twitter:description" content="<?php echo esc_attr($title); ?>" />
+			<meta name="twitter:title" content="<?php echo esc_attr($title. ' | ' . $site_name); ?>" />
+			<?php			
+		}
+	}
+
+
 
 	
 }
