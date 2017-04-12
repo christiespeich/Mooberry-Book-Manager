@@ -37,8 +37,17 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		
 		add_filter('wp_head', array($this, 'meta_tags') );
 		
-		
+		add_filter( 'wp_page_menu_args', array($this, 'hide_page_from_menu'), 999, 1 );		
 	}
+	
+	function hide_page_from_menu( $args ) {
+		$page_id = MBDB()->options->tax_grid_page;
+		if ( $page_id != '' )  {
+			$args['exclude'] .= $page_id; // comma separated IDs
+		}
+		return $args;
+	}
+
 	
 	
 	// Set up redirects to series/{series-name} based on query vars
