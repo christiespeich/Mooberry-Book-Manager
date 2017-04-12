@@ -184,6 +184,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.0.4 =
+* Fixed: error on License Activation screen when there's only one extension installed
+* Fixed: only return 1 book for book widget when used with multi-author extension
+
 = 4.0.3 = 
 * Fixed: Truncate meta description around 200 chars
 * Fixed: Add description, open graph, and twitter card meta tags to taxonomy grids
