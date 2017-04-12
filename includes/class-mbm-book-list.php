@@ -57,7 +57,10 @@ class MBDB_Book_List implements Countable, Iterator  {
 		}
 		
 		//error_log('splice books');
-		$books = array_slice( $books, 0, $limit );
+		//$books = array_slice( $books, 0, $limit );
+		$this->limit_books($limit);
+		
+		
 		//error_log('create array');
 		//error_log(print_r($books, true));
 		foreach( $books as $book ) {
@@ -74,14 +77,15 @@ class MBDB_Book_List implements Countable, Iterator  {
 			}
 		}
 		//error_log('done');
-	
-		
-		
-							
+					
 	}
 	
 	private function load_books_array( $books, $randomize, $limit ) { 
 	
+	}
+
+	public function limit_books( $limit ) {
+		$this->books = array_slice( $this->books, 0, $limit );
 	}
 	
 	public function count() {

@@ -76,6 +76,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 		$this->books = array();
 		$filter_bookIDs = apply_filters('mbdb_book_widget_filter_bookIDs', null, $instance, $this);
 		//$book_list = new MBDB_Book_List();
+		$limit = 1;
 		switch ($this->widgetType) {
 		
 			case "newest":
@@ -116,6 +117,14 @@ class mbdb_book_widget2 extends mbdb_widget {
 		}
 	
 		$this->books =  apply_filters('mbdb_book_widget_book', $this->books, $this->widgetType);
+		// even though book list slices the array, do it again because filters may have chnged teh array (ie MA)
+		if ( count($this->books) > $limit ) {
+			if ( is_array($this->books) ) {
+				 $this->books = array_splice($this->books, 0, $limit);
+			} else {
+				$this->books->limit_books($limit);
+			}
+		}			
 		return $this->books;
 	}
 	
