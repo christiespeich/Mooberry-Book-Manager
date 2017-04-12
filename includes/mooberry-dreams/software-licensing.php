@@ -155,6 +155,9 @@ class MBDB_License {
 		$options = get_option('mbdb_license');
 		$id = $this->item_shortname . '_license_key';
 		echo "";
+		if ( !is_array($options) )  {
+			$options = array($options);
+		}
 		if ( !array_key_exists( $id, $options ) ) {
 			$options[$id] = '';
 		}
