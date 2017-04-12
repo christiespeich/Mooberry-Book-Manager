@@ -52,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		
 	
-		if ( $id == 0 ) {
+		if ( $id == '0' ) {
 			parent::__construct();
 	
 			return;
@@ -60,6 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		
 		$book = wp_cache_get( $id, 'mbdb_book' );
+		
 		if ( $book !== false ) {
 	
 			$properties = get_object_vars( $book );
@@ -74,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		$book = $this->db_object->get( $id );	
 		
-		parent::__construct( $book, $id );
+		parent::__construct( $book, $book->ID );
 		
 		if ( $book != null ) {           
 			

@@ -88,7 +88,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 	public function get( $book_id, $cache_results = false ) {
 		//print_r('pulling from database: ' . $book_id);
 		// if book_id isn't an integer, get book by slug
-		if ( intval($book_id) != $book_id ) {
+		
+		if ( !is_numeric($book_id)  ) {
 			$book = $this->get_by_slug( $book_id, $cache_results );
 			$book_id = $book->ID;
 		} else {
