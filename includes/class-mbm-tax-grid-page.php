@@ -43,6 +43,9 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 	function hide_page_from_menu( $args ) {
 		$page_id = MBDB()->options->tax_grid_page;
 		if ( $page_id != '' )  {
+			if ( !empty($args['exclude']) ) {
+				$args['exclude'] .= ',';
+			} 
 			$args['exclude'] .= $page_id; // comma separated IDs
 		}
 		return $args;
