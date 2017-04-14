@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 4.0.3  
+Stable tag: 4.0.5  
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.0.5 =
+* Fixed: Issue causing widgets to be removed. Widgets may still be removed after THIS update, however they should not be going forward. I apologize for the inconvenience
+
 = 4.0.4 =
 * Fixed: error on License Activation screen when there's only one extension installed
 * Fixed: only return 1 book for book widget when used with multi-author extension
