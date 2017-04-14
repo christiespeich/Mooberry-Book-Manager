@@ -13,7 +13,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 	// 3.1 -- added customize_selected_refresh for WP 4.5
 	function __construct( ) {
 		
-		$this->widget_ops = array('classname' => 'Mooberry_Book_Manager_Book_Widget', 
+		$this->widget_ops = array('classname' => 'mbdb_book_widget2', 
 							'description' => __('Shows the cover of the book of your choosing with a link to the book page', 'mooberry-book-manager'),
 							 'customize_selective_refresh' => true,);
 		$this->title = __('Mooberry Book Manager Book',  'mooberry-book-manager');

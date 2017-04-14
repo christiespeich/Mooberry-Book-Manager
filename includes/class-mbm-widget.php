@@ -17,7 +17,6 @@ abstract class mbdb_widget extends WP_Widget {
 	
 	// display the admin form
 	function form( $instance ) {
-		print_r('simpleforn');
 		$defaults = array( 'mbdb_widget_title' => '',
 						'mbdb_widget_show_title'	=> 'yes',
 						'mbdb_widget_cover_size' => 100,
