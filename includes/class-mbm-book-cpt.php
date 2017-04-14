@@ -1433,7 +1433,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			global $post;
 			return $post->post_title;
 		} else {
-			set_book( $attr[ 'book' ] );
+			$this->set_book( $attr[ 'book' ] );
 			return $this->data_object->title;
 		}		
 	}
