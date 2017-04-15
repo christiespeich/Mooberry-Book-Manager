@@ -74,8 +74,22 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		
 		$book = $this->db_object->get( $id );	
+		// if ( $book == null ) {
+			// $book_id = null;
+		// } else {
+			
+			// $book_id = $book->book_id;
+		// }
+		if ( !is_numeric($id) ) {
+			if ( $book != null ) {
+				$id = $book->ID;
+			} else {
+				$id = null;
+			}
+		}
 		
-		parent::__construct( $book, $book->ID );
+		parent::__construct( $book, $id );
+		
 		
 		if ( $book != null ) {           
 			
