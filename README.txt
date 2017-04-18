@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 4.0.6  
+Stable tag: 4.0.7  
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.0.7 =
+* Fixed: Issue with affiliate code not using before position properly
+
 = 4.0.6 =
 * Fixed: Issue caused by version 4.0.5 preventing books from being saved
 
