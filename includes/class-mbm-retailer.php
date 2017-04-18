@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->name = '';
 		$this->logo = '';
 		$this->affiliate_code = '';
-		$this->affiliate_code_position = '';
+		$this->affiliate_position = '';
 		$this->id = '';
 		
 		if ( is_array( $data ) ) {
@@ -53,8 +53,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				if (array_key_exists( 'affiliate_code', $data ) ) {
 					$this->affiliate_code = $data['affiliate_code'];
 				}
-				if ( array_key_exists( 'affiliate_code_position', $data ) ) { 
-					$this->affiliate_code_position = $data['affiliate_code_position'];
+				if ( array_key_exists( 'affiliate_position', $data ) ) { 
+					$this->affiliate_position = $data['affiliate_position'];
 				}
 			}
 		} else {
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					$this->name = MBDB()->options->retailers[$data]->name;
 					$this->logo = MBDB()->options->retailers[$data]->logo;
 					$this->affiliate_code = MBDB()->options->retailers[$data]->affiliate_code;
-					$this->affiliate_code_position = MBDB()->options->retailers[$data]->affiliate_code_position;
+					$this->affiliate_position = MBDB()->options->retailers[$data]->affiliate_position;
 				} 
 			} 
 		}

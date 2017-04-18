@@ -152,7 +152,7 @@ class Mooberry_Book_Manager_Options {
 							'image' => $retailer->logo,
 							'name' => $retailer->name,
 							'affiliate_code' => $retailer->affiliate_code,
-							'affiliate_code_position' => $retailer->affiliate_code_position,
+							'affiliate_position' => $retailer->affiliate_position,
 						);
 		$this->add_element( 'retailers', $retailer_array);
 		
