@@ -452,7 +452,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 	}
 	
 	public function get_newest_books( ) {
-		$sql = 'select b.*, p.post_title, p.post_name  from wp_mbdb_books as b 
+		$sql = 'select DISTINCT b.*, p.post_title, p.post_name  from wp_mbdb_books as b 
 		join wp_posts as p on b.book_id = p.ID 
 		where p.post_status="publish" and
 		b.release_date in 

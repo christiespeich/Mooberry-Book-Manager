@@ -179,6 +179,11 @@ function mbdb_update_versions() {
 	if ( version_compare( $current_version, '4.0.2', '<')) {
 		update_4_0_2();
 	}
+	
+	if ( version_compare( $current_version, '4.0.8', '<')) {
+		
+		mbdb_set_up_roles();
+	}
 
 
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
