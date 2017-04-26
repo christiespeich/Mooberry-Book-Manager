@@ -525,13 +525,12 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			} 
 		}
 		
-		// ensure that the sort field is a column in the table
+	/* 	// ensure that the sort field is a column in the table
 		// and that the direction is either ASC or DESC
 		if ( $sort != 'custom' ) {
 			$sort = $this->validate_orderby( $sort );
 			$order = $this->validate_order( $order );
-		}
-		
+		} */
 		
 		
 		// SELECTION VARIABLES 
@@ -707,10 +706,10 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		
 		
 		
-		$select = apply_filters('mbdb_book_get_ordered_selection_select', $select);
-		$join = apply_filters('mbdb_book_get_ordered_selection_join', $join);
-		$where = apply_filters('mbdb_book_get_ordered_selection_where', $where, $selection_ids, $selection, $book_ids);
-		$orderby = apply_filters('mbdb_book_get_ordered_selection_orderby', $orderby, $sort, $order);
+		$select = apply_filters('mbdb_book_get_ordered_selection_select', $select, $selection, $selection_ids, $sort, $order, $book_ids, $taxonomy, $include_drafts, $limit, $offset, $random);
+		$join = apply_filters('mbdb_book_get_ordered_selection_join', $join, $selection, $selection_ids, $sort, $order, $book_ids, $taxonomy, $include_drafts, $limit, $offset, $random);
+		$where = apply_filters('mbdb_book_get_ordered_selection_where', $where, $selection_ids, $selection, $book_ids, $sort, $order, $taxonomy, $include_drafts, $limit, $offset, $random);
+		$orderby = apply_filters('mbdb_book_get_ordered_selection_orderby', $orderby, $sort, $order, $selection, $selection_ids, $book_ids, $taxonomy, $include_drafts, $limit, $offset, $random);
 		
 		//$sql = "$select b.book_id, p.post_title, b.cover, b.release_date, b.cover_id FROM  $table  as b  $join $where $orderby $order ";
 		

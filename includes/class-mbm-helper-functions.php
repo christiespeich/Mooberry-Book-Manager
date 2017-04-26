@@ -299,9 +299,9 @@ public function set_admin_notice( $message, $type, $key) {
 	function make_dropdown($dropdownID, $options, $selected = null, $include_empty = 'yes', $empty_value = -1, $name = '' ) {
 		$html = '<select id="' . $dropdownID . '"';
 		if ($name != '' ) {
-			$html .= ' name="' . $name;
+			$html .= ' name="' . $name . '"';
 		}
-		$html .= '">';
+		$html .= '>';
 		if ($include_empty == 'yes') {
 			$html .= '<option value="' . esc_attr($empty_value) . '"></option>';
 		}
