@@ -2183,7 +2183,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 				} else {
 					$symbol = $edition->currency;
 				}
-				$output_html .= ': <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
+				/* translators: This colon (:) is displayed between the edition name and price. It's translatable so that you may change the spacing as desired. */
+				$output_html .= __(':', 'mooberry-book-manager') . ' <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
 				/* translators: %1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s */
 				$output_html .= sprintf( _x('%1$s %2$s', '%1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s', 'mooberry-book-manager'), $symbol, $price);
 				$output_html .= '</span></span>';
@@ -2195,7 +2196,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 					$output_html .= '<strong>' . __('ISBN:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-isbn">' . $edition->isbn . '</span><br/>';
 				}
 				if ($is_height && $is_width) {
-					$output_html .= '<strong>' . __('Size:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-size"><span class="mbm-book-editions-height">' . number_format_i18n($edition->width, 2) . '</span>x<span class="mbm-book-editions-width">' . number_format_i18n($edition->height, 2) . '</span> <span class="mbm-book-editions-unit">' . $edition->unit . '</span></span><br/>';
+					$output_html .= '<strong>' . __('Size:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-size"><span class="mbm-book-editions-height">' . number_format_i18n($edition->width, 2) . '</span> x <span class="mbm-book-editions-width">' . number_format_i18n($edition->height, 2) . '</span> <span class="mbm-book-editions-unit">' . $edition->unit . '</span></span><br/>';
 				}
 				if ($is_pages) {
 					$output_html .= '<strong>' . __('Pages:', 'mooberry-book-manager') . '</strong> <span class="mbm-book-editions-length">' . number_format_i18n($edition->length) . '</span>';
