@@ -296,10 +296,15 @@ public function set_admin_notice( $message, $type, $key) {
 	}
 
 	
-	function make_dropdown($dropdownID, $options, $selected = null, $include_empty = 'yes', $empty_value = -1, $name = '' ) {
+	function make_dropdown($dropdownID, $options, $selected = null, $include_empty = 'yes', $empty_value = -1, $name = '', $args = array() ) {
 		$html = '<select id="' . $dropdownID . '"';
 		if ($name != '' ) {
 			$html .= ' name="' . $name . '"';
+		}
+		if ( is_array($args) && count($args) > 0 ) {
+			foreach ( $args as $attr => $value ) {
+				$html .= ' ' . $attr . '="' . esc_attr( $value ) . '" ';
+			}
 		}
 		$html .= '>';
 		if ($include_empty == 'yes') {

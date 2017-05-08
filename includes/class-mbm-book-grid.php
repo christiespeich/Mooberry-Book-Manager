@@ -103,7 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			
 			$this->set_cover_height();
 			
-			$this->get_book_list();
+		//	$this->get_book_list();
 		}
 		
 	}
@@ -210,13 +210,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 	}
 	
-	public function get_book_list() {
+	public function get_book_list( $check_cache = true ) {
 		
 		if ( $this->book_list == null ) {
 		
-			if ( $this->id != 0 ) {
+			if ( $this->id != 0 && $check_cache ) {
+				
 				$this->book_list = wp_cache_get( $this->id, 'mbdb_book_grid' );
 			} else {
+			
 				$this->book_list = false;
 			}
 			if ( $this->book_list === false ) { 
@@ -662,7 +664,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		
 		// start going through the levels
-		
+		if ( $this->book_list == null ) {
+			$this->get_book_list();
+		}
 		return $this->display_grid_level( $this->book_list, 0 );
 		
 	}
