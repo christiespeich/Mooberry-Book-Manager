@@ -196,7 +196,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	}
 	
 	function mbdb_book_page_settings( $mbdb_settings_metabox ) {
-		
+		$this->title = __('MBM Book Page Settings', 'mooberry-book-manager');
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 'mbdb_book_book_page_settings_title',
 				'name'	=>	__('BOOK PAGE SETTINGS', 'mooberry-book-manager'),
@@ -310,7 +310,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	 *  @access public
 	 */
 	function mbdb_grid_settings($mbdb_settings_metabox) {
-	
+		$this->title = __('MBM Book Grid Settings', 'mooberry-book-manager');
 		$mbdb_settings_metabox->add_field(array(
 					'id'	=> 'mbdb_book_grid_default_settings_title',
 					'name'	=>	__('BOOK GRID DEFAULT SETTINGS', 'mooberry-book-manager'),
@@ -437,7 +437,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	 *  @access public
 	 */
 	function mbdb_publishers($mbdb_settings_metabox) {
-
+		$this->title = __('MBM Publishers Settings', 'mooberry-book-manager');
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'publishers',
 				'type'        => 'group',
@@ -500,7 +500,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	 *  @access public
 	 */
 	function mbdb_editions($mbdb_settings_metabox) {
-	
+		$this->title = __('MBM Editions Settings', 'mooberry-book-manager');	
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'editions',
 				'type'        => 'group',
@@ -551,7 +551,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	 *  @access public
 	 */
 	function mbdb_general_settings($mbdb_settings_metabox) {
-		
+		$this->title = __('MBM General Settings', 'mooberry-book-manager');
 		$mbdb_settings_metabox->add_field(array(
 				'id'	=> 'mbdb_book_image_settings_title',
 				'name'	=>	__('IMAGE SETTINGS', 'mooberry-book-manager'),
@@ -614,6 +614,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
 		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
 		*/
+		$this->title = __('MBM Retailers Settings', 'mooberry-book-manager');
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'retailers',
 				'type'        => 'group',
@@ -685,6 +686,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
 		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
   */
+  		$this->title = __('MBM Book Formats Settings', 'mooberry-book-manager');
 		$mbdb_settings_metabox->add_field(array(
 				'id'          => 'formats',
 				'type'        => 'group',
@@ -744,6 +746,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	 *  @access public
 	 */
 	public function  mbdb_social_media($metabox) {	
+		$this->title = __('MBM Social Media Settings', 'mooberry-book-manager');
 		$metabox->add_field(array(
 				'id'	=>	'social_media',
 				'type'	=> 	'group',
@@ -826,12 +829,14 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	
 
 	public function import_export(  ) {
+		
 		if ( $this->page != 'mbdb_import_export' ) {
 			return;
 		}
 		if (wp_doing_ajax()) {
 			return;
 		}
+		$this->title = __('MBM Book Import/Export Settings', 'mooberry-book-manager');
 		$this->show_metabox = false;
 		
 		if ( $this->tab == '' ) {
