@@ -24,16 +24,22 @@ class MBDB_Book_List implements Countable, Iterator  {
 		$this->books = array();
 		$this->db_object = MBDB()->books_db;
 		$this->cursor = -1;
-		if ( $book_list_type == 'newest' ) {
-			$books = $this->db_object->get_newest_books();
+		
+		if ( is_array($book_list_type ) && array_key_exists( 'books' , $book_list_type ) ) {
+				$books = $book_list_type[ 'books' ];
+				$this->full_count = count($books);
 		} else {
-			if ( $orderby == 'random' ) {
-				$sort = 'random';
+			if ( $book_list_type == 'newest' ) {
+				$books = $this->db_object->get_newest_books();
 			} else {
-				$sort = array( $orderby, $order );
+				if ( $orderby == 'random' ) {
+					$sort = 'random';
+				} else {
+					$sort = array( $orderby, $order );
+				}
+				$books = $this->db_object->get_ordered_selection( $book_list_type, $selection_ids, $sort, $book_filter, $selection_filter, $include_drafts, $book_limit, $offset );
+				
 			}
-			$books = $this->db_object->get_ordered_selection( $book_list_type, $selection_ids, $sort, $book_filter, $selection_filter, $include_drafts, $book_limit, $offset );
-			
 		}
 		//error_log('got books');
 		

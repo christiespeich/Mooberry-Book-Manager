@@ -667,6 +667,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		if ( $this->book_list == null ) {
 			$this->get_book_list();
 		}
+		
 		return $this->display_grid_level( $this->book_list, 0 );
 		
 	}
