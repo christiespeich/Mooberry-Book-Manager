@@ -16,7 +16,7 @@ abstract class MBDB_CPT {
 		
 		//	$orderby = $this->validate_orderby( $orderby );
 		if ($orderby == null) {
-			$orderby = $this->primary_key;
+			$orderby = 'p.id'; //$this->primary_key;
 		}
 		//$order = $this->db_object->validate_order( $order );
 		
