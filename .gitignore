@@ -223,3 +223,6 @@ export.html
 export.zip
 export.mbdb
 export.txt
+/nbproject/private/
+nbproject/project.properties
+nbproject/project.xml
