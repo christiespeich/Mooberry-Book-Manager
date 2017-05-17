@@ -751,7 +751,6 @@ public function search_where( $where ) {
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
 		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where);
 		   
-		
 		//$where = parent::search_where( $where );
 	}
 	

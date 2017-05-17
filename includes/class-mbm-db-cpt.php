@@ -291,7 +291,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database implements iMooberry_Book_Mana
 		
 		global $wpdb;
 		$table = $this->table_name();
-		if( is_search() ) {
+		if( is_search() && strpos( $join, $table ) == false ) {
 			$join .= ' LEFT JOIN ' . $table . ' ON ' . $wpdb->posts . '.ID = ' . $table . '.'  . $this->primary_key . ' ';
 	  }
 
