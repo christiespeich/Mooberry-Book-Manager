@@ -78,7 +78,6 @@ function displayChange () {
 		// books to show and convert _ to -
 		var books = jQuery('#_mbdb_book_grid_books').val().replace('_','-');
 
-		
 		// show the one that's selected
 		jQuery('.cmb2-id--mbdb-book-grid-' + books).show();
 		// hide the multichecks that aren't selected

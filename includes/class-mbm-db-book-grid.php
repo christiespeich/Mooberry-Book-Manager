@@ -48,7 +48,7 @@ class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
 			
 			if ( array_key_exists( '_mbdb_book_grid_' . $book_grid->books, $postmeta ) ) {
 				
-				$filter_selection = unserialize($postmeta['_mbdb_book_grid_' . $book_grid->books][0]);
+				$filter_selection = maybe_unserialize($postmeta['_mbdb_book_grid_' . $book_grid->books][0]);
 				$book_grid->filter_selection = $filter_selection;
 				
 			} else {

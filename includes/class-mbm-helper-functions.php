@@ -78,14 +78,18 @@ public function set_admin_notice( $message, $type, $key) {
 	
 	public function create_array_from_objects( $objects, $value_property, $add_empty = false, $empty_key = '0', $empty_value = '' ) { 
 		$new_array = array();
-		if ( $add_empty ) {
-			$new_array[ $empty_key ] = $empty_value;
-		}
+		
 		foreach ( $objects as $id => $object) {
 			if ( property_exists( $object, $value_property ) ) {
 				$new_array[ $id ] = $object->{$value_property};
 			}
 		}
+		natcasesort( $new_array );
+		if ( $add_empty ) {
+			$new_array = array( $empty_key => $empty_value ) + $new_array;
+		}
+	
+		
 		return $new_array;		
 	}
 	/*
@@ -356,6 +360,7 @@ public function set_admin_notice( $message, $type, $key) {
 		// $defaults = array( 'taxonomy' => 'category' );
 		$args = wp_parse_args( $args, array( 'orderby'           => 'name', 
 											'order'             => 'ASC', 
+											'hide_empty'	=>	'false',
 											) 
 								);
 		

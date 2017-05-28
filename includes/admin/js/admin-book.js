@@ -58,13 +58,11 @@ jQuery( document ).ready(function() {
 }); // document ready
 
 function mbdb_save() {
-	console.log('mbdb_save');
 	MBMisDirty = false;
 	MBMPublishClicked = true;
 }
 
 function mbdb_input_change() {	
-console.log('input change');
 	MBMisDirty = true;
 }
 
