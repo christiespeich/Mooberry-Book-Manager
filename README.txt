@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.7   
-Stable tag: 4.0.11  
+Stable tag: 4.0.12  
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.0.12 =
+* Fixed: Retailers, Publishers, and Formats now display in alphabetical order in drop down lists
+* Fixed: Series, Tags, Genres, Cover Artists, Editors, and Illustrators now included in Book Grid selection even if no books have been added to them yet
+
 = 4.0.11 =
 * Fixed: Bug with backwards compatibility with MA
 
