@@ -537,7 +537,8 @@ function make_array( $element ) {
 
 	// add shortcode button to editor
 	function add_book_grid_shortcode_button( $editor_id ) {
-		if (!in_array(get_post_type(), array( 'page', 'post', 'mbdb_book') ) ) {
+		$allowed_post_types =  apply_filters( 'mbdb_types_allowed_to_have_shortcode_button', array( 'page', 'post', 'mbdb_book') );
+		if (!in_array(get_post_type(), $allowed_post_types ) ) {
 			return;
 		}	
 		$args = array('posts_per_page' => -1,
