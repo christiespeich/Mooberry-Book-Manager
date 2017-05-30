@@ -76,10 +76,15 @@ public function set_admin_notice( $message, $type, $key) {
 	}
 		
 	
-	public function create_array_from_objects( $objects, $value_property, $add_empty = false, $empty_key = '0', $empty_value = '' ) { 
+	public function create_array_from_objects( $objects, $value_property, $add_empty = false, $empty_key = '0', $empty_value = '', $id_property = '' ) { 
 		$new_array = array();
 		
 		foreach ( $objects as $id => $object) {
+			if ( $id_property != '' ) {
+				if ( property_exists( $object, $id_property ) ) {
+					$id = $object->{$id_property};
+				}
+			}
 			if ( property_exists( $object, $value_property ) ) {
 				$new_array[ $id ] = $object->{$value_property};
 			}
