@@ -468,3 +468,14 @@ function remove_tax_grid_from_page_links( $args ) {
 	return $args;
 }
 
+add_action( 'mbdb_thesis_page_template', 'mbdb_intercept_template', 1 );
+function mbdb_intercept_template( $template ) {
+	global $post, $thesis;
+	if ( $post->post_type == 'mbdb_book' ) {
+		//remove_filter( 'template_include', array($thesis->skin, '_skin') );
+		return MBDB()->options->book_page_template;
+		
+	}
+	return $template;
+	
+}
