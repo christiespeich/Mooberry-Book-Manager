@@ -205,6 +205,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		return rtrim( $output, $delimiter );
 	}
 	
+	public function get_edition_format_list( $delimiter = ', ' ) {
+		$output = '';
+		foreach ( $this->editions as $edition ) { 
+			$output .= $edition->format->name . $delimiter;
+		}
+		return rtrim( $output, $delimiter );
+	}
+	
 	public function to_json() {
 		//parent::to_json();
 		$properties =  get_object_vars($this);
