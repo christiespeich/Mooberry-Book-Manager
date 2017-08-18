@@ -585,9 +585,9 @@ public function set_admin_notice( $message, $type, $key) {
 		}
 	}
 
-	public function create_tax_grid_page( $template = 'single.php' ) {
+	public function insert_tax_grid_page( $template ) {
 		// create new page
-		$id = wp_insert_post( array(
+		return wp_insert_post( array(
 						'post_content' => '[mbdb_tax_grid]',
 						'post_title' => __('MBM Tax Grid Page. Do NOT remove this page or edit it except to change template.', 'mooberry-book-manager'),
 						'post_excerpt' => '[mbdb_tax_grid]',
@@ -597,13 +597,17 @@ public function set_admin_notice( $message, $type, $key) {
 						'ping_status' => 'closed',
 						)
 				);
+		
+	}
+	
+	public function create_tax_grid_page( $template = 'single.php' ) {
+		$id = $this->insert_tax_grid_page( $template );
 		if ( $id != 0 ) {
 			// assign to setting
 			MBDB()->options->set_tax_grid_page($id);
 		}
 		return $id;
 	}
-	
 	
 }
 	

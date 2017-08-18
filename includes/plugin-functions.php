@@ -102,11 +102,6 @@ function mbdb_activate_single_site() {
 		
 		$mbdb_options['override_wpseo'] = array_keys( MBDB()->helper_functions->override_wpseo_options() );
 		
-		update_option( 'mbdb_options', $mbdb_options );
-		
-		
-		// SET DEFAULT OPTIONS FOR GRID SLUGS
-		MBDB()->helper_functions->set_default_tax_grid_slugs();
 		
 		// set tax grid page			
 		if ( MBDB()->options->tax_grid_page == '' ) {
@@ -114,10 +109,15 @@ function mbdb_activate_single_site() {
 			if ( $template == '' ) {
 				$template = 'single.php';
 			}
-			MBDB()->helper_functions->create_tax_grid_page ( $template );
+			MBDB()->helper_functions->insert_tax_grid_page ( $template );
 		}
+		$mbdb_options['mbdb_tax_grid_page'] = $tax_grid_id;
+		
+		update_option( 'mbdb_options', $mbdb_options );
 		
 		
+		// SET DEFAULT OPTIONS FOR GRID SLUGS
+		MBDB()->helper_functions->set_default_tax_grid_slugs();
 		
 
 	}
@@ -132,7 +132,7 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 	
 	global $blog_id;
 
-	if ( is_plugin_active_for_network( 'mooberry-book-manager-4.0/mooberry-book-manager.php' ) ) {
+	if ( is_plugin_active_for_network( 'mooberry-book-manager/mooberry-book-manager.php' ) ) {
 		$old_blog = $blog_id;
 		switch_to_blog( $blog );
 
