@@ -467,4 +467,4 @@ function remove_tax_grid_from_page_links( $args ) {
 	}
 	return $args;
 }
-
+	

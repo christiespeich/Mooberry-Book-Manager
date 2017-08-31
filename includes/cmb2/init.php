@@ -47,7 +47,7 @@
                   (or any code in the included files)
                   or things might explode!
 *************************************************************************/
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! class_exists( 'CMB2_Bootstrap_2231', false ) ) {
 
 	/**
