@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.8   
-Stable tag: 4.0.14  
+Stable tag: 4.0.15  
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,12 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.0.15 =
+* Fixed: Output paragraph and styling on tax grid descriptions
+* Fixed: Display H1-H6 headings in the summary as inline
+* Fixed: Tax Grid page creation no longer broken
+* Fixed: Backwards compatibility issues when upgrading from very old versions
+
 = 4.0.14 =
 * Added: Compatibility with future updates
 
