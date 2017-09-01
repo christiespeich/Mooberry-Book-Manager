@@ -173,7 +173,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	
 	
 	// TODO: add slug as possible parameter for creating a book object
-	protected function set_data_object( $id ) {
+	protected function set_data_object( $id = 0) {
 		//$this->data_object = new Mooberry_Book_Manager_Book( $id );
 		$this->data_object = MBDB()->book_factory->create_book( $id );
 		

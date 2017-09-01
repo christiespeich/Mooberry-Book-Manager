@@ -149,11 +149,11 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 			if ( function_exists( 'get_term_meta' ) ) {
 				$before = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description', true );
 				if ( $before != '' ) {
-					$grid_output = '<p>' . do_shortcode(($before)) . '</p>' . $grid_output;
+					$grid_output = '<p>' . $this->get_wysiwyg_output(($before)) . '</p>' . $grid_output;
 				}
 				$after = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description_bottom', true );
 				if ( $after != '' ) {
-					$grid_output = $grid_output . '<p>' . do_shortcode(($after)) . '</p>';
+					$grid_output = $grid_output . '<p>' . $this->get_wysiwyg_output(($after)) . '</p>';
 				}
 			}
 		}			
@@ -297,6 +297,18 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 			<meta name="twitter:title" content="<?php echo esc_attr($title. ' | ' . $site_name); ?>" />
 			<?php			
 		}
+	}
+	
+	protected function get_wysiwyg_output( $content ) {
+		global $wp_embed;
+
+		$content = $wp_embed->autoembed( $content );
+		$content = $wp_embed->run_shortcode( $content );
+		$content = wpautop( $content );
+		$content = do_shortcode( $content );
+
+
+		return $content;
 	}
 
 

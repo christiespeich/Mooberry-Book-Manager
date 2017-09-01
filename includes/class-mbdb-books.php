@@ -16,7 +16,7 @@ class MBDB_Books {
 		return $this->db_object->get( $bookID );
 	}
 	
-	public function get_ordered_selection( $selection, $selection_ids, $sort, $book_ids, $current_group ) {
+	public function get_ordered_selection( $selection, $selection_ids, $sort, $book_ids = null, $current_group = null ) {
 		return $this->db_object->get_ordered_selection( $selection, $selection_ids, $sort, $book_ids, $current_group );
 	}
 	
@@ -77,6 +77,9 @@ class MBDB_Books {
 		$this->db_object->empty_table();
 	}
 	
+	public function import() {
+		$this->db_object->import();
+	}
 
 
 }

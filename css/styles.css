@@ -37,6 +37,10 @@
 		
 	}
  
+	#mbm-book-page .mbm-book-summary h1, #mbm-book-page .mbm-book-summary h2, #mbm-book-page .mbm-book-summary h3, #mbm-book-page .mbm-book-summary h4, #mbm-book-page .mbm-book-summary h5, #mbm-book-page .mbm-book-summary h6 {
+		display: inline;
+	}
+	
 	/* #mbm-book-main { */
 	#mbm-book-page .mbm-book-summary, #mbm-book-page .mbm-book-details-outer, #mbm-book-page .mbm-book-excerpt {
 		/* margin: 0px 15px 15px 260px;  */

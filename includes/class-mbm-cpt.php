@@ -30,7 +30,7 @@ abstract class Mooberry_Book_Manager_CPT {
 	protected $args;
 	
 	abstract public function create_metaboxes();
-	abstract protected function set_data_object( $id );
+	abstract protected function set_data_object( $id = 0 );
 	
 	public function __construct() {
 		

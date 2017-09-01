@@ -211,7 +211,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	
 	public function get_book_list( $check_cache = true ) {
-		
 		if ( $this->book_list == null ) {
 		
 			if ( $this->id != 0 && $check_cache ) {
@@ -222,7 +221,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				$this->book_list = false;
 			}
 			if ( $this->book_list === false ) { 
-		 
 				$this->book_list = $this->generate_book_list();
 				if ( $this->id != 0 ) {
 					wp_cache_set( $this->id, $this->book_list, 'mbdb_book_grid' );
@@ -358,7 +356,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	 *  @param [array] $book_ids      optional list of book_ids to filter by, useful
 	 *  								for add-on plugins to add on to grid (ie MA)
 	 *  
-	 *  @return array of books for this group
+	 *  @return [array] books for this group
 	 *  
 	 *  @access public
 	 */
@@ -378,8 +376,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		switch ( $groups[$level] ) {
 			// break the recursion by actually getting the books
 			case 'none':
-			//print_r('get grid books');
-			
+					
 				$books =  new MBDB_Book_List( $selection, $this->order_by, $this->sort, $selected_ids, $current_group, apply_filters('mbdb_book_grid_book_ids_filter', $book_ids, $books, $level, $groups, $current_group, $selection, $selected_ids, $this->order_by, $book_ids, $this ) );
 				
 				break;
@@ -632,6 +629,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		// figure out the best size
 		$heights = array();
 		$image_sizes = get_intermediate_image_sizes();
+		//print_r($image_sizes);
 		global $_wp_additional_image_sizes;
 		
 		foreach ( $image_sizes as $image_size ) {

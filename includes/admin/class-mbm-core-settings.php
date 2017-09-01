@@ -82,11 +82,11 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		
 		// show migrate book grids page if version is 3.4.2
 		$import_grids = get_option('mbdb_migrate_grids');
-		if ($import_grids === true) {
+		//if ($import_grids === true) {
 			$this->pages['mbdb_migrate_grids'] = array ( 'page_title'	=>	__('Mooberry Book Manager Book Grid Migration', 'mooberry-book-manager'),
 														'menu_title'	=>	__('Migrate Book Grids', 'mooberry-book-manager')
 												);
-		}
+		//}
 		
 		$this->pages = apply_filters('mbdb_settings_pages', $this->pages);
 		
