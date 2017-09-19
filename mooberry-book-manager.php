@@ -467,4 +467,11 @@ function remove_tax_grid_from_page_links( $args ) {
 	}
 	return $args;
 }
+
+// add_action('init', 'mbdb_add_comments_to_books', 1); 
+// function mbdb_add_comments_to_books() {
+		// $options = get_option('mbdb_options');
+		// $options['comments_on_books'] = false;
+		// update_option('mbdb_options', $options);
+// }
 	

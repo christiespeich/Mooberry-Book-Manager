@@ -86,7 +86,20 @@ class Mooberry_Book_Manager_Options {
 		$this->save_options( );
 		
 	}
-		
+	
+	public function add_item( $key, $value ) {
+		$this->options[ $key ] = $value;
+		$this->save_options();
+	}
+	
+	public function get_item( $key, $default ) {
+		if ( array_key_exists( $key, $this->options ) && $this->options[ $key ] != '' ) {
+			return $this->options[ $key ];
+		} else {
+			return $default;
+		}
+	}
+	
 	protected function get_tax_grid_page() {
 		return $this->get_option_value( 'mbdb_tax_grid_page', true, '');
 	}

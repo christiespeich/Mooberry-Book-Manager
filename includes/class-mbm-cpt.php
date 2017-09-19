@@ -346,6 +346,7 @@ abstract class Mooberry_Book_Manager_CPT {
 			return $override;
 		}
 		
+		//error_log(print_r($a, true));
 		// v3.1 by adding meta_remove filter, now this is sometimes called without the value element
 		// add the element as blank text
 		// this is necessary (vs just exiting the function) because otherwise if a field is left blank

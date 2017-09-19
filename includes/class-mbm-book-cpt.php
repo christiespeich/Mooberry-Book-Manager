@@ -61,11 +61,11 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			add_filter('wpseo_metadesc', array( $this, 'override_wp_seo_meta') );
 		}
 			
-		add_action('init', array( $this, 'allow_comments') );
+		//add_action('init', array( $this, 'allow_comments') );
 		
 		
 		add_filter('template_include', array( $this, 'single_template') );
-		add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'columns' ) );
+		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'columns' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'create_taxonomy_metaboxes' ) );
 		add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'mbd_metabox'), 10 );
 		add_action( 'admin_init', array( $this, 'switch_tax_ids_and_name' ) );
@@ -201,6 +201,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	
 	// Remove the author and comments columns from the CPT list
 	public function columns( $columns ) {
+		//print_r($columns);
 		unset($columns['author']);
 		unset($columns['comments']);
 	
@@ -229,7 +230,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 									'-1'		=>	__('— No Publisher —', 'mooberry-book-manager'),
 								) + $publishers;
 		
-		$this->bulk_edit_fields = array(
+		$this->bulk_edit_fields = apply_filters('mbdb_book_bulk_edit_felds', array(
 					'_mbdb_publisherID'	=>	array(
 							'fieldset_class' => 'inline-edit-col-left',
 							'fieldset_style' => '',
@@ -237,9 +238,10 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 							'field'	=>	MBDB()->helper_functions->make_dropdown('_mbdb_publisherID', $bulk_edit_publishers, '0', 'no',  -1, '_mbdb_publisherID' ),
 							'description' => '',
 							),
-					);
+					)
+				);
 		
-		$this->quick_edit_fields = array(
+		$this->quick_edit_fields = apply_filters('mbdb_book_quick_edit_felds', array(
 					'_mbdb_publisherID'	=>	array(
 							'fieldset_class' => 'inline-edit-col-left',
 							'fieldset_style' => '',
@@ -261,7 +263,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 							'field' => '<input type="number" value="" step="any" min="0" name="_mbdb_series_order" id="_mbdb_series_order" style="width:3.5em;">',
 							'description' => '',
 							),
-					);
+					)
+				);
 		
 		
 		
@@ -1392,8 +1395,11 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	
 	function allow_comments( $comments ) {
 		//print_r(MBDB()->options->comments_on_books);
+		
 		if ( MBDB()->options->comments_on_books=='' || !MBDB()->options->comments_on_books ) {
 			remove_post_type_support( $this->post_type, 'comments' );
+		} else {
+			add_post_type_support( $this->post_type, 'comments');
 		}
 	}
 	
