@@ -198,9 +198,9 @@ abstract class mbdb_widget extends WP_Widget {
 		
 		if (isset($url) && $url != '') {
 		
-			do_action('mbdb_widget_pre_image', $url);
+			do_action('mbdb_widget_pre_image', $url, $book);
 			echo '<div style="' . apply_filters('mbdb_book_widget_cover_span_style', 'padding:0;margin:0;', $instance) . '"><img class="mbm-widget-cover" style="' . apply_filters('mbdb_book_widget_cover_style', 'width:' . esc_attr($this->coverSize) . 'px;margin:10px 0;', $instance) . '" src="' . esc_url($url) . '" ' . $alt . '  /> </div>';
-			do_action('mbdb_widget_post_image', $url);
+			do_action('mbdb_widget_post_image', $url, $book->id);
 		}
 		
 		if ($book->permalink != '') {
