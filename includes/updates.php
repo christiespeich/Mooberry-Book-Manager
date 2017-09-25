@@ -169,7 +169,7 @@ function mbdb_update_versions() {
 	}
 	
 	if ( version_compare( $current_version, '4.0', '<')) {
-		update_4_0();
+		mbdb_update_4_0();
 	}
 	
 	if ( version_compare( $current_version, '4.0.1', '<')) {
@@ -177,12 +177,16 @@ function mbdb_update_versions() {
 	}
 	
 	if ( version_compare( $current_version, '4.0.2', '<')) {
-		update_4_0_2();
+		mbdb_update_4_0_2();
 	}
 	
 	if ( version_compare( $current_version, '4.0.8', '<')) {
 		
 		mbdb_set_up_roles();
+	}
+	
+	if ( version_compare( $current_version, '4.0.16', '<')) {
+		mbdb_update_4_0_16();
 	}
 
 
@@ -883,7 +887,7 @@ function mbdb_3_4_12_update() {
 	
 }
 
-function update_4_0() {
+function mbdb_update_4_0() {
 	global $wpdb;
 	
 	// update term meta
@@ -906,7 +910,7 @@ function update_4_0() {
 		
 }
 
-function update_4_0_2() {
+function mbdb_update_4_0_2() {
 	global $wpdb;
 	
 	// update term meta (use the prefix this time)
@@ -916,3 +920,8 @@ function update_4_0_2() {
 	
 }
 
+function mbdb_update_4_0_16() {
+	$options = get_option('mbdb_options');
+	$options['comments_on_books'] = true;
+	update_option('mbdb_options', $options);
+}

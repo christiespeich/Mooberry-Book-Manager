@@ -6,7 +6,7 @@
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
   *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *	 Version: 4.0.15
+  *	 Version: 4.0.16
   *	 Text Domain: mooberry-book-manager
   *	 Domain Path: languages
   *
@@ -27,7 +27,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 4.0.15
+  * @version 4.0.16
   */
   
  // Exit if accessed directly
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.0.15' );
+	define( 'MBDB_PLUGIN_VERSION', '4.0.16' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -467,4 +467,11 @@ function remove_tax_grid_from_page_links( $args ) {
 	}
 	return $args;
 }
+
+// add_action('init', 'mbdb_add_comments_to_books', 1); 
+// function mbdb_add_comments_to_books() {
+		// $options = get_option('mbdb_options');
+		// $options['comments_on_books'] = false;
+		// update_option('mbdb_options', $options);
+// }
 	

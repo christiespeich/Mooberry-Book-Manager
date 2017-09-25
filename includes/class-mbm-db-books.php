@@ -248,7 +248,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return $this->get_data( 'mbdb_illustrator', $book_id );
 	}
 	
-	private function get_sort_fields( $sort ) {
+	protected function get_sort_fields( $sort ) {
 		switch ($sort) {
 			case 'titleA':
 				$sort_fields = array ( 'post_title', 'ASC' );
@@ -422,7 +422,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		
 	}
 	
-	private function update_taxonomy( $taxonomy_name, $terms_array, $book_id ) {
+	protected function update_taxonomy( $taxonomy_name, $terms_array, $book_id ) {
 		$term_id = 0;
 		$errors = array();
 		$taxonomy = get_taxonomy( $taxonomy_name );
