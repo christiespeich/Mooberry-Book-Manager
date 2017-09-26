@@ -818,8 +818,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			}
 			$content .= '<div class="mbdb_grid_image">';
 			$content = apply_filters('mbdb_book_grid_pre' . $filter . '_image', $content, $book->id, $cover, $book, $this->id );
-			$content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->id)) . '"><img  
-			 itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($cover) . '" ' . $alt . ' /></a>';
+			$content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->id)) . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url($cover) . '" ' . $alt . ' /></a>';
 			$content = apply_filters('mbdb_book_grid_post' . $filter . '_image', $content, $book->id, $cover, $book);
 			$content .= '</div>';
 		} else {
