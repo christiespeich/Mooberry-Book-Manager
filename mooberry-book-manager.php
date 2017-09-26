@@ -6,11 +6,11 @@
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
   *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *	 Version: 4.0.17
-  *	 Text Domain: mooberry-book-manager
-  *	 Domain Path: languages
+  *  Version: 4.0.18
+  *  Text Domain: mooberry-book-manager
+  *  Domain Path: languages
   *
-  *	 Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
+  *  Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
   *
   *  This program is free software; you can redistribute it and/or modify
   *  it under the terms of the GNU General Public License, version 2, as 
@@ -27,7 +27,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 4.0.17
+  * @version 4.0.18
   */
   
  // Exit if accessed directly
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.0.17' );
+	define( 'MBDB_PLUGIN_VERSION', '4.0.18' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
