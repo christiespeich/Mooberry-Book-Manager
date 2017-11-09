@@ -699,7 +699,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		$content = '<div class="mbm-book-grid-div" style="padding-left:' . (15 * $l) . 'px;">';
 		
-		if (count($mbdb_books) == 0) {
+		if ( $mbdb_books == null || count($mbdb_books) == 0) {
 			// No books found at this level
 			do_action('mbdb_book_grid_no_books_found');
 			$content .= apply_filters('mbdb_book_grid_books_not_found', $content . __('Books not found', 'mooberry-book-manager'));

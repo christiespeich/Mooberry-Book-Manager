@@ -179,25 +179,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 	}
 	
-	public function kses_allowed_html( $allowed_tags, $context ) {
-		
-		if ( $context != $this->post_type ) {
-			return $allowed_tags;
-		}
-		// start with post allowed tags
-		global $allowedposttags;
-		
-		$allowed_tags = $allowedposttags;
-		$allowed_tags['iframe'] = array(
-			'src'             => array(),
-			'height'          => array(),
-			'width'           => array(),
-			'frameborder'     => array(),
-			'allowfullscreen' => array(),
-		);
-		
-		return $allowed_tags;
-	}
+
 	
 	// Remove the author and comments columns from the CPT list
 	public function columns( $columns ) {
@@ -903,7 +885,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	public function display_cover_column( $field_args, $field ) {
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			$this->set_data_object( $post->ID );
+		//	$this->set_data_object( $post->ID );
+			$this->set_data_object( $this->data_object->id );
 		}
 		$data = $this->data_object->cover;
 		//$data = $this->get_meta_data( '', 0, array( 'field_id' => $field_args['id'] ) );
@@ -917,7 +900,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			$this->set_data_object( $post->ID );
+			//$this->set_data_object( $post->ID );
+			$this->set_data_object( $this->data_object->id );
 		}
 		$data = '';
 		if ( $this->data_object->publisher != '' ) {
@@ -939,7 +923,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	public function display_release_date_column( $field_args, $field ) {
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			$this->set_data_object( $post->ID );
+			//$this->set_data_object( $post->ID );
+			$this->set_data_object( $this->data_object->id );
 		}
 		$book = $field->args['display_cb'][0]->data_object;
 		$data = $field->value;
