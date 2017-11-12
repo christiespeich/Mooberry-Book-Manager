@@ -2223,12 +2223,14 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		if ( $post ) {
 			$book_id = $post->ID;
 			$title = $post->post_title;
+			$slug = $post->post_name;
 		} else {
 			$book_id = 0;
 			$title = '';
+			$slug = '';
 		}
 		$attr = shortcode_atts(array(
-								'book' => $book_id), $attr);
+								'book' => $slug), $attr);
 		
 		
 		$this->set_book( $attr['book'] );

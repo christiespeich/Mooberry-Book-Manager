@@ -28,7 +28,7 @@ abstract class MBDB_CMB_CPT implements iMooberry_Book_Manager_Data_Storage_Behav
 		} else {
 			$postmeta = $id;
 			
-			$object = parent::get( $postmeta['id'], $cache_results ); //get_post ( $postmeta['id'] );
+			//$object = parent::get( $postmeta['id'], $cache_results ); //get_post ( $postmeta['id'] );
 			
 		}
 		$object = $this->add_post_meta( $object, $postmeta );
