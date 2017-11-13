@@ -105,7 +105,6 @@ abstract class Mooberry_Book_Manager_CPT {
 		);
 		
 		$this->args = wp_parse_args( $this->args, $defaults );
-		
 		register_post_type( $this->post_type, apply_filters( $this->post_type . '_cpt', $this->args )	);
 		
 		foreach ( $this->taxonomies as $taxonomy ) {
@@ -276,7 +275,28 @@ abstract class Mooberry_Book_Manager_CPT {
 		}
 		return $flag;
 	}
-	
+
+	public function kses_allowed_html( $allowed_tags, $context ) {
+		
+		if ( $context != $this->post_type ) {
+			return $allowed_tags;
+		}
+		// start with post allowed tags
+		global $allowedposttags;
+		
+		$allowed_tags = $allowedposttags;
+		$allowed_tags['iframe'] = array(
+			'src'             => array(),
+			'height'          => array(),
+			'width'           => array(),
+			'frameborder'     => array(),
+			'allowfullscreen' => array(),
+		);
+		
+		return $allowed_tags;
+	}
+
+
 	
 	/******************************************************************************
 		RETRIEVE DATA FOR META BOXES
@@ -307,7 +327,8 @@ abstract class Mooberry_Book_Manager_CPT {
 		global $post;
 		
 		if ( $this->data_object == null || $object_id != $post->ID || $this->data_object->id != $post->ID) {
-			$this->set_data_object( $post->ID );
+//			$this->set_data_object( $post->ID );
+			$this->set_data_object( $object_id );
 		}
 		
 		// only override the fields in the table
