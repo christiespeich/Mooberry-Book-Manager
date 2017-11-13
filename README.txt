@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
-Tested up to: 4.8   
-Stable tag: 4.0.18  
+Tested up to: 4.9
+Stable tag: 4.0.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,7 +184,11 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
-= 4.0.18
+= 4.0.19 =
+* Updated: Compliant with WP 4.9: allows shortcodes in widgets without using global $post
+* Various bugs/refactoring
+
+= 4.0.18 =
 * Issues with previous update being recognized by wordpress
 
 = 4.0.17 =
