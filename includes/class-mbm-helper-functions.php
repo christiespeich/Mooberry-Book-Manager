@@ -16,7 +16,40 @@ class Mooberry_Book_Manager_Helper_Functions {
 	public static function get_enqueue_version( $file ) {
 		return date("ymd-Gis", filemtime( $file ));
 	}
-	
+
+	/**
+	 *  Returns the blog timezone
+	 *
+	 * Gets timezone settings from the db. If a timezone identifier is used just turns
+	 * it into a DateTimeZone. If an offset is used, it tries to find a suitable timezone.
+	 * If all else fails it uses UTC.
+	 *
+	 * @return DateTimeZone The blog timezone
+	 */
+	public function get_blog_timezone() {
+
+		$tzstring = get_option( 'timezone_string' );
+		$offset   = get_option( 'gmt_offset' );
+
+		//Manual offset...
+		//@see http://us.php.net/manual/en/timezones.others.php
+		//@see https://bugs.php.net/bug.php?id=45543
+		//@see https://bugs.php.net/bug.php?id=45528
+		//IANA timezone database that provides PHP's timezone support uses POSIX (i.e. reversed) style signs
+		if( empty( $tzstring ) && 0 != $offset && floor( $offset ) == $offset ){
+			$offset_st = $offset > 0 ? "-$offset" : '+'.absint( $offset );
+			$tzstring  = 'Etc/GMT'.$offset_st;
+		}
+
+		//Issue with the timezone selected, set to 'UTC'
+		if( empty( $tzstring ) ){
+			$tzstring = 'UTC';
+		}
+
+		$timezone = new DateTimeZone( $tzstring );
+		return $timezone;
+	}
+
 	function format_date($field) {
 		if ($field == null or $field == '') {
 			return $field;
