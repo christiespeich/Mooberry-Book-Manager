@@ -179,25 +179,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 	}
 	
-	public function kses_allowed_html( $allowed_tags, $context ) {
-		
-		if ( $context != $this->post_type ) {
-			return $allowed_tags;
-		}
-		// start with post allowed tags
-		global $allowedposttags;
-		
-		$allowed_tags = $allowedposttags;
-		$allowed_tags['iframe'] = array(
-			'src'             => array(),
-			'height'          => array(),
-			'width'           => array(),
-			'frameborder'     => array(),
-			'allowfullscreen' => array(),
-		);
-		
-		return $allowed_tags;
-	}
+
 	
 	// Remove the author and comments columns from the CPT list
 	public function columns( $columns ) {
@@ -903,7 +885,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	public function display_cover_column( $field_args, $field ) {
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			$this->set_data_object( $post->ID );
+		//	$this->set_data_object( $post->ID );
+			$this->set_data_object( $this->data_object->id );
 		}
 		$data = $this->data_object->cover;
 		//$data = $this->get_meta_data( '', 0, array( 'field_id' => $field_args['id'] ) );
@@ -917,7 +900,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			$this->set_data_object( $post->ID );
+			//$this->set_data_object( $post->ID );
+			$this->set_data_object( $this->data_object->id );
 		}
 		$data = '';
 		if ( $this->data_object->publisher != '' ) {
@@ -939,7 +923,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	public function display_release_date_column( $field_args, $field ) {
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			$this->set_data_object( $post->ID );
+			//$this->set_data_object( $post->ID );
+			$this->set_data_object( $this->data_object->id );
 		}
 		$book = $field->args['display_cb'][0]->data_object;
 		$data = $field->value;
@@ -1415,20 +1400,31 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 		if ( $slug == '' ) {
 			global $post;
-			if ( !isset($this->data_object) || $this->data_object->id != $post->ID ) {
-				$this->set_data_object( $post->ID );
+			if ( $post == null ) {
+				$book_id = 0;
+			} else {
+				$book_id = $post->ID;
+			}
+			if ( !isset($this->data_object) || $this->data_object->id != $book_id ) {
+				$this->set_data_object( $book_id );
 			}
 		} else {
 			
 			if ( !isset($this->data_object) || $this->data_object->slug != $slug ) {
+				$object = MBDB()->books_db->get_by_slug( $slug );
+				if ($object) {
+					$slug = $object->ID;
+				} else {
+					$slug = 0;
+				}
 				$this->set_data_object( $slug );
 			}
 		}
 	}
 	
 	
-	private function output_blank_data($classname, $blank_output) {
-		return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html($blank_output) . '</span></span>');
+	private function output_blank_data($classname, $blank_output, $book = null) {
+		return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html($blank_output) . '</span></span>', $book);
 	}
 	 
 	public function shortcode_title( $attr, $content ) {
@@ -1437,7 +1433,11 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 								
 		if ( $attr[ 'book' ] == '' ) {
 			global $post;
-			return $post->post_title;
+			if ( $post == null ) {
+				return '';
+			} else {
+				return $post->post_title;
+			}
 		} else {
 			$this->set_book( $attr[ 'book' ] );
 			return $this->data_object->title;
@@ -1486,7 +1486,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$this->set_book( $attr[ 'book' ] );
 		
 		if ( $this->data_object->summary == '' ) {
-			return $this->output_blank_data( 'summary', $attr[ 'blank' ] );
+			return $this->output_blank_data( 'summary', $attr[ 'blank' ], $this->data_object );
 		} 
 		//error_log('summary');
 		$output = '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">';
@@ -1494,7 +1494,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	
 		$output .= '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>';
 
-		return apply_filters('mbdb_shortcode_summary', $output);
+		return apply_filters('mbdb_shortcode_summary', $output, $this->data_object);
 	
 	}
 
@@ -1806,7 +1806,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 	}
 	
-	public function output_buylinks( $buylinks, $attr ) {
+	public function output_buylinks( $buylinks, $attr, $book_id = 0 ) {
 		$classname = 'mbm-book-buy-links';
 //error_log('output_buylinks');
 		$buy_links_html = '';
@@ -1828,9 +1828,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			$retailer = $mbdb_buylink->retailer;
 		
 						// 3.5 this filter for backwards compatibility
-						$mbdb_buylink = apply_filters('mbdb_buy_links_output', $mbdb_buylink, $mbdb_buylink->retailer );
+						$mbdb_buylink = apply_filters('mbdb_buy_links_output', $mbdb_buylink, $mbdb_buylink->retailer, $book_id );
 						// 3.5 add affiliate codes
-						$mbdb_buylink = apply_filters('mbdb_buy_links_pre_affiliate_code', $mbdb_buylink, $mbdb_buylink->retailer);
+						$mbdb_buylink = apply_filters('mbdb_buy_links_pre_affiliate_code', $mbdb_buylink, $mbdb_buylink->retailer, $book_id);
 						// backwards compatibility with multi-author?!?!
 						// will have to convert to arrays
 						//error_log('make array');
@@ -1844,7 +1844,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 						
 						
 						// this filter strictly for backwards compatibility with MA ??
-						$retailer_array = apply_filters('mbdb_buy_links_retailer_pre_affiliate_code', $retailer_array, $mbdb_buylink_array);
+						$retailer_array = apply_filters('mbdb_buy_links_retailer_pre_affiliate_code', $retailer_array, $mbdb_buylink_array, $book_id);
 						// convert array back to an object
 						//error_log('back to object');
 						$retailer = MBDB()->helper_functions->array_to_object( $retailer_array, $retailer);
@@ -1860,7 +1860,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 								$mbdb_buylink->link .= $retailer->affiliate_code;
 							}
 						}		
-						$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $retailer);
+						$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $retailer, $book_id);
 						//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
 						
 						// 3.5.6
@@ -1913,7 +1913,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			return $this->output_blank_data( 'buy-links', $attr[ 'blank' ] );
 		}
 		
-		return $this->output_buylinks( $book->buy_links, $attr);							
+		return $this->output_buylinks( $book->buy_links, $attr, $book->id);							
 		
 	}
 
@@ -2120,7 +2120,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$output_html = '<div class="mbm-book-links">';
 		if ( $book->has_buy_links() ) {
 			$attr2['label'] = $attr['buylabel'];
-			$output_html .= $this->output_buylinks($book->buy_links, $attr2);
+			$output_html .= $this->output_buylinks($book->buy_links, $attr2, $book->id);
 		}
 		
 		if ( $book->has_download_links() ) {
@@ -2220,52 +2220,62 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	public function shortcode_book( $attr, $content ) {
 		
 		global $post;
-		
+		if ( $post ) {
+			$book_id = $post->ID;
+			$title = $post->post_title;
+			$slug = $post->post_name;
+		} else {
+			$book_id = 0;
+			$title = '';
+			$slug = '';
+		}
 		$attr = shortcode_atts(array(
-								'book' => $post->ID), $attr);
+								'book' => $slug), $attr);
+		
 		
 		$this->set_book( $attr['book'] );
+		$book = $attr['book'];
 		
-		$book_page_layout = '<div id="mbm-book-page" itemscope itemtype="http://schema.org/Book"><meta itemprop="name" content="' . esc_attr($post->post_title) . '" >';
+		$book_page_layout = '<div id="mbm-book-page" itemscope itemtype="http://schema.org/Book"><meta itemprop="name" content="' . esc_attr($title) . '" >';
 		//error_log('subtitile');
 		if ( $this->data_object->subtitle != '' ) {
-			$book_page_layout .= '<h3>[book_subtitle blank=""]</h3>';
+			$book_page_layout .= '<h3>[book_subtitle blank="" book="' . $book . '"]</h3>';
 		}
 		// v 3.0 for customizer
 		//$book_page_layout .= '<div id="mbm-left-column">';
 		//error_log('book cover');
-			$book_page_layout .= '[book_cover]';
+			$book_page_layout .= '[book_cover book="' . $book . '"]';
 	//error_log('start links');
 			$book_page_layout .= '<div id="mbm-book-links1">';
 			//$is_links_data = mbdb_get_links_data();
 			if ( $this->data_object->has_buy_links() ) {
-				$book_page_layout .= '[book_buylinks  align="horizontal"]';
+				$book_page_layout .= '[book_buylinks  align="horizontal" book="' . $book . '"]';
 			}
 	
 			if ( $this->data_object->has_download_links() ) {
-				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '"]';
+				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '" book="' . $book . '"]';
 			}
 			
 			$book_page_layout .= '</div>';	
 	//error_log('end links');
 			if ( !$this->data_object->is_standalone() ) {
-				$book_page_layout .= '[book_serieslist before="' . __('Part of the','mooberry-book-manager') . ' " after=" ' . __('series:','mooberry-book-manager') . ' " delim="list"]';
+				$book_page_layout .= '[book_serieslist before="' . __('Part of the','mooberry-book-manager') . ' " after=" ' . __('series:','mooberry-book-manager') . ' " delim="list"  book="' . $book . '"]';
 			}
  /*	TO DO */		
  //error_log('editions');
 		if ( $this->data_object->has_editions() ) {
-				$book_page_layout .= '[book_editions blank="" label="' . __('Editions:', 'mooberry-book-manager') . '"]';
+				$book_page_layout .= '[book_editions blank="" label="' . __('Editions:', 'mooberry-book-manager') . '" book="' . $book . '"]';
 			}
 		//error_log('goodreads');
 			if ( $this->data_object->gooreads != '' ) {
-				$book_page_layout .= '[book_goodreads  ]';
+				$book_page_layout .= '[book_goodreads   book="' . $book . '"]';
 			}
 			//error_log('summary');
 		// v 3.0 for customizer
 		//$book_page_layout .= '</div><div id="mbm-middle-column">';
-		if ( $this->data_object->summary != '' ) {
-			$book_page_layout .= '[book_summary blank=""]';
-		}
+	//	if ( $this->data_object->summary != '' ) {
+			$book_page_layout .= '[book_summary blank=""  book="' . $book . '"]';
+	//	}
 		
 	
 		// v3.0 convert to simple true/false so that the if statement with ||
@@ -2286,32 +2296,32 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			$book_page_layout .= '<div class="mbm-book-details-outer">';
 							$book_page_layout .= '<div class="mbm-book-details">';
 			if ($is_published ) {
-				//$book_page_layout .= '<span class="mbm-book-details-published-label">' . __('Published:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-published-data">[book_published format="default" blank=""]</span><br/>';
-				$book_page_layout .= '<span class="mbm-book-details-published-data">[book_published format="default" blank=""]</span><br/>';
+				//$book_page_layout .= '<span class="mbm-book-details-published-label">' . __('Published:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-published-data">[book_published format="default" blank="" book="' . $book . '"]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-published-data">[book_published format="default" blank="" book="' . $book . '"]</span><br/>';
 			}
 			
 			if ($is_publisher  ) {
-				$book_page_layout .= '<span class="mbm-book-details-publisher-label">' . __('Publisher:','mooberry-book-manager') . '</span> <span class="mbm-book-details-publisher-data">[book_publisher  blank=""]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-publisher-label">' . __('Publisher:','mooberry-book-manager') . '</span> <span class="mbm-book-details-publisher-data">[book_publisher  blank="" book="' . $book . '"]</span><br/>';
 			}
 			
 			if ($is_editor  ) {
-				$book_page_layout .= '<span class="mbm-book-details-editors-label">' . __('Editors:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-editors-data">[book_editor delim="comma" blank=""]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-editors-label">' . __('Editors:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-editors-data">[book_editor delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
 			
 			if ($is_illustrator ) {
-				$book_page_layout .= '<span class="mbm-book-details-illustrators-label">' . __('Illustrators:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-illustrators-data">[book_illustrator delim="comma" blank=""]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-illustrators-label">' . __('Illustrators:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-illustrators-data">[book_illustrator delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
 			
 			if ($is_cover_artist ) {
-				$book_page_layout .= '<span class="mbm-book-details-cover-artists-label">' . __('Cover Artists:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-cover-artists-data">[book_cover_artist delim="comma" blank=""]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-cover-artists-label">' . __('Cover Artists:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-cover-artists-data">[book_cover_artist delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
 						
 			if ($is_genre ) {
-				$book_page_layout .= '<span class="mbm-book-details-genres-label">' . __('Genres:','mooberry-book-manager') . '</span> <span class="mbm-book-details-genres-data">[book_genre delim="comma" blank=""]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-genres-label">' . __('Genres:','mooberry-book-manager') . '</span> <span class="mbm-book-details-genres-data">[book_genre delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
 			
 			if ($is_tag ) {
-				$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __('Tags:','mooberry-book-manager') . '</span> <span class="mbm-book-details-tags-data">[book_tags  delim="comma" blank=""]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __('Tags:','mooberry-book-manager') . '</span> <span class="mbm-book-details-tags-data">[book_tags  delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
 			
 			$book_page_layout = apply_filters('mbdb_extra_book_details', $book_page_layout);
@@ -2322,18 +2332,18 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		
 		
 		if ( $this->data_object->has_excerpt() ) {
-			$book_page_layout .= '[book_excerpt label="' . __('Excerpt:', 'mooberry-book-manager') . '" length="1000"  blank="" ]';
+			$book_page_layout .= '[book_excerpt label="' . __('Excerpt:', 'mooberry-book-manager') . '" length="1000"  blank=""  book="' . $book . '"]';
 		} 
 	
 		// v 3.0 for customizer
 		//$book_page_layout .= '</div><div id="mbm-right-column"></div>';
 	//error_log('reviews');
 		if ( $this->data_object->has_reviews() ) {
-			$book_page_layout .= '<span>[book_reviews  blank="" label="' . __('Reviews:', 'mooberry-book-manager') . '"]</span><br/>';
+			$book_page_layout .= '<span>[book_reviews  blank="" label="' . __('Reviews:', 'mooberry-book-manager') . '" book="' . $book . '"]</span><br/>';
 		}
 		//error_log('additonal info');
 		if ( $this->data_object->additional_info != '' ) {
-			$book_page_layout .= '[book_additional_info]';
+			$book_page_layout .= '[book_additional_info book="' . $book . '"]';
 		}
 		//error_log('links 2');
 		// only show 2nd set of links if exceprt is more than 1500 characters long
@@ -2341,14 +2351,14 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		if ( strlen($this->data_object->excerpt) > 1500 && $has_links ) {
 			$book_page_layout .= '<div id="mbm-book-links2">';
 			if ( $this->data_object->has_buy_links() ) {
-				$book_page_layout .= '[book_buylinks  align="horizontal"]';
+				$book_page_layout .= '[book_buylinks  align="horizontal" book="' . $book . '"]';
 			}
 	
 			if ( $this->data_object->has_download_links() ) {
-				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '"]';
+				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '" book="' . $book . '"]';
 			}
 			$book_page_layout .= '</div>';
-			//$book_page_layout .= '<div id="mbm-book-links2">[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal"  blank="" blanklabel=""]</div>';
+			//$book_page_layout .= '<div id="mbm-book-links2">[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal"  blank="" blanklabel="" book="' . $book . '"]</div>';
 		}
 		//error_log('end links 2');
 		$book_page_layout .= '</div> <!-- mbm-book-page -->';
@@ -2358,7 +2368,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$content .= stripslashes($book_page_layout); 
 		$content = preg_replace('/\\n/', '<br/>', $content);
 		
-		$content = apply_filters('mbdb_book_content', $content);
+		$content = apply_filters('mbdb_book_content', $content, $book_id );
 		$content = do_shortcode($content);
 
 		//return do_shortcode($content);

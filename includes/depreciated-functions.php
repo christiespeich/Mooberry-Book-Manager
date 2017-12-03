@@ -353,7 +353,7 @@ function mbdb_get_book_ID( $slug = '' ) {
 			return $post->ID;
 		} 
 	} else {
-	//	$book = MBDB()->books->get_by_slug($slug); 
+		//$book = MBDB()->books->get_by_slug($slug);
 $book = null;
 		if ( $book ) {
 			return $book->book_id;

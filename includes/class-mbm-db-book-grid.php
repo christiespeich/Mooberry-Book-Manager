@@ -8,33 +8,9 @@ class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
 		$this->post_type = 'mbdb_book_grid';
 	}
 	
-	// gets all data for a book grid
-	// only this class knows how everything is stored in the datbase
-	// so when another class needs a book grid, we need to get all the info
-	// and return it as an object
-	// id can be an id from the posts table
-	// or it can be an array of postmeta fields if coming from the preview button
-	public function get( $id, $cache_results = true ) {
 	
-		if ( !is_array( $id ) ) {
-			$book_grid = parent::get( $id, $cache_results );
-		
-			if ( $book_grid == null ) {
-				return null;
-			}
-			// TODO add cachign?
-			$postmeta = get_post_meta( $id );
-		} else {
-			$postmeta = $id;
-			
-			$book_grid = parent::get( $postmeta['id'], $cache_results ); //get_post ( $postmeta['id'] );
-			
-		}
-		$book_grid = $this->add_post_meta( $book_grid, $postmeta );
-		return $book_grid;
-	}
 	
-	private function add_post_meta( $book_grid, $postmeta = null ) {
+	protected function add_post_meta( $book_grid, $postmeta = null ) {
 		
 		if ( $postmeta == null ) {
 			$postmeta = get_post_meta( $book_grid->ID );
