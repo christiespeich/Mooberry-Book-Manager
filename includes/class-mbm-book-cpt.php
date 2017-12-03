@@ -1423,8 +1423,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	}
 	
 	
-	private function output_blank_data($classname, $blank_output) {
-		return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html($blank_output) . '</span></span>');
+	private function output_blank_data($classname, $blank_output, $book = null) {
+		return apply_filters('mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html($blank_output) . '</span></span>', $book);
 	}
 	 
 	public function shortcode_title( $attr, $content ) {
@@ -1486,7 +1486,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$this->set_book( $attr[ 'book' ] );
 		
 		if ( $this->data_object->summary == '' ) {
-			return $this->output_blank_data( 'summary', $attr[ 'blank' ] );
+			return $this->output_blank_data( 'summary', $attr[ 'blank' ], $this->data_object );
 		} 
 		//error_log('summary');
 		$output = '<div class="mbm-book-summary"><span class="mbm-book-summary-label">' . esc_html($attr['label']) . '</span><span class="mbm-book-summary-text">';
@@ -1494,7 +1494,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	
 		$output .= '</span><span class="mbm-book-summary-after">' . esc_html($attr['after']) . '</span></div>';
 
-		return apply_filters('mbdb_shortcode_summary', $output);
+		return apply_filters('mbdb_shortcode_summary', $output, $this->data_object);
 	
 	}
 
@@ -2273,9 +2273,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			//error_log('summary');
 		// v 3.0 for customizer
 		//$book_page_layout .= '</div><div id="mbm-middle-column">';
-		if ( $this->data_object->summary != '' ) {
+	//	if ( $this->data_object->summary != '' ) {
 			$book_page_layout .= '[book_summary blank=""  book="' . $book . '"]';
-		}
+	//	}
 		
 	
 		// v3.0 convert to simple true/false so that the if statement with ||
