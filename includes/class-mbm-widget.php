@@ -179,6 +179,7 @@ abstract class mbdb_widget extends WP_Widget {
 				$this->output_cover(  $book, $instance );
 				
 				$this->output_title( $book, $instance );
+				do_action('mbdb_widget_post_title', $book, $instance );
 							
 			}
 			do_action('mbdb_widget_post_book_display', $book, $instance);
