@@ -71,7 +71,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			
 			return $this;
 		}
-		
+
+
 		
 		$book = $this->db_object->get( $id );	
 		// if ( $book == null ) {
@@ -227,6 +228,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			if ( is_array( $this->$property ) ) {
 				foreach ( $this->$property as $obj ) {
 					$object[ $property ][] = $obj->to_json();
+				}
+			} else {
+				if ( is_object( $this->$property ) ) {
+					$object[ $property ] = $this->$property->to_json();
 				}
 			}
 		}

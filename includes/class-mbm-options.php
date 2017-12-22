@@ -181,7 +181,7 @@ class Mooberry_Book_Manager_Options {
 		return $publishers;
 	}
 	
-	public function add_publiser( $publisher ) {
+	public function add_publisher( $publisher ) {
 		
 		
 		$publisher_array = array(
