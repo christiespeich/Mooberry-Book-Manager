@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.0.21 =
+* Fixed: Compatible with Yoast SEO touse the book's summary as content for analyzing
+
 = 4.0.20 =
 * Fixed: bugs when importing/exporting books with publishers
 
