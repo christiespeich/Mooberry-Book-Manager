@@ -1036,13 +1036,15 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		// unhook this function so it doesn't loop infinitely
 		// and mbdb_save_book_custom_table so it doesn't run twice
 		remove_action( 'save_post_' . $this->post_type, array( $this, 'save_book' ) );
+		remove_action('publish_mbdb_book', 'mbdbbs_send_fave_author_email', 20, 2 );
 		//remove_action('save_post', array( $this, 'save' ), 20 );
 
 		// update the post, which calls save_post again
 		wp_update_post( array( 'ID' => $post_id, 'post_excerpt' =>  strip_tags( $summary ), 'post_content' => '[mbdb_book]' ) );
 
 		// re-hook this function and mbdb_save_book_custom_table 
-		add_action( 'save_post_' . $this->post_type, array( $this, 'save_book' ) );	
+		add_action( 'save_post_' . $this->post_type, array( $this, 'save_book' ) );
+		add_action('publish_mbdb_book', 'mbdbbs_send_fave_author_email', 20, 2 );
 		//add_action( 'save_post', array( $this, 'save'), 20);
 	}
 
