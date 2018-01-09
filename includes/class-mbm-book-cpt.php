@@ -1868,7 +1868,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 						// 3.5.6
 						
 						if ( $retailer->id == '13' ) {
-							$buy_links_html .= '<span style="float:left;">' . __('Available on', 'mooberry-book-manager') . ' <br/>';
+							$buy_links_html .= '<span class="amazon_available_on_text">' . __('Available on', 'mooberry-book-manager') . ' <br/></span>';
 						}
 						
 						$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink->link) . '" TARGET="_new">';
@@ -2244,7 +2244,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			$book_page_layout .= '<h3>[book_subtitle blank="" book="' . $book . '"]</h3>';
 		}
 		// v 3.0 for customizer
-		//$book_page_layout .= '<div id="mbm-left-column">';
+		$book_page_layout .= '<div id="mbm-first-column">';
 		//error_log('book cover');
 			$book_page_layout .= '[book_cover book="' . $book . '"]';
 	//error_log('start links');
@@ -2274,7 +2274,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			}
 			//error_log('summary');
 		// v 3.0 for customizer
-		//$book_page_layout .= '</div><div id="mbm-middle-column">';
+		$book_page_layout .= '</div><div id="mbm-second-column">';
 	//	if ( $this->data_object->summary != '' ) {
 			$book_page_layout .= '[book_summary blank=""  book="' . $book . '"]';
 	//	}
@@ -2338,7 +2338,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		} 
 	
 		// v 3.0 for customizer
-		//$book_page_layout .= '</div><div id="mbm-right-column"></div>';
+		$book_page_layout .= '</div><div id="mbm-third-column">';
 	//error_log('reviews');
 		if ( $this->data_object->has_reviews() ) {
 			$book_page_layout .= '<span>[book_reviews  blank="" label="' . __('Reviews:', 'mooberry-book-manager') . '" book="' . $book . '"]</span><br/>';
@@ -2359,10 +2359,11 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			if ( $this->data_object->has_download_links() ) {
 				$book_page_layout .= '[book_downloadlinks align="horizontal" label="' . __('Download Now:', 'mooberry-book-manager') . '" book="' . $book . '"]';
 			}
-			$book_page_layout .= '</div>';
+			$book_page_layout .= '</div>'; // book links
 			//$book_page_layout .= '<div id="mbm-book-links2">[book_links buylabel="" downloadlabel="' . __('Download Now:', 'mooberry-book-manager') . '" align="horizontal"  blank="" blanklabel="" book="' . $book . '"]</div>';
 		}
 		//error_log('end links 2');
+        $book_page_layout .= '</div> <!-- third column -->';
 		$book_page_layout .= '</div> <!-- mbm-book-page -->';
 		
 
