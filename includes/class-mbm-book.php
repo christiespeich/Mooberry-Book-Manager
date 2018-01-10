@@ -129,8 +129,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$this->editors = $book->editors;
 			$this->illustrators = $book->illustrators;
 			$this->cover_artists = $book->cover_artists;
-			
-			
+
 		}				
 		wp_cache_set( $id, $this, 'mbdb_book');
 		
@@ -377,6 +376,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		return $success;
 	}
+
+	public function save_all() {
+		if ( $this->book_id == 0 ) {
+			$post_id = null;
+		} else {
+			$post_id = $this->book_id;
+		}
+		$this->db_object->save_all( $this, $post_id);
+
+    }
 	
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property

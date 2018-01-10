@@ -43,6 +43,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	
 		// let individual CPTs choose whether to add post class?
 		add_filter( 'post_class', array( $this, 'add_post_class' ) );
+
+		// support Duplicate Post
+		add_action( 'dp_duplicate_post', array( $this, 'duplicate_book'), 10, 2 );
 		
 		add_filter('wp_head', array($this, 'meta_tags') );
 		if ( MBDB()->options->override_wpseo( 'og' ) ) {
@@ -1389,6 +1392,15 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			add_post_type_support( $this->post_type, 'comments');
 		}
 	}
+
+	public function duplicate_book(   $new_post_id,  $post ) {
+	    $book = MBDB()->book_factory->create_book( $post->ID );
+	    $book->id = $new_post_id;
+	    $book->book_id = $new_post_id;
+	    $book->save_all(  );
+
+
+    }
 	
 	
 	/************************************************************
