@@ -1312,6 +1312,12 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			if ( get_post_type() == $this->post_type ) {
 				global $post;
 				$this->set_data_object( $post->ID );
+
+				$summary = $this->data_object->summary;
+					if ( strlen($summary) > 150 ) {
+						$summary = substr( $summary, 0, 150 ) . '...';
+					}
+
 				
 				if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'description' ) ) {
 					$series_info = '';
@@ -1330,11 +1336,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 						$retailer_info = ' ' . sprintf( __('Available from %s.', 'mooberry-book-manager'), $this->data_object->get_retailer_list() );
 					}
 					
-					$summary = $this->data_object->summary;
-					if ( strlen($summary) > 150 ) {
-						$summary = substr( $summary, 0, 150 ) . '...';
-					}
-						
+
 					echo '<meta name="description" content="' . esc_attr( apply_filters('mbdb_book_meta_description', $series_info . $genre_info . '.' . $retailer_info, $this->data_object ) ) . ' ' . esc_attr( $summary) . '">';
 				}
 				
