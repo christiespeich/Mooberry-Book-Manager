@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 4.0.21
+Stable tag: 4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,8 +184,12 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1 =
+* Updated: Improved mobile layout for book pages
+* New: Compatible with Duplicate Post so that books can be duplicated into new posts
+
 = 4.0.21 =
-* Fixed: Compatible with Yoast SEO touse the book's summary as content for analyzing
+* Fixed: Compatible with Yoast SEO to use the book's summary as content for analyzing
 
 = 4.0.20 =
 * Fixed: bugs when importing/exporting books with publishers
