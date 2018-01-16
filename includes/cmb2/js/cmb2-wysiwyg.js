@@ -147,7 +147,9 @@ window.CMB2.wysiwyg = window.CMB2.wysiwyg || {};
 		} );
 
 		if ( true === initiated ) {
-			window.QTags._buttonsInit();
+			if ( 'undefined' !== typeof window.QTags ) {
+				window.QTags._buttonsInit();
+			}
 
 			// Hook in our event callbacks.
 			$( document )
@@ -273,18 +275,27 @@ window.CMB2.wysiwyg = window.CMB2.wysiwyg || {};
 			return false;
 		}
 
+		var mceActive = window.cmb2_l10.user_can_richedit && window.tinyMCE;
+		var qtActive = 'function' === typeof window.quicktags;
 		$.extend( data, getGroupData( data ) );
 
 		initOptions( data );
 
 		$toReplace.replaceWith( data.template( data ) );
 
-		window.tinyMCE.init( tinyMCEPreInit.mceInit[ data.id ] );
-		window.quicktags( tinyMCEPreInit.qtInit[ data.id ] );
+		if ( mceActive ) {
+			window.tinyMCE.init( tinyMCEPreInit.mceInit[ data.id ] );
+		}
 
-		$( document.getElementById( data.id ) ).parents( '.wp-editor-wrap' ).removeClass( 'html-active' ).addClass( 'tmce-active' );
+		if ( qtActive ) {
+			window.quicktags( tinyMCEPreInit.qtInit[ data.id ] );
+		}
 
-		if ( false !== buttonsInit ) {
+		if ( mceActive ) {
+			$( document.getElementById( data.id ) ).parents( '.wp-editor-wrap' ).removeClass( 'html-active' ).addClass( 'tmce-active' );
+		}
+
+		if ( false !== buttonsInit && 'undefined' !== typeof window.QTags ) {
 			window.QTags._buttonsInit();
 		}
 
@@ -300,6 +311,10 @@ window.CMB2.wysiwyg = window.CMB2.wysiwyg || {};
 	 * @return {void}
 	 */
 	wysiwyg.destroy = function( id ) {
+		if ( ! window.cmb2_l10.user_can_richedit || ! window.tinyMCE ) {
+			// Nothing to see here.
+			return;
+		}
 
 		// The editor might not be initialized yet.  But we need to destroy it once it is.
 		var editor = tinyMCE.get( id );
