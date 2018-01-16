@@ -20,15 +20,15 @@
 	/* 	margin: 0px 3% 0px 57%;  */
 	
 	display: inline;
-		
-	}
-	
-	#mbm-book-page .mbm-book-cover img {
-		width: 100%;
-	}
+
+}
+
+#mbm-book-page .mbm-book-cover img {
+	width: 100%;
+}
 
 /* #mbm-book-sidebar 	{ */
-  #mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-serieslist, #mbm-book-page .mbm-book-editions, #mbm-book-page .mbm-book-goodreads, #mbm-book-links1  .mbm-book-buy-links, #mbm-book-links1 .mbm-book-download-links  {
+  #mbm-book-page #mbm-first-column  {
 	 width: 34%; /*215px;*/
 	/*	margin-left: 3%; /*15px; */
 		  float: left; 
@@ -42,16 +42,21 @@
 	}
 	
 	/* #mbm-book-main { */
-	#mbm-book-page .mbm-book-summary, #mbm-book-page .mbm-book-details-outer, #mbm-book-page .mbm-book-excerpt {
+	#mbm-book-page #mbm-second-column {
 		/* margin: 0px 15px 15px 260px;  */
-		margin: 0px 3% 15px 40%;
+		/* margin: 0px 3% 15px 40%; */
+		float: left;
+		margin-left: 6%;
+		width: 60%;
+
 		
 	}
 	
 	#mbm-book-page .mbm-book-buy-links-list, #mbm-book-page .mbm-book-download-links-list {
 		margin-left: 0;
 	}
- 
+
+
 	
 #mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-goodreads-image { 
 	
@@ -245,20 +250,41 @@
 	
 #mbm-book-links1	.mbm-book-buy-links-text { display: block; }
 
-@media (max-width:640px) {
+@media (max-width:810px) {
 	
 	
-	 #mbm-book-links1 {
-		float: none;
-		width: 45%
+	#mbm-book-page #mbm-first-column, #mbm-book-page #mbm-second-column,  #mbm-book-page #mbm-third-column  {
+ 		display: block;
+        float: none;
+        width: 100%;
 	}
-	
+
+	#mbm-book-page #mbm-second-column {
+		margin-left: 0;
+	}
+
+	#mbm-book-links2 .mbm-book-buy-links-image {
+		height: 50px;
+		width: auto;
+
+
+	}
+
+	#mbm-book-links2 div {
+    	clear: both;
+	}
+
+
 	/*	#mbm-book-links2  .mbm-book-buy-links-image {
 		height: 50px;
 		width: auto;
 	}
 	*/
-	
+	/*
+	 #mbm-book-links1 {
+		float: none;
+		width: 45%
+	}
 	
 	#mbm-book-links1 .mbm-book-buy-links, #mbm-book-links1 .mbm-book-download-links {
 		width: 90%
@@ -271,10 +297,10 @@
 	#mbm-book-links1 .mbm-book-download-links-image, #mbm-book-links2 .mbm-book-download-links-image {
 		height: 42px;
 	}
-	
+
 	#mbm-book-page 	.mbm-book-buy-links-label, #mbm-book-page .mbm-book-download-links-label, #mbm-book-page .mbm-book-editions-label, #mbm-book-page .mbm-book-reviews-label, #mbm-book-page .mbm-book-excerpt-label 
 	{
-		font-size: 1.1em;  /* large */
+		font-size: 1.1em;
 	}
 	
 	#mbm-book-page .mbm-book-cover {
@@ -311,7 +337,7 @@
 		margin-bottom: 15px;
 	}
 	
-	
+	*/
 	
 }	
 	
@@ -327,23 +353,13 @@
 }
 */
 
-
-@media (min-width:641px) {
-	#mbm-book-links2  .mbm-book-download-links-image {
-		height: 50px;
-		width: auto;
-	}
-	
-	
-	
-	
-}
+/*
 @media  (min-width:801px) {
 	#mbm-book-page   .mbm-book-download-links-image  { 
 		height: 52px;
 	}
 }
-
+*/
 /*	
 	
 	* {

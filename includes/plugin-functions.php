@@ -368,6 +368,13 @@ function mbdb_register_footer_scripts() {
 		wp_register_script( 'mbdb-admin-book', MBDB_PLUGIN_URL . $file, '', Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ) );
 		wp_localize_script( 'mbdb-admin-book', 'display_editions', apply_filters('mbdb_display_editions', 'no' ) );
 		wp_enqueue_script( 'mbdb-admin-book');
+
+		if ( MBDB_WPSEO_INSTALLED ) {
+			$file = 'includes/admin/js/admin-book-yoast.js';
+			wp_register_script( 'mbdb-admin-book-yoast', MBDB_PLUGIN_URL . $file, array('yoast-seo-admin-script'), Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ) );
+
+			wp_enqueue_script( 'mbdb-admin-book-yoast');
+		}
 		
 	}
 	

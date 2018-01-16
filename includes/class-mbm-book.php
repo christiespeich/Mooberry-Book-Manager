@@ -71,7 +71,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			
 			return $this;
 		}
-		
+
+
 		
 		$book = $this->db_object->get( $id );	
 		// if ( $book == null ) {
@@ -128,8 +129,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$this->editors = $book->editors;
 			$this->illustrators = $book->illustrators;
 			$this->cover_artists = $book->cover_artists;
-			
-			
+
 		}				
 		wp_cache_set( $id, $this, 'mbdb_book');
 		
@@ -227,6 +227,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			if ( is_array( $this->$property ) ) {
 				foreach ( $this->$property as $obj ) {
 					$object[ $property ][] = $obj->to_json();
+				}
+			} else {
+				if ( is_object( $this->$property ) ) {
+					$object[ $property ] = $this->$property->to_json();
 				}
 			}
 		}
@@ -372,6 +376,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		return $success;
 	}
+
+	public function save_all() {
+		if ( $this->book_id == 0 ) {
+			$post_id = null;
+		} else {
+			$post_id = $this->book_id;
+		}
+		$this->db_object->save_all( $this, $post_id);
+
+    }
 	
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property

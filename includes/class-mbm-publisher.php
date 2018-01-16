@@ -17,7 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 3.5 ?
  */
  class Mooberry_Book_Manager_Publisher { 
- 
+
+
 	private $name;
 	private $website;
 	private $id;
