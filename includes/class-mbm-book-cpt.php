@@ -1317,7 +1317,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 					if ( strlen($summary) > 150 ) {
 						$summary = substr( $summary, 0, 150 ) . '...';
 					}
-						
+
 				
 				if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'description' ) ) {
 					$series_info = '';
