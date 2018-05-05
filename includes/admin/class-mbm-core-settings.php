@@ -389,14 +389,14 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		
 		// get all taxonomies on a book
 		//$taxonomies = mbdb_tax_grid_objects(); 
-		//$taxonomies = MBDB()->book_CPT->taxonomies;
-		$taxonomies = get_object_taxonomies('mbdb_book', 'objects' );
+		$taxonomies = MBDB()->book_CPT->taxonomies;
+		//$taxonomies = get_object_taxonomies('mbdb_book', 'objects' );
 		
 		
 		// add a text field for each taxonomy
 		foreach($taxonomies as $name => $taxonomy) {
 			$id = 'mbdb_book_grid_' . $name . '_slug';
-			$singular_name = $taxonomy->labels->singular_name;
+			$singular_name = $taxonomy->singular_name;
 			$mbdb_settings_metabox->add_field(array(
 				'id'	=> $id,
 				'name'	=>	$singular_name,
@@ -1034,7 +1034,7 @@ function import( $file ) {
 	 *  @param [array] $args       	contains field id
 	 *  @param [obj] $object     	contains original value before user input
 	 *  
-	 *  @return sanitized value. Either the inputted value if it checks out
+	 *  @return string sanitized value. Either the inputted value if it checks out
 	 *  							or the original value if not
 	 *  
 	 *  @access public

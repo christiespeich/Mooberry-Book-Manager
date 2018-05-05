@@ -160,8 +160,8 @@ final class Mooberry_Book_Manager {
 			
 			//self::$instance->book_CPT = new Mooberry_Book_Manager_Book_CPT();
 			
-			$book_CPT = new Mooberry_Book_Manager_Book_CPT();
-			
+			self::$instance->book_CPT = apply_filters( 'mbdb_book_cpt_obj', new Mooberry_Book_Manager_Book_CPT() );
+
 			self::$instance->grid_factory = apply_filters( 'mbdb_grid_factory', new Mooberry_Book_Manager_Simple_Grid_Factory() );
 			
 			self::$instance->book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT(  );
@@ -474,4 +474,6 @@ function remove_tax_grid_from_page_links( $args ) {
 		// $options['comments_on_books'] = false;
 		// update_option('mbdb_options', $options);
 // }
-	
+
+
+

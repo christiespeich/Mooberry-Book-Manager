@@ -23,35 +23,37 @@ jQuery( document ).ready(function() {
 			// define the edit row
 			var $edit_row = jQuery( '#edit-' + $post_id );
 			
+
 			// get the release date
 			var $release_date = jQuery( '#release_date-' + $post_id ).text();
-		
+
 			// set the release date
 			$edit_row.find( 'input[name="_mbdb_published"]' ).val( $release_date );
-			
+
 			// get the series order
 			var $series_order = jQuery( '#series_order-' + $post_id ).text();
-			
+
 			// set the series order
 			$edit_row.find( 'input[name="_mbdb_series_order"]').val( $series_order );
-			
+
 			// get the publisher
 			var $publisher_id = jQuery( '#publisher_id-' + $post_id ).text();
-			
+
 			// set the publisher
 			$edit_row.find( 'select[name="_mbdb_publisherID"]' ).val( $publisher_id );
-			
+
 			// get the subtitle
 			var $subtitle = jQuery( '#subtitle-' + $post_id).text();
-			
+
 			// set the subtitle
 			$edit_row.find( 'input[name="_mbdb_subtitle"]' ).val( $subtitle);
-			
+
 			// get the goodreads link
 			var $goodreads = jQuery( '#goodreads-' + $post_id).text();
-			
+
 			// set goodreads
 			$edit_row.find( 'input[name="_mbdb_goodreads"]' ).val( $goodreads );
+
 			
 		}
 		

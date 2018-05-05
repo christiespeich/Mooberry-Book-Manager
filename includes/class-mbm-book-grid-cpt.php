@@ -60,20 +60,22 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 	}
 	
 	public function selection_options() { 
-		return apply_filters('mbdb_book_grid_selection_options', array(
+		$selection_options = array(
 				'all'		=> __('All', 'mooberry-book-manager'),
 				'published'	=> __('All Published', 'mooberry-book-manager'),
 				'unpublished'	=> __('All Coming Soon', 'mooberry-book-manager'),
 				'custom'	=> __('Select Books', 'mooberry-book-manager'),
-				'genre'			=> __('Select Genres', 'mooberry-book-manager'),
-				'series'	=> __('Select Series', 'mooberry-book-manager'),
-				'tag'		=> __('Select Tags', 'mooberry-book-manager'),
-				'publisher'	=>	__('Select Publishers', 'mooberry-book-manager'),
-				'editor'	=> __('Select Editors', 'mooberry-book-manager'),
-				'illustrator'	=> __('Select Illustrators', 'mooberry-book-manager'),
-				'cover_artist'	=>	__('Select Cover Artists', 'mooberry-book-manager'),
-			)
-		);
+        );
+
+		$taxonomies = MBDB()->book_CPT->get_taxonomies(); //array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
+		foreach ( $taxonomies as $mbm_tax ) {
+		    $tax_name = $mbm_tax->slug;
+			$tax                                                        = get_taxonomy( $tax_name );
+			$selection_options[ str_replace( 'mbdb_', '', $tax_name ) ] = __( 'Select ', 'mooberry-book-manager' ) . $tax->label;
+		}
+
+
+        return apply_filters('mbdb_book_grid_selection_options', $selection_options );
 	}
 	
 	public function order_options() {
@@ -87,17 +89,15 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 		
 		
 	public function group_by_options() {
-		return apply_filters('mbdb_book_grid_group_by_options', array(
-				'none'		=>	__('None', 'mooberry-book-manager'),
-				'genre'		=>	__('Genre', 'mooberry-book-manager'),
-				'series'	=>	__('Series', 'mooberry-book-manager'),
-				'tag'		=>	__('Tag', 'mooberry-book-manager'),
-				'publisher'	=>	__('Publisher', 'mooberry-book-manager'),
-				'editor'	=> 	__('Editor', 'mooberry-book-manager'),
-				'cover_artist'	=> __('Cover Artist', 'mooberry-book-manager'),
-				'illustrator'	=> __('Illustrator', 'mooberry-book-manager'),
-				)
-			);
+
+		$group_by_options = array( 'none'		=>	__('None', 'mooberry-book-manager') );
+		$taxonomies = MBDB()->book_CPT->get_taxonomies(); //array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
+		foreach ( $taxonomies as $mbm_tax ) {
+			$tax_name                                                   = $mbm_tax->slug;
+			$tax                                                        = get_taxonomy( $tax_name );
+			$group_by_options[ str_replace( 'mbdb_', '', $tax_name ) ] = $tax->label;
+		}
+		return apply_filters('mbdb_book_grid_group_by_options', $group_by_options );
 	}
 	
 	public function create_metaboxes() {
@@ -144,7 +144,21 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 				
 			)
 		);
-		
+
+			$taxonomies = MBDB()->book_CPT->get_taxonomies(); //array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
+		foreach ( $taxonomies as $mbm_tax ) {
+			$tax_name   = $mbm_tax->slug;
+			$tax        = get_taxonomy( $tax_name );
+			$short_name = str_replace( 'mbdb_', '', $tax_name );
+			$mbdb_book_grid_metabox->add_field( array(
+					'name'    => sprintf( __( 'Select %s', 'mooberry-book-manager' ), $tax->labels->name ),
+					'id'      => '_mbdb_book_grid_' . $short_name,
+					'type'    => 'multicheck',
+					'options' => MBDB()->helper_functions->get_term_options( $tax_name ),
+				)
+			);
+		}
+		/*
 		$mbdb_book_grid_metabox->add_field( array(
 				'name'	=> __('Select Genres', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_book_grid_genre',
@@ -167,7 +181,7 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 				'type' 	=> 'multicheck',   
 				'options'	=>	MBDB()->helper_functions->get_term_options('mbdb_tag'),
 			)
-		);
+		);*/
 			
 		$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', false );
 		$mbdb_book_grid_metabox->add_field( array(
@@ -178,7 +192,7 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 			)
 		);
 				
-		$mbdb_book_grid_metabox->add_field( array(
+		/*$mbdb_book_grid_metabox->add_field( array(
 				'name'	=>	__('Select Editors', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_book_grid_editor',
 				'type'	=>	'multicheck',
@@ -200,7 +214,7 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 				'type'	=>	'multicheck',
 				'options'	=> MBDB()->helper_functions->get_term_options('mbdb_cover_artist'),
 			)
-		);
+		);*/
 		
 		
 		$group_by_options = $this->group_by_options();

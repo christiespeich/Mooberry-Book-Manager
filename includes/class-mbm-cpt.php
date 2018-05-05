@@ -11,7 +11,6 @@
  * The Mooberry Book Manager CPT class is the base class responsible for creating and managing
  * Custom Post Types
  *
- * 
  *
  * @since    4.0.0
  */
@@ -122,7 +121,10 @@ abstract class Mooberry_Book_Manager_CPT {
 		}
 		return $classes;
 	}
-	
+
+	public function add_taxonomy( $taxonomy ) {
+        $this->taxonomies[ $taxonomy->slug ] = $taxonomy;
+	}
 	
 	public function reorder_wpseo( $priority ) {
 		if (get_post_type() == $this->post_type) {

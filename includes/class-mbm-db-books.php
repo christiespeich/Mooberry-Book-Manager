@@ -544,7 +544,10 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 			
 		
-		$taxonomies = array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
+		$taxonomies = MBDB()->book_CPT->get_taxonomies(); //array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
+		foreach ( $taxonomies as $id => $tax ) {
+			$taxonomies[ $id ] = str_replace( 'mbdb_', '', $tax->slug );
+		}
 		// if custom, genre, series, tag, illustrator, editor, cover artist, or publisher and no selection ids are passed, default to all books
 		// otherwise if selection ids is not an array, make it an array
 		

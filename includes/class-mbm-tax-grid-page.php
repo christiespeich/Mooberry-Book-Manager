@@ -194,7 +194,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		$page_id = MBDB()->options->tax_grid_page;
 		
 		if ( $post && $post->ID == $page_id ) {
-			$title =  $this->get_tax_title( $title);
+			$title =  apply_filters('mbdb_tax_grid_title', $this->get_tax_title( $title) );
 		}
 			return $title;
 		
@@ -205,8 +205,6 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 	// just one tag, genre, or series
 	//add_filter('tc_the_title', 'mbdb_tax_grid_title');
 	public function title( $content, $id = null ) {
-		
-		
 		$page_id = MBDB()->options->tax_grid_page;
 		if ( is_page( $page_id) && $id == $page_id ) {
 		//if ( is_main_query() && in_the_loop() && $post->ID == $page_id ) { //get_post_type() == 'mbdb_tax_grid' ) {

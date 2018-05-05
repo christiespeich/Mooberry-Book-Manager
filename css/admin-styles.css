@@ -154,6 +154,15 @@ div[class*="cmb2-id--mbdb-book-grid-"] ul.cmb2-checkbox-list {
    text-align: left;
 }
 
+.wp-admin.post-type-mbdb_book_grid ul.cmb2-checkbox-list.cmb2-list {
+    height: 105px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    padding: 10px;
+    font-size: small;
+    text-align: left;
+}
+
 
 /* indent nested group bys */
 .cmb2-id--mbdb-book-grid-genre-tag-group-by, .cmb2-id--mbdb-book-grid-tag-genre-group-by {

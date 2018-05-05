@@ -132,6 +132,7 @@ class MBDB_License {
 	}
 	
 	public function admin_page_display() {
+
 		?>
 		<div class="wrap cmb2-options-page mbdb_license">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>

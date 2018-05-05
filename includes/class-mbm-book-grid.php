@@ -500,6 +500,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			
 			// only return results if are any so that headers of empty groups
 			// aren't displayed
+			$empty = '';
 			if (count($results)>0) {
 				switch ($groups[$level]) {
 					case 'genre':
@@ -520,7 +521,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					case 'cover_artist':
 						$empty = apply_filters('mbdb_book_grid_uncategorized_heading', __('No Cover Artist Specified', 'mooberry-book-manager'));
 						break;
-				}	
+					default:
+						$taxonomy = get_taxonomy( 'mbdb_' . $groups[$level] );
+						$empty = sprintf(__('No %s Specified', 'mbm-custom-fields'), $taxonomy->labels->singular_name );
+				}
+				$empty = apply_filters( 'mbdb_book_grid_empty_tax_group_heading', $empty, $groups[$level] );
 				$books[ $empty] = $results;
 			}
 		//}
