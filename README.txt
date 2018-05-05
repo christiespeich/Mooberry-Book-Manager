@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.2 =
+* Updated: Internal changes to support future features
+
 = 4.1.1 =
 * Fixed: Fatal error: Declaration of CMB2_Type_File::render() must be compatible with CMB2_Type_Text::render($args = Array)  on Settings-> Book Page. (caused by error in included library CMB2 when used with PHP 7.2 )
 * Added: Brazilian Portuguese translations ( thanks Vinicius Cubas Brand! )
