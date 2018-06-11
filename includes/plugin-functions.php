@@ -109,9 +109,10 @@ function mbdb_activate_single_site() {
 			if ( $template == '' ) {
 				$template = 'single.php';
 			}
-			MBDB()->helper_functions->insert_tax_grid_page ( $template );
+			$tax_grid_id = MBDB()->helper_functions->insert_tax_grid_page ( $template );
+			$mbdb_options['mbdb_tax_grid_page'] = $tax_grid_id;
 		}
-		$mbdb_options['mbdb_tax_grid_page'] = $tax_grid_id;
+
 		
 		update_option( 'mbdb_options', $mbdb_options );
 		
