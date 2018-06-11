@@ -442,10 +442,11 @@ add_filter('wp_nav_menu_objects',  'remove_tax_grid_page_from_menu' , 99, 2);
 	$page_id = MBDB()->options->tax_grid_page;
     // remove the menu item that has a title of 'Uncategorized'
     foreach ($sorted_menu_objects as $key => $menu_object) {
-
         // can also check for $menu_object->url for example
         // see all properties to test against:
-         
+         if ( !isset( $menu_object ) || !property_exists( $menu_object, 'object_id') ) {
+	         continue;
+         }
         if ($menu_object->object_id == $page_id) {
             unset($sorted_menu_objects[$key]);
             break;
