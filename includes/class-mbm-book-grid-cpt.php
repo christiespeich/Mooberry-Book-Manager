@@ -65,6 +65,7 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 				'published'	=> __('All Published', 'mooberry-book-manager'),
 				'unpublished'	=> __('All Coming Soon', 'mooberry-book-manager'),
 				'custom'	=> __('Select Books', 'mooberry-book-manager'),
+                'publisher'	=>	__('Select Publishers', 'mooberry-book-manager'),
         );
 
 		$taxonomies = MBDB()->book_CPT->get_taxonomies(); //array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
