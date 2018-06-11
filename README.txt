@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 4.1.2
+Stable tag: 4.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,11 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.3 =
+* Fixed: Previous update erroneously removed Publisher as an option in book grids
+* Fixed: Check for object_id in menu object just in case of odd theme or plugin conflicting?
+* Fixed: Fix bug that wasn't setting MBM Tax Grid Page on activation
+
 = 4.1.2 =
 * Updated: Internal changes to support future features
 
