@@ -189,6 +189,9 @@ function mbdb_update_versions() {
 		mbdb_update_4_0_16();
 	}
 
+	if ( version_compare( $current_version, '4.1.3', '<')) {
+		mbdb_update_4_1_3();
+	}
 
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
@@ -924,4 +927,27 @@ function mbdb_update_4_0_16() {
 	$options = get_option('mbdb_options');
 	$options['comments_on_books'] = true;
 	update_option('mbdb_options', $options);
+}
+
+
+function mbdb_update_4_1_3() {
+	$mbdb_options = get_option('mbdb_options');
+	// set tax grid page
+		if ( MBDB()->options->tax_grid_page == '' ) {
+			$template = MBDB()->options->tax_grid_template;
+			if ( $template == '' ) {
+				$template = 'single.php';
+			}
+			//$tax_grid_id = MBDB()->helper_functions->insert_tax_grid_page ( $template );
+			$posts = get_posts(array('post_type'=> 'page', 'title' => 'MBM Tax Grid Page. Do NOT remove this page or edit it except to change template.') );
+			if ( count($posts) >0 ) {
+				$tax_grid_id = $posts[0]->ID;
+
+				$mbdb_options['mbdb_tax_grid_page'] = $tax_grid_id;
+				update_option( 'mbdb_options', $mbdb_options );
+			}
+		}
+
+
+
 }
