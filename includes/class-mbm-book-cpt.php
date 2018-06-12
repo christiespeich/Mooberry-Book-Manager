@@ -1592,7 +1592,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 									'book' => ''), $attr);	
 		$this->set_book( $attr[ 'book' ] );
 		
-		if ( $this->data_object->release_date == '' ) {
+		if ( !$this->data_object->has_published_date() ) {
 			return $this->output_blank_data( 'published', $attr[ 'blank' ] );
 		}
 		//error_log('published');
@@ -1609,7 +1609,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 				$format = get_option('date_format');
 				break;
 		}
-		if ( $this->data_object->release_date <= strtotime('now') ) {
+		if ( $this->data_object->is_published() ) {
 			$label = $attr['published_label'];
 		} else {
 			$label = $attr['unpublished_label'];
@@ -2343,7 +2343,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		// below actually works. Otherwise, valid data could be "0" and still
 		// evaulate to false in the if statement
 		// also simplifies the following if statments
-		$is_published = $this->data_object->is_published();
+		$has_published_date = $this->data_object->has_published_date();
 		$is_publisher = $this->data_object->has_publisher();
 		$is_genre = $this->data_object->has_genres();
 		$is_tag = $this->data_object->has_tags();
@@ -2351,12 +2351,12 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$is_illustrator = $this->data_object->has_illustrators();
 		$is_cover_artist = $this->data_object->has_cover_artists();
 		
-		$display_details = apply_filters('mbdb_display_book_details', $is_published || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist);
+		$display_details = apply_filters('mbdb_display_book_details', $has_published_date || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist);
 		//error_log('start details');
 		if ($display_details ) {
 			$book_page_layout .= '<div class="mbm-book-details-outer">';
 			$book_page_layout .= '  <div class="mbm-book-details">';
-			if ($is_published ) {
+			if ($has_published_date ) {
 				//$book_page_layout .= '<span class="mbm-book-details-published-label">' . __('Published:', 'mooberry-book-manager') . '</span> <span class="mbm-book-details-published-data">[book_published format="default" blank="" book="' . $book . '"]</span><br/>';
 				$book_page_layout .= '<span class="mbm-book-details-published-data">[book_published format="default" blank="" book="' . $book . '"]</span><br/>';
 			}

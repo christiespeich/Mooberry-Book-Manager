@@ -111,7 +111,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		return ( $this->excerpt_type == 'kindle' );
 	}
-	
+
+	public function has_published_date() {
+		return ( $this->release_date != '' );
+	}
+
 	public function has_excerpt() {
 		return ( $this->excerpt != '' || $this->has_kindle_preview());
 	}
@@ -126,7 +130,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	
 	public function is_published() {
-		return ( $this->release_date != '' ) && ( strtotime($this->release_date) <= strtotime('now') );
+		return ( $this->has_published_date() ) && ( strtotime($this->release_date) <= strtotime('now') );
 	}
 	
 	

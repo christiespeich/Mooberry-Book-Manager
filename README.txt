@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.4 =
+* Fixed: Issue with book with future publication date not showing date on book page
+
 = 4.1.3 =
 * Fixed: Previous update erroneously removed Publisher as an option in book grids
 * Fixed: Check for object_id in menu object just in case of odd theme or plugin conflicting?
