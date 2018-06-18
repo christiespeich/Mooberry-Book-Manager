@@ -860,7 +860,7 @@ function mbdb_3_4_12_update() {
 	foreach ($taxonomies as $taxonomy) {
 		global $wp_version;
 		if (version_compare($wp_version, '4.5', '<')) {
-			$terms = get_terms( $taxnomy, array(
+			$terms = get_terms( $taxonomy, array(
 										'hide_empty' => false,
 										) );
 		} else {
