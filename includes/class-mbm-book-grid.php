@@ -836,7 +836,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$content .= '<span class="mbdb_grid_title" itemprop="name">';
 		$content = apply_filters('mbdb_book_grid_pre_link', $content, $book->id, $book->title, $book);
 		$content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url(get_permalink($book->id)) . '">' . esc_html($book->title) . '</a>';
-		$content = apply_filters('mbdb_book_grid_post_link', $content, $book->id, $book->title, $book);
+		$content = apply_filters('mbdb_book_grid_post_link', $content, $book->id, $book->title, $book );
 		$content .= '</span></span>';
 
 		return $content;

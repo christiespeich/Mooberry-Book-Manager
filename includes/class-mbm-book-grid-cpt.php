@@ -98,6 +98,7 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 			$tax                                                        = get_taxonomy( $tax_name );
 			$group_by_options[ str_replace( 'mbdb_', '', $tax_name ) ] = $tax->label;
 		}
+		$group_by_options[ 'publisher' ] = __('Publisher', 'mooberry-book-manager');
 		return apply_filters('mbdb_book_grid_group_by_options', $group_by_options );
 	}
 	
