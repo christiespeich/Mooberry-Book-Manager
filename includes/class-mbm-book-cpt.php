@@ -2328,7 +2328,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 				$book_page_layout .= '[book_editions blank="" label="' . __('Editions:', 'mooberry-book-manager') . '" book="' . $book . '"]';
 			}
 		//error_log('goodreads');
-			if ( $this->data_object->gooreads != '' ) {
+			if ( $this->data_object->goodreads != '' ) {
 				$book_page_layout .= '[book_goodreads   book="' . $book . '"]';
 			}
 			//error_log('summary');
