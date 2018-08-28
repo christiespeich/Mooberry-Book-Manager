@@ -808,8 +808,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$image_size = $this->wp_size;
 		$mbdb_book_grid_cover_height = $this->cover_height;
 		
-		
-		$content = '<span itemscope itemtype="http://schema.org/Book"  class="mbdb_float_grid" style="height: ' . ($mbdb_book_grid_cover_height + 50) . 'px; width: ' . $mbdb_book_grid_cover_height . 'px;">';
+		$extra_height = intval( apply_filters( 'mbdb_book_grid_additional_height', 50, $this ) );
+
+		$content = '<span itemscope itemtype="http://schema.org/Book"  class="mbdb_float_grid" style="height: ' . (intval($mbdb_book_grid_cover_height ) + $extra_height) . 'px; width: ' . $mbdb_book_grid_cover_height . 'px;">';
 		
 		$cover = $book->get_cover_url( $image_size, 'grid' );
 		
