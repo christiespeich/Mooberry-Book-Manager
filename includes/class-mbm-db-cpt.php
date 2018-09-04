@@ -118,10 +118,8 @@ abstract class MBDB_DB_CPT extends MOOBD_Database implements iMooberry_Book_Mana
 						$join
 						WHERE $this->primary_key IN ($key_ids) 
 						$where
-						ORDER BY %s %s;",
-						array_merge($ids , 
-							array($orderby ,
-									$order))
+						ORDER BY $orderby $order;",
+						$ids
 					);
 
 		return $this->run_sql($sql, $cache_results);
