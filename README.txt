@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 4.9
-Stable tag: 4.1.5
+Stable tag: 4.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.6 =
+* Fixed: SQL bug relating to Multi-Author
+
 = 4.1.5 =
 * Fixed: Version 4.0.19 erroneously removed Publisher as a group by option in book grids
 
