@@ -133,6 +133,7 @@ class MBDB_Book_List implements Countable, Iterator  {
 	
 	public function remove_book_by_index ( $key ) {
 		unset( $this->books[ $key ] );
+		$this->books = array_values( $this->books );
 	}
 	
 	public function get_book_dropdown( $dropdownID, $bookID, $include_empty = 'yes', $empty_value = '0', $name = '' ) {
