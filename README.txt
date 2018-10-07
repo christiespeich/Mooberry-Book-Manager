@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.7 =
+* Added: Support for new Multi-Author feature
+
 = 4.1.6 =
 * Fixed: SQL bug relating to Multi-Author
 

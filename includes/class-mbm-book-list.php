@@ -233,4 +233,4 @@ class MBDB_Book_List implements Countable, Iterator {
    }
 */
 
-}    
+}
