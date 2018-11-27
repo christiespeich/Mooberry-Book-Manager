@@ -1382,7 +1382,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 					}
 					
 
-					echo '<meta name="description" content="' . esc_attr( apply_filters('mbdb_book_meta_description', $series_info . $genre_info . '.' . $retailer_info, $this->data_object ) ) . ' ' . esc_attr( $summary) . '">';
+					echo '<meta name="description" content="' . esc_attr( strip_tags( apply_filters('mbdb_book_meta_description', $series_info . $genre_info . '.' . $retailer_info, $this->data_object ) ) ) . ' ' . esc_attr( strip_tags( $summary ) ) . '">';
 				}
 				
 				if ( $this->data_object->has_cover() ) {
@@ -1390,22 +1390,22 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 					if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'og' ) ) {
 						if ( is_array($image) && array_key_exists('height', $image) && array_key_exists('width', $image) ) {
 							
-							echo '<meta property="og:image"              content="' .  esc_attr( apply_filters('mbdb_book_meta_og_image', $this->data_object->cover, $this->data_object ) ) . '" />';
-							echo '<meta property="og:image:width"			content="' . esc_attr( apply_filters( 'mbdb_book_meta_og_image_width', $image['width'], $this->data_object ) ) . '" />';
-							echo '<meta property="og:image:height"			content="' . esc_attr( apply_filters('mbdb_book_meta_og_image_height', $image['height'], $this->data_object) ) . '" />';
+							echo '<meta property="og:image"              content="' .  esc_attr( strip_tags( apply_filters('mbdb_book_meta_og_image', $this->data_object->cover, $this->data_object ) ) ) . '" />';
+							echo '<meta property="og:image:width"			content="' . esc_attr( strip_tags( apply_filters( 'mbdb_book_meta_og_image_width', $image['width'], $this->data_object ) ) ) . '" />';
+							echo '<meta property="og:image:height"			content="' . esc_attr( strip_tags( apply_filters('mbdb_book_meta_og_image_height', $image['height'], $this->data_object) ) ) . '" />';
 						}
 					}
 					if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'twitter' ) ) {
-						echo '<meta name="twitter:image" content="' . esc_attr($this->data_object->cover) . '" />';
+						echo '<meta name="twitter:image" content="' . esc_attr( strip_tags($this->data_object->cover) ) . '" />';
 						$alt = MBDB()->helper_functions->get_alt_attr( $this->data_object->cover_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . $this->data_object->title );
-						echo '<meta name="twitter:image:alt" content="' . esc_attr( $alt ) . '">';
+						echo '<meta name="twitter:image:alt" content="' . esc_attr( strip_tags( $alt ) ) . '">';
 					}
 				}
 				if ( $this->data_object->has_editions() ) {
 					foreach ( $this->data_object->editions as $edition ) {
 						if ( $edition->isbn != '' ) {
 							echo '<meta property="og:type" content="books.book" />';
-							echo '<meta property="books:isbn" content="' . esc_attr($edition->isbn) . '" />';
+							echo '<meta property="books:isbn" content="' . esc_attr( strip_tags($edition->isbn) ) . '" />';
 							break;
 						}
 					}
@@ -1413,17 +1413,17 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 				if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'og' ) ) {	
 			?>
 			
-					<meta property="og:url" content="<?php echo esc_attr($this->data_object->permalink); ?> " />
-					<meta property="og:title" content="<?php echo esc_attr($this->data_object->title); ?>" />
-					<meta property="og:description" content="<?php echo esc_attr($summary); ?>" />
+					<meta property="og:url" content="<?php echo esc_attr( strip_tags($this->data_object->permalink ) ); ?> " />
+					<meta property="og:title" content="<?php echo esc_attr( strip_tags($this->data_object->title ) ); ?>" />
+					<meta property="og:description" content="<?php echo esc_attr( strip_tags($summary) ); ?>" />
 			<?php
 				}
 				if ( !MBDB_WPSEO_INSTALLED || MBDB()->options->override_wpseo( 'twitter' ) ) {
 				?>
 					<!-- twitter cards -->
 					<meta name="twitter:card" content="summary">
-					<meta name="twitter:title" content="<?php echo esc_attr($this->data_object->title); ?>">
-					<meta name="twitter:description" content="<?php echo esc_attr($this->data_object->summary); ?>">
+					<meta name="twitter:title" content="<?php echo esc_attr( strip_tags($this->data_object->title)); ?>">
+					<meta name="twitter:description" content="<?php echo esc_attr( strip_tags($this->data_object->summary)); ?>">
 				<?php
 				}
 			}
@@ -2297,7 +2297,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$this->set_book( $attr['book'] );
 		$book = $attr['book'];
 		
-		$book_page_layout = '<div id="mbm-book-page" itemscope itemtype="http://schema.org/Book"><meta itemprop="name" content="' . esc_attr($title) . '" >';
+		$book_page_layout = '<div id="mbm-book-page" itemscope itemtype="http://schema.org/Book"><meta itemprop="name" content="' . esc_attr(strip_tags($title) ) . '" >';
 		//error_log('subtitile');
 		if ( $this->data_object->subtitle != '' ) {
 			$book_page_layout .= '<h3>[book_subtitle blank="" book="' . $book . '"]</h3>';
