@@ -628,6 +628,9 @@ class Mooberry_Book_Manager_Options {
 		} */
 		if (array_key_exists( $options_key, $this->options ) ) {
 			$array = $this->options[ $options_key ];
+			if ( !is_array( $array) ) {
+				return array();
+			}
 			// get an array of uniqueIDs
 			$keys = array_column( $array, $id_key );
 			// map uniqueIDs to the rest of the publisher info

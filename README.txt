@@ -184,6 +184,8 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.9 =
+* Fixed: Error causing affiliate code to output twice in bottom list of links on book page
 = 4.1.8 =
 * Fixed: Removed HTML tags from meta tags (SEO)
 

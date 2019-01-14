@@ -1909,19 +1909,20 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 						// convert array back to an object
 						//error_log('back to object');
 						$retailer = MBDB()->helper_functions->array_to_object( $retailer_array, $retailer);
+						$link = $mbdb_buylink->link;
 						// Does the retailer have an affiliate code?
 						if ( $retailer->has_affiliate_code() ) { 
 						//array_key_exists('affiliate_code', $retailer) && $retailer['affiliate_code'] != '') {
 							//error_log('has affilitate code');
-							
+
 							// append or prepend the code
 							if ($retailer->affiliate_position == 'before') {
-								$mbdb_buylink->link = $retailer->affiliate_code . $mbdb_buylink->link;
+								$link = $retailer->affiliate_code . $link;
 							} else {
-								$mbdb_buylink->link .= $retailer->affiliate_code;
+								$link = $link . $retailer->affiliate_code;
 							}
 						}		
-						$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $retailer, $book_id);
+						$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $retailer, $book_id, $link);
 						//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
 						
 						// 3.5.6
@@ -1930,7 +1931,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 							$buy_links_html .= '<span class="amazon_available_on_text">' . __('Available on', 'mooberry-book-manager') . ' <br/></span>';
 						}
 						
-						$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($mbdb_buylink->link) . '" TARGET="_new">';
+						$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url($link) . '" TARGET="_new">';
 						//if (array_key_exists('image', $retailer) && $r['image']!='') {
 						if ( $retailer->has_logo_image() ) {
 							
