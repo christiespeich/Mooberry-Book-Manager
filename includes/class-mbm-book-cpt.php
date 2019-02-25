@@ -136,6 +136,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 						'delete_terms' => 'manage_genre_terms',
 						'assign_terms' => 'assign_genre_terms',		
 					),
+                    'meta_box_sanitize_cb' => 'taxonomy_meta_box_sanitize_cb_checkboxes'  // version 5.1+
 				);
 						
 		$this->taxonomies['mbdb_genre'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_genre', $this->post_type, __('Genre', 'mooberry-book-manager'), __('Genres', 'mooberry-book-manager'), $tax_args );
@@ -1086,6 +1087,10 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 // are not hierarchical, the id to name has to be translated upon saving
 
 	public function switch_tax_ids_and_name() {
+	     // WP version 5.1+ does this automatically so bail if it's that version
+         if ( version_compare( get_bloginfo('version'), '5.1', '>=' ))  {
+             return;
+         }
 		if ( !isset( $_POST['post_type'] ) || $_POST['post_type'] != $this->post_type) {
 			return;
 		}
