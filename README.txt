@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.1
-Stable tag: 4.1.10
+Stable tag: 4.1.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.11 =
+* Fixed: Removed genre, series, and tags from quick/bulk edit for WP version 5.1 and higher, due to possible bug in WP 5.1 causing the fields to empty out when saved
+
 = 4.1.10 =
 * Fixed: A change in WP 5.1 prevented tags, genres, series, illustrators, editors, and cover artists to not save correctly
 
