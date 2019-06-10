@@ -139,7 +139,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
                     'meta_box_sanitize_cb' => 'taxonomy_meta_box_sanitize_cb_checkboxes'  // version 5.1+
 				);
 
-		$tax_args['show_in_quick_edit']	= 	version_compare( '5.1', get_bloginfo('version'));  // only show in quick edit if below 5.1 due to a bug
+		$tax_args['show_in_quick_edit']	= 	( version_compare( '5.1', get_bloginfo('version')) > 0 );  // only show in quick edit if below 5.1 due to a bug
 						
 		$this->taxonomies['mbdb_genre'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_genre', $this->post_type, __('Genre', 'mooberry-book-manager'), __('Genres', 'mooberry-book-manager'), $tax_args );
 		
