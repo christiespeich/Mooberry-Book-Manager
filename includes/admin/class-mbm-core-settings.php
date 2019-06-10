@@ -74,7 +74,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 					
 		// show migrate page if version is 3.x
 		$current_version = get_option(MBDB_PLUGIN_VERSION_KEY);
-		if (version_compare($current_version, '2.4.4', '>') && version_compare($current_version, '4.0', '<')) {
+		if (version_compare($current_version, '2.4.4', '>') ) { //} && version_compare($current_version, '4.0', '<')) {
 			$this->pages['mbdb_migrate'] = array ( 'page_title'	=>	__('Mooberry Book Manager v3.0 Data Migration', 'mooberry-book-manager'),
 												'menu_title'	=>	__('Migrate Data', 'mooberry-book-manager')
 												);
