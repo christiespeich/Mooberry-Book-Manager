@@ -107,7 +107,7 @@ abstract class mbdb_widget extends WP_Widget {
 		
 	function output_widget_start( $args, $instance) {
 		
-		do_action('mbdb_widget_pre_display', $instance);
+		do_action('mbdb_widget_pre_display', $instance );
 
 		//output
 		
