@@ -193,6 +193,10 @@ function mbdb_update_versions() {
 		mbdb_update_4_1_3();
 	}
 
+	if ( version_compare( $current_version, '4.1.13', '<')) {
+		mbdb_update_4_1_13();
+	}
+
 	update_option(MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION);
 }
 
@@ -950,4 +954,23 @@ function mbdb_update_4_1_3() {
 
 
 
+}
+
+function mbdb_update_4_1_13() {
+		$mbdb_options = get_option('mbdb_options');
+		if ( array_key_exists( 'retailers', $mbdb_options) ) {
+
+			// create an array of uniqueIDs
+			$existing_uniqueIDs = array_column( $mbdb_options['retailers'], 'uniqueID' );
+
+			// ** change image for amazon **
+			$path = MBDB_PLUGIN_URL . 'includes/assets/apple_books.png';
+			$key  = array_search( '4', $existing_uniqueIDs );
+			if ( $key !== false ) {
+				$mbdb_options['retailers'][ $key ]['image']    = $path;
+				$mbdb_options['retailers'][ $key ]['image_id'] = 0;
+				$mbdb_options['retailers'][ $key ]['name'] = 'Apple Books';
+			}
+		}
+		update_option( 'mbdb_options', $mbdb_options );
 }

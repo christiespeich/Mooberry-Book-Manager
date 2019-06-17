@@ -521,7 +521,8 @@ public function set_admin_notice( $message, $type, $key) {
 		$default_retailers[] = array('name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png');
 		$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png');
 		$default_retailers[] = array('name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png');
-		$default_retailers[] = array('name' => 'iBooks', 'uniqueID' => 4, 'image' => 'ibooks.png');
+		// v 4.1.13 change iBooks to Apple Books
+		$default_retailers[] = array('name' => 'Apple Books', 'uniqueID' => 4, 'image' => 'apple_books.png');
 		$default_retailers[] = array('name' => 'Smashwords', 'uniqueID' => 5, 'image' => 'smashwords.png');
 		$default_retailers[] = array('name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
 		$default_retailers[] = array('name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.png' );
@@ -643,5 +644,4 @@ public function set_admin_notice( $message, $type, $key) {
 	}
 	
 }
-	
 	

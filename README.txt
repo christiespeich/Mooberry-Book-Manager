@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.2
-Stable tag: 4.1.12
+Stable tag: 4.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.13 =
+* Updated: iBooks updated to Apple Books in list of Retailers that come pre-installed with MBM
+
+
 = 4.1.12 =
 * Fixed: Bug in logic to remove genre, series, and tags from quick/bulk edit in WP5.1+ was bringing them back in WP5.2
 * Fixed: Allow MBM3.0 data migration to happen in MBM4.0+ for users who have not kept plugin updated
