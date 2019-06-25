@@ -11,7 +11,7 @@ MAINFILE="mooberry-book-manager.php" # this should be the name of your main php 
 GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
  
 # svn config
-SVNPATH="/tmp/$PLUGINSLUG" # path to a temp SVN repo. No trailing slash required and don't add trunk.
+SVNPATH="/Users/christie/wp-repository/mooberry-book-manager" # path to a temp SVN repo. No trailing slash required and don't add trunk.
 SVNURL="http://plugins.svn.wordpress.org/$PLUGINSLUG/" # Remote SVN repo on wordpress.org, with no trailing slash
 SVNUSER="mooberrydreams" # your svn username
  
@@ -49,7 +49,6 @@ echo -e "Enter a commit message for this new version: \c"
 read COMMITMSG
 git commit -am "$COMMITMSG"
 
-echo "$NEWVERSION1"
 echo "Tagging new version $NEWVERSION1 in git"
 git tag -a "$NEWVERSION1" -m "Tagging version $NEWVERSION1"
  
