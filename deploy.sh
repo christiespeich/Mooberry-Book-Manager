@@ -31,7 +31,7 @@ echo "$GITPATH$MAINFILE"
 NEWVERSION2=`grep "Version:" $GITPATH$MAINFILE | awk -F' ' '{print $NF}'`
 echo "$MAINFILE version: $NEWVERSION2"
  
-if [ "$NEWVERSION1" -ne "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAINFILE don't match. Exiting...."; exit 1; fi
+if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAINFILE don't match. Exiting...."; exit 1; fi
  
 echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
  
