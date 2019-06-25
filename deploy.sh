@@ -25,10 +25,11 @@ echo ".........................................."
 echo 
  
 # Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
-NEWVERSION1=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}'`
+NEWVERSION1=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}' | sed 's/[^0-9\.]*//g'`
+
 echo "readme.txt version: $NEWVERSION1"
 echo "$GITPATH$MAINFILE"
-NEWVERSION2=`grep "Version:" $GITPATH$MAINFILE | awk -F' ' '{print $NF}'`
+NEWVERSION2=`grep "Version:" $GITPATH$MAINFILE | awk -F' ' '{print $NF}' | sed 's/[^0-9\.]*//g'`
 echo "$MAINFILE version: $NEWVERSION2"
  
 if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAINFILE don't match. Exiting...."; exit 1; fi
