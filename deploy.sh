@@ -48,7 +48,7 @@ echo -e "Enter a commit message for this new version: \c"
 read COMMITMSG
 git commit -am "$COMMITMSG"
  
-echo "Tagging new version in git"
+echo "Tagging new version $NEWVERSION1 in git"
 git tag -a "$NEWVERSION1" -m "Tagging version $NEWVERSION1"
  
 echo "Pushing latest commit to origin, with tags"
