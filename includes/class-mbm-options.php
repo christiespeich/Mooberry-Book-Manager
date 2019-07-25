@@ -619,25 +619,28 @@ class Mooberry_Book_Manager_Options {
 	//												['link'], }
 	//			
 	protected function create_array_with_ids(  $options_key, $id_key ) {
-		if ( !is_array($this->options) ) {
+		if ( ! is_array( $this->options ) ) {
 			$this->options = array( $this->options );
 		}
 		/* if ( $options_key == 'social_media' ) {
 		print_r( array_key_exists( $options_key, $this->options ) );
 		print_r(array_column(  $this->options[ $options_key ], $id_key ) );
 		} */
-		if (array_key_exists( $options_key, $this->options ) ) {
+		if ( array_key_exists( $options_key, $this->options ) ) {
 			$array = $this->options[ $options_key ];
-			if ( !is_array( $array) ) {
+			if ( ! is_array( $array ) ) {
 				return array();
 			}
 			// get an array of uniqueIDs
 			$keys = array_column( $array, $id_key );
 			// map uniqueIDs to the rest of the publisher info
-			return array_combine( $keys, $array );
-		} else {
-			return array();
+			if ( count( $keys ) == count( $array ) ) {
+				return array_combine( $keys, $array );
+			}
 		}
+
+		return array();
+
 	}
 	
 	
