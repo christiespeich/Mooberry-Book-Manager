@@ -37,7 +37,7 @@ class MBDB_Book_List implements Countable, Iterator {
 				} else {
 					$sort = array( $orderby, $order );
 				}
-				if ( $book_list_type == 'custom' && ( (is_array($selection_ids) && count($selection_ids) == 0 ) || $selection_ids == '' || $selection_ids == null ) ) {
+				if ( in_array($book_list_type, array('sale', 'custom') ) && ( (is_array($selection_ids) && count($selection_ids) == 0 ) || $selection_ids == '' || $selection_ids == null ) ) {
 					$books = array();
 				} else {
 					$books = $this->db_object->get_ordered_selection( $book_list_type, $selection_ids, $sort, $book_filter, $selection_filter, $include_drafts, $book_limit, $offset );
