@@ -184,6 +184,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.15 =
+* Fixed: Be sure not to return ALL books on a grid that is really returning NO books
+* Fixed: Display currency with price in editions
+
 = 4.1.14 =
 * Fixed: obscure PHP notice on some settings configurations
 
