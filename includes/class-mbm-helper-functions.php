@@ -398,13 +398,19 @@ public function set_admin_notice( $message, $type, $key) {
 		// $defaults = array( 'taxonomy' => 'category' );
 		$args = wp_parse_args( $args, array( 'orderby'           => 'name', 
 											'order'             => 'ASC', 
-											'hide_empty'	=>	'false',
+											'hide_empty'	=>	false,
 											) 
 								);
 		
 		$taxonomy = $args['taxonomy'];
-		
-		$terms = (array) get_terms( $taxonomy, $args );
+
+		 if ( version_compare(  get_bloginfo('version'), '4.5.0','<') ) {
+		 	// if version less than 4.5.0
+			 $terms = (array) get_terms( $taxonomy, $args );
+		 } else {
+		 	// version 4.5.0 and above
+		 	$terms = (array) get_terms( $args );
+		 }
 		
 		// Initate an empty array
 		$term_options = array();
