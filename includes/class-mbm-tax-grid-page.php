@@ -311,6 +311,6 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 
 
 
-	
+
 }
 
