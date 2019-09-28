@@ -226,3 +226,10 @@ p.cmb2-metabox-description {
   z-index: 1002;
   overflow: auto;
 }
+
+
+@media screen and (max-width: 850px) {
+	.cmb2-wrap li {
+		margin: 1px 0 15px 0;
+	}
+}
