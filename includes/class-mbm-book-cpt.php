@@ -1007,6 +1007,10 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			if ( !in_the_loop() || !is_main_query() ) {
 				return $content;
 			}
+			// we DO want the excerpt on the serach page
+			if ( is_search() )  {
+			    return $content;
+            }
 			return '';
 		}	
 		
