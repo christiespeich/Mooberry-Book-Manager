@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.2
-Stable tag: 4.1.19
+Stable tag: 4.1.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.20 =
+* Fixed: if the book buy link already contains a ? and has an affiliate link with the affiliate code appended to the link, the affiliate code with start with a & instead of a ?.  Thanks Andre Guirard
+
 = 4.1.19 =
 * Fixed: shows summary of book on search page for themes that output post_excerpt
 * Fixed: CSS issue on mobile with lists of checklists such as with multi-author

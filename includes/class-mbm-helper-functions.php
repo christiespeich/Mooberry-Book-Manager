@@ -160,7 +160,7 @@ public function set_admin_notice( $message, $type, $key) {
 					'id' => 'affiliate_code',
 					'name'	=>	__('Affiliate Code','mooberry-book-manager'),
 					'type' => 'text',
-					'description' => __('If you are an Affiliate for this retailer, enter the exact code that needs to be added to the URL to use your affiliate link.', 'mooberry-book-manager'),
+					'description' => __('If you are an Affiliate for this retailer, enter the exact code that needs to be added to the URL to use your affiliate link.  NOTE: A leading "?" in the affiliate code field will change to "&" if the buy link already contains "?"', 'mooberry-book-manager'),
 					'attributes'	=>	array(
 								'style'	=>	'width:100em;',
 								),

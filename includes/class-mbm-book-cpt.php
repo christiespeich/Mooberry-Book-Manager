@@ -1930,7 +1930,13 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 							if ($retailer->affiliate_position == 'before') {
 								$link = $retailer->affiliate_code . $link;
 							} else {
-								$link = $link . $retailer->affiliate_code;
+							     $aff_arg = $retailer->affiliate_code;
+                                // if affiliate code starts with ? and URL already contains ?, use & to make it an additional URL argument.
+                                if (substr($aff_arg, 0, 1) == '?' && strpos($link, '?') !== false) {
+                                    $aff_arg = '&' . substr($aff_arg, 1);
+                                }
+                                $link .= $aff_arg;
+
 							}
 						}		
 						$mbdb_buylink = apply_filters('mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $retailer, $book_id, $link);
