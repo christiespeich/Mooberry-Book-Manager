@@ -28,13 +28,13 @@ class Mooberry_Book_Manager_Options {
 	protected $tax_grid_slugs;
 	protected $comments_on_books;
 	protected $override_wpseo;
-	
-	
-	
-	
+
+
+
+
 	public function __construct() {
 		$this->options = $this->get_options();
-		
+
 	/*	$this->set_placeholder_locations( $options );
 		$this->set_override_wpseo( $options );
 		$this->set_comments_on_books( $options );
@@ -56,12 +56,12 @@ class Mooberry_Book_Manager_Options {
 		$this->set_book_grid_default_height( $options );
 		$this->set_tax_grid_template( $options );
 		$this->set_tax_grid_slugs( $options );
-		
+
 		*/
-		
-		
+
+
 	}
-	
+
 	protected function get_options( ) {
 		if ( $this->options == null ) {
 			$this->options = get_option('mbdb_options');
@@ -71,27 +71,27 @@ class Mooberry_Book_Manager_Options {
 		}
 		return $this->options;
 	}
-	
+
 	protected function save_options(  ) {
-		update_option( 'mbdb_options', $this->options );			
+		update_option( 'mbdb_options', $this->options );
 	}
-	
+
 	protected function add_element( $key, $array) {
-		
-		
+
+
 		if ( !array_key_exists( $key, $this->options ) ) {
 			$this->options[ $key ] = array();
 		}
 		$this->options[ $key ][] = $array;
 		$this->save_options( );
-		
+
 	}
-	
+
 	public function add_item( $key, $value ) {
 		$this->options[ $key ] = $value;
 		$this->save_options();
 	}
-	
+
 	public function get_item( $key, $default ) {
 		if ( array_key_exists( $key, $this->options ) && $this->options[ $key ] != '' ) {
 			return $this->options[ $key ];
@@ -99,26 +99,26 @@ class Mooberry_Book_Manager_Options {
 			return $default;
 		}
 	}
-	
+
 	protected function get_tax_grid_page() {
 		return $this->get_option_value( 'mbdb_tax_grid_page', true, '');
 	}
-	
+
 	public function set_tax_grid_page( $page_id ) {
 		$this->options[ 'mbdb_tax_grid_page' ] = $page_id;
 		$this->save_options();
 		flush_rewrite_rules();
 	}
-			
+
 	protected function get_placeholder_locations(  ) {
 		$placeholder_locations = $this->get_option_value(  'show_placeholder_cover');
 		if ( !is_array( $placeholder_locations ) )  {
 			$placeholder_locations = array( $placeholder_locations );
 		}
 		return $placeholder_locations;
-		
+
 	}
-	
+
 	public function show_placeholder( $location ) {
 		// always show placeholder in the book grid
 		if ( $location == 'grid' ) {
@@ -127,29 +127,29 @@ class Mooberry_Book_Manager_Options {
 		$placeholder_locations = $this->get_placeholder_locations();
 		return ( in_array( $location, $placeholder_locations ) );
 	}
-	
+
 	protected function get_override_wpseo(  ) {
 		$override_wpseo = $this->get_option_value( 'override_wpseo');
 
 		if ( !is_array( $override_wpseo  ) ) {
 			$override_wpseo  = array( $override_wpseo  );
-		}	
+		}
 		return $override_wpseo;
-	}		
-		
+	}
+
 	public function override_wpseo( $setting ) {
 		$override_wpseo = $this->get_override_wpseo();
 		return ( in_array( $setting, $override_wpseo ) );
 	}
-	
+
 	protected function get_comments_on_books(  ) {
-	
+
 			$comments_on_books =  $this->get_option_value(  'comments_on_books', true, apply_filters('mbdb_default_comments_on_books', false ) );
 			return $comments_on_books;
-		
+
 	}
-			
-			
+
+
 	protected function get_retailers( ) {
 		$retailers = array();
 		$retailer_list = $this->create_array_with_ids( 'retailers', 'uniqueID' );
@@ -158,9 +158,9 @@ class Mooberry_Book_Manager_Options {
 		}
 		return $retailers;
 	}
-	
+
 	public function add_retailer ( $retailer ) {
-		$retailer_array = array( 
+		$retailer_array = array(
 							'uniqueID' => $retailer->id,
 							'image' => $retailer->logo,
 							'name' => $retailer->name,
@@ -168,9 +168,9 @@ class Mooberry_Book_Manager_Options {
 							'affiliate_position' => $retailer->affiliate_position,
 						);
 		$this->add_element( 'retailers', $retailer_array);
-		
+
 	}
-	
+
 	protected function get_publishers(  ) {
 		$publishers = array();
 		$publisher_list = $this->create_array_with_ids(  'publishers', 'uniqueID' );
@@ -180,45 +180,45 @@ class Mooberry_Book_Manager_Options {
 		asort($publishers);
 		return $publishers;
 	}
-	
+
 	public function add_publisher( $publisher ) {
-		
-		
+
+
 		$publisher_array = array(
 							'uniqueID'	=>	$publisher->id,
 							'name'		=>	$publisher->name,
 							'website'	=>	$publisher->website,
 						);
 		$this->add_element( 'publishers', $publisher_array );
-		
+
 	}
-	
+
 	protected function get_social_media_sites(  ) {
 		$social_media_sites = array();
-		
+
 		$social_media_sites_list = $this->create_array_with_ids(  'social_media', 'uniqueID' );
-		
+
 		foreach ( $social_media_sites_list as $id => $site ) {
 			$social_media_sites[ $id ] = new Mooberry_Book_Manager_Social_Media_Site( $site );
 		}
-		
+
 		return $social_media_sites;
 	}
-	
+
 	public function add_social_media_site( $site ) {
-		
-		$format_array = array( 
+
+		$format_array = array(
 							'uniqueID' => $site->id,
 							'name' => $site->name,
 							'image'	=> $site->logo,
 							'image_id'	=>	$site->logo_id,
 						);
 		$this->add_element('social_media', $format_array);
-		
+
 	}
-	
-	
-	
+
+
+
 	protected function get_download_formats( ) {
 			$download_formats = array();
 			$download_format_list = $this->create_array_with_ids( 'formats', 'uniqueID' );
@@ -227,18 +227,18 @@ class Mooberry_Book_Manager_Options {
 			}
 			return $download_formats;
 	}
-	
+
 	public function add_download_format( $format ) {
-		
-		$format_array = array( 
+
+		$format_array = array(
 							'uniqueID' => $format->id,
 							'name' => $format->name,
 							'image'	=> $format->logo,
 						);
 		$this->add_element('formats', $format_array );
-		
+
 	}
-	
+
 	protected function get_edition_formats(  ) {
 		$edition_formats = array();
 		$edition_format_list = $this->create_array_with_ids( 'editions', 'uniqueID' );
@@ -246,19 +246,19 @@ class Mooberry_Book_Manager_Options {
 			$edition_formats[ $id ] = new Mooberry_Book_Manager_Edition_Format( $edition_format );
 		}
 		return $edition_formats;
-		
+
 	}
-	
+
 	public function add_edition_format ( $format ) {
-		
-		$edition_array = array( 
+
+		$edition_array = array(
 							'uniqueID' => $format->id,
 							'name' => $format->name,
 						);
 		$this->add_element( 'editions', $edition_array );
-		
+
 	}
-	
+
 	protected function get_languages() {
 		if ( $this->languages == null ) {
 			$this->languages = apply_filters('mbdb_get_language_array', array(
@@ -397,24 +397,24 @@ class Mooberry_Book_Manager_Options {
 					'XH' => __('Xhosa', 'mooberry-book-manager'),
 					'JI' => __('Yiddish', 'mooberry-book-manager'),
 					'YO' => __('Yoruba', 'mooberry-book-manager'),
-					'ZU' => __('Zulu', 'mooberry-book-manager'), 
+					'ZU' => __('Zulu', 'mooberry-book-manager'),
 				)
 			);
 		}
 		return $this->languages;
-		
+
 	}
-	
+
 	protected function get_default_language(  ) {
-		
+
 			if ( array_key_exists( 'mbdb_default_language', $this->options ) && isset( $options[ 'mbdb_default_language' ] ) && array_key_exists( $this->options['mbdb_default_language'], $this->languages) ) {
-			
+
 				return $this->options[ 'mbdb_default_language' ];
 			} else {
 				return 'EN';
 			}
 	}
-	
+
 	protected function get_units( ) {
 		if ( $this->units == null ) {
 			$this->units = apply_filters('mbdb_get_units_array', array(
@@ -425,18 +425,18 @@ class Mooberry_Book_Manager_Options {
 			);
 		}
 		return $this->units;
-		
+
 	}
-	
+
 	protected function get_default_unit(  ) {
-	
-		if ( array_key_exists( 'mbdb_default_unit', $this->options ) && isset( $options[ 'mbdb_default_unit' ] ) && array_key_exists( $this->options['mbdb_default_unit'], $this->units) ) {
-			return $options[ 'mbdb_default_unit' ];
+
+		if ( array_key_exists( 'mbdb_default_unit', $this->options ) && isset( $this->options[ 'mbdb_default_unit' ] ) && array_key_exists( $this->options['mbdb_default_unit'], $this->units) ) {
+			return $this->options[ 'mbdb_default_unit' ];
 		} else {
 			return 'in';
 		}
 	}
-	
+
 	protected function get_currencies() {
 		if ( $this->currencies == null ) {
 			$this->currencies = apply_filters('mbdb_get_currency_array', array(
@@ -468,24 +468,25 @@ class Mooberry_Book_Manager_Options {
 					'TRY'   => __('Turkish Lira', 'mooberry-book-manager'),
 					'GBP'   => __('U.K. Pound Sterling', 'mooberry-book-manager'),
 					'USD'   => __('U.S. Dollar', 'mooberry-book-manager'),
-				)	
+					'VND'   =>  __('Vietname đồng', 'mooberry-book-manager'),
+				)
 			);
 		}
 		return $this->currencies;
-		
+
 	}
-	
+
 	protected function get_default_currency( ) {
-		
+
 			if ( array_key_exists( 'mbdb_default_currency', $this->options ) && isset( $this->options[ 'mbdb_default_currency' ] ) && array_key_exists( $this->options['mbdb_default_currency' ], $this->currencies ) ) {
 				return $this->options[ 'mbdb_default_currency' ];
 			} else {
 				return 'USD';
 			}
-		
-		
+
+
 	}
-	
+
 	protected function get_currency_symbols() {
 		if ( $this->currency_symbols == null ) {
 			$this->currency_symbols = apply_filters('mbdb_get_currency_symbol_array', array(
@@ -517,14 +518,15 @@ class Mooberry_Book_Manager_Options {
 				'THB'   => '฿',
 				'TRY'   => '₤',
 				'USD'   => '$',
+				'VND'   =>  '₫',
 				)
 			);
 		}
 		return $this->currency_symbols;
-		
+
 	}
-	
-	
+
+
 	protected function get_placeholder_image( ) {
 			$placeholder_image = $this->get_option_value( 'coming-soon', true, '' );
 			if ( $placeholder_image != ''  && is_ssl()) {
@@ -532,43 +534,43 @@ class Mooberry_Book_Manager_Options {
 			}
 			return $placeholder_image;
 	}
-	
+
 	protected function get_book_page_template(  ) {
-		
+
 			return $this->get_option_value(  'mbdb_default_template', true, apply_filters( 'mbdb_default_page_template', 'default' ) );
-		
+
 	}
-	
+
 	protected function get_goodreads_image(  ) {
-		
+
 			return $this->get_option_value(  'goodreads', true, '' );
-		
-		
+
+
 	}
-	
+
 	protected function get_book_grid_default_height(  ) {
-	
+
 			return $this->get_option_value(  'mbdb_default_cover_height', true, apply_filters('mbdb_default_grid_height', 200 ) );
-		
+
 	}
-	
+
 	protected function get_tax_grid_template(  ) {
-		
+
 			return $this->get_option_value( 'mbdb_tax_grid_template', true, apply_filters('mbdb_default_tax_grid_template', 'default' ) );
-		
+
 	}
-	
+
 	protected function get_tax_grid_slugs( ) {
 		// get all taxonomies on a book
-		$taxonomies = get_object_taxonomies('mbdb_book', 'objects' ); 
+		$taxonomies = get_object_taxonomies('mbdb_book', 'objects' );
 		//$taxonomies = MBDB()->book_CPT->taxonomies;
-		
+
 		foreach($taxonomies as $name => $taxonomy) {
 			$id = 'mbdb_book_grid_' . $name . '_slug';
-			
+
 			// make sure each tax grid is valid
 			$reserved_terms = mbdb_wp_reserved_terms();
-			
+
 			$slug = sanitize_title( $this->get_option_value( $id, true, $taxonomy->labels->singular_name ) );
 			if ( in_array( $slug, $reserved_terms ) ) {
 					$slug = 'book-' . $slug;
@@ -593,11 +595,11 @@ class Mooberry_Book_Manager_Options {
 		} else {
 			return $slugs[ $taxonomy ];
 		}
-			
+
 	}
-	
+
 	protected function get_option_value(  $key, $set_default = false, $default = null ) {
-		
+
 		$value = null;
 		if ( !is_array( $this->options ) ) {
 			$this->options = array( $this->options );
@@ -607,17 +609,17 @@ class Mooberry_Book_Manager_Options {
 		} else {
 			if ( $set_default ) {
 				$value = $default;
-			} 
+			}
 		}
 		return $value;
 	}
-	
+
 	// turn the publishers array from [0]['unqiueID'] = '',
 	//								  [0]['name'] = '',
 	//								  [0]['link'] = ''
 	// into array like this			[uniqueID] => { ['name'],
 	//												['link'], }
-	//			
+	//
 	protected function create_array_with_ids(  $options_key, $id_key ) {
 		if ( ! is_array( $this->options ) ) {
 			$this->options = array( $this->options );
@@ -642,8 +644,8 @@ class Mooberry_Book_Manager_Options {
 		return array();
 
 	}
-	
-	
+
+
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
@@ -656,39 +658,39 @@ class Mooberry_Book_Manager_Options {
 			return call_user_func( array( $this, 'get_' . $key ) );
 
 		} else {
-			
+
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$ungettable_properties = array(  );
-				
+
 				if ( !in_array( $key, $ungettable_properties ) ) {
-				
+
 					return $this->$key;
 
 				}
-		
+
 			}
-		
+
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-				
+
 	}
-	
+
 	/**
 	 * Magic __set function to dispatch a call to retrieve a private property
 	 *
 	 * @since 1.0
 	 */
 	public function __set( $key, $value ) {
-	
-		// this class does not set any properties and does not write anything to the 
+
+		// this class does not set any properties and does not write anything to the
 		// database. Changes to the options are done through the settings pages
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t set property %s', 'mooberry-book-manager' ), $key ) );
-		
+
 	}
-	
-	
+
+
 }
 
