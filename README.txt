@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.2
-Stable tag: 4.1.20
+Stable tag: 4.1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,16 +22,16 @@ Mooberry Book Manager will create a page for each book, ensuring a consistent lo
 
 Organize your book into grids with just a few clicks. Grids can include all of your books or a selection of books, and you choose how they are ordered. You can create multiple grids; for example, an "Available Now" page and a "Coming Soon" page. Grids update automatically when you edit or add books. Set it and forget it!
 
-Feature books on your sidebar with four options:   
+Feature books on your sidebar with four options:
 
-* A random book    
+* A random book
 
-* The newest book    
+* The newest book
 
-* A book that's coming soon   
+* A book that's coming soon
 
-* A specific book   
-	
+* A specific book
+
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
 Requires Wordpress 3.8 and Javascript.
@@ -46,7 +46,7 @@ In order for your books to appear on your website, you need to add a Book Grid a
 
 To Add a Book Grid:
 
-* Go to Book Grids -> Add New 
+* Go to Book Grids -> Add New
 
 * Give the Book Grid a name to help you remember what kind of grid it is
 
@@ -59,7 +59,7 @@ To Add a Book Grid:
 * Save your page and view it. Click on any book to see the details of the book.
 
 
-To Add a Widget:  
+To Add a Widget:
 
 * Go to Appearance -> Widget
 
@@ -73,7 +73,7 @@ Additonal questions?
 
 Check out the [documentation and support page.](http://www.bookmanager.mooberrydreams.com/support/)
 
-**Now Available**  
+**Now Available**
 
 * [Additional Images](http://www.bookmanager.mooberrydreams.com/downloads/additional-images/) - Display additional images for a book beyond a single book cover, and add a video trailer.
 
@@ -82,24 +82,24 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 * [Multi-Author](http://www.bookmanager.mooberrydreams.com/downloads/multi-author/) - Makes Mooberry Book Manager work for publishers, authors with multiple pen names, author groups, or for any other website that lists books by more than one author.
 
 * [Retail Links Redirect](http://www.bookmanager.mooberrydreams.com/downloads/retail-links-redirect/) - Magically redirects readers to retailers so you don't have to update your e-books after publishing.
- 
 
-More extensions coming soon. If you have suggestions for a new extension, feel free to email me at bookmanager@mooberrydreams.com. 
 
-**Want regular updates?**  
+More extensions coming soon. If you have suggestions for a new extension, feel free to email me at bookmanager@mooberrydreams.com.
 
-* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/  
+**Want regular updates?**
 
-* Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams  
+* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/
+
+* Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams
 
 
 == Installation ==
 
-1. Upload the entire `mooberry-book-manager` directory to the `/wp-content/plugins/` directory  
-2. Activate the plugin through the 'Plugins' menu in WordPress 
+1. Upload the entire `mooberry-book-manager` directory to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Use the Books menu to add new books.
 4. Use the Book Grids menu to add book gridds.
-5. Add Widgets. 
+5. Add Widgets.
 
 == Frequently Asked Questions ==
 
@@ -121,10 +121,10 @@ A single book most likely won’t have both Download Links and Retailer Links, u
 
 = What link do I use for download links? How will my readers download the files? =
 
-Your ebook files will need to be uploaded somewhere. You have a few options:  
-1. Upload to a public storage website such as Dropbox.  
-2. Upload directly to your website via FTP.  
-3. Upload to your website via Wordpress' Media Libary. **Note:** Wordpress does not allow you to upload .epub and .mobi files. You'll need to compress them into .zip files before uploading.  
+Your ebook files will need to be uploaded somewhere. You have a few options:
+1. Upload to a public storage website such as Dropbox.
+2. Upload directly to your website via FTP.
+3. Upload to your website via Wordpress' Media Libary. **Note:** Wordpress does not allow you to upload .epub and .mobi files. You'll need to compress them into .zip files before uploading.
 
 The link you enter on the book page should point directly to the file to download.
 
@@ -184,6 +184,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.21 =
+* Added: Vietnam currency
+* Added: many filters to the book page
+
 = 4.1.20 =
 * Fixed: if the book buy link already contains a ? and has an affiliate link with the affiliate code appended to the link, the affiliate code with start with a & instead of a ?.  Thanks Andre Guirard
 
@@ -317,11 +321,11 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 * Fixed: error on License Activation screen when there's only one extension installed
 * Fixed: only return 1 book for book widget when used with multi-author extension
 
-= 4.0.3 = 
+= 4.0.3 =
 * Fixed: Truncate meta description around 200 chars
 * Fixed: Add description, open graph, and twitter card meta tags to taxonomy grids
 
-= 4.0.2 = 
+= 4.0.2 =
 * Fixed: don't use cropped images in grid
 * Fixed: allow shortcodes in before/after grid descriptions
 * Fixed: fixed code to migrate tax grid before/after descriptions
@@ -332,7 +336,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 = 4.0 =
 * Fixed: Edition size (width/height) no longer rounds to nearest whole number
 * Added: Ability to import and export books (for backup and site migration purposes)
-* Added: Open-Graph meta tags compatible with FB for sharing. Adds book cover, title,  summary, and ISBN. 
+* Added: Open-Graph meta tags compatible with FB for sharing. Adds book cover, title,  summary, and ISBN.
 * Added: Twitter Card meta tags to enhance sharing on Twitter. Adds book cover, title, and summary.
 * Added: Meta description tag with series, genre, purchase links, and summary info added to single book page.
 * Added: Ability to override open-graph, twitter card, and meta description tags set by Yoast's WP SEO on single book pages
@@ -349,7 +353,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 * Updated: Change label to "Available on" for books that aren't published yet
 * Updated: Use scrolling boxes for all multichecks
 
-= 3.5.14 = 
+= 3.5.14 =
 * Fixed: Width/Height in Editions no longer rounds to nearest whole number
 * Updated: Kindle Live Preview now uses ASIN instead of iframe code
 
@@ -361,7 +365,7 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 * Updated: Put a note to not use currency symbol in price
 * Fixed: Do an extra check on edition's format before printing out
 
-= 3.5.11 = 
+= 3.5.11 =
 * Fixed: Bug about missing argument in Advanced Widgets
 * Fixed: Bugs wth Add Book Grid button
 * Updated: Added Add Book Grid button to summaries, excerpts, additional info on book pages
@@ -457,9 +461,9 @@ Redesigned, responsive book page and much more!
 * Use another caching plugin?  If you are having problems using it with Mooberry Book Manager, please [contact us](http://www.mooberrydreams.com/contact/) and let us know what plugin you are using and what the issue is.
 
 = Translations =
-* English 
+* English
 
-* German  
+* German
 
 * French
 
