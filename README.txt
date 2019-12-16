@@ -184,6 +184,9 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.1.22 =
+* Updated: streamlined arguments to book page filters
+
 = 4.1.21 =
 * Added: Vietnam currency
 * Added: many filters to the book page
