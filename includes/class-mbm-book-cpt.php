@@ -1846,7 +1846,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'affiliate' => '',
 		), $attr );
 
-		return '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">Excerpt:</span><iframe type="text/html" width="336" height="550" frameborder="0" allowfullscreen style="max-width:100%" src="https://read.amazon.com/kp/card?asin=' . esc_attr( $attr['asin'] ) . '&preview=inline&linkCode=kpe&tag=' . esc_attr( $attr['affiliate'] ) . '" ></iframe></div>';
+		return '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">Excerpt:</span><iframe type="text/html" width="100%" height="650" frameborder="0" allowfullscreen style="max-width:100%" src="https://read.amazon.com/kp/card?asin=' . esc_attr( $attr['asin'] ) . '&preview=inline&linkCode=kpe&tag=' . esc_attr( $attr['affiliate'] ) . '" ></iframe></div>';
 
 	}
 
