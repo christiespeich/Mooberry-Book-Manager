@@ -6,7 +6,7 @@
   *  Author: Mooberry Dreams
   *  Author URI: http://www.mooberrydreams.com/
   *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *  Version: 4.1.22
+  *  Version: 4.2
   *  Text Domain: mooberry-book-manager
   *  Domain Path: languages
   *
@@ -27,7 +27,7 @@
   *
   * @package MBDB
   * @author Mooberry Dreams
-  * @version 4.1.14
+  * @version 4.2
   */
 
  // Exit if accessed directly
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.1.22' );
+	define( 'MBDB_PLUGIN_VERSION', '4.2' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -236,7 +236,22 @@ final class Mooberry_Book_Manager {
 			$message = __('You must update MBM Multi-Author to be compatible with MBM version 4.0', 'mooberry-book-manager');
 			MBDB()->helper_functions->set_admin_notice( $message, 'error', 'mbdb_update_mbdbma');
 		}
+
+
+		// version 4.2
+		// cover as featured image has been integrated with MBM so the separate plugin is no longer needed
+		if ( defined( 'MBDBCAFI_PLUGIN_FILE') ) {
+			// deactivate the plugin but DO NOT run deactivation filter
+			if ( current_user_can( 'activate_plugins' ) ) {
+				add_action( 'admin_init', 'mbdb_deactivate_cover_as_featured_image' );
+				// set an admin notice
+				MBDB()->helper_functions->set_admin_notice( 'As of version 4.2, MBM Cover As Featured Image has been integrated with Mooberry Book Manager.  The plugin MBM Cover as Featured Image has been deactivated. Your book covers will be used as featured images.  <p>You can turn this off by going to <a href="' . admin_url('admin.php?page=mbdb_options') . '">MBM Settings -> General</a> and setting the Use Cover as Featured Image option to No.</p> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="mbdb_cover_as_featured_image_deactivated">Dismiss</a>', 'updated', 'mbdb_cover_as_featured_image_deactivated' );
+				// set use featured images as yes
+				MBDB()->options->set_use_featured_image( 'yes' );
+			}
+		}
 	}
+
 
 	public static function admin_notices() {
 		$notices  = get_option('mbdb_admin_notices');
@@ -477,4 +492,15 @@ function remove_tax_grid_from_page_links( $args ) {
 // }
 
 
+function mbdb_deactivate_cover_as_featured_image() {
+		deactivate_plugins( plugin_basename( MBDBCAFI_PLUGIN_FILE) );
+}
+
+
+/*
+add_filter('mbdb_book_cpt', 'mbdb_change_book_url');
+function mbdb_change_book_url( $args ) {
+	$args['rewrite'] = array( 'slug' => 'my_book' );
+	return $args;
+}*/
 

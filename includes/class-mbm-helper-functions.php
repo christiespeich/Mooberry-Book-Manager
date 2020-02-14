@@ -59,7 +59,7 @@ class Mooberry_Book_Manager_Helper_Functions {
 		}
 		return apply_filters('mbdb_format_date', date( 'Y/m/d', strtotime( $field ) ));
 	}
-	
+
 	function uniqueID_generator ( $value = '' ) {
 		if ($value=='') {
 			$value =  uniqid();
@@ -76,15 +76,15 @@ public function set_admin_notice( $message, $type, $key) {
 	if (!in_array($type, array('error', 'updated', 'update-nag'))) {
 		$type = 'updated';
 	}
-	
+
 	$notices = get_option( 'mbdb_admin_notices', array() );
 	$notices[$key] = array('message' => $message, 'type' => $type);
 	update_option( 'mbdb_admin_notices', $notices);
 }
-	
+
 	public function remove_admin_notice( $key ) {
 		$mbdb_admin_notices = get_option('mbdb_admin_notices');
-	
+
 		if (is_array($mbdb_admin_notices)) {
 			if (array_key_exists($key, $mbdb_admin_notices)) {
 				unset($mbdb_admin_notices[$key]);
@@ -92,7 +92,7 @@ public function set_admin_notice( $message, $type, $key) {
 			update_option('mbdb_admin_notices', $mbdb_admin_notices);
 		}
 	}
-	
+
 	// makes each property of the object a key in the array
 	public function object_to_array( $object ) {
 		$array = array();
@@ -107,11 +107,11 @@ public function set_admin_notice( $message, $type, $key) {
 		}
 		return $object;
 	}
-		
-	
-	public function create_array_from_objects( $objects, $value_property, $add_empty = false, $empty_key = '0', $empty_value = '', $id_property = '' ) { 
+
+
+	public function create_array_from_objects( $objects, $value_property, $add_empty = false, $empty_key = '0', $empty_value = '', $id_property = '' ) {
 		$new_array = array();
-		
+
 		foreach ( $objects as $id => $object) {
 			if ( $id_property != '' ) {
 				if ( property_exists( $object, $id_property ) ) {
@@ -126,9 +126,9 @@ public function set_admin_notice( $message, $type, $key) {
 		if ( $add_empty ) {
 			$new_array = array( $empty_key => $empty_value ) + $new_array;
 		}
-	
-		
-		return $new_array;		
+
+
+		return $new_array;
 	}
 	/*
 	// turn the publishers array from [0]['unqiueID'] = '',
@@ -136,7 +136,7 @@ public function set_admin_notice( $message, $type, $key) {
 	//								  [0]['link'] = ''
 	// into array like this			[uniqueID] => { ['name'],
 	//												['link'], }
-	//			
+	//
 	public function create_array_with_ids( $array, $id_key ) {
 		// get an array of uniqueIDs
 		$keys = array_column( $array, $id_key );
@@ -166,9 +166,9 @@ public function set_admin_notice( $message, $type, $key) {
 								),
 				)
 			);
-			
+
 		$info_button = '<img onClick="window.open(\'' . MBDB_PLUGIN_URL . 'includes/admin/views/affiliate-code-position.html' . '\', \'' . __('Affiliate Code Position', 'mooberry-book-manager') . '\',  \'width=800, height=300, left=550, top=250, scrollbars=yes\'); return false;"	class="mbdb_info_icon mbdb_affiliate_position_info" src="' . MBDB_PLUGIN_URL . 'includes/assets/info.png">';
-		
+
 		$metabox->add_group_field( $group, array(
 					'id'	=> 'affiliate_position',
 					'name'	=>	__('Affiliate Code Position', 'mooberry-book-manager') . $info_button,
@@ -179,110 +179,110 @@ public function set_admin_notice( $message, $type, $key) {
 								),
 							)
 						);
-						
+
 		return $metabox;
 	}
 
 
-		
+
 	public function get_template_list() {
 		// get the list of templates from the theme
 		$all_templates = wp_get_theme()->get_page_templates();
-		
+
 		// add the default
 		$all_templates = array_merge( array('default' => __('Default', 'mooberry-book-manager')), $all_templates);
-		
+
 		return $all_templates;
 	}
-	
-	
+
+
 	public function wp_reserved_terms() {
 		return array(
-			'attachment', 
-			'attachment_id', 
-			'author', 
-			'author_name', 
-			'calendar', 
-			'cat', 
-			'category', 
-			'category__and', 
-			'category__in', 
-			'category__not_in', 
-			'category_name', 
-			'comments_per_page', 
-			'comments_popup', 
-			'customize_messenger_channel', 
-			'customized', 
-			'cpage', 
-			'day', 
-			'debug', 
-			'error', 
-			'exact', 
-			'feed', 
-			'hour', 
-			'link_category', 
-			'm', 
-			'minute', 
-			'monthnum', 
-			'more', 
-			'name', 
-			'nav_menu', 
-			'nonce', 
-			'nopaging', 
-			'offset', 
-			'order', 
-			'orderby', 
-			'p', 
-			'page', 
-			'page_id', 
-			'paged', 
-			'pagename', 
-			'pb', 
-			'perm', 
-			'post', 
-			'post__in', 
-			'post__not_in', 
-			'post_format', 
-			'post_mime_type', 
-			'post_status', 
-			'post_tag', 
-			'post_type', 
-			'posts', 
-			'posts_per_archive_page', 
-			'posts_per_page', 
-			'preview', 
-			'robots', 
-			's', 
-			'search', 
-			'second', 
-			'sentence', 
-			'showposts', 
-			'static', 
-			'subpost', 
-			'subpost_id', 
-			'tag', 
-			'tag__and', 
-			'tag__in', 
-			'tag__not_in', 
-			'tag_id', 
-			'tag_slug__and', 
-			'tag_slug__in', 
-			'taxonomy', 
-			'tb', 
-			'term', 
-			'terms', 
-			'theme', 
-			'title', 
-			'type', 
-			'w', 
-			'withcomments', 
-			'withoutcomments', 
-			'year', 
+			'attachment',
+			'attachment_id',
+			'author',
+			'author_name',
+			'calendar',
+			'cat',
+			'category',
+			'category__and',
+			'category__in',
+			'category__not_in',
+			'category_name',
+			'comments_per_page',
+			'comments_popup',
+			'customize_messenger_channel',
+			'customized',
+			'cpage',
+			'day',
+			'debug',
+			'error',
+			'exact',
+			'feed',
+			'hour',
+			'link_category',
+			'm',
+			'minute',
+			'monthnum',
+			'more',
+			'name',
+			'nav_menu',
+			'nonce',
+			'nopaging',
+			'offset',
+			'order',
+			'orderby',
+			'p',
+			'page',
+			'page_id',
+			'paged',
+			'pagename',
+			'pb',
+			'perm',
+			'post',
+			'post__in',
+			'post__not_in',
+			'post_format',
+			'post_mime_type',
+			'post_status',
+			'post_tag',
+			'post_type',
+			'posts',
+			'posts_per_archive_page',
+			'posts_per_page',
+			'preview',
+			'robots',
+			's',
+			'search',
+			'second',
+			'sentence',
+			'showposts',
+			'static',
+			'subpost',
+			'subpost_id',
+			'tag',
+			'tag__and',
+			'tag__in',
+			'tag__not_in',
+			'tag_id',
+			'tag_slug__and',
+			'tag_slug__in',
+			'taxonomy',
+			'tb',
+			'term',
+			'terms',
+			'theme',
+			'title',
+			'type',
+			'w',
+			'withcomments',
+			'withoutcomments',
+			'year',
 		);
 	}
-	
+
 	public function get_tax_grid_slug( $taxonomy, $mbdb_options = null ) {
-	
+
 	/* 	if ($mbdb_options == null) {
 			$mbdb_options = get_option('mbdb_options');
 		}
@@ -296,7 +296,7 @@ public function set_admin_notice( $message, $type, $key) {
 	//	} else {
 	//		$singular_name = $taxonomy;
 	//	}
-		
+
 		$key = 'mbdb_book_grid_' . $taxonomy->name . '_slug';
 		return MBDB()->options->get_tax_grid_slug( $taxonomy->name );
 		/* $reserved_terms = $this->wp_reserved_terms();
@@ -319,7 +319,7 @@ public function set_admin_notice( $message, $type, $key) {
 				)
 			);
 	}
-	
+
 	public function override_wpseo_options() {
 		return apply_filters('mbdb_override_wpseo_options', array(
 				'og'	=>	__('Open Graph', 'mooberry-book-manager'),
@@ -328,16 +328,16 @@ public function set_admin_notice( $message, $type, $key) {
 			)
 		);
 	}
-	
+
 	function get_alt_attr( $imageID, $default_alt) {
 		$alt = get_post_meta( $imageID, '_wp_attachment_image_alt', true);
 		if ($alt == '') {
 			$alt = $default_alt;
-		}	
+		}
 		return ' alt="' . esc_attr($alt) . '" ';
 	}
 
-	
+
 	function make_dropdown($dropdownID, $options, $selected = null, $include_empty = 'yes', $empty_value = -1, $name = '', $args = array() ) {
 		$html = '<select id="' . $dropdownID . '"';
 		if ($name != '' ) {
@@ -362,7 +362,7 @@ public function set_admin_notice( $message, $type, $key) {
 		$html .= '</select>';
 		return $html;
 	}
-	
+
 	function get_all_books( ) {
 		$title_list = wp_cache_get( 'title_list', 'mbdb_lists' );
 		if ( $title_list === false ) {
@@ -373,19 +373,19 @@ public function set_admin_notice( $message, $type, $key) {
 		}
 		return $title_list;
 	}
-	
+
 	function get_random_element( $array ) {
 		// does not use array_rand because it's been noted that the randomness
 		// is "weird" and it's also slower
-		
+
 		if ( count( $array ) == 0 ) {
 			return null;
 		}
-		
+
 		shuffle( $array );
 		return $array[0];
 	}
-	
+
 	/**
 	* Gets a number of terms and displays them as options
 	* @param  string       $taxonomy Taxonomy terms to retrieve. Default is category.
@@ -396,12 +396,12 @@ public function set_admin_notice( $message, $type, $key) {
 
 		$args['taxonomy'] = $taxonomy;
 		// $defaults = array( 'taxonomy' => 'category' );
-		$args = wp_parse_args( $args, array( 'orderby'           => 'name', 
-											'order'             => 'ASC', 
+		$args = wp_parse_args( $args, array( 'orderby'           => 'name',
+											'order'             => 'ASC',
 											'hide_empty'	=>	false,
-											) 
+											)
 								);
-		
+
 		$taxonomy = $args['taxonomy'];
 
 		 if ( version_compare(  get_bloginfo('version'), '4.5.0','<') ) {
@@ -411,7 +411,7 @@ public function set_admin_notice( $message, $type, $key) {
 		 	// version 4.5.0 and above
 		 	$terms = (array) get_terms( $args );
 		 }
-		
+
 		// Initate an empty array
 		$term_options = array();
 		if ( ! empty( $terms ) ) {
@@ -419,12 +419,12 @@ public function set_admin_notice( $message, $type, $key) {
 				$term_options[ $term->term_id ] = $term->name;
 			}
 		}
-		
+
 		return $term_options;
 	}
-		
-	
-	
+
+
+
 	/*
 	// 3.3.6
 	// add autoembed to CMB2 fields
@@ -434,33 +434,33 @@ public function set_admin_notice( $message, $type, $key) {
 		$content = $wp_embed->autoembed( $content );
 		$content = $wp_embed->run_shortcode( $content );
 		$content = wpautop( $content );
-		
+
 		$content = do_shortcode( $content );
-	   
+
 
 		return $content;
 	}
 	*/
-	
-	
+
+
 	function sanitize_wysiwyg( $content ) {
 		return apply_filters( 'content_save_pre', $content );
 	}
-	
-	
+
+
 	// uploads file at specfied $filename and returns the attachment id of the uploaded file
 	// v3.0 added path param to allow it to be used with other plugins
 	function upload_image($filename, $path = '') {
 		// add images to media library
 		// move to uploads folder
 		$wp_upload_dir = wp_upload_dir();
-		
+
 		// check for path
 		if ($path == '') {
 			$path = dirname( __FILE__ ) . '/assets/';
-			
+
 		}
-		
+
 		if (file_exists($path . $filename)) {
 			$success = copy( $path . $filename, $wp_upload_dir['path'] . '/' . $filename );
 			// v 2.4.2 -- bail out if something goes wrong
@@ -490,40 +490,40 @@ public function set_admin_notice( $message, $type, $key) {
 			//return;
 			$mbdb_options[$options_key] = array();
 		}
-		
+
 		// Create an array of uniqueIDs
 		$default_uniqueIDs = array_column( $default_values, 'uniqueID' );
 		// Create an array wih uniqueIDs as the key and the default info as the value
 		$default_values = array_combine($default_uniqueIDs, $default_values);
-		
+
 		// create an array of uniqueIDs
 		$existing_uniqueIDs = array_column( $mbdb_options[$options_key], 'uniqueID' );
-		
+
 		// loop through each default value
 		foreach ($default_values as $uniqueID => $default_value) {
 			if ( array_search( $uniqueID, $existing_uniqueIDs ) === false ) {
-				// uniqueID doesn't already exist, so add this default value to the options 
+				// uniqueID doesn't already exist, so add this default value to the options
 				if (array_key_exists('image', $default_value)) {
-					// upload the image to the media library 	
+					// upload the image to the media library
 					// and save both the URL and the ID
 					//$attachID = mbdb_upload_image( $default_value['image'], $path );
 					$path = MBDB_PLUGIN_URL . 'includes/assets/' . $default_value['image']; //dirname( __FILE__ ) . '/assets/';
 					$default_values[$uniqueID]['image'] = $path;
-					
+
 				}
-				
+
 				// add to the options
 				$mbdb_options[$options_key][] = $default_values[$uniqueID];
 			}
-		}		
-		
+		}
+
 	}
 
 	// used by MBM Image Fixer
 	function get_default_retailers() {
 		// v 2.4.2 updated file names
 		$default_retailers = array();
-		
+
 		$default_retailers[] = array('name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png');
 		$default_retailers[] = array('name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png');
 		$default_retailers[] = array('name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png');
@@ -540,9 +540,9 @@ public function set_admin_notice( $message, $type, $key) {
 		// 3.5.6 kindle.jpg
 		$default_retailers[] = array('name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.jpg' );
 		$default_retailers[] = array('name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
-		
+
 		return apply_filters('mbdb_default_retailers', $default_retailers);
-		
+
 	}
 
 	function insert_default_edition_formats(&$mbdb_options) {
@@ -554,7 +554,7 @@ public function set_admin_notice( $message, $type, $key) {
 		$default_formats[] = array('name' => 'PDF', 'uniqueID' => 5);
 		$default_formats[] = array('name' => 'Audiobook', 'uniqueID' => 6);
 		$default_formats = apply_filters('mbdb_default_edition_formats', $default_formats);
-		
+
 		$this->insert_defaults( $default_formats, 'editions', $mbdb_options);
 	}
 
@@ -568,14 +568,14 @@ public function set_admin_notice( $message, $type, $key) {
 		$defaults[] = array('name' => 'LinkedIn', 'uniqueID' => 5, 'image' => 'linkedin.png');
 		$defaults[] = array('name' => 'Goodreads', 'uniqueID' => 6, 'image' => 'goodreads_logo.png');
 		$defaults = apply_filters('mbdb_default_social_media_sites', $defaults);
-		
+
 		$this->insert_defaults( $defaults, 'social_media', $mbdb_options);
 	}
 
 	function insert_default_retailers( &$mbdb_options ) {
 		// check if default retailers and formats exist in database and add them if necessary
 		$default_retailers = $this->get_default_retailers();
-		
+
 		$this->insert_defaults( $default_retailers, 'retailers', $mbdb_options);
 	}
 
@@ -587,15 +587,15 @@ public function set_admin_notice( $message, $type, $key) {
 		// 3.5.6 kindle.jpg
 		$default_formats[] = array('name' => 'Kindle', 'uniqueID' => 2, 'image' => 'kindle.jpg');
 		$default_formats[] = array('name' => 'PDF', 'uniqueID' => 3, 'image' => 'pdficon.png');
-		
+
 		return apply_filters('mbdb_default_formats', $default_formats);
-		
+
 	}
 
 	function set_default_tax_grid_slugs() {
 		$taxonomies = get_object_taxonomies( 'mbdb_book', 'objects' );
 		$mbdb_options = get_option('mbdb_options');
-		
+
 		foreach($taxonomies as $name => $taxonomy) {
 			$key = 'mbdb_book_grid_' . $name . '_slug';
 			$mbdb_options[$key] = MBDB()->options->get_tax_grid_slug( $name ); //$this->get_tax_grid_slug( $name, $mbdb_options);
@@ -609,13 +609,13 @@ public function set_admin_notice( $message, $type, $key) {
 	}
 
 	function get_metabox_field_position($metabox, $fieldname) {
-		
+
 		// create an array of field ids
 		$fields = array_keys($metabox->meta_box['fields']);
-		
+
 		// get the index of the  field
 		$position = array_search($fieldname, $fields);
-		
+
 		if ($position === false) {
 			// return 0 if not found
 			return 0;
@@ -637,9 +637,9 @@ public function set_admin_notice( $message, $type, $key) {
 						'ping_status' => 'closed',
 						)
 				);
-		
+
 	}
-	
+
 	public function create_tax_grid_page( $template = 'single.php' ) {
 		$id = $this->insert_tax_grid_page( $template );
 		if ( $id != 0 ) {
@@ -648,6 +648,45 @@ public function set_admin_notice( $message, $type, $key) {
 		}
 		return $id;
 	}
-	
+
+
+
+	function set_attach_id( $book_id, $cover_id ) {
+		set_post_thumbnail( $book_id, $cover_id );
+	}
+
+	function set_all_attach_ids() {
+		// update thumb ids for all current books
+		$books = get_posts( array(
+			'post_type'      => 'mbdb_book',
+			'posts_per_page' => - 1,
+		) );
+
+		foreach ( $books as $book ) {
+			$book_obj = MBDB()->book_factory->create_book( $book->ID );
+			if ( $book_obj->cover_id != null && $book_obj->cover_id != '' ) {
+				$this->set_attach_id( $book->ID, $book_obj->cover_id );
+			}
+		}
+	}
+
+	function remove_attach_id( $book_id ) {
+		delete_post_thumbnail( $book_id );
+	}
+
+	function remove_all_attach_ids() {
+		// update thumb ids for all current books
+		$books = get_posts( array(
+			'post_type'      => 'mbdb_book',
+			'posts_per_page' => - 1,
+		) );
+
+		foreach ( $books as $book ) {
+			$this->remove_attach_id( $book->ID );
+		}
+
+	}
+
+
 }
-	
+

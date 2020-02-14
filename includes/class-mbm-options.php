@@ -110,7 +110,18 @@ class Mooberry_Book_Manager_Options {
 		flush_rewrite_rules();
 	}
 
-	protected function get_placeholder_locations(  ) {
+	public function set_use_featured_image( $value ) {
+		$this->options['use_featured_image'] = $value;
+		$this->save_options();
+	}
+
+	protected function get_use_featured_image() {
+		$use_featured_image = $this->get_option_value( 'use_featured_image', true, 'no' );
+		// assume no unless set explicitly to yes
+		return $use_featured_image === 'yes';
+	}
+
+	protected function get_placeholder_locations() {
 		$placeholder_locations = $this->get_option_value(  'show_placeholder_cover');
 		if ( !is_array( $placeholder_locations ) )  {
 			$placeholder_locations = array( $placeholder_locations );

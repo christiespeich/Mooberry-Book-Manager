@@ -1147,6 +1147,19 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			}
 		}
 
+		// 4.2
+        // use featured image if selected
+        if ( MBDB()->options->use_featured_image) {
+            if ( isset( $_POST['_mbdb_cover_id']) ) {
+                if ( $_POST['_mbdb_cover_id'] != '' ) {
+                    $cover_id = intval( $_POST['_mbdb_cover_id'] );
+                    MBDB()->helper_functions->set_attach_id( $post_id, $cover_id );
+                } else {
+                    MBDB()->helper_functions->remove_attach_id( $post_id );
+                }
+            }
+        }
+
 		// unhook this function so it doesn't loop infinitely
 		// and mbdb_save_book_custom_table so it doesn't run twice
 		remove_action( 'save_post_' . $this->post_type, array( $this, 'save_book' ) );
