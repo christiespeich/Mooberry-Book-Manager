@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.2
-Stable tag: 4.1.22
+Stable tag: 4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -172,7 +172,7 @@ See the **Other Notes** section for information about using caching plugins with
 
 = Additional questions? =
 
-Check out the [documentation and support page.](http://www.bookmanager.mooberrydreams.com/support/)
+Check out the [documentation and support page.](https://mooberry-book-manager.helpscoutdocs.com/)
 
 
 == Screenshots ==
@@ -184,6 +184,10 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+
+= 4.2 =
+* Added: Option to use book cover as featured image
+
 = 4.1.22 =
 * Updated: streamlined arguments to book page filters
 
@@ -347,83 +351,6 @@ Check out the [documentation and support page.](http://www.bookmanager.mooberryd
 * Updated: Taxonomy Grids changed to a shortcode on a specific page to increase compatibility with themes
 * Updated: On book grids, uses smallest image size needed to accomodate size chosen for grid to retrieve cover image
 * Updated: re-written code base, improved cachin
-
-= 3.5.16 =
-* Fixed: Adds page class to tax grid pages to better fit with themes
-
-= 3.5.15 =
-* Fixed: handle splitting excerpts even if no paragraph tags exists
-* Updated: Change label to "Available on" for books that aren't published yet
-* Updated: Use scrolling boxes for all multichecks
-
-= 3.5.14 =
-* Fixed: Width/Height in Editions no longer rounds to nearest whole number
-* Updated: Kindle Live Preview now uses ASIN instead of iframe code
-
-= 3.5.13 =
-* Fixed: Publisher, Illustrator, Cover Artist, Editor, and Review website links open new browser tab
-* Fixed: Illustrator permissions
-
-= 3.5.12 =
-* Updated: Put a note to not use currency symbol in price
-* Fixed: Do an extra check on edition's format before printing out
-
-= 3.5.11 =
-* Fixed: Bug about missing argument in Advanced Widgets
-* Fixed: Bugs wth Add Book Grid button
-* Updated: Added Add Book Grid button to summaries, excerpts, additional info on book pages
-* Fixed: Don't cache random widgets
-
-= 3.5.10 =
-* Changed: Excerpt removed from search
-
-= 3.5.9 =
-* Updated: compatibility for upcoming version
-* Added: finer tuning of taxonomy capabilties
-* Added: Jr Librarian role, correlates to Contributor WP role
-* Added: MBM Admin role
-
-= 3.5.8 =
-* Fixed: Problem with GeneratePress theme and Cover Artist/Illustrator/Editor websites
-* Updated: Updated book grid filters
-
-= 3.5.7 =
-* Fixed: Improved styling around "Available on" verbage on Kindle image
-
-= 3.5.6 =
-* Updated: New Amazon and Kindle images to comply with Amazon's trademark usage policies
-* Updated: added "Available on" verbage above Kindle image to comply with Amazon's trademakr usage policies
-* Updated: License checker for extensions (per Easy Digital Downloads update)
-* Fixed: errors with Add Book Grid popup when there are multiple on the page (ie the book edit page)
-* Fixed: translation issues on book grids groupe dby taxonomy
-* Fixed: Ensure "Download Now", "Editions", and "Reviews" don't display if there is no data
-
-= 3.5.5 =
-* Updated: Users in Author Wordpress role can now add new genres, tags, series, editors, cover artists, and illustrators
-
-= 3.5.4 =
-* Fixed: Book Grid can now be used on book pages
-* Fixed: When a search is done, the proper template is used when a book is on of the results
-* Updated: Wordpress 4.7 compatibility
-
-= 3.5.3 =
-* Fixed: bug when series order was not a whole number
-
-= 3.5.2 =
-* Fixed: Subtitles can now be 255 characters
-* Fixed: Compatible with earlier versions of PHP
-* Fixed: translations added for book grid headings for genre, series, tags, etc.
-* Updated: changed book grid headings for genre, series, tags, etc. for easier translation
-
-= 3.5.1 =
-* Fixed: translations not loading
-
-= 3.5 =
-* Improved: Better affiliate handling -- now set affiliate codes on the Retailers page
-* Improved: Added publisher column to searches
-* Added: Ability to use Kindle Live Preview for excerpt
-* Fixed: process shortcodes in excerpts too
-
 
 
 For revision history of older versions, please see changelog.md
