@@ -484,6 +484,16 @@ function remove_tax_grid_from_page_links( $args ) {
 	return $args;
 }
 
+// specifically for the SmartCrawl plugin
+add_filter('wds_title', 'mbdb_change_tax_grid_page_title', 11, 1);
+function mbdb_change_tax_grid_page_title( $title ) {
+	$page_id = MBDB()->options->tax_grid_page;
+	if ( is_page( (int) $page_id ) ) {
+		return MBDB()->tax_grid_page->get_tax_title( $title );
+	}
+	return $title;
+}
+
 // add_action('init', 'mbdb_add_comments_to_books', 1);
 // function mbdb_add_comments_to_books() {
 		// $options = get_option('mbdb_options');
