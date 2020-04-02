@@ -51,7 +51,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_action( 'dp_duplicate_post', array( $this, 'duplicate_book' ), 10, 2 );
 
 
-		add_filter( 'wp_head', array( $this, 'meta_tags' ) );
+		if ( MBDB()->options->get_mbdb_book_seo_enabled() == 'yes' ) {
+			add_filter( 'wp_head', array( $this, 'meta_tags' ) );
+		}
 		if ( MBDB()->options->override_wpseo( 'og' ) ) {
 			add_filter( 'wpseo_opengraph_title', array( $this, 'override_wp_seo_meta' ) );
 			add_filter( 'wpseo_opengraph_url', array( $this, 'override_wp_seo_meta' ) );

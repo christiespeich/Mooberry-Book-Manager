@@ -278,13 +278,21 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			)
 		);
 
-		if ( MBDB_WPSEO_INSTALLED ) {
+
 			$mbdb_settings_metabox->add_field( array(
 					'id'	=> 'mbdb_book_seo_settings_title',
 					'name'	=>	__('SEO SETTINGS', 'mooberry-book-manager'),
 					'type'	=>	'title',
 				)
 			);
+			$mbdb_settings_metabox->add_field( array(
+			        'id'    =>  'mbdb_book_seo_enabled',
+                'name'  =>  __('Allow MBM to add META tags for SEO?'),
+                'type'  =>  'select',
+                'options' => array( 'yes' => 'Yes', 'no'=> 'No')
+
+            ));
+			if ( MBDB_WPSEO_INSTALLED ) {
 			$mbdb_settings_metabox->add_field( array(
 					'id'	=> 'override_wpseo',
 					'name'	=>	__('Override Wordpress SEO (Yoast) settings for the following fields:', 'mooberry-book-manager'),

@@ -148,6 +148,10 @@ class Mooberry_Book_Manager_Options {
 		return $override_wpseo;
 	}
 
+	public function get_mbdb_book_seo_enabled() {
+		return $this->get_option_value('mbdb_book_seo_enabled', true, 'yes');
+	}
+
 	public function override_wpseo( $setting ) {
 		$override_wpseo = $this->get_override_wpseo();
 		return ( in_array( $setting, $override_wpseo ) );
