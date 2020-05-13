@@ -2,7 +2,7 @@ var MBMisDirty = false;
 var MBMPublishClicked = false;
 
 
-	
+
 jQuery( document ).ready(function() {
 	// only display publisher drop down if there are any
 	// (first option = blank)
@@ -12,20 +12,20 @@ jQuery( document ).ready(function() {
 	} else {
 		jQuery('.cmb2-id--mbdb-publisherID .cmb2-metabox-description').hide();
 	}
-	
+
 	// default editions to closed
-	jQuery('#mbdb_editions_metabox').toggleClass('closed', display_editions == 'no' );
-	
-	
+	//jQuery('#mbdb_editions_metabox').toggleClass('closed', display_editions == 'no' );
+
+
 	// show/hide excerpt options
 	jQuery('#_mbdb_excerpt_type').on('change', mbdb_excerpt_type_change);
 	mbdb_excerpt_type_change();
-	
+
 	/*
 	// trigger warning if not saved
 	jQuery(':input').not('#publish').on('change', mbdb_input_change);
 	jQuery('#publish').on('click', mbdb_save);
-	
+
 	jQuery( window ).bind('beforeunload', function() {
 		console.log('beforeunload');
 		// if the publish button was clicked, no need to check
@@ -33,7 +33,7 @@ jQuery( document ).ready(function() {
 		if ( !MBMPublishClicked ) {
 			summary = typeof tinymce !== 'undefined' && tinymce.get( '_mbdb_summary' );
 			excerpt = typeof tinymce !== 'undefined' && tinymce.get( '_mbdb_excerpt' );
-			
+
 			if ( summary !== null ) {
 				summaryisDirty = summary.isDirty();
 			} else {
@@ -44,17 +44,17 @@ jQuery( document ).ready(function() {
 			} else {
 				excerptisDirty = false;
 			}
-			
-			
+
+
 			if ( MBMisDirty || summaryisDirty || excerptisDirty  ) {
-				return 'The changes you made will be lost if you navigate away from this page.';	
+				return 'The changes you made will be lost if you navigate away from this page.';
 			}
 		}
 	 });
 	*/
-	
-	
-	
+
+
+
 }); // document ready
 
 function mbdb_save() {
@@ -62,7 +62,7 @@ function mbdb_save() {
 	MBMPublishClicked = true;
 }
 
-function mbdb_input_change() {	
+function mbdb_input_change() {
 	MBMisDirty = true;
 }
 
@@ -71,7 +71,7 @@ function mbdb_excerpt_type_change() {
 	var excerpt_type = jQuery('#_mbdb_excerpt_type').val();
 	var excerpt_text = jQuery('.cmb2-id--mbdb-excerpt');
 	var kindle_preview = jQuery('.cmb2-id--mbdb-kindle-preview');
-	
+
 	if ( excerpt_type == 'text' ) {
 		excerpt_text.show();
 		kindle_preview.hide();
@@ -79,6 +79,6 @@ function mbdb_excerpt_type_change() {
 		excerpt_text.hide();
 		kindle_preview.show();
 	}
-	
-	
+
+
 }
