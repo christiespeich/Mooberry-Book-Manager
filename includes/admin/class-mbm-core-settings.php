@@ -9,6 +9,7 @@
 class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings {
 
 	private $import_process;
+	private $import_novelist_books_process;
 
 	/**
 	 * Constructor
@@ -32,6 +33,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		add_action('mbdb_settings_before_metabox', array( $this, 'import_export') );
 		add_action('wp_ajax_mbdb_export', array( $this, 'export' ) );
 		add_action('wp_ajax_mbdb_import', array( $this, 'import' ) );
+		add_action('wp_ajax_mbdb_import_novelist', array( $this, 'import_novelist' ) );
 		add_action('admin_notices', array( $this, 'import_export_notices' ) );
 
 		add_action( 'cmb2_save_options-page_fields_mbdb_settings_metabox', array( $this, 'update_featured_images'), 10, 3);
@@ -42,6 +44,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 	public function init_import_process() {
 		$this->import_process = new Mooberry_Book_Manager_Import_Process();
+		$this->import_novelist_books_process = new Mooberry_Book_Manager_Novelist_Import_Process();
 	}
 
 
@@ -852,10 +855,10 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		if ( $this->page != 'mbdb_import_export' ) {
 			return;
 		}
-		if (wp_doing_ajax()) {
+		if ( wp_doing_ajax() ) {
 			return;
 		}
-		$this->title = __('MBM Book Import/Export Settings', 'mooberry-book-manager');
+		$this->title        = __( 'MBM Book Import/Export Settings', 'mooberry-book-manager' );
 		$this->show_metabox = false;
 
 		if ( $this->tab == '' ) {
@@ -865,61 +868,90 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		if ( $this->tab == 'import' ) {
 
 
-			if (  isset( $_POST[  'mbdb_import_file_nonce' ] )  && wp_verify_nonce( $_POST[ 'mbdb_import_file_nonce'], plugin_basename( __FILE__ ) ) ) {
-				if ( !empty( $_FILES )  && isset( $_FILES[ 'mbdb_import_file' ]  ) ) {
-				$file = wp_upload_bits( $_FILES['mbdb_import_file']['name'], null, @file_get_contents( $_FILES['mbdb_import_file']['tmp_name'] ) );
-				if ( FALSE === $file['error'] ) {
+			if ( isset( $_POST['mbdb_import_file_nonce'] ) && wp_verify_nonce( $_POST['mbdb_import_file_nonce'], plugin_basename( __FILE__ ) ) ) {
+				if ( ! empty( $_FILES ) && isset( $_FILES['mbdb_import_file'] ) ) {
+					$file = wp_upload_bits( $_FILES['mbdb_import_file']['name'], null, @file_get_contents( $_FILES['mbdb_import_file']['tmp_name'] ) );
+					if ( false === $file['error'] ) {
 
-					//error_log('calling import');
+						//error_log('calling import');
 						$this->import( $file );
+					}
 				}
-			}
-		}?>
-			<p><?php _e('Books will be imported in the background. You may leave this page while they are importing. A notice will be displayed while books are importing.', 'mooberry-book-manager'); ?> </p> <?php
+			} ?>
+            <p><?php _e( 'Books will be imported in the background. You may leave this page while they are importing. A notice will be displayed while books are importing.', 'mooberry-book-manager' ); ?> </p> <?php
 
-if ( !$this->import_process->is_queue_empty() ) {
-	echo  '<h3>' . __('Please wait for the current batch of imports to finish before importing more.', 'mooberry-book-manager') . '</h3>';
-	echo '<a id="mbdb_cancel_import" class="button" >' . __('Cancel Import', 'mooberry-book-manager') . '</a><img src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;" id="mbdb_cancel_import_progress"/><div id="mbdb_cancel_results"></div>';
-	return;
-}
+			if ( ! $this->import_process->is_queue_empty() ) {
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before importing more.', 'mooberry-book-manager' ) . '</h3>';
+				echo '<a id="mbdb_cancel_import" class="button" >' . __( 'Cancel Import', 'mooberry-book-manager' ) . '</a><img src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;" id="mbdb_cancel_import_progress"/><div id="mbdb_cancel_results"></div>';
+
+				return;
+			}
 			?>
-			<!--<div id="light" class="mbdb_import_pop_up">Importing... Please wait....
+            <!--<div id="light" class="mbdb_import_pop_up">Importing... Please wait....
 
  <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
 			  </div>
 			<div id="fade" class="mbdb_import_pop_up_black_overlay"></div>
 			-->
-			<!--
-			<h3 class="cmb2-metabox-title"><?php _e('IMPORT FROM GOOGLE BOOKS', 'mooberry-book-manager'); ?></h3>
-			<p><?php _e('Enter ISBNs, one per line, to import books.'); ?></p>
+            <!--
+			<h3 class="cmb2-metabox-title"><?php _e( 'IMPORT FROM GOOGLE BOOKS', 'mooberry-book-manager' ); ?></h3>
+			<p><?php _e( 'Enter ISBNs, one per line, to import books.' ); ?></p>
 			<textarea id="mbdb_import_google_isbns" rows="10" ></textarea>
-			<p style="margin-bottom: 30px;"><a class="button" id="mbdb_import_google"><?php _e('Import from Google', 'mooberry-book-manager'); ?></a></p>
+			<p style="margin-bottom: 30px;"><a class="button" id="mbdb_import_google"><?php _e( 'Import from Google', 'mooberry-book-manager' ); ?></a></p>
 			-->
-			<!-- <h3 class="cmb2-metabox-title"><?php _e('IMPORT FROM FILE', 'mooberry-book-manager'); ?></h3> -->
-			<h3><?php _e('Choose an export file from Mooberry Book Manager.', 'mooberry-book-manager'); ?></h3>
+            <!-- <h3 class="cmb2-metabox-title"><?php _e( 'IMPORT FROM FILE', 'mooberry-book-manager' ); ?></h3> -->
+            <h3><?php _e( 'Choose an export file from Mooberry Book Manager.', 'mooberry-book-manager' ); ?></h3>
 
-			<form enctype="multipart/form-data" method="post">
-			<input type="file" id="mbdb_import_file" name="mbdb_import_file" />
-			<?php wp_nonce_field( plugin_basename( __FILE__ ), 'mbdb_import_file_nonce' ); ?>
-			<input type="submit" id="mbdb_import_button" value="Import" />
-			</form>
-	<!--		 To display a lightbox click <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">here</a>
-		-->
+            <form enctype="multipart/form-data" method="post">
+                <input type="file" id="mbdb_import_file" name="mbdb_import_file"/>
+				<?php wp_nonce_field( plugin_basename( __FILE__ ), 'mbdb_import_file_nonce' ); ?>
+                <input type="submit" id="mbdb_import_button" value="Import"/>
+            </form>
+            <!--		 To display a lightbox click <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">here</a>
+				-->
 			<?php
 		}
-		if ( $this->tab == 'export') {
-			if ( !$this->import_process->is_queue_empty() ) {
-				echo  '<h3>' . __('Please wait for the current batch of imports to finish before exporting more.', 'mooberry-book-manager') . '</h3>';
+		if ( $this->tab == 'export' ) {
+			if ( ! $this->import_process->is_queue_empty() ) {
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before exporting more.', 'mooberry-book-manager' ) . '</h3>';
+
 				return;
 			}
 
 
 			?>
-			<p><?php _e('This will create a text file with all of the books entered into Mooberry Book Manager. Books that are in Draft Mode or in the Trash will not be exported.  Options for filtering which books to export will be coming in a future update.', 'mooberry-book-manager'); ?></p>
-			<?php do_action('mbdb_export_add_fields'); ?>
-			<p><a class="button" id="mbdb_<?php echo $this->tab; ?>"><?php echo $this->tabs[ $this->page][$this->tab]; ?></a><img src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif" style="display:none;" id="mbdb_<?php echo $this->tab; ?>_progress"/></p>
-			<p><div id="mbdb_results"/></p>
-		<?php
+            <p><?php _e( 'This will create a text file with all of the books entered into Mooberry Book Manager. Books that are in Draft Mode or in the Trash will not be exported.  Options for filtering which books to export will be coming in a future update.', 'mooberry-book-manager' ); ?></p>
+			<?php do_action( 'mbdb_export_add_fields' ); ?>
+            <p><a class="button"
+                  id="mbdb_<?php echo $this->tab; ?>"><?php echo $this->tabs[ $this->page ][ $this->tab ]; ?></a><img
+                        src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"
+                        style="display:none;"
+                        id="mbdb_<?php echo $this->tab; ?>_progress"/></p>
+            <p>
+            <div id="mbdb_results"/></p>
+			<?php
+		}
+
+		if ( $this->tab == 'import_novelist' ) {
+			if ( ! $this->import_process->is_queue_empty() ) {
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before exporting more.', 'mooberry-book-manager' ) . '</h3>';
+
+				return;
+			}
+			?>
+            <p><?php _e( 'This will take any books you have entered with Novelist and import them into Mooberry Book Manager.  Books that are in the Trash will not be imported.  Nothing will be deleted from Novelist so you still have full access to that data while the Novelist plugin in activated.', 'mooberry-book-manager' ); ?></p>
+            <ul style="padding-left:40px; list-style:initial"><li ><?php _e('ISBN13 and page length will be imported as a Paperback format', 'mooberry-book-manager'); ?></li><li><?php _e('ASIN will be imported as a Kindle format', 'mooberry-book-manager')?></li><li>If ASIN is included, it will be used to add Kindle Live Preview. The excerpt, if included, will also be imported. If you would rather use the excerpt text than the Kindle Live Preview, you can change that setting on the book page.</li><li><?php _e('Contributors will not be imported because there isn\'t a single corresponding field. Mooberry Book Manager has separate fields for editors, cover artists, and illustrators where contributors can be added to.', 'mooberry-book-manager' );?> </li></ul>
+
+            PLEASE NOTE: At this time, only data entered with the base, free level of Novelist will be imported. Data entered with extensions will not be imported.
+
+            <p><a class="button"
+                  id="mbdb_<?php echo $this->tab; ?>"><?php echo $this->tabs[ $this->page ][ $this->tab ]; ?></a><img
+                        src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"
+                        style="display:none;"
+                        id="mbdb_<?php echo $this->tab; ?>_progress"/></p>
+            <p>
+            <div id="mbdb_results"/></p>
+			<?php
 		}
 
 	}
@@ -965,7 +997,22 @@ if ( !$this->import_process->is_queue_empty() ) {
 
 	}
 
+function import_novelist() {
+       check_ajax_referer( 'import_novelist_nonce', 'import_novelist');
 
+       $novelist_books = get_posts(array('post_type'=>'book', 'post_status'=>array('publish', 'draft'), 'posts_per_page' => -1 ));
+
+		// get all book data
+		foreach ( $novelist_books as $novelist_book ) {
+			$this->import_novelist_books_process->push_to_queue( $novelist_book);
+			$this->import_novelist_books_process->save();
+		}
+		$this->import_novelist_books_process->dispatch();
+
+		echo admin_url( '/admin.php?page=mbdb_import_export&tab=import_novelist' );
+
+		wp_die();
+}
 
 function import( $file ) {
 
@@ -1036,6 +1083,7 @@ function import( $file ) {
 						'mbdb_import_export' =>	array(
 												'import'	=>	__('Import', 'mooberry-book-manager'),
 												'export'	=>	__('Export', 'mooberry-book-manager'),
+                                                'import_novelist'   =>  __('Import from Novelist', 'mooberry-book-manager')
 
 											)
 						);

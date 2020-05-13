@@ -365,6 +365,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/plugin-functions.php';
 
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-import-process.php';
+		require_once MBDB_PLUGIN_DIR . '/includes/admin/class-mbm-novelist-import-process.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-settings.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-core-settings.php';
 
