@@ -458,6 +458,48 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			)
 		);
 
+		// ADDITIONAL INFORMATION
+
+		$mbdb_additional_info_metabox = new_cmb2_box( array(
+				'id'           => 'mbdb_additional_info_metabox',
+				'title'        => __( 'Additional Information', 'mooberry-book-manager' ),
+				'object_types' => array( $this->post_type, ), // Post type
+				'context'      => 'normal',
+				'priority'     => 'high',
+				'show_names'   => true, // Show field names on the left
+			)
+		);
+
+		$mbdb_additional_info_metabox->add_field( array(
+				'name'            => __( 'Additional Information', 'mooberry-book-manager' ),
+				'id'              => '_mbdb_additional_info',
+				'type'            => 'wysiwyg',
+				'sanitization_cb' => false,
+				'description'     => __( 'Any additional information you want to display on the page. Will be shown at the bottom of the page, after the reviews.', 'mooberry-book-manager' ),
+				'options'         => array(
+					'wpautop'       => true,
+					// use wpautop?
+					'media_buttons' => true,
+					// show insert/upload button(s)
+					'textarea_rows' => 15,
+					// rows="..."
+					'tabindex'      => '',
+					'editor_css'    => '',
+					// intended for extra styles for both visual and HTML editors buttons, needs to include the `<style>` tags, can use "scoped".
+					'editor_class'  => '',
+					// add extra class(es) to the editor textarea
+					'teeny'         => false,
+					// output the minimal editor config used in Press This
+					'dfw'           => false,
+					// replace the default fullscreen with DFW (needs specific css)
+					'tinymce'       => true,
+					// load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
+					'quicktags'     => true,
+					// load Quicktags, can be used to pass settings directly to Quicktags using an array()
+				),
+			)
+		);
+
 		// EDITIONS
 
 		$mbdb_editions_metabox = new_cmb2_box( array(
@@ -473,7 +515,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$mbdb_editions_metabox->add_field( array(
 				'id'          => '_mbdb_editions',
 				'type'        => 'group',
-				'description' => __( "List the details of your book's hardcover, paperback, and e-book editions. Everything is optional except the format.", 'mooberry-book-manager' ),
+				'description' => __( "List the details of your book's hardcover, paperback, and e-book editions.  Editions are completely optional. If you choose to enter an edition, only the format field is required.", 'mooberry-book-manager' ),
 				'options'     => array(
 					'group_title'   => __( 'Edition', 'mooberry-book-manager' ) . ' {#}',
 					// {#} gets replaced by row number
@@ -590,47 +632,6 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			)
 		);
 
-		// ADDITIONAL INFORMATION
-
-		$mbdb_additional_info_metabox = new_cmb2_box( array(
-				'id'           => 'mbdb_additional_info_metabox',
-				'title'        => __( 'Additional Information', 'mooberry-book-manager' ),
-				'object_types' => array( $this->post_type, ), // Post type
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true, // Show field names on the left
-			)
-		);
-
-		$mbdb_additional_info_metabox->add_field( array(
-				'name'            => __( 'Additional Information', 'mooberry-book-manager' ),
-				'id'              => '_mbdb_additional_info',
-				'type'            => 'wysiwyg',
-				'sanitization_cb' => false,
-				'description'     => __( 'Any additional information you want to display on the page. Will be shown at the bottom of the page, after the reviews.', 'mooberry-book-manager' ),
-				'options'         => array(
-					'wpautop'       => true,
-					// use wpautop?
-					'media_buttons' => true,
-					// show insert/upload button(s)
-					'textarea_rows' => 15,
-					// rows="..."
-					'tabindex'      => '',
-					'editor_css'    => '',
-					// intended for extra styles for both visual and HTML editors buttons, needs to include the `<style>` tags, can use "scoped".
-					'editor_class'  => '',
-					// add extra class(es) to the editor textarea
-					'teeny'         => false,
-					// output the minimal editor config used in Press This
-					'dfw'           => false,
-					// replace the default fullscreen with DFW (needs specific css)
-					'tinymce'       => true,
-					// load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
-					'quicktags'     => true,
-					// load Quicktags, can be used to pass settings directly to Quicktags using an array()
-				),
-			)
-		);
 
 		// COVER
 
@@ -1150,17 +1151,17 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		}
 
 		// 4.2
-        // use featured image if selected
-        if ( MBDB()->options->use_featured_image) {
-            if ( isset( $_POST['_mbdb_cover_id']) ) {
-                if ( $_POST['_mbdb_cover_id'] != '' ) {
-                    $cover_id = intval( $_POST['_mbdb_cover_id'] );
-                    MBDB()->helper_functions->set_attach_id( $post_id, $cover_id );
-                } else {
-                    MBDB()->helper_functions->remove_attach_id( $post_id );
-                }
-            }
-        }
+		// use featured image if selected
+		if ( MBDB()->options->use_featured_image ) {
+			if ( isset( $_POST['_mbdb_cover_id'] ) ) {
+				if ( $_POST['_mbdb_cover_id'] != '' ) {
+					$cover_id = intval( $_POST['_mbdb_cover_id'] );
+					MBDB()->helper_functions->set_attach_id( $post_id, $cover_id );
+				} else {
+					MBDB()->helper_functions->remove_attach_id( $post_id );
+				}
+			}
+		}
 
 		// unhook this function so it doesn't loop infinitely
 		// and mbdb_save_book_custom_table so it doesn't run twice
