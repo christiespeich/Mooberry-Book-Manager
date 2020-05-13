@@ -940,7 +940,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			}
 			?>
             <p><?php _e( 'This will take any books you have entered with Novelist and import them into Mooberry Book Manager.  Books that are in the Trash will not be imported.  Nothing will be deleted from Novelist so you still have full access to that data while the Novelist plugin in activated.', 'mooberry-book-manager' ); ?></p>
-            <ul style="padding-left:40px; list-style:initial"><li ><?php _e('ISBN13 and page length will be imported as a Paperback format', 'mooberry-book-manager'); ?></li><li><?php _e('ASIN will be imported as a Kindle format', 'mooberry-book-manager')?></li><li>If ASIN is included, it will be used to add Kindle Live Preview. The excerpt, if included, will also be imported. If you would rather use the excerpt text than the Kindle Live Preview, you can change that setting on the book page.</li><li><?php _e('Contributors will not be imported because there isn\'t a single corresponding field. Mooberry Book Manager has separate fields for editors, cover artists, and illustrators where contributors can be added to.', 'mooberry-book-manager' );?> </li></ul>
+            <ul style="padding-left:40px; list-style:initial"><li><?php _e('The Novelist plugin must be activated in order to import series and genres.', 'mooberry-book-manager')?></li><li ><?php _e('ISBN13 and page length will be imported as a Paperback format', 'mooberry-book-manager'); ?></li><li><?php _e('ASIN will be imported as a Kindle format', 'mooberry-book-manager')?></li><li>If ASIN is included, it will be used to add Kindle Live Preview. The excerpt, if included, will also be imported. If you would rather use the excerpt text than the Kindle Live Preview, you can change that setting on the book page.</li><li><?php _e('Contributors will not be imported because there isn\'t a single corresponding field. Mooberry Book Manager has separate fields for editors, cover artists, and illustrators where contributors can be added to.', 'mooberry-book-manager' );?> </li></ul>
 
             PLEASE NOTE: At this time, only data entered with the base, free level of Novelist will be imported. Data entered with extensions will not be imported.
 
@@ -1000,16 +1000,20 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 function import_novelist() {
        check_ajax_referer( 'import_novelist_nonce', 'import_novelist');
 
-       $novelist_books = get_posts(array('post_type'=>'book', 'post_status'=>array('publish', 'draft'), 'posts_per_page' => -1 ));
+            $this->import_novelist_books_process->set_up_data();
+	        $novelist_books = get_posts( array( 'post_type'      => 'book',
+	                                            'post_status'    => array( 'publish', 'draft' ),
+	                                            'posts_per_page' => - 1
+	        ) );
 
-		// get all book data
-		foreach ( $novelist_books as $novelist_book ) {
-			$this->import_novelist_books_process->push_to_queue( $novelist_book);
-			$this->import_novelist_books_process->save();
-		}
-		$this->import_novelist_books_process->dispatch();
+	        // get all book data
+	        foreach ( $novelist_books as $novelist_book ) {
+		        $this->import_novelist_books_process->push_to_queue( $novelist_book );
+		        $this->import_novelist_books_process->save();
+	        }
+	        $this->import_novelist_books_process->dispatch();
 
-		echo admin_url( '/admin.php?page=mbdb_import_export&tab=import_novelist' );
+	        echo admin_url( '/admin.php?page=mbdb_import_export&tab=import_novelist' );
 
 		wp_die();
 }
@@ -1080,13 +1084,12 @@ function import( $file ) {
 
 	protected function set_tabs() {
 		$this->tabs = array(
-						'mbdb_import_export' =>	array(
-												'import'	=>	__('Import', 'mooberry-book-manager'),
-												'export'	=>	__('Export', 'mooberry-book-manager'),
-                                                'import_novelist'   =>  __('Import from Novelist', 'mooberry-book-manager')
-
-											)
-						);
+			'mbdb_import_export' => array(
+				'import'          => __( 'Import', 'mooberry-book-manager' ),
+				'export'          => __( 'Export', 'mooberry-book-manager' ),
+				'import_novelist' => __( 'Import from Novelist', 'mooberry-book-manager' )
+			)
+		);
 	}
 
 

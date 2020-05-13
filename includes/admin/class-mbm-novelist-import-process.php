@@ -29,10 +29,9 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 			}
 		}
 
-		$this->set_up_data();
 	}
 
-	protected function set_up_data() {
+	public function set_up_data() {
 		// one time tasks
 		// align retailers by name
 		$mbm_retailers         = MBDB()->options->retailers;
@@ -69,28 +68,31 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		// create genres
 		$this->novelist_to_mbm_genres = array();
 		$novelist_genres              = get_terms( array( 'taxonomy' => 'novelist-genre', 'hide_empty' => false ) );
-		foreach ( $novelist_genres as $novelist_genre ) {
-			$mbm_genre = term_exists( $novelist_genre->name, 'mbdb_genre' );
-			if ( $mbm_genre === null ) {
-				// create genre
-				$mbm_genre = wp_insert_term( $novelist_genre->name, 'mbdb_genre' );
+		if ( !is_wp_error($novelist_genres)) {
+			foreach ( $novelist_genres as $novelist_genre ) {
+				$mbm_genre = term_exists( $novelist_genre->name, 'mbdb_genre' );
+				if ( $mbm_genre === null ) {
+					// create genre
+					$mbm_genre = wp_insert_term( $novelist_genre->name, 'mbdb_genre' );
+				}
+				$this->novelist_to_mbm_genres[ $novelist_genre->term_id ] = intval( $mbm_genre['term_id'] );
+
 			}
-			$this->novelist_to_mbm_genres[ $novelist_genre->term_id ] = intval( $mbm_genre['term_id'] );
-
 		}
-
 
 		// create series
 		$this->novelist_to_mbm_series = array();
 		$novelist_series              = get_terms( array( 'taxonomy' => 'novelist-series', 'hide_empty' => false ) );
-		foreach ( $novelist_series as $a_novelist_series ) {
-			$mbm_series = term_exists( $a_novelist_series->name, 'mbdb_series' );
-			if ( $mbm_series === null ) {
-				// create series
-				$mbm_series = wp_insert_term( $a_novelist_series->name, 'mbdb_series' );
-			}
-			$this->novelist_to_mbm_series[ $a_novelist_series->term_id ] = intval( $mbm_series['term_id'] );
+		if ( !is_wp_error($novelist_series)) {
+			foreach ( $novelist_series as $a_novelist_series ) {
+				$mbm_series = term_exists( $a_novelist_series->name, 'mbdb_series' );
+				if ( $mbm_series === null ) {
+					// create series
+					$mbm_series = wp_insert_term( $a_novelist_series->name, 'mbdb_series' );
+				}
+				$this->novelist_to_mbm_series[ $a_novelist_series->term_id ] = intval( $mbm_series['term_id'] );
 
+			}
 		}
 
 		// publishers
