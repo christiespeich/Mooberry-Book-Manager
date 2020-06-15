@@ -246,24 +246,32 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 	$base_roles = array('mbdb_librarian', 'author');
 	$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
 	$contributor = get_role('contributor');
-	foreach ($contributor_level as $capability) {
-		$contributor->add_cap($capability);
+	if ( $contributor ) {
+		foreach ( $contributor_level as $capability ) {
+			$contributor->add_cap( $capability );
+		}
 	}
 	foreach (array_merge($base_level, $contributor_level) as $capability) {
 		foreach (array_merge($base_roles, $master_roles) as $each_role ) {
 			$role = get_role($each_role);
-			$role->add_cap($capability);
+			if ( $role ) {
+				$role->add_cap( $capability );
+			}
 		}
 	}
 	foreach ($master_level as $capability) {
 		foreach ($master_roles as $each_role) {
 			$role = get_role($each_role);
-			$role->add_cap($capability);
+			if ( $role ) {
+				$role->add_cap( $capability );
+			}
 		}
 	}
 
 	$admin = get_role('administrator');
-	$admin->add_cap('manage_mbm');
+	if ( $admin ) {
+		$admin->add_cap( 'manage_mbm' );
+	}
 
 
 }
