@@ -254,6 +254,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 		// remove duplicates
 		$this->group_by = array_unique( $this->group_by );
+		// reindex but start at index 1
+		$this->group_by = array_combine(range(1, count($this->group_by)), array_values($this->group_by));
 		// make sure keys are valid
 		//$this->group_by = array_values( $this->group_by );
 
