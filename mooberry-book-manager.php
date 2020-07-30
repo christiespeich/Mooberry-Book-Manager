@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.3.3' );
+	define( 'MBDB_PLUGIN_VERSION', '4.3.4' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -366,6 +366,7 @@ final class Mooberry_Book_Manager {
 
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-import-process.php';
 		require_once MBDB_PLUGIN_DIR . '/includes/admin/class-mbm-novelist-import-process.php';
+		require_once MBDB_PLUGIN_DIR . '/includes/admin/class-mbm-apple-books-link-update-process.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-settings.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-core-settings.php';
 
@@ -507,7 +508,12 @@ function mbdb_deactivate_cover_as_featured_image() {
 		deactivate_plugins( plugin_basename( MBDBCAFI_PLUGIN_FILE) );
 }
 
-
+add_action('admin_init', 'mbdb_remind_about_itunes_link');
+function mbdb_remind_about_itunes_link() {
+	if ( get_option( 'mbdb_retailers_with_itunes' ) === 'yes' ) {
+		MBDB()->helper_functions->set_admin_notice( 'Mooberry Book Manager: You have buy links for books that use itunes.apple.com.  Per Apple\'s requirements these should be changed to books.apple.com.  <a href="#" id="mbdb_update_apple_links_button" class="button" >Update My Books Automatically</a>', 'updated', 'mbdb_itunes_to_books_buylink' );
+	}
+}
 /*
 add_filter('mbdb_book_cpt', 'mbdb_change_book_url');
 function mbdb_change_book_url( $args ) {

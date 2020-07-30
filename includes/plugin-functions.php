@@ -434,6 +434,7 @@ function mbdb_register_footer_scripts() {
 							'dismiss_ajax_nonce' => wp_create_nonce('mbdb_admin_notice_dismiss_ajax_nonce'),
 							'remigrate_ajax_nonce' => wp_create_nonce('mbdb_admin_notice_3_1_remigrate_ajax_nonce'),
 							'book_grid_placeholder_dismiss_nonce' => wp_create_nonce('mbdb_book_grid_placeholder_dismiss_ajax_nonce'),
+							'update_apple_books_link_nonce' => wp_create_nonce( 'update_apple_books_link_nonce'),
 							'redirect_url' => admin_url('admin.php?page=mbdb_migrate')
 						)
 					);

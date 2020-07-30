@@ -10,6 +10,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 	private $import_process;
 	private $import_novelist_books_process;
+	private $update_apple_books_links_process;
 
 	/**
 	 * Constructor
@@ -34,6 +35,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		add_action('wp_ajax_mbdb_export', array( $this, 'export' ) );
 		add_action('wp_ajax_mbdb_import', array( $this, 'import' ) );
 		add_action('wp_ajax_mbdb_import_novelist', array( $this, 'import_novelist' ) );
+		add_action('wp_ajax_mbdb_update_apple_books_links', array( $this, 'update_apple_books_links' ) );
 		add_action('admin_notices', array( $this, 'import_export_notices' ) );
 
 		add_action( 'cmb2_save_options-page_fields_mbdb_settings_metabox', array( $this, 'update_featured_images'), 10, 3);
@@ -45,6 +47,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	public function init_import_process() {
 		$this->import_process = new Mooberry_Book_Manager_Import_Process();
 		$this->import_novelist_books_process = new Mooberry_Book_Manager_Novelist_Import_Process();
+		$this->update_apple_books_links_process = new Mooberry_Book_Manager_Apple_Books_Update_Process();
 	}
 
 
@@ -995,6 +998,14 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		//echo print_r(json_decode($book_list->to_json()));
 		wp_die();
 
+	}
+
+	function update_apple_books_links() {
+		check_ajax_referer( 'update_apple_books_link_nonce', 'update_apple_books_links_nonce' );
+
+		$this->update_apple_books_links_process->update_links();
+
+		wp_die();
 	}
 
 function import_novelist() {
