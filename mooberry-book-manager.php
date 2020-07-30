@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.3.3
+ *  Version: 4.3.4
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -27,7 +27,7 @@
  *
  * @package MBDB
  * @author  Mooberry Dreams
- * @version 4.3.3
+ * @version 4.3.4
  */
 
 // Exit if accessed directly
