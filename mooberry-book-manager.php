@@ -1,46 +1,48 @@
 <?php
- /**
-  *  Plugin Name: Mooberry Book Manager
-  *  Plugin URI: http://bookmanager.mooberrydreams.com/
-  *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more.
-  *  Author: Mooberry Dreams
-  *  Author URI: http://www.mooberrydreams.com/
-  *  Donate Link: https://www.paypal.me/mooberrydreams/
-  *  Version: 4.3.3
-  *  Text Domain: mooberry-book-manager
-  *  Domain Path: languages
-  *
-  *  Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
-  *
-  *  This program is free software; you can redistribute it and/or modify
-  *  it under the terms of the GNU General Public License, version 2, as
-  *  published by the Free Software Foundation.
-  *
-  *  This program is distributed in the hope that it will be useful,
-  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  *  GNU General Public License for more details.
-  *
-  *  You should have received a copy of the GNU General Public License
-  *  along with this program; if not, write to the Free Software
-  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-  *
-  * @package MBDB
-  * @author Mooberry Dreams
-  * @version 4.3.3
-  */
+/**
+ *  Plugin Name: Mooberry Book Manager
+ *  Plugin URI: http://bookmanager.mooberrydreams.com/
+ *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more.
+ *  Author: Mooberry Dreams
+ *  Author URI: http://www.mooberrydreams.com/
+ *  Donate Link: https://www.paypal.me/mooberrydreams/
+ *  Version: 4.3.3
+ *  Text Domain: mooberry-book-manager
+ *  Domain Path: languages
+ *
+ *  Copyright 2015  Mooberry Dreams  (email : bookmanager@mooberrydreams.com)
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License, version 2, as
+ *  published by the Free Software Foundation.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * @package MBDB
+ * @author  Mooberry Dreams
+ * @version 4.3.3
+ */
 
- // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
- //error_log('starting');
+//error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
 	define( 'MBDB_PLUGIN_VERSION', '4.3.4' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
-	define('MBDB_PLUGIN_VERSION_KEY', 'mbdb_version');
+	define( 'MBDB_PLUGIN_VERSION_KEY', 'mbdb_version' );
 }
 
 // Plugin Folder Path
@@ -59,11 +61,11 @@ if ( ! defined( 'MBDB_PLUGIN_FILE' ) ) {
 }
 
 // plugin setting constants
-if ( !defined('MBDB_GRID_COVER_HEIGHT_DEFAULT') ) {
+if ( ! defined( 'MBDB_GRID_COVER_HEIGHT_DEFAULT' ) ) {
 	define( 'MBDB_GRID_COVER_HEIGHT_DEFAULT', apply_filters( 'mbdb_book_grid_cover_height_default', 200 ) );
 }
-if ( !defined('MBDB_GRID_COVER_HEIGHT_MIN') ) {
-	define( 'MBDB_GRID_COVER_HEIGHT_MIN', apply_filters('mbdb_book_grid_cover_min_height', 50 ) );
+if ( ! defined( 'MBDB_GRID_COVER_HEIGHT_MIN' ) ) {
+	define( 'MBDB_GRID_COVER_HEIGHT_MIN', apply_filters( 'mbdb_book_grid_cover_min_height', 50 ) );
 }
 
 // This function is required for backwards compatibility with the extensions
@@ -120,42 +122,42 @@ final class Mooberry_Book_Manager {
 	 * Insures that only one instance of Mooberry_Book_Manager exists in memory at any one
 	 * time. Also prevents needing to define globals all over the place.
 	 *
-	 * @since 3.0
+	 * @return The one true Mooberry_Book_Manager
+	 * @see       MBDB()
+	 * @since     3.0
 	 * @static
 	 * @staticvar array $instance
-	 * @see MBDB()
-	 * @return The one true Mooberry_Book_Manager
 	 */
 	public static function instance() {
 		////error_log('MBDB');
-	/* 	$trace = debug_backtrace();
-      if (isset($trace[1])) {
-          // $trace[0] is ourself
-          // $trace[1] is our caller
-          // and so on...
-          ////error_log(var_dump($trace[1]));
+		/* 	$trace = debug_backtrace();
+		  if (isset($trace[1])) {
+			  // $trace[0] is ourself
+			  // $trace[1] is our caller
+			  // and so on...
+			  ////error_log(var_dump($trace[1]));
 
-          //error_log( "called by {$trace[1]['file']} :: {$trace[1]['function']} on line {$trace[1]['line']}" );
+			  //error_log( "called by {$trace[1]['file']} :: {$trace[1]['function']} on line {$trace[1]['line']}" );
 
-      } */
+		  } */
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Mooberry_Book_Manager ) ) {
 			self::$instance = new Mooberry_Book_Manager;
 
-		// //error_log('making instance');
+			// //error_log('making instance');
 			add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
 			add_action( 'admin_notices', array( self::$instance, 'admin_notices' ) );
 
 			// require files
 			self::$instance->require_plugin_files();
 
-			self::$instance->options = new Mooberry_Book_Manager_Options();
+			self::$instance->options          = new Mooberry_Book_Manager_Options();
 			self::$instance->helper_functions = new Mooberry_Book_Manager_Helper_Functions();
-			self::$instance->books_db = new MBDB_DB_Books();
-			self::$instance->book_grid_db = new MBDB_DB_Book_Grid();
-			self::$instance->book_factory = new Mooberry_Book_Manager_Simple_Book_Factory();
+			self::$instance->books_db         = new MBDB_DB_Books();
+			self::$instance->book_grid_db     = new MBDB_DB_Book_Grid();
+			self::$instance->book_factory     = new Mooberry_Book_Manager_Simple_Book_Factory();
 
 			// strictly for backwards compatibility
-			self::$instance->books  = new MBDB_Books();
+			self::$instance->books = new MBDB_Books();
 			////error_log('create CPT object');
 
 			//self::$instance->book_CPT = new Mooberry_Book_Manager_Book_CPT();
@@ -164,22 +166,22 @@ final class Mooberry_Book_Manager {
 
 			self::$instance->grid_factory = apply_filters( 'mbdb_grid_factory', new Mooberry_Book_Manager_Simple_Grid_Factory() );
 
-			self::$instance->book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT(  );
+			self::$instance->book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT();
 			//$book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT();
 
 			//self::$instance->tax_grid_CPT = new Mooberry_Book_Manager_Tax_Grid_CPT( $grid_factory );
 			//$tax_grid_CPT = new Mooberry_Book_Manager_Tax_Grid_CPT();
-			self::$instance->tax_grid_page = new Mooberry_Book_Manager_Tax_Grid_Page( );
+			self::$instance->tax_grid_page = new Mooberry_Book_Manager_Tax_Grid_Page();
 
 			//self::$instance->widget_factory = new Mooberry_Book_Manager_Simple_Widget_Factory();
 			if ( is_admin() ) {
 				// set up menus
 				//self::$instance->settings_menu = new Mooberry_Book_Manager_Settings_Menu();
-				add_action(  'admin_menu', array( self::$instance, 'add_options_page' ), 8 );
+				add_action( 'admin_menu', array( self::$instance, 'add_options_page' ), 8 );
 				self::$instance->settings_menu = self::$instance->mbm_admin();
 				//$settings_menu = self::$instance->mbm_admin();
 			}
-		//	//error_log(print_r( self::$instance, true) );
+			//	//error_log(print_r( self::$instance, true) );
 
 		}
 
@@ -188,8 +190,9 @@ final class Mooberry_Book_Manager {
 
 	/**
 	 * Helper function to get/return the Myprefix_Admin object
-	 * @since  0.1.0
+	 *
 	 * @return Myprefix_Admin object
+	 * @since  0.1.0
 	 */
 	public function mbm_admin() {
 		static $object = null;
@@ -206,19 +209,19 @@ final class Mooberry_Book_Manager {
 	 * The whole idea of the singleton design pattern is that there is a single
 	 * object therefore, we don't want the object to be cloned.
 	 *
-	 * @since 3.0
 	 * @return void
+	 * @since 3.0
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__,  'Cheatin&#8217; huh?', '3.0' );
+		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '3.0' );
 	}
 
 	/**
 	 * Disable unserializing of the class
 	 *
-	 * @since 3.0
 	 * @return void
+	 * @since 3.0
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
@@ -226,26 +229,26 @@ final class Mooberry_Book_Manager {
 	}
 
 	public static function plugins_loaded() {
-		load_plugin_textdomain( 'mooberry-book-manager', FALSE, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+		load_plugin_textdomain( 'mooberry-book-manager', false, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
 
 		// check if SuperCache is installed
-		define('MBDB_SUPERCACHE', function_exists('wp_cache_manager'));
-		define('MBDB_WPSEO_INSTALLED', defined( 'WPSEO_FILE' ) );
+		define( 'MBDB_SUPERCACHE', function_exists( 'wp_cache_manager' ) );
+		define( 'MBDB_WPSEO_INSTALLED', defined( 'WPSEO_FILE' ) );
 
 		if ( defined( 'MBDBMA_PLUGIN_VERSION' ) && version_compare( MBDBMA_PLUGIN_VERSION, '1.7', '<' ) ) {
-			$message = __('You must update MBM Multi-Author to be compatible with MBM version 4.0', 'mooberry-book-manager');
-			MBDB()->helper_functions->set_admin_notice( $message, 'error', 'mbdb_update_mbdbma');
+			$message = __( 'You must update MBM Multi-Author to be compatible with MBM version 4.0', 'mooberry-book-manager' );
+			MBDB()->helper_functions->set_admin_notice( $message, 'error', 'mbdb_update_mbdbma' );
 		}
 
 
 		// version 4.2
 		// cover as featured image has been integrated with MBM so the separate plugin is no longer needed
-		if ( defined( 'MBDBCAFI_PLUGIN_FILE') ) {
+		if ( defined( 'MBDBCAFI_PLUGIN_FILE' ) ) {
 			// deactivate the plugin but DO NOT run deactivation filter
 			if ( current_user_can( 'activate_plugins' ) ) {
 				add_action( 'admin_init', 'mbdb_deactivate_cover_as_featured_image' );
 				// set an admin notice
-				MBDB()->helper_functions->set_admin_notice( 'As of version 4.2, MBM Cover As Featured Image has been integrated with Mooberry Book Manager.  The plugin MBM Cover as Featured Image has been deactivated. Your book covers will be used as featured images.  <p>You can turn this off by going to <a href="' . admin_url('admin.php?page=mbdb_options') . '">MBM Settings -> General</a> and setting the Use Cover as Featured Image option to No.</p> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="mbdb_cover_as_featured_image_deactivated">Dismiss</a>', 'updated', 'mbdb_cover_as_featured_image_deactivated' );
+				MBDB()->helper_functions->set_admin_notice( 'As of version 4.2, MBM Cover As Featured Image has been integrated with Mooberry Book Manager.  The plugin MBM Cover as Featured Image has been deactivated. Your book covers will be used as featured images.  <p>You can turn this off by going to <a href="' . admin_url( 'admin.php?page=mbdb_options' ) . '">MBM Settings -> General</a> and setting the Use Cover as Featured Image option to No.</p> <a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="mbdb_cover_as_featured_image_deactivated">Dismiss</a>', 'updated', 'mbdb_cover_as_featured_image_deactivated' );
 				// set use featured images as yes
 				MBDB()->options->set_use_featured_image( 'yes' );
 			}
@@ -254,10 +257,10 @@ final class Mooberry_Book_Manager {
 
 
 	public static function admin_notices() {
-		$notices  = get_option('mbdb_admin_notices');
-		if (is_array($notices)) {
-			foreach ($notices as $key => $notice) {
-			  echo "<div class='notice {$notice['type']}' id='{$key}'><p>{$notice['message']}</p></div>";
+		$notices = get_option( 'mbdb_admin_notices' );
+		if ( is_array( $notices ) ) {
+			foreach ( $notices as $key => $notice ) {
+				echo "<div class='notice {$notice['type']}' id='{$key}'><p>{$notice['message']}</p></div>";
 			}
 		}
 	}
@@ -270,8 +273,8 @@ final class Mooberry_Book_Manager {
 	 * Does upgrade routines
 	 *
 	 * @access public
-	 * @since 1.0
 	 * @return void
+	 * @since  1.0
 	 */
 
 	public static function init() {
@@ -281,20 +284,23 @@ final class Mooberry_Book_Manager {
 		// MBDB()->book_grid_CPT->register();
 		// MBDB()->tax_grid_CPT->add_tax_grid();
 
-	/*
-		mbdb_register_cpts();
-		mbdb_register_taxonomies();
+		/*
+			mbdb_register_cpts();
+			mbdb_register_taxonomies();
 
 
 
 
-		mbdb_upgrade_versions();
-	*/
+			mbdb_upgrade_versions();
+		*/
 
 	}
 
 	public function add_options_page() {
-		$this->options_page = add_menu_page( __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), 'manage_mbm', 'mbdb_options', array( self::$instance->settings_menu , 'admin_page_display' ) );
+		$this->options_page = add_menu_page( __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), 'manage_mbm', 'mbdb_options', array(
+			self::$instance->settings_menu,
+			'admin_page_display',
+		) );
 	}
 
 
@@ -371,7 +377,6 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-core-settings.php';
 
 
-
 		//require_once MBDB_PLUGIN_DIR . 'includes/CMB2-grid/Cmb2GridPlugin.php';
 
 		//require_once MBDB_PLUGIN_DIR . 'mooberry-book-manager-custom-fields.php';
@@ -379,10 +384,7 @@ final class Mooberry_Book_Manager {
 	}
 
 
-
-
-} // class
-
+}// class
 
 
 /**
@@ -394,50 +396,48 @@ final class Mooberry_Book_Manager {
  *
  * Example: <?php $mbdb = MBDB(); ?>
  *
- * @since 3.0
  * @return object The one true Mooberry_Book_Manager Instance
+ * @since 3.0
  */
 function MBDB() {
 	return Mooberry_Book_Manager::instance();
 }
 
-if ( !isset($mbdb) ) {
+if ( ! isset( $mbdb ) ) {
 
 	$mbdb = MBDB();
 }
 
 
+function mbdb_convert( $size ) {
+	$unit = array( 'b', 'kb', 'mb', 'gb', 'tb', 'pb' );
 
-function mbdb_convert($size)
-{
-    $unit=array('b','kb','mb','gb','tb','pb');
-    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+	return @round( $size / pow( 1024, ( $i = floor( log( $size, 1024 ) ) ) ), 2 ) . ' ' . $unit[ $i ];
 }
-
-
 
 
 // for users with PHP <5.5
 // (this can't be in a class)
-if(!function_exists("array_column")) {
+if ( ! function_exists( "array_column" ) ) {
 
-	function array_column($array, $column_name, $key = null) {
-		if ( !is_array( $array ) ) {
+	function array_column( $array, $column_name, $key = null ) {
+		if ( ! is_array( $array ) ) {
 			return null;
 		}
 
 		$new_array = array();
 		foreach ( $array as $element ) {
 			if ( array_key_exists( $column_name, $element ) ) {
-				if ($key == null) {
-						$new_array[] = $element[$column_name];
+				if ( $key == null ) {
+					$new_array[] = $element[ $column_name ];
 				} else {
 					if ( array_key_exists( $key, $element ) ) {
-						$new_array[$element[$key]] = $element[$column_name];
+						$new_array[ $element[ $key ] ] = $element[ $column_name ];
 					}
 				}
 			}
 		}
+
 		return $new_array;
 	}
 }
@@ -448,67 +448,69 @@ function mbdb_search_where ( $where ) {
 } */
 
 
-add_filter('wp_nav_menu_objects',  'remove_tax_grid_page_from_menu' , 99, 2);
- function remove_tax_grid_page_from_menu($sorted_menu_objects, $args) {
+add_filter( 'wp_nav_menu_objects', 'remove_tax_grid_page_from_menu', 99, 2 );
+function remove_tax_grid_page_from_menu( $sorted_menu_objects, $args ) {
 
-    // check for the right menu to remove the menu item from
-    // here we check for theme location of 'secondary-menu'
-    // alternatively you can check for menu name ($args->menu == 'menu_name')
-    // if ($args->theme_location != 'secondary-menu')
-        // return $sorted_menu_objects;
+	// check for the right menu to remove the menu item from
+	// here we check for theme location of 'secondary-menu'
+	// alternatively you can check for menu name ($args->menu == 'menu_name')
+	// if ($args->theme_location != 'secondary-menu')
+	// return $sorted_menu_objects;
 	$page_id = MBDB()->options->tax_grid_page;
-    // remove the menu item that has a title of 'Uncategorized'
-    foreach ($sorted_menu_objects as $key => $menu_object) {
-        // can also check for $menu_object->url for example
-        // see all properties to test against:
-         if ( !isset( $menu_object ) || !property_exists( $menu_object, 'object_id') ) {
-	         continue;
-         }
-        if ($menu_object->object_id == $page_id) {
-            unset($sorted_menu_objects[$key]);
-            break;
-        }
-    }
+	// remove the menu item that has a title of 'Uncategorized'
+	foreach ( $sorted_menu_objects as $key => $menu_object ) {
+		// can also check for $menu_object->url for example
+		// see all properties to test against:
+		if ( ! isset( $menu_object ) || ! property_exists( $menu_object, 'object_id' ) ) {
+			continue;
+		}
+		if ( $menu_object->object_id == $page_id ) {
+			unset( $sorted_menu_objects[ $key ] );
+			break;
+		}
+	}
 
-    return $sorted_menu_objects;
+	return $sorted_menu_objects;
 }
 
-add_filter('wp_page_menu_args', 'remove_tax_grid_from_page_links');
+add_filter( 'wp_page_menu_args', 'remove_tax_grid_from_page_links' );
 function remove_tax_grid_from_page_links( $args ) {
 
 	$page_id = MBDB()->options->tax_grid_page;
 
-	if ( array_key_exists('exclude', $args) ) {
+	if ( array_key_exists( 'exclude', $args ) ) {
 		$args['exclude'] = $args['exclude'] . ',' . $page_id;
 	} else {
 		$args['exclude'] = $page_id;
 	}
+
 	return $args;
 }
 
 // specifically for the SmartCrawl plugin
-add_filter('wds_title', 'mbdb_change_tax_grid_page_title', 11, 1);
+add_filter( 'wds_title', 'mbdb_change_tax_grid_page_title', 11, 1 );
 function mbdb_change_tax_grid_page_title( $title ) {
 	$page_id = MBDB()->options->tax_grid_page;
 	if ( is_page( (int) $page_id ) ) {
 		return MBDB()->tax_grid_page->get_tax_title( $title );
 	}
+
 	return $title;
 }
 
 // add_action('init', 'mbdb_add_comments_to_books', 1);
 // function mbdb_add_comments_to_books() {
-		// $options = get_option('mbdb_options');
-		// $options['comments_on_books'] = false;
-		// update_option('mbdb_options', $options);
+// $options = get_option('mbdb_options');
+// $options['comments_on_books'] = false;
+// update_option('mbdb_options', $options);
 // }
 
 
 function mbdb_deactivate_cover_as_featured_image() {
-		deactivate_plugins( plugin_basename( MBDBCAFI_PLUGIN_FILE) );
+	deactivate_plugins( plugin_basename( MBDBCAFI_PLUGIN_FILE ) );
 }
 
-add_action('admin_init', 'mbdb_remind_about_itunes_link');
+add_action( 'admin_init', 'mbdb_remind_about_itunes_link' );
 function mbdb_remind_about_itunes_link() {
 	if ( get_option( 'mbdb_retailers_with_itunes' ) === 'yes' ) {
 		MBDB()->helper_functions->set_admin_notice( 'Mooberry Book Manager: You have buy links for books that use itunes.apple.com.  Per Apple\'s requirements these should be changed to books.apple.com.  <a href="#" id="mbdb_update_apple_links_button" class="button" >Update My Books Automatically</a>', 'updated', 'mbdb_itunes_to_books_buylink' );
