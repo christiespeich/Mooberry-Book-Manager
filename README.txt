@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.4
-Stable tag: 4.3.4
+Stable tag: 4.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -185,7 +185,7 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
-= 4.3.4 =
+= 4.3.5 =
 * Added: Will update Apple books buy links from itunes.apple.com to books.apple.com
 
 = 4.3.3 =

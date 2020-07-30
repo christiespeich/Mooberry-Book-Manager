@@ -197,8 +197,8 @@ function mbdb_update_versions() {
 		mbdb_update_4_1_13();
 	}
 
-	if ( version_compare( $current_version, '4.3.4', '<' ) ) {
-		mbdb_update_4_3_4();
+	if ( version_compare( $current_version, '4.3.5', '<' ) ) {
+		mbdb_update_4_3_5();
 	}
 
 
@@ -993,7 +993,7 @@ function mbdb_update_4_1_13() {
 	update_option( 'mbdb_options', $mbdb_options );
 }
 
-function mbdb_update_4_3_4() {
+function mbdb_update_4_3_5() {
 	$query_args = array(
 		'post_type'  => 'mbdb_book',
 		'meta_query' => array(
