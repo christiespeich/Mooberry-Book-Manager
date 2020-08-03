@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.3.5
+ *  Version: 4.3.6
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -27,7 +27,7 @@
  *
  * @package MBDB
  * @author  Mooberry Dreams
- * @version 4.3.5
+ * @version 4.3.6
  */
 
 // Exit if accessed directly
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.3.5' );
+	define( 'MBDB_PLUGIN_VERSION', '4.3.6' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -508,6 +508,11 @@ function mbdb_change_tax_grid_page_title( $title ) {
 
 function mbdb_deactivate_cover_as_featured_image() {
 	deactivate_plugins( plugin_basename( MBDBCAFI_PLUGIN_FILE ) );
+}
+
+add_action('mbdb_check_for_itunes_links', 'mbdb_check_for_itunes_links');
+function mbdb_check_for_itunes_links() {
+	MBDB()->helper_functions->check_for_itunes_links();
 }
 
 add_action( 'admin_init', 'mbdb_remind_about_itunes_link' );

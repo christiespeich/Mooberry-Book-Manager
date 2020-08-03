@@ -28,6 +28,8 @@ class Mooberry_Book_Manager_Apple_Books_Update_Process extends WP_Background_Pro
 	public function update_links() {
 		$query_args = array(
 			'post_type'  => 'mbdb_book',
+			'post_status' => array( 'draft','publish'),
+			'post_per_page' => '-1',
 			'meta_query' => array(
 				array(
 					'key'     => '_mbdb_buylinks',
@@ -40,8 +42,9 @@ class Mooberry_Book_Manager_Apple_Books_Update_Process extends WP_Background_Pro
 		$query = new WP_Query( $query_args );
 		foreach ( $query->posts as $post ) {
 			$this->push_to_queue( $post->ID );
+			$this->save();
 		}
-		$this->save();
+
 
 		$this->dispatch();
 

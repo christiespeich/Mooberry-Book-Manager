@@ -199,6 +199,10 @@ function mbdb_update_versions() {
 
 	if ( version_compare( $current_version, '4.3.5', '<' ) ) {
 		mbdb_update_4_3_5();
+
+	}
+	if ( version_compare( $current_version, '4.3.6', '<' ) ) {
+		mbdb_update_4_3_6();
 	}
 
 
@@ -994,22 +998,11 @@ function mbdb_update_4_1_13() {
 }
 
 function mbdb_update_4_3_5() {
-	$query_args = array(
-		'post_type'  => 'mbdb_book',
-		'meta_query' => array(
-			array(
-				'key'     => '_mbdb_buylinks',
-				'value'   => 'itunes.apple',
-				'compare' => 'LIKE',
-			),
-		),
-	);
+	MBDB()->helper_functions->check_for_itunes_links();
 
-	$query = new WP_Query( $query_args );
-	if ( $query->found_posts > 0 ) {
-		update_option( 'mbdb_retailers_with_itunes', 'yes' );
-	} else {
-		update_option( 'mbdb_retailers_with_itunes', 'no' );
-	}
+}
 
+function mbdb_update_4_3_6() {
+	MBDB()->helper_functions->check_for_itunes_links();
+	wp_schedule_event(time(), 'weekly', 'mbdb_check_for_itunes_links') ;
 }
