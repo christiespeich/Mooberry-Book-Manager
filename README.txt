@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.4
-Stable tag: 4.3.7
+Stable tag: 4.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+
+= 4.3.8 =
+* Fixed: Update ALL itunes.apple.com links not just 10. (third time's the charm?)
 
 = 4.3.7 =
 * Fixed: Adding a book to the selection on a book grid with custom sort no longer resets the custom sort. New books are added to the bottom.

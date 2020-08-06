@@ -204,7 +204,9 @@ function mbdb_update_versions() {
 	if ( version_compare( $current_version, '4.3.6', '<' ) ) {
 		mbdb_update_4_3_6();
 	}
-
+	if ( version_compare( $current_version, '4.3.8', '<' ) ) {
+		mbdb_update_4_3_8();
+	}
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
@@ -1005,4 +1007,9 @@ function mbdb_update_4_3_5() {
 function mbdb_update_4_3_6() {
 	MBDB()->helper_functions->check_for_itunes_links();
 	wp_schedule_event(time(), 'weekly', 'mbdb_check_for_itunes_links') ;
+}
+
+function mbdb_update_4_3_8() {
+	MBDB()->helper_functions->check_for_itunes_links();
+
 }

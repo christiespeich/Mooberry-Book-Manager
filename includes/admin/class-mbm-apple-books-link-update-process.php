@@ -29,7 +29,7 @@ class Mooberry_Book_Manager_Apple_Books_Update_Process extends WP_Background_Pro
 		$query_args = array(
 			'post_type'  => 'mbdb_book',
 			'post_status' => array( 'draft','publish'),
-			'post_per_page' => '-1',
+			'posts_per_page' => '-1',
 			'meta_query' => array(
 				array(
 					'key'     => '_mbdb_buylinks',
@@ -39,13 +39,14 @@ class Mooberry_Book_Manager_Apple_Books_Update_Process extends WP_Background_Pro
 			)
 		);
 
-		$query = new WP_Query( $query_args );
-		foreach ( $query->posts as $post ) {
+		$posts= get_posts( $query_args );
+
+		foreach ( $posts as $post ) {
 			$this->push_to_queue( $post->ID );
-			$this->save();
+
 		}
 
-
+		$this->save();
 		$this->dispatch();
 
 	}
@@ -74,10 +75,10 @@ class Mooberry_Book_Manager_Apple_Books_Update_Process extends WP_Background_Pro
 
 	}
 
-	public function save() {
+	/*public function save() {
 		parent::save();
 		$this->data = array();
-	}
+	}*/
 
 	/**
 	 * Task
@@ -96,10 +97,12 @@ class Mooberry_Book_Manager_Apple_Books_Update_Process extends WP_Background_Pro
 		//$book = MBDB()->book_factory->create_book( $book_id );
 
 		$buy_links = get_post_meta( $book_id, '_mbdb_buylinks', true );
-		foreach ( $buy_links as $index => $buy_link ) {
-			$buy_links[ $index ]['_mbdb_buylink'] = str_replace( 'itunes.apple.com', 'books.apple.com', $buy_link['_mbdb_buylink'] );
+		if ( is_array($buy_links)) {
+			foreach ( $buy_links as $index => $buy_link ) {
+				$buy_links[ $index ]['_mbdb_buylink'] = str_replace( 'itunes.apple.com', 'books.apple.com', $buy_link['_mbdb_buylink'] );
+			}
+			update_post_meta( $book_id, '_mbdb_buylinks', $buy_links );
 		}
-		update_post_meta( $book_id, '_mbdb_buylinks', $buy_links );
 
 		return false;
 	}
