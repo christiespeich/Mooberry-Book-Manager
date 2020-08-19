@@ -207,7 +207,7 @@ abstract class mbdb_widget extends WP_Widget {
 		global $_wp_additional_image_sizes;
 
 		foreach ( $_wp_additional_image_sizes as $image_name => $image_props ) {
-			$image_size_width = intval( $image_props['width'] );
+			$image_size_width = isset( $image_props['width'] ) ? intval( $image_props['width'] ) : 0;
 			if ( $image_size_width >= $coverSize && $image_size_width < $wide_enough ) {
 				$wide_enough = $image_size_width;
 				$size        = $image_name;
