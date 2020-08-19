@@ -192,11 +192,32 @@ abstract class mbdb_widget extends WP_Widget {
 			do_action( 'mbdb_widget_pre_cover_link', $book, $book->permalink );
 			echo '<A class="mbm-widget-link" HREF="' . esc_url( $book->permalink ) . '"> ';
 		}
-		
-		
-		$url = $book->get_cover_url( 'medium', 'widget' );
-		$alt = MBDB()->helper_functions->get_alt_attr( $book->cover_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . $book->title ); 
-		
+
+		$size = 'medium';
+		$wide_enough = intval(get_option( "medium_size_w", 0 ));
+		$wp_sizes = get_intermediate_image_sizes();
+		$coverSize = intval($this->coverSize);
+		foreach ( $wp_sizes as $wp_size ) {
+			$width = intval(get_option( "{$wp_size}_size_w", 0 ));
+			if ( $width >= $coverSize && $width < $wide_enough ) {
+				$wide_enough = $width;
+				$size = $wp_size;
+			}
+		}
+		global $_wp_additional_image_sizes;
+
+		foreach ( $_wp_additional_image_sizes as $image_name => $image_props ) {
+			$image_size_width = intval($image_props['width']);
+			if (  $image_size_width >= $coverSize && $image_size_width < $wide_enough ) {
+				$wide_enough = $image_size_width;
+				$size = $image_name;
+			}
+		}
+
+
+		$url = $book->get_cover_url( $size, 'widget' );
+		$alt = MBDB()->helper_functions->get_alt_attr( $book->cover_id, __('Book Cover:', 'mooberry-book-manager') . ' ' . $book->title );
+
 		if (isset($url) && $url != '') {
 		
 			do_action('mbdb_widget_pre_image', $url, $book);
