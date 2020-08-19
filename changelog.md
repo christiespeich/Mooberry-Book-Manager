@@ -1,3 +1,168 @@
+
+#### 4.2.3 
+* Added: Option to turn off SEO META tags
+
+#### 4.2.2 
+* Fixed: Sites using SmartCrawl plugin need an override for taxonomy grid pages
+
+#### 4.2.1 
+* Fixed: Bug on filter for no books found text on book grids
+
+#### 4.2 
+* Added: Option to use book cover as featured image
+
+#### 4.1.22 
+* Updated: streamlined arguments to book page filters
+
+#### 4.1.21 
+* Added: Vietnam currency
+* Added: many filters to the book page
+
+#### 4.1.20 
+* Fixed: if the book buy link already contains a ? and has an affiliate link with the affiliate code appended to the link, the affiliate code with start with a & instead of a ?.  Thanks Andre Guirard
+
+#### 4.1.19 
+* Fixed: shows summary of book on search page for themes that output post_excerpt
+* Fixed: CSS issue on mobile with lists of checklists such as with multi-author
+
+#### 4.1.18 
+* Fixed: show taxonomy terms on book grid edit page even if they have no books
+
+#### 4.1.17 
+* Fixed: third time is the charm? Finishing issues on grids with books/no books
+
+#### 4.1.16 
+* Fixed: Closed off another path of returning all books when it should be no books
+
+#### 4.1.15 
+* Fixed: Be sure not to return ALL books on a grid that is really returning NO books
+* Fixed: Display currency with price in editions
+
+#### 4.1.14 
+* Fixed: obscure PHP notice on some settings configurations
+
+#### 4.1.13 
+* Updated: iBooks updated to Apple Books in list of Retailers that come pre-installed with MBM
+
+
+#### 4.1.12 
+* Fixed: Bug in logic to remove genre, series, and tags from quick/bulk edit in WP5.1+ was bringing them back in WP5.2
+* Fixed: Allow MBM3.0 data migration to happen in MBM4.0+ for users who have not kept plugin updated
+
+#### 4.1.11 
+* Fixed: Removed genre, series, and tags from quick/bulk edit for WP version 5.1 and higher, due to possible bug in WP 5.1 causing the fields to empty out when saved
+
+#### 4.1.10 
+* Fixed: A change in WP 5.1 prevented tags, genres, series, illustrators, editors, and cover artists to not save correctly
+
+#### 4.1.9 
+* Fixed: Error causing affiliate code to output twice in bottom list of links on book page
+
+#### 4.1.8 
+* Fixed: Removed HTML tags from meta tags (SEO)
+
+#### 4.1.7 
+* Added: Support for new Multi-Author feature
+
+#### 4.1.6 
+* Fixed: SQL bug relating to Multi-Author
+
+#### 4.1.5 
+* Fixed: Version 4.0.19 erroneously removed Publisher as a group by option in book grids
+
+#### 4.1.4 
+* Fixed: Issue with book with future publication date not showing date on book page
+
+#### 4.1.3 
+* Fixed: Previous update erroneously removed Publisher as an option in book grids
+* Fixed: Check for object_id in menu object just in case of odd theme or plugin conflicting?
+* Fixed: Fix bug that wasn't setting MBM Tax Grid Page on activation
+
+#### 4.1.2 
+* Updated: Internal changes to support future features
+
+#### 4.1.1 
+* Fixed: Fatal error: Declaration of CMB2_Type_File::render() must be compatible with CMB2_Type_Text::render($args = Array)  on Settings-> Book Page. (caused by error in included library CMB2 when used with PHP 7.2 )
+* Added: Brazilian Portuguese translations ( thanks Vinicius Cubas Brand! )
+
+#### 4.1 
+* Updated: Improved mobile layout for book pages
+* New: Compatible with Duplicate Post so that books can be duplicated into new posts
+
+#### 4.0.21 
+* Fixed: Compatible with Yoast SEO to use the book's summary as content for analyzing
+
+#### 4.0.20 
+* Fixed: bugs when importing/exporting books with publishers
+
+#### 4.0.19 
+* Updated: Compliant with WP 4.9: allows shortcodes in widgets without using global $post
+* Various bugs/refactoring
+
+#### 4.0.18 
+* Issues with previous update being recognized by wordpress
+
+#### 4.0.17 
+* Fixed: bug in grid book image
+
+#### 4.0.16 
+* Fixed: Add comment support to books
+* Fixed: Add support for quick/bulk edit for extensions
+
+#### 4.0.15 
+* Fixed: Output paragraph and styling on tax grid descriptions
+* Fixed: Display H1-H6 headings in the summary as inline
+* Fixed: Tax Grid page creation no longer broken
+* Fixed: Backwards compatibility issues when upgrading from very old versions
+
+#### 4.0.14 
+* Added: Compatibility with future updates
+
+#### 4.0.13 
+* Fixed: Allow post types allowed to have book grid shortcode button to be customized
+
+#### 4.0.12 
+* Fixed: Retailers, Publishers, and Formats now display in alphabetical order in drop down lists
+* Fixed: Series, Tags, Genres, Cover Artists, Editors, and Illustrators now included in Book Grid selection even if no books have been added to them yet
+* Fixed: search issue
+
+#### 4.0.11 
+* Fixed: Bug with backwards compatibility with MA
+
+#### 4.0.10 
+* Changes to support upcoming features
+
+#### 4.0.9 
+* Fixed: Problem with author sorting on grids with Multi-Author ( requires Multi-Author v1.12+ )
+
+#### 4.0.8 
+* Fixed: Permissions for Illustrators
+
+#### 4.0.7 
+* Fixed: Issue with affiliate code not using before position properly
+
+#### 4.0.6 
+* Fixed: Issue caused by version 4.0.5 preventing books from being saved
+
+#### 4.0.5 
+* Fixed: Issue causing widgets to be removed. Widgets may still be removed after THIS update, however they should not be going forward. I apologize for the inconvenience
+
+#### 4.0.4 
+* Fixed: error on License Activation screen when there's only one extension installed
+* Fixed: only return 1 book for book widget when used with multi-author extension
+
+#### 4.0.3 
+* Fixed: Truncate meta description around 200 chars
+* Fixed: Add description, open graph, and twitter card meta tags to taxonomy grids
+
+#### 4.0.2 
+* Fixed: don't use cropped images in grid
+* Fixed: allow shortcodes in before/after grid descriptions
+* Fixed: fixed code to migrate tax grid before/after descriptions
+
+#### 4.0.1 
+* Fixed: bugs
+
 #### 4.0 
 * Fixed: Edition size (width/height) no longer rounds to nearest whole number
 * Added: Ability to import and export books (for backup and site migration purposes)
@@ -118,63 +283,63 @@
 * Fixed: Price no longer rounds to nearest whole number
 * Updated: language files
 
-#### 3.4.5 =
+#### 3.4.5 
 * Fixed: No more double-outputting the Additional Content under book grids
 * Fixed: broken styling on editing pages
 
-#### 3.4.4 =
+#### 3.4.4 
 * Fixed: Uses smaller image sizes when displaying book covers
 * Fixed: Fixed bug when adding License Keys menu page in multisite
 
-#### 3.4.3 =
+#### 3.4.3 
 * Fixed: table prefix
 
-#### 3.4.2 =
+#### 3.4.2 
 * Fixed: Moved book grid migration to a separate page instead of auto-running on update
 
-#### 3.4.1 =
+#### 3.4.1 
 * Fixed: AJAX needed for updating... but prevent updating from running more than once
 
-#### 3.4 = 
+#### 3.4 
 * Added: Book Grid Shortcodes. See the [documentation](http://www.bookmanager.mooberrydreams.com/docs/category/mooberry-book-manager/book-grids/) for details
 * Fixed: translation errors
 * Fixed: ignore AJAX on some init functions
 
-#### 3.3.8 =
+#### 3.3.8 
 * Fixed: translation errors
 
-#### 3.3.7 =
+#### 3.3.7 
 * Fixed: translation errors
 * Fixed: Bug adding slashes to quotes/apostrophes to summary, excerpt, and additional info after adding iframe support
 
-#### 3.3.6 =
+#### 3.3.6 
 * Fixed: Allow iframes in summary, excerpt, and additional info
 
-#### 3.3.5 =
+#### 3.3.5 
 * Fixed: version number
 
-#### 3.3.4 =
+#### 3.3.4 
 * Fixed: Translation error on editions pricing
 * Fixed: always show Activate button on extensions page unless deactivate button is displayed
 
-#### 3.3.3 =
+#### 3.3.3 
 * Fixed: Added shortcode support to Additional Information
 
-#### 3.3.2 =
+#### 3.3.2 
 * Fixed: Translation fixes
 
-#### 3.3.1 =
+#### 3.3.1 
 * Fixed: Bug with custom sort
 
-#### 3.3 =
+#### 3.3 
 * Added: Ability to custom sort book grids (choose Select Books and Group By None and Sort By Custom) See the [documentation](http://www.bookmanager.mooberrydreams.com/docs/category/mooberry-book-manager/book-grids/) for details
 * Added: Quick/Bulk Edit fields to update publisher, release date, series order, subtitle, and Goodreads link
 * Added: Ability to add website for Cover Artists, Editors, and Illustrators (WordPress 4.4+ required)
 
-#### 3.2.1 =
+#### 3.2.1 
 * Fixed: Bugs in extension licensing support
 
-#### 3.2 =
+#### 3.2 
 * Fixed: Internationalization errors
 * Fixed: Added spans and CSS classes around book details
 * Fixed: Sort by series order if on series tax grid
@@ -184,13 +349,13 @@
 * Added: Support for Advanced Widgets
 
 
-#### 3.1.2 =
+#### 3.1.2 
 * Added: Nigerian Naira currency
 * Fixed: Translations for Editions and Publication Date
 * Fixed: Search error
 
 
-#### 3.1 =
+#### 3.1 
 * Fixed: Now compatible with Multisite, including Network Activation
 * Fixed: Migration problems from version 3.0
 * Fixed: Problems with W3 Total Cache (see **Other Notes** section for more info about using caching plugins with MBM)
@@ -201,7 +366,7 @@
 * Wordpress 4.5 Compatibility
 
 
-#### 3.0 =
+#### 3.0 
 * Added: Book Grids can now be filtered and grouped by Editors, Illustrators, Cover Artists, and Publishers
 * Added: Book Grids can now be grouped by several levels
 * Added: Additional pretty links, eg /book/tag/{some-tag} which lists all matching books but display the full book page not a grid
@@ -237,7 +402,7 @@
 * Fixed: Error about non-object sometimes happening (grid styles)
 
 
-= 2.4 
+#### 2.4 
 * Added: South African Rand (ZAR/R) to currency dropdown options
 * Added: Ability to update the user who created the book (may need to enable "author" in the Screen Options)
 * Updated: Compliant with Wordpress 4.4 update
