@@ -198,6 +198,9 @@ abstract class mbdb_widget extends WP_Widget {
 		$wp_sizes    = get_intermediate_image_sizes();
 		$coverSize   = intval( $this->coverSize );
 		foreach ( $wp_sizes as $wp_size ) {
+			if ( $wp_size == 'thumbnail') {
+				continue;
+			}
 			$width = intval( get_option( "{$wp_size}_size_w", 0 ) );
 			if ( $width >= $coverSize && $width < $wide_enough ) {
 				$wide_enough = $width;
