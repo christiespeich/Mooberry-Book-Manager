@@ -202,7 +202,11 @@ abstract class mbdb_widget extends WP_Widget {
 				continue;
 			}
 			$width = intval( get_option( "{$wp_size}_size_w", 0 ) );
-			if ( $width >= $coverSize && $width < $wide_enough ) {
+			// if we find a size that has more width than our desired cover size AND it's smaller than our currently
+			// selected size, then it's a better fit and we should choose that one
+			// however, $wide_enough could be the wrong size if the starting size is too small
+			// so use the new size in that case also
+			if ( $width >= $coverSize && ( $width < $wide_enough || $wide_enough < $coverSize ) ) {
 				$wide_enough = $width;
 				$size        = $wp_size;
 			}
@@ -211,7 +215,11 @@ abstract class mbdb_widget extends WP_Widget {
 
 		foreach ( $_wp_additional_image_sizes as $image_name => $image_props ) {
 			$image_size_width = isset( $image_props['width'] ) ? intval( $image_props['width'] ) : 0;
-			if ( $image_size_width >= $coverSize && $image_size_width < $wide_enough ) {
+			// if we find a size that has more width than our desired cover size AND it's smaller than our currently
+			// selected size, then it's a better fit and we should choose that one
+			// however, $wide_enough could be the wrong size if the starting size is too small
+			// so use the new size in that case also
+			if ( $image_size_width >= $coverSize && ( $image_size_width < $wide_enough || $wide_enough < $coverSize ) ) {
 				$wide_enough = $image_size_width;
 				$size        = $image_name;
 			}
