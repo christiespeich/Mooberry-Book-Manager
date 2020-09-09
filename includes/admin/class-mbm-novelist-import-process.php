@@ -68,7 +68,7 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		// create genres
 		$this->novelist_to_mbm_genres = array();
 		$novelist_genres              = get_terms( array( 'taxonomy' => 'novelist-genre', 'hide_empty' => false ) );
-		if ( !is_wp_error($novelist_genres)) {
+		if ( ! is_wp_error( $novelist_genres ) ) {
 			foreach ( $novelist_genres as $novelist_genre ) {
 				$mbm_genre = term_exists( $novelist_genre->name, 'mbdb_genre' );
 				if ( $mbm_genre === null ) {
@@ -83,7 +83,7 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		// create series
 		$this->novelist_to_mbm_series = array();
 		$novelist_series              = get_terms( array( 'taxonomy' => 'novelist-series', 'hide_empty' => false ) );
-		if ( !is_wp_error($novelist_series)) {
+		if ( ! is_wp_error( $novelist_series ) ) {
 			foreach ( $novelist_series as $a_novelist_series ) {
 				$mbm_series = term_exists( $a_novelist_series->name, 'mbdb_series' );
 				if ( $mbm_series === null ) {
@@ -107,7 +107,7 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		// creat paperback format if needed
 		$formats                    = MBDB()->options->edition_formats;
 		$this->mbm_paperback_format = null;
-		$this->mbm_kindle_format = null;
+		$this->mbm_kindle_format    = null;
 		foreach ( $formats as $format ) {
 			if ( $format->name == 'Paperback' ) {
 				$this->mbm_paperback_format = $format;
@@ -133,6 +133,15 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 			) );
 			MBDB()->options->add_edition_format( $this->mbm_kindle_format );
 		}
+
+
+		//save to the database
+		update_option( 'mbm_novelist_to_mbm_retailers', $this->novelist_to_mbm_retailers );
+		update_option( 'mbm_novelist_to_mbm_genres', $this->novelist_to_mbm_genres );
+		update_option( 'mbm_novelist_to_mbm_series', $this->novelist_to_mbm_series );
+		update_option( 'mbm_publishers_by_name', $this->mbm_publishers_by_name );
+		update_option( 'mbm_paperback_format', $this->mbm_paperback_format );
+		update_option( 'mbm_kindle_format', $this->mbm_kindle_format );
 	}
 
 	public function cancel_process() {
@@ -195,31 +204,41 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		$book_data->cover           = wp_get_attachment_url( $cover_id );
 
 
+		//load from the database
+		$this->novelist_to_mbm_retailers = get_option( 'mbm_novelist_to_mbm_retailers', array() );
+		$this->novelist_to_mbm_genres    = get_option( 'mbm_novelist_to_mbm_genres', array() );
+		$this->novelist_to_mbm_series    = get_option( 'mbm_novelist_to_mbm_series', array() );
+		$this->mbm_publishers_by_name    = get_option( 'mbm_publishers_by_name', array() );
+		$this->mbm_paperback_format      = get_option( 'mbm_paperback_format', new Mooberry_Book_Manager_Edition() );
+		$this->mbm_kindle_format         = get_option( 'mbm_kindle_format', new Mooberry_Book_Manager_Edition() );
+
 		// buy links
 		$purchase_links = unserialize( $this->get_meta_data( $post_meta, 'novelist_purchase_links' ) );
 		$mbm_buylinks   = array();
-		foreach ( $purchase_links as $retailer => $purchase_link ) {
-			if ( isset( $this->novelist_to_mbm_retailers[ $retailer ] ) ) {
-				//$mbm_buylinks[]   = $novelist_to_mbm_retailers[ $retailer ]->to_json();
-				$mbm_retailer   = $this->novelist_to_mbm_retailers[ $retailer ];
-				$mbm_buylink    = new Mooberry_Book_Manager_Buy_Link( array(
-					'link'       => $purchase_link,
-					'retailerID' => $mbm_retailer->id
-				) );
-				$mbm_buylinks[] = $mbm_buylink->to_json();
-			}
+		if ( $purchase_links ) {
+			foreach ( $purchase_links as $retailer => $purchase_link ) {
+				if ( isset( $this->novelist_to_mbm_retailers[ $retailer ] ) ) {
+					//$mbm_buylinks[]   = $novelist_to_mbm_retailers[ $retailer ]->to_json();
+					$mbm_retailer   = $this->novelist_to_mbm_retailers[ $retailer ];
+					$mbm_buylink    = new Mooberry_Book_Manager_Buy_Link( array(
+						'link'       => $purchase_link,
+						'retailerID' => $mbm_retailer->id
+					) );
+					$mbm_buylinks[] = $mbm_buylink->to_json();
+				}
 
+			}
 		}
 
 		$book_data->buy_links = $mbm_buylinks;
 
 		// page count, isbn, and asin
 		$book_data->editions = array();
-		$page_count = $this->get_meta_data( $post_meta, 'novelist_pages' );
-		$isbn = $this->get_meta_data( $post_meta, 'novelist_isbn');
-		$asin = $this->get_meta_data( $post_meta, 'novelist_asin');
+		$page_count          = $this->get_meta_data( $post_meta, 'novelist_pages' );
+		$isbn                = $this->get_meta_data( $post_meta, 'novelist_isbn' );
+		$asin                = $this->get_meta_data( $post_meta, 'novelist_asin' );
 		if ( $page_count != '' || $isbn != '' ) {
-			$new_edition         = new Mooberry_Book_Manager_Edition( array(
+			$new_edition           = new Mooberry_Book_Manager_Edition( array(
 				'format_id' => $this->mbm_paperback_format->id,
 				'length'    => $page_count,
 				'isbn'      => $isbn,
@@ -227,13 +246,13 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 			$book_data->editions[] = $new_edition->to_json();
 		}
 		if ( $asin != '' ) {
-			$new_edition         = new Mooberry_Book_Manager_Edition( array(
+			$new_edition           = new Mooberry_Book_Manager_Edition( array(
 				'format_id' => $this->mbm_kindle_format->id,
 				'isbn'      => $asin,
 			) );
 			$book_data->editions[] = $new_edition->to_json();
 
-			$book_data->excerpt_type = 'kindle';
+			$book_data->excerpt_type   = 'kindle';
 			$book_data->kindle_preview = $asin;
 		}
 
@@ -259,10 +278,12 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		// genre
 		$genres     = get_the_terms( $novelist_book->ID, 'novelist-genre' );
 		$mbm_genres = array();
-		foreach ( $genres as $genre ) {
-			if ( isset( $this->novelist_to_mbm_genres[ $genre->term_id ] ) ) {
-				$mbm_genre_term_id = $this->novelist_to_mbm_genres[ $genre->term_id ];
-				$mbm_genres[]      = get_term( $mbm_genre_term_id, 'mbdb_genre' );
+		if ( $genres ) {
+			foreach ( $genres as $genre ) {
+				if ( isset( $this->novelist_to_mbm_genres[ $genre->term_id ] ) ) {
+					$mbm_genre_term_id = $this->novelist_to_mbm_genres[ $genre->term_id ];
+					$mbm_genres[]      = get_term( $mbm_genre_term_id, 'mbdb_genre' );
+				}
 			}
 		}
 		$book_data->genres = $mbm_genres;
@@ -270,13 +291,16 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		// series
 		$series     = get_the_terms( $novelist_book->ID, 'novelist-series' );
 		$mbm_series = array();
-		foreach ( $series as $a_series ) {
-			if ( isset( $this->novelist_to_mbm_series[ $a_series->term_id ] ) ) {
-				$mbm_series_term_id = $this->novelist_to_mbm_series[ $a_series->term_id ];
-				$mbm_series[]       = get_term( $mbm_series_term_id, 'mbdb_series' );
+		if ( $series ) {
+			foreach ( $series as $a_series ) {
+				if ( isset( $this->novelist_to_mbm_series[ $a_series->term_id ] ) ) {
+					$mbm_series_term_id = $this->novelist_to_mbm_series[ $a_series->term_id ];
+					$mbm_series[]       = get_term( $mbm_series_term_id, 'mbdb_series' );
+				}
 			}
 		}
 		$book_data->series = $mbm_series;
+
 
 		$mbm_book = MBDB()->book_factory->create_book();
 		$mbm_book->import( $book_data );
