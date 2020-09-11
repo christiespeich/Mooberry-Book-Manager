@@ -193,41 +193,15 @@ abstract class mbdb_widget extends WP_Widget {
 			echo '<A class="mbm-widget-link" HREF="' . esc_url( $book->permalink ) . '"> ';
 		}
 
-		$wp_sizes    = get_intermediate_image_sizes();
-		global $_wp_additional_image_sizes;
-		$all_sizes = array();
-		$this->coverSize = 800;
-		foreach ( $wp_sizes as $wp_size ) {
-			$width = intval( get_option( "{$wp_size}_size_w", 0 ) );
-			$all_sizes[ $wp_size ] = $width;
-		}
-		foreach ($_wp_additional_image_sizes as $size => $props ) {
-			$image_size_width = isset( $props['width'] ) ? intval( $props['width'] ) : 0;
-			$all_sizes[ $size ] = $image_size_width;
-		}
-
-		asort($all_sizes);
-		// if no size is large enough, it will use whatever the largest size is
-		foreach ( $all_sizes as $size => $width ) {
-			if ( $width >= $this->coverSize ) {
-				break;
-			}
-		}
-
-
-
-	/*	$size        = 'medium';
+		$size        = 'medium';
 		$wide_enough = intval( get_option( "medium_size_w", 0 ) );
-		//$wp_sizes    = get_intermediate_image_sizes();
+		$wp_sizes    = get_intermediate_image_sizes();
 		$coverSize   = intval( $this->coverSize );
-		$coverSize = 800;
-		$wp_sizes = array( 300, 768, 1024, 640 );
 		foreach ( $wp_sizes as $wp_size ) {
 			if ( $wp_size == 'thumbnail') {
 				continue;
 			}
-			//$width = intval( get_option( "{$wp_size}_size_w", 0 ) );
-			$width = $wp_size;
+			$width = intval( get_option( "{$wp_size}_size_w", 0 ) );
 			// if we find a size that has more width than our desired cover size AND it's smaller than our currently
 			// selected size, then it's a better fit and we should choose that one
 			// however, $wide_enough could be the wrong size if the starting size is too small
@@ -249,7 +223,7 @@ abstract class mbdb_widget extends WP_Widget {
 				$wide_enough = $image_size_width;
 				$size        = $image_name;
 			}
-		}*/
+		}
 
 
 		$url = $book->get_cover_url( $size, 'widget' );
