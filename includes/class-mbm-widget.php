@@ -193,7 +193,7 @@ abstract class mbdb_widget extends WP_Widget {
 			echo '<A class="mbm-widget-link" HREF="' . esc_url( $book->permalink ) . '"> ';
 		}
 
-		$size        = 'medium';
+		/*$size        = 'medium';
 		$wide_enough = intval( get_option( "medium_size_w", 0 ) );
 		$wp_sizes    = get_intermediate_image_sizes();
 		$coverSize   = intval( $this->coverSize );
@@ -223,10 +223,11 @@ abstract class mbdb_widget extends WP_Widget {
 				$wide_enough = $image_size_width;
 				$size        = $image_name;
 			}
-		}
+		}*/
 
+		$url = $book->get_cover_url( 'medium', 'widget' );
 
-		$url = $book->get_cover_url( $size, 'widget' );
+		//$url = $book->get_cover_url( $size, 'widget' );
 		$alt = MBDB()->helper_functions->get_alt_attr( $book->cover_id, __( 'Book Cover:', 'mooberry-book-manager' ) . ' ' . $book->title );
 
 		if ( isset( $url ) && $url != '' ) {
