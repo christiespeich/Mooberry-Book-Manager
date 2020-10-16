@@ -1799,9 +1799,28 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 
 
 		if ( $this->data_object->has_kindle_preview() ) {
-			//return $this->data_object->kindle_preview;
 
-			return apply_filters( 'mbdb_shortcode_excerpt_kindle_preview', do_shortcode( '[book_kindle_preview asin="' . $this->data_object->kindle_preview . '"]' ) );
+			$affiliate_codes = array();
+			$aff_arg         = '';
+			$retailers       = MBDB()->options->retailers;
+			if ( is_array( $retailers ) ) {
+				foreach ( $retailers as $retailer ) {
+					if ( $retailer->is_amazon && $retailer->has_affiliate_code ) {
+						$affiliate_codes[] = trim( $retailer->affiliate_code );
+					}
+				}
+				if ( count( $affiliate_codes ) != 0 ) {
+					$affiliate_codes = array_unique( $affiliate_codes );
+					$aff_arg = $affiliate_codes[0];
+					// if affiliate code starts with ? and URL already contains ?, use & to make it an additional URL argument.
+					if ( substr( $aff_arg, 0, 1 ) == '?' ) {
+						$aff_arg = '&' . substr( $aff_arg, 1 );
+					}
+
+					$aff_arg = ' affiliate="' . $aff_arg . '" ';
+				}
+			}
+			return apply_filters( 'mbdb_shortcode_excerpt_kindle_preview', do_shortcode( '[book_kindle_preview asin="' . $this->data_object->kindle_preview . '" ' . $aff_arg . ' ]' ) );
 		}
 
 
@@ -1862,7 +1881,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'affiliate' => '',
 		), $attr );
 
-		return '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">Excerpt:</span><iframe type="text/html" width="100%" height="650" frameborder="0" allowfullscreen style="max-width:100%" src="https://read.amazon.com/kp/card?asin=' . esc_attr( $attr['asin'] ) . '&preview=inline&linkCode=kpe&tag=' . esc_attr( $attr['affiliate'] ) . '" ></iframe></div>';
+
+
+		return '<div class="mbm-book-excerpt"><span class="mbm-book-excerpt-label">Excerpt:</span><iframe type="text/html" width="100%" height="650" frameborder="0" allowfullscreen style="max-width:100%" src="https://read.amazon.com/kp/card?asin=' . esc_attr( $attr['asin'] ) . '&preview=inline&linkCode=kpe' . esc_attr( $attr['affiliate'] ) . '" ></iframe></div>';
 
 	}
 
