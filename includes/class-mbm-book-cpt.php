@@ -54,12 +54,14 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		if ( MBDB()->options->get_mbdb_book_seo_enabled() == 'yes' ) {
 			add_filter( 'wp_head', array( $this, 'meta_tags' ) );
 		}
-		if ( MBDB()->options->override_wpseo( 'og' ) ) {
+		// wpseo_opengraph is deprecated
+        // TODO: see if there is a replacement
+		/*if ( MBDB()->options->override_wpseo( 'og' ) ) {
 			add_filter( 'wpseo_opengraph_title', array( $this, 'override_wp_seo_meta' ) );
 			add_filter( 'wpseo_opengraph_url', array( $this, 'override_wp_seo_meta' ) );
 			add_filter( 'wpseo_opengraph_desc', array( $this, 'override_wp_seo_meta' ) );
 			add_filter( 'wpseo_opengraph_image', array( $this, 'override_wp_seo_meta' ) );
-		}
+		}*/
 		if ( MBDB()->options->override_wpseo( 'twitter' ) ) {
 			add_filter( 'wpseo_twitter_title', array( $this, 'override_wp_seo_meta' ) );
 			add_filter( 'wpseo_twitter_card_type', array( $this, 'override_wp_seo_meta' ) );
