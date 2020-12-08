@@ -406,7 +406,6 @@ public function save_book_list_order() {
 
 
 	$nonce = $_POST['security'];
-
 	// check to see if the submitted nonce matches with the
 	// generated nonce we created earlier
 	if ( ! wp_verify_nonce( $nonce, 'mbdb_book_grid_ajax_nonce' ) ) {
@@ -419,9 +418,16 @@ public function save_book_list_order() {
 		// $_POST['posts']  = "mbdb_custom_book_order_book[]=2131&mbdb_custom_book_order_book[]=2135&mbdb_custom_book_order_book[]=2133&mbdb_custom_book_order_book[]=2243&mbdb_custom_book_order_book[]=2245&mbdb_custom_book_order_book[]=2247&mbdb_custom_book_order_book[]=2249&mbdb_custom_book_order_book[]=2251&mbdb_custom_book_order_book[]=2253&mbdb_custom_book_order_book[]=2255&mbdb_custom_book_order_book[]=2257&mbdb_custom_book_order_book[]=2259"
 
 		// parse_str($_POST['books']) creates variable $mbdb_custom_book_order_book which is an array of book ids
-		parse_str($_POST['books']);
+		parse_str($_POST['books'], $books);
+		$book_ids = array();
+		foreach ( $books['mbdb_custom_book_order_book'] as $book ) {
 
-		update_post_meta($_POST['pageID'], '_mbdb_book_grid_order_custom', $mbdb_custom_book_order_book);
+		    if ( (int)$book != 0 ) {
+		        $book_ids[] = $book;
+            }
+        }
+
+		update_post_meta($_POST['pageID'], '_mbdb_book_grid_order_custom', $book_ids);
 	}
 
 	wp_die();
@@ -448,6 +454,7 @@ private function output_book_grid_custom_order( ) { //$id, $object_id, $a) {
 
 	if ($custom_order) {
 		foreach ( $custom_order as $book ) {
+
 
 			$output .= '<li id="mbdb_custom_book_order_book_' . $book . '" data-bookid="' . $book . '" class="ui-state-default"><span class="ui-icon"></span>' .
 			get_the_title( $book ) . '</li>';

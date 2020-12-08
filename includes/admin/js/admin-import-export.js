@@ -1,6 +1,6 @@
 jQuery( document ).ready(function() {
-	jQuery('#mbdb_export').bind('click', mbdb_export);
-	jQuery('#mbdb_import_novelist').bind('click', mbdb_import_novelist);
+	jQuery('#mbdb_export').on('click', mbdb_export);
+	jQuery('#mbdb_import_novelist').on('click', mbdb_import_novelist);
 //	jQuery('#mbdb_import_button').bind('click', mbdb_import);
 
 	//jQuery('[name=submit-cmb]').hide();

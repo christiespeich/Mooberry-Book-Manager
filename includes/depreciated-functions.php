@@ -10,7 +10,7 @@
 // function is now inside a class
 // So this function doesn't have to do anything, it just has to exist
 //function mbdb_activate() {
-	
+
 //}
 
 // if in development, return the time so that it forces a reload
@@ -48,7 +48,7 @@ function mbdb_get_cover( $image_src, $context ) {
 
 // used by Multi Author
 function mbdb_get_metabox_field_position($metabox, $fieldname) {
-	
+
 	return MBDB()->helper_functions->get_metabox_field_position($metabox, $fieldname);
 
 }
@@ -79,11 +79,11 @@ function mbdb_admin_import_notice() {
 			$args = array('posts_per_page' => -1,
 						'post_type' => 'mbdb_book',
 			);
-			
+
 			$posts = get_posts( $args  );
-			
+
 			if (count($posts) > 0) {
-				
+
 				$m = __('Upgrading to Mooberry Book Manager version 3.0 requires some data migration before Mooberry Book Manager will operate properly.', 'mooberry-book-manager');
 				$m2 = __('Migrate Data Now', 'mooberry-book-manager');
 				echo '<div id="message" class="error"><p>' . $m . '</p><p><a href="admin.php?page=mbdb_migrate" class="button">' . $m2 . '</a></p></div>';
@@ -92,17 +92,17 @@ function mbdb_admin_import_notice() {
 			}
 			wp_reset_postdata();
 		}
-	}		
-	
+	}
+
 	// v3.1 added amdin notice option
 	/*$notices  = get_option('mbdb_admin_notices');
 	if (is_array($notices)) {
 		foreach ($notices as $key => $notice) {
 		  echo "<div class='notice {$notice['type']}' id='{$key}'><p>{$notice['message']}</p></div>";
 		}
-	}*/	
+	}*/
 }
-	
+
 add_action( 'wp_ajax_mbdb_admin_3_1_remigrate', 'mbdb_admin_3_1_remigrate'  );
 function mbdb_admin_3_1_remigrate() {
 	check_ajax_referer( 'mbdb_admin_notice_3_1_remigrate_ajax_nonce', 'security' );
@@ -113,7 +113,7 @@ function mbdb_admin_3_1_remigrate() {
 	//	wp_redirect(admin_url('admin.php?page=mbdb_migrate'));
 	//exit;
 	wp_die();
-}		
+}
 
 // used in update script
 function mbdb_uniqueID_generator( $value ) {
@@ -147,7 +147,7 @@ function mbdb_get_default_currency( $mbdb_options = null) {
 	return MBDB()->options->default_currency;
 }
 
-function mbdb_get_language_array() { 
+function mbdb_get_language_array() {
 	return MBDB()->options->languages;
 }
 
@@ -164,7 +164,7 @@ function mbdb_tax_grid_objects() {
 function mbdb_wp_reserved_terms() {
 	return MBDB()->helper_functions->wp_reserved_terms();
 }
-		
+
 function mbdb_get_tax_grid_slug( $taxonomy, $mbdb_options = null ) {
 	return MBDB()->options->get_tax_grid_slug( $taxonomy ); // MBDB()->helper_functions->get_tax_grid_slug( $taxonomy, $mbdb_options );
 }
@@ -192,7 +192,7 @@ function mbdb_get_random ( $array ) {
 function mbdb_get_book_dropdown( $selected_bookID ) {
 	//print_r('mbdb_get_book_dropdown');
 	$book_list = new MBDB_Book_List( MBDB_Book_List_Enum::all, 'title', 'ASC');
-	
+
 	foreach( $book_list as $book ) {
 		$selected = ($selected_bookID == $book->id ? ' selected' : '');
 		echo apply_filters('mbdb_get_book_dropdown_option', '<option value="' . esc_attr($book->id) .'"' . $selected . '>' . esc_html($book->title) . '</option>');
@@ -202,10 +202,10 @@ function mbdb_get_book_dropdown( $selected_bookID ) {
 function mbdb_get_book_array($orderby = 'post_title', $direction = 'ASC') {
 	//print_r('mbdb_get_book_array');
 	$book_list = new MBDB_Book_List( MBDB_Book_List_Enum::all, 'title', 'ASC');
-	
+
 	return apply_filters('mbdb_get_book_array', $book_list->get_title_list() );
-		
-	 
+
+
 }
 
 function mbdb_get_term_options( $taxonomy = 'category', $args = array() ) {
@@ -245,15 +245,15 @@ function mbdb_get_currency_symbol_array() {
 
 function mbdb_book_grid_selection_options() {
 	return MBDB()->book_grid_CPT->selection_options();
-	
+
 }
-	
+
 function mbdb_book_grid_order_options() {
-	
+
 	return MBDB()->book_grid_CPT->order_options();
 }
-	
-	
+
+
 function mbdb_book_grid_group_by_options() {
 	return MBDB()->book_grid_CPT->group_by_options();
 }
@@ -279,11 +279,11 @@ function mbdb_get_default_retailers() {
 function mbdb_insert_default_edition_formats(&$mbdb_options) {
 	return MBDB()->helper_functions->insert_default_edition_formats( $mbdb_options );
 }
-	
+
 function mbdb_insert_default_social_media( &$mbdb_options ) {
 	return MBDB()->helper_functions->insert_default_social_media( $mbdb_options );
 }
-	
+
 function mbdb_insert_default_retailers( &$mbdb_options ) {
 	return MBDB()->helper_functions->insert_default_retailers( $mbdb_options );
 }
@@ -291,16 +291,16 @@ function mbdb_insert_default_retailers( &$mbdb_options ) {
 function mbdb_get_default_formats() {
 	return MBDB()->helper_functions->get_default_formats();
 }
-	
+
 function mbdb_set_default_tax_grid_slugs() {
 	return MBDB()->helper_functions->set_default_tax_grid_slugs();
 }
-	
+
 function mbdb_insert_default_formats( &$mbdb_options) {
 	return MBDB()->helper_functions->insert_default_formats( $mbdb_options);
 }
 
-function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids, $tag_ids ) { 
+function mbdb_get_books_list( $selection, $selection_ids, $sort_field, $sort_order, $genre_ids, $series_ids, $tag_ids ) {
 	return MBDB()->books->get_ordered_selection( $selection, $selection_ids,  'titleA');
 }
 
@@ -310,9 +310,9 @@ function mbdb_save_exerpt( $post_id, $post = null ) {
 	$book_CPT->save_book( $post_id, $post );
 }
 
-// MA compatibility 
+// MA compatibility
 function mbdb_get_group( $level, $groups, $current_group, $selection, $selected_ids, $sort, $book_ids ) {
-/*	$options = array( 
+/*	$options = array(
 				'_mbdb_book_grid_books' => array($selection),
 				'_mbdb_book_grid_order' => array($sort),
 				'_mbdb_book_grid_author'	=>	array($selected_ids),
@@ -351,13 +351,13 @@ function mbdb_get_book_ID( $slug = '' ) {
 	if ( $slug == '' ) {
 		if ($post) {
 			return $post->ID;
-		} 
+		}
 	} else {
 		//$book = MBDB()->books->get_by_slug($slug);
 $book = null;
 		if ( $book ) {
 			return $book->book_id;
-		} 
+		}
 	}
 	return 0;
 }
@@ -384,11 +384,11 @@ function mbdb_error_message( $message, $post_id = null ) {
 	$notice = get_option( 'mbdb_notice' );
 	$notice[$post_id] = $message;
 	update_option( 'mbdb_notice', $notice);
-	
+
 	// change it to pending not updated
 	global $wpdb;
 	$wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $post_id ) );
-	
+
 	// filter the query URL to change the published message
-	add_filter( 'redirect_post_location', create_function( '$location', 'return esc_url_raw(add_query_arg("message", "0", $location));' ) );
+	add_filter( 'redirect_post_location', function ($location) { return esc_url_raw(add_query_arg("message", "0", $location));});
 }
