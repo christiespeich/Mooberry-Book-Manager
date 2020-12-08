@@ -10,7 +10,7 @@
  * @license   GPL-2.0+
  * @link      https://cmb2.io
  */
-class CMB2_Type_Text extends CMB2_Type_Base {
+class CMB2_Type_Text extends CMB2_Type_Counter_Base {
 
 	/**
 	 * The type of field
@@ -51,12 +51,11 @@ class CMB2_Type_Text extends CMB2_Type_Base {
 			'js_dependencies' => array(),
 		), $args );
 
-		if ( ! empty( $a['js_dependencies'] ) ) {
-			$this->field->add_js_dependencies( $a['js_dependencies'] );
-		}
+		// Add character counter?
+		$a = $this->maybe_update_attributes_for_char_counter( $a );
 
 		return $this->rendered(
-			sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc', 'js_dependencies' ) ), $a['desc'] )
+			sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc' ) ), $a['desc'] )
 		);
 	}
 }

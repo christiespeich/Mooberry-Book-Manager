@@ -13,22 +13,30 @@
 abstract class CMB2_Type_Taxonomy_Base extends CMB2_Type_Multi_Base {
 
 	/**
+	 * Parent term ID when looping hierarchical terms.
+	 *
+	 * @var integer|null
+	 */
+	protected $parent = null;
+
+	/**
 	 * Checks if we can get a post object, and if so, uses `get_the_terms` which utilizes caching.
 	 *
 	 * @since  1.0.2
 	 * @return mixed Array of terms on success
 	 */
 	public function get_object_terms() {
-		if ( 'options-page' === $this->field->object_type ) {
-			return $this->options_terms();
-		}
+		switch ( $this->field->object_type ) {
+			case 'options-page':
+			case 'term':
+				return $this->options_terms();
+			case 'post':
+				// WP caches internally so it's better to use
+				return get_the_terms( $this->field->object_id, $this->field->args( 'taxonomy' ) );
 
-		if ( 'post' !== $this->field->object_type ) {
-			return $this->non_post_object_terms();
+			default:
+				return $this->non_post_object_terms();
 		}
-
-		// WP caches internally so it's better to use
-		return get_the_terms( $this->field->object_id, $this->field->args( 'taxonomy' ) );
 	}
 
 	/**
@@ -83,12 +91,20 @@ abstract class CMB2_Type_Taxonomy_Base extends CMB2_Type_Multi_Base {
 	 * @return mixed Array of terms on success
 	 */
 	public function get_terms() {
+		$args = array(
+			'taxonomy'   => $this->field->args( 'taxonomy' ),
+			'hide_empty' => false,
+		);
+
+		if ( null !== $this->parent ) {
+			$args['parent'] = $this->parent;
+		}
+
+		$args = wp_parse_args( $this->field->prop( 'query_args', array() ), $args );
+
 		return CMB2_Utils::wp_at_least( '4.5.0' )
-			? get_terms( wp_parse_args( $this->field->prop( 'query_args', array() ), array(
-				'taxonomy' => $this->field->args( 'taxonomy' ),
-				'hide_empty' => false,
-			) ) )
-			: get_terms( $this->field->args( 'taxonomy' ), 'hide_empty=0' );
+			? get_terms( $args )
+			: get_terms( $this->field->args( 'taxonomy' ), http_build_query( $args ) );
 	}
 
 	protected function no_terms_result( $error, $tag = 'li' ) {
@@ -146,12 +162,28 @@ abstract class CMB2_Type_Taxonomy_Base extends CMB2_Type_Multi_Base {
 		$options = '';
 
 		if ( ! empty( $terms ) && is_array( $terms ) ) {
-			$options = '<li class="cmb2-indented-hierarchy"><ul>';
-			$options .= $this->loop_terms( $terms, $saved );
-			$options .= '</ul></li>';
+			$options .= $this->child_option_output( $terms, $saved );
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Build child terms output.
+	 *
+	 * @since  2.6.1
+	 *
+	 * @param  array        $terms Array of child terms.
+	 * @param  array|string $saved Array of terms set to the object, or single term slug.
+	 *
+	 * @return string              Child option output.
+	 */
+	public function child_option_output( $terms, $saved ) {
+		$output = '<li class="cmb2-indented-hierarchy"><ul>';
+		$output .= $this->loop_terms( $terms, $saved );
+		$output .= '</ul></li>';
+
+		return $output;
 	}
 
 }
