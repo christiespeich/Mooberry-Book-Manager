@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
-Tested up to: 5.5
-Stable tag: 4.3.17
+Tested up to: 5.6
+Stable tag: 4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+
+= 4.4 =
+* Updates for Wordpress 5.6 compatibility
 
 = 4.3.17 =
 * Fixed: remove references to wpseo_opengraph because it's deprecated
