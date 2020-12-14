@@ -421,8 +421,9 @@ class Mooberry_Book_Manager_Options {
 	}
 
 	protected function get_default_language(  ) {
+		$this->get_languages();
 
-			if ( array_key_exists( 'mbdb_default_language', $this->options ) && isset( $options[ 'mbdb_default_language' ] ) && array_key_exists( $this->options['mbdb_default_language'], $this->languages) ) {
+			if ( array_key_exists( 'mbdb_default_language', $this->options ) && isset( $this->options[ 'mbdb_default_language' ] ) && array_key_exists( $this->options['mbdb_default_language'], $this->languages) ) {
 
 				return $this->options[ 'mbdb_default_language' ];
 			} else {
@@ -492,7 +493,7 @@ class Mooberry_Book_Manager_Options {
 	}
 
 	protected function get_default_currency( ) {
-
+		$this->get_currencies();
 			if ( array_key_exists( 'mbdb_default_currency', $this->options ) && isset( $this->options[ 'mbdb_default_currency' ] ) && array_key_exists( $this->options['mbdb_default_currency' ], $this->currencies ) ) {
 				return $this->options[ 'mbdb_default_currency' ];
 			} else {
