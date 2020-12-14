@@ -185,6 +185,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
+= 4.4.3 =
+* Fixed: bug with default language and currency
+
 = 4.4.2 =
 * Fixed incomplete copy of CMB2 files
 
