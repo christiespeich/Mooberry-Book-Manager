@@ -697,7 +697,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	  * @param  [array] $mbdb_books nested array of books in grid
 	  * @param  [int] $l           current level to display
 	  *
-	  * @return Return_Description
+	  * @return [string] html
 	  *
 	  * @access public
 	  * @since  3.4 added book_grid_id and cover_height parameters
@@ -732,6 +732,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					 if ( $label && count( $book_list ) > 0 ) {
 						 // set the heading level based on the depth level of the array
 						 do_action( 'mbdb_book_grid_pre_heading', $l, $label );
+						 $content = apply_filters('mbdb_book_grid_pre_heading_content', $content, $l, $label);
 						 // start the headings at H2
 						 $heading_level = $l + 2;
 						 // Headings can only go to H6
@@ -741,6 +742,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						 // display the heading
 						 $content .= '<h' . $heading_level . ' class="mbm-book-grid-heading' . ( $l + 1 ) . '">' . esc_html( $label ) . '</h' . $heading_level . '>';
 						 do_action( 'mbdb_book_grid_post_heading', $l, $label );
+						 $content = apply_filters('mbdb_book_grid_post_heading_content', $content, $l, $label);
 					 }
 
 					 if ( gettype( $book_list ) == 'array' ) {
