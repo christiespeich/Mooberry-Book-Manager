@@ -457,6 +457,7 @@ class Mooberry_Book_Manager_Options {
 		if ( $this->currencies == null ) {
 			$this->currencies = apply_filters('mbdb_get_currency_array', array(
 					'AUD'   => __('Australian Dollar', 'mooberry-book-manager'),
+					'BAM'   =>  __('Bosnian Mark', 'mooberry-book-manager'),
 					'BRL'   => __('Brazilian Real ', 'mooberry-book-manager'),
 					'CAD'   => __('Canadian Dollar', 'mooberry-book-manager'),
 					'CZK'   => __('Czech Koruna', 'mooberry-book-manager'),
@@ -507,6 +508,7 @@ class Mooberry_Book_Manager_Options {
 		if ( $this->currency_symbols == null ) {
 			$this->currency_symbols = apply_filters('mbdb_get_currency_symbol_array', array(
 				'AUD'   => '$',
+				'BAM'   =>  'KM',
 				'BRL'   => 'R$',
 				'CAD'   => '$',
 				'CZK'   => 'Kč',
