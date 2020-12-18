@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.4.3
+ *  Version: 4.4.4
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -27,7 +27,7 @@
  *
  * @package MBDB
  * @author  Mooberry Dreams
- * @version 4.4.3
+ * @version 4.4.4
  */
 
 // Exit if accessed directly
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.4.3' );
+	define( 'MBDB_PLUGIN_VERSION', '4.4.4' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -521,10 +521,4 @@ function mbdb_remind_about_itunes_link() {
 		MBDB()->helper_functions->set_admin_notice( 'Mooberry Book Manager: You have buy links for books that use itunes.apple.com.  Per Apple\'s requirements these should be changed to books.apple.com.  <a href="#" id="mbdb_update_apple_links_button" class="button" >Update My Books Automatically</a>', 'updated', 'mbdb_itunes_to_books_buylink' );
 	}
 }
-/*
-add_filter('mbdb_book_cpt', 'mbdb_change_book_url');
-function mbdb_change_book_url( $args ) {
-	$args['rewrite'] = array( 'slug' => 'my_book' );
-	return $args;
-}*/
 
