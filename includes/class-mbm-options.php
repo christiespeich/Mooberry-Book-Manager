@@ -293,6 +293,7 @@ class Mooberry_Book_Manager_Options {
 					'DZ' => __('Bhutani', 'mooberry-book-manager'),
 					'BH' => __('Bihari', 'mooberry-book-manager'),
 					'BI' => __('Bislama', 'mooberry-book-manager'),
+					'BS' => __('Bosnian', 'mooberry-book-manager'),
 					'BR' => __('Breton', 'mooberry-book-manager'),
 					'BG' => __('Bulgarian', 'mooberry-book-manager'),
 					'MY' => __('Burmese', 'mooberry-book-manager'),
