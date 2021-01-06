@@ -2449,8 +2449,10 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 				$output_html .= __( ':', 'mooberry-book-manager' ) . ' <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
 				/* translators: %1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s */
 				$output_html .= sprintf( _x( '%1$s %2$s', '%1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s', 'mooberry-book-manager' ), $symbol, $price );
-				$output_html .= '<span class="mbm-book-edition-currency"> ' . $edition->currency;
-				$output_html .= '</span></span></span>';
+				if ( $edition->language != $default_language ) {
+					$output_html .= '<span class="mbm-book-edition-currency"> ' . $edition->currency . '</span>';
+				}
+				$output_html .= '</span></span>';
 			}
 			if ( $is_isbn || ( $is_height && $is_width ) || $is_pages ) {
 				$output_html .= '<div name="mbm_book_editions_subinfo[' . $counter . ']" id="mbm_book_editions_subinfo_' . $counter . '" class="mbm-book-editions-subinfo">';
