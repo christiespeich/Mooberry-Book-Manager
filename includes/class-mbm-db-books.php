@@ -1,16 +1,16 @@
 <?php
 
 class MBDB_DB_Books extends MBDB_DB_CPT {
-	
+
 	public function __construct() {
-		
+
 		$this->primary_key = 'book_id';
 		$this->post_type = 'mbdb_book';
 		$this->version = MBDB_PLUGIN_VERSION; //'3.0';
-		
+
 		parent::__construct( 'mbdb_books' );
-		
-		$this->taxonomies = array( 
+
+		$this->taxonomies = array(
 			'mbdb_genre',
 			'mbdb_series',
 			'mbdb_tag',
@@ -18,12 +18,12 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'mbdb_cover_artist',
 			'mbdb_illustrator',
 		);
-		
-	
-	}
-	
 
-	
+
+	}
+
+
+
 	protected function get_columns() {
 		return array(
 			'book_id' => '%d',
@@ -42,7 +42,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			//'blog_id'	=> '%d',
 		);
 	}
-	
+
 	public function map_postmeta_to_columns() {
 		return array(
 			'_mbdb_summary' => 'summary',
@@ -59,7 +59,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'_mbdb_series_order' => 'series_order',
 		);
 	}
-	
+
 	public function postmeta_fields() {
 		return array(
 			'_mbdb_reviews',
@@ -68,7 +68,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'_mbdb_download_links',
 		);
 	}
-	
+
 	protected function columns_with_html() {
 		return array(
 			'summary',
@@ -77,25 +77,25 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'kindle_preview',
 		);
 	}
-	
 
-	
+
+
 	// gets all data for a book
 	// only this class knows how everything is stored in the database
-	// so when another class needs a book, we need to get all the info 
+	// so when another class needs a book, we need to get all the info
 	// and return it as an object
 	// book_id can be id or slug
 	public function get( $book_id, $cache_results = false ) {
 		//print_r('pulling from database: ' . $book_id);
 		// if book_id isn't an integer, get book by slug
-		
+
 		if ( !is_numeric($book_id)  ) {
 			$book = $this->get_by_slug( $book_id, $cache_results );
 			$book_id = $book->ID;
 		} else {
 			$book = parent::get( $book_id, $cache_results );
 		}
-		
+
 		if ($book != null ) {
 			$book->editions = $this->get_editions( $book_id );
 			$book->reviews = $this->get_reviews( $book_id );
@@ -110,17 +110,17 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 		return $book;
 	}
-	
+
 	public function get_editions ( $book_id ) {
 		// why not just call the database directly? in case the underlying
-		// database structure changes. Let get_data deal with figuring out 
+		// database structure changes. Let get_data deal with figuring out
 		// where to get _mbdb_editions from
 		$editions = $this->get_data( '_mbdb_editions', $book_id );
-		
+
 		if ( !is_array($editions) ) {
 			return array();
 		}
-		
+
 		// WHY do this??  So that in case the underlying database structure of
 		// _mbdb_editions changes, the returning array still has the same keys
 		// this way only this function has to change and the other classes
@@ -140,7 +140,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 						);
 		foreach ( $editions as $edition ) {
 			$edition = wp_parse_args( $edition, $defaults );
-			
+
 			$data[] = array(
 						'format_id' 	=>  $edition['_mbdb_format'],
 						'isbn' 		=>  $edition['_mbdb_isbn'],
@@ -153,16 +153,16 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 						'currency' 	=>  $edition['_mbdb_currency'],
 						'edition_title' =>  $edition['_mbdb_edition_title'],
 					);
-		}			
+		}
 		return $data;
 	}
-	
+
 	public function get_buy_links( $book_id ) {
 		$data = array();
-		
+
 		// see get_editions for why we do this
 		$buy_links = $this->get_data( '_mbdb_buylinks', $book_id );
-		
+
 		if ( !is_array($buy_links) ) {
 			return array();
 		}
@@ -170,21 +170,21 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 							'_mbdb_buylink'	=>	'',
 						);
 		foreach( $buy_links as $buy_link ) {
-			
+
 			$buy_link = wp_parse_args( $buy_link, $defaults);
-			
+
 			$data[] = array('retailerID' => $buy_link['_mbdb_retailerID'],
 							'link' => $buy_link['_mbdb_buylink'],
 					);
 		}
-			
-		return $data;		
+
+		return $data;
 	}
-	
+
 	public function get_download_links( $book_id ) {
 		// see get_editions for why we do this
 		$download_links = $this->get_data( '_mbdb_downloadlinks', $book_id );
-		
+
 		if ( !is_array($download_links) ) {
 			return array();
 		}
@@ -198,9 +198,9 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 							'link' => $download_link['_mbdb_downloadlink'],
 					);
 		}
-		return $data;		
+		return $data;
 	}
-	
+
 	public function get_reviews( $book_id ) {
 		// see get_editions for why we do this
 		$reviews = $this->get_data( '_mbdb_reviews', $book_id );
@@ -223,31 +223,31 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 		return $data;
 	}
-	
+
 	public function get_genres( $book_id ) {
 		return $this->get_data( 'mbdb_genre', $book_id );
 	}
-	
+
 	public function get_series( $book_id) {
 		return $this->get_data( 'mbdb_series', $book_id );
 	}
-	
+
 	public function get_tags( $book_id ) {
 		return $this->get_data( 'mbdb_tag', $book_id );
 	}
-	
+
 	public function get_editors( $book_id ) {
 		return $this->get_data( 'mbdb_editor', $book_id );
 	}
-	
+
 	public function get_cover_artists( $book_id ) {
 		return $this->get_data( 'mbdb_cover_artist', $book_id );
 	}
-	
+
 	public function get_illustrators( $book_id ) {
 		return $this->get_data( 'mbdb_illustrator', $book_id );
 	}
-	
+
 	protected function get_sort_fields( $sort ) {
 		switch ($sort) {
 			case 'titleA':
@@ -271,22 +271,22 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return apply_filters('mbdb_book_sort_fields', $sort_fields, $sort);
 	}
 	/*
-	
+
 	public function get_books_by_taxonomy( $bookIDs, $taxonomy, $taxIDs, $orderby = null, $order = null ) {
 		return $this->get_by_taxonomy(  $bookIDs, $taxonomy, $taxIDs, $orderby = null, $order = null );
-		
+
 	}
 	*/
 	public function get_published_books( $orderby = null, $order = null, $book_filter = null, $selection_filter = null ) {
 		// get all books where published date is before tomorrow
-		return $this->get_ordered_selection( 'published', null, array( $orderby, $order ), $book_filter, $selection_filter );		
+		return $this->get_ordered_selection( 'published', null, array( $orderby, $order ), $book_filter, $selection_filter );
 	}
-	
+
 	public function get_unpublished_books( $orderby = null, $order = null, $book_filter = null, $selection_filter = null) {
 		return  $this->get_ordered_selection( 'unpublished', null, array( $orderby, $order ), $book_filter, $selection_filter);
 	}
-	
-	
+
+
 	public function save( $data, $id, $auto_increment = false, $type = '' ) {
 		// clear title list cache
 		wp_cache_delete( 'title_list', 'mbdb_lists');
@@ -299,18 +299,18 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		$grids = get_posts( $args );
 		foreach ( $grids as $grid ) {
 			//error_log('delete cached grid ' . $grid->ID );
-			
+
 				wp_cache_delete ( $grid->ID, 'mbdb_book_grid' );
 		}
 		wp_reset_postdata();
-		
-		
+
+
 		return parent::save( $data, $id, $auto_increment , $type  );
 	}
-	
+
 	public function save_all( $book, $id = null ) {
 		$errors = array();
-		
+
 		// saves all fields of data
 		// used for importing
 		// if id is null, insert new item into posts table to get book id
@@ -324,15 +324,15 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 					)
 				)
 			);
-			
-			
+
+
 			if ( $id == 0 ) {
 				$errors[] = 'Unable to add book ' . $book->title . '.';
 				return $errors;
-			}	
+			}
 		}
 		$book->id = $id;
-		
+
 		$locked = wp_set_post_lock( $id );
 		//error_log('locked = ' . print_r($locked, true));
 		//error_log(print_r(get_current_user_id(), true));
@@ -349,7 +349,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		//error_log('saving reviews');
 		update_post_meta( $id, '_mbdb_reviews', $data);
 
-		
+
 	 	$data = array();
 		foreach ( $book->editions as $edition ) {
 			$data[] = array(
@@ -367,12 +367,12 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 		//error_log('saving editions');
 		update_post_meta( $id, '_mbdb_editions', $data );
-		
+
 		$data = array();
 		foreach ( $book->buy_links as $buylink ) {
-			
+
 			//$buylink = json_decode($link);
-			
+
 			$data[] = array(
 						'_mbdb_retailerID'	=>	$buylink->retailer->id,
 						'_mbdb_buylink'	=>	$buylink->link,
@@ -380,7 +380,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 		//error_log('saving buy links');
 		update_post_meta( $id, '_mbdb_buylinks', $data );
-		
+
 		$data = array();
 		foreach ( $book->download_links as $link ) {
 			$data[] = array(
@@ -390,7 +390,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 		//error_log('saving download links');
 		update_post_meta( $id, '_mbdb_downloadlinks', $data );
-		
+
 		// update taxonomies
 		$taxonomies = array ( 'mbdb_genre'	=>	$book->genres,
 								'mbdb_tag'	=>	$book->tags,
@@ -400,17 +400,17 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								'mbdb_editor'		=>	$book->editors,
 							);
 		foreach ( $taxonomies as $taxonomy => $array ) {
-			
+
 			if ( count( $array ) > 0 ) {
 				$success = $this->update_taxonomy( $taxonomy, $array, $id );
 				$errors = array_merge( $success, $errors );
 			}
 		}
 		//error_log('taxonomies saved');
-		
+
 		// update books table
 		//error_log('about to update table');
-		
+
 		$success = $book->save( $id );
 		 delete_post_meta( $id, '_edit_lock' );
 		if ( $success === false ) {
@@ -419,9 +419,9 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		} else {
 			return true;
 		}
-		
+
 	}
-	
+
 	protected function update_taxonomy( $taxonomy_name, $terms_array, $book_id ) {
 		$term_id = 0;
 		$errors = array();
@@ -436,64 +436,68 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 											'description'	=>	$single_term->description,
 											'parent'	=>	$single_term->parent,
 											'slug'	=>	$single_term->slug,
-										) 
+										)
 									);
 				if ( is_array( $result ) ) {
 					$term_id = $result['term_id'];
 				} else {
+					$book = MBDB()->book_factory->create_book($book_id);
 					$errors[] = 'Unable to create ' . $taxonomy->labels->singular_name . ' ' . $single_term->name . ' for book ' . $book->title;
 				}
 			}
 			if ( $term_id != 0 ) {
 				$result = wp_add_object_terms( $book_id, $term_id, $taxonomy_name );
-			}				
+			}
 		}
 		return $errors;
 	}
-	
+
 	public function get_newest_books( ) {
 		global $wpdb;
 
-		$sql = 'select DISTINCT b.*, p.post_title, p.post_name  from ' . $this->table_name() . ' as b 
-		join ' . $wpdb->posts . ' as p on b.book_id = p.ID 
+		$today = new DateTime( null, MBDB()->helper_functions->get_blog_timezone() );
+		$todayYmd = $today->format('Y-m-d');
+
+		$sql = 'select DISTINCT b.*, p.post_title, p.post_name  from ' . $this->table_name() . ' as b
+		join ' . $wpdb->posts . ' as p on b.book_id = p.ID
 		where p.post_status="publish" and
-		b.release_date in 
+		b.release_date in
 		   (
 			select max(release_date) as release_date
-			from wp_mbdb_books as b 
+			from wp_mbdb_books as b
 			join wp_posts as p on b.book_id = p.ID
 			and p.post_status = "publish"
-			where release_date <= CURRENT_DATE()
+			where release_date <= "' . $todayYmd . '"
 			)';
-		
+
 		$books =  $this->run_sql( $sql );
-		
+
 		return apply_filters('mbdb_book_get_newest_books', $books );
 	}
-	
+
 	public function get_ordered_selection( $selection, $selection_ids, $sort, $book_ids = null, $taxonomy = null, $include_drafts = false, $limit = null, $offset = null, $random = false) {
-	
+
 		// selection_ids = book_ids if selection = "custom"
 		// 				 = tax_ids if selection is a taxonomy
 		//				 = publisher_ids if selection = "publisher"
 		//				 should be null otherwise
-		
+
 		// book_ids is an optional, additional filtering of book ids
-		
-		// taxonmy:  array of taxonomy and id(s) to filter on. Also includes publisher. 
+
+		// taxonmy:  array of taxonomy and id(s) to filter on. Also includes publisher.
 		// 		Examples:
 		//		{ series => 24 }
 		//		{	genre => { 20, 21 } }
 		//		{	publisher => 15 }  // publisher is expected to be a single value. If it's an array, only the 1st is selected
-		
+
 		// $sort = titleA, titleD, pubdateA, pubdateD, series_order
 		//			OR { field, direction } ie { release_date, DESC }
 		//			OR { custom, array of ids }
-		
-	
+
+
 		global $wpdb;
 		$table = $this->table_name();
-		
+
 		$limit_clause = '';
 		if ( $limit != null && (int) $limit == $limit ) {
 			$limit_clause = ' LIMIT ';
@@ -502,20 +506,20 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			}
 			$limit_clause .=  $limit . ' ';
 		}
-		
+
 		// validate inputs
-		
+
 		// SORT VARIABLES
-		
+
 		//if an array is passed in, separate into field, direction
 		if ( is_array($sort) ) {
 			list( $sort, $order ) = $sort;
-			
+
 		} else {
 			// otherwise, set field, direction based on value
 			list( $sort, $order ) = $this->get_sort_fields( $sort );
 		}
-		
+
 		// if getting books by series, the sort should be by series aascending
 		if ($taxonomy == null && $selection == 'series')  {
 			$sort = 'series_order';
@@ -524,33 +528,33 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			if ($taxonomy != null && array_key_exists('series', $taxonomy)) {
 				$sort = 'series_order';
 				$order = 'ASC';
-			} 
+			}
 		}
-		
+
 	/* 	// ensure that the sort field is a column in the table
 		// and that the direction is either ASC or DESC
 		if ( $sort != 'custom' ) {
 			$sort = $this->validate_orderby( $sort );
 			$order = $this->validate_order( $order );
 		} */
-		
-		
-		// SELECTION VARIABLES 
-		
+
+
+		// SELECTION VARIABLES
+
 		// default to all books
 		$book_selection_options = MBDB()->book_grid_CPT->selection_options();
 		if ( ! array_key_exists( $selection, $book_selection_options ) ) {
 			$selection = 'all';
 		}
-			
-		
+
+
 		$taxonomies = MBDB()->book_CPT->get_taxonomies(); //array('genre', 'series', 'tag', 'illustrator', 'editor', 'cover_artist');
 		foreach ( $taxonomies as $id => $tax ) {
 			$taxonomies[ $id ] = str_replace( 'mbdb_', '', $tax->slug );
 		}
 		// if custom, genre, series, tag, illustrator, editor, cover artist, or publisher and no selection ids are passed, default to all books
 		// otherwise if selection ids is not an array, make it an array
-		
+
 		if ( in_array( $selection, array_merge( array('custom', 'publisher'), $taxonomies) ) ) {
 			if ($selection_ids == null || $selection_ids == '') {
 				$selection =  'all';
@@ -560,10 +564,10 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				}
 			}
 		}
-		
-		
+
+
 		// TAXONOMY ARRAY
-		
+
 		// if taxonomy is supplied, the keys must be one of the options
 		if ($taxonomy) {
 			$tax_options = array_keys(MBDB()->book_grid_CPT->group_by_options());
@@ -582,12 +586,12 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$where = " AND blog_id = $this->blog_id";
 		}
 */
-		
+
 		$select = 'SELECT DISTINCT ';
 		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = b.book_id ';
 		$where = ' WHERE p.post_status = "publish" AND p.post_type = "' . $this->post_type . '" ';
 		$orderby = ' ORDER BY ';
-		
+
 		// if book_ids are sent, filter by them
 		if ( $book_ids != null ) {
 			if ( ! is_array( $book_ids ) ) {
@@ -596,8 +600,10 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$book_ids = array_map ('absint', $book_ids);
 			$where .= ' AND (book_id in (' . implode(', ', $book_ids) . ') ) ';
 		}
-		
+
 		// set the where clause
+		$today = new DateTime( null, MBDB()->helper_functions->get_blog_timezone() );
+		$todayYmd = $today->format('Y-m-d');
 		switch ($selection) {
 			case 'all':
 				// no change
@@ -605,10 +611,10 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				$where .= '';
 				break;
 			case 'published':
-				$where .= ' AND ( release_date <= CURRENT_DATE() ) ';
+				$where .= ' AND ( release_date <= "' . $todayYmd . '" ) ';
 				break;
 			case 'unpublished':
-				$where .= ' AND ( release_date > CURRENT_DATE() OR release_date IS NULL ) ';
+				$where .= ' AND ( release_date > "' . $todayYmd . '" OR release_date IS NULL ) ';
 				break;
 			case 'custom':
 				$selection_ids = array_map('absint', $selection_ids);
@@ -619,20 +625,20 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				$where .= ' AND ( b.publisher_id in ( "' . implode('", "', $selection_ids) . '" ) ) ';
 				break;
 			default:
-				// anything else is a taxonomy, a type handled by another add-on, or an 
+				// anything else is a taxonomy, a type handled by another add-on, or an
 				// invalid input
 				// if it's a taxonomy, add where and join
 				if (in_array($selection, $taxonomies) ) {
 					$selection_ids = array_map('absint', $selection_ids);
-					$where .= ' AND ( tt.taxonomy = "mbdb_' . $selection . '" 
-									AND tt.term_id in ( ' . implode(', ', $selection_ids) . ' ) 
+					$where .= ' AND ( tt.taxonomy = "mbdb_' . $selection . '"
+									AND tt.term_id in ( ' . implode(', ', $selection_ids) . ' )
 									AND p.post_type = "mbdb_book" ) ';
-					$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr ON tr.object_id = b.book_id 
+					$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr ON tr.object_id = b.book_id
 								JOIN ' . $wpdb->term_taxonomy . ' AS tt  ON tt.term_taxonomy_id = tr.term_taxonomy_id ';
 				}
 				break;
 		}
-		
+
 		// add in taxonomy filtering
 		if ($taxonomy != null) {
 			$tax_level = 2;
@@ -649,7 +655,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 							} else {
 								if ( is_array($tax_ids) ) {
 									$tax_ids = $tax_ids[0];
-								} 
+								}
 								$publishers = MBDB()->options->publishers;
 								if ( array_key_exists( $tax_ids, $publishers) ) {
 									$name = $publishers[ $tax_ids ]->name;
@@ -658,7 +664,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								}
 								$select .= '"' . $name . '" as name' . $tax_level . ', ';
 								$where .= ' AND (b.publisher_id ="' . esc_sql($tax_ids) . '") ';
-								
+
 							}
 							break;
 						// anything left is a taxonomy
@@ -667,19 +673,19 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								// if -1 then get books that are NOT in any of this taxonomny
 								if ($tax_ids == -1) {
 									$select .=  ' "" AS name' . $tax_level . ', ';
-									$where .= ' and b.book_id not in (select book_id from ' . $table . ' as b 
-																		join ' . $wpdb->term_relationships . ' as tr3 on tr3.object_id = b.book_id 
-																		join ' . $wpdb->term_taxonomy . ' tt3 on tt3.term_taxonomy_id = tr3.term_taxonomy_id 
+									$where .= ' and b.book_id not in (select book_id from ' . $table . ' as b
+																		join ' . $wpdb->term_relationships . ' as tr3 on tr3.object_id = b.book_id
+																		join ' . $wpdb->term_taxonomy . ' tt3 on tt3.term_taxonomy_id = tr3.term_taxonomy_id
 																		where tt3.taxonomy = "mbdb_' . $tax . '" ) ';
-								} else {	
+								} else {
 									if (!is_array($tax_ids)) {
 										$tax_ids = array($tax_ids);
 									}
 									$tax_ids = array_map('absint', $tax_ids);
 									$select .= 't' . $tax_level . '.name AS name' . $tax_level . ', ';
 									$where .= ' AND (tt' . $tax_level . '.taxonomy = "mbdb_' . $tax . '" AND tt' . $tax_level . '.term_id in (' . implode(',', $tax_ids) . ') ) ';
-									$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr' . $tax_level . ' ON tr' . $tax_level . '.object_id = b.book_id 
-												JOIN ' . $wpdb->term_taxonomy . ' AS tt' . $tax_level . '  ON tt' . $tax_level . '.term_taxonomy_id = tr' . $tax_level . '.term_taxonomy_id 
+									$join .= ' JOIN ' . $wpdb->term_relationships . ' AS tr' . $tax_level . ' ON tr' . $tax_level . '.object_id = b.book_id
+												JOIN ' . $wpdb->term_taxonomy . ' AS tt' . $tax_level . '  ON tt' . $tax_level . '.term_taxonomy_id = tr' . $tax_level . '.term_taxonomy_id
 												JOIN ' . $wpdb->terms . ' AS t' . $tax_level . ' ON t' . $tax_level . '.term_id = tt' . $tax_level . '.term_id';
 								}
 							}
@@ -706,71 +712,71 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			default:
 				$orderby .= ' post_title ';
 				break;
-			
+
 		}
-		
-		
-		
+
+
+
 		$select = apply_filters('mbdb_book_get_ordered_selection_select', $select, $selection, $selection_ids, $sort, $order, $book_ids, $taxonomy, $include_drafts, $limit, $offset, $random);
 		$join = apply_filters('mbdb_book_get_ordered_selection_join', $join, $selection, $selection_ids, $sort, $order, $book_ids, $taxonomy, $include_drafts, $limit, $offset, $random);
 		$where = apply_filters('mbdb_book_get_ordered_selection_where', $where, $selection_ids, $selection, $book_ids, $sort, $order, $taxonomy, $include_drafts, $limit, $offset, $random);
 		$orderby = apply_filters('mbdb_book_get_ordered_selection_orderby', $orderby, $sort, $order, $selection, $selection_ids, $book_ids, $taxonomy, $include_drafts, $limit, $offset, $random);
-		
+
 		//$sql = "$select b.book_id, p.post_title, b.cover, b.release_date, b.cover_id FROM  $table  as b  $join $where $orderby $order ";
-		
-		
+
+
 		$sql = "SELECT COUNT(DISTINCT b.book_id) as count FROM $table as b $join $where";
-		
+
 		$row = $data = $this->run_sql( $sql );
 		$count = $row[0]->count;
-		
+
 		$sql = "$select $count as total, b.*, p.post_title, p.post_name FROM  $table  as b  $join $where $orderby $order $limit_clause";
-		
-		
+
+
 		//error_log('before query');
 
 		$books =  $this->run_sql( $sql );
 		//error_log('after query');
 		return apply_filters('mbdb_book_get_ordered_selection', $books, $selection, $selection_ids, $sort, $order, $taxonomy, $book_ids );
-	
 
-	}	
-	
-	
-	
+
+	}
+
+
+
 /****************************************************************
  *  			SEARCHING
- *  
+ *
  ****************************************************************/
- 
+
 
 public function search_where( $where ) {
-	
-	global $wpdb;	
+
+	global $wpdb;
 	$table = $this->table_name();
-	
+
 	if( is_search() ) {
-		
+
 		$where = preg_replace(
 		   "/\([^(]*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
 		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where);
-		   
+
 		//$where = parent::search_where( $where );
 	}
-	
+
 	return $where;
 }
- 
+
 	public static function create_the_table() {
 		static::create_table();
 	}
 
 	public function create_table() {
-		
+
 		// Needed for dbDelta
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-		
+
 		global $charset_collate;
 		//$table = $this->table_name();
 		global $wpdb;
@@ -792,10 +798,10 @@ public function search_where( $where ) {
 			  PRIMARY KEY  (book_id),
 			  KEY release_date (release_date)
 		 ) $charset_collate; ";
-	 
+
 		dbDelta( $sql_create_table );
-		
+
 		update_option( $table . '_db_version', MBDB_PLUGIN_VERSION);
-		
+
 	}
 }
