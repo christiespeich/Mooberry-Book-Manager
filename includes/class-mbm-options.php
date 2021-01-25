@@ -10,6 +10,7 @@ class Mooberry_Book_Manager_Options {
 	protected $edition_formats;
 	protected $download_formats;
 	protected $publishers;
+	protected $imprints;
 	protected $social_media_sites;
 	protected $languages;
 	protected $units;
@@ -196,6 +197,17 @@ class Mooberry_Book_Manager_Options {
 		return $publishers;
 	}
 
+	protected function get_imprints() {
+		$imprints = array();
+		$imprint_list = $this->create_array_with_ids( 'imprints', 'uniqueID');
+		foreach ( $imprint_list as $id => $imprint ){
+			$imprints[$id] = new Mooberry_Book_Manager_Imprint( $imprint );
+		}
+		asort( $imprints);
+		return $imprints;
+
+	}
+
 	public function add_publisher( $publisher ) {
 
 
@@ -207,6 +219,19 @@ class Mooberry_Book_Manager_Options {
 		$this->add_element( 'publishers', $publisher_array );
 
 	}
+
+	public function add_imprint( $imprint ) {
+
+
+		$imprint_array = array(
+							'uniqueID'	=>	$imprint->id,
+							'name'		=>	$imprint->name,
+							'website'	=>	$imprint->website,
+						);
+		$this->add_element( 'imprints', $imprint_array );
+
+	}
+
 
 	protected function get_social_media_sites(  ) {
 		$social_media_sites = array();
@@ -429,6 +454,14 @@ class Mooberry_Book_Manager_Options {
 				return $this->options[ 'mbdb_default_language' ];
 			} else {
 				return 'EN';
+			}
+	}
+
+	protected function get_show_currency(  ) {
+			if ( array_key_exists( 'mbdb_show_currency', $this->options ) && isset( $this->options[ 'mbdb_show_currency' ] ) ) {
+				return $this->options[ 'mbdb_show_currency' ];
+			} else {
+				return 'no';
 			}
 	}
 

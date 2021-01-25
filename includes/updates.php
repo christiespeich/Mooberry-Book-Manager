@@ -208,6 +208,11 @@ function mbdb_update_versions() {
 		mbdb_update_4_3_8();
 	}
 
+	if ( version_compare( $current_version, '4.5', '<' ) ) {
+		//update database structure
+		MBDB()->books->create_table();
+	}
+
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
 

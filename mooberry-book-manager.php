@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.4.6
+ *  Version: 4.5
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -27,7 +27,7 @@
  *
  * @package MBDB
  * @author  Mooberry Dreams
- * @version 4.4.6
+ * @version 4.5
  */
 
 // Exit if accessed directly
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.4.6' );
+	define( 'MBDB_PLUGIN_VERSION', '4.5' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -344,6 +344,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-download-link.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-review.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-publisher.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-imprint.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-edition.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-social-media-site.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-options.php';

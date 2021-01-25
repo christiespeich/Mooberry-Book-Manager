@@ -37,6 +37,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'cover' => '%s',
 			'release_date' => '%s',
 			'publisher_id' => '%s',
+			'imprint_id' => '%s',
 			'goodreads' => '%s',
 			'series_order' => '%f',
 			//'blog_id'	=> '%d',
@@ -55,6 +56,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'_mbdb_cover_id' => 'cover_id',
 			'_mbdb_published' => 'release_date',
 			'_mbdb_publisherID' => 'publisher_id',
+			'_mbdb_imprintID' => 'imprint_id',
 			'_mbdb_goodreads' => 'goodreads',
 			'_mbdb_series_order' => 'series_order',
 		);
@@ -793,6 +795,7 @@ public function search_where( $where ) {
 			  cover longtext,
 			  release_date date,
 			  publisher_id char(13),
+			  imprint_id char(13),
 			  goodreads longtext,
 			  series_order decimal(6,2),
 			  PRIMARY KEY  (book_id),

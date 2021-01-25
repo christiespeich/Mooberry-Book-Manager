@@ -16,10 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 3.5 ?
  */
- class Mooberry_Book_Manager_Book extends Mooberry_Book_Manager_Book_Basic { 
- 
+ class Mooberry_Book_Manager_Book extends Mooberry_Book_Manager_Book_Basic {
+
 	//private $book_idbook_id;
-	
+
 	protected $editions;
 	protected $reviews;
 	protected $buy_links;
@@ -30,15 +30,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	protected $editors;
 	protected $illustrators;
 	protected $cover_artists;
-	
-	
-	
+
+
+
 	public function __construct( $id = 0 ) {
-		
+
 		//parent::__construct( $id, 'mbdb_book');
-		
+
 		$this->db_object = MBDB()->books_db;
-		
+
 		$this->editions = array();
 		$this->reviews = array();
 		$this->buy_links = array();
@@ -49,36 +49,36 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->editors = array();
 		$this->illustrators = array();
 		$this->cover_artists = array();
-		
-		
-	
+
+
+
 		if ( $id == '0' ) {
 			parent::__construct();
-	
+
 			return;
-			
+
 		}
-		
+
 		$book = wp_cache_get( $id, 'mbdb_book' );
-		
+
 		if ( $book !== false ) {
-	
+
 			$properties = get_object_vars( $book );
-			
+
 			foreach ( $properties as $property => $value ) {
 				$this->$property = $value;
 			}
-			
+
 			return $this;
 		}
 
 
-		
-		$book = $this->db_object->get( $id );	
+
+		$book = $this->db_object->get( $id );
 		// if ( $book == null ) {
 			// $book_id = null;
 		// } else {
-			
+
 			// $book_id = $book->book_id;
 		// }
 		if ( !is_numeric($id) ) {
@@ -88,41 +88,41 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				$id = null;
 			}
 		}
-		
+
 		parent::__construct( $book, $id );
-		
-		
-		if ( $book != null ) {           
-			
-			
+
+
+		if ( $book != null ) {
+
+
 			foreach ( $book->editions as $edition ) {
 				// last one could be blank because there are auto-selected
 				// items in formats so the allow_last_blank function
 				// doesn't work
-				
+
 				if ( is_array($edition) && array_key_exists( 'format_id', $edition ) && $edition['format_id'] != '' && $edition['format_id'] != 0 ) {
 					$this->editions[] = new Mooberry_Book_Manager_Edition( $edition );
 				}
 			}
-			
+
 			foreach ($book->reviews as $review ) {
-				if ( is_array($review) && array_key_exists( 'review', $review ) && $review[ 'review' ] != '' ) { 
+				if ( is_array($review) && array_key_exists( 'review', $review ) && $review[ 'review' ] != '' ) {
 					$this->reviews[] = new Mooberry_Book_Manager_Review( $review );
 				}
 			}
-		
+
 			foreach ( $book->buy_links as $link ) {
-				if ( is_array($link) && array_key_exists( 'link', $link ) && $link[ 'link' ] != '' && $link[ 'link' ] != '0' ) { 
+				if ( is_array($link) && array_key_exists( 'link', $link ) && $link[ 'link' ] != '' && $link[ 'link' ] != '0' ) {
 					$this->buy_links[] = new Mooberry_Book_Manager_Buy_Link( $link );
 				}
 			}
-			
+
 			foreach ( $book->download_links as $link ) {
-				if ( is_array($link) && array_key_exists( 'link', $link ) && $link[ 'link' ] != '' && $link[ 'link' ] != '0' ) { 
+				if ( is_array($link) && array_key_exists( 'link', $link ) && $link[ 'link' ] != '' && $link[ 'link' ] != '0' ) {
 					$this->download_links[] = new Mooberry_Book_Manager_Download_Link( $link );
 				}
 			}
-			
+
 			$this->genres = $book->genres;
 			$this->series = $book->series;
 			$this->tags = $book->tags;
@@ -130,89 +130,89 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$this->illustrators = $book->illustrators;
 			$this->cover_artists = $book->cover_artists;
 
-		}				
+		}
 		wp_cache_set( $id, $this, 'mbdb_book');
-		
+
 	}
-	
+
 	public function is_standalone() {
 		return ( $this->series == '' ) || ( count($this->series) == 0 );
 	}
-	
+
 	public function has_editions() {
 		return ( count( $this->editions ) > 0 );
 	}
-	
+
 	public function has_reviews() {
 		return ( count( $this->reviews ) > 0 );
 	}
-	
+
 	public function has_buy_links() {
 		return ( count( $this->buy_links ) > 0 );
 	}
-	
+
 	public function has_download_links() {
 		return ( count( $this->download_links ) > 0 );
 	}
-	
+
 	public function has_series() {
 		return !$this->is_standalone();
 	}
-	
+
 	public function has_genres() {
 		return ( $this->genres != '' ) && ( count( $this->genres) >0 );
 	}
-	
+
 	public function has_tags() {
 		return ( $this->tags != '' ) && ( count( $this->tags) >0 );
 	}
-	
+
 	public function has_editors() {
 		return ( $this->editors != '' ) && ( count( $this->editors) >0 );
 	}
-	
+
 	public function has_illustrators() {
 		return ( $this->illustrators != '' ) && ( count( $this->illustrators) >0 );
 	}
-	
+
 	public function has_cover_artists() {
-		return ( $this->cover_artists != '' ) && ( count( $this->cover_artists) >0 );	
+		return ( $this->cover_artists != '' ) && ( count( $this->cover_artists) >0 );
 	}
-	
-	
+
+
 	public function get_taxonomy_list( $terms, $delimiter ) {
 		$output = '';
 		foreach ( $terms as $term ) {
 			$output .= $term->name . $delimiter;
 		}
 		// remove last delimiter and space
-		return rtrim( $output, $delimiter  );	
+		return rtrim( $output, $delimiter  );
 	}
-	
+
 	public function get_series_list( $delimiter = ', ' ) {
 		return $this->get_taxonomy_list( $this->series, $delimiter);
 	}
-	
+
 	public function get_genre_list( $delimiter = ', ') {
 		return $this->get_taxonomy_list( $this->genres, $delimiter);
 	}
-	
+
 	public function get_retailer_list( $delimiter = ', ' ) {
 		$output = '';
-		foreach ( $this->buy_links as $buy_link ) { 
+		foreach ( $this->buy_links as $buy_link ) {
 			$output .= $buy_link->retailer->name . $delimiter;
 		}
 		return rtrim( $output, $delimiter );
 	}
-	
+
 	public function get_edition_format_list( $delimiter = ', ' ) {
 		$output = '';
-		foreach ( $this->editions as $edition ) { 
+		foreach ( $this->editions as $edition ) {
 			$output .= $edition->format->name . $delimiter;
 		}
 		return rtrim( $output, $delimiter );
 	}
-	
+
 	public function to_json() {
 		//parent::to_json();
 		$properties =  get_object_vars($this);
@@ -220,8 +220,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		foreach ( $properties as $name => $value ) {
 			$object[ $name ] =   $value ;
 		}
-		
-		$objects = array( 'editions', 'reviews', 'buy_links', 'download_links', 'publisher');
+
+		$objects = array( 'editions', 'reviews', 'buy_links', 'download_links', 'publisher', 'imprint');
 		foreach ( $objects as $property ) {
 			$object[ $property ] = array();
 			if ( is_array( $this->$property ) ) {
@@ -234,25 +234,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				}
 			}
 		}
-		
+
 		return json_encode( $object);
-       
+
     }
-	
+
 	public function import ( $decoded ) {
 		//error_log('beginning import ' . $decoded->title );
-		
+
 		parent::import( $decoded );
-		
+
 		$properties =  get_object_vars($this);
 		//error_log(print_r($properties, true));
-		$objects = array( 'editions', 'reviews', 'buy_links', 'download_links', 'publisher', 'cover', 'cover_id', 'publisher_id', 'db_object', 'id' );
+		$objects = array( 'editions', 'reviews', 'buy_links', 'download_links', 'publisher', 'cover', 'cover_id', 'publisher_id', 'db_object', 'id', 'imprint', 'imprint_id' );
 		foreach ( $properties as $name => $value ) {
 			if ( !property_exists( $decoded, $name ) ) {
 				continue;
 			}
 			if ( !in_array( $name, $objects ) ) {
-				$this->$name =   $decoded->$name;	
+				$this->$name =   $decoded->$name;
 			} else {
 				switch  ($name)  {
 					case 'editions':
@@ -265,7 +265,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 								$this->editions[] = $new_edition;
 							}
 						}
-							
+
 						break;
 					case 'reviews':
 					$this->reviews = array();
@@ -307,7 +307,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							$new_publisher = new Mooberry_Book_Manager_Publisher(  );
 							$new_publisher->import ( $decoded->publisher );
 							$this->set_publisher_id( $new_publisher->id );
-						}					
+						}
+						break;
+						case 'imprint':
+					//error_log('beginning import publisher' . $decoded->title );
+						if ( $decoded->imprint_id != 0 ) {
+							$new_imprint = new Mooberry_Book_Manager_Imprint(  );
+							$new_imprint->import ( $decoded->imprint );
+							$this->set_imprint_id( $new_imprint->id );
+						}
 						break;
 					case 'cover':
 					//error_log('beginning import cover' . $decoded->title );
@@ -321,7 +329,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						if ( $url == '' ) {
 							$this->cover_id = 0;
 							$this->cover = '';
-							
+
 							break;
 						}
 						$tmp = download_url( $url );
@@ -354,7 +362,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						}
 						$this->cover = wp_get_attachment_url( $id );
 						$this->cover_id = $id;
-						
+
 						// update sizes
 						$fullsizepath = get_attached_file( $id );
 
@@ -362,13 +370,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $fullsizepath ) );
 						}
 						break;
-						
-				} 
-				
-			}				
+
+				}
+
+			}
 		}
 		//error_log('about to save ' . $this->title );
-		
+
 		$success = $this->db_object->save_all( $this );
 		//error_log('just saved ' . $this->title );
 		if ( is_array($success) ) {
@@ -386,7 +394,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->db_object->save_all( $this, $post_id);
 
     }
-	
+
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
@@ -399,25 +407,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			return call_user_func( array( $this, 'get_' . $key ) );
 
 		} else {
-			
+
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$ungettable_properties = array( 'db_object' );
-				
+
 				if ( !in_array( $key, $ungettable_properties ) ) {
-				
+
 					return $this->$key;
 
 				}
-		
+
 			}
-		
+
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-				
+
 	}
-	
+
 	/**
 	 * Magic __set function to dispatch a call to retrieve a private property
 	 *
@@ -432,21 +440,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		} else {
 
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$unsettable_properties = array('db_object', 'genres', 'series', 'tags', 'editors', 'illustrators', 'cover_artists', 'reviews', 'editions', 'buy_links', 'download_links' );
-				
+
 				if ( !in_array( $key, $unsettable_properties ) ) {
-				
+
 					$this->$key = $value;
 
 				}
-				
+
 			}
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-		
+
 	}
-	
+
  }
- 

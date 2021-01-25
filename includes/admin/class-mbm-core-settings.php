@@ -72,6 +72,10 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'page_title' => __( 'Mooberry Book Manager Publishers', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Publishers', 'mooberry-book-manager' )
 			),
+			'mbdb_imprints_options' => array(
+				'page_title' => __( 'Mooberry Book Manager Imprints', 'mooberry-book-manager' ),
+				'menu_title' => __( 'Imprints', 'mooberry-book-manager' )
+			),
 			'mbdb_retailers_options'  => array(
 				'page_title' => __( 'Mooberry Book Manager Retailers', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Retailers', 'mooberry-book-manager' )
@@ -154,6 +158,9 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				break;
 			case 'mbdb_publishers_options':
 				$mbdb_settings_metabox = $this->mbdb_publishers( $mbdb_settings_metabox );
+				break;
+			case 'mbdb_imprints_options':
+				$mbdb_settings_metabox = $this->mbdb_imprints( $mbdb_settings_metabox );
 				break;
 			case 'mbdb_retailers_options' :
 				$mbdb_settings_metabox = $this->mbdb_retailers( $mbdb_settings_metabox );
@@ -301,6 +308,17 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'options' => MBDB()->options->languages,
 			)
 		);
+
+		$mbdb_settings_metabox->add_field( array(
+			'name'    => esc_html__( 'Show Currency for Books in Default Language?', 'mooberry-directory' ),
+			'id'      => 'mbdb_show_currency',
+			'type'    => 'radio',
+			'default' => 'no',
+			'options' => array(
+				'no'  => 'No',
+				'yes' => 'Yes',
+			)
+		) );
 
 
 		$mbdb_settings_metabox->add_field( array(
@@ -524,6 +542,70 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		return apply_filters( 'mbdb_settings_publishers_settings', $mbdb_settings_metabox );
 	}
 
+		/**
+	 *  Sets up the metabox for the Imprints settings
+	 *
+	 *
+	 *
+	 * @param object $mbdb_settings_metabox
+	 *
+	 * @return metabox object with Imprints fields
+	 *
+	 * @access public
+	 * @since  3.0
+	 */
+	function mbdb_imprints( $mbdb_settings_metabox ) {
+		$this->title = __( 'MBM Imprints Settings', 'mooberry-book-manager' );
+		$mbdb_settings_metabox->add_field( array(
+				'id'      => 'imprints',
+				'type'    => 'group',
+				'desc'    => __( 'Add your imprints.', 'mooberry-book-manager' ),
+				'options' => array(
+					'group_title'   => __( 'Imprint', 'mooberry-book-manager' ) . ' {#}',
+					// since version 1.1.4, {#} gets replaced by row number
+					'add_button'    => __( 'Add New Imprint', 'mooberry-book-manager' ),
+					'remove_button' => __( 'Remove Imprint', 'mooberry-book-manager' ),
+					'sortable'      => false,
+					// beta
+				),
+			)
+		);
+
+		$mbdb_settings_metabox->add_group_field( 'imprints', array(
+				'name'       => __( 'Imprint', 'mooberry-book-manager' ),
+				'id'         => 'name',
+				'type'       => 'text_medium',
+				'attributes' => array(
+					'required' => 'required',
+				),
+			)
+		);
+
+		$mbdb_settings_metabox->add_group_field( 'imprints', array(
+				'name'       => __( 'Imprint Website', 'mooberry-book-manager' ),
+				'id'         => 'website',
+				'type'       => 'text_url',
+				'desc'       => 'http://www.someWebsite.com/',
+				'attributes' => array(
+					'pattern' => MBDB()->helper_functions->url_validation_pattern(),
+					'style'   => 'width:300px',
+				),
+			)
+		);
+
+		$mbdb_settings_metabox->add_group_field( 'imprints', array(
+				'id'              => 'uniqueID',
+				'type'            => 'text',
+				'show_names'      => false,
+				'sanitization_cb' => array( $this, 'uniqueID_generator' ),
+				'attributes'      => array(
+					'type' => 'hidden',
+				),
+			)
+		);
+
+		return apply_filters( 'mbdb_settings_imprints_settings', $mbdb_settings_metabox );
+	}
 	/**
 	 *  Sets up the metabox for the Editions settings
 	 *

@@ -92,6 +92,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'book_cover', array( $this, 'shortcode_cover' ) );
 		add_shortcode( 'book_subtitle', array( $this, 'shortcode_subtitle' ) );
 		add_shortcode( 'book_summary', array( $this, 'shortcode_summary' ) );
+		add_shortcode( 'book_imprint', array( $this, 'shortcode_imprint' ) );
 		add_shortcode( 'book_publisher', array( $this, 'shortcode_publisher' ) );
 		add_shortcode( 'book_published', array( $this, 'shortcode_published' ) );
 		add_shortcode( 'book_goodreads', array( $this, 'shortcode_goodreads' ) );
@@ -243,6 +244,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 
 	public function create_metaboxes() {
 		$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', true );
+		$imprints = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->imprints, 'name', true );
 
 		$bulk_edit_publishers = array(
 			                        '0'  => __( '— No Change —', 'mooberry-book-manager' ),
@@ -713,6 +715,17 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 					'position' => 8,
 				),
 				'display_cb' => array( $this, 'display_publisher_column' ),
+			)
+		);
+
+
+		$mbdb_bookinfo_metabox->add_field( array(
+				'name'       => __( 'Imprint', 'mooberry-book-manager' ),
+				'id'         => '_mbdb_imprintID',
+				'type'       => 'select',
+				'options'    => $imprints,
+				'desc'       => __( 'Set up Imprints in Settings.', 'mooberry-book-manager' ),
+
 			)
 		);
 
@@ -1720,6 +1733,32 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		return apply_filters( 'mbdb_shortcode_publisher', '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html( $attr['label'] ) . '</span>' . $text . '<span class="mbm-book-publisher-after">' . esc_html( $attr['after'] ) . '</span></span>' );
 	}
 
+	public function shortcode_imprint( $attr, $content ) {
+		$attr = shortcode_atts( array(
+			'label' => '',
+			'after' => '',
+			'blank' => '',
+			'book'  => '',
+		), $attr );
+
+		$this->set_book( $attr['book'] );
+
+		if ( ! $this->data_object->has_imprint() ) {
+			return $this->output_blank_data( 'imprint', $attr['blank'] );
+		}
+
+		$mbdb_imprint        = $this->data_object->imprint->name;
+		$mbdb_imprintwebsite = $this->data_object->imprint->website;
+
+		if ( $mbdb_imprintwebsite == '' ) {
+			$text = '<span class="mbm-book-imprint-text">' . esc_html( $mbdb_imprint ) . '</span>';
+		} else {
+			$text = '<A class="mbm-book-imprint-link" HREF="' . esc_url( $mbdb_imprintwebsite ) . '" target="_new"><span class="mbm-book-imprint-text">' . esc_html( $mbdb_imprint ) . '</span></a>';
+		}
+
+		return apply_filters( 'mbdb_shortcode_imprint', '<span class="mbm-book-imprint"><span class="mbm-book-imprint-label">' . esc_html( $attr['label'] ) . '</span>' . $text . '<span class="mbm-book-imprint-after">' . esc_html( $attr['after'] ) . '</span></span>' );
+	}
+
 	public function shortcode_published( $attr, $content ) {
 		$attr = shortcode_atts( array(
 			'format'            => 'short',
@@ -2449,7 +2488,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 				$output_html .= __( ':', 'mooberry-book-manager' ) . ' <span class="mbm-book-editions-srp"><span class="mbm-book-editions-price">';
 				/* translators: %1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s */
 				$output_html .= sprintf( _x( '%1$s %2$s', '%1$s is the currency symbol. %2$s is the price. To put currency after price, enter %2$s %1$s', 'mooberry-book-manager' ), $symbol, $price );
-				if ( $edition->language != $default_language ) {
+				if ( MBDB()->options->show_currency == 'yes' ||  $edition->language != $default_language ) {
 					$output_html .= '<span class="mbm-book-edition-currency"> ' . $edition->currency . '</span>';
 				}
 				$output_html .= '</span></span>';
@@ -2582,6 +2621,11 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			if ( $is_publisher ) {
 
 				$book_page_layout .= '<span class="mbm-book-details-publisher-label">' . __( 'Publisher:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-publisher-data">[book_publisher  blank="" book="' . $book . '"]</span><br/>';
+			}
+			$book_page_layout = apply_filters( 'mbdb_book_page_before_imprint', $book_page_layout, $this->data_object, $attr );
+			if ( $this->data_object->has_imprint() ) {
+
+				$book_page_layout .= '<span class="mbm-book-details-imprint-label">' . __( 'Imprint:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-imprint-data">[book_imprint  blank="" book="' . $book . '"]</span><br/>';
 			}
 			$book_page_layout = apply_filters( 'mbdb_book_page_before_editor', $book_page_layout, $this->data_object, $attr );
 			if ( $is_editor ) {
