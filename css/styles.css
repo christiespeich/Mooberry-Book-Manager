@@ -48,9 +48,11 @@
 		float: left;
 		margin-left: 6%;
 		width: 60%;
-
-
 	}
+
+  #mbm-book-page #mbm-third-column {
+    clear: both;
+  }
 
 	#mbm-book-page .mbm-book-buy-links-list, #mbm-book-page .mbm-book-download-links-list {
 		margin-left: 0;
@@ -253,6 +255,13 @@
 	}
 
 #mbm-book-links1	.mbm-book-buy-links-text { display: block; }
+ div#mbdb_book_page_back_to_grid_bottom, div#mbdb_book_page_back_to_grid_top {
+    margin-bottom: 10px;
+}
+#mbm-book-page .mbdb_back_to_grid_link {
+    font-size: smaller;
+
+}
 
 @media (max-width:810px) {
 
@@ -277,6 +286,7 @@
 	#mbm-book-links2 div {
     	clear: both;
 	}
+
 
 
 	/*	#mbm-book-links2  .mbm-book-buy-links-image {

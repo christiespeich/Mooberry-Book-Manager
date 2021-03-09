@@ -112,6 +112,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'book_editions', array( $this, 'shortcode_editions' ) );
 		add_shortcode( 'mbdb_book', array( $this, 'shortcode_book' ) );
 		add_shortcode( 'book_kindle_preview', array( $this, 'shortcode_kindle_preview' ) );
+		add_shortcode( 'book_back_to_grid', array( $this, 'shortcode_back_to_grid'));
 
 	}
 
@@ -2516,6 +2517,35 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 
 	}
 
+	public function shortcode_back_to_grid( $attr, $content ) {
+		$attr = shortcode_atts( array(
+			'grid' => 0,
+			'book' => '',
+		), $attr );
+		$book = 0;
+		if ( $attr['grid'] != 0 ) {
+			if ( $attr['book'] == '' ) {
+				global $post;
+				$book_id = $post->ID;
+			} else {
+				$book = get_page_by_path( $attr['book'], OBJECT, 'mbdb_book' );
+				if ( $book ) {
+					$book_id = $book->ID;
+				}
+			}
+			if ( $book_id != 0 ) {
+				$link = get_permalink( $attr['grid'] );
+
+				if ( $link != '' ) {
+					$content = '<a class="mbdb_back_to_grid_link" href="' . $link . '#book_' . $book_id . '">&lt; Back to grid</a>';
+
+				}
+			}
+		}
+		return apply_filters('mbdb_shortcode_back_to_grid', $content);
+	}
+
+
 	public function shortcode_book( $attr, $content ) {
 
 		global $post;
@@ -2544,6 +2574,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		$book_page_layout = apply_filters( 'mbdb_book_page_before_subtitle', $book_page_layout, $this->data_object, $attr );
 		if ( $this->data_object->subtitle != '' ) {
 			$book_page_layout .= '<h3>[book_subtitle blank="" book="' . $book . '"]</h3>';
+		}
+		if ( isset( $_GET['grid_referrer']) && intval($_GET['grid_referrer']) != 0 ) {
+			$book_page_layout .= '<div id="mbdb_book_page_back_to_grid_top">[book_back_to_grid grid="' . intval($_GET['grid_referrer']) . '"]</div>';
 		}
 		// v 3.0 for customizer
 		$book_page_layout = apply_filters( 'mbdb_book_page_after_subtitle', $book_page_layout, $this->data_object, $attr );
@@ -2695,6 +2728,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		}
 		//error_log('end links 2');
 		$book_page_layout .= '</div> <!-- third column -->';
+		if ( isset( $_GET['grid_referrer']) && intval($_GET['grid_referrer']) != 0 ) {
+			$book_page_layout .= '<div id="mbdb_book_page_back_to_grid_bottom">[book_back_to_grid grid="' . intval($_GET['grid_referrer']) . '"]</div>';
+		}
 		$book_page_layout .= '</div> <!-- mbm-book-page -->';
 
 

@@ -808,7 +808,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	  * @param  [obj] $book              book object
 	  * @param  [string] $coming_soon_image coming soon image
 	  *
-	  * @return html output
+	  * @return [string]  html output
 	  *
 	  * @access public
 	  * @since  3.4 added book grid id and height parameters and cover height into specific HTML tags
@@ -830,7 +830,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 $cover = $book->get_cover_url( $image_size, 'grid' );
 
 		 $alt = MBDB()->helper_functions->get_alt_attr( $book->cover_id, __( 'Book Cover:', 'mooberry-book-manager' ) . ' ' . $book->title );
-
+		global $post;
 		 if ( isset( $cover ) ) {
 			 if ( ! $book->has_cover() ) {
 				 $filter = '_placeholder';
@@ -839,7 +839,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			 }
 			 $content .= '<div class="mbdb_grid_image">';
 			 $content = apply_filters( 'mbdb_book_grid_pre' . $filter . '_image', $content, $book->id, $cover, $book, $this->id );
-			 $content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url( $cover ) . '" ' . $alt . ' /></a>';
+			 $content .= '<a id="book_' . $book->id . '" itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '?grid_referrer=' . $post->ID . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url( $cover ) . '" ' . $alt . ' /></a>';
 			 $content = apply_filters( 'mbdb_book_grid_post' . $filter . '_image', $content, $book->id, $cover, $book );
 			 $content .= '</div>';
 		 } else {
@@ -851,11 +851,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 //'<meta itemprop="name" content="' . esc_attr($book->title) . '">
 		 $content .= '<span class="mbdb_grid_title" itemprop="name">';
 		 $content = apply_filters( 'mbdb_book_grid_pre_link', $content, $book->id, $book->title, $book );
-		 $content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '">' . esc_html( $book->title ) . '</a>';
+		 $content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '?grid_referrer=' . $post->ID . '">' . esc_html( $book->title ) . '</a>';
 		 $content = apply_filters( 'mbdb_book_grid_post_link', $content, $book->id, $book->title, $book );
 		 $content .= '</span></span>';
 
-		 return $content;
+		 return  $content;
 	 }
 
  }
