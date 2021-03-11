@@ -1,27 +1,27 @@
 jQuery( document ).ready(function() {
 
 	jQuery('.mbdb_admin_notice_dismiss')
-	  .click(function (e) {
+    .on('click', function (e) {
 		  mbdb_admin_notice_dismiss(this);
 	  });
 
 	jQuery('#mbdb_3_1_remigrate')
-	  .click(function (e) {
+	  .on('click', function (e) {
 		  mbdb_admin_3_1_remigrate();
 	  });
 
 	jQuery('#mbdb_book_grid_placeholder_dismiss')
-	  .click(function (e) {
+	  .on('click', function (e) {
 		  mbdb_book_grid_placeholder_dismiss();
 	  });
 
 	jQuery('#mbdb_3_4_12_update')
-	  .click(function (e) {
+	  .on('click', function (e) {
 		  mbdb_3_4_12_update();
 	  });
 
 	jQuery('#mbdb_update_apple_links_button')
-	  .click(function (e) {
+	  .on('click', function (e) {
 		  mbdb_update_apple_books_links();
 	  })
 
