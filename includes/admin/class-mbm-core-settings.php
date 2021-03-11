@@ -244,6 +244,14 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'options' => MBDB()->helper_functions->get_template_list(),
 			)
 		);
+		$mbdb_settings_metabox->add_field( array(
+				'id'      => 'mbdb_show_back_to_grid_link',
+				'name'    => __( 'Show Back to Grid Link on Books When Coming From a Book Grid?', 'mooberry-book-manager' ),
+				'type'    => 'select',
+				'default' => 'no',
+				'options' => array('no'=>__('No', 'mooberry-book-manager'), 'yes'=> __('Yes', 'mooberry-book-manager'))
+			)
+		);
 		/*
 		// split up the descriptions to keep the html out of the
 		// translatable text

@@ -593,6 +593,12 @@ class Mooberry_Book_Manager_Options {
 
 	}
 
+	protected function get_show_back_to_grid_link(  ) {
+
+			return $this->get_option_value(  'mbdb_show_back_to_grid_link', true, apply_filters( 'mbdb_show_back_to_grid_link_default', 'no' ) );
+
+	}
+
 	protected function get_goodreads_image(  ) {
 
 			return $this->get_option_value(  'goodreads', true, '' );

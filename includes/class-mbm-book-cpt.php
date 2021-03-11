@@ -2575,8 +2575,10 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		if ( $this->data_object->subtitle != '' ) {
 			$book_page_layout .= '<h3>[book_subtitle blank="" book="' . $book . '"]</h3>';
 		}
-		if ( isset( $_GET['grid_referrer']) && intval($_GET['grid_referrer']) != 0 ) {
-			$book_page_layout .= '<div id="mbdb_book_page_back_to_grid_top">[book_back_to_grid grid="' . intval($_GET['grid_referrer']) . '"]</div>';
+		if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
+			if ( isset( $_GET['grid_referrer'] ) && intval( $_GET['grid_referrer'] ) != 0 ) {
+				$book_page_layout .= '<div id="mbdb_book_page_back_to_grid_top">[book_back_to_grid grid="' . intval( $_GET['grid_referrer'] ) . '"]</div>';
+			}
 		}
 		// v 3.0 for customizer
 		$book_page_layout = apply_filters( 'mbdb_book_page_after_subtitle', $book_page_layout, $this->data_object, $attr );
@@ -2728,8 +2730,10 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		}
 		//error_log('end links 2');
 		$book_page_layout .= '</div> <!-- third column -->';
-		if ( isset( $_GET['grid_referrer']) && intval($_GET['grid_referrer']) != 0 ) {
-			$book_page_layout .= '<div id="mbdb_book_page_back_to_grid_bottom">[book_back_to_grid grid="' . intval($_GET['grid_referrer']) . '"]</div>';
+		if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
+			if ( isset( $_GET['grid_referrer'] ) && intval( $_GET['grid_referrer'] ) != 0 ) {
+				$book_page_layout .= '<div id="mbdb_book_page_back_to_grid_bottom">[book_back_to_grid grid="' . intval( $_GET['grid_referrer'] ) . '"]</div>';
+			}
 		}
 		$book_page_layout .= '</div> <!-- mbm-book-page -->';
 
