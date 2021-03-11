@@ -793,7 +793,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 for ( $x = ( $this->current_page - 1 ) * $this->books_per_page; $x < $max_books; $x ++ ) {
 			 if ( array_key_exists( (int) $x, $mbdb_books->books ) ) {
 
-				 $content .= $this->output_book( $mbdb_books->books[ $x ] );
+			 	$next_book = isset( $mbdb_books->books[$x+1] ) ? $mbdb_books->books[$x+1] : null;
+			 	$prev_book = isset( $mbdb_books->books[$x-1] ) ? $mbdb_books->books[$x-1] : null;
+				 $content .= $this->output_book( $mbdb_books->books[ $x ], $next_book, $prev_book );
 			 }
 		 }
 
@@ -817,13 +819,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	  * @since  2.0 made responsive
 	  * @since  3.0 re-factored, added alt text
 	  */
-	 protected function output_book( $book ) {
+	 protected function output_book( $book, $next_book = null, $prev_book = null ) {
 
 
 		 $image_size                  = $this->wp_size;
 		 $mbdb_book_grid_cover_height = $this->cover_height;
 
 		 $extra_height = intval( apply_filters( 'mbdb_book_grid_additional_height', 50, $this ) );
+
+		 $next_book_id = $next_book ? $next_book->id : 0;
+		 $prev_book_id = $prev_book ? $prev_book->id : 0;
 
 		 $content = '<span itemscope itemtype="http://schema.org/Book"  class="mbdb_float_grid" style="height: ' . ( intval( $mbdb_book_grid_cover_height ) + $extra_height ) . 'px; width: ' . $mbdb_book_grid_cover_height . 'px;">';
 
@@ -839,7 +844,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			 }
 			 $content .= '<div class="mbdb_grid_image">';
 			 $content = apply_filters( 'mbdb_book_grid_pre' . $filter . '_image', $content, $book->id, $cover, $book, $this->id );
-			 $content .= '<a id="book_' . $book->id . '" itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '?grid_referrer=' . $post->ID . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url( $cover ) . '" ' . $alt . ' /></a>';
+			 $content .= '<a id="book_' . $book->id . '" itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '?grid_referrer=' . $post->ID . '&next_book=' . $next_book_id . '&prev_book=' . $prev_book_id . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url( $cover ) . '" ' . $alt . ' /></a>';
 			 $content = apply_filters( 'mbdb_book_grid_post' . $filter . '_image', $content, $book->id, $cover, $book );
 			 $content .= '</div>';
 		 } else {
@@ -851,7 +856,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 //'<meta itemprop="name" content="' . esc_attr($book->title) . '">
 		 $content .= '<span class="mbdb_grid_title" itemprop="name">';
 		 $content = apply_filters( 'mbdb_book_grid_pre_link', $content, $book->id, $book->title, $book );
-		 $content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '?grid_referrer=' . $post->ID . '">' . esc_html( $book->title ) . '</a>';
+		 $content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( get_permalink( $book->id ) ) . '?grid_referrer=' . $post->ID . '&next_book=' . $next_book_id . '&prev_book=' . $prev_book_id . '">' . esc_html( $book->title ) . '</a>';
 		 $content = apply_filters( 'mbdb_book_grid_post_link', $content, $book->id, $book->title, $book );
 		 $content .= '</span></span>';
 
