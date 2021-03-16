@@ -327,10 +327,8 @@ class Mooberry_Book_Manager_Helper_Functions {
 	}
 
 	public function override_wpseo_options() {
-		// remove open graph as an option because it is deprecated
-		// TODO: is there a replacement?
 		return apply_filters( 'mbdb_override_wpseo_options', array(
-			//	'og'          => __( 'Open Graph', 'mooberry-book-manager' ),
+				'og'          => __( 'Open Graph', 'mooberry-book-manager' ),
 				'twitter'     => __( 'Twitter Card', 'mooberry-book-manager' ),
 				'description' => __( 'Meta Description', 'mooberry-book-manager' ),
 			)

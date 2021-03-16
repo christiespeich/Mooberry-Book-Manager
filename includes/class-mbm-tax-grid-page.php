@@ -25,13 +25,11 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		add_filter('tc_title_text', array( $this, 'title' ) );
 		add_filter('the_title', array( $this, 'title' ), 99, 2 );
 
-		// wpseo_opengraph is deprecated
-        // TODO: is it replaced with anything?
-	/*	add_filter('wpseo_opengraph_title', array( $this, 'override_wp_seo_meta') );
+		add_filter('wpseo_opengraph_title', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_opengraph_url', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_opengraph_desc', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_opengraph_image', array( $this, 'override_wp_seo_meta') );
-		add_filter('wpseo_twitter_title', array( $this, 'override_wp_seo_meta') );*/
+		add_filter('wpseo_twitter_title', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_twitter_card_type', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_twitter_description', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_twitter_image', array( $this, 'override_wp_seo_meta') );
