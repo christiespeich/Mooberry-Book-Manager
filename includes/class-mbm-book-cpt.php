@@ -42,6 +42,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'show_in_rest'    => true,
 			'rest_base'       => 'books',
 			'can_export'      => false,
+			'has_archive'	=> true,
 		);
 
 		// let individual CPTs choose whether to add post class?
@@ -149,6 +150,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'meta_box_sanitize_cb' => 'taxonomy_meta_box_sanitize_cb_checkboxes'  // version 5.1+
 		);
 
+		$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_genre' ) );
+
 		$tax_args['show_in_quick_edit'] = ( version_compare( '5.1', get_bloginfo( 'version' ) ) > 0 );  // only show in quick edit if below 5.1 due to a bug
 
 		$this->taxonomies['mbdb_genre'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_genre', $this->post_type, __( 'Genre', 'mooberry-book-manager' ), __( 'Genres', 'mooberry-book-manager' ), $tax_args );
@@ -159,6 +162,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'delete_terms' => 'manage_series_terms',
 			'assign_terms' => 'assign_series_terms',
 		);
+		$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_series' ) );
 
 		$this->taxonomies['mbdb_series'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_series', $this->post_type, __( 'Series', 'mooberry-book-manager' ), __( 'Series', 'mooberry-book-manager' ), $tax_args );
 
@@ -169,7 +173,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'delete_terms' => 'manage_tag_terms',
 			'assign_terms' => 'assign_tag_terms',
 		);
-
+$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_tag' ) );
 
 		$this->taxonomies['mbdb_tag'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_tag', $this->post_type, __( 'Tag', 'mooberry-book-manager' ), __( 'Tags', 'mooberry-book-manager' ), $tax_args );
 
@@ -182,7 +186,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'delete_terms' => 'manage_editor_terms',
 			'assign_terms' => 'assign_editor_terms',
 		);
-
+$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_editor' ) );
 
 		$this->taxonomies['mbdb_editor'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_editor', $this->post_type, __( 'Editor', 'mooberry-book-manager' ), __( 'Editors', 'mooberry-book-manager' ), $tax_args );
 
@@ -194,7 +198,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'assign_terms' => 'assign_illustrator_terms',
 		);
 
-
+$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_illustrator' ) );
 		$this->taxonomies['mbdb_illustrator'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_illustrator', $this->post_type, __( 'Illustrator', 'mooberry-book-manager' ), __( 'Illustrators', 'mooberry-book-manager' ), $tax_args );
 
 		$tax_args['capabilities'] = array(
@@ -203,6 +207,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'delete_terms' => 'manage_cover_artist_terms',
 			'assign_terms' => 'assign_cover_artist_terms',
 		);
+		$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_cover_artist' ) );
 
 		$this->taxonomies['mbdb_cover_artist'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_cover_artist', $this->post_type, __( 'Cover Artist', 'mooberry-book-manager' ), __( 'Cover Artists', 'mooberry-book-manager' ), $tax_args );
 
