@@ -213,6 +213,11 @@ function mbdb_update_versions() {
 		MBDB()->books->create_table();
 	}
 
+	if ( version_compare( $current_version, '4.7', '<' ) ) {
+		// force flush rules
+		update_option( 'mbdb_flush_rules', true );
+	}
+
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
 
