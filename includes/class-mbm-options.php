@@ -621,19 +621,12 @@ class Mooberry_Book_Manager_Options {
 	protected function get_tax_grid_slugs( ) {
 		// get all taxonomies on a book
 		$taxonomies = get_object_taxonomies('mbdb_book', 'objects' );
+
 		//$taxonomies = MBDB()->book_CPT->taxonomies;
-
+		$tax_grid_slugs = array();
 		foreach($taxonomies as $name => $taxonomy) {
-			$id = 'mbdb_book_grid_' . $name . '_slug';
 
-			// make sure each tax grid is valid
-			$reserved_terms = mbdb_wp_reserved_terms();
-
-			$slug = sanitize_title( $this->get_option_value( $id, true, $taxonomy->labels->singular_name ) );
-			if ( in_array( $slug, $reserved_terms ) ) {
-					$slug = 'book-' . $slug;
-			}
-			$tax_grid_slugs[ $name ] = $slug;
+			$tax_grid_slugs[ $name ] = $this->get_tax_grid_slug($name);
 		}
 		return $tax_grid_slugs;
 	}
@@ -647,13 +640,24 @@ class Mooberry_Book_Manager_Options {
 	}
 	*/
 	public function get_tax_grid_slug( $taxonomy ) {
-		$slugs = $this->get_tax_grid_slugs();
+		/*$slugs = $this->get_tax_grid_slugs();
 		if ( !array_key_exists( $taxonomy, $slugs ) ) {
 			return '';
 		} else {
 			return $slugs[ $taxonomy ];
-		}
+		}*/
 
+		$id = 'mbdb_book_grid_' . $taxonomy . '_slug';
+
+			// make sure each tax grid is valid
+			$reserved_terms = mbdb_wp_reserved_terms();
+
+			$slug = sanitize_title( $this->get_option_value( $id, true, $taxonomy) );
+			if ( in_array( $slug, $reserved_terms ) ) {
+					$slug = 'book-' . $slug;
+			}
+
+			return $slug;
 	}
 
 	protected function get_option_value(  $key, $set_default = false, $default = null ) {
