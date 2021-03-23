@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.6.2
+ *  Version: 4.7
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -27,7 +27,7 @@
  *
  * @package MBDB
  * @author  Mooberry Dreams
- * @version 4.6.2
+ * @version 4.7
  */
 
 // Exit if accessed directly
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.6.2' );
+	define( 'MBDB_PLUGIN_VERSION', '4.7' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -146,6 +146,7 @@ final class Mooberry_Book_Manager {
 			// //error_log('making instance');
 			add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
 			add_action( 'admin_notices', array( self::$instance, 'admin_notices' ) );
+			add_action( 'admin_init', 'mbdb_flush_rewrite_rules' );
 
 			// require files
 			self::$instance->require_plugin_files();
@@ -523,3 +524,9 @@ function mbdb_remind_about_itunes_link() {
 	}
 }
 
+function mbdb_flush_rewrite_rules() {
+	if ( get_option( 'mbdb_flush_rules', false ) ) {
+		flush_rewrite_rules();
+		delete_option( 'mbdb_flush_rules' );
+	}
+}
