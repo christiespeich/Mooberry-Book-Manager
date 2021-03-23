@@ -108,7 +108,7 @@ class Mooberry_Book_Manager_Options {
 	public function set_tax_grid_page( $page_id ) {
 		$this->options[ 'mbdb_tax_grid_page' ] = $page_id;
 		$this->save_options();
-		flush_rewrite_rules();
+		update_option( 'mbdb_flush_rules', true );
 	}
 
 	public function set_use_featured_image( $value ) {
@@ -639,6 +639,23 @@ class Mooberry_Book_Manager_Options {
 		return $this->tax_grid_slugs;
 	}
 	*/
+
+	public function set_tax_grid_slug( $taxonomy, $slug ) {
+		$id = 'mbdb_book_grid_' . $taxonomy . '_slug';
+
+			// make sure each tax grid is valid
+			$reserved_terms = mbdb_wp_reserved_terms();
+
+			$slug = sanitize_title( $slug); //$this->get_option_value( $id, true, $taxonomy) );
+			if ( in_array( $slug, $reserved_terms ) ) {
+					$slug = 'book-' . $slug;
+			}
+
+			$this->options[$id] = $slug;
+			$this->save_options();
+			update_option( 'mbdb_flush_rules', true );
+	}
+
 	public function get_tax_grid_slug( $taxonomy ) {
 		/*$slugs = $this->get_tax_grid_slugs();
 		if ( !array_key_exists( $taxonomy, $slugs ) ) {
