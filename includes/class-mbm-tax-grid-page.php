@@ -80,7 +80,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 
 			//$new_rules['mbdb_series/([^/]*)/?$'] =  'mbdb_tax_grid/test/?x=x&the-taxonomy=mbdb_series&the-term=$matches[1]&post_type=mbdb_tax_grid';
 			//$new_rules[$name . '/([^/]*)/?$'] =  'mbdb_tax_grid/test/?x=x&the-taxonomy=' . $name . '&the-term=$matches[1]&post_type=mbdb_tax_grid';
-			$new_rules[$name . '/([^/]*)/?$'] =   'index.php?page_id=' . $page_id . '&the-taxonomy=' . $name . '&the-term=$matches[1]';
+		//	$new_rules[$name . '/([^/]*)/?$'] =   'index.php?page_id=' . $page_id . '&the-taxonomy=' . $name . '&the-term=$matches[1]';
 		}
 
 		if (count($new_rules)>0) {
