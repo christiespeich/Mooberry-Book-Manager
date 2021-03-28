@@ -1,12 +1,12 @@
 <?php
 /**
  *  Plugin Name: Mooberry Book Manager
- *  Plugin URI: http://bookmanager.mooberrydreams.com/
+ *  Plugin URI: http://mooberrybookmanager.com/features
  *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more.
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.7.1
+ *  Version: 4.7.2
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -27,7 +27,7 @@
  *
  * @package MBDB
  * @author  Mooberry Dreams
- * @version 4.7.1
+ * @version 4.7.2
  */
 
 // Exit if accessed directly
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.7.1' );
+	define( 'MBDB_PLUGIN_VERSION', '4.7.2' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
