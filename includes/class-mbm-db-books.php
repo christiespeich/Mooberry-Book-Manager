@@ -320,7 +320,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			//error_log('inserting post');
 			$id = wp_insert_post(  apply_filters( 'mbdb_book_save_all_insert_post', array(
 				'post_title' => $book->title,
-				'post_content' => '[mbdb_book]',
+			//	'post_content' => '[mbdb_book]',
 				'post_status' => 'publish',
 				'post_type' => $this->post_type,
 					)

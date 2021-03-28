@@ -37,12 +37,22 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'rewrite'         => array( 'slug' => 'book' ),
 			'menu_icon'       => 'dashicons-book-alt',
 			'capability_type' => array( 'mbdb_book', 'mbdb_books' ),
-			'supports'        => array( 'title', 'comments', 'author' ),
+			'supports'        => array( 'title', 'comments', 'author', 'editor' ),
 			'taxonomies'      => array_keys( $this->taxonomies ),
 			'show_in_rest'    => true,
 			'rest_base'       => 'books',
 			'can_export'      => false,
 			'has_archive'	=> true,
+			'template' => array(
+				array( 'core/image', array(
+					'align' => 'left',
+				) ),
+				array( 'core/heading', array(
+					'placeholder' => 'Add Author...',
+				) ),
+				array( 'core/paragraph', array(
+					'placeholder' => 'Add Description...',
+				) ), )
 		);
 
 		// let individual CPTs choose whether to add post class?
@@ -1192,7 +1202,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		wp_update_post( array(
 			'ID'           => $post_id,
 			'post_excerpt' => strip_tags( $summary ),
-			'post_content' => '[mbdb_book]',
+		//	'post_content' => '[mbdb_book]',
 		) );
 
 		// re-hook this function and mbdb_save_book_custom_table
