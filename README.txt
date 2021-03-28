@@ -1,7 +1,7 @@
 === Mooberry Book Manager ===
 Contributors: mooberrydreams
 Donate link: https://www.paypal.me/mooberrydreams/
-Tags: book, author, publisher, writer, writing, publishing, library, book store, author website management, book shop, sell books, link to Amazon
+Tags: book, author, writer, writing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.7
 Stable tag: 4.7.1
@@ -34,9 +34,8 @@ Feature books on your sidebar with four options:
 
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
 
-Requires Wordpress 3.8 and Javascript.
+Requires Wordpress 3.8+ and Javascript.
 
-Mooberry Book Manager can be translated into other languages! See `Other Notes` for more information.
 
 **Getting Started with Mooberry Book Manager**
 
@@ -44,7 +43,7 @@ After installing and activating Mooberry Book Manager, you'll now have a Books m
 
 In order for your books to appear on your website, you need to add a Book Grid and/or a Widget.
 
-To Add a Book Grid:
+*To Add a Book Grid:*
 
 * Go to Book Grids -> Add New
 
@@ -52,14 +51,14 @@ To Add a Book Grid:
 
 * Choose the books, grouping, and sort order
 
-* Save the grid.
+* Save the grid. You will be shown a shortcode.  Copy the entire shortcode.
 
-* On any page, blog post, etc. on the text editor will be a button that says Add Book Grid. Click that and select a book grid.
+* On any page, blog post, etc. paste the shortcode into the text editor.
 
 * Save your page and view it. Click on any book to see the details of the book.
 
 
-To Add a Widget:
+*To Add a Widget:*
 
 * Go to Appearance -> Widget
 
@@ -69,28 +68,33 @@ To Add a Widget:
 
 * Save the widget and view your website. Click on the book cover to get the details of the book.
 
-Additonal questions?
+*Additonal questions?*
 
-Check out the [documentation and support page.](http://www.bookmanager.mooberrydreams.com/support/)
+Check out the [documentation and support page.](http://mooberry-book-manager.helpscoutdocs.com/)
 
 **Now Available**
 
-* [Additional Images](http://www.bookmanager.mooberrydreams.com/downloads/additional-images/) - Display additional images for a book beyond a single book cover, and add a video trailer.
+* [Custom Fields](https://www.mooberrybookmanager.com/downloads/custom-fields/) - Create your own fields and taxonomies for your books
 
-* [Advanced Widgets](http://www.bookmanager.mooberrydreams.com/downloads/advanced-widgets/) - Adds two additional sidebar widgets, as well as additional functionality to the existing Book Widget included with Mooberry Book Manager.
+* [Advanced Grids](https://www.mooberrybookmanager.com/downloads/avanced-grids/) - Add paging, filtering, sorting, additional fields, and more selection options to you grids
 
-* [Multi-Author](http://www.bookmanager.mooberrydreams.com/downloads/multi-author/) - Makes Mooberry Book Manager work for publishers, authors with multiple pen names, author groups, or for any other website that lists books by more than one author.
+* [Additional Images](https://www.mooberrybookmanager.com/downloads/additional-images/) - Display additional images for a book beyond a single book cover, and add a video trailer.
 
-* [Retail Links Redirect](http://www.bookmanager.mooberrydreams.com/downloads/retail-links-redirect/) - Magically redirects readers to retailers so you don't have to update your e-books after publishing.
+* [Advanced Widgets](https://www.mooberrybookmanager.com/downloads/advanced-widgets/) - Adds two additional sidebar widgets, as well as additional functionality to the existing Book Widget included with Mooberry Book Manager.
+
+* [Multi-Author](https://www.mooberrybookmanager.com/downloads/multi-author/) - Makes Mooberry Book Manager work for publishers, authors with multiple pen names, author groups, or for any other website that lists books by more than one author.
+
+* [Retail Links Redirect](https://www.mooberrybookmanager.com/downloads/retail-links-redirect/) - Magically redirects readers to retailers so you don't have to update your e-books after publishing.
 
 
-More extensions coming soon. If you have suggestions for a new extension, feel free to email me at bookmanager@mooberrydreams.com.
 
 **Want regular updates?**
 
-* Subscribe to Mooberry Dreams' mailing list: http://www.mooberrydreams.com/products/mooberry-book-manager/
+* [Subscribe to Mooberry Dreams' mailing list](http://eepurl.com/bwXBPH)
 
-* Like Mooberry Dreams on Facebook: https://www.facebook.com/MooberryDreams
+* [Like Mooberry Dreams on Facebook](https://www.facebook.com/MooberryDreams)
+
+* [Join the Mooberry Book Manager Users Group on Facebook](https://www.facebook.com/groups/mooberrybookmanager/)
 
 
 == Installation ==
@@ -156,7 +160,7 @@ There are cases though when you might want to have an Author field. You might be
 
 1. To simply display the author name, you could use another field, such as Subtitle, to display that information.
 
-2. For more advanced handling of author names, use the [Mooberry Book Manager Multi-Author plugin] (http://www.bookmanager.mooberrydreams.com/downloads/multi-author/). This will allow you to have a bio and photo of each author as well as advanced filtering and sorting on Book Grids based on author.
+2. For more advanced handling of author names, use the [Mooberry Book Manager Multi-Author plugin] (http://www.mooberrybookmanager.com/downloads/multi-author/). This will allow you to have a bio and photo of each author as well as advanced filtering and sorting on Book Grids based on author.
 
 = Does Mooberry Book Manager work with Wordpress Multi-Site? =
 
@@ -184,6 +188,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+
+= 4.7.2 =
+* Fixed: don't add grid referral to url if back to grid link is set to no
 
 = 4.7.1 =
 * Fixed: Allow tax grid urls to be updated in database elsewhere
@@ -335,7 +342,7 @@ Redesigned, responsive book page and much more!
 
 * Brazilian Portuguese
 
-**NOTE:** Mooberry Book Manager is translatable. If you'd like to volunteer a translation for your language, the template file (.pot) is available in the `languages` folder. [Contact us](http://www.mooberrydreams.com/contact/) when your translation is ready or if you need assistance.  You can also enter your translations on translate.wordpress.org here: https://translate.wordpress.org/projects/wp-plugins/mooberry-book-manager
+**NOTE:** [Mooberry Book Manager is translatable.](https://translate.wordpress.org/projects/wp-plugins/mooberry-book-manager/)
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
 
