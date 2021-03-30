@@ -113,6 +113,10 @@ abstract class Mooberry_Book_Manager_CPT {
 	}
 
 
+	public function is_taxonomy_of_object( $taxonomy ) {
+		return array_key_exists( $taxonomy, $this->taxonomies );
+	}
+
 	public function add_post_class( $classes ) {
 		if ( get_post_type() == $this->post_type ) {
 			if (!in_array('post', $classes)) {

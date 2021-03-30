@@ -13,7 +13,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 
 
 
-		add_action('generate_rewrite_rules', array( $this, 'rewrite_rules' ) );
+	//	add_action('generate_rewrite_rules', array( $this, 'rewrite_rules' ) );
 		add_filter('query_vars', array( $this, 'add_query_vars' ) );
 		add_shortcode('mbdb_tax_grid', array( $this, 'tax_grid_shortcode' ) );
 		add_filter('tc_breadcrumb_trail_items', array( $this, 'breadcrumb' ) , 10, 2);
@@ -24,6 +24,8 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		add_filter( 'wp_title', array( $this, 'document_title_pre44' ) , 20, 1);
 		add_filter('tc_title_text', array( $this, 'title' ) );
 		add_filter('the_title', array( $this, 'title' ), 99, 2 );
+		add_filter('the_content', array( $this, 'content'));
+		add_action('loop_start', array( $this, 'display_grid'));
 
 		add_filter('wpseo_opengraph_title', array( $this, 'override_wp_seo_meta') );
 		add_filter('wpseo_opengraph_url', array( $this, 'override_wp_seo_meta') );
@@ -51,6 +53,73 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 		return $args;
 	}
 
+	function content( $content ) {
+		if ( is_tax() && in_the_loop() ) {
+			return '';
+		}
+		return $content;
+	}
+	function display_grid(  ) {
+		//First, we check if we are in our custom taxonomy
+		if ( is_tax() && is_main_query() ) {
+
+			$taxonomy = get_query_var( 'taxonomy' );
+			$term     = get_query_var( 'term' );
+
+			if ( MBDB()->book_CPT->is_taxonomy_of_object( $taxonomy ) ) {
+
+
+				$selection = str_replace( 'mbdb_', '', $taxonomy );
+
+				// get id
+				// term_obj could be null if this is a custom field
+				$term_obj = get_term_by( 'slug', $term, $taxonomy );
+				if ( $term_obj != null ) {
+					$selected_ids = array( (int) $term_obj->term_id );
+				} else {
+					$selected_ids = null;
+				}
+
+
+				$this->taxonomy = apply_filters( 'mbdb_tax_grid_selection', $selection, $selected_ids, $term, null );
+				$this->terms    = apply_filters( 'mbdb_tax_grid_selected_ids', $selected_ids, $selection, $term, null );
+				$this->sort     = apply_filters( 'mbdb_tax_grid_sort', null, $selection, $selected_ids, $term );
+
+				//$this->data_object = new Mooberry_Book_Manager_Tax_Grid( $selection, $selected_ids, $sort );
+				//$this->set_tax_grid_object( $selection, $selected_ids, $sort );
+				//	$this->set_data_object();
+				//$books = $this->data_object->book_list;
+
+				$this->data_object = MBDB()->grid_factory->create_grid( array(
+					'taxonomy' => $this->taxonomy,
+					'terms'    => $this->terms,
+					'sort'     => $this->sort
+				) );
+
+				$grid_output = $this->data_object->display_grid();
+
+				// term meta
+				if ( $term_obj != null ) {
+					if ( function_exists( 'get_term_meta' ) ) {
+						$before = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description', true );
+						if ( $before != '' ) {
+							$grid_output = '<p>' . $this->get_wysiwyg_output( ( $before ) ) . '</p>' . $grid_output;
+						}
+						$after = get_term_meta( (int) $term_obj->term_id, 'mbdb_tax_grid_description_bottom', true );
+						if ( $after != '' ) {
+							$grid_output = $grid_output . '<p>' . $this->get_wysiwyg_output( ( $after ) ) . '</p>';
+						}
+					}
+				}
+
+				echo $grid_output;
+
+
+			}
+		}
+
+
+	}
 
 
 	// Set up redirects to series/{series-name} based on query vars
