@@ -2540,7 +2540,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				$link = get_permalink( $attr['grid'] );
 
 				if ( $link != '' ) {
-					$content = '<a class="mbdb_back_to_grid_link" href="' . $link . '#book_' . $book_id . '">&lt; Back to grid</a>';
+					$content = '<a class="mbdb_back_to_grid_link" href="' . $link . '#book_' . $book_id . '">&lt; ' . __('Back to grid', 'mooberry-book-manager') . '</a>';
 
 				}
 			}
