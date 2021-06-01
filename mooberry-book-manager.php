@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.7.5
+ *  Version: 4.7.6
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.7.5' );
+	define( 'MBDB_PLUGIN_VERSION', '4.7.6' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -463,7 +463,7 @@ function remove_tax_grid_page_from_menu( $sorted_menu_objects, $args ) {
 	foreach ( $sorted_menu_objects as $key => $menu_object ) {
 		// can also check for $menu_object->url for example
 		// see all properties to test against:
-		if ( ! isset( $menu_object ) || ! property_exists( $menu_object, 'object_id' ) ) {
+		if ( ! isset( $menu_object ) || !is_object($menu_object) || ! property_exists( $menu_object, 'object_id' ) ) {
 			continue;
 		}
 		if ( $menu_object->object_id == $page_id ) {

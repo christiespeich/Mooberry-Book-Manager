@@ -1109,8 +1109,11 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		foreach ( $books as $book ) {
 			//$book_obj = new Mooberry_Book_Manager_Book( $book->ID );
 			$book_obj    = MBDB()->book_factory->create_book( $book->ID );
-			$book_list[] = $book_obj->to_json();
+			$book_obj = apply_filters('mbdb_export_data_book_object', $book_obj, $book );
+			$book_list[] = apply_filters('mbdb_export_data_book_json', $book_obj->to_json(), $book_obj, $book);
 		}
+
+		$book_list = apply_filters('mbdb_export_data_all_books', $book_list, $books );
 
 		wp_reset_postdata();
 		file_put_contents( MBDB_PLUGIN_DIR . '/includes/admin/export.txt', json_encode( $book_list ) );
