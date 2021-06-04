@@ -23,6 +23,7 @@ class Mooberry_Book_Manager_Options {
 	protected $placeholder_locations;
 	protected $book_page_template;
 	protected $goodreads_image;
+	protected $reedsy_image;
 	protected $book_grid_default_height;
 	protected $tax_grid_page;
 	protected $tax_grid_template;
@@ -600,11 +601,13 @@ class Mooberry_Book_Manager_Options {
 	}
 
 	protected function get_goodreads_image(  ) {
-
 			return $this->get_option_value(  'goodreads', true, '' );
-
-
 	}
+
+	protected function get_reedsy_image(  ) {
+			return $this->get_option_value(  'reedsy', true, '' );
+	}
+
 
 	protected function get_book_grid_default_height(  ) {
 

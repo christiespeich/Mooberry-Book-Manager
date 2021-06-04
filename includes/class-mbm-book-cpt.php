@@ -95,6 +95,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'book_publisher', array( $this, 'shortcode_publisher' ) );
 		add_shortcode( 'book_published', array( $this, 'shortcode_published' ) );
 		add_shortcode( 'book_goodreads', array( $this, 'shortcode_goodreads' ) );
+		add_shortcode( 'book_reedsy', array( $this, 'shortcode_reedsy' ) );
 		add_shortcode( 'book_excerpt', array( $this, 'shortcode_excerpt' ) );
 		add_shortcode( 'book_additional_info', array( $this, 'shortcode_additional_info' ) );
 		add_shortcode( 'book_genre', array( $this, 'shortcode_genre' ) );
@@ -740,6 +741,17 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				'desc'       => 'http://www.goodreads.com/your/Unique/Text/',
 				'attributes' => array(
 					'pattern' => '^(https?:\/\/)?www.goodreads.com.*',
+				),
+			)
+		);
+
+		$mbdb_bookinfo_metabox->add_field( array(
+				'name'       => __( 'Reedsy Discovery Link', 'mooberry-book-manager' ),
+				'id'         => '_mbdb_reedsy',
+				'type'       => 'text_url',
+				'desc'       => 'https://www.reedsy.com/discovery/book/your-unique-text',
+				'attributes' => array(
+					'pattern' => '^(https?:\/\/)?www.reedsy.com/discovery/book/.*',
 				),
 			)
 		);
@@ -1830,6 +1842,35 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		}
 	}
 
+	public function shortcode_reedsy( $attr, $content ) {
+		$attr = shortcode_atts( array(
+			'text'  => __( 'View on Reedsy', 'mooberry-book-manager' ),
+			'label' => '',
+			'after' => '',
+			'blank' => '',
+			'book'  => '',
+		), $attr );
+		//error_log('reedsy');
+		$this->set_book( $attr['book'] );
+		$reedsy_link = $this->data_object->reedsy;
+		if ( $reedsy_link == '' ) {
+			return $this->output_blank_data( 'reedsy', $attr['blank'] );
+		}
+		$reedsy_image = MBDB()->options->reedsy_image;
+
+		if ( $reedsy_image == '' ) {
+			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_new"><span class="mbm-book-reedsy-text">' . $attr['text'] . '</span></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+		} else {
+			$alt = __( 'Add to Reedsy', 'mooberry-book-manager' );
+			$url = esc_url( $reedsy_image );
+			if ( is_ssl() ) {
+				$url = preg_replace( '/^http:/', 'https:', $url );
+			}
+
+			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_new"><img class="mbm-book-reedsy-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+		}
+	}
+
 
 	public function shortcode_excerpt( $attr, $content ) {
 		$attr = shortcode_atts( array(
@@ -2617,11 +2658,18 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		//error_log('goodreads');
 		$book_page_layout = apply_filters( 'mbdb_book_page_before_goodreads', $book_page_layout, $this->data_object, $attr );
 		if ( $this->data_object->goodreads != '' ) {
-			$book_page_layout .= '[book_goodreads   book="' . $book . '"]';
+			$book_page_layout .= '[book_goodreads book="' . $book . '"]';
 		}
 		//error_log('summary');
 		// v 3.0 for customizer
 		$book_page_layout = apply_filters( 'mbdb_book_page_after_goodreads', $book_page_layout, $this->data_object, $attr );
+
+		$book_page_layout = apply_filters( 'mbdb_book_page_before_reedsy', $book_page_layout, $this->data_object, $attr );
+		if ( $this->data_object->reedsy != '' ) {
+			$book_page_layout .= '[book_reedsy book="' . $book . '"]';
+		}
+		$book_page_layout = apply_filters( 'mbdb_book_page_after_reedsy', $book_page_layout, $this->data_object, $attr );
+
 		$book_page_layout .= '</div><div id="mbm-second-column">';
 		$book_page_layout = apply_filters( 'mbdb_book_page_before_summary', $book_page_layout, $this->data_object, $attr );
 		//	if ( $this->data_object->summary != '' ) {

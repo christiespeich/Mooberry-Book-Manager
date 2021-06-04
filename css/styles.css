@@ -60,7 +60,7 @@
 
 
 
-#mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-goodreads-image {
+#mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-goodreads-image, #mbm-book-page .mbm-book-reedsy-image {
 
 		display: block;
 		margin-left: auto;
@@ -212,10 +212,7 @@
 	}
 
 #mbm-book-page  .mbm-book-serieslist,#mbm-book-page .mbm-book-editions, #mbm-book-page .mbm-book-goodreads {
-
-
 		border-top: 1px solid #cccccc;
-
 	}
 
 #mbm-book-page div#mbm-book-links1 {
@@ -261,6 +258,12 @@
 #mbm-book-page .mbdb_back_to_grid_link {
     font-size: smaller;
 
+}
+
+#mbm-book-page .mbm-book-reedsy-image {
+    background: gray;
+    height: 50px;
+    width: 50px;
 }
 
 @media (max-width:810px) {

@@ -263,9 +263,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'id'         => 'goodreads',
 				'name'       => __( 'Add to Goodreads Image', 'mooberry-book-manager' ),
 				'type'       => 'file',
-				'attributes' => array(
-					'style' => 'width:300px',
-				),
+				'preview_size'	=>	'thumbnail',
 				//		'after_row'=> $description,
 				'options'    => array(
 					'url'                  => false,
@@ -273,6 +271,21 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				),
 			)
 		);
+
+		$mbdb_settings_metabox->add_field( array(
+				'id'         => 'reedsy',
+				'name'       => __( 'Add to Reedsy Image', 'mooberry-book-manager' ),
+				'type'       => 'file',
+
+				//		'after_row'=> $description,
+				'options'    => array(
+					'url'                  => false,
+					'add_upload_file_text' => __( 'Choose or Upload File', 'mooberry-book-manager' ),
+				),
+			)
+		);
+
+
 
 		$mbdb_settings_metabox->add_field( array(
 				'id'         => 'mbdb_reset_meta_boxes',

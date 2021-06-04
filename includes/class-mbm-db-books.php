@@ -40,7 +40,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'imprint_id' => '%s',
 			'goodreads' => '%s',
 			'series_order' => '%f',
-			//'blog_id'	=> '%d',
+			'reedsy'    =>  '%s',
 		);
 	}
 
@@ -59,6 +59,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'_mbdb_imprintID' => 'imprint_id',
 			'_mbdb_goodreads' => 'goodreads',
 			'_mbdb_series_order' => 'series_order',
+			'_mbdb_reedsy' => 'reedsy',
 		);
 	}
 
@@ -798,6 +799,7 @@ public function search_where( $where ) {
 			  imprint_id char(13),
 			  goodreads longtext,
 			  series_order decimal(6,2),
+			  reedsy longtext,
 			  PRIMARY KEY  (book_id),
 			  KEY release_date (release_date)
 		 ) $charset_collate; ";
