@@ -1123,7 +1123,9 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			//$book_obj = new Mooberry_Book_Manager_Book( $book->ID );
 			$book_obj    = MBDB()->book_factory->create_book( $book->ID );
 			$book_obj = apply_filters('mbdb_export_data_book_object', $book_obj, $book );
-			$book_list[] = apply_filters('mbdb_export_data_book_json', $book_obj->to_json(), $book_obj, $book);
+			if ( $book_obj ) {
+				$book_list[] = apply_filters( 'mbdb_export_data_book_json', $book_obj->to_json(), $book_obj, $book );
+			}
 		}
 
 		$book_list = apply_filters('mbdb_export_data_all_books', $book_list, $books );
@@ -1239,12 +1241,12 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	}
 
 	protected function set_tabs() {
-		$this->tabs = array(
+		$this->tabs = apply_filters('mbdb_import_export_tabs', array(
 			'mbdb_import_export' => array(
-				'import'          => __( 'Import', 'mooberry-book-manager' ),
-				'export'          => __( 'Export', 'mooberry-book-manager' ),
+				'import'          => __( 'Import Books', 'mooberry-book-manager' ),
+				'export'          => __( 'Export Books', 'mooberry-book-manager' ),
 				'import_novelist' => __( 'Import from Novelist', 'mooberry-book-manager' )
-			)
+			) )
 		);
 	}
 
