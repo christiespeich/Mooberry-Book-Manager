@@ -68,7 +68,8 @@ function mbdb_activate_single_site() {
 
 
 		// creates table
-		MBDB_DB_Books::activate();
+		$db_object = new MBDB_DB_Books();
+		$db_object->create_table();
 
 
 		// if this is a fresh 3.1 or higher install, no import necessary
