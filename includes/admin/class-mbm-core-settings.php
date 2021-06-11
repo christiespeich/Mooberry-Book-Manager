@@ -1014,6 +1014,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 					}
 				}
 			} ?>
+			<h3><?php _e('Import Books', 'mooberry-book-manager'); ?></h3>
             <p><?php _e( 'Books will be imported in the background. You may leave this page while they are importing. A notice will be displayed while books are importing.', 'mooberry-book-manager' ); ?> </p> <?php
 
 			if ( ! $this->import_process->is_queue_empty() ) {
@@ -1056,7 +1057,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 
 			?>
-            <p><?php _e( 'This will create a text file with all of the books entered into Mooberry Book Manager. Books that are in Draft Mode or in the Trash will not be exported.  Options for filtering which books to export will be coming in a future update.', 'mooberry-book-manager' ); ?></p>
+           <h3><?php _e('Export Books', 'mooberry-book-manager'); ?></h3> <p><?php _e( 'This will create a text file with all of the books entered into Mooberry Book Manager. Books that are in Draft Mode or in the Trash will not be exported.  Options for filtering which books to export will be coming in a future update.', 'mooberry-book-manager' ); ?></p>
 			<?php do_action( 'mbdb_export_add_fields' ); ?>
             <p><a class="button"
                   id="mbdb_<?php echo $this->tab; ?>"><?php echo $this->tabs[ $this->page ][ $this->tab ]; ?></a><img
@@ -1075,19 +1076,20 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				return;
 			}
 			?>
+			<h3><?php _e('Import Books from Novelist', 'mooberry-book-manager') ?></h3>
             <p><?php _e( 'This will take any books you have entered with Novelist and import them into Mooberry Book Manager.  Books that are in the Trash will not be imported.  Nothing will be deleted from Novelist so you still have full access to that data while the Novelist plugin in activated.', 'mooberry-book-manager' ); ?></p>
             <ul style="padding-left:40px; list-style:initial">
                 <li><?php _e( 'The Novelist plugin must be activated in order to import series and genres.', 'mooberry-book-manager' ) ?></li>
                 <li><?php _e( 'ISBN13 and page length will be imported as a Paperback format', 'mooberry-book-manager' ); ?></li>
                 <li><?php _e( 'ASIN will be imported as a Kindle format', 'mooberry-book-manager' ) ?></li>
-                <li>If ASIN is included, it will be used to add Kindle Live Preview. The excerpt, if included, will also
+                <li><?php _e('If ASIN is included, it will be used to add Kindle Live Preview. The excerpt, if included, will also
                     be imported. If you would rather use the excerpt text than the Kindle Live Preview, you can change
-                    that setting on the book page.
+                    that setting on the book page.', 'mooberry-book-manager'); ?>
                 </li>
                 <li><?php _e( 'Contributors will not be imported because there isn\'t a single corresponding field. Mooberry Book Manager has separate fields for editors, cover artists, and illustrators where contributors can be added to.', 'mooberry-book-manager' ); ?> </li>
             </ul>
 
-            PLEASE NOTE: At this time, only data entered with the base, free level of Novelist will be imported. Data entered with extensions will not be imported.
+           <?php _e('PLEASE NOTE: At this time, only data entered with the base, free level of Novelist will be imported. Data entered with extensions will not be imported.' ,'mooberry-book-manager'); ?>
 
             <p><a class="button"
                   id="mbdb_<?php echo $this->tab; ?>"><?php echo $this->tabs[ $this->page ][ $this->tab ]; ?></a><img

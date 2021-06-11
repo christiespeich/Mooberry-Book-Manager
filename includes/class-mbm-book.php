@@ -439,7 +439,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 		} else {
 
-			if ( property_exists( $this, $key ) ) {
+//			if ( property_exists( $this, $key ) ) {
 
 				$unsettable_properties = array('db_object', 'genres', 'series', 'tags', 'editors', 'illustrators', 'cover_artists', 'reviews', 'editions', 'buy_links', 'download_links' );
 
@@ -450,7 +450,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				}
 
 			}
-		}
+//		}
 
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
 

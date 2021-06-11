@@ -6,7 +6,7 @@ class Mooberry_Book_Manager_Import_Process extends WP_Background_Process {
      */
     protected $action = 'import_books';
 
-	
+
 	public function __construct() {
 		parent::__construct();
 		if ( $this->is_process_running() ) {
@@ -18,17 +18,17 @@ class Mooberry_Book_Manager_Import_Process extends WP_Background_Process {
 		} else {
 			if ( $this->is_queue_empty() ) {
 				MBDB()->helper_functions->remove_admin_notice('mbdb_import_books_process');
-				
+
 			}
 		}
 	}
-	
+
 	public function cancel_process() {
 		global $wpdb;
 
 			$table        = $wpdb->options;
 			$column       = 'option_name';
-			
+
 			if ( is_multisite() ) {
 				$table        = $wpdb->sitemeta;
 				$column       = 'meta_key';
@@ -37,21 +37,21 @@ class Mooberry_Book_Manager_Import_Process extends WP_Background_Process {
 			$key = $this->identifier . '_batch_%';
 
 			$query = $wpdb->get_results( $wpdb->prepare( "
-			DELETE 
+			DELETE
 			FROM {$table}
 			WHERE {$column} LIKE %s
-			
+
 		", $key ) );
-		
+
 		parent::cancel_process();
-		
+
 	}
-	
+
 	public function save() {
 		parent::save();
 		$this->data = array();
 	}
-			
+
     /**
      * Task
      *
@@ -65,20 +65,10 @@ class Mooberry_Book_Manager_Import_Process extends WP_Background_Process {
      * @return mixed
      */
     protected function task( $book ) {
-        // Actions to perform
-		//print_r($book);
-		//$new_book = new Mooberry_Book_Manager_Book();
-		$new_book = MBDB()->book_factory->create_book();
-		//error_log('setting task');
-		$success = $new_book->import( $book );
-		//sleep(5);
-		// if ( $success !== true ) {
-			// if ( ! $this->is_queue_empty() ) {
-				// $batch = $this->get_batch();
-				// $this->delete( $batch->key );
-			// }
-		// }
-        return false;
+        $new_book = MBDB()->book_factory->create_book();
+		$new_book->import( $book );
+		$new_book = apply_filters('mbdb_book_after_import', $new_book, $book);
+		return false;
     }
 
     /**
@@ -95,11 +85,11 @@ class Mooberry_Book_Manager_Import_Process extends WP_Background_Process {
 		$message = __('Book import complete!', 'mooberry-book-manager');
 		$message .= '&nbsp;&nbsp;<a href="#" class="button mbdb_admin_notice_dismiss" data-admin-notice="' . $key . '">' . __('Dismiss this notice', 'mooberry-book-manager') . '</a>';
 		$type = 'updated';
-		
+
 		MBDB()->helper_functions->set_admin_notice( $message, $type, $key);
-		
+
     }
-	
+
 	public function is_queue_empty() {
 		return parent::is_queue_empty();
 	}
