@@ -85,7 +85,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_filter( 'wp_kses_allowed_html', array( $this, 'kses_allowed_html' ), 10, 2 );
 		add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'reorder_taxonomy_boxes' ) );
 
-		add_action( 'save_post', array( $this, 'test' ), 1 );
+		add_filter( 'relevanssi_content_to_index', array( $this, 'index_extra_content_for_relevanssi'), 10, 2 );
+		add_filter( 'searchwp\source\post\attributes\content', array( $this, 'index_extra_content_for_searchwp'), 10, 2);
+
 
 		add_shortcode( 'book_title', array( $this, 'shortcode_title' ) );
 		add_shortcode( 'book_cover', array( $this, 'shortcode_cover' ) );
@@ -116,6 +118,25 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 
 	}
 
+	public function index_extra_content_for_relevanssi( $content, $post ) {
+		return $this->index_extra_content( $content, $post->ID );
+
+	}
+
+	public function index_extra_content_for_searchwp( $content, $args ) {
+		return $this->index_extra_content( $content, $args['post']->ID );
+	}
+
+
+	protected function index_extra_content( $content, $book_id) {
+		if ( get_post_type( $book_id ) == $this->post_type ) {
+			$book    = MBDB()->books_db->get( $book_id );
+			$content .= ' ' . $book->summary . ' ' . $book->additional_info;
+			$content = apply_filters( 'mbdb_book_content_to_index', $content, $book );
+		}
+
+		return $content;
+	}
 
 	public function get_taxonomies() {
 		return $this->taxonomies;
@@ -1478,17 +1499,6 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$this->validate_all_group_fields( '_mbdb_social_media_links', '_mbdb_social_mediaID', array( '_mbdb_social_media_link' ), __( 'Social Media Links require all fields filled out. Please check social media link #%s.', 'mooberry-book-manager' ) );
 
 		return $this->sanitize_field( $field );
-	}
-
-
-	function test( $id ) {
-		//	//error_log('save post!');
-		if ( wp_is_post_revision( $id ) ) {
-			//	//error_log('revision!');
-		}
-		if ( wp_is_post_autosave( $id ) ) {
-			//		//error_log('autosave!');
-		}
 	}
 
 	public function override_wp_seo_meta( $tag ) {
