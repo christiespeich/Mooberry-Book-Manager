@@ -326,7 +326,7 @@ public function preview_meta_box() {
 
 	//echo '<a class="button" id="mbdb_update_preview">Show Preview</a>';
 ?>
-	<input type="button" class="button button-secondary" id="mbdb_update_preview" value="<?php _e('Show Preview'); ?>" />
+	<input type="button" class="button button-secondary" id="mbdb_update_preview" value="<?php _e('Show Preview', 'mooberry-book-manager'); ?>" />
 	<img id="mbdb_preview_loading" style="display:none;" src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"/><div id="mbdb_book_grid_preview">
 	<?php
 		// $this->set_data_object( $post->ID );
