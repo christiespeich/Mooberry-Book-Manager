@@ -189,6 +189,10 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
+= 4.9.2 =
+* Fixed: Back to Grid link not working for tax grids
+* Fixed: translation/internationalization updated
+
 = 4.9.1 =
 * Fixed: missing text for translations in .pot file
 
