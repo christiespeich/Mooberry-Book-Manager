@@ -4,18 +4,26 @@ The pot file included in this folder is ready to use.
 
 1. Start up Poedit.
 
-2. In Poedit goto File -> New from POT/PO file...
+If starting a new translation:
+    2. In Poedit goto File -> New from POT/PO file...
+    3. Select and Open the pot file from the languages folder.
+    4. Enter your name, email address, your language and country (i.e. French fr_FR, German de_DE) to the setting form.
+    5. Click the Update button in the main Poedit UI.
 
-3. Select and Open the pot file from the languages folder.
+If updating an existing PO file for your language:
+    2. In Poedit go to File -> Open...
+    3. Select and Open the po file from the languages folder
+    4. In Poedit go to Translation -> Update from POT File...    (** In older versions this menu is called Catalog)
+    5. Select and Open the pot file from the languages folder
 
-4. Enter your name, email address, your language and country (i.e. French fr_FR, German de_DE) to the setting form.
+6. Enter your translations
 
-5. Click the Update button in the main Poedit UI.
-
-6. Save the file:
+7. Save the file:
 	- For a plugin like filename-xx_XX.po with xx_XX for your language and country.
-	- For a theme xx_XX.po
+	- For a theme xx_XX.po with xx_XX for your language and country.
 
-7. That's it, go to your WordPress blog and see your translation in action. N'joy your blogging!!!
+8. That's it, go to your WordPress blog and see your translation in action.
+
+9. Email the plugin/theme author your po file so it can be included in future updates for all users.
 
 Thank you for your contribution.

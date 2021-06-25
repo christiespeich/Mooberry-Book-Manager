@@ -142,6 +142,7 @@ final class Mooberry_Book_Manager {
 
 			// //error_log('making instance');
 			add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
+			add_action( 'init', array( self::$instance, 'load_language_domain' ), 1 );
 			add_action( 'admin_notices', array( self::$instance, 'admin_notices' ) );
 			add_action( 'admin_init', 'mbdb_flush_rewrite_rules' );
 
@@ -226,8 +227,11 @@ final class Mooberry_Book_Manager {
 		_doing_it_wrong( __FUNCTION__, 'Cheatin&#8217; huh?', '3.0' );
 	}
 
-	public static function plugins_loaded() {
+	public static function load_language_domain() {
 		load_plugin_textdomain( 'mooberry-book-manager', false, basename( MBDB_PLUGIN_DIR ) . '/languages/' );
+	}
+	public static function plugins_loaded() {
+
 
 		// check if SuperCache is installed
 		define( 'MBDB_SUPERCACHE', function_exists( 'wp_cache_manager' ) );

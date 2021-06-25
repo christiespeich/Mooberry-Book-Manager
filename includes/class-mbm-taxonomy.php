@@ -49,27 +49,27 @@ class Mooberry_Book_Manager_Taxonomy {
 					'delete_terms' => 'manage_categories',
 				),
 				'labels' => array(
-					'name' => sprintf( __( '%s', 'mooberry-book-manager' ), $this->plural_name ),
-					'singular_name' => sprintf( __( '%s', 'mooberry-book-manager' ), $this->singular_name ),
-					'search_items' => sprintf( __( 'Search %s' , 'mooberry-book-manager' ), $this->plural_name ),
-					'all_items' =>  sprintf( __( 'All %s' , 'mooberry-book-manager' ), $this->plural_name ),
-					'parent_item' =>  sprintf( __( 'Parent %s' , 'mooberry-book-manager' ), $this->singular_name ),
-					'parent_item_colon' =>  sprintf( __( 'Parent %s:' , 'mooberry-book-manager' ), $this->singular_name ),
-					'edit_item' =>  sprintf( __( 'Edit %s' , 'mooberry-book-manager' ), $this->singular_name ),
-					'update_item' =>  sprintf( __( 'Update %s' , 'mooberry-book-manager' ), $this->singular_name ),
-					'add_new_item' =>  sprintf( __( 'Add New %s' , 'mooberry-book-manager' ), $this->singular_name ),
+					'name' => $this->plural_name ,
+					'singular_name' => $this->singular_name,
+					'search_items' => __( 'Search ' , 'mooberry-book-manager' ) .  $this->plural_name ,
+					'all_items' =>  __( 'All ', 'mooberry-book-manager' ) .  $this->plural_name ,
+					'parent_item' =>   __( 'Parent ' , 'mooberry-book-manager' ) . $this->singular_name ,
+					'parent_item_colon' =>  __( 'Parent %s:' , 'mooberry-book-manager' ), $this->singular_name ,
+					'edit_item' =>   __( 'Edit ' , 'mooberry-book-manager' ) . $this->singular_name ,
+					'update_item' =>   __( 'Update ' , 'mooberry-book-manager' ) .  $this->singular_name ,
+					'add_new_item' =>   __( 'Add New ' , 'mooberry-book-manager' ) . $this->singular_name ,
 					'new_item_name' => sprintf(  __( 'New %s Name' , 'mooberry-book-manager' ), $this->singular_name ),
-					'menu_name' =>  sprintf( __( '%s' , 'mooberry-book-manager' ), $this->plural_name ),
-					'popular_items' => sprintf( __( 'Popular %s', 'mooberry-book-manager' ), $this->plural_name ),
+					'menu_name' =>  $this->plural_name ,
+					'popular_items' =>  __( 'Popular ', 'mooberry-book-manager' ) . $this->plural_name ,
 					'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'mooberry-book-manager' ), strtolower($this->plural_name ) ),
-					'add_or_remove_items' => sprintf( __( 'Add or remove %s', 'mooberry-book-manager' ), strtolower( $this->plural_name ) ),
-					'choose_from_most_used' => sprintf( __( 'Choose from the most used %s', 'mooberry-book-manager' ), strtolower( $this->plural_name ) ),
+					'add_or_remove_items' => __( 'Add or remove ', 'mooberry-book-manager' ) . strtolower( $this->plural_name ) ,
+					'choose_from_most_used' =>  __( 'Choose from the most used ', 'mooberry-book-manager' ) . strtolower( $this->plural_name ) ,
 					'not_found' => sprintf( __( 'No %s found', 'mooberry-book-manager' ), strtolower( $this->plural_name ) ),
 					'items_list_navigation' => sprintf( __( '%s navigation', 'mooberry-book-manager' ), $this->singular_name ),
 					'items_list'            => sprintf( __( '%s list', 'mooberry-book-manager' ), $this->singular_name ),
 					'back_to_items' => sprintf( __( 'Back to %s', 'mooberry-book-manager' ), strtolower( $this->plural_name ) ),
 
-				)
+		)
 			);
 
 		$this->args = wp_parse_args( $args, $defaults );
