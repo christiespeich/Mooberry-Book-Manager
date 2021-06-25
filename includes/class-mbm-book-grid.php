@@ -800,6 +800,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 return $content;
 	 }
 
+	 protected function get_book_link( $book ) {
+	 	global $post;
+		 $link = get_permalink( $book->id );
+			 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
+				 $link .= '?grid_referrer=' . $post->ID;
+			 }
+
+			 return $link;
+	 }
+
 	 /**
 	  *  Generate the HTML to display a book and its cover image
 	  *  coming soon object passed as parameter because it's stored in
@@ -830,12 +840,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 $cover = $book->get_cover_url( $image_size, 'grid' );
 
 		 $alt = MBDB()->helper_functions->get_alt_attr( $book->cover_id, __( 'Book Cover:', 'mooberry-book-manager' ) . ' ' . $book->title );
-		global $post;
-		 $link = get_permalink( $book->id );
-			 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
-				 $link .= '?grid_referrer=' . $post->ID;
-			 }
 
+		$link = $this->get_book_link($book);
 		 if ( isset( $cover ) ) {
 			 if ( ! $book->has_cover() ) {
 				 $filter = '_placeholder';

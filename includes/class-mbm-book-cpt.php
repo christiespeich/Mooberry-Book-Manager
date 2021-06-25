@@ -210,7 +210,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		);
 $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_editor' ) );
 
-		$this->taxonomies['mbdb_editor'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_editor', $this->post_type, __( 'Editor', 'mooberry-book-manager' ), __( 'Editors', 'mooberry-book-manager' ), $tax_args );
+		$this->taxonomies['mbdb_editor'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_editor', $this->post_type, _x( 'Editor', 'general taxonomy name', 'mooberry-book-manager' ), _x( 'Editors', 'general tax name plural',  'mooberry-book-manager' ), $tax_args );
 
 
 		$tax_args['capabilities'] = array(
@@ -2003,6 +2003,17 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 	}
 
+	protected function get_tax_grid_link($term, $taxonomy ) {
+		// check if using permalinks
+			if ( get_option( 'permalink_structure' ) != '' ) {
+				$permalink = MBDB()->options->get_tax_grid_slug( $taxonomy );
+				$link = home_url( $permalink . '/' . $term->slug );
+			} else {
+				$link = home_url( '?the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid' );
+			}
+			return $link;
+	}
+
 	// public needed for other screens to access
 	public function output_taxonomy( $classname, $mbdb_terms, $permalink, $taxonomy, $attr ) {
 		//error_log('taxonomy ' . $taxonomy);
@@ -2026,12 +2037,8 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 			$list .= '<a class="' . $classname . '-link" href="';
 
-			// check if using permalinks
-			if ( get_option( 'permalink_structure' ) != '' ) {
-				$list .= home_url( $permalink . '/' . $term->slug );
-			} else {
-				$list .= home_url( '?the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid' );
-			}
+			$list .= $this->get_tax_grid_link( $term, $taxonomy );
+
 			$itemprop = '';
 			if ( $taxonomy == 'mbdb_genre' ) {
 				$itemprop = ' itemprop="genre" ';
@@ -2588,7 +2595,16 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				}
 			}
 			if ( $book_id != 0 ) {
-				$link = get_permalink( $attr['grid'] );
+
+				if ( $attr['grid'] == MBDB()->options->tax_grid_page ) {
+					$tax = 'mbdb_' . $_GET['taxonomy'];
+					$term_id = intval($_GET['term']);
+					$term = get_term($term_id, $tax);
+					error_log(print_r($term, true));
+					$link = $this->get_tax_grid_link($term, $tax);
+				} else {
+					$link = get_permalink( $attr['grid'] );
+				}
 
 				if ( $link != '' ) {
 					$content = '<a class="mbdb_back_to_grid_link" href="' . $link . '#book_' . $book_id . '">&lt; ' . __('Back to grid', 'mooberry-book-manager') . '</a>';
