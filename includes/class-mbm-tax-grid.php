@@ -15,7 +15,13 @@ class Mooberry_Book_Manager_Tax_Grid extends Mooberry_Book_Manager_Book_Grid {
 
 	 protected function get_book_link( $book ) {
 		$link = parent::get_book_link($book);
-		$link .= '&taxonomy=' . $this->books . '&term=' . $this->selection[0];
+		// if back to link then URL will already have a ?
+		if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
+			$link .= '&';
+		} else {
+			$link .= '?';
+		}
+		$link .= 'taxonomy=' . $this->books . '&term=' . $this->selection[0];
 		return $link;
 	 }
 }
