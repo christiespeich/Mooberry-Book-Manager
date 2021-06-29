@@ -806,7 +806,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
 				 $link .= '?grid_referrer=' . $post->ID;
 			 }
-
 			 return $link;
 	 }
 
