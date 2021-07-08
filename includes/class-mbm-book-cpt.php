@@ -2009,7 +2009,9 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				$permalink = MBDB()->options->get_tax_grid_slug( $taxonomy );
 				$link = home_url( $permalink . '/' . $term->slug );
 			} else {
-				$link = home_url( '?the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid' );
+				$tax_grid_page = MBDB()->options->get_tax_grid_page();
+				$permalink = get_permalink( $tax_grid_page );
+				$link =  $permalink . '&the-taxonomy=' . $taxonomy . '&the-term=' . $term->slug . '&post_type=mbdb_tax_grid';
 			}
 			return $link;
 	}

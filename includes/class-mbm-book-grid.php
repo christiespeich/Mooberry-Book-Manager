@@ -804,7 +804,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	 	global $post;
 		 $link = get_permalink( $book->id );
 			 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
-				 $link .= '?grid_referrer=' . $post->ID;
+			 	if ( stripos($link, '?') === false  ) {
+			 		$link .= '?';
+			    } else {
+			 		$link .= '&';
+			    }
+				 $link .= 'grid_referrer=' . $post->ID;
 			 }
 			 return $link;
 	 }
