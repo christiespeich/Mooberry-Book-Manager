@@ -102,7 +102,7 @@ class Mooberry_Book_Manager_Options {
 		}
 	}
 
-	protected function get_tax_grid_page() {
+	public function get_tax_grid_page() {
 		return $this->get_option_value( 'mbdb_tax_grid_page', true, '');
 	}
 

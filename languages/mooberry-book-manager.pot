@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2021-06-24 13:43-0400\n"
+"POT-Creation-Date: 2021-06-29 10:38-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -1278,7 +1278,7 @@ msgid "Available from %s."
 msgstr ""
 
 #: includes/class-mbm-book-cpt.php:1559 includes/class-mbm-book-cpt.php:1686
-#: includes/class-mbm-book-grid.php:842 includes/class-mbm-widget.php:231
+#: includes/class-mbm-book-grid.php:841 includes/class-mbm-widget.php:231
 msgid "Book Cover:"
 msgstr ""
 
