@@ -213,6 +213,7 @@
 
 #mbm-book-page  .mbm-book-serieslist,#mbm-book-page .mbm-book-editions, #mbm-book-page .mbm-book-goodreads {
 		border-top: 1px solid #cccccc;
+    clear: both;
 	}
 
 #mbm-book-page div#mbm-book-links1 {
