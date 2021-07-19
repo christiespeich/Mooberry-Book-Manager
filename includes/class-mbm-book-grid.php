@@ -802,6 +802,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	 protected function get_book_link( $book ) {
 	 	global $post;
+	 	$page_id =  isset($_POST['page_id']) ? intval($_POST['page_id']) : $post->ID;
+
 		 $link = get_permalink( $book->id );
 			 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
 			 	if ( stripos($link, '?') === false  ) {
@@ -809,7 +811,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			    } else {
 			 		$link .= '&';
 			    }
-				 $link .= 'grid_referrer=' . $post->ID;
+				 $link .= 'grid_referrer=' . $page_id; //$post->ID;
 			 }
 			 return $link;
 	 }
