@@ -713,7 +713,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 // indent the grid by 15px per depth level of the array
 		 do_action( 'mbdb_book_grid_pre_div', $l );
 
-		 $content = '<div class="mbm-book-grid-div" style="padding-left:' . ( 15 * $l ) . 'px;">';
+		 $content = '<div id="mbdb_book_grid_' . $this->id . '" class="mbm-book-grid-div" style="padding-left:' . ( 15 * $l ) . 'px;">';
 
 		 if ( $mbdb_books == null || count( $mbdb_books ) == 0 ) {
 			 // No books found at this level
