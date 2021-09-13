@@ -801,19 +801,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	 }
 
 	 protected function get_book_link( $book ) {
-	 	global $post;
-	 	$page_id =  isset($_POST['page_id']) ? intval($_POST['page_id']) : $post->ID;
+		 global $post;
+		 $page_id = isset( $_POST['page_id'] ) ? intval( $_POST['page_id'] ) : $post->ID;
 
 		 $link = get_permalink( $book->id );
-			 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
-			 	if ( stripos($link, '?') === false  ) {
-			 		$link .= '?';
-			    } else {
-			 		$link .= '&';
-			    }
-				 $link .= 'grid_referrer=' . $page_id; //$post->ID;
+		 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
+			 if ( stripos( $link, '?' ) === false ) {
+				 $link .= '?';
+			 } else {
+				 $link .= '&';
 			 }
-			 return $link;
+
+			 $link .= 'grid_referrer=' . $page_id; //$post->ID;
+
+			 if ( $page_id == MBDB()->options->tax_grid_page ) {
+				 $link .= '&taxonomy=' . $this->books . '&term=' . $this->selection[0];
+			 }
+		 }
+
+		 return $link;
 	 }
 
 	 /**
