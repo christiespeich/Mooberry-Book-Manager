@@ -3,15 +3,15 @@
 
 
 class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
-	
+
 	public function __construct() {
 		$this->post_type = 'mbdb_book_grid';
 	}
-	
-	
-	
+
+
+
 	protected function add_post_meta( $book_grid, $postmeta = null ) {
-		
+
 		if ( $postmeta == null ) {
 			$postmeta = get_post_meta( $book_grid->ID );
 		}
@@ -19,14 +19,14 @@ class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
 			$book_grid->filter_selection = array();
 
 		if (array_key_exists( '_mbdb_book_grid_books', $postmeta ) ) {
-			
+
 			$book_grid->books = $postmeta[ '_mbdb_book_grid_books' ][ 0 ];
-			
+
 			if ( array_key_exists( '_mbdb_book_grid_' . $book_grid->books, $postmeta ) ) {
-				
+
 				$filter_selection = maybe_unserialize($postmeta['_mbdb_book_grid_' . $book_grid->books][0]);
 				$book_grid->filter_selection = $filter_selection;
-				
+
 			} else {
 				$book_grid->filter_selection = array();
 			}
@@ -34,7 +34,7 @@ class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
 			$book_grid->books = '';
 			$book_grid->filter_selection = array();
 		}
-		
+
 		$x = 1;
 		//while ( property_exists( $book_grid, 'group_by_level_' . $x ) ) {
 			while (array_key_exists( '_mbdb_book_grid_group_by_level_' . $x, $postmeta ) ) {
@@ -66,14 +66,14 @@ class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
 
 		return $book_grid;
 	}
-	
+
 	public function get_by_slug( $slug, $cache_results = true ) {
 		$book_grid = parent::get_by_slug( $slug );
 		$book_grid = $this->add_post_meta( $book_grid );
 		return $book_grid;
 	}
-	
-	
-	
-	
+
+
+
+
 }
