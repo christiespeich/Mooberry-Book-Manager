@@ -89,7 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 $book_grid = $this->db_object->get( $id );
 
 		 if ( $book_grid != null ) {
-			 $this->id        = $id;
+			 $this->id        = isset( $book_grid->id ) ? $book_grid->id : (isset($book_grid->ID ) ? $book_grid->ID : 0);
 			 $this->title     = $book_grid->post_title;
 			 $this->books     = $book_grid->books;
 			 $this->selection = $book_grid->filter_selection;
