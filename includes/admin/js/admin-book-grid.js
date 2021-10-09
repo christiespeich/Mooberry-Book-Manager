@@ -331,7 +331,7 @@ function update_book_grid_preview() {
 		// get the names
 		var multicheck = [];
 		jQuery('.cmb-type-multicheck input').each( function() {
-			name = jQuery(this).attr('name').replace('[]','').replace('_mbdb_book_grid_', '').replace('-','_');
+			name = jQuery(this).attr('name').replace('[]','').replace('_mbdb_book_grid_', '').replace(/-/g,'_');
 			if ( jQuery.inArray( name, multicheck ) == -1 ) {
 				multicheck.push( name );
 			}
@@ -339,7 +339,7 @@ function update_book_grid_preview() {
 
 		// for each multicheck make an array of the selected items
 		multicheck.forEach( function ( element, index, array ) {
-			unsanitized_element = element.replace('_','-');
+			unsanitized_element = element.replace(/_/g,'-');
 			eval ( 'field_' + element + ' = [];');
 
 			jQuery(	'[name^="_mbdb_book_grid_' + unsanitized_element + '"]:checked').each( function() {
