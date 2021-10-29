@@ -1114,7 +1114,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$this->display_column( 'series_order', $data, $data, $book );
 	}
 
-	private function display_column( $column, $data, $raw_data, $book ) {
+	protected function display_column( $column, $data, $raw_data, $book ) {
 		do_action( 'mbdb_book_pre_mbdb_' . $column . '_column', $column, $data, $book );
 		echo '<div id="' . $column . '-' . $book->id . '_column">';
 		echo apply_filters( 'mbdb_book_mbdb_' . $column . '_column', $data, $book, $book->id, $column );

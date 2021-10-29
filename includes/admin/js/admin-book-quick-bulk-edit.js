@@ -90,18 +90,13 @@ jQuery(document)
 			                             .val()
 
 			// save the data
-			jQuery.ajax({
-				            url: ajaxurl, // this is a variable that WordPress has already defined for us
-				            type: 'POST',
-				            async: false,
-				            cache: false,
-				            data: {
+       var data = {
 					            action: 'bulk_quick_save_bulk_edit', // this is the name of our WP AJAX function that
 					                                                 // we'll set up next
 					            post_ids: $post_ids, // and these are the 2 parameters we're passing to our function
 					            _mbdb_publisherID: $publisher_id
-				            }
-			            })
+				            };
+			jQuery.post( ajaxurl, data);
 
 		});
 
