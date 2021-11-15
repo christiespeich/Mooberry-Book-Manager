@@ -34,7 +34,6 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 			'query_var'	=>	false,
 			'menu_icon' => 'dashicons-screenoptions',
 			'show_in_admin_bar'	=> true,
-			'show_in_nav_menus' => false,
 			'publicly_queryable' => false,
 			'exclude_from_search'	=> true,
 			'can_export'	=> true,
@@ -51,7 +50,29 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 		add_action( 'wp_ajax_mbdb_update_book_grid_preview', array( $this, 'update_book_grid_preview' ) );
 		add_action( 'wp_ajax_save_book_list_order', array( $this, 'save_book_list_order' ) );
 
+		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'set_custom_columns' ) );
+		add_action( 'manage_' . $this->post_type . '_posts_custom_column' , array( $this, 'display_custom_columns'), 10, 2 );
+
+
 	}
+
+function set_custom_columns($columns) {
+	$date_column = $columns['date'];
+	unset( $columns['date'] );
+	$columns['shortcode'] = __( 'Shortcode', 'mooberry-book-manager' );
+	$columns['date']      = $date_column;
+
+	return $columns;
+}
+
+function display_custom_columns( $column, $post_id ) {
+    switch ( $column ) {
+        case 'shortcode':
+			echo '<span class="mbdb_grid_list_shortcode" title="Click to Copy" style="cursor: pointer" >[mbm_book_grid id="' . $post_id .'"]</span>';
+			break;
+    }
+}
+
 
 	protected function set_data_object( $id = 0 ) {
 
