@@ -285,6 +285,19 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			)
 		);
 
+		$mbdb_settings_metabox->add_field( array(
+				'id'         => 'google_books',
+				'name'       => __( 'Add to Google Books Image', 'mooberry-book-manager' ),
+				'type'       => 'file',
+				'preview_size'	=>	'thumbnail',
+				//		'after_row'=> $description,
+				'options'    => array(
+					'url'                  => false,
+					'add_upload_file_text' => __( 'Choose or Upload File', 'mooberry-book-manager' ),
+				),
+			)
+		);
+
 
 
 		$mbdb_settings_metabox->add_field( array(

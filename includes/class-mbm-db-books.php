@@ -41,6 +41,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'goodreads' => '%s',
 			'series_order' => '%f',
 			'reedsy'    =>  '%s',
+			'google_books' => '%s',
 		);
 	}
 
@@ -60,6 +61,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'_mbdb_goodreads' => 'goodreads',
 			'_mbdb_series_order' => 'series_order',
 			'_mbdb_reedsy' => 'reedsy',
+			'_mbdb_google_books' => 'google_books',
 		);
 	}
 
@@ -132,6 +134,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		$defaults = array(
 							'_mbdb_format'	=>	'',
 							'_mbdb_isbn'		=>	'',
+							'_mbdb_doi'		=>	'',
 							'_mbdb_language'	=>	'',
 							'_mbdb_length'		=>	'',
 							'_mbdb_height'		=>	'',
@@ -147,6 +150,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$data[] = array(
 						'format_id' 	=>  $edition['_mbdb_format'],
 						'isbn' 		=>  $edition['_mbdb_isbn'],
+						'doi' 		=>  $edition['_mbdb_doi'],
 						'language' 	=>  $edition['_mbdb_language'],
 						'length' 	=>  $edition['_mbdb_length'],
 						'height' 	=>  $edition['_mbdb_height'],
@@ -358,6 +362,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$data[] = array(
 						'_mbdb_format'	=>	$edition->format_id,
 						'_mbdb_isbn'	=>	$edition->isbn,
+						'_mbdb_doi'	=>	$edition->doi,
 						'_mbdb_language'	=>	$edition->language,
 						'_mbdb_length'		=>	$edition->length,
 						'_mbdb_height'		=>	$edition->height,
@@ -800,6 +805,7 @@ public function search_where( $where ) {
 			  goodreads longtext,
 			  series_order decimal(6,2),
 			  reedsy longtext,
+			  google_books longtext,
 			  PRIMARY KEY  (book_id),
 			  KEY release_date (release_date)
 		 ) $charset_collate; ";

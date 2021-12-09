@@ -26,6 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	protected $release_date;
 	protected $goodreads;
 	protected $reedsy;
+	protected $google_books;
 	protected $series_order;
 	protected $cover;
 	protected $cover_id;
@@ -66,6 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			'_mbdb_publisherID'	=> 'publisher_id',
 			'_mbdb_imprintID' => 'imprint_id',
 			'_mbdb_goodreads'	=> 'goodreads',
+			'_mbdb_google_books'	=> 'google_books',
 			'_mbdb_reedsy'	=> 'reedsy',
 			'_mbdb_series_order'	=> 'series_order',
 		);
@@ -82,6 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->release_date = '';
 		$this->goodreads = '';
 		$this->reedsy = '';
+		$this->google_books = '';
 		$this->series_order = '';
 		$this->cover = '';
 		$this->cover_id = '';
@@ -107,6 +110,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->release_date = $book->release_date;
 		$this->goodreads = $book->goodreads;
 		$this->reedsy = $book->reedsy;
+		$this->google_books = $book->google_books;
 		$this->series_order = $book->series_order;
 		$this->cover_id = $book->cover_id;
 		$this->cover = $book->cover;

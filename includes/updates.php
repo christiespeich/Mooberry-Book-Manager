@@ -222,6 +222,11 @@ function mbdb_update_versions() {
 		mbdb_update_4_8();
 	}
 
+	if ( version_compare( $current_version, '4.11', '<' ) ) {
+		mbdb_update_4_11();
+	}
+
+
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
 
@@ -1037,6 +1042,22 @@ function mbdb_update_4_8() {
 
 		$path = MBDB_PLUGIN_URL . 'includes/assets/';
 		$mbdb_options['reedsy'] = $path . 'reedsy-white.png';
+
+		update_option( 'mbdb_options', $mbdb_options );
+
+		//update database structure
+		MBDB()->books->create_table();
+}
+
+function mbdb_update_4_11() {
+	$mbdb_options = get_option( 'mbdb_options' );
+
+		if (!is_array($mbdb_options)) {
+			$mbdb_options = array();
+		}
+
+		$path = MBDB_PLUGIN_URL . 'includes/assets/';
+		$mbdb_options['google_books'] = $path . 'google_books_2020.svg.png';
 
 		update_option( 'mbdb_options', $mbdb_options );
 

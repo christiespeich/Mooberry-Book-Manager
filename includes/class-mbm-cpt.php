@@ -358,7 +358,7 @@ abstract class Mooberry_Book_Manager_CPT {
 	 *  @param [string] $override Set to something else to override CMB2's saving
 	 *  @param [array] $a        arguments
 	 *
-	 *  @return whether or not to override CMB2's saving procedure
+	 *  @return string whether or not to override CMB2's saving procedure
 	 *
 	 *  @access public
 	 */

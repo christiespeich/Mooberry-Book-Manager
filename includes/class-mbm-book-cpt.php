@@ -98,6 +98,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'book_published', array( $this, 'shortcode_published' ) );
 		add_shortcode( 'book_goodreads', array( $this, 'shortcode_goodreads' ) );
 		add_shortcode( 'book_reedsy', array( $this, 'shortcode_reedsy' ) );
+		add_shortcode( 'book_google_books', array( $this, 'shortcode_google_books' ) );
 		add_shortcode( 'book_excerpt', array( $this, 'shortcode_excerpt' ) );
 		add_shortcode( 'book_additional_info', array( $this, 'shortcode_additional_info' ) );
 		add_shortcode( 'book_genre', array( $this, 'shortcode_genre' ) );
@@ -247,7 +248,8 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	// Remove the author and comments columns from the CPT list
 	public function columns( $columns ) {
 		//print_r($columns);
-		unset( $columns['author'] );
+		//unset( $columns['author'] );
+		$columns['author'] = 'User';
 		unset( $columns['comments'] );
 
 		return apply_filters( 'mbdb_book_columns', $columns );
@@ -580,6 +582,14 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		);
 
 		$mbdb_editions_metabox->add_group_field( '_mbdb_editions', array(
+				'name' => __( 'DOI (Digital Object Identifier)', 'mooberry-book-manager' ),
+				'id'   => '_mbdb_doi',
+				'type' => 'text_medium',
+			)
+		);
+
+
+		$mbdb_editions_metabox->add_group_field( '_mbdb_editions', array(
 				'name'    => __( 'Language', 'mooberry-book-manager' ),
 				'id'      => '_mbdb_language',
 				'type'    => 'select',
@@ -773,6 +783,17 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				'desc'       => 'https://www.reedsy.com/discovery/book/your-unique-text',
 				'attributes' => array(
 					'pattern' => '^(https?:\/\/)?www.reedsy.com/discovery/book/.*',
+				),
+			)
+		);
+
+		$mbdb_bookinfo_metabox->add_field( array(
+				'name'       => __( 'Google Books Link', 'mooberry-book-manager' ),
+				'id'         => '_mbdb_google_books',
+				'type'       => 'text_url',
+				'desc'       => 'https://www.google.com/books/edition/your-unique-text',
+				'attributes' => array(
+					'pattern' => '^(https?:\/\/)?www.google.com/books/edition/.*',
 				),
 			)
 		);
@@ -1381,12 +1402,13 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			$is_height = $this->is_array_element_set( '_mbdb_height', $edition );
 			$is_price  = $this->is_array_element_set( '_mbdb_retail_price', $edition );
 			$is_isbn   = $this->is_array_element_set( '_mbdb_isbn', $edition );
+			$is_doi   = $this->is_array_element_set( '_mbdb_doi', $edition );
 			$is_length = $this->is_array_element_set( '_mbdb_length', $edition );
 			$is_title  = $this->is_array_element_set( '_mbdb_edition_title', $edition );
 
 			$is_format = $this->is_array_element_set( '_mbdb_format', $edition ) && $edition['_mbdb_format'] != '0';
 
-			$is_others = ( $is_isbn || $is_length || $is_width || $is_height || $is_price || $is_title );
+			$is_others = ( $is_isbn || $is_doi || $is_length || $is_width || $is_height || $is_price || $is_title );
 
 			// format is required
 			$flag = ! $is_format;
@@ -1878,6 +1900,36 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			}
 
 			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_new"><img class="mbm-book-reedsy-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+		}
+	}
+
+
+	public function shortcode_google_books( $attr, $content ) {
+		$attr = shortcode_atts( array(
+			'text'  => __( 'View on Google Books', 'mooberry-book-manager' ),
+			'label' => '',
+			'after' => '',
+			'blank' => '',
+			'book'  => '',
+		), $attr );
+		//error_log('google_books');
+		$this->set_book( $attr['book'] );
+		$google_books_link = $this->data_object->google_books;
+		if ( $google_books_link == '' ) {
+			return $this->output_blank_data( 'google_books', $attr['blank'] );
+		}
+		$google_books_image = MBDB()->options->google_books_image;
+
+		if ( $google_books_image == '' ) {
+			return apply_filters( 'mbdb_shortcode_google_books', '<div class="mbm-book-google-books"><span class="mbm-book-google-books-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-google-books-link" HREF="' . esc_url( $google_books_link ) . '" target="_new"><span class="mbm-book-google-books-text">' . $attr['text'] . '</span></A><span class="mbm-book-google-books-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+		} else {
+			$alt = __( 'Add to Google Books', 'mooberry-book-manager' );
+			$url = esc_url( $google_books_image );
+			if ( is_ssl() ) {
+				$url = preg_replace( '/^http:/', 'https:', $url );
+			}
+
+			return apply_filters( 'mbdb_shortcode_google_books', '<div class="mbm-book-google_books"><span class="mbm-book-google-books-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-google-books-link" HREF="' . esc_url( $google_books_link ) . '" target="_new"><img class="mbm-book-google-books-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-google-books-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		}
 	}
 
@@ -2511,6 +2563,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		foreach ( $book->editions as $edition ) {
 
 			$is_isbn     = ( $edition->isbn != '' );
+			$is_doi     = ( $edition->doi != '' );
 			$is_height   = ( $edition->height != '' );
 			$is_width    = ( $edition->width != '' );
 			$is_pages    = ( $edition->length != '' );
@@ -2519,7 +2572,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			$is_title    = ( $edition->edition_title != '' );
 
 			$output_html .= '<span class="mbm-book-editions-format" id="mbm_book_editions_format_' . $counter . '" name="mbm_book_editions_format[' . $counter . ']">';
-			if ( $is_isbn || $is_pages || ( $is_height && $is_width ) ) {
+			if ( $is_isbn || $is_doi || $is_pages || ( $is_height && $is_width ) ) {
 				$output_html .= '<a class="mbm-book-editions-toggle" id="mbm_book_editions_toggle_' . $counter . '" name="mbm_book_editions_toggle[' . $counter . ']"></a>';
 			}
 			$format_name = $edition->format->name;
@@ -2557,11 +2610,14 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				}
 				$output_html .= '</span></span>';
 			}
-			if ( $is_isbn || ( $is_height && $is_width ) || $is_pages ) {
+			if ( $is_isbn || $is_doi || ( $is_height && $is_width ) || $is_pages ) {
 				$output_html .= '<div name="mbm_book_editions_subinfo[' . $counter . ']" id="mbm_book_editions_subinfo_' . $counter . '" class="mbm-book-editions-subinfo">';
 
 				if ( $is_isbn ) {
 					$output_html .= '<strong>' . __( 'ISBN:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-isbn">' . $edition->isbn . '</span><br/>';
+				}
+				if ( $is_doi ) {
+					$output_html .= '<strong>' . __( 'DOI:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-doi">' . $edition->doi . '</span><br/>';
 				}
 				if ( $is_height && $is_width ) {
 					$output_html .= '<strong>' . __( 'Size:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-size"><span class="mbm-book-editions-height">' . number_format_i18n( $edition->width, 2 ) . '</span> x <span class="mbm-book-editions-width">' . number_format_i18n( $edition->height, 2 ) . '</span> <span class="mbm-book-editions-unit">' . $edition->unit . '</span></span><br/>';
@@ -2698,6 +2754,15 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			$book_page_layout .= '[book_reedsy book="' . $book . '"]';
 		}
 		$book_page_layout = apply_filters( 'mbdb_book_page_after_reedsy', $book_page_layout, $this->data_object, $attr );
+
+
+		$book_page_layout = apply_filters( 'mbdb_book_page_before_google_books', $book_page_layout, $this->data_object, $attr );
+		if ( $this->data_object->google_books != '' ) {
+			$book_page_layout .= '[book_google_books book="' . $book . '"]';
+		}
+		//error_log('summary');
+		// v 3.0 for customizer
+		$book_page_layout = apply_filters( 'mbdb_book_page_after_google_books', $book_page_layout, $this->data_object, $attr );
 
 		$book_page_layout .= '</div><div id="mbm-second-column">';
 		$book_page_layout = apply_filters( 'mbdb_book_page_before_summary', $book_page_layout, $this->data_object, $attr );

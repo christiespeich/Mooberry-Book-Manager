@@ -98,6 +98,7 @@ function mbdb_activate_single_site() {
 		$mbdb_options['coming-soon'] = $path . 'coming_soon_blue.jpg';
 		$mbdb_options['goodreads'] = $path . 'goodreads.png';
 		$mbdb_options['reedsy'] = $path . 'reedsy-white.png';
+		$mbdb_options['google_books'] = $path . 'google_books_2020.svg.png';
 
 		//mbdb_insert_image( 'coming-soon', 'coming_soon_blue.jpg', $mbdb_options );
 		//mbdb_insert_image( 'goodreads', 'goodreads.png', $mbdb_options );

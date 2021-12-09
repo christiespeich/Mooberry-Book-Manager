@@ -60,7 +60,7 @@
 
 
 
-#mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-goodreads-image, #mbm-book-page .mbm-book-reedsy-image {
+#mbm-book-page .mbm-book-cover, #mbm-book-page .mbm-book-goodreads-image, #mbm-book-page .mbm-book-reedsy-image, #mbm-book-page .mbm-book-google-books-image {
 
 		display: block;
 		margin-left: auto;
@@ -265,6 +265,10 @@
     background: gray;
     height: 50px;
     width: 50px;
+}
+
+#mbm-book-page .mbm-book-google-books-image {
+    padding: 2px;
 }
 
 @media (max-width:810px) {

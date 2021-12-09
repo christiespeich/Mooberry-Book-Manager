@@ -16,11 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 3.5 ?
  */
- class Mooberry_Book_Manager_Edition { 
- 
+ class Mooberry_Book_Manager_Edition {
+
 	private $format;
 	private $format_id;
 	private $isbn;
+	private $doi;
 	private $language;
 	private $length;
 	private $height;
@@ -29,10 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	private $retail_price;
 	private $currency;
 	private $edition_title;
-	
+
 	// data is either an id to be loaded from the database
 	// or an array of data already pulled from the databsae in the format
-	//	['uniqueID'] = 
+	//	['uniqueID'] =
 	//  ['website'] =
 	//  ['name'] =
 	//
@@ -40,10 +41,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	// all values are initialized to empty strings
 	//
 	public function __construct( $data = 0 ) {
-		
+
 		$this->format 		= '';
 		$this->format_id 	= '';
 		$this->isbn 		= '';
+		$this->doi          =   '';
 		$this->language 	= '';
 		$this->length 		= '';
 		$this->height 		= '';
@@ -52,49 +54,52 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->retail_price = '';
 		$this->currency 	= '';
 		$this->edition_title = '';
-		
+
 		if ( is_array( $data ) ) {
 			// TODO: get format based on format_id
 			//	if (array_key_exists( 'format', $data ) ) {
 			//		$this->format = $data['format'];
 			//	}
 			////error_log(print_r($data, true));
-				if ( array_key_exists( 'format_id', $data ) ) { 
+				if ( array_key_exists( 'format_id', $data ) ) {
 					$this->format_id = $data['format_id'];
 					$this->format = new Mooberry_Book_Manager_Edition_Format( $this->format_id );
 				}
-				
+
 				if (array_key_exists( 'isbn', $data ) ) {
 					$this->isbn = $data['isbn'];
 				}
-				if ( array_key_exists( 'language', $data ) ) { 
+				if (array_key_exists( 'doi', $data ) ) {
+					$this->doi = $data['doi'];
+				}
+				if ( array_key_exists( 'language', $data ) ) {
 					$this->language = $data['language'];
 				}
 				if (array_key_exists( 'length', $data ) ) {
 					$this->length = $data['length'];
 				}
-				if ( array_key_exists( 'height', $data ) ) { 
+				if ( array_key_exists( 'height', $data ) ) {
 					$this->height = $data['height'];
 				}
 				if (array_key_exists( 'width', $data ) ) {
 					$this->width = $data['width'];
 				}
-				if ( array_key_exists( 'unit', $data ) ) { 
+				if ( array_key_exists( 'unit', $data ) ) {
 					$this->unit = $data['unit'];
 				}
-				if ( array_key_exists( 'retail_price', $data ) ) { 
+				if ( array_key_exists( 'retail_price', $data ) ) {
 					$this->retail_price = $data['retail_price'];
 				}
 				if (array_key_exists( 'currency', $data ) ) {
 					$this->currency = $data['currency'];
 				}
-				if ( array_key_exists( 'edition_title', $data ) ) { 
+				if ( array_key_exists( 'edition_title', $data ) ) {
 					$this->edition_title = $data['edition_title'];
 				}
 		}/* else {
 			$data = absint($data);
 			if ( $data != 0 ) {
-				
+
 					// TODO: get format based on format_id
 					//$this->format 		= MBDB()->editions[$data]->format;
 					$this->format_id 	= MBDB()->editions[$data]->format_id;
@@ -108,7 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					$this->currency 	= MBDB()->editions[$data]->currency;
 					$this->edition_title = MBDB()->editions[$data]->edition_title;
 				}
-			} 
+			}
 		} */
 	}
 
@@ -120,11 +125,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		$property = 'format';
 		$object[ $property ] = $this->$property->to_json();
-		
+
 		return json_encode( $object);
-       
+
     }
-	
+
 	public function import( $json_string ) {
 		$decoded = json_decode( $json_string );
 		$properties =  get_object_vars($this);
@@ -138,8 +143,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
@@ -152,25 +157,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			return call_user_func( array( $this, 'get_' . $key ) );
 
 		} else {
-			
+
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$ungettable_properties = array(  );
-				
+
 				if ( !in_array( $key, $ungettable_properties ) ) {
-				
+
 					return $this->$key;
 
 				}
-		
+
 			}
-		
+
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-				
+
 	}
-	
+
 	/**
 	 * Magic __set function to dispatch a call to retrieve a private property
 	 *
@@ -185,19 +190,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		} else {
 
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$unsettable_properties = array('format', 'id' );
-				
+
 				if ( !in_array( $key, $unsettable_properties ) ) {
-				
+
 					$this->$key = $value;
 
 				}
-				
+
 			}
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-		
+
 	}
 }
