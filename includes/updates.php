@@ -226,6 +226,11 @@ function mbdb_update_versions() {
 		mbdb_update_4_11();
 	}
 
+	if ( version_compare( $current_version, '4.12', '<' ) ) {
+		mbdb_update_4_12();
+	}
+
+
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
@@ -1063,4 +1068,27 @@ function mbdb_update_4_11() {
 
 		//update database structure
 		MBDB()->books->create_table();
+}
+
+function mbdb_update_4_12() {
+	$mbdb_options = get_option('mbdb_options');
+
+	if ( !is_array( $mbdb_options)) {
+		$mbdb_options = array();
+	}
+
+	$retailers = isset($mbdb_options['retailers']) ? $mbdb_options['retailers'] : array();
+
+	if ( !is_array($retailers)) {
+		$retailers = array();
+	}
+
+	foreach ( $retailers as $key => $retailer ) {
+		$retailers[$key]['retailer_button_image'] = 'image';
+	}
+
+	$mbdb_options['retailers'] = $retailers;
+	$mbdb_options['retailer_buttons'] = 'individual';
+
+	update_option('mbdb_options', $mbdb_options);
 }

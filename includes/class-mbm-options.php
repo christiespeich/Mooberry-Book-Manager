@@ -6,6 +6,8 @@
 class Mooberry_Book_Manager_Options {
 
 	protected $options;
+	protected $retailer_buttons_background_color;
+	protected $retailer_buttons_text_color;
 	protected $retailers;
 	protected $edition_formats;
 	protected $download_formats;
@@ -167,6 +169,17 @@ class Mooberry_Book_Manager_Options {
 
 	}
 
+		protected function get_retailer_buttons() {
+			return $this->get_option_value('retailer_buttons');
+    }
+
+	protected function get_retailer_buttons_background_color() {
+			return $this->get_option_value('retailer_buttons_color');
+    }
+
+	protected function get_retailer_buttons_text_color() {
+			return $this->get_option_value('retailer_buttons_color_text');
+    }
 
 	protected function get_retailers( ) {
 		$retailers = array();
@@ -184,6 +197,9 @@ class Mooberry_Book_Manager_Options {
 							'name' => $retailer->name,
 							'affiliate_code' => $retailer->affiliate_code,
 							'affiliate_position' => $retailer->affiliate_position,
+							'retailer_button_image' => $retailer->button_or_image,
+							'retailer_button_color' => $retailer->button_background_color,
+							'retailer_button_color_text'    => $retailer->button_text_color,
 						);
 		$this->add_element( 'retailers', $retailer_array);
 

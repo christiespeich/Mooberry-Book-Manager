@@ -780,6 +780,61 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
 		*/
 		$this->title = __( 'MBM Retailers Settings', 'mooberry-book-manager' );
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'retailer_buttons_title',
+			'type'	=>	'title',
+		'name' => __('Retailer Buttons', 'mooberry-book-manager')));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'=>'retailer_buttons',
+			'type'	=> 'radio',
+			'options' => array( 'matching' => __('Use Matching Buttons for All Retailers', 'mooberry-book-manager'),
+				'individual' => __('Use Individual Buttons for Each Retailer', 'mooberry-book-manager'),)
+		));
+
+		$style = 'style="margin:0;';
+			$background = isset($_POST['retailer_buttons_color']) ? sanitize_text_field($_POST['retailer_buttons_color']) : MBDB()->options->retailer_buttons_background_color;
+			if ( $background != '' ) {
+				$style .= 'background-color: ' . $background . ';';
+			}
+			$text = isset($_POST['retailer_buttons_color_text']) ? sanitize_text_field($_POST['retailer_buttons_color_text']) :MBDB()->options->retailer_buttons_text_color;
+			if ( $text !='') {
+				$style .= 'color: ' . $text . ';';
+			}
+
+
+		$style .= '"';
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'retailer_buttons_color_title',
+			'type'	=>	'title',
+		'name' => __('Retailer Buttons Colors', 'mooberry-book-manager'),
+			'after' => '<div style="display:block;margin:2em 0em;"><a class="mbdb_retailer_button " id="mbdb_test_retailer_button" ' . $style . '>Sample Button</a></div>'));
+
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'=>'retailer_buttons_color',
+			'type'	=> 'colorpicker',
+			'name'=> __ ('Background Color'),
+
+		));
+
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'=>'retailer_buttons_color_text',
+			'type'	=> 'colorpicker',
+			'name'=> __ ('Text Color'),
+
+		));
+
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'retailers_title',
+			'type'	=>	'title',
+		'name' => __('Retailers', 'mooberry-book-manager')));
+
+
 		$mbdb_settings_metabox->add_field( array(
 				'id'      => 'retailers',
 				'type'    => 'group',
@@ -801,8 +856,42 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'attributes' => array(
 					'required' => 'required',
 				),
+				'description' => __('If you are using buttons instead of images, this will be the text of the button', 'mooberry-book-manager'),
 			)
 		);
+
+			$mbdb_settings_metabox->add_group_field( 'retailers', array(
+			'id'=>'retailer_button_image',
+			'name'	=>	__('Use a Button or an Image for this Retailer?', 'mooberry-book-manager'),
+			'type'	=> 'radio',
+			'options' => array( 'button' => __('Button', 'mooberry-book-manager'),
+				'image' => __('Image', 'mooberry-book-manager'),),
+
+		));
+
+			$mbdb_settings_metabox->add_group_field( 'retailers', array(
+				'id'=>'retailer_test_button',
+			'type'=>'title',
+			'render_row_cb' => array( $this, 'render_retailer_test_button'),
+			));
+
+			$mbdb_settings_metabox->add_group_field( 'retailers', array(
+			'id'=>'retailer_button_color',
+			'type'	=> 'colorpicker',
+			'name'=> __ ('Button Background Color'),
+
+		));
+
+
+		$mbdb_settings_metabox->add_group_field( 'retailers', array(
+			'id'=>'retailer_button_color_text',
+			'type'	=> 'colorpicker',
+			'name'=> __ ('Button Text Color'),
+
+		));
+
+
+
 		$mbdb_settings_metabox->add_group_field( 'retailers', array(
 				'name'       => __( 'Retailer Logo Image', 'mooberry-book-manager' ),
 				'id'         => 'image',
@@ -831,6 +920,35 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 
 		return apply_filters( 'mbdb_settings_retailer_fields', $mbdb_settings_metabox );
+	}
+
+	function render_retailer_test_button( $field_args, $field) {
+		$index = $field->group->index;
+		$id = $field->group->value[ $index ]['uniqueID'];
+
+		$style = 'style="margin:0;';
+			$background = isset($_POST['retailers'][$index])  ? sanitize_text_field($_POST['retailers'][$index]['retailer_button_color']) : MBDB()->options->retailers[$id]->button_background_color;
+			if ( $background != '' ) {
+				$style .= 'background-color: ' . $background . ';';
+			}
+			$text = isset($_POST['retailers'][$index]) ? sanitize_text_field($_POST['retailers'][$index]['retailer_button_color_text']) : MBDB()->options->retailers[$id]->button_text_color;
+			if ( $text !='') {
+				$style .= 'color: ' . $text . ';';
+			}
+
+			$style .= '"';
+
+
+		$name = isset($_POST['retailers'][$index]) ? sanitize_text_field($_POST['retailers'][$index]['name']) : MBDB()->options->retailers[$id]->name;
+
+		echo '<div class="cmb-row mbdb_retailer_button_preview">
+					<div class="cmb-th">
+						<label>Preview:</label>
+					</div>
+					<div class="cmb-td">
+						<a class="mbdb_retailer_button" id="retailers_' . $index . '_retailer_test_button" ' . $style . '> ' . $name . '</a>
+					</div>
+			</div>';
 	}
 
 	/**

@@ -24,6 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	private $affiliate_position;
 	private $id;
 	private $is_amazon;
+	protected $button_background_color;
+	protected $button_text_color;
+	protected $button_or_image;
 
 	// data is either an id to be loaded from the database
 	// or an array of data already pulled from the databsae in the format
@@ -42,6 +45,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->affiliate_position = '';
 		$this->id = '';
 		$this->is_amazon = false;
+		$this->button_background_color = '';
+		$this->button_text_color = '';
+		$this->button_or_image = '';
 
 		if ( is_array( $data ) ) {
 			if ( array_key_exists( 'uniqueID', $data ) ) {
@@ -58,6 +64,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				if ( array_key_exists( 'affiliate_position', $data ) ) {
 					$this->affiliate_position = $data['affiliate_position'];
 				}
+				if ( array_key_exists( 'retailer_button_color', $data)) {
+					$this->button_background_color = $data['retailer_button_color'];
+				}
+				if ( array_key_exists( 'retailer_button_color_text', $data)) {
+					$this->button_text_color = $data['retailer_button_color_text'];
+				}
+				if ( array_key_exists( 'retailer_button_image', $data)) {
+					$this->button_or_image = $data['retailer_button_image'];
+				}
 			}
 		} else {
 			//$data = absint($data);
@@ -68,6 +83,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					$this->logo = MBDB()->options->retailers[$data]->logo;
 					$this->affiliate_code = MBDB()->options->retailers[$data]->affiliate_code;
 					$this->affiliate_position = MBDB()->options->retailers[$data]->affiliate_position;
+					$this->button_background_color = MBDB()->options->retailers[$data]->button_background_color;
+					$this->button_text_color = MBDB()->options->retailers[$data]->button_text_color;
+					$this->button_or_image = MBDB()->options->retailers[$data]->button_or_image;
+
 				}
 			}
 		}
@@ -136,6 +155,37 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 
 	public function get_logo_url() {
+
+	}
+
+	public function uses_logo() {
+		return MBDB()->options->retailer_buttons == 'individual' && $this->button_or_image == 'image';
+	}
+
+	public function uses_button() {
+		return MBDB()->options->retailer_buttons == 'matching' || $this->button_or_image == 'button';
+	}
+
+	public function get_button_color() {
+		if ( $this->uses_button() ) {
+			if ( MBDB()->options->retailer_buttons == 'matching' ) {
+				return MBDB()->options->retailer_buttons_background_color;
+			}
+
+			return $this->button_background_color;
+		}
+		return '';
+
+	}
+
+	public function get_button_color_text() {
+		if ( $this->uses_button() ) {
+			if ( MBDB()->options->retailer_buttons == 'matching' ) {
+				return MBDB()->options->retailer_buttons_text_color;
+			}
+			return $this->button_text_color;
+		}
+		return '';
 
 	}
 

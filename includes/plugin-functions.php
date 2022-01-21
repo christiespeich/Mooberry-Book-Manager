@@ -99,6 +99,8 @@ function mbdb_activate_single_site() {
 		$mbdb_options['goodreads'] = $path . 'goodreads.png';
 		$mbdb_options['reedsy'] = $path . 'reedsy-white.png';
 		$mbdb_options['google_books'] = $path . 'google_books_2020.svg.png';
+		// 4.12
+		$mbdb_options['retailer_buttons'] = 'matching';
 
 		//mbdb_insert_image( 'coming-soon', 'coming_soon_blue.jpg', $mbdb_options );
 		//mbdb_insert_image( 'goodreads', 'goodreads.png', $mbdb_options );
@@ -335,6 +337,9 @@ function mbdb_register_admin_styles() {
 		$file = 'css/book-grid.css';
 	wp_enqueue_style( 'mbdb-book-grid-styles', MBDB_PLUGIN_URL . $file , '', Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ) );
 
+	$file = 'css/retailer-buttons.css';
+	wp_enqueue_style( 'mbdb-retailer-buttons-styles', MBDB_PLUGIN_URL . $file , '', Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ) );
+
 	wp_enqueue_style('mbds-jquery-ui-css', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
 }
 
@@ -478,6 +483,9 @@ function mbdb_enqueue_styles() {
 
 	$file = 'js/single-book.js';
 	wp_enqueue_script('single-book', MBDB_PLUGIN_URL . $file, array('jquery'), Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ) );
+
+	$file = 'css/retailer-buttons.css';
+	wp_enqueue_style( 'mbdb-retailer-buttons-styles', MBDB_PLUGIN_URL . $file , '', Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ) );
 }
 
 

@@ -2260,39 +2260,35 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				}
 			}
 			$mbdb_buylink = apply_filters( 'mbdb_buy_links_post_affiliate_code', $mbdb_buylink, $retailer, $book_id, $link );
-			//$buy_links_html .= '<li class="' . $classname . '-listitem" style="' . $li_style . '">';
+
 
 			// 3.5.6
-
-			if ( $retailer->id == '13' ) {
+			// 4.12 - only show this text if doing images
+			if ( $retailer->id == '13' && $retailer->uses_image() ) {
 				$buy_links_html .= '<span class="amazon_available_on_text">' . __( 'Available on', 'mooberry-book-manager' ) . ' <br/></span>';
 			}
 
-			$buy_links_html .= '<A class="' . $classname . '-link" HREF="' . esc_url( $link ) . '" TARGET="_new">';
-			//if (array_key_exists('image', $retailer) && $r['image']!='') {
-			if ( $retailer->has_logo_image() ) {
 
-				//if (array_key_exists('imageID', $r)) {
-				$imageID = $retailer->logo;
-				//} else {
-				//	if (array_key_exists('image_id', $r)) {
-				//		$imageID = $r['image_id'];
-				//	} else {
-				//		$imageID = 0;
-				//	}
-				//}
-				$alt = __( 'Buy Now:', 'mooberry-book-manager' ) . ' ' . $retailer->name;
+			$link = '<A HREF="' . esc_url( $link ) . '" TARGET="_new" ';
 
-				$buy_links_html .= '<img class="' . $classname . '-image" style="' . esc_attr( $img_size ) . '" src="' . esc_url( $retailer->logo ) . '" alt="' . $alt . '" />';
-			} else {
-				$buy_links_html .= '<span class="' . $classname . '-text">' . esc_html( $retailer->name ) . '</span>';
+
+			// 4.12 add in buttons
+			if ( $retailer->uses_logo() && $retailer->has_logo_image() ) {
+					$alt            = __( 'Buy Now:', 'mooberry-book-manager' ) . ' ' . $retailer->name;
+					$buy_links_html .=  $link . ' class="' . $classname . '-link"> <img class="' . $classname . '-image" style="' . esc_attr( $img_size ) . '" src="' . esc_url( $retailer->logo ) . '" alt="' . $alt . '" /></a>';
+				} else {
+				if ( $retailer->uses_button() ) {
+					$buy_links_html .= $link . ' class="' . $classname .'-button mbdb_retailer_button" style="background-color:' . esc_attr( $retailer->get_button_color()) . ';color:' . esc_attr( $retailer->get_button_color_text()) . ';">' .  esc_html($retailer->name) . '</a>';
+
+				} else {
+					// if all else fails just put a link
+					$buy_links_html .= '<span class="' . $classname . '-text">' . $link . ' class="' . $classname . '-link">' . esc_html( $retailer->name ) . '</a></span>';
+				}
 			}
-			$buy_links_html .= '</a>';
-			//$buy_links_html .= '</li>';
-			//error_log('finish buy link');
-		}
 
-		//$buy_links_html .= "</ul>";
+
+
+		}
 		return apply_filters( 'mbdb_shortcode_buylinks', '<div class="' . $classname . '"><span class="' . $classname . '-label">' . esc_html( $attr['label'] ) . '</span>' . $buy_links_html . '<span class="' . $classname . '-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 	}
 

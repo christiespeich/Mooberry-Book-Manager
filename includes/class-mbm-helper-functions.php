@@ -536,21 +536,22 @@ class Mooberry_Book_Manager_Helper_Functions {
 	// used by MBM Image Fixer
 	function get_default_retailers() {
 		// v 2.4.2 updated file names
+		// 4.12 added retailer_button_image
 		$default_retailers = array();
 
-		$default_retailers[] = array( 'name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png' );
-		$default_retailers[] = array( 'name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png' );
-		$default_retailers[] = array( 'name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png' );
+		$default_retailers[] = array( 'name' => 'Amazon', 'uniqueID' => 1, 'image' => 'amazon.png', 'retailer_button_image' => 'button' );
+		$default_retailers[] = array( 'name' => 'Barnes and Noble', 'uniqueID' => 2, 'image' => 'bn.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Kobo', 'uniqueID' => 3, 'image' => 'kobo.png' , 'retailer_button_image' => 'button');
 		// v 4.1.13 change iBooks to Apple Books
-		$default_retailers[] = array( 'name' => 'Apple Books', 'uniqueID' => 4, 'image' => 'apple_books.png' );
-		$default_retailers[] = array( 'name' => 'Smashwords', 'uniqueID' => 5, 'image' => 'smashwords.png' );
-		$default_retailers[] = array( 'name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' );
-		$default_retailers[] = array( 'name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.png' );
-		$default_retailers[] = array( 'name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' );
-		$default_retailers[] = array( 'name' => 'Create Space', 'uniqueID' => 9, 'image' => 'createspace.png' );
-		$default_retailers[] = array( 'name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.png' );
-		$default_retailers[] = array( 'name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.png' );
-		$default_retailers[] = array( 'name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.png' );
+		$default_retailers[] = array( 'name' => 'Apple Books', 'uniqueID' => 4, 'image' => 'apple_books.png', 'retailer_button_image' => 'button' );
+		$default_retailers[] = array( 'name' => 'Smashwords', 'uniqueID' => 5, 'image' => 'smashwords.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Audible', 'uniqueID' => 6, 'image' => 'audible.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Book Baby', 'uniqueID' => 7, 'image' => 'bookbaby.png', 'retailer_button_image' => 'button' );
+		$default_retailers[] = array( 'name' => 'Books A Million', 'uniqueID' => 8, 'image' => 'bam.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Create Space', 'uniqueID' => 9, 'image' => 'createspace.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Indie Bound', 'uniqueID' => 10, 'image' => 'indiebound.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Powells', 'uniqueID' => 11, 'image' => 'powells.png' , 'retailer_button_image' => 'button');
+		$default_retailers[] = array( 'name' => 'Scribd', 'uniqueID' => 12, 'image' => 'scribd.png' , 'retailer_button_image' => 'button');
 		// 3.5.6 kindle.jpg
 		$default_retailers[] = array( 'name' => 'Amazon Kindle', 'uniqueID' => 13, 'image' => 'kindle.jpg' );
 		$default_retailers[] = array( 'name' => 'Barnes and Noble Nook', 'uniqueID' => 14, 'image' => 'nook.png' );
