@@ -2264,7 +2264,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 			// 3.5.6
 			// 4.12 - only show this text if doing images
-			if ( $retailer->id == '13' && $retailer->uses_image() ) {
+			if ( $retailer->id == '13' && $retailer->uses_logo() ) {
 				$buy_links_html .= '<span class="amazon_available_on_text">' . __( 'Available on', 'mooberry-book-manager' ) . ' <br/></span>';
 			}
 
