@@ -536,7 +536,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 		$mbdb_editions_metabox = new_cmb2_box( array(
 				'id'           => 'mbdb_editions_metabox',
-				'title'        => __( 'Formats and Editions', 'mooberry-book-manager' ),
+				'title'        => __( 'Formats', 'mooberry-book-manager' ),
 				'object_types' => array( $this->post_type, ), // Post type
 				'context'      => 'normal',
 				'priority'     => 'high',
@@ -547,12 +547,12 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$mbdb_editions_metabox->add_field( array(
 				'id'          => '_mbdb_editions',
 				'type'        => 'group',
-				'description' => __( "List the details of your book's hardcover, paperback, and e-book editions.  Editions are completely optional. If you choose to enter an edition, only the format field is required.", 'mooberry-book-manager' ),
+				'description' => __( "List the details of your book's hardcover, paperback, and e-book editions.  This is completely optional. If you choose to enter any, only the format field is required.", 'mooberry-book-manager' ),
 				'options'     => array(
-					'group_title'   => __( 'Edition', 'mooberry-book-manager' ) . ' {#}',
+					'group_title'   => __( 'Format', 'mooberry-book-manager' ) . ' {#}',
 					// {#} gets replaced by row number
-					'add_button'    => __( 'Add New Edition', 'mooberry-book-manager' ),
-					'remove_button' => __( 'Remove Edition', 'mooberry-book-manager' ),
+					'add_button'    => __( 'Add New Format', 'mooberry-book-manager' ),
+					'remove_button' => __( 'Remove Format', 'mooberry-book-manager' ),
 					'sortable'      => true,
 					// beta
 				),
