@@ -768,7 +768,7 @@ public function search_where( $where ) {
 		$where = preg_replace(
 		   "/\([^(]*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 		   "(" . $wpdb->posts . ".post_title LIKE $1) OR ( " . $table . ".subtitle LIKE $1 ) OR (
-		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where);
+		   " . $table . ".summary LIKE $1) OR (" . $table .".additional_info LIKE $1) ", $where, 1);
 
 		//$where = parent::search_where( $where );
 	}
