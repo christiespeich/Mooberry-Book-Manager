@@ -7,7 +7,6 @@ jQuery( document ).ready(function() {
                   connectWith: '.mbdb_popup_card_connected_field_list',
                   receive: function (event, ui) {
                     var $this = jQuery(this);
-
                     if ($this.children('li').length > 3 && $this.attr(
                       'id') !== '_mbdb_popup_card_field_list_all') {
                       alert('too many fields');
@@ -187,20 +186,20 @@ function mbdb_save_popup_card_fields () {
     'security': mbdb_admin_options_ajax.ajax_nonce
   };
 
-  jQuery('[name=submit]')
+  jQuery('[name="submit-cmb"]')
     .attr('disabled', true);
-  jQuery('#_mbdb_popup_cards ul')
+  jQuery('#mbdb_popup_card_fields ul')
     .sortable('disable');
-  jQuery('#_mbdb_popup_cards li')
+  jQuery('#mbdb_popup_card_fields li')
     .toggleClass('mbdb_sortable_disabled');
   var save_fields = jQuery.post(mbdb_admin_options_ajax.ajax_url, data);
 
   save_fields.always(function () {
-    jQuery('[name=submit]')
+    jQuery('[name="submit-cmb"]')
       .prop('disabled', false);
-    jQuery('#_mbdb_popup_cards ul')
+    jQuery('#mbdb_popup_card_fields ul')
       .sortable('enable');
-    jQuery('#_mbdb_popup_cards li')
+    jQuery('#mbdb_popup_card_fields li')
       .toggleClass('mbdb_sortable_disabled');
 
   });

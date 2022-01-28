@@ -1632,9 +1632,10 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	public function save_popup_card_fields() {
 		check_ajax_referer( 'mbdb_admin_options_ajax_nonce', 'security' );
 
-
-		$fields = JSON_decode(str_replace("\\", "",$_POST['fields']));
-		MBDB()->options->set_popup_card_fields( $fields );
+		if (isset($_POST['fields']) && $_POST['fields'] != '') {
+			$fields = JSON_decode( str_replace( "\\", "", $_POST['fields'] ) );
+			MBDB()->options->set_popup_card_fields( $fields );
+		}
 
 		wp_die();
 
