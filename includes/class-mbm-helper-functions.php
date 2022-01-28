@@ -326,6 +326,13 @@ class Mooberry_Book_Manager_Helper_Functions {
 		);
 	}
 
+	public function ribbon_options() {
+		return apply_filters('mbdb_ribbon_options', array(
+			'page'   => __( 'Book Page', 'mooberry-book-manager' ),
+				'widget' => __( 'Widgets', 'mooberry-book-manager' ),
+			'grid'  =>  __('Book Grids', 'mooberry-book-manager'),
+		));
+	}
 	public function override_wpseo_options() {
 		return apply_filters( 'mbdb_override_wpseo_options', array(
 				'og'          => __( 'Open Graph', 'mooberry-book-manager' ),
@@ -725,6 +732,85 @@ class Mooberry_Book_Manager_Helper_Functions {
 
 	}
 
+	public function maybe_add_ribbon( $cover_image, $book, $context, $image_size = '', $grid_image_height = 0) {
+
+		if (!$book->has_cover()) {
+			return $cover_image;
+		}
+		$text = '';
+		$color = '';
+		$text_color = '';
+		$is_coming_soon = !$book->is_published();
+		$is_new = $book->published_within_days( MBDB()->options->new_ribbon_days );
+		if ( MBDB()->options->show_ribbon('coming_soon', $context) && $is_coming_soon ) {
+			$text = "COMING SOON";
+			$color = MBDB()->options->coming_soon_ribbon_color;
+			$text_color = MBDB()->options->coming_soon_ribbon_text_color;
+		}
+		if ( MBDB()->options->show_ribbon('new', $context) && $is_new ) {
+			$text = 'NEW';
+			$color =  MBDB()->options->new_ribbon_color;
+			$text_color = MBDB()->options->new_ribbon_text_color;
+		}
+
+
+		$image_width= '100%';
+		// if this is from a grid, we need to calculate the width based on the height of the books in the grid
+		if ( $context === 'grid' && $image_size != '' ) {
+			$image_atts = wp_get_attachment_image_src($book->cover_id, $image_size );
+			if ( $image_atts !== false && $image_atts[2] != 0 ) {
+				$ratio       = $grid_image_height / $image_atts[2];
+				$image_width = round( $ratio * $image_atts[1], 2 ) . 'px';
+			}
+			$image_width = apply_filters( 'mbdb_ribbon_image_width', $image_width, $context, $image_size, $book, $grid_image_height);
+		}
+
+		$color = apply_filters( 'mbdb_ribbon_bg_color', $color, $text, $book, $context, $is_new, $is_coming_soon  );
+		$text_color = apply_filters( 'mbdb_ribbon_text_color', $text_color, $text, $book, $context, $is_new, $is_coming_soon  );
+		$text = apply_filters( 'mbdb_ribbon_text', $text, $book, $context, $is_new, $is_coming_soon  );
+		if ( $text === '' ) {
+			return $cover_image;
+		}
+		return  '<div style="margin:auto; width:' . $image_width . ';"><div class="mbm-ribbon-holder"><div class="mbm-ribbon mbm-ribbon-holder" style="background-color:' . $color . '; color:' . $text_color . ';">' . $text . '</div>' . $cover_image . '</div></div>';
+
+
+	}
+
+	public function get_popup_card_fields() {
+		return  apply_filters( 'mbdb_popup_card_fields', array(
+				'title'        => __( 'Title', 'mooberry-book-manager' ),
+				'subtitle'     => __( 'Subtitle', 'mooberry-book-manager' ),
+				'publisher'    => __( 'Publisher', 'mooberry-book-manager' ),
+				'release_date' => __( 'Release Date', 'mooberry-book-manager' ),
+				'summary'      => __( 'Summary', 'mooberry-book-manager' ),
+			)
+		);
+	}
+
+	public function get_popup_card_html( $book ) {
+		if ( MBDB()->options->use_popup_card == 'yes' ) {
+			$all_fields      = MBDB()->helper_functions->get_popup_card_fields();
+			$selected_fields = MBDB()->options->popup_card_fields;
+			$bg_color = MBDB()->options->popup_card_background_color;
+			$text_color = MBDB()->options->popup_card_text_color;
+			$width = MBDB()->options->popup_card_width;
+
+			$info            = '';
+			foreach ( $selected_fields as $field ) {
+				$value = property_exists( $book, $field ) ? $book->{$field} : '';
+				$value = apply_filters( 'mbdb_popup_card_line_value', $value, $field, $book, $all_fields );
+				if ( $value == '' ) {
+					$value = __( 'Information not available', 'mooberry-book-manager' );
+				}
+				$info .= '<p style="margin:0.1em;"><span style="font-weight:bold;">' . $all_fields[ $field ] . ':</span> ' . $value . '</p>';
+			}
+
+			if ( $info != '' ) {
+				return '<div class="mbdb_book_info_popup" style="width:' . $width . 'px;background-color:' . $bg_color . ';color:' . $text_color . '" data-book="' . $book->id . '" >' . $info . '</div>';
+			}
+		}
+		return '';
+	}
 
 }
 

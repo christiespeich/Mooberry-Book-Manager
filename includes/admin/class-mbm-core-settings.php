@@ -45,6 +45,8 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 		add_action( 'init', array( $this, 'init_import_process' ) );
 
+		add_action('wp_ajax_mbdb_save_popup_card_field_list', array( $this, 'save_popup_card_fields'));
+
 	}
 
 	public function init_import_process() {
@@ -709,7 +711,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$this->title = __( 'MBM General Settings', 'mooberry-book-manager' );
 		$mbdb_settings_metabox->add_field( array(
 				'id'   => 'mbdb_book_image_settings_title',
-				'name' => __( 'IMAGE SETTINGS', 'mooberry-book-manager' ),
+				'name' => __( 'BOOK COVER SETTINGS', 'mooberry-book-manager' ),
 				'type' => 'title',
 			)
 		);
@@ -724,6 +726,65 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'yes' => 'Yes'
 			)
 		) );
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'show_coming_soon_ribbon',
+			'name'	=>	__('Show COMING SOON Ribbon on Corner of Book Cover?', 'mooberry-book-manager'),
+			'type'              => 'multicheck',
+				'select_all_button' => false,
+
+				'options'           => MBDB()->helper_functions->ribbon_options(),
+		));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'coming_soon_ribbon_color',
+			'name'	=>	__('Color of COMING SOON Ribbon', 'mooberry-book-manager'),
+			'type'    => 'colorpicker',
+			'default'	=>	'#ffff00'
+		));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'coming_soon_ribbon_color_text',
+			'name'	=>	__('Text Color of COMING SOON Ribbon', 'mooberry-book-manager'),
+			'type'    => 'colorpicker',
+			'default'	=>	'#000000'
+		));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'show_new_ribbon',
+			'name'	=>	__('Show NEW Ribbon on Corner of Book Cover?', 'mooberry-book-manager'),
+			'type'              => 'multicheck',
+				'select_all_button' => false,
+
+				'options'           => MBDB()->helper_functions->ribbon_options(),
+
+		));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'new_ribbon_color',
+			'name'	=>	__('Color of NEW Ribbon', 'mooberry-book-manager'),
+			'type'    => 'colorpicker',
+			'default'	=>	'#ff0000'
+		));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'new_ribbon_color_text',
+			'name'	=>	__('Text Color of NEW Ribbon', 'mooberry-book-manager'),
+			'type'    => 'colorpicker',
+			'default'	=>	'#ffffff'
+		));
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'new_ribbon_days',
+			'name'	=>	__('Number of Days to Display NEW Ribbon', 'mooberry-book-manager'),
+			'type'    => 'text_small',
+			'default'	=> 7,
+			'attributes' => array(
+					'type'    => 'number',
+					'pattern' => '\d*',
+				'min'	=> 1,)
+
+		));
 
 		$mbdb_settings_metabox->add_field( array(
 				'id'                => 'show_placeholder_cover',
@@ -755,6 +816,71 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				),
 			)
 		);
+
+
+		$mbdb_settings_metabox->add_field( array(
+				'id'   => 'mbdb_popup_settings',
+				'name' => __( 'POP UP CARD ON HOVER SETTINGS', 'mooberry-book-manager' ),
+				'type' => 'title',
+				'desc' => __('A card with information about a book will pop up when the mouse moves over the book cover', 'mooberry-book-manager'),
+
+			)
+		);
+
+		 $fields = MBDB()->helper_functions->get_popup_card_fields();
+
+		 $current_fields = MBDB()->options->popup_card_fields;
+
+		 $fields_off = '';
+		 $fields_on = '';
+		 foreach ( $fields as $key => $title ) {
+			 if ( !in_array($key, $current_fields)) {
+				 $fields_off .= '<li class="ui-state-default" data-field="' . $key . '">' . $title . '</li>';
+			 }
+		 }
+
+		 foreach ( $current_fields as $field ) {
+			 if ( isset($fields[$field])) {
+				 $fields_on .= '<li class="ui-state-default" data-field="' . $field . '">' . $fields[ $field ] . '</li>';
+			 }
+		 }
+
+		$mbdb_settings_metabox->add_field( array(
+			'id'	=>	'use_popup_card',
+			'name'	=>	__('Use Pop-up Card?', 'mooberry-book-manager'),
+			'type'	=>	'select',
+			'options' => array(
+				'no'  => 'No',
+				'yes' => 'Yes'
+			),
+			'after'	=> '<div id="mbdb_popup_card_fields" style="display:none;"><p>' . sprintf(__('Drag and Drop up to %d fields into the Selected Fields list to display that data on the popup card.', 'mooberry-book-manager'),  3 ) . '</p><div id="mbdb_popup_card_field_list_all"> ' . __('Field List: ', 'mooberry-book-manager') . '<ul id="_mbdb_popup_card_field_list_all" class="mbdb_popup_card_connected_field_list">' . $fields_off . '</ul></div><div id="mbdb_popup_card_field_list">' . __('Selected Fields: ', 'mooberry-book-manager') . '<ul id="_mbdb_popup_card_field_list" class="mbdb_popup_card_connected_field_list">' . $fields_on . '</ul></div></div>',
+			));
+
+		 $mbdb_settings_metabox->add_field( array(
+			 'id'=>'popup_card_background_color',
+			 'name'	=>	__('Background Color of Pop-up Card', 'mooberry-book-manager'),
+			 'type'	=>	'colorpicker',
+			 'default'	=> '#ffffff'
+		 ));
+
+		 $mbdb_settings_metabox->add_field( array(
+			 'id'=>'popup_card_text_color',
+			 'name'	=>	__('Text Color of Pop-up Card', 'mooberry-book-manager'),
+			 'type'	=>	'colorpicker',
+			 'default'	=> '#000000'
+		 ));
+
+		 $mbdb_settings_metabox->add_field( array(
+			 'id'=>'popup_card_width',
+			 'name'	=>	__('Width of Pop-up Card (pixels)', 'mooberry-book-manager'),
+			 'type'	=>	'text_small',
+			 'default'	=> '400',
+			 	'attributes' => array(
+					'type'    => 'number',
+					'pattern' => '\d*',
+				)
+		 ));
+
 
 		return apply_filters( 'mbdb_settings_general_settings', $mbdb_settings_metabox );
 	}
@@ -1500,6 +1626,17 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			}
 
 		}
+
+	}
+
+	public function save_popup_card_fields() {
+		check_ajax_referer( 'mbdb_admin_options_ajax_nonce', 'security' );
+
+
+		$fields = JSON_decode(str_replace("\\", "",$_POST['fields']));
+		MBDB()->options->set_popup_card_fields( $fields );
+
+		wp_die();
 
 	}
 } // end class

@@ -33,6 +33,12 @@ class Mooberry_Book_Manager_Options {
 	protected $tax_grid_slugs;
 	protected $comments_on_books;
 	protected $override_wpseo;
+	protected $show_coming_soon_ribbon;
+	protected $coming_soon_ribbon_color;
+	protected $show_new_ribbon;
+	protected $new_ribbon_color;
+	protected $new_ribbon_days;
+	protected $popup_card_fields;
 
 
 
@@ -135,6 +141,14 @@ class Mooberry_Book_Manager_Options {
 
 	}
 
+	protected function get_ribbon_locations( $ribbon ) {
+		$ribbon_locations = $this->get_option_value( 'show_' . $ribbon . '_ribbon' );
+		if ( !is_array( $ribbon_locations)) {
+			$ribbon_locations = array( $ribbon_locations);
+		}
+		return $ribbon_locations;
+	}
+
 	public function show_placeholder( $location ) {
 		// always show placeholder in the book grid
 		if ( $location == 'grid' ) {
@@ -143,6 +157,66 @@ class Mooberry_Book_Manager_Options {
 		$placeholder_locations = $this->get_placeholder_locations();
 		return ( in_array( $location, $placeholder_locations ) );
 	}
+
+	public function show_ribbon( $ribbon, $location ) {
+		$ribbon_locations = $this->get_ribbon_locations( $ribbon );
+		return (in_array( $location, $ribbon_locations ));
+
+	}
+
+
+	protected function get_coming_soon_ribbon_color() {
+		return $this->get_option_value('coming_soon_ribbon_color', true, '#ffff00');
+	}
+
+	protected function get_coming_soon_ribbon_text_color() {
+		return $this->get_option_value('coming_soon_ribbon_color_text', true, '#000000');
+	}
+
+
+	protected function get_new_ribbon_color() {
+		return $this->get_option_value('new_ribbon_color', true, '#ff0000');
+	}
+
+	protected function get_new_ribbon_text_color() {
+		return $this->get_option_value('new_ribbon_color_text', true, '#ffffff');
+	}
+
+	protected function get_new_ribbon_days() {
+		return $this->get_option_value('new_ribbon_days', true, 7);
+	}
+
+	public function get_use_popup_card() {
+		return $this->get_option_value('use_popup_card', true, 'no');
+	}
+
+	public function get_popup_card_fields() {
+		$fields =  $this->get_option_value('popup_card_fields', true, array());
+		if (!is_array($fields)) {
+			$fields = array($fields);
+		}
+		return $fields;
+	}
+
+	public function set_popup_card_fields( $fields ) {
+		$this->options['popup_card_fields'] = $fields;
+		$this->save_options();
+	}
+
+	public function get_popup_card_background_color() {
+		return $this->get_option_value('popup_card_background_color', true, '#ffffff');
+	}
+
+	public function get_popup_card_text_color() {
+		return $this->get_option_value('popup_card_text_color', true, '#000000');
+	}
+
+	public function get_popup_card_width() {
+		return $this->get_option_value('popup_card_width', true, 400);
+	}
+
+
+
 
 	protected function get_override_wpseo(  ) {
 		$override_wpseo = $this->get_option_value( 'override_wpseo');

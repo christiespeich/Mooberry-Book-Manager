@@ -863,7 +863,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 			 $content .= '<div class="mbdb_grid_image">';
 			 $content = apply_filters( 'mbdb_book_grid_pre' . $filter . '_image', $content, $book->id, $cover, $book, $this->id );
-			 $content .= '<a id="book_' . $book->id . '" itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( $link ) . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url( $cover ) . '" ' . $alt . ' /></a>';
+			  $content .= MBDB()->helper_functions->get_popup_card_html($book);
+			  $cover_image = '<a id="book_' . $book->id . '" itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( $link ) . '"><img itemprop="image" style="height: ' . $mbdb_book_grid_cover_height . 'px;" src="' . esc_url( $cover ) . '" ' . $alt . ' data-book="' . $book->id . '" /></a>';
+			 $content .= MBDB()->helper_functions->maybe_add_ribbon( $cover_image, $book, 'grid', $this->wp_size, $mbdb_book_grid_cover_height );
 			 $content = apply_filters( 'mbdb_book_grid_post' . $filter . '_image', $content, $book->id, $cover, $book );
 			 $content .= '</div>';
 		 } else {
@@ -878,6 +880,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 $content .= '<a itemprop="mainEntityOfPage" class="mbm-book-grid-title-link" href="' . esc_url( $link ) . '">' . esc_html( $book->title ) . '</a>';
 		 $content = apply_filters( 'mbdb_book_grid_post_link', $content, $book->id, $book->title, $book );
 		 $content .= '</span></span>';
+
 
 		 return  $content;
 	 }

@@ -27,4 +27,26 @@ jQuery( document ).ready(function() {
 					},500);
 
 	});
+
+  // hover popup for grids and widgets
+  jQuery(".mbdb_grid_image").on('mouseenter', mbdb_show_popup_card)
+                                .on('mouseleave', mbdb_hide_popup_card );
+  jQuery('.mbm-widget-link').on('mouseenter',  mbdb_show_popup_card)
+                                .on('mouseleave', mbdb_hide_popup_card );
+
+
+
 }); // ready
+
+
+ function mbdb_show_popup_card( event ) { //}, image, element ) {
+     var posX = jQuery(this).offset().left,
+         posY = jQuery(this).offset().top;
+
+    jQuery(this).find('.mbdb_book_info_popup').css({top: event.pageY - posY, left: event.pageX-posX}).show();
+}
+
+
+  function mbdb_hide_popup_card() {
+    jQuery(this).find('.mbdb_book_info_popup').hide();
+  }

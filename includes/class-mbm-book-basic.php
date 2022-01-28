@@ -147,7 +147,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		return ( $this->has_published_date() ) && ( strtotime($this->release_date) <= strtotime('now') );
 	}
 
-
+	public function published_within_days( $days ) {
+		if ( !$this->has_published_date() ) {
+			return false;
+		}
+		if ( !$this->is_published() ) {
+			return false;
+		}
+		$days = intval($days);
+		$release_date = new DateTime($this->release_date);
+		$release_date->add(new DateInterval('P' . $days . 'D'));
+		return $release_date > new DateTime('now');
+	}
 
 	public function has_publisher() {
 		return ( $this->publisher != '' ) && ( $this->publisher instanceof Mooberry_Book_Manager_Publisher );

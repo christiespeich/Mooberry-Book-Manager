@@ -1708,7 +1708,11 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$alt = MBDB()->helper_functions->get_alt_attr( $this->data_object->cover_id, __( 'Book Cover:', 'mooberry-book-manager' ) . ' ' . $this->data_object->title );
 
 		if ( isset( $url ) && $url != '' ) {
-			$image_html = '<img src="' . esc_url( $url ) . '" ' . $alt . ' itemprop="image" />';
+			$image_html = '<img id="mbdb_book_cover" src="' . esc_url( $url ) . '" ' . $alt . ' itemprop="image" />';
+
+			$image_html = MBDB()->helper_functions->maybe_add_ribbon( $image_html, $this->data_object, 'page');
+
+
 
 			return apply_filters( 'mbdb_shortcode_cover', '<span class="mbm-book-cover">' . $image_html . '</span>' );
 		} else {

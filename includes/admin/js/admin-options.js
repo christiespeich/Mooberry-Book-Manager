@@ -1,5 +1,30 @@
 jQuery( document ).ready(function() {
 
+  /* genreal page */
+    jQuery('#mbdb_popup_card_fields ul')
+      .sortable({
+                  placeholder: 'placeholder',
+                  connectWith: '.mbdb_popup_card_connected_field_list',
+                  receive: function (event, ui) {
+                    var $this = jQuery(this);
+
+                    if ($this.children('li').length > 3 && $this.attr(
+                      'id') !== '_mbdb_popup_card_field_list_all') {
+                      alert('too many fields');
+                      jQuery(ui.sender)
+                        .sortable('cancel');
+                    } else {
+                      mbdb_save_popup_card_fields();
+                    }
+
+                  },
+                  update: function (event, ui) {mbdb_save_popup_card_fields(); }
+
+                });
+
+    jQuery('#use_popup_card').on( 'change', mdbd_show_hide_popup_cards);
+    mdbd_show_hide_popup_cards();
+
   jQuery('#reset_meta_boxes')
     .on('click', function (e) {
       if (confirm(mbdb_admin_options_ajax.translation)) {
@@ -147,3 +172,45 @@ function mbdb_set_retailer_button_image_options() {
    }
 }
 
+
+function mbdb_save_popup_card_fields () {
+  var data_fields = [];
+  jQuery('#_mbdb_popup_card_field_list li')
+    .each(function () {
+      data_fields.push(jQuery(this)
+                         .data('field'));
+    });
+
+  var data = {
+    'action': 'mbdb_save_popup_card_field_list',
+    'fields': JSON.stringify(data_fields),
+    'security': mbdb_admin_options_ajax.ajax_nonce
+  };
+
+  jQuery('[name=submit]')
+    .attr('disabled', true);
+  jQuery('#_mbdb_popup_cards ul')
+    .sortable('disable');
+  jQuery('#_mbdb_popup_cards li')
+    .toggleClass('mbdb_sortable_disabled');
+  var save_fields = jQuery.post(mbdb_admin_options_ajax.ajax_url, data);
+
+  save_fields.always(function () {
+    jQuery('[name=submit]')
+      .prop('disabled', false);
+    jQuery('#_mbdb_popup_cards ul')
+      .sortable('enable');
+    jQuery('#_mbdb_popup_cards li')
+      .toggleClass('mbdb_sortable_disabled');
+
+  });
+}
+
+function mdbd_show_hide_popup_cards() {
+   if ( jQuery('#use_popup_card').val() === 'yes') {
+        jQuery('#mbdb_popup_card_fields, .cmb2-id-popup-card-background-color, .cmb2-id-popup-card-text-color')
+          .show();
+      } else {
+        jQuery('#mbdb_popup_card_fields, .cmb2-id-popup-card-background-color, .cmb2-id-popup-card-text-color').hide();
+      }
+}
