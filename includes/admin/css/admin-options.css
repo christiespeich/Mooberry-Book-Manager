@@ -52,14 +52,11 @@ body.mooberry-book-manager-settings_page_mbdb_retailers_options .cmb-row.cmb-typ
 
 
  #mbdb_popup_card_fields {
-
-	 font-weight:bold;
-	 padding-top: 2em;
-	 padding-bottom: 2em;
-	 list-style-type: none;
-    margin: 10px;
-    padding: 0;
-    width: 60%;
+   font-weight: bold;
+   list-style-type: none;
+   margin: 10px;
+   padding: 0;
+   width: 60%;
 
  }
 
@@ -72,11 +69,11 @@ body.mooberry-book-manager-settings_page_mbdb_retailers_options .cmb-row.cmb-typ
   }
 
  #mbdb_popup_card_fields li {
-	margin: 0 3px 3px 3px;
-    padding: 0.3em;
-    font-size: 1.4em;
-    cursor: hand;
-}
+   margin: 0 3px 3px 3px;
+   padding: 0.3em;
+   font-size: 1.4em;
+   cursor: pointer;
+ }
 
 
 
