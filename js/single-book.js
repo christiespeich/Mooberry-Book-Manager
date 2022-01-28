@@ -31,7 +31,7 @@ jQuery( document ).ready(function() {
   // hover popup for grids and widgets
   jQuery(".mbdb_grid_image").on('mouseenter', mbdb_show_popup_card)
                                 .on('mouseleave', mbdb_hide_popup_card );
-  jQuery('.mbm-widget-link').on('mouseenter',  mbdb_show_popup_card)
+  jQuery('.mbdb_book_widget').on('mouseenter',  mbdb_show_popup_card)
                                 .on('mouseleave', mbdb_hide_popup_card );
 
 

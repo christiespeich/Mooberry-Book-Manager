@@ -188,10 +188,6 @@ abstract class mbdb_widget extends WP_Widget {
 	}
 
 	function output_cover( $book, $instance ) {
-		if ( $book->permalink != '' ) {
-			do_action( 'mbdb_widget_pre_cover_link', $book, $book->permalink );
-			echo '<A class="mbm-widget-link" HREF="' . esc_url( $book->permalink ) . '"> ';
-		}
 
 		/*$size        = 'medium';
 		$wide_enough = intval( get_option( "medium_size_w", 0 ) );
@@ -233,9 +229,13 @@ abstract class mbdb_widget extends WP_Widget {
 		if ( isset( $url ) && $url != '' ) {
 
 			do_action( 'mbdb_widget_pre_image', $url, $book );
-			echo '<div style="' . apply_filters( 'mbdb_book_widget_cover_span_style', 'padding:0;margin:10px 0; position:relative', $instance ) . '">';
-			$cover_image = '<img class="mbm-widget-cover" style="' . apply_filters( 'mbdb_book_widget_cover_style', 'width:' . esc_attr( $this->coverSize ) . 'px;', $instance ) . '" src="' . esc_url( $url ) . '" ' . $alt . ' data-book="' . $book->id . '" />';
+			echo '<div class="mbdb_book_widget" style="' . apply_filters( 'mbdb_book_widget_cover_span_style', 'padding:0;margin:10px 0; position:relative', $instance ) . '">';
 			echo MBDB()->helper_functions->get_popup_card_html( $book );
+		if ( $book->permalink != '' ) {
+			do_action( 'mbdb_widget_pre_cover_link', $book, $book->permalink );
+			echo '<A class="mbm-widget-link" HREF="' . esc_url( $book->permalink ) . '"> ';
+		}
+			$cover_image = '<img class="mbm-widget-cover" style="' . apply_filters( 'mbdb_book_widget_cover_style', 'width:' . esc_attr( $this->coverSize ) . 'px;', $instance ) . '" src="' . esc_url( $url ) . '" ' . $alt . ' data-book="' . $book->id . '" />';
 			echo MBDB()->helper_functions->maybe_add_ribbon( $cover_image, $book, 'widget' );
 			echo '</div>';
 			do_action( 'mbdb_widget_post_image', $url, $book->id );
