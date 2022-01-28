@@ -798,16 +798,23 @@ class Mooberry_Book_Manager_Helper_Functions {
 			$info            = '';
 			foreach ( $selected_fields as $field ) {
 				$value = property_exists( $book, $field ) ? $book->{$field} : '';
+				if ( $field === 'publisher' && $value != '') {
+					$value = $book->publisher->name;
+				}
 				$value = apply_filters( 'mbdb_popup_card_line_value', $value, $field, $book, $all_fields );
 				if ( $value == '' ) {
 					$value = __( 'Information not available', 'mooberry-book-manager' );
 				}
-				$info .= '<p style="margin:0.1em;"><span style="font-weight:bold;">' . $all_fields[ $field ] . ':</span> ' . $value . '</p>';
+				if ( array_key_exists( $field, $all_fields ) ) {
+					$info .= '<p style="margin:0.1em;"><span style="font-weight:bold;">' . $all_fields[ $field ] . ':</span> ' . $value . '</p>';
+				}
 			}
 
-			if ( $info != '' ) {
-				return '<div class="mbdb_book_info_popup" style="width:' . $width . 'px;background-color:' . $bg_color . ';color:' . $text_color . '" data-book="' . $book->id . '" >' . $info . '</div>';
+			if ( $info == '' ) {
+				$info = __( 'Information not available', 'mooberry-book-manager' );
 			}
+				return '<div class="mbdb_book_info_popup" style="width:' . $width . 'px;background-color:' . $bg_color . ';color:' . $text_color . '" data-book="' . $book->id . '" >' . $info . '</div>';
+
 		}
 		return '';
 	}
