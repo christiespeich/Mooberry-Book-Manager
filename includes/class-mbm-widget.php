@@ -287,27 +287,27 @@ abstract class mbdb_widget extends WP_Widget {
 
 	// backwards compatibility for AW
 	public function getData( $instance ) {
-		return $this->get_data( $instance );
+		 $this->get_data( $instance );
 	}
 
 	public function outputWidgetStart( $args, $instance ) {
-		return $this->output_widget_start( $args, $instance );
+		 $this->output_widget_start( $args, $instance );
 	}
 
 	public function outputWidgetEnd( $args, $instance ) {
-		return $this->output_widget_end( $args, $instance );
+		 $this->output_widget_end( $args, $instance );
 	}
 
 	public function outputBook( $instance ) {
-		return $this->output_books( $instance );
+		 $this->output_books( $instance );
 	}
 
 	public function outputCover( $book, $link, $title, $instance ) {
-		return $this->output_cover( $book, $instance );
+		 $this->output_cover( $book, $instance );
 	}
 
 	public function outputTitle( $book, $title, $link, $instance ) {
-		return $this->output_title( $book, $instance );
+		 $this->output_title( $book, $instance );
 	}
 
 	/*	protected function selectBook( $instance ) {
