@@ -1,23 +1,28 @@
 jQuery( document ).ready(function() {
-	
-	//jQuery("[id$='-mbdb_widget_type']").filter('select').bind('change', function() {
-		jQuery("#widgets-right").on("change", "[id$='-mbdb_widget_type']", function(event) {
-		// select the div that is two parents up and then grab it's child with bookdropdown in id
-		dropdown = jQuery(this).parentsUntil('div').parent().children("[id$='bookdropdown']").filter('div');
-		if (this.value == 'specific') {
-			dropdown.show();
-		} else {
-			dropdown.hide();
-		}
-	});
-	
-	
-	
-	
+
+  // Pre WP 5.8
+  jQuery("#widgets-right").on("change", "[id$='-mbdb_widget_type']", mbdb_book_type_change );
+  // WP 5.8
+  jQuery( document ).on( 'widget-added', mbdb_book_type_change);
+
+
+
 });
 
 
-
+function mbdb_book_type_change() {
+  // select the div that is two parents up and then grab it's child with bookdropdown in id
+  dropdown = jQuery(this)
+    .parentsUntil('div')
+    .parent()
+    .children("[id$='bookdropdown']")
+    .filter('div');
+  if (this.value === 'specific') {
+    dropdown.show();
+  } else {
+    dropdown.hide();
+  }
+}
 
 
 
