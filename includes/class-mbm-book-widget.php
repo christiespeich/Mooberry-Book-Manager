@@ -123,7 +123,11 @@ class mbdb_book_widget2 extends mbdb_widget {
 				 $this->books = array_splice( $this->books, 0, $limit );
 			 }
 		 } else {
-			 $this->books->limit_books( $limit );
+			 if ( $this->books !== null ) {
+				 $this->books->limit_books( $limit );
+			 } else {
+				 $this->books = array();
+			 }
 		 }
 
 		 return $this->books;
