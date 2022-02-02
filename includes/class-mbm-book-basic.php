@@ -144,7 +144,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 
 	public function is_published() {
-		return ( $this->has_published_date() ) && ( strtotime($this->release_date) <= strtotime('now') );
+		$today = new DateTime( 'now', MBDB()->helper_functions->get_blog_timezone() );
+		$todayYmd = $today->format('Y-m-d');
+
+		return ( $this->has_published_date() ) && ( $this->release_date <= $todayYmd);
 	}
 
 	public function published_within_days( $days ) {
@@ -157,7 +160,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$days = intval($days);
 		$release_date = new DateTime($this->release_date);
 		$release_date->add(new DateInterval('P' . $days . 'D'));
-		return $release_date > new DateTime('now');
+		return $release_date > new DateTime('now', MBDB()->helper_functions->get_blog_timezone() );
 	}
 
 	public function has_publisher() {
