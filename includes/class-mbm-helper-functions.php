@@ -760,9 +760,17 @@ class Mooberry_Book_Manager_Helper_Functions {
 			$image_atts = wp_get_attachment_image_src($book->cover_id, $image_size );
 			if ( $image_atts !== false && $image_atts[2] != 0 ) {
 				$ratio       = $grid_image_height / $image_atts[2];
-				$image_width = round( $ratio * $image_atts[1], 2 ) . 'px';
+				$image_width = round( $ratio * $image_atts[1], 2 );
+				if ( $grid_image_height > 0 && $image_width > $grid_image_height) {
+					$image_width = '';
+				} else {
+					$image_width .= 'px';
+				}
 			}
 			$image_width = apply_filters( 'mbdb_ribbon_image_width', $image_width, $context, $image_size, $book, $grid_image_height);
+		}
+		if ( $image_width != '' ) {
+			$image_width = 'width: ' . $image_width;
 		}
 
 		$color = apply_filters( 'mbdb_ribbon_bg_color', $color, $text, $book, $context, $is_new, $is_coming_soon  );
@@ -771,7 +779,7 @@ class Mooberry_Book_Manager_Helper_Functions {
 		if ( $text === '' ) {
 			return $cover_image;
 		}
-		return  '<div style="margin:auto; width:' . $image_width . ';"><div class="mbm-ribbon-holder"><div class="mbm-ribbon mbm-ribbon-holder" style="background-color:' . $color . '; color:' . $text_color . ';">' . $text . '</div>' . $cover_image . '</div></div>';
+		return  '<div style="margin:auto; ' . $image_width . ';"><div class="mbm-ribbon-holder"><div class="mbm-ribbon mbm-ribbon-holder" style="background-color:' . $color . '; color:' . $text_color . ';">' . $text . '</div>' . $cover_image . '</div></div>';
 
 
 	}
