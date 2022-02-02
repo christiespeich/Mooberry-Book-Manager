@@ -58,11 +58,11 @@ abstract class mbdb_widget extends WP_Widget {
 		if ( ! array_key_exists( 'mbdb_widget_show_title', $new_instance ) ) {
 			$instance['mbdb_widget_show_title'] = 'no';
 		} else {
-			$instance['mbdb_widget_show_title'] = 'yes';
+			$instance['mbdb_widget_show_title'] = $new_instance['mbdb_widget_show_title'];
 		}
 
 		if ( ! array_key_exists( 'mbdb_widget_cover_size', $new_instance ) || $new_instance['mbdb_widget_cover_size'] < 50 ) {
-			$new_instance['mbdb_widget_cover_size'] = 50;
+			$instance['mbdb_widget_cover_size'] = 50;
 		}
 		$instance['mbdb_widget_cover_size'] = strip_tags( $new_instance['mbdb_widget_cover_size'] );
 
