@@ -242,6 +242,12 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 							case 'mbdb_cover_artist':
 								$content = apply_filters('mbdb_book_grid_mbdb_cover_artist_title', sprintf(__('Book Covers By %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
 								break;
+							case 'mbdb_narrator':
+								$content = apply_filters('mbdb_book_grid_mbdb_narrator_title', sprintf(__('Narrated By %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+								break;
+							case 'mbdb_translator':
+								$content = apply_filters('mbdb_book_grid_mbdb_translator_title', sprintf(__('Translated By %s', 'mooberry-book-manager'), $term->name), $term, $taxonomy);
+								break;
 							default:
 								$content = '';
 						}

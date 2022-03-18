@@ -110,6 +110,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'book_tags', array( $this, 'shortcode_tags' ) );
 		add_shortcode( 'book_illustrator', array( $this, 'shortcode_illustrator' ) );
 		add_shortcode( 'book_editor', array( $this, 'shortcode_editor' ) );
+		add_shortcode( 'book_translator', array( $this, 'shortcode_translator' ) );
+		add_shortcode( 'book_narrator', array( $this, 'shortcode_narrator' ) );
 		add_shortcode( 'book_cover_artist', array( $this, 'shortcode_cover_artist' ) );
 		add_shortcode( 'book_links', array( $this, 'shortcode_links' ) );
 		add_shortcode( 'book_editions', array( $this, 'shortcode_editions' ) );
@@ -160,6 +162,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'mbdb_illustrator',
 			'mbdb_cover_artist',
 			'mbdb_editor',
+			'mbdb_narrator',
+			'mbdb_translator',
 		);
 
 		$tax_args = array(
@@ -233,6 +237,28 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_cover_artist' ) );
 
 		$this->taxonomies['mbdb_cover_artist'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_cover_artist', $this->post_type, __( 'Cover Artist', 'mooberry-book-manager' ), __( 'Cover Artists', 'mooberry-book-manager' ), $tax_args );
+
+		$tax_args['capabilities'] = array(
+			'manage_terms' => 'manage_narrator_terms', //'manage_categories',
+			'edit_terms'   => 'manage_narrator_terms', //'manage_categories',
+			'delete_terms' => 'manage_narrator_terms',
+			'assign_terms' => 'assign_narrator_terms',
+		);
+		$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_narrator' ) );
+
+		$this->taxonomies['mbdb_narrator'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_narrator', $this->post_type, __( 'Narrator', 'mooberry-book-manager' ), __( 'Narrators', 'mooberry-book-manager' ), $tax_args );
+
+		$tax_args['capabilities'] = array(
+			'manage_terms' => 'manage_translator_terms', //'manage_categories',
+			'edit_terms'   => 'manage_translator_terms', //'manage_categories',
+			'delete_terms' => 'manage_translator_terms',
+			'assign_terms' => 'assign_translator_terms',
+		);
+		$tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbdb_translator' ) );
+
+		$this->taxonomies['mbdb_translator'] = new Mooberry_Book_Manager_Taxonomy( 'mbdb_translator', $this->post_type, __( 'Translator', 'mooberry-book-manager' ), __( 'Translators', 'mooberry-book-manager' ), $tax_args );
+
+
 
 	}
 
@@ -712,7 +738,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$mbdb_bookinfo_metabox->add_field( array(
 				'name' => __( 'Subtitle', 'mooberry-book-manager' ),
 				'id'   => '_mbdb_subtitle',
-				'type' => 'text_small',
+				'type' => 'text',
 			)
 		);
 
@@ -2060,7 +2086,10 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	}
 
 	protected function get_tax_grid_link($term, $taxonomy ) {
-		// check if using permalinks
+		if ( is_wp_error($term)) {
+			return '';
+		}
+			// check if using permalinks
 			if ( get_option( 'permalink_structure' ) != '' ) {
 				$permalink = MBDB()->options->get_tax_grid_slug( $taxonomy );
 				$link = home_url( $permalink . '/' . $term->slug );
@@ -2503,6 +2532,14 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		return $this->shortcode_taxonomy( $attr, 'mbdb_cover_artist', 'cover-artist', 'cover_artists' );
 	}
 
+	public function shortcode_narrator( $attr, $content ) {
+		return $this->shortcode_taxonomy( $attr, 'mbdb_narrator', 'cover-artist', 'narrators' );
+	}
+
+	public function shortcode_translator( $attr, $content ) {
+		return $this->shortcode_taxonomy( $attr, 'mbdb_translator', 'cover-artist', 'translators' );
+	}
+
 	public function shortcode_links( $attr, $content ) {
 		$attr           = shortcode_atts( array(
 			'width'         => '',
@@ -2783,8 +2820,10 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$is_editor          = $this->data_object->has_editors();
 		$is_illustrator     = $this->data_object->has_illustrators();
 		$is_cover_artist    = $this->data_object->has_cover_artists();
+		$is_narrator = $this->data_object->has_narrators();
+		$is_translator = $this->data_object->has_translators();
 
-		$display_details  = apply_filters( 'mbdb_display_book_details', $has_published_date || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist );
+		$display_details  = apply_filters( 'mbdb_display_book_details', $has_published_date || $is_publisher || $is_genre || $is_tag || $is_editor || $is_illustrator || $is_cover_artist || $is_translator || $is_narrator );
 		$book_page_layout = apply_filters( 'mbdb_book_page_before_details_section', $book_page_layout, $this->data_object, $attr );
 		//error_log('start details');
 		if ( $display_details ) {
@@ -2822,6 +2861,18 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 				$book_page_layout .= '<span class="mbm-book-details-cover-artists-label">' . __( 'Cover Artists:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-cover-artists-data">[book_cover_artist delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
+
+			$book_page_layout = apply_filters( 'mbdb_book_page_before_narrator', $book_page_layout, $this->data_object, $attr );
+			if ( $is_narrator ) {
+				$book_page_layout .= '<span class="mbm-book-details-narrators-label">' . __( 'Narrators:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-narrators-data">[book_narrator delim="comma" blank="" book="' . $book . '"]</span><br/>';
+			}
+
+			$book_page_layout = apply_filters( 'mbdb_book_page_before_translator', $book_page_layout, $this->data_object, $attr );
+			if ( $is_translator ) {
+				$book_page_layout .= '<span class="mbm-book-details-translators-label">' . __( 'Translators:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-translators-data">[book_translator delim="comma" blank="" book="' . $book . '"]</span><br/>';
+			}
+
+
 			$book_page_layout = apply_filters( 'mbdb_book_page_before_genre', $book_page_layout, $this->data_object, $attr );
 			if ( $is_genre ) {
 
@@ -2829,8 +2880,9 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			}
 			$book_page_layout = apply_filters( 'mbdb_book_page_before_tag', $book_page_layout, $this->data_object, $attr );
 			if ( $is_tag ) {
-				$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __( 'Tags:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-tags-data">[book_tags  delim="comma" blank="" book="' . $book . '"]</span><br/>';
+				$book_page_layout .= '<span class="mbm-book-details-tags-label">' . __( 'Tags:', 'mooberry-book-manager' ) . '</span> <span class="mbm-book-details-tags-data">[book_tags delim="comma" blank="" book="' . $book . '"]</span><br/>';
 			}
+
 
 			$book_page_layout = apply_filters( 'mbdb_extra_book_details', $book_page_layout, $this->data_object, $attr );
 

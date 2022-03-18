@@ -1,11 +1,13 @@
 /* Hide Parent drop down on non-hierarchial taxonomies */
-#newmbdb_genre_parent, .taxonomy-mbdb_genre #parent, .taxonomy-mbdb_genre label[for=parent], 
-#newmbdb_series_parent, .taxonomy-mbdb_series #parent, .taxonomy-mbdb_series label[for=parent], 
-#newmbdb_tag_parent, .taxonomy-mbdb_tag #parent, .taxonomy-mbdb_tag label[for=parent], 
-#newmbdb_editor_parent, .taxonomy-mbdb_editor #parent, .taxonomy-mbdb_editor label[for=parent], 
-#newmbdb_cover_artist_parent, .taxonomy-mbdb_cover_artist #parent, .taxonomy-mbdb_cover_artist label[for=parent], 
-#newmbdb_illustrator_parent, .taxonomy-mbdb_illustrator #parent, .taxonomy-mbdb_illustrator label[for=parent] { 
-	display:none; 
+#newmbdb_genre_parent, .taxonomy-mbdb_genre #parent, .taxonomy-mbdb_genre label[for=parent],
+#newmbdb_series_parent, .taxonomy-mbdb_series #parent, .taxonomy-mbdb_series label[for=parent],
+#newmbdb_tag_parent, .taxonomy-mbdb_tag #parent, .taxonomy-mbdb_tag label[for=parent],
+#newmbdb_editor_parent, .taxonomy-mbdb_editor #parent, .taxonomy-mbdb_editor label[for=parent],
+#newmbdb_cover_artist_parent, .taxonomy-mbdb_cover_artist #parent, .taxonomy-mbdb_cover_artist label[for=parent],
+#newmbdb_illustrator_parent, .taxonomy-mbdb_illustrator #parent, .taxonomy-mbdb_illustrator label[for=parent],
+#newmbdb_narrator_parent, .taxonomy-mbdb_narrator #parent, .taxonomy-mbdb_narrator label[for=parent],
+#newmbdb_translator_parent, .taxonomy-mbdb_translator #parent, .taxonomy-mbdb_translator label[for=parent] {
+	display:none;
 }
 
 .mbm-validation-error {
@@ -16,7 +18,7 @@
 
 /* sortable books */
 #_mbdb_book_grid_book_list li {
-	margin: 0 3px 3px 3px;	
+	margin: 0 3px 3px 3px;
     padding: 0.4em;
     padding-left: 1.5em;
     font-size: 1.4em;
@@ -63,7 +65,7 @@ div[id*="-mbdb"] h2.hndle.ui-sortable-handle, div[id^="mbdb"] h2.hndle.ui-sortab
 
 
 .cmb-repeat-group-wrap .cmb-row:not(:last-of-type){
-	border: none !important; 
+	border: none !important;
 	}
 
 .cmb-td input {
@@ -131,7 +133,7 @@ div.cmb-row.cmb-type-text.cmb2-id--mbdb-author-sort-selection.table-layout  {
 */
 .shortcode_description, .shortcode_argument_description {
 	font-style: italic;
-	
+
 }
 
 /* only set on book edit page not the settings page */
@@ -154,7 +156,7 @@ margin: 0;
 	/*display: inline-table;
 	margin-right: 10px; */
 	height: 105px;
-   border: 1px solid #ccc; 
+   border: 1px solid #ccc;
    overflow: auto;
    padding: 10px;
    font-size: small;
@@ -175,20 +177,20 @@ margin: 0;
 
 
 
-/* set genre list multi check for book grid page to be horizontal 
+/* set genre list multi check for book grid page to be horizontal
 .cmb2-id--mbdb-book-grid-genre li {
 	display: inline-table;
 	margin-right: 10px;
 }
 
-/* set series list multi check for book grid page to be horizontal 
+/* set series list multi check for book grid page to be horizontal
 .cmb2-id--mbdb-book-grid-series li {
 	display: inline-table;
 	margin-right: 10px;
 }
 */
 
-/*.cmb2-id-mbdb-book-grid-slug-settings-title p.cmb2-metabox-description, .cmb2-id-mbdb-book-grid-template-settings-title 
+/*.cmb2-id-mbdb-book-grid-slug-settings-title p.cmb2-metabox-description, .cmb2-id-mbdb-book-grid-template-settings-title
 */
 p.cmb2-metabox-description {
 	color: black;
@@ -201,7 +203,7 @@ p.cmb2-metabox-description {
 
 /* Import model pop up box */
 .mbdb_import_pop_up_black_overlay {
-  display: none; 
+  display: none;
   position: fixed;
   top: 0%;
   left: 0%;
@@ -214,7 +216,7 @@ p.cmb2-metabox-description {
   filter: alpha(opacity=80);
 }
 .mooberry-book-manager-settings_page_mbdb_import_export .mbdb_import_pop_up {
-  display: none; 
+  display: none;
   position: fixed;
   top: 25%;
   left: 25%;

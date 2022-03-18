@@ -205,7 +205,10 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 			'assign_cover_artist_terms',
 			'assign_series_terms',
 			'assign_illustrator_terms',
-			'assign_editor_terms')
+			'assign_editor_terms',
+			'assign_narrator_terms',
+			'assign_translator_terms',
+			)
 	);
 
 	$base_level = apply_filters('mbdb_base_level_capabilities', array(
@@ -230,7 +233,10 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 			'manage_tag_terms',
 			'manage_cover_artist_terms',
 			'manage_illustrator_terms',
-			'manage_editor_terms')
+			'manage_editor_terms',
+			'manage_narrator_terms',
+			'manage_translator_terms',
+			)
 	);
 
 	$master_level = apply_filters('mbdb_master_level_capabilities', array(
@@ -248,8 +254,10 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 	add_role('mbdb_librarian', 'MBM ' . __('Librarian','mooberry-book-manager'));
 	remove_role('mbdb_master_librarian');
 	add_role('mbdb_master_librarian', 'MBM' . __('Master Librarian','mooberry-book-manager'));
+	remove_role('mbdb_mbm_manager');
+	add_role( 'mbdb_mbm_manager', 'MBM ' . __('Manager', 'mooberry-book-manager'));
 	$base_roles = array('mbdb_librarian', 'author');
-	$master_roles = array('administrator', 'editor',  'mbdb_master_librarian');
+	$master_roles = array('administrator', 'editor',  'mbdb_master_librarian', 'mbdb_mbm_manager');
 	$contributor = get_role('contributor');
 	if ( $contributor ) {
 		foreach ( $contributor_level as $capability ) {
@@ -273,6 +281,10 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 		}
 	}
 
+	$manager = get_role('mbdb_mbm_manager');
+	if ( $manager) {
+		$manager->add_cap('manage_mbm');
+	}
 	$admin = get_role('administrator');
 	if ( $admin ) {
 		$admin->add_cap( 'manage_mbm' );
