@@ -534,9 +534,3 @@ function mbdb_flush_rewrite_rules() {
 	}
 }
 
-add_filter('mbdb_book_grid_post_link', 'mbdb_remove_link_from_grid');
-function mbdb_remove_link_from_grid( $content ) {
-	$content = preg_replace('/<a .*>/mU', '', $content);
-	$content = preg_replace( '/<\/a>/mU', '', $content);
-	return $content;
-}
