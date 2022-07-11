@@ -379,6 +379,15 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-settings.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-mbm-core-settings.php';
 
+		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/class-admin-notice-manager.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/class-csv-importer.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/class-background-process.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-import-books-csv-process.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-book-csv-importer.php';
+
+
+
+
 
 		//require_once MBDB_PLUGIN_DIR . 'includes/CMB2-grid/Cmb2GridPlugin.php';
 

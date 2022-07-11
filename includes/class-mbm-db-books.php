@@ -425,7 +425,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$errors[] = 'Error saving to books table for book ' . $book->title . '.';
 			return $errors;
 		} else {
-			return true;
+			return $id;
 		}
 
 	}

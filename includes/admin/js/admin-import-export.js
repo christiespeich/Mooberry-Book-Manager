@@ -1,5 +1,7 @@
 jQuery( document ).ready(function() {
 	jQuery('#mbdb_export').on('click', mbdb_export);
+  jQuery('#mbdb_export_csv').on('click', mbdb_export_csv);
+  jQuery('#mbdb_export_csv_columns').on('click', mbdb_export_csv_columns);
 	jQuery('#mbdb_import_novelist').on('click', mbdb_import_novelist);
 //	jQuery('#mbdb_import_button').bind('click', mbdb_import);
 
@@ -33,7 +35,40 @@ function mbdb_import_novelist() {
 	});
 
 }
+function mbdb_export_csv_columns() {
+  mbdb_export_csv_file(true);
+}
 
+function mbdb_export_csv() {
+  mbdb_export_csv_file(false);
+}
+
+function mbdb_export_csv_file( columns_only ) {
+  jQuery('#mbdb_export_csv_progress').show();
+	jQuery('#mbdb_results').empty();
+
+	var data = {
+		'action': 'mbdb_export_csv',
+		'data':	jQuery(':input').serializeArray(),
+    'columns_only': columns_only,
+		'export_nonce': mbdb_admin_options_import_export_ajax.export_nonce
+	};
+
+	var ajax = jQuery.post(mbdb_admin_options_import_export_ajax.ajax_url, data);
+
+	ajax.done( function (data ) {
+		// open a new window to download file
+		window.open(data);
+
+	});
+	ajax.always( function ( data ) {
+		jQuery('#mbdb_export_csv_progress').hide();
+	});
+	ajax.fail ( function (data ) {
+		jQuery('#mbdb_results').empty().append('Export Failed.');
+	});
+
+}
 
 function mbdb_export() {
 	jQuery('#mbdb_export_progress').show();
