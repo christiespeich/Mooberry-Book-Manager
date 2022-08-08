@@ -109,6 +109,13 @@ function display_custom_columns( $column, $post_id ) {
 				'custom'	=>	__('Custom', 'mooberry-book-manager')));
 	}
 
+	public function series_order_options() {
+		return apply_filters('mbdb_book_grid_series_order_options', array(
+			'asc'	=> __('Series Order', 'mooberry-book-manager'),
+			'desc'	=>	__('Last Book First', 'mooberry-book-manager'),
+		));
+	}
+
 
 	public function group_by_options() {
 
@@ -146,6 +153,7 @@ function display_custom_columns( $column, $post_id ) {
 								'position'	=>	2,
 							),
 				'display_cb'	=>	array($this, 'display_books_column'),
+				'after' => '<div id="mbdb_book_selection_series_warning" style="display:none">When selecting by series, the sort order is automatically set to series order.</div>',
 			)
 		);
 				//print_r('get title list for book grid');
@@ -181,30 +189,6 @@ function display_custom_columns( $column, $post_id ) {
 				)
 			);
 		}
-		/*
-		$mbdb_book_grid_metabox->add_field( array(
-				'name'	=> __('Select Genres', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_book_grid_genre',
-				'type' 	=> 'multicheck',
-				'options' => MBDB()->helper_functions->get_term_options('mbdb_genre'),
-			)
-		);
-
-		$mbdb_book_grid_metabox->add_field( array(
-				'name'	=> __('Select Series', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_book_grid_series',
-				'type' 	=> 'multicheck',
-				'options'	=>	MBDB()->helper_functions->get_term_options('mbdb_series'),
-			)
-		);
-
-		$mbdb_book_grid_metabox->add_field( array(
-				'name'	=>	__('Select Tags', 'mooberry-book-manager'),
-				'id'	=>	'_mbdb_book_grid_tag',
-				'type' 	=> 'multicheck',
-				'options'	=>	MBDB()->helper_functions->get_term_options('mbdb_tag'),
-			)
-		);*/
 
 		$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', false );
 		$mbdb_book_grid_metabox->add_field( array(
@@ -214,30 +198,6 @@ function display_custom_columns( $column, $post_id ) {
 				'options'	=> $publishers, // mbdb_get_publishers('no'),
 			)
 		);
-
-		/*$mbdb_book_grid_metabox->add_field( array(
-				'name'	=>	__('Select Editors', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_book_grid_editor',
-				'type'	=>	'multicheck',
-				'options'	=> MBDB()->helper_functions->get_term_options('mbdb_editor'),
-			)
-		);
-
-		$mbdb_book_grid_metabox->add_field( array(
-				'name'	=>	__('Select Illustrators', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_book_grid_illustrator',
-				'type'	=>	'multicheck',
-				'options'	=> MBDB()->helper_functions->get_term_options('mbdb_illustrator'),
-			)
-		);
-
-		$mbdb_book_grid_metabox->add_field( array(
-				'name'	=>	__('Select Cover Artists', 'mooberry-book-manager'),
-				'id'	=> '_mbdb_book_grid_cover_artist',
-				'type'	=>	'multicheck',
-				'options'	=> MBDB()->helper_functions->get_term_options('mbdb_cover_artist'),
-			)
-		);*/
 
 
 		$group_by_options = $this->group_by_options();
@@ -249,6 +209,7 @@ function display_custom_columns( $column, $post_id ) {
 					'id'	=>	'_mbdb_book_grid_group_by_level_' . $x,
 					'type'	=>	'select',
 					'options'	=> $group_by_options,
+				'after' => '<div id="mbdb_group_by_series_warning_' . $x . '" style="display:none">When selecting by series, the sort order is automatically set to series order.</div>',
 			);
 			// add one column for group by
 			if ( $x == 1 ) {
@@ -283,6 +244,17 @@ function display_custom_columns( $column, $post_id ) {
 								'position'	=>	4,
 							),
 				'after'	=> '<div id="_mbdb_bookd_grid_custom_order" style="display:none; font-weight:bold; padding-top: 2em; padding-bottom: 2em;">' . __('Drag and drop the books into the order you want:', 'mooberry-book-manager') . '<ul id="_mbdb_book_grid_book_list">' . $this->output_book_grid_custom_order() . '</ul></div>',
+			)
+		);
+
+		$mbdb_book_grid_metabox->add_field( array(
+				'name'	=> __('Order By', 'mooberry-book-manager'),
+				'id'	=> '_mbdb_book_grid_series_order',
+				'type'	=> 'select',
+				'options'	=> $this->series_order_options(),
+				'column'	=> array(
+								'position'	=>	4,
+							),
 			)
 		);
 

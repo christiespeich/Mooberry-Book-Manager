@@ -65,16 +65,19 @@ function displayChange () {
 
 		var selected = [];
 
+    var grid_order_fields = jQuery('.cmb2-id--mbdb-book-grid-order');
+    var book_selection_fields = jQuery('#_mbdb_book_grid_books');
+
 		// show the options that don't change
 		jQuery('.cmb2-id--mbdb-book-grid-books').show();
 		jQuery('.cmb2-id--mbdb-book-grid-group-by-level-1').show();
-		jQuery('.cmb2-id--mbdb-book-grid-order').show();
+		grid_order_fields.show();
 		jQuery('.cmb2-id--mbdb-book-grid-cover-height-default').show();
 
 
 		// SELECT
 		// books to show and convert _ to -
-		var books = jQuery('#_mbdb_book_grid_books').val().replace('_','-');
+		var books = book_selection_fields.val().replace('_','-');
 
 		// show the one that's selected
 		jQuery('.cmb2-id--mbdb-book-grid-' + books).show();
@@ -105,6 +108,16 @@ function displayChange () {
 			 var selected_group_text = groupby_dropdown.find('option:selected').text();
 			 // add it to the array of selected items
 			 selected.push(selected_group);
+
+       // is seris is selected, show order by warning
+      if ( selected_group === 'series') {
+        jQuery('#mbdb_group_by_series_warning_' + level).show();
+        jQuery('.cmb2-id--mbdb-book-grid-series-order').show();
+      } else {
+        jQuery('#mbdb_group_by_series_warning_' + level).hide();
+        jQuery('.cmb2-id--mbdb-book-grid-series-order').hide();
+      }
+
 			 // if neither none nor series is selected
 			 if (selected_group !== 'none' && selected_group !== 'series') {
 				// show new drop down
@@ -146,32 +159,23 @@ function displayChange () {
 					dropdown = jQuery('#_mbdb_book_grid_group_by_level_' + x)
 				}
 			 }
+
 			 // move to the next drop down
 			 level++;
 			 groupby_dropdown = jQuery('#_mbdb_book_grid_group_by_level_' + level);
 		}
-		/*
-
-		// group by
-		// show the 2nd group by drop down that's selected
-		var groupby = jQuery('#_mbdb_book_grid_group_by').val();
-		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-group-by').show();
-		// and hide the others
-		jQuery('.cmb2-id--mbdb-book-grid-group-by').nextAll("[class$='-group-by']").not('.cmb2-id--mbdb-book-grid-' + groupby + '-group-by').hide();
-
-
-		// show the next level group by drop downs
-		var groupby2 = jQuery('#_mbdb_book_grid_' + groupby + '_group_by').val();
-		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').show();
-		// and hide the others
-		jQuery('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').nextAll("[class$='-group-by']").not('.cmb2-id--mbdb-book-grid-' + groupby + '-' + groupby2 + '-group-by').hide();
-		*/
 
 
 		// ORDER BY
-
+    if ( book_selection_fields.val() === 'series' ) {
+      jQuery('#mbdb_book_selection_series_warning').show();
+      jQuery('.cmb2-id--mbdb-book-grid-series-order').show();
+    } else {
+      jQuery('#mbdb_book_selection_series_warning').hide();
+      jQuery('.cmb2-id--mbdb-book-grid-series-order').hide();
+    }
 		// Add custom when selecting custom books and not grouping
-		if (jQuery('#_mbdb_book_grid_books').val() === 'custom' && jQuery('#_mbdb_book_grid_group_by_level_1').val() === 'none') {
+		if (book_selection_fields.val() === 'custom' && jQuery('#_mbdb_book_grid_group_by_level_1').val() === 'none') {
 			// only add if it's not already there
 			if (jQuery("#_mbdb_book_grid_order option[value='custom']").length === 0 ) {
 				jQuery('#_mbdb_book_grid_order').append(jQuery('<option></option>').val('custom').html(custom_sort));
@@ -180,17 +184,22 @@ function displayChange () {
 			jQuery("#_mbdb_book_grid_order option[value='custom']").remove();
 		}
 
-		// order should be hidden if series is selected
+		// order should be hidden if grouped by series
 		// get the last visible group-by drop down
 		if (jQuery('.cmb2-id--mbdb-book-grid-group-by-level-1').nextAll("[class*='-group-by-level']").addBack().filter(':visible').last().find('select').val() === 'series') {
-			jQuery('.cmb2-id--mbdb-book-grid-order').hide();
-		} else {
-			jQuery('.cmb2-id--mbdb-book-grid-order').show();
+			grid_order_fields.hide();
+      jQuery('.cmb2-id--mbdb-book-grid-series-order').show();
 		}
+
+    // order should be hidden if series is selected
+  if (book_selection_fields.val() === 'series') {
+    	grid_order_fields.hide();
+      jQuery('.cmb2-id--mbdb-book-grid-series-order').show();
+  }
 
 		// if order is visible and set to custom, show the sorting grid
 
-		if (jQuery('.cmb2-id--mbdb-book-grid-order').is(":visible") && jQuery('#_mbdb_book_grid_order').val() === 'custom' ) {
+		if (grid_order_fields.is(":visible") && jQuery('#_mbdb_book_grid_order').val() === 'custom' ) {
 			jQuery('#_mbdb_bookd_grid_custom_order').show();
 		} else {
 			jQuery('#_mbdb_bookd_grid_custom_order').hide();
