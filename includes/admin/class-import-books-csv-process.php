@@ -183,6 +183,7 @@ class MBDB_Import_Books_CSV_Process extends Mooberry_Dreams_Background_Process {
 				$edition_fields = array(
 					'isbn'     => 'isbn',
 					'doi'      => 'doi',
+					'sku'   =>  'sku',
 					'language' => 'language',
 					'pages'    => 'length',
 					'height'   => 'height',

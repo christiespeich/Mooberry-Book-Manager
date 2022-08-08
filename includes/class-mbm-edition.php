@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	private $format;
 	private $format_id;
 	private $isbn;
+	private $sku;
 	private $doi;
 	private $language;
 	private $length;
@@ -45,6 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->format 		= '';
 		$this->format_id 	= '';
 		$this->isbn 		= '';
+		$this->sku 		= '';
 		$this->doi          =   '';
 		$this->language 	= '';
 		$this->length 		= '';
@@ -68,6 +70,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 				if (array_key_exists( 'isbn', $data ) ) {
 					$this->isbn = $data['isbn'];
+				}
+				if (array_key_exists( 'sku', $data ) ) {
+					$this->sku = $data['sku'];
 				}
 				if (array_key_exists( 'doi', $data ) ) {
 					$this->doi = $data['doi'];

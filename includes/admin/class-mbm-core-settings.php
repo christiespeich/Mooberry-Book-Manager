@@ -1526,6 +1526,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$edition_fields = array(
 					'isbn'     => 'isbn',
 					'doi'      => 'doi',
+					'sku'     => 'sku',
 					'language' => 'language',
 					'pages'    => 'length',
 					'height'   => 'height',
@@ -1630,6 +1631,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$edition_fields = array(
 					'isbn'     ,
 					'doi'      ,
+					'sku'     ,
 					'language' ,
 					'pages'    ,
 					'height'   ,
