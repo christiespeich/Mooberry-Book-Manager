@@ -1235,6 +1235,8 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		check_ajax_referer( 'mbdb_admin_options_cancel_import_nonce', 'security' );
 
 		$this->import_process->cancel_process();
+		$this->import_books_csv_process->cancel_process();
+		$this->import_novelist_books_process->cancel_process();
 		//echo '<h3>' . __('Import canceled.', 'mooberry-book-manager') . '</h3>';
 		// $key = 'mbdb_import_books_cancel';
 		// $message = __('Book import canceled!', 'mooberry-book-manager');
@@ -1337,7 +1339,8 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 	protected function import_csv() {
 		if ( ! $this->import_process->is_queue_empty() || !$this->import_novelist_books_process->is_queue_empty() || !$this->import_books_csv_process->is_queue_empty() ) {
-				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before impporting more.', 'mooberry-book-manager' ) . '</h3>';
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before importing more.', 'mooberry-book-manager' ) . '</h3>';
+echo '<a id="mbdb_cancel_import" class="button" >' . __( 'Cancel Import', 'mooberry-book-manager' ) . '</a><img src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;" id="mbdb_cancel_import_progress"/><div id="mbdb_cancel_results"></div>';
 
 				return;
 			}
