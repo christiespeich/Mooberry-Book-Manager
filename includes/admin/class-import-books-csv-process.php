@@ -85,27 +85,42 @@ class MBDB_Import_Books_CSV_Process extends Mooberry_Dreams_Background_Process {
 
 
 		// publisher
+		//TODO: import
 		if ( isset( $book_data['publisher'] ) ) {
-			$mbm_publishers = MBDB()->options->publishers;
-			$found          = false;
-			if ( is_array( $mbm_publishers ) ) {
-				foreach ( $mbm_publishers as $publisher ) {
-					if ( $publisher->name == $book_data['publisher'] ) {
-						$found = true;
-						break;
-					}
-				}
-			}
-			if ( ! $found ) {
-				$publisher = new Mooberry_Book_Manager_Publisher( array(
-					'uniqueID' => mbdb_uniqueID_generator( '' ),
-					'name'     => sanitize_text_field( $book_data['publisher'] )
+			$publisher_name = sanitize_text_field( $book_data['publisher'] );
+			$publisher_id = 0;
+
+			$publisher_ids = get_posts( array(
+				'name'           => trim( $publisher_name ),
+				'post_type'      => 'mbdb_publisher',
+				'fields'         => 'ids',
+				'posts_per_page' => - 1
+			) );
+
+			// if not found, add it
+			if ( count( $publisher_ids ) == 0 ) {
+				$new_publisher_id = wp_insert_post( array(
+					'post_status'    => 'publish',
+					'post_type'      => 'mbdb_publisher',
+					'post_title'     => trim( $publisher_name ),
+					'post_publisher' => wp_get_current_user()->ID
 				) );
-				MBDB()->options->add_publisher( $publisher );
+				if ( ! is_wp_error( $new_publisher_id ) ) {
+					$publisher_id = $new_publisher_id;
+				}
+			} else {
+				$publisher_id = $publisher_ids[0];
 			}
+
+
+
+			$publisher          = new Mooberry_Book_Manager_Publisher( $publisher_id );
 			$book->publisher    = $publisher->to_json();
 			$book->publisher_id = $publisher->id;
+
+
 		}
+
 
 		// imprint
 		if ( isset( $book_data['imprint'] ) ) {
