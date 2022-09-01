@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.13.2' );
+	define( 'MBDB_PLUGIN_VERSION', '4.14' );
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -102,6 +102,7 @@ final class Mooberry_Book_Manager {
 	public $book_grid_db;
 	public $book_CPT;
 	public $book_grid_CPT;
+	public $publisher_CPT;
 	public $tax_grid_page;
 	public $book_factory;
 //	public $widget_factory;
@@ -157,30 +158,22 @@ final class Mooberry_Book_Manager {
 
 			// strictly for backwards compatibility
 			self::$instance->books = new MBDB_Books();
-			////error_log('create CPT object');
-
-			//self::$instance->book_CPT = new Mooberry_Book_Manager_Book_CPT();
 
 			self::$instance->book_CPT = apply_filters( 'mbdb_book_cpt_obj', new Mooberry_Book_Manager_Book_CPT() );
 
 			self::$instance->grid_factory = apply_filters( 'mbdb_grid_factory', new Mooberry_Book_Manager_Simple_Grid_Factory() );
 
 			self::$instance->book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT();
-			//$book_grid_CPT = new Mooberry_Book_Manager_Book_Grid_CPT();
-
-			//self::$instance->tax_grid_CPT = new Mooberry_Book_Manager_Tax_Grid_CPT( $grid_factory );
-			//$tax_grid_CPT = new Mooberry_Book_Manager_Tax_Grid_CPT();
+			self::$instance->publisher_CPT = new Mooberry_Book_Manager_Publisher_CPT();
 			self::$instance->tax_grid_page = new Mooberry_Book_Manager_Tax_Grid_Page();
 
-			//self::$instance->widget_factory = new Mooberry_Book_Manager_Simple_Widget_Factory();
 			if ( is_admin() ) {
 				// set up menus
-				//self::$instance->settings_menu = new Mooberry_Book_Manager_Settings_Menu();
 				add_action( 'admin_menu', array( self::$instance, 'add_options_page' ), 8 );
 				self::$instance->settings_menu = self::$instance->mbm_admin();
-				//$settings_menu = self::$instance->mbm_admin();
+
 			}
-			//	//error_log(print_r( self::$instance, true) );
+
 
 		}
 
@@ -267,37 +260,6 @@ final class Mooberry_Book_Manager {
 		}
 	}
 
-	/**
-	 * Init
-	 *
-	 * Registers Custom Post Types and Taxonomies
-	 * Verifies Tax Grid is installed correctly
-	 * Does upgrade routines
-	 *
-	 * @access public
-	 * @return void
-	 * @since  1.0
-	 */
-
-	public static function init() {
-
-		// let CPTs register themselves
-		// MBDB()->book_CPT->register();
-		// MBDB()->book_grid_CPT->register();
-		// MBDB()->tax_grid_CPT->add_tax_grid();
-
-		/*
-			mbdb_register_cpts();
-			mbdb_register_taxonomies();
-
-
-
-
-			mbdb_upgrade_versions();
-		*/
-
-	}
-
 	public function add_options_page() {
 		$this->options_page = add_menu_page( __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), __( 'Mooberry Book Manager Settings', 'mooberry-book-manager' ), 'manage_mbm', 'mbdb_options', array(
 			self::$instance->settings_menu,
@@ -334,9 +296,12 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-grid.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-grid.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-publisher-book-grid.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-tax-grid.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-simple-grid-factory.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-simple-book-factory.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-publisher.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-publisher-cpt.php';
 
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-download-format.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-edition-format.php';
@@ -345,7 +310,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-buy-link.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-download-link.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-review.php';
-		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-publisher.php';
+
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-imprint.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-edition.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-social-media-site.php';
@@ -359,6 +324,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-cmb-cpt.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-db-books.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-db-book-grid.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-db-publisher.php';
 
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-widget.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-book-widget.php';
@@ -386,17 +352,10 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-book-csv-importer.php';
 
 
-
-
-
-		//require_once MBDB_PLUGIN_DIR . 'includes/CMB2-grid/Cmb2GridPlugin.php';
-
-		//require_once MBDB_PLUGIN_DIR . 'mooberry-book-manager-custom-fields.php';
-		//require_once MBDB_PLUGIN_DIR . 'includes/custom-fields/custom-fields.php';
 	}
 
 
-}// class
+} // class
 
 
 /**
@@ -453,12 +412,6 @@ if ( ! function_exists( "array_column" ) ) {
 		return $new_array;
 	}
 }
-/* add_filter('posts_where','mbdb_search_where' );
-function mbdb_search_where ( $where ) {
-	print_r($where);
-	return $where;
-} */
-
 
 add_filter( 'wp_nav_menu_objects', 'remove_tax_grid_page_from_menu', 99, 2 );
 function remove_tax_grid_page_from_menu( $sorted_menu_objects, $args ) {
@@ -510,13 +463,6 @@ function mbdb_change_tax_grid_page_title( $title ) {
 	return $title;
 }
 
-// add_action('init', 'mbdb_add_comments_to_books', 1);
-// function mbdb_add_comments_to_books() {
-// $options = get_option('mbdb_options');
-// $options['comments_on_books'] = false;
-// update_option('mbdb_options', $options);
-// }
-
 
 function mbdb_deactivate_cover_as_featured_image() {
 	deactivate_plugins( plugin_basename( MBDBCAFI_PLUGIN_FILE ) );
@@ -542,3 +488,20 @@ function mbdb_flush_rewrite_rules() {
 		delete_option( 'mbdb_flush_rules' );
 	}
 }
+
+add_action('mbdbcf_taxonomy_fields_metabox_fields_added', 'mbdbcf_taxonomy_fields_added');
+function mbdbcf_taxonomy_fields_added( $tab ) {
+$tab->add_group_field( 'taxonomies', array(
+				'name'       => __( 'Should this taxonomy be hierarchical?', 'mbm-custom-fields' ),
+				'desc'       => __( 'Hierarchical taxonomies allow you to set parent/child relationship between items. For example, the Wordpress Categories are hierarchical.' ),
+				'id'         => 'hierarchical',
+				'type'       => 'select',
+				'options'    => array( '' => '', 'no' => 'No', 'yes' => 'Yes' ),
+				'default'   =>  'no',
+				'attributes' => array(
+					'required' => 'required',
+				),
+			)
+		);
+
+	}
