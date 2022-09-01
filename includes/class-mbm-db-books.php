@@ -148,7 +148,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		foreach ( $editions as $edition ) {
 			$edition = wp_parse_args( $edition, $defaults );
 
-			$data[] = array(
+			$data[] = apply_filters('mbdb_edition_data', array(
 						'format_id' 	=>  $edition['_mbdb_format'],
 						'isbn' 		=>  $edition['_mbdb_isbn'],
 						'doi' 		=>  $edition['_mbdb_doi'],
@@ -161,7 +161,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 						'retail_price' =>  $edition['_mbdb_retail_price'],
 						'currency' 	=>  $edition['_mbdb_currency'],
 						'edition_title' =>  $edition['_mbdb_edition_title'],
-					);
+					), $edition);
 		}
 		return $data;
 	}

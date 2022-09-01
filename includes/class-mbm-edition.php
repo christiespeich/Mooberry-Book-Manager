@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	private $retail_price;
 	private $currency;
 	private $edition_title;
+	private $custom_fields;
 
 	// data is either an id to be loaded from the database
 	// or an array of data already pulled from the databsae in the format
@@ -43,83 +44,49 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	//
 	public function __construct( $data = 0 ) {
 
-		$this->format 		= '';
-		$this->format_id 	= '';
-		$this->isbn 		= '';
-		$this->sku 		= '';
-		$this->doi          =   '';
-		$this->language 	= '';
-		$this->length 		= '';
-		$this->height 		= '';
-		$this->width 		= '';
-		$this->unit 		= '';
-		$this->retail_price = '';
-		$this->currency 	= '';
+		$this->format        = '';
+		$this->format_id     = '';
+		$this->isbn          = '';
+		$this->sku           = '';
+		$this->doi           = '';
+		$this->language      = '';
+		$this->length        = '';
+		$this->height        = '';
+		$this->width         = '';
+		$this->unit          = '';
+		$this->retail_price  = '';
+		$this->currency      = '';
 		$this->edition_title = '';
 
 		if ( is_array( $data ) ) {
-			// TODO: get format based on format_id
-			//	if (array_key_exists( 'format', $data ) ) {
-			//		$this->format = $data['format'];
-			//	}
-			////error_log(print_r($data, true));
-				if ( array_key_exists( 'format_id', $data ) ) {
-					$this->format_id = $data['format_id'];
-					$this->format = new Mooberry_Book_Manager_Edition_Format( $this->format_id );
-				}
+			if ( array_key_exists( 'format_id', $data ) ) {
+				$this->format_id = $data['format_id'];
+				$this->format    = new Mooberry_Book_Manager_Edition_Format( $this->format_id );
+			}
 
-				if (array_key_exists( 'isbn', $data ) ) {
-					$this->isbn = $data['isbn'];
-				}
-				if (array_key_exists( 'sku', $data ) ) {
-					$this->sku = $data['sku'];
-				}
-				if (array_key_exists( 'doi', $data ) ) {
-					$this->doi = $data['doi'];
-				}
-				if ( array_key_exists( 'language', $data ) ) {
-					$this->language = $data['language'];
-				}
-				if (array_key_exists( 'length', $data ) ) {
-					$this->length = $data['length'];
-				}
-				if ( array_key_exists( 'height', $data ) ) {
-					$this->height = $data['height'];
-				}
-				if (array_key_exists( 'width', $data ) ) {
-					$this->width = $data['width'];
-				}
-				if ( array_key_exists( 'unit', $data ) ) {
-					$this->unit = $data['unit'];
-				}
-				if ( array_key_exists( 'retail_price', $data ) ) {
-					$this->retail_price = $data['retail_price'];
-				}
-				if (array_key_exists( 'currency', $data ) ) {
-					$this->currency = $data['currency'];
-				}
-				if ( array_key_exists( 'edition_title', $data ) ) {
-					$this->edition_title = $data['edition_title'];
-				}
-		}/* else {
-			$data = absint($data);
-			if ( $data != 0 ) {
+			$fields = array(
+				'isbn',
+				'sku',
+				'doi',
+				'language',
+				'length',
+				'height',
+				'width',
+				'unit',
+				'retail_price',
+				'currency',
+				'edition_title',
+			);
 
-					// TODO: get format based on format_id
-					//$this->format 		= MBDB()->editions[$data]->format;
-					$this->format_id 	= MBDB()->editions[$data]->format_id;
-					$this->isbn 		= MBDB()->editions[$data]->isbn;
-					$this->language 	= MBDB()->editions[$data]->language;
-					$this->length 		= MBDB()->editions[$data]->length;
-					$this->height 		= MBDB()->editions[$data]->height;
-					$this->width 		= MBDB()->editions[$data]->width;
-					$this->unit 		= MBDB()->editions[$data]->unit;
-					$this->retail_price = MBDB()->editions[$data]->retail_price;
-					$this->currency 	= MBDB()->editions[$data]->currency;
-					$this->edition_title = MBDB()->editions[$data]->edition_title;
+			foreach ( $data as $key => $value ) {
+				if ( in_array( $key, $fields ) ) {
+					$this->$key = $value;
+				} else {
+					// anything else is a custom field
+					$this->custom_fields[ $key ] = $value;
 				}
 			}
-		} */
+		}
 	}
 
 	public function to_json() {
