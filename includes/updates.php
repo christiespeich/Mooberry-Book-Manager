@@ -230,6 +230,9 @@ function mbdb_update_versions() {
 		mbdb_update_4_12();
 	}
 
+	if ( version_compare( $current_version, '4.14', '<' ) ) {
+		mbdb_update_4_14();
+	}
 
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
@@ -1091,4 +1094,41 @@ function mbdb_update_4_12() {
 	$mbdb_options['retailer_buttons'] = 'individual';
 
 	update_option('mbdb_options', $mbdb_options);
+}
+
+function mbdb_update_4_14() {
+		$mbdb_options = get_option('mbdb_options');
+
+	if ( !is_array( $mbdb_options)) {
+		$mbdb_options = array();
+	}
+
+	$publishers = isset($mbdb_options['publishers']) ? $mbdb_options['publishers'] : array();
+
+	if ( !is_array($publishers)) {
+		$publishers = array();
+	}
+
+	$new_publishers = array();
+	foreach ( $publishers as $publisher ) {
+		$new_publisher_id = wp_insert_post(array('post_status'=>'publish', 'post_type'=>'mbdb_publisher', 'post_title'=>$publisher['name']));
+		if ( isset($publisher['website'])) {
+			update_post_meta( $new_publisher_id, '_mbdb_publisher_website', $publisher['website'] );
+		}
+		$new_publishers[$publisher['uniqueID']] = $new_publisher_id;
+	}
+
+
+	$books = new MBDB_Book_List('all');
+	foreach ( $books as $book ) {
+		if ( $book->publisher_id != 0 && isset($new_publishers[$book->publisher_id])) {
+			$book->publisher_id = $new_publishers[$book->publisher_id];
+			$book->save();
+		}
+
+	}
+
+	mbdb_set_up_roles();
+	flush_rewrite_rules();
+
 }

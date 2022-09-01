@@ -77,10 +77,10 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'page_title' => __( 'Mooberry Book Manager Book Grid Settings', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Book Grid', 'mooberry-book-manager' )
 			),
-			'mbdb_publishers_options' => array(
+			/*'mbdb_publishers_options' => array(
 				'page_title' => __( 'Mooberry Book Manager Publishers', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Publishers', 'mooberry-book-manager' )
-			),
+			),*/
 			'mbdb_imprints_options' => array(
 				'page_title' => __( 'Mooberry Book Manager Imprints', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Imprints', 'mooberry-book-manager' )
@@ -165,9 +165,9 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			case 'mbdb_grid_options':
 				$mbdb_settings_metaxbox = $this->mbdb_grid_settings( $mbdb_settings_metabox );
 				break;
-			case 'mbdb_publishers_options':
+			/*case 'mbdb_publishers_options':
 				$mbdb_settings_metabox = $this->mbdb_publishers( $mbdb_settings_metabox );
-				break;
+				break;*/
 			case 'mbdb_imprints_options':
 				$mbdb_settings_metabox = $this->mbdb_imprints( $mbdb_settings_metabox );
 				break;

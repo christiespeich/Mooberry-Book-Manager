@@ -16,16 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 3.5 ?
  */
- class Mooberry_Book_Manager_Publisher { 
+ class Mooberry_Book_Manager_Publisher extends Mooberry_Book_Manager_CPT_Object {
 
 
 	private $name;
 	private $website;
-	private $id;
-	
+	private $logo;
+	private $logo_id;
+
+
 	// data is either an id to be loaded from the database
 	// or an array of data already pulled from the databsae in the format
-	//	['uniqueID'] = 
+	//	['uniqueID'] =
 	//  ['website'] =
 	//  ['name'] =
 	//
@@ -33,38 +35,38 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	// all values are initialized to empty strings
 	//
 	public function __construct( $data = 0 ) {
-		
-		$this->name = '';
+
+		parent::__construct($data);
+
+		$this->postmeta_to_object = array(
+			 '_mbdb_publisher_website'                => 'website',
+				'image' =>  'logo',
+			'image_id'  =>  'logo_id',
+		);
+
+		$this->db_object = new MBDB_DB_Publisher();
 		$this->website = '';
-		$this->id = '';
-		
+		$this->name = '';
+		$this->logo = '';
+		$this->logo_id = 0;
+
+
 		if ( is_array( $data ) ) {
-			if ( array_key_exists( 'uniqueID', $data ) ) {
-				$this->id = $data['uniqueID'];
-				if (array_key_exists( 'website', $data ) ) {
-					$this->website = $data['website'];
-				}
-				if ( array_key_exists( 'name', $data ) ) { 
-					$this->name = $data['name'];
-				}
-			}
+			// TODO: get publisher by array of data
+			// is this needed??
 		} else {
-			//$data = absint($data);
-			if ( $data != 0 ) {
-				if ( array_key_exists( $data, MBDB()->options->publishers ) ) {
-					$this->id = $data;
-					$this->name = MBDB()->options->publishers[$data]->name;
-					$this->website = MBDB()->options->publishers[$data]->website;
-				}
+			$id = absint($data);
+			if ( $id != 0 ) {
+				 $publisher = $this->db_object->get( $id );
+				 if ( $publisher) {
+					 $this->website = $publisher->website;
+					 $this->name = $publisher->post_title;
+					 $this->logo = $publisher->logo;
+					 $this->logo_id = $publisher->logo_id;
+				 }
 			}
 		}
-		/*
-		$publisher = mbdb_get_array_data( $id , MBDB()->publishers );
-		
-		$this->id = $id;
-		$this->website = mbdb_get_array_data( 'website', $publisher );
-		$this->name = mbdb_get_array_data( 'name', $publisher );
-		*/
+
 
 	}
 
@@ -75,17 +77,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$object[ $name ] =   $value ;
 		}
 		return json_encode( $object);
-       
+
     }
-	
+
 	public function import( $json_string ) {
 		$publisher = json_decode( $json_string );
 		$properties =  get_object_vars($this);
-		foreach ( $properties as $name => $value ) {	
+		foreach ( $properties as $name => $value ) {
 				$this->$name =   $publisher->$name;
 		}
-		
-		// if publisher exists, load it
+
+		// TODO: import
+
+		/*// if publisher exists, load it
 		$existing_publishers = MBDB()->options->publishers;
 		foreach ( $existing_publishers as $existing_publisher ) {
 			if ( $existing_publisher->name == $publisher->name ) {
@@ -95,12 +99,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		// otherwise, add to database
 		$this->id =	MBDB()->helper_functions->uniqueID_generator();
-		MBDB()->options->add_publisher( $this );
-		
+		MBDB()->options->add_publisher( $this );*/
+
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
@@ -113,25 +117,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			return call_user_func( array( $this, 'get_' . $key ) );
 
 		} else {
-			
+
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$ungettable_properties = array(  );
-				
+
 				if ( !in_array( $key, $ungettable_properties ) ) {
-				
+
 					return $this->$key;
 
 				}
-		
+
 			}
-		
+
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-				
+
 	}
-	
+
 	/**
 	 * Magic __set function to dispatch a call to retrieve a private property
 	 *
@@ -146,22 +150,22 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		} else {
 
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$unsettable_properties = array( 'id' );
-				
+
 				if ( !in_array( $key, $unsettable_properties ) ) {
-				
+
 					$this->$key = $value;
 					return true;
-					
+
 				}
-				
+
 			}
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-		
+
 	}
-	
+
 
 }
