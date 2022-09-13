@@ -488,20 +488,3 @@ function mbdb_flush_rewrite_rules() {
 		delete_option( 'mbdb_flush_rules' );
 	}
 }
-
-add_action('mbdbcf_taxonomy_fields_metabox_fields_added', 'mbdbcf_taxonomy_fields_added');
-function mbdbcf_taxonomy_fields_added( $tab ) {
-$tab->add_group_field( 'taxonomies', array(
-				'name'       => __( 'Should this taxonomy be hierarchical?', 'mbm-custom-fields' ),
-				'desc'       => __( 'Hierarchical taxonomies allow you to set parent/child relationship between items. For example, the Wordpress Categories are hierarchical.' ),
-				'id'         => 'hierarchical',
-				'type'       => 'select',
-				'options'    => array( '' => '', 'no' => 'No', 'yes' => 'Yes' ),
-				'default'   =>  'no',
-				'attributes' => array(
-					'required' => 'required',
-				),
-			)
-		);
-
-	}
