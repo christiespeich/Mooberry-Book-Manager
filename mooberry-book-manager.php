@@ -352,7 +352,6 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-book-csv-importer.php';
 
 
-
 	}
 
 

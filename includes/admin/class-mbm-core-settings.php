@@ -11,6 +11,8 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	private $import_process;
 	private $import_novelist_books_process;
 	private $update_apple_books_links_process;
+	private $import_books_csv_process;
+	private $admin_notice_manager;
 
 	/**
 	 * Constructor
@@ -33,6 +35,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 
 		add_action( 'mbdb_settings_before_metabox', array( $this, 'import_export' ) );
 		add_action( 'wp_ajax_mbdb_export', array( $this, 'export' ) );
+		add_action( 'wp_ajax_mbdb_export_csv', array( $this, 'export_csv_file' ) );
 		add_action( 'wp_ajax_mbdb_import', array( $this, 'import' ) );
 		add_action( 'wp_ajax_mbdb_import_novelist', array( $this, 'import_novelist' ) );
 		add_action( 'wp_ajax_mbdb_update_apple_books_links', array( $this, 'update_apple_books_links' ) );
@@ -53,6 +56,10 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		$this->import_process                   = new Mooberry_Book_Manager_Import_Process();
 		$this->import_novelist_books_process    = new Mooberry_Book_Manager_Novelist_Import_Process();
 		$this->update_apple_books_links_process = new Mooberry_Book_Manager_Apple_Books_Update_Process();
+
+		$this->admin_notice_manager = new Mooberry_Dreams_Admin_Notice_Manager('mbdb_admin_notice_manager');
+		$this->import_books_csv_process = new MBDB_Import_Books_CSV_Process( $this->admin_notice_manager );
+
 	}
 
 
@@ -70,10 +77,10 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				'page_title' => __( 'Mooberry Book Manager Book Grid Settings', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Book Grid', 'mooberry-book-manager' )
 			),
-			'mbdb_publishers_options' => array(
+			/*'mbdb_publishers_options' => array(
 				'page_title' => __( 'Mooberry Book Manager Publishers', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Publishers', 'mooberry-book-manager' )
-			),
+			),*/
 			'mbdb_imprints_options' => array(
 				'page_title' => __( 'Mooberry Book Manager Imprints', 'mooberry-book-manager' ),
 				'menu_title' => __( 'Imprints', 'mooberry-book-manager' )
@@ -158,9 +165,9 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 			case 'mbdb_grid_options':
 				$mbdb_settings_metaxbox = $this->mbdb_grid_settings( $mbdb_settings_metabox );
 				break;
-			case 'mbdb_publishers_options':
+			/*case 'mbdb_publishers_options':
 				$mbdb_settings_metabox = $this->mbdb_publishers( $mbdb_settings_metabox );
-				break;
+				break;*/
 			case 'mbdb_imprints_options':
 				$mbdb_settings_metabox = $this->mbdb_imprints( $mbdb_settings_metabox );
 				break;
@@ -1228,6 +1235,8 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		check_ajax_referer( 'mbdb_admin_options_cancel_import_nonce', 'security' );
 
 		$this->import_process->cancel_process();
+		$this->import_books_csv_process->cancel_process();
+		$this->import_novelist_books_process->cancel_process();
 		//echo '<h3>' . __('Import canceled.', 'mooberry-book-manager') . '</h3>';
 		// $key = 'mbdb_import_books_cancel';
 		// $message = __('Book import canceled!', 'mooberry-book-manager');
@@ -1242,24 +1251,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		wp_die();
 	}
 
-
-	public function import_export() {
-
-		if ( $this->page != 'mbdb_import_export' ) {
-			return;
-		}
-		if ( wp_doing_ajax() ) {
-			return;
-		}
-		$this->title        = __( 'MBM Book Import/Export Settings', 'mooberry-book-manager' );
-		$this->show_metabox = false;
-
-		if ( $this->tab == '' ) {
-			$this->tab = 'import';
-		}
-
-		if ( $this->tab == 'import' ) {
-
+	protected function import_json() {
 
 			if ( isset( $_POST['mbdb_import_file_nonce'] ) && wp_verify_nonce( $_POST['mbdb_import_file_nonce'], plugin_basename( __FILE__ ) ) ) {
 				if ( ! empty( $_FILES ) && isset( $_FILES['mbdb_import_file'] ) ) {
@@ -1281,19 +1273,6 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				return;
 			}
 			?>
-            <!--<div id="light" class="mbdb_import_pop_up">Importing... Please wait....
-
- <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
-			  </div>
-			<div id="fade" class="mbdb_import_pop_up_black_overlay"></div>
-			-->
-            <!--
-			<h3 class="cmb2-metabox-title"><?php _e( 'IMPORT FROM GOOGLE BOOKS', 'mooberry-book-manager' ); ?></h3>
-			<p><?php _e( 'Enter ISBNs, one per line, to import books.' ); ?></p>
-			<textarea id="mbdb_import_google_isbns" rows="10" ></textarea>
-			<p style="margin-bottom: 30px;"><a class="button" id="mbdb_import_google"><?php _e( 'Import from Google', 'mooberry-book-manager' ); ?></a></p>
-			-->
-            <!-- <h3 class="cmb2-metabox-title"><?php _e( 'IMPORT FROM FILE', 'mooberry-book-manager' ); ?></h3> -->
             <h3><?php _e( 'Choose an export file from Mooberry Book Manager.', 'mooberry-book-manager' ); ?></h3>
 
             <form enctype="multipart/form-data" method="post">
@@ -1301,17 +1280,16 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 				<?php wp_nonce_field( plugin_basename( __FILE__ ), 'mbdb_import_file_nonce' ); ?>
                 <input type="submit" id="mbdb_import_button" value="Import"/>
             </form>
-            <!--		 To display a lightbox click <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">here</a>
-				-->
+
 			<?php
-		}
-		if ( $this->tab == 'export' ) {
-			if ( ! $this->import_process->is_queue_empty() ) {
+	}
+
+	protected function export_json() {
+		if ( ! $this->import_process->is_queue_empty()|| !$this->import_novelist_books_process->is_queue_empty() || !$this->import_books_csv_process->is_queue_empty()  ) {
 				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before exporting more.', 'mooberry-book-manager' ) . '</h3>';
 
 				return;
 			}
-
 
 			?>
            <h3><?php _e('Export Books', 'mooberry-book-manager'); ?></h3> <p><?php _e( 'This will create a text file with all of the books entered into Mooberry Book Manager. Books that are in Draft Mode or in the Trash will not be exported.  Options for filtering which books to export will be coming in a future update.', 'mooberry-book-manager' ); ?></p>
@@ -1324,11 +1302,12 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
             <p>
             <div id="mbdb_results"/></p>
 			<?php
-		}
 
-		if ( $this->tab == 'import_novelist' ) {
-			if ( ! $this->import_process->is_queue_empty() ) {
-				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before exporting more.', 'mooberry-book-manager' ) . '</h3>';
+	}
+
+	protected function import_novelist_form() {
+		if ( ! $this->import_process->is_queue_empty() || !$this->import_novelist_books_process->is_queue_empty() || !$this->import_books_csv_process->is_queue_empty() ) {
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before importing more.', 'mooberry-book-manager' ) . '</h3>';
 
 				return;
 			}
@@ -1356,10 +1335,369 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
             <p>
             <div id="mbdb_results"/></p>
 			<?php
+	}
+
+	protected function import_csv() {
+		if ( ! $this->import_process->is_queue_empty() || !$this->import_novelist_books_process->is_queue_empty() || !$this->import_books_csv_process->is_queue_empty() ) {
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before importing more.', 'mooberry-book-manager' ) . '</h3>';
+echo '<a id="mbdb_cancel_import" class="button" >' . __( 'Cancel Import', 'mooberry-book-manager' ) . '</a><img src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;" id="mbdb_cancel_import_progress"/><div id="mbdb_cancel_results"></div>';
+
+				return;
+			}
+
+		if (  isset( $_POST[  'mbdb_import_file_nonce' ] )  && wp_verify_nonce( $_POST[ 'mbdb_import_file_nonce'], plugin_basename( __FILE__ ) ) ) {
+			if ( ! empty( $_FILES ) && isset( $_FILES['mbdb_import_file'] ) ) {
+				$file = wp_upload_bits( $_FILES['mbdb_import_file']['name'], null, @file_get_contents( $_FILES['mbdb_import_file']['tmp_name'] ) );
+				if ( false === $file['error'] ) {
+
+					// do the import
+					$importer = new MBDB_Book_CSV_Importer( $file, $this->import_books_csv_process, $this->admin_notice_manager  );
+					$importer->import();
+			}
+			}
+		}   ?>
+            <h1>Importing Books via CSV</h1>
+                <h3>Choose an import CSV file.</h3>
+<p><?php _e(sprintf('The CSV file must be formatted in a specific manner. Please see %s for details. Download a file template to use by clicking the button below.', '<a href="https://mooberry-book-manager.helpscoutdocs.com/article/119-importing-from-a-csv-file" target="_new">https://mooberry-book-manager.helpscoutdocs.com/article/119-importing-from-a-csv-file</a>', 'mooberry-book-manager')); ?></p>
+            <p><?php _e( 'Books will be imported in the background. You may leave this page while they are importing.', 'mooberry-book-manager' ); ?> </p>
+		 <p><a class="button"
+                  id="mbdb_export_csv_columns"><?php _e('Download file template') ?></a><img
+                        src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"
+                        style="display:none;"
+                        id="mbdb_<?php echo $this->tab; ?>_progress"/></p>
+            <p>
+				<?php
+
+				if ( ! $this->import_process->is_queue_empty() ) {
+					echo '<h3>' . __( 'Please wait for the current batch of imports to finish before importing more.', 'mooberry-book-manager' ) . '</h3>';
+					echo '<a id="mbdb_cancel_import" class="button" >' . __( 'Cancel Import', 'mooberry-book-manager' ) . '</a><img src="' . MBDB_PLUGIN_URL . 'includes/assets/ajax-loader.gif" style="display:none;" id="mbdb_cancel_import_progress"/><div id="mbdb_cancel_results"></div>';
+
+					return;
+				}
+				?>
+            <form id="mbdb_import_listings_form" enctype="multipart/form-data" method="post">
+			<input type="file" id="mbdb_import_file" name="mbdb_import_file" />
+			<?php wp_nonce_field( plugin_basename( __FILE__ ), 'mbdb_import_file_nonce' ); ?>
+			<input type="submit" id="mbdb_import_button" value="Import" />
+			</form>
+
+		<?php
+	}
+
+	protected function export_csv() {
+	if ( ! $this->import_process->is_queue_empty() || !$this->import_novelist_books_process->is_queue_empty() || !$this->import_books_csv_process->is_queue_empty() ) {
+				echo '<h3>' . __( 'Please wait for the current batch of imports to finish before exporting more.', 'mooberry-book-manager' ) . '</h3>';
+
+				return;
+			}
+
+			?>
+           <h3><?php _e('Export Books to CSV file', 'mooberry-book-manager'); ?></h3>
+		<p><?php _e( 'This will create a CSV file with all of the books entered into Mooberry Book Manager. Books that are in Draft Mode or in the Trash will not be exported.', 'mooberry-book-manager' ); ?></p>
+			<?php do_action( 'mbdb_export_add_fields' ); ?>
+            <p><a class="button"
+                  id="mbdb_<?php echo $this->tab; ?>"><?php echo $this->tabs[ $this->page ][ $this->tab ]; ?></a><img
+                        src="<?php echo MBDB_PLUGIN_URL; ?>includes/assets/ajax-loader.gif"
+                        style="display:none;"
+                        id="mbdb_<?php echo $this->tab; ?>_progress"/></p>
+            <p>
+            <div id="mbdb_results"/></p>
+			<?php
+	}
+
+	public function import_export() {
+
+		if ( $this->page != 'mbdb_import_export' ) {
+			return;
+		}
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+		$this->title        = __( 'MBM Book Import/Export Settings', 'mooberry-book-manager' );
+		$this->show_metabox = false;
+
+		switch ( $this->tab ) {
+			case 'import':
+				$this->import_json();
+				break;
+			case 'import_novelist':
+				$this->import_novelist_form();
+				break;
+			case 'export':
+				$this->export_json();
+				break;
+			case 'export_csv':
+				$this->export_csv();
+				break;
+			case 'import_csv':
+			case '':
+				$this->tab = 'import_csv';
+				$this->import_csv();
+				break;
 		}
 
 	}
 
+	function export_csv_file_row($book, $rows) {
+
+
+		$columns = array(
+			'title'      => 'title',
+			'summary'    => 'summary',
+			'subtitle'   => 'subtitle',
+			'goodreads'  => 'goodreads',
+			'reedsy'     => 'reedsy',
+			'google'     => 'google_books',
+			'order'      => 'series_order',
+			'additional' => 'additional_info',
+			'date'       => 'release_date',
+		);
+
+
+		$row = array();
+
+		foreach ( $columns as $column => $property ) {
+			$row[] = $book->$property != null ? $book->$property : '';
+		}
+
+
+		$taxonomies = array(
+			'genres'        => array( 'property' => 'genres', 'taxonomy' => 'mbdb_genre' ),
+			'tags'          => array( 'property' => 'tags', 'taxonomy' => 'mbdb_tag' ),
+			'series'        => array( 'property' => 'series', 'taxonomy' => 'mbdb_series' ),
+			'editors'       => array( 'property' => 'editors', 'taxonomy' => 'mbdb_editor' ),
+			'illustrators'  => array( 'property' => 'illustrators', 'taxonomy' => 'mbdb_illustrator' ),
+			'cover_artists' => array( 'property' => 'cover_artists', 'taxonomy' => 'mbdb_cover_artist' ),
+		);
+
+		foreach ( $taxonomies as $column => $info ) {
+			$terms = $book->{$info['property']};
+			$slugs = array();
+			foreach ( $terms as $term ) {
+				$slugs[] = $term->slug;
+			}
+			$row[] = join( ',', $slugs );
+		}
+
+
+
+		// publisher
+		$row[] = $book->publisher != null ? $book->publisher->name : '';
+
+
+		// imprint
+		$row[] = $book->imprint != null ? $book->imprint->name : '';
+
+		// excerpt
+		$row[] = $book->excerpt_type;
+		$row[] = $book->excerpt_type == 'text' ?  $book->excerpt : $book->kindle_preview;
+
+
+		// buy links
+		$retailers       = MBDB()->options->retailers;
+		if ( is_array( $retailers ) ) {
+			foreach ( $retailers as $retailer ) {
+				$link = '';
+				foreach ( $book->buy_links as $buy_link ) {
+					if ( $buy_link->retailer->name == $retailer->name ) {
+						$link = $buy_link->link;
+						break;
+					}
+				}
+				$row[] = $link;
+			}
+		}
+
+
+		// download links
+		$download_formats     = MBDB()->options->download_formats;
+		if ( is_array( $download_formats ) ) {
+			foreach ( $download_formats as $download_format ) {
+				$link = '';
+				foreach ( $book->download_links as $download_link ) {
+					if ( $download_link->download_format->name == $download_format->name) {
+						$link = $download_link->link;
+						break;
+					}
+				}
+				$row[] = $link;
+			}
+		}
+
+		// formats
+		$formats        = MBDB()->options->edition_formats;
+		$edition_fields = array(
+					'isbn'     => 'isbn',
+					'doi'      => 'doi',
+					'sku'     => 'sku',
+					'language' => 'language',
+					'pages'    => 'length',
+					'height'   => 'height',
+					'width'    => 'width',
+					'unit'     => 'unit',
+					'price'    => 'retail_price',
+					'currency' => 'currency',
+					'title'    => 'edition_title',
+				);
+		if ( is_array( $formats ) ) {
+			foreach ( $formats as $format ) {
+				$book_edition = null;
+				foreach ( $book->editions as $edition ) {
+					if ( $edition->format->name == $format->name ) {
+						$book_edition = $edition;
+						break;
+					}
+				}
+				foreach ( $edition_fields as $edition_field => $property ) {
+					$row[] = isset( $book_edition ) ? $book_edition->$property : '';
+				}
+			}
+		}
+
+
+		// cover
+		$row[] = $book->cover;
+
+
+		// reviews
+		$review_columns = array( 'name'=> 'reviewer_name',
+			'link'=> 'url',
+			'website'=>'website_name',
+			'review'=>'review',);
+		for($x =1; $x<6; $x++) {
+			foreach ( $review_columns as $column => $property ) {
+				$row[] = isset( $book->reviews[ $x - 1 ] ) ? $book->reviews[ $x - 1 ]->$property : '';
+
+			}
+		}
+
+
+
+
+		$rows[] = apply_filters('mbdb_export_books_csv_row', $row, $book);
+
+		return $rows;
+
+	}
+
+
+ 	function export_csv_file() {
+		check_ajax_referer( 'mbdb_export_nonce', 'export_nonce' );
+
+		//$book_list = new MBDB_Book_List( 'all', 'title',  'ASC',  null,  null,  null,  null,  false,  false, true  );
+
+		if ( array_key_exists( 'data', $_POST ) ) {
+			$data = array_column( $_POST['data'], 'value', 'name' );
+		} else {
+			$data = array();
+		}
+		$columns_only =  isset($_POST['columns_only']) && $_POST['columns_only'] == 'true';
+
+
+		$columns = array(
+			'title'  ,
+			'summary' ,
+			'subtitle',
+			'goodreads',
+			'reedsy'   ,
+			'google'   ,
+			'order'    ,
+			'additional',
+			'date'     ,
+			'genres'     ,
+			'tags'          ,
+			'series'        ,
+			'editors'       ,
+			'illustrators'  ,
+			'cover_artists',
+			'publisher',
+			'imprint',
+			'excerpt_type',
+			'excerpt',
+
+		);
+		$retailers       = MBDB()->options->retailers;
+		if ( is_array( $retailers ) ) {
+			foreach ( $retailers as $retailer ) {
+				$columns[] = 'retailer_' . $retailer->name . '_link';
+			}
+		}
+
+		$download_formats     = MBDB()->options->download_formats;
+		if ( is_array( $download_formats ) ) {
+			foreach ( $download_formats as $download_format ) {
+				$columns[] = 'download_' . $download_format->name . '_link';
+			}
+		}
+
+		$formats        = MBDB()->options->edition_formats;
+		$edition_fields = array(
+					'isbn'     ,
+					'doi'      ,
+					'sku'     ,
+					'language' ,
+					'pages'    ,
+					'height'   ,
+					'width'    ,
+					'unit'     ,
+					'price'    ,
+					'currency' ,
+					'title'    ,
+				);
+		if ( is_array( $formats ) ) {
+			foreach ( $formats as $format ) {
+				foreach ( $edition_fields as $edition_field ) {
+					$columns[] = 'format_' . $format->name . '_' . $edition_field;
+				}
+			}
+		}
+
+		$columns[]= 'cover';
+
+		$review_columns = array( 'name',
+			'link',
+			'website',
+			'review');
+		for($x =1; $x<6; $x++) {
+			foreach ( $review_columns as $column ) {
+				$columns[] = 'review' . $x . '_' . $column;
+
+			}
+		}
+
+		$file = array();
+		$file[] = apply_filters('mbdb_export_books_csv_columns', $columns);
+
+		if ( !$columns_only ) {
+			$books = get_posts( apply_filters( 'mbdb_export_books_query', array(
+					'posts_per_page' => - 1,
+					'post_type'      => 'mbdb_book',
+					'post_status'    => 'publish',
+				), $data )
+			);
+
+			foreach ( $books as $book ) {
+				//$book_obj = new Mooberry_Book_Manager_Book( $book->ID );
+				$book_obj = MBDB()->book_factory->create_book( $book->ID );
+				$book_obj = apply_filters( 'mbdb_export_data_book_object', $book_obj, $book );
+				$file     = $this->export_csv_file_row( $book_obj, $file );
+			}
+		}
+
+		$file = apply_filters('mbdb_export_data_all_books_csv', $file, $books );
+
+		$fp = fopen(MBDB_PLUGIN_DIR . '/includes/admin/export.csv', 'w');
+
+		foreach ($file as $fields) {
+			fputcsv($fp, $fields);
+		}
+
+		fclose($fp);
+		echo MBDB_PLUGIN_URL . '/includes/export_csv.php';
+		wp_die();
+
+
+ 	}
 
 	function export() {
 		check_ajax_referer( 'mbdb_export_nonce', 'export_nonce' );
@@ -1502,6 +1840,8 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 	protected function set_tabs() {
 		$this->tabs = apply_filters('mbdb_import_export_tabs', array(
 			'mbdb_import_export' => array(
+				'import_csv'          => __( 'Import Books from CSV', 'mooberry-book-manager' ),
+				'export_csv'		=>	__('Export Books to CSV', 'mooberry-book-manager' ),
 				'import'          => __( 'Import Books', 'mooberry-book-manager' ),
 				'export'          => __( 'Export Books', 'mooberry-book-manager' ),
 				'import_novelist' => __( 'Import from Novelist', 'mooberry-book-manager' )

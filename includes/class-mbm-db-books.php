@@ -135,6 +135,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 							'_mbdb_format'	=>	'',
 							'_mbdb_isbn'		=>	'',
 							'_mbdb_doi'		=>	'',
+							'_mbdb_sku'		=>	'',
 							'_mbdb_language'	=>	'',
 							'_mbdb_length'		=>	'',
 							'_mbdb_height'		=>	'',
@@ -147,10 +148,11 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		foreach ( $editions as $edition ) {
 			$edition = wp_parse_args( $edition, $defaults );
 
-			$data[] = array(
+			$data[] = apply_filters('mbdb_edition_data', array(
 						'format_id' 	=>  $edition['_mbdb_format'],
 						'isbn' 		=>  $edition['_mbdb_isbn'],
 						'doi' 		=>  $edition['_mbdb_doi'],
+						'sku' 		=>  $edition['_mbdb_sku'],
 						'language' 	=>  $edition['_mbdb_language'],
 						'length' 	=>  $edition['_mbdb_length'],
 						'height' 	=>  $edition['_mbdb_height'],
@@ -159,7 +161,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 						'retail_price' =>  $edition['_mbdb_retail_price'],
 						'currency' 	=>  $edition['_mbdb_currency'],
 						'edition_title' =>  $edition['_mbdb_edition_title'],
-					);
+					), $edition);
 		}
 		return $data;
 	}
@@ -363,6 +365,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 						'_mbdb_format'	=>	$edition->format_id,
 						'_mbdb_isbn'	=>	$edition->isbn,
 						'_mbdb_doi'	=>	$edition->doi,
+						'_mbdb_sku'	=>	$edition->sku,
 						'_mbdb_language'	=>	$edition->language,
 						'_mbdb_length'		=>	$edition->length,
 						'_mbdb_height'		=>	$edition->height,
@@ -425,7 +428,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$errors[] = 'Error saving to books table for book ' . $book->title . '.';
 			return $errors;
 		} else {
-			return true;
+			return $id;
 		}
 
 	}

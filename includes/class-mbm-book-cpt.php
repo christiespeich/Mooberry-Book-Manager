@@ -271,7 +271,21 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	}
 
 	public function create_metaboxes() {
-		$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', true );
+		//$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', true );
+			$args = array('posts_per_page' => -1,
+					'post_type' => 'mbdb_publisher',
+					'post_status'=>	'publish',
+					'orderby' => 'post_title',
+					'order' => 'ASC'
+				);
+
+		$results = get_posts(  $args );
+		$publishers = array(''=>'');
+		foreach( $results as $publisher ) {
+			$publishers[$publisher->ID] = $publisher->post_title;
+		}
+		wp_reset_postdata();
+
 		$imprints = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->imprints, 'name', true );
 
 		$bulk_edit_publishers = array(
@@ -370,10 +384,9 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			)
 		);
 
-		$info_button = '<img onClick="window.open(\'' . MBDB_PLUGIN_URL . 'includes/excerpt_type.html' . '\', \'' . __( 'Excerpt Type', 'mooberry-book-manager' ) . '\',  \'width=800, height=900, left=550, top=50, scrollbars=yes\'); return false;"	class="mbdb_info_icon mbdb_excerpt_type_info" src="' . MBDB_PLUGIN_URL . 'includes/assets/info.png">';
 
 		$mbdb_excerpt_metabox->add_field( array(
-				'name'    => __( 'Excerpt Style', 'mooberry-book-manager' ) . $info_button,
+				'name'    => __( 'Excerpt Style', 'mooberry-book-manager'),
 				'id'      => '_mbdb_excerpt_type',
 				'default' => 'text',
 				'type'    => 'select',
@@ -590,6 +603,13 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 
 		$mbdb_editions_metabox->add_group_field( '_mbdb_editions', array(
+				'name' => __( 'SKU', 'mooberry-book-manager' ),
+				'id'   => '_mbdb_sku',
+				'type' => 'text_medium',
+			)
+		);
+
+		$mbdb_editions_metabox->add_group_field( '_mbdb_editions', array(
 				'name'    => __( 'Language', 'mooberry-book-manager' ),
 				'id'      => '_mbdb_language',
 				'type'    => 'select',
@@ -746,7 +766,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				'id'         => '_mbdb_publisherID',
 				'type'       => 'select',
 				'options'    => $publishers,
-				'desc'       => __( 'Set up Publishers in Settings.', 'mooberry-book-manager' ),
+			//	'desc'       => __( 'Set up Publishers in Settings.', 'mooberry-book-manager' ),
 				'column'     => array(
 					'position' => 8,
 				),
@@ -1085,22 +1105,10 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 		global $post;
 		if ( $this->data_object == null || $post->ID != $this->data_object->id ) {
-			//$this->set_data_object( $post->ID );
 			$this->set_data_object( $this->data_object->id );
 		}
-		$data = '';
-		if ( $this->data_object->publisher != '' ) {
-			$data = $this->data_object->publisher->name;
-		}
+		$data =  $this->data_object->has_publisher() ? $this->data_object->publisher->name : '';
 
-		/*$publisher = $this->get_meta_data( '', 0, array( 'field_id' => $field_args['id'] ) );
-
-		//error_log(print_r($publisher, true));
-		$data = '';
-		if ( $publisher != null ) {
-			$data = $publisher->name;
-		}
-		*/
 		$this->display_column( 'publisher_id', $data, $field->value, $this->data_object );
 
 	}
@@ -1403,12 +1411,13 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			$is_price  = $this->is_array_element_set( '_mbdb_retail_price', $edition );
 			$is_isbn   = $this->is_array_element_set( '_mbdb_isbn', $edition );
 			$is_doi   = $this->is_array_element_set( '_mbdb_doi', $edition );
+			$is_sku   = $this->is_array_element_set( '_mbdb_sku', $edition );
 			$is_length = $this->is_array_element_set( '_mbdb_length', $edition );
 			$is_title  = $this->is_array_element_set( '_mbdb_edition_title', $edition );
 
 			$is_format = $this->is_array_element_set( '_mbdb_format', $edition ) && $edition['_mbdb_format'] != '0';
 
-			$is_others = ( $is_isbn || $is_doi || $is_length || $is_width || $is_height || $is_price || $is_title );
+			$is_others = ( $is_isbn || $is_doi || $is_sku || $is_length || $is_width || $is_height || $is_price || $is_title );
 
 			// format is required
 			$flag = ! $is_format;
@@ -1774,13 +1783,9 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		}
 
 		$mbdb_publisher        = $this->data_object->publisher->name;
-		$mbdb_publisherwebsite = $this->data_object->publisher->website;
 
-		if ( $mbdb_publisherwebsite == '' ) {
-			$text = '<span class="mbm-book-publisher-text">' . esc_html( $mbdb_publisher ) . '</span>';
-		} else {
-			$text = '<A class="mbm-book-publisher-link" HREF="' . esc_url( $mbdb_publisherwebsite ) . '" target="_new"><span class="mbm-book-publisher-text">' . esc_html( $mbdb_publisher ) . '</span></a>';
-		}
+			$text = '<A class="mbm-book-publisher-link" HREF="' . get_permalink($this->data_object->publisher_id ). '" ><span class="mbm-book-publisher-text">' . esc_html( $mbdb_publisher ) . '</span></a>';
+
 
 		return apply_filters( 'mbdb_shortcode_publisher', '<span class="mbm-book-publisher"><span class="mbm-book-publisher-label">' . esc_html( $attr['label'] ) . '</span>' . $text . '<span class="mbm-book-publisher-after">' . esc_html( $attr['after'] ) . '</span></span>' );
 	}
@@ -2564,6 +2569,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 			$is_isbn     = ( $edition->isbn != '' );
 			$is_doi     = ( $edition->doi != '' );
+			$is_sku     = ( $edition->sku != '' );
 			$is_height   = ( $edition->height != '' );
 			$is_width    = ( $edition->width != '' );
 			$is_pages    = ( $edition->length != '' );
@@ -2572,7 +2578,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			$is_title    = ( $edition->edition_title != '' );
 
 			$output_html .= '<span class="mbm-book-editions-format" id="mbm_book_editions_format_' . $counter . '" name="mbm_book_editions_format[' . $counter . ']">';
-			if ( $is_isbn || $is_doi || $is_pages || ( $is_height && $is_width ) ) {
+			if ( $is_isbn || $is_sku || $is_doi || $is_pages || ( $is_height && $is_width ) ) {
 				$output_html .= '<a class="mbm-book-editions-toggle" id="mbm_book_editions_toggle_' . $counter . '" name="mbm_book_editions_toggle[' . $counter . ']"></a>';
 			}
 			$format_name = $edition->format->name;
@@ -2610,7 +2616,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				}
 				$output_html .= '</span></span>';
 			}
-			if ( $is_isbn || $is_doi || ( $is_height && $is_width ) || $is_pages ) {
+			if ( $is_isbn || $is_sku || $is_doi || ( $is_height && $is_width ) || $is_pages ) {
 				$output_html .= '<div name="mbm_book_editions_subinfo[' . $counter . ']" id="mbm_book_editions_subinfo_' . $counter . '" class="mbm-book-editions-subinfo">';
 
 				if ( $is_isbn ) {
@@ -2619,12 +2625,16 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				if ( $is_doi ) {
 					$output_html .= '<strong>' . __( 'DOI:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-doi">' . $edition->doi . '</span><br/>';
 				}
+				if ( $is_sku ) {
+					$output_html .= '<strong>' . __( 'SKU:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-sku">' . $edition->sku . '</span><br/>';
+				}
 				if ( $is_height && $is_width ) {
 					$output_html .= '<strong>' . __( 'Size:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-size"><span class="mbm-book-editions-height">' . number_format_i18n( $edition->width, 2 ) . '</span> x <span class="mbm-book-editions-width">' . number_format_i18n( $edition->height, 2 ) . '</span> <span class="mbm-book-editions-unit">' . $edition->unit . '</span></span><br/>';
 				}
 				if ( $is_pages ) {
 					$output_html .= '<strong>' . __( 'Pages:', 'mooberry-book-manager' ) . '</strong> <span class="mbm-book-editions-length">' . number_format_i18n( $edition->length ) . '</span>';
 				}
+				$output_html = apply_filters('mbdb_edition_fields_output', $output_html, $edition, $book);
 				$output_html .= '</div>';
 			}
 			$output_html .= '</span>';

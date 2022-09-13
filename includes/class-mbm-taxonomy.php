@@ -72,7 +72,7 @@ class Mooberry_Book_Manager_Taxonomy {
 		)
 			);
 
-		$this->args = wp_parse_args( $args, $defaults );
+		$this->args = apply_filters($this->slug . '_tax_args', wp_parse_args( $args, $defaults ));
 
 	}
 
