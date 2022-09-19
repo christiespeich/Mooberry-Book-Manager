@@ -393,11 +393,11 @@ abstract class MOOBD_Database {
 
 		// same data should be sanitized and some should retain HTML
 		if ($this->allows_html($column)) {
-			//if ( $context == null ) {
+			if ( $context == null ) {
 				$value = wp_kses_post($value);
-		//	} else {
-		//		$value = wp_kses(stripslashes_deep($value), $context );
-		//	}
+			} else {
+				$value = wp_kses(stripslashes_deep($value), $context );
+			}
 		} else {
 			$value = strip_tags( stripslashes( $value ) );
 		}
