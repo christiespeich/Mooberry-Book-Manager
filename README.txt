@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, writer, writing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
 Tested up to: 5.9
-Stable tag: 4.14.1
+Stable tag: 4.14.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -188,6 +188,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+
+= 4.14.2 =
+* Fixed: bug displaying Publisher: on book when there was no publisher set
 
 = 4.14.1 =
 * Fixed: bug adding \ into summaries before ' and "
