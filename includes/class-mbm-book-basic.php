@@ -164,7 +164,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 
 	public function has_publisher() {
-		return ( $this->publisher != '' ) && ( $this->publisher instanceof Mooberry_Book_Manager_Publisher );
+		return  $this->publisher != ''  && $this->publisher_id!= 0 &&  $this->publisher instanceof Mooberry_Book_Manager_Publisher ;
 	}
 
 	public function has_imprint() {
