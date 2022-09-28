@@ -214,7 +214,8 @@ function mbdb_get_term_options( $taxonomy = 'category', $args = array() ) {
 
 function mbdb_get_publishers( $empty_option = 'yes' ) {
 	$empty_option = ( $empty_option == 'yes' );
-	return  MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', $empty_option  );
+	//return  MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', $empty_option  );
+	return MBDB()->helper_functions->get_publishers_array( $empty_option);
 }
 
 function mbdb_get_retailers( $empty_option = 'yes' ) {

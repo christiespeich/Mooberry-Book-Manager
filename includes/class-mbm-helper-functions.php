@@ -827,5 +827,34 @@ class Mooberry_Book_Manager_Helper_Functions {
 		return '';
 	}
 
+	public function get_publishers() {
+		$args = array('posts_per_page' => -1,
+					'post_type' => 'mbdb_publisher',
+					'post_status'=>	'publish',
+					'orderby' => 'post_title',
+					'order' => 'ASC'
+				);
+
+		$results = get_posts(  $args );
+		wp_reset_postdata();
+		$publishers = array();
+		foreach( $results as $publisher ) {
+			$publishers[] = new Mooberry_Book_Manager_Publisher($publisher->ID);
+		}
+		return $publishers;
+
+	}
+	public function get_publishers_array( $empty_option = false ) {
+
+		$results = $this->get_publishers();
+		$publishers = array();
+		if ( $empty_option ) {
+			$publishers[] =  '' ;
+		}
+		foreach( $results as $publisher ) {
+			$publishers[$publisher->id] = $publisher->name;
+		}
+		return $publishers;
+	}
 }
 

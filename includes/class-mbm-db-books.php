@@ -667,7 +667,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								if ( is_array($tax_ids) ) {
 									$tax_ids = $tax_ids[0];
 								}
-								$publishers = MBDB()->options->publishers;
+								//$publishers = MBDB()->options->publishers;
+								$publishers = MBDB()->helper_functions->get_publishers();
 								if ( array_key_exists( $tax_ids, $publishers) ) {
 									$name = $publishers[ $tax_ids ]->name;
 								} else {

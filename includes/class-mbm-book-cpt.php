@@ -272,19 +272,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 	public function create_metaboxes() {
 		//$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', true );
-			$args = array('posts_per_page' => -1,
-					'post_type' => 'mbdb_publisher',
-					'post_status'=>	'publish',
-					'orderby' => 'post_title',
-					'order' => 'ASC'
-				);
-
-		$results = get_posts(  $args );
-		$publishers = array(''=>'');
-		foreach( $results as $publisher ) {
-			$publishers[$publisher->ID] = $publisher->post_title;
-		}
-		wp_reset_postdata();
+		$publishers = MBDB()->helper_functions->get_publishers_array(true);
 
 		$imprints = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->imprints, 'name', true );
 

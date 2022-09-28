@@ -189,6 +189,11 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
+= 4.14.3 =
+* Fixed: bug with book grids selecting by publisher
+* Fixed: all places of old publisher code
+* Fixed: export with UTF-8 formating
+
 = 4.14.2 =
 * Fixed: bug displaying Publisher: on book when there was no publisher set
 

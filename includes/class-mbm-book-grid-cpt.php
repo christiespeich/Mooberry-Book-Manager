@@ -206,7 +206,18 @@ function display_custom_columns( $column, $post_id ) {
 			)
 		);*/
 
-		$publishers = MBDB()->helper_functions->create_array_from_objects( MBDB()->options->publishers, 'name', false );
+
+		/*$options =  get_option('mbdb_options');
+		if ( is_array($options) && isset($options['publishers'])) {
+			$pubs = $options['publishers'];
+		} else {
+			$pubs = array();
+		}
+		$publishers = array();
+		foreach ( $pubs as $pub) {
+			$publishers[$pub['uniqueID']] = $pub['name'];
+		}*/
+		$publishers = MBDB()->helper_functions->get_publishers_array();
 		$mbdb_book_grid_metabox->add_field( array(
 				'name'	=>	__('Select Publishers', 'mooberry-book-manager'),
 				'id'	=> '_mbdb_book_grid_publisher',

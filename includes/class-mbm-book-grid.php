@@ -455,7 +455,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 //$mbdb_options = get_option('mbdb_options'); //mbdb_get_options('mbdb_options');//'mbdb_options');
 		 //if (array_key_exists('publishers', $mbdb_options)) {
 		 //$publishers = $mbdb_options['publishers'];
-		 $publishers = MBDB()->options->publishers;
+		 //$publishers = MBDB()->options->publishers;
+		 $publishers = MBDB()->helper_functions->get_publishers();
 		 foreach ( $publishers as $publisher ) {
 			 $current_group[ $groups [ $level ] ] = $publisher->id;
 			 $results                             = $this->get_group( $level + 1, $current_group, $book_ids );

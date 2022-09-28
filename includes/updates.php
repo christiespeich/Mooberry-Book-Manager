@@ -234,6 +234,10 @@ function mbdb_update_versions() {
 		mbdb_update_4_14();
 	}
 
+	if ( version_compare( $current_version, '4.14.3', '<' ) ) {
+		mbdb_update_4_14_3();
+	}
+
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
@@ -1131,4 +1135,43 @@ function mbdb_update_4_14() {
 	mbdb_set_up_roles();
 	flush_rewrite_rules();
 
+}
+
+function mbdb_update_4_14_3() {
+
+		$args = array('posts_per_page' => -1,
+					'post_type' => 'mbdb_publisher',
+					'orderby' => 'post_title',
+					'order' => 'ASC'
+				);
+
+		$new_pubs = get_posts(  $args );
+		$new_publishers = array();
+		foreach ( $new_pubs as $new_pub){
+			$new_publishers[$new_pub->post_title] = $new_pub->ID;
+		}
+
+		$mbdb_options = get_option('mbdb_options');
+		$old_pubs = isset($mbdb_options['publishers']) ? $mbdb_options['publishers'] : array();
+		$old_publishers = array();
+		foreach ( $old_pubs as $old_publisher ) {
+			$old_publishers[$old_publisher['uniqueID']] = $old_publisher['name'];
+		}
+
+
+	$book_grids = get_posts(array('posts_per_page'=>-1, 'post_type'=>'mbdb_book_grid'));
+	foreach ( $book_grids as $book_grid) {
+		$book_grid_publishers = get_post_meta( $book_grid->ID, '_mbdb_book_grid_publisher', true );
+		if ( $book_grid_publishers!= '') {
+			$new_book_grid_publishers = array();
+			foreach ( $book_grid_publishers as $book_grid_publisher) {
+				if ( $book_grid_publisher == null ) { continue; }
+				$publisher_name = $old_publishers[$book_grid_publisher];
+				$new_book_grid_publishers[] = $new_publishers[$publisher_name];
+			}
+			update_post_meta ( $book_grid->ID, '_mbdb_book_grid_publisher', $new_book_grid_publishers);
+
+		}
+
+	}
 }
