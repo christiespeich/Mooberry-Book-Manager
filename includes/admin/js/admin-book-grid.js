@@ -245,8 +245,7 @@ function book_selection_change( selected_book) {
 	} else {
 		jQuery( '#_mbdb_book_grid_book_list li').each( function () {
 			book_id = jQuery(this).data('bookid');
-
-			if (book_id === selected_book_id ) {
+			if (book_id.toString() === selected_book_id.toString() ) {
 				jQuery(this).remove();
 			}
 		});
