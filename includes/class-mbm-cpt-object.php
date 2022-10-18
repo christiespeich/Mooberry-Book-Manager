@@ -16,10 +16,6 @@ abstract class Mooberry_Book_Manager_CPT_Object  {
 			$this->permalink = get_the_permalink( $id );
 			$this->id = $id;
 		}
-
-
-
-
 	}
 
 	public function get_by_postmeta( $postmeta ) {
