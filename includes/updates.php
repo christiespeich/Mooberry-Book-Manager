@@ -238,6 +238,9 @@ function mbdb_update_versions() {
 		mbdb_update_4_14_3();
 	}
 
+	if ( version_compare( $current_version, '4.14.4', '<' ) ) {
+		mbdb_update_4_14_4();
+	}
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
@@ -1175,3 +1178,51 @@ function mbdb_update_4_14_3() {
 
 	}
 }
+
+function mbdb_update_4_14_4() {
+
+	// ensure this only runs once
+	if ( get_option( 'mbdb_update_4_14_4' ) != false ) {
+		return;
+	}
+	update_option( 'mbdb_update_4_14_4', 'true' );
+
+	MBDB()->helper_functions->set_admin_notice( __( 'Mooberry Book Manager: Checking for duplicate publishers and correcting the issue...' ), 'error', 'mbdb_update_publishers' );
+
+	$options = get_option( 'mbdb_options' );
+	if ( is_array( $options ) && isset( $options['publishers'] ) ) {
+		$pubs = $options['publishers'];
+	} else {
+		$pubs = array();
+	}
+	$old_publishers = array();
+	foreach ( $pubs as $pub ) {
+		$old_publishers[ $pub['uniqueID'] ] = $pub['name'];
+	}
+
+	global $wpdb;
+
+	$sql            = "select post_title, min(ID) as ID from $wpdb->posts  WHERE post_type = 'mbdb_publisher' group by post_title";
+	$results        = $wpdb->get_results( $sql );
+	$new_publishers = array();
+	foreach ( $results as $result ) {
+		$new_publishers[ $result->post_title ] = $result->ID;
+	}
+
+	update_option( 'mbdb_old_publishers', $old_publishers );
+	update_option( 'mbdb_new_publishers', $new_publishers );
+
+	$books = get_posts( array(
+		'post_type'      => 'mbdb_book',
+		'posts_per_page' => '-1',
+		'post_status'    => array( 'publish', 'draft', 'trash' )
+	) );
+
+	foreach ( $books as $book ) {
+		MBDB()->publisher_update_fix_process->push_to_queue( $book->ID );
+	}
+	MBDB()->publisher_update_fix_process->save();
+	MBDB()->publisher_update_fix_process->dispatch();
+
+}
+

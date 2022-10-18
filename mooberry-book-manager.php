@@ -113,6 +113,8 @@ final class Mooberry_Book_Manager {
 	public $helper_functions;
 	public $options;
 
+	public $publisher_update_fix_process;
+
 
 	/**
 	 * Main Mooberry_Book_Manager Instance
@@ -173,6 +175,9 @@ final class Mooberry_Book_Manager {
 				self::$instance->settings_menu = self::$instance->mbm_admin();
 
 			}
+
+			MBDB()->publisher_update_fix_process = new MBDB_Publisher_Update_Fix_Process();
+
 
 
 		}
@@ -280,6 +285,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/depreciated-functions.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbdb-books.php';
 
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-publisher-update-fix-process.php';
 
 		require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-helper-functions.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/updates.php';
