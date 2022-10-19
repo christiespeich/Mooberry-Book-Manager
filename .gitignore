@@ -227,3 +227,4 @@ export.txt
 nbproject/project.properties
 nbproject/project.xml
 includes/CMB2/Archive.zip
+includes/admin/export.csv

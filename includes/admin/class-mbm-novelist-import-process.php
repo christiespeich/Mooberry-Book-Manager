@@ -97,10 +97,18 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 
 		// publishers
 		$this->mbm_publishers_by_name = array();
-		$mbm_publishers               = MBDB()->options->publishers;
-		foreach ( $mbm_publishers as $mbm_publisher ) {
-			$this->mbm_publishers_by_name[ $mbm_publisher->name ] = $mbm_publisher;
-		}
+
+			$publisher_ids = get_posts( array(
+				'post_type'      => 'mbdb_publisher',
+				'fields'         => 'ids',
+				'posts_per_page' => - 1
+			) );
+			foreach ( $publisher_ids as $publisher_id ) {
+				$publisher = new Mooberry_Book_Manager_Publisher( $publisher_id );
+				$this->mbm_publishers_by_name[$publisher->name] = $publisher;
+			}
+
+
 
 
 		// put page count as paperback by default and asin has kindle
@@ -158,10 +166,10 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 		$key = $this->identifier . '_batch_%';
 
 		$query = $wpdb->get_results( $wpdb->prepare( "
-			DELETE 
+			DELETE
 			FROM {$table}
 			WHERE {$column} LIKE %s
-			
+
 		", $key ) );
 
 		parent::cancel_process();
@@ -258,21 +266,28 @@ class Mooberry_Book_Manager_Novelist_Import_Process extends WP_Background_Proces
 
 
 		// Publishers
+		// TODO: import
 		$publisher = $this->get_meta_data( $post_meta, 'novelist_publisher' );
 		if ( $publisher != '' ) {
+			$mbm_publisher = new Mooberry_Book_Manager_Publisher();
 			if ( array_key_exists( $publisher, $this->mbm_publishers_by_name ) ) {
 				$mbm_publisher = $this->mbm_publishers_by_name[ $publisher ];
 			} else {
 				// create publisher
-				$mbm_publisher = new Mooberry_Book_Manager_Publisher( array(
-					'uniqueID' => mbdb_uniqueID_generator( '' ),
-					'name'     => $publisher
+				$new_publisher_id = wp_insert_post( array(
+					'post_status'    => 'publish',
+					'post_type'      => 'mbdb_publisher',
+					'post_title'     => trim( $publisher ),
+					'post_publisher' => wp_get_current_user()->ID
 				) );
-				MBDB()->options->add_publisher( $mbm_publisher );
-
+				if ( ! is_wp_error( $new_publisher_id ) ) {
+					$mbm_publisher = new Mooberry_Book_Manager_Publisher( $new_publisher_id );
+				}
 			}
-			$book_data->publisher_id = $mbm_publisher->id;
+
 			$book_data->publisher    = $mbm_publisher->to_json();
+			$book_data->publisher_id = $mbm_publisher->id;
+
 		}
 
 		// genre

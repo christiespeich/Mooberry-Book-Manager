@@ -229,7 +229,7 @@ abstract class mbdb_widget extends WP_Widget {
 		if ( isset( $url ) && $url != '' ) {
 
 			do_action( 'mbdb_widget_pre_image', $url, $book );
-			echo '<div class="mbdb_book_widget" style="' . apply_filters( 'mbdb_book_widget_cover_span_style', 'padding:0;margin:10px 0; position:relative', $instance ) . '">';
+			echo '<div class="mbdb_book_widget" style="' . apply_filters( 'mbdb_book_widget_cover_span_style', 'padding:0;margin:10px 0; position:relative; ', $instance ) . '">';
 			echo MBDB()->helper_functions->get_popup_card_html( $book );
 		if ( $book->permalink != '' ) {
 			do_action( 'mbdb_widget_pre_cover_link', $book, $book->permalink );

@@ -37,7 +37,6 @@ jQuery( document ).ready(function() {
         mbdb_cancel_import();
       }
     });
-
   jQuery('#mbdb_create_tax_grid_page_button').on('click', mbdb_create_tax_grid_page);
 
 
@@ -105,7 +104,6 @@ function mbdb_cancel_import() {
 	});
 
 }
-
 function mbdb_create_tax_grid_page() {
 	var data = {
 			'action':	'mbdb_add_tax_grid_page',

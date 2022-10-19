@@ -16,16 +16,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 3.5 ?
  */
- class Mooberry_Book_Manager_Review { 
- 
+ class Mooberry_Book_Manager_Review {
 
- 
+
+
 	private $reviewer_name;
 	private $url;
 	private $website_name;
 	private $review;
-	
-	public function __construct( $review = null ) {	
+
+	public function __construct( $review = null ) {
 		$this->review_name = '';
 		$this->url = '';
 		$this->website_name = '';
@@ -33,10 +33,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		if ( $review == null ) {
 			return;
 		}
-		$this->reviewer_name =  $review[ 'reviewer_name' ];
-		$this->url =  $review[ 'url' ];
-		$this->website_name =  $review[ 'website_name' ];
-		$this->review =  $review[ 'review' ];
+		$this->reviewer_name =  isset($review[ 'reviewer_name' ]) ? $review['reviewer_name'] : '';
+		$this->url =  isset($review[ 'url' ] ) ? $review['url'] : '';
+		$this->website_name =  isset($review[ 'website_name' ]) ? $review['website_name'] : '';
+		$this->review =  isset($review[ 'review' ]) ? $review['review'] : '';
 	}
 
 	public function to_json() {
@@ -46,20 +46,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$object[ $name ] =   $value ;
 		}
 		return json_encode( $object);
-       
+
     }
-	
+
 	public function import( $json_string ) {
 		$decoded = json_decode( $json_string );
 		$properties =  get_object_vars($this);
 		foreach ( $properties as $name => $value ) {
-			
+
 				$this->$name =   $decoded->$name;
-			
+
 		}
 	}
-	
-	
+
+
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
@@ -72,25 +72,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			return call_user_func( array( $this, 'get_' . $key ) );
 
 		} else {
-			
+
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$ungettable_properties = array(  );
-				
+
 				if ( !in_array( $key, $ungettable_properties ) ) {
-				
+
 					return $this->$key;
 
 				}
-		
+
 			}
-		
+
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-				
+
 	}
-	
+
 	/**
 	 * Magic __set function to dispatch a call to retrieve a private property
 	 *
@@ -105,19 +105,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		} else {
 
 			if ( property_exists( $this, $key ) ) {
-				
+
 				$unsettable_properties = array( );
-				
+
 				if ( !in_array( $key, $unsettable_properties ) ) {
-				
+
 					$this->$key = $value;
 
 				}
-				
+
 			}
 		}
-	
+
 		return new WP_Error( 'mbdb-invalid-property', sprintf( __( 'Can\'t get property %s', 'mooberry-book-manager' ), $key ) );
-		
+
 	}
 }

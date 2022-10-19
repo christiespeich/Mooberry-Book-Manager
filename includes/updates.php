@@ -230,10 +230,21 @@ function mbdb_update_versions() {
 		mbdb_update_4_12();
 	}
 
+
 	if ( version_compare( $current_version, '4.14', '<')) {
 		mbdb_update_to_4_14();
+
+	if ( version_compare( $current_version, '4.14.3', '<' ) ) {
+		mbdb_update_4_14_3();
 	}
 
+	if ( version_compare( $current_version, '4.14.4', '<' ) ) {
+		mbdb_update_4_14_4();
+	}
+
+	if ( version_compare( $current_version, '4.14.5', '<' ) ) {
+		mbdb_update_4_14_5();
+	}
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
@@ -1096,7 +1107,133 @@ function mbdb_update_4_12() {
 	update_option('mbdb_options', $mbdb_options);
 }
 
-function mbdb_update_to_4_14() {
+
+
+function mbdb_update_4_14() {
+		$mbdb_options = get_option('mbdb_options');
+
+	if ( !is_array( $mbdb_options)) {
+		$mbdb_options = array();
+	}
+
+	$publishers = isset($mbdb_options['publishers']) ? $mbdb_options['publishers'] : array();
+
+	if ( !is_array($publishers)) {
+		$publishers = array();
+	}
+
+	$new_publishers = array();
+	foreach ( $publishers as $publisher ) {
+		$new_publisher_id = wp_insert_post(array('post_status'=>'publish', 'post_type'=>'mbdb_publisher', 'post_title'=>$publisher['name']));
+		if ( isset($publisher['website'])) {
+			update_post_meta( $new_publisher_id, '_mbdb_publisher_website', $publisher['website'] );
+		}
+		$new_publishers[$publisher['uniqueID']] = $new_publisher_id;
+	}
+
+
+	$books = new MBDB_Book_List('all');
+	foreach ( $books as $book ) {
+		if ( $book->publisher_id != 0 && isset($new_publishers[$book->publisher_id])) {
+			$book->publisher_id = $new_publishers[$book->publisher_id];
+			$book->save();
+		}
+
+	}
+
+	mbdb_set_up_roles();
+	flush_rewrite_rules();
+
+}
+
+function mbdb_update_4_14_3() {
+
+		$args = array('posts_per_page' => -1,
+					'post_type' => 'mbdb_publisher',
+					'orderby' => 'post_title',
+					'order' => 'ASC'
+				);
+
+		$new_pubs = get_posts(  $args );
+		$new_publishers = array();
+		foreach ( $new_pubs as $new_pub){
+			$new_publishers[$new_pub->post_title] = $new_pub->ID;
+		}
+
+		$mbdb_options = get_option('mbdb_options');
+		$old_pubs = isset($mbdb_options['publishers']) ? $mbdb_options['publishers'] : array();
+		$old_publishers = array();
+		foreach ( $old_pubs as $old_publisher ) {
+			$old_publishers[$old_publisher['uniqueID']] = $old_publisher['name'];
+		}
+
+
+	$book_grids = get_posts(array('posts_per_page'=>-1, 'post_type'=>'mbdb_book_grid'));
+	foreach ( $book_grids as $book_grid) {
+		$book_grid_publishers = get_post_meta( $book_grid->ID, '_mbdb_book_grid_publisher', true );
+		if ( $book_grid_publishers!= '') {
+			$new_book_grid_publishers = array();
+			foreach ( $book_grid_publishers as $book_grid_publisher) {
+				if ( $book_grid_publisher == null ) { continue; }
+				$publisher_name = $old_publishers[$book_grid_publisher];
+				$new_book_grid_publishers[] = $new_publishers[$publisher_name];
+			}
+			update_post_meta ( $book_grid->ID, '_mbdb_book_grid_publisher', $new_book_grid_publishers);
+
+		}
+
+	}
+}
+
+function mbdb_update_4_14_4() {
+
+	// ensure this only runs once
+	if ( get_option( 'mbdb_update_4_14_4' ) != false ) {
+		return;
+	}
+	update_option( 'mbdb_update_4_14_4', 'true' );
+
+	MBDB()->helper_functions->set_admin_notice( __( 'Mooberry Book Manager: Checking for duplicate publishers and correcting the issue...' ), 'error', 'mbdb_update_publishers' );
+
+	$options = get_option( 'mbdb_options' );
+	if ( is_array( $options ) && isset( $options['publishers'] ) ) {
+		$pubs = $options['publishers'];
+	} else {
+		$pubs = array();
+	}
+	$old_publishers = array();
+	foreach ( $pubs as $pub ) {
+		$old_publishers[ $pub['uniqueID'] ] = $pub['name'];
+	}
+
+	global $wpdb;
+
+	$sql            = "select post_title, min(ID) as ID from $wpdb->posts  WHERE post_type = 'mbdb_publisher' group by post_title";
+	$results        = $wpdb->get_results( $sql );
+	$new_publishers = array();
+	foreach ( $results as $result ) {
+		$new_publishers[ $result->post_title ] = $result->ID;
+	}
+
+	update_option( 'mbdb_old_publishers', $old_publishers );
+	update_option( 'mbdb_new_publishers', $new_publishers );
+
+	$books = get_posts( array(
+		'post_type'      => 'mbdb_book',
+		'posts_per_page' => '-1',
+		'post_status'    => array( 'publish', 'draft', 'trash' )
+	) );
+
+	foreach ( $books as $book ) {
+		MBDB()->publisher_update_fix_process->push_to_queue( $book->ID );
+	}
+	MBDB()->publisher_update_fix_process->save();
+	MBDB()->publisher_update_fix_process->dispatch();
+
+}
+
+
+function mbdb_update_to_4_15() {
 
 	// register new taxonomies
 	$book_CPT = new Mooberry_Book_Manager_Book_CPT();

@@ -331,56 +331,64 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						}
 						break;
 					case 'cover':
-					//error_log('beginning import cover' . $decoded->title );
-						// Need to require these files
-						if ( !function_exists('media_handle_upload') ) {
-							require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-							require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-							require_once(ABSPATH . "wp-admin" . '/includes/media.php');
-						}
-						$url = $decoded->cover;
-						if ( $url == '' ) {
-							$this->cover_id = 0;
-							$this->cover = '';
 
-							break;
-						}
-						$tmp = download_url( $url );
-						if( is_wp_error( $tmp ) ){
-							// download failed, handle error
-						}
-						$post_id = 0;
-						$file_array = array();
+						// see if a cover_id is included
+						// if so, the image is already in the library
+						if ( isset($decoded->cover_id) && intval($decoded->cover_id) == $decoded->cover_id ){
+							$this->cover_id = intval($decoded->cover_id);
+							$this->cover = wp_get_attachment_url( $this->cover_id );
 
-						// Set variables for storage
-						// fix file filename for query strings
-						preg_match('/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $url, $matches);
-						$file_array['name'] = basename($matches[0]);
-						$file_array['tmp_name'] = $tmp;
+						} else {
+							// Need to require these files
+							if ( ! function_exists( 'media_handle_upload' ) ) {
+								require_once( ABSPATH . "wp-admin" . '/includes/image.php' );
+								require_once( ABSPATH . "wp-admin" . '/includes/file.php' );
+								require_once( ABSPATH . "wp-admin" . '/includes/media.php' );
+							}
+							$url = $decoded->cover;
+							if ( $url == '' ) {
+								$this->cover_id = 0;
+								$this->cover    = '';
 
-						// If error storing temporarily, unlink
-						if ( is_wp_error( $tmp ) ) {
-							@unlink($file_array['tmp_name']);
-							$file_array['tmp_name'] = '';
-						}
+								break;
+							}
+							$tmp = download_url( $url );
+							if ( is_wp_error( $tmp ) ) {
+								// download failed, handle error
+							}
+							$post_id    = 0;
+							$file_array = array();
 
-						// do the validation and storage stuff
-						$id = media_handle_sideload( $file_array, $post_id);
+							// Set variables for storage
+							// fix file filename for query strings
+							preg_match( '/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $url, $matches );
+							$file_array['name']     = basename( $matches[0] );
+							$file_array['tmp_name'] = $tmp;
 
-						// If error storing permanently, unlink
-						if ( is_wp_error($id) ) {
-							@unlink($file_array['tmp_name']);
-							$this->cover = '';
-							$this->cover_id = 0;
-						}
-						$this->cover = wp_get_attachment_url( $id );
-						$this->cover_id = $id;
+							// If error storing temporarily, unlink
+							if ( is_wp_error( $tmp ) ) {
+								@unlink( $file_array['tmp_name'] );
+								$file_array['tmp_name'] = '';
+							}
 
-						// update sizes
-						$fullsizepath = get_attached_file( $id );
+							// do the validation and storage stuff
+							$id = media_handle_sideload( $file_array, $post_id );
 
-						if ( false !== $fullsizepath && file_exists($fullsizepath) ) {
-							wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $fullsizepath ) );
+							// If error storing permanently, unlink
+							if ( is_wp_error( $id ) ) {
+								@unlink( $file_array['tmp_name'] );
+								$this->cover    = '';
+								$this->cover_id = 0;
+							}
+							$this->cover    = wp_get_attachment_url( $id );
+							$this->cover_id = $id;
+
+							// update sizes
+							$fullsizepath = get_attached_file( $id );
+
+							if ( false !== $fullsizepath && file_exists( $fullsizepath ) ) {
+								wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $fullsizepath ) );
+							}
 						}
 						break;
 
@@ -390,12 +398,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		}
 		//error_log('about to save ' . $this->title );
 
-		$success = $this->db_object->save_all( $this );
+		$new_book_id = $this->db_object->save_all( $this );
 		//error_log('just saved ' . $this->title );
-		if ( is_array($success) ) {
-			error_log(print_r($success, true ));
+		if ( is_array($new_book_id) ) {
+			error_log(print_r($new_book_id, true ));
 		}
-		return $success;
+		return $new_book_id;
 	}
 
 	public function save_all() {

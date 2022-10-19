@@ -164,7 +164,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 
 	public function has_publisher() {
-		return ( $this->publisher != '' ) && ( $this->publisher instanceof Mooberry_Book_Manager_Publisher );
+		return  $this->publisher != ''  && $this->publisher_id!= 0 &&  $this->publisher instanceof Mooberry_Book_Manager_Publisher ;
 	}
 
 	public function has_imprint() {
@@ -225,13 +225,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	// if the publisher_id changes, set the publisher
 	public function set_publisher_id( $publisher_id ) {
-		if ( array_key_exists( $publisher_id, MBDB()->options->publishers ) ) {
+
 			$this->publisher_id = $publisher_id;
-			$this->publisher = clone MBDB()->options->publishers[ $publisher_id ];
-		} else {
-			$this->publisher_id = 0;
-			$this->publisher = null;
-		}
+			$this->publisher = new Mooberry_Book_Manager_Publisher($publisher_id);
+
 	}
 
 	// if the imprint_id changes, set the publisher
