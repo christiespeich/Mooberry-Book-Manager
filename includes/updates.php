@@ -232,7 +232,8 @@ function mbdb_update_versions() {
 
 
 	if ( version_compare( $current_version, '4.14', '<')) {
-		mbdb_update_to_4_14();
+		mbdb_update_4_14();
+	}
 
 	if ( version_compare( $current_version, '4.14.3', '<' ) ) {
 		mbdb_update_4_14_3();
@@ -1233,7 +1234,7 @@ function mbdb_update_4_14_4() {
 }
 
 
-function mbdb_update_to_4_15() {
+function mbdb_update_4_14_5() {
 
 	// register new taxonomies
 	$book_CPT = new Mooberry_Book_Manager_Book_CPT();
@@ -1244,7 +1245,7 @@ function mbdb_update_to_4_15() {
 	$mbdb_options = get_option( 'mbdb_options' );
 	foreach ( array( 'mbdb_narrator', 'mbdb_translator' ) as $name ) {
 		$key                  = 'mbdb_book_grid_' . $name . '_slug';
-		$mbdb_options[ $key ] = str_replace('mbdb_', '', $name );
+		$mbdb_options[ $key ] = str_replace( 'mbdb_', '', $name );
 	}
 	update_option( 'mbdb_options', $mbdb_options );
 
@@ -1256,3 +1257,4 @@ function mbdb_update_to_4_15() {
 	flush_rewrite_rules();
 
 }
+
