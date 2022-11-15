@@ -2909,7 +2909,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		// only show 2nd set of links if exceprt is more than 1500 characters long
 
 		$has_links = $this->data_object->has_buy_links() || $this->data_object->has_download_links();
-		if ( strlen( $this->data_object->excerpt ) > 1500 && $has_links ) {
+		if ( $this->data_object->excerpt_type == 'text' && strlen( $this->data_object->excerpt ) > 1500 && $has_links ) {
 			$book_page_layout .= '<div id="mbm-book-links2">';
 			$book_page_layout = apply_filters( 'mbdb_book_page_before_bottom_links', $book_page_layout, $this->data_object, $attr );
 			if ( $this->data_object->has_buy_links() ) {
