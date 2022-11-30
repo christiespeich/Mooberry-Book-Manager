@@ -333,7 +333,8 @@ function mbdb_enqueue_scripts( $hook ) {
 	global $post;
 
 	mbdb_enqueue_admin_header_styles();
-
+	wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), array( 'iris' ));
+	wp_enqueue_script( 'wp-color-picker' );
 	// widgets javascript
 	if ($hook == 'widgets.php') {
 		$file = 'includes/admin/js/admin-widget.js';
@@ -426,6 +427,7 @@ function mbdb_register_footer_scripts() {
 
 	if ($parent_base == 'mbdb_options') {
 		// admin-settings
+
 		$file = 'includes/admin/js/admin-options.js';
 		wp_enqueue_script('mbdb-admin-options', MBDB_PLUGIN_URL . $file, array('jquery', 'jquery-ui-sortable'), Mooberry_Book_Manager_Helper_Functions::get_enqueue_version( MBDB_PLUGIN_DIR . $file ));
 
