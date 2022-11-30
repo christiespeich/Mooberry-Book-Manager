@@ -30,6 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	protected $editors;
 	protected $illustrators;
 	protected $cover_artists;
+	protected $narrators;
+	protected $translators;
 
 
 
@@ -49,6 +51,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$this->editors = array();
 		$this->illustrators = array();
 		$this->cover_artists = array();
+		$this->narrators = array();
+		$this->translators = array();
 
 
 
@@ -129,6 +133,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$this->editors = $book->editors;
 			$this->illustrators = $book->illustrators;
 			$this->cover_artists = $book->cover_artists;
+			$this->narrators = $book->narrators;
+			$this->translators = $book->translators;
 
 		}
 		wp_cache_set( $id, $this, 'mbdb_book');
@@ -179,6 +185,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		return ( $this->cover_artists != '' ) && ( count( $this->cover_artists) >0 );
 	}
 
+	public function has_narrators() {
+		return ( $this->narrators != '' ) && ( count( $this->narrators) > 0 );
+	}
+
+	public function has_translators() {
+		return ( $this->translators != '' ) && ( count( $this->translators) > 0 );
+	}
 
 	public function get_taxonomy_list( $terms, $delimiter ) {
 		$output = '';

@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.14.4
+ *  Version: 4.14.5
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -35,7 +35,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 //error_log('starting');
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
-	define( 'MBDB_PLUGIN_VERSION', '4.14.4' );
+
+	define( 'MBDB_PLUGIN_VERSION', '4.14.5' );
+
 }
 
 if ( ! defined( 'MBDB_PLUGIN_VERSION_KEY' ) ) {
@@ -494,3 +496,4 @@ function mbdb_flush_rewrite_rules() {
 		delete_option( 'mbdb_flush_rules' );
 	}
 }
+

@@ -17,6 +17,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			'mbdb_editor',
 			'mbdb_cover_artist',
 			'mbdb_illustrator',
+			'mbdb_narrator',
+			'mbdb_translator',
 		);
 
 
@@ -112,6 +114,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 			$book->editors = $this->get_editors( $book_id );
 			$book->cover_artists = $this->get_cover_artists( $book_id );
 			$book->illustrators = $this->get_illustrators( $book_id );
+			$book->narrators = $this->get_narrators( $book_id );
+			$book->translators = $this->get_translators( $book_id );
 		}
 		return $book;
 	}
@@ -256,6 +260,15 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 	public function get_illustrators( $book_id ) {
 		return $this->get_data( 'mbdb_illustrator', $book_id );
 	}
+
+	public function get_translators( $book_id ) {
+		return $this->get_data( 'mbdb_translator', $book_id );
+	}
+
+	public function get_narrators( $book_id ) {
+		return $this->get_data( 'mbdb_narrator', $book_id );
+	}
+
 
 	protected function get_sort_fields( $sort ) {
 		switch ($sort) {

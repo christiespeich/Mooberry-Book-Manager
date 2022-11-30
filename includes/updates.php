@@ -230,7 +230,8 @@ function mbdb_update_versions() {
 		mbdb_update_4_12();
 	}
 
-	if ( version_compare( $current_version, '4.14', '<' ) ) {
+
+	if ( version_compare( $current_version, '4.14', '<')) {
 		mbdb_update_4_14();
 	}
 
@@ -240,6 +241,10 @@ function mbdb_update_versions() {
 
 	if ( version_compare( $current_version, '4.14.4', '<' ) ) {
 		mbdb_update_4_14_4();
+	}
+
+	if ( version_compare( $current_version, '4.14.5', '<' ) ) {
+		mbdb_update_4_14_5();
 	}
 
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
@@ -1103,6 +1108,8 @@ function mbdb_update_4_12() {
 	update_option('mbdb_options', $mbdb_options);
 }
 
+
+
 function mbdb_update_4_14() {
 		$mbdb_options = get_option('mbdb_options');
 
@@ -1223,6 +1230,31 @@ function mbdb_update_4_14_4() {
 	}
 	MBDB()->publisher_update_fix_process->save();
 	MBDB()->publisher_update_fix_process->dispatch();
+
+}
+
+
+function mbdb_update_4_14_5() {
+
+	// register new taxonomies
+	$book_CPT = new Mooberry_Book_Manager_Book_CPT();
+	$book_CPT->register();
+
+
+	// set tax grid defaults
+	$mbdb_options = get_option( 'mbdb_options' );
+	foreach ( array( 'mbdb_narrator', 'mbdb_translator' ) as $name ) {
+		$key                  = 'mbdb_book_grid_' . $name . '_slug';
+		$mbdb_options[ $key ] = str_replace( 'mbdb_', '', $name );
+	}
+	update_option( 'mbdb_options', $mbdb_options );
+
+	// add new role
+	mbdb_set_up_roles();
+
+	// flush rules
+	update_option( 'mbdb_flush_rules', true );
+	flush_rewrite_rules();
 
 }
 

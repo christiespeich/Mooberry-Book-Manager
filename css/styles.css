@@ -116,7 +116,8 @@ a.mbm-widget-link .mbm-ribbon {
 		padding: 2%;
 	}
 
-#mbm-book-page .mbm-book-details-imprint-label, #mbm-book-page .mbm-book-details-published-label, #mbm-book-page .mbm-book-details-publisher-label, #mbm-book-page .mbm-book-details-editors-label, #mbm-book-page .mbm-book-details-illustrators-label, #mbm-book-page .mbm-book-details-cover-artists-label, #mbm-book-page .mbm-book-details-genres-label, #mbm-book-page .mbm-book-details-tags-label {
+#mbm-book-page .mbm-book-details-imprint-label, #mbm-book-page .mbm-book-details-published-label, #mbm-book-page .mbm-book-details-publisher-label, #mbm-book-page .mbm-book-details-editors-label, #mbm-book-page .mbm-book-details-illustrators-label, #mbm-book-page .mbm-book-details-cover-artists-label, #mbm-book-page .mbm-book-details-genres-label, #mbm-book-page .mbm-book-details-tags-label,
+#mbm-book-page .mbm-book-details-translators-label, #mbm-book-page .mbm-book-details-narrators-label {
 	font-weight: bold;
 }
 
