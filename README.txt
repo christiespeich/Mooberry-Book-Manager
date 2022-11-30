@@ -189,6 +189,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
+= 4.1.5 =
+* Added: narrator and translator taxonomies
+
 = 4.1.4. =
 * Fixed: bug with custom sorting in book grid
 * Updated: translation .pot file
