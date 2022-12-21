@@ -40,10 +40,8 @@ jQuery( document ).ready(function() {
 
 
  function mbdb_show_popup_card( event ) { //}, image, element ) {
-     var posX = jQuery(this).offset().left,
-         posY = jQuery(this).offset().top;
+    jQuery(this).find('.mbdb_book_info_popup').css({top: jQuery(this).height() * .75, left: jQuery(this).width() *.5 }).show();
 
-    jQuery(this).find('.mbdb_book_info_popup').css({top: event.pageY - posY, left: event.pageX-posX}).show();
 }
 
 
