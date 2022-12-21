@@ -45,7 +45,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 		$widget_type_dropdown = MBDB()->helper_functions->make_dropdown($this->get_field_id('mbdb_widget_type'), $options, $this->widgetType, 'no', 0, $this->get_field_name('mbdb_widget_type'));
 
 		$selected_book = $instance[ 'mbdb_bookID' ];
-		//error_log('make drop down for widget');
+
 		$book_list = MBDB()->helper_functions->get_all_books();
 
 		$book_list_dropdown = MBDB()->helper_functions->make_dropdown( $this->get_field_id('mbdb_bookID'), $book_list, $selected_book, 'yes', '0', $this->get_field_name('mbdb_bookID'));
@@ -64,8 +64,6 @@ class mbdb_book_widget2 extends mbdb_widget {
 
 	 function widget( $args, $instance ) {
 
-
-		//$this->bookID  = $instance['mbdb_bookID'];
 		$this->widgetType = apply_filters('mbdb_widget_type', $instance['mbdb_widget_type']);
 
 		parent::widget( $args, $instance );
@@ -77,15 +75,12 @@ class mbdb_book_widget2 extends mbdb_widget {
 		 // handle returning more than one book
 		 $this->books    = array();
 		 $filter_bookIDs = apply_filters( 'mbdb_book_widget_filter_bookIDs', null, $instance, $this );
-		 //$book_list = new MBDB_Book_List();
+
 		 switch ( $this->widgetType ) {
 
 			 case "newest":
 				 // get book ID of most recent book
-				 //$this->books[] = apply_filters('mbdb_widget_newest_book_list', $book_list->get_most_recent_book( $filter_bookIDs ), $instance);
 				 $this->bookLimit = apply_filters( 'mbdb_widget_newest_book_limit', $this->bookLimit );
-				 //	print_r('get newest');
-
 				 $this->books = apply_filters( 'mbdb_widget_newest_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::newest, 'release_date', 'DESC', null, null, $filter_bookIDs, $this->bookLimit, true ), $instance );
 
 				 break;
@@ -93,23 +88,15 @@ class mbdb_book_widget2 extends mbdb_widget {
 			 case "coming-soon":
 				 // get books with future or blank release dates
 				 $this->bookLimit = apply_filters( 'mbdb_widget_coming_soon_book_limit', $this->bookLimit );
-				 //print_r('get coming soon');
-				 //$this->books = apply_filters('mbdb_widget_coming_soon_book_list', $book_list->get_upcoming_books( $filter_bookIDs, $limit ), $instance);
 				 $this->books = apply_filters( 'mbdb_widget_coming_soon_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::unpublished, 'title', 'ASC', null, null, $filter_bookIDs, $this->bookLimit, true ), $instance );
 				 break;
 
 			 case "specific":
-				 // make sure seected book is still a valid book
-				 //$this->books[] = apply_filters('mbdb_widget_specific_book_list', new Mooberry_Book_Manager_Book( $instance['mbdb_bookID'] ), $instance);
 				 $this->books[] = apply_filters( 'mbdb_widget_specific_book_list', MBDB()->book_factory->create_book( $instance['mbdb_bookID'] ), $instance );
-//print_r('get specific book for widget');
+
 				 break;
 			 case 'random':
-				 //default: // default to random
-				 // get book ID of a random book
 				 $this->bookLimit = apply_filters( 'mbdb_widget_random_book_limit', $this->bookLimit );
-				 //	print_r('get random');
-				 //$this->books = apply_filters('mbdb_widget_random_book_list', $book_list->get_random_books( $filter_bookIDs, $limit ), $instance);
 				 $this->books = apply_filters( 'mbdb_widget_random_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::random, 'title', 'ASC', null, null, $filter_bookIDs, $this->bookLimit), $instance );
 
 				 break;
@@ -119,7 +106,8 @@ class mbdb_book_widget2 extends mbdb_widget {
 
 		 $this->books = apply_filters( 'mbdb_book_widget_book', $this->books, $this->widgetType );
 		 $this->bookLimit = apply_filters('mbdb_book_widget_limit', $this->bookLimit, $this->widgetType);
-		 // even though book list slices the array, do it again because filters may have chnged teh array (ie MA)
+
+		 // even though book list slices the array, do it again because filters may have chnaged teh array (ie MA)
 		 if ( is_array( $this->books ) ) {
 			 if ( count( $this->books ) > $this->bookLimit ) {
 				 $this->books = array_splice( $this->books, 0, $this->bookLimit );
