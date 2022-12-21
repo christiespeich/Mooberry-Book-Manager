@@ -8,6 +8,7 @@
 class mbdb_book_widget2 extends mbdb_widget {
 
 	public $widgetType;
+	public $bookLimit;
 
 	// constructor
 	// 3.1 -- added customize_selected_refresh for WP 4.5
@@ -18,6 +19,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 							 'customize_selective_refresh' => true,);
 		$this->title = __('Mooberry Book Manager Book',  'mooberry-book-manager');
 
+		$this->bookLimit = 1;
 		parent::__construct( );
 
 	}
@@ -76,25 +78,24 @@ class mbdb_book_widget2 extends mbdb_widget {
 		 $this->books    = array();
 		 $filter_bookIDs = apply_filters( 'mbdb_book_widget_filter_bookIDs', null, $instance, $this );
 		 //$book_list = new MBDB_Book_List();
-		 $limit = 1;
 		 switch ( $this->widgetType ) {
 
 			 case "newest":
 				 // get book ID of most recent book
 				 //$this->books[] = apply_filters('mbdb_widget_newest_book_list', $book_list->get_most_recent_book( $filter_bookIDs ), $instance);
-				 $limit = apply_filters( 'mbdb_widget_newest_book_limit', 1 );
+				 $this->bookLimit = apply_filters( 'mbdb_widget_newest_book_limit', $this->bookLimit );
 				 //	print_r('get newest');
 
-				 $this->books = apply_filters( 'mbdb_widget_newest_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::newest, 'release_date', 'DESC', null, null, $filter_bookIDs, $limit, true ), $instance );
+				 $this->books = apply_filters( 'mbdb_widget_newest_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::newest, 'release_date', 'DESC', null, null, $filter_bookIDs, $this->bookLimit, true ), $instance );
 
 				 break;
 
 			 case "coming-soon":
 				 // get books with future or blank release dates
-				 $limit = apply_filters( 'mbdb_widget_coming_soon_book_limit', 1 );
+				 $this->bookLimit = apply_filters( 'mbdb_widget_coming_soon_book_limit', $this->bookLimit );
 				 //print_r('get coming soon');
 				 //$this->books = apply_filters('mbdb_widget_coming_soon_book_list', $book_list->get_upcoming_books( $filter_bookIDs, $limit ), $instance);
-				 $this->books = apply_filters( 'mbdb_widget_coming_soon_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::unpublished, 'title', 'ASC', null, null, $filter_bookIDs, $limit, true ), $instance );
+				 $this->books = apply_filters( 'mbdb_widget_coming_soon_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::unpublished, 'title', 'ASC', null, null, $filter_bookIDs, $this->bookLimit, true ), $instance );
 				 break;
 
 			 case "specific":
@@ -106,10 +107,10 @@ class mbdb_book_widget2 extends mbdb_widget {
 			 case 'random':
 				 //default: // default to random
 				 // get book ID of a random book
-				 $limit = apply_filters( 'mbdb_widget_random_book_limit', 1 );
+				 $this->bookLimit = apply_filters( 'mbdb_widget_random_book_limit', $this->bookLimit );
 				 //	print_r('get random');
 				 //$this->books = apply_filters('mbdb_widget_random_book_list', $book_list->get_random_books( $filter_bookIDs, $limit ), $instance);
-				 $this->books = apply_filters( 'mbdb_widget_random_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::random, 'title', 'ASC', null, null, $filter_bookIDs, $limit ), $instance );
+				 $this->books = apply_filters( 'mbdb_widget_random_book_list', new MBDB_Book_List( MBDB_Book_List_Enum::random, 'title', 'ASC', null, null, $filter_bookIDs, $this->bookLimit), $instance );
 
 				 break;
 
@@ -117,14 +118,15 @@ class mbdb_book_widget2 extends mbdb_widget {
 		 }
 
 		 $this->books = apply_filters( 'mbdb_book_widget_book', $this->books, $this->widgetType );
+		 $this->bookLimit = apply_filters('mbdb_book_widget_limit', $this->bookLimit, $this->widgetType);
 		 // even though book list slices the array, do it again because filters may have chnged teh array (ie MA)
 		 if ( is_array( $this->books ) ) {
-			 if ( count( $this->books ) > $limit ) {
-				 $this->books = array_splice( $this->books, 0, $limit );
+			 if ( count( $this->books ) > $this->bookLimit ) {
+				 $this->books = array_splice( $this->books, 0, $this->bookLimit );
 			 }
 		 } else {
 			 if ( $this->books !== null ) {
-				 $this->books->limit_books( $limit );
+				 $this->books->limit_books( $this->bookLimit );
 			 } else {
 				 $this->books = array();
 			 }
