@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, writer, writing, library, book store, author website management, book shop, sell books, link to Amazon
 Requires at least: 3.8.0
-Tested up to: 5.9
-Stable tag: 4.14.6
+Tested up to: 6.0
+Stable tag: 4.14.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,10 +189,16 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
-= 4.1.5 =
+= 4.14.7 =
+* Updated: started 8.1 compatibility (more will be needed)
+
+= 4.14.6 =
+* Updated: book pop ups alway show in lower right corner
+
+= 4.14.5 =
 * Added: narrator and translator taxonomies
 
-= 4.1.4. =
+= 4.14.4. =
 * Fixed: bug with custom sorting in book grid
 * Updated: translation .pot file
 * Fixed: duplicate publishers caused by 4.14 update
