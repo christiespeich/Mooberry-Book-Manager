@@ -89,10 +89,12 @@ class MBDB_Book_List implements Countable, Iterator {
 
 	}
 
+	#[\ReturnTypeWillChange]
 	private function is_custom_selection_empty($book_list_type, $book_filter) {
 		return ( $book_list_type=='custom'  && ( (is_array($book_filter) && count($book_filter) == 0 ) || $book_filter == '' || $book_filter == null ) );
 	}
 
+	#[\ReturnTypeWillChange]
 	private function is_sale_selection_empty($book_list_type, $book_filter) {
 		return ( $book_list_type=='sale'  && ( (is_array($book_filter) && count($book_filter) == 0 ) || $book_filter == '' || $book_filter == null ) );
 	}
@@ -106,14 +108,17 @@ class MBDB_Book_List implements Countable, Iterator {
 		$this->books = array_slice( $this->books, 0, $limit );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function count() {
 		return count( $this->books );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		$this->cursor = 0;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function current() {
 		if ( $this->valid() ) {
 			return $this->books[ $this->cursor ];
@@ -122,14 +127,17 @@ class MBDB_Book_List implements Countable, Iterator {
 		}
 	}
 
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		return ( array_key_exists( $this->cursor, $this->books ) );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function key() {
 		return $this->cursor;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function next() {
 		$this->cursor ++;
 	}
@@ -149,6 +157,7 @@ class MBDB_Book_List implements Countable, Iterator {
 		$this->books = array_values( $this->books );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function get_book_dropdown( $dropdownID, $bookID, $include_empty = 'yes', $empty_value = '0', $name = '' ) {
 
 		$options = $this->get_title_list();
@@ -156,6 +165,7 @@ class MBDB_Book_List implements Countable, Iterator {
 		return MBDB()->helper_functions->make_dropdown( $dropdownID, $options, $bookID, $include_empty, $empty_value, $name );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function get_title_list( $add_empty = false, $empty_key = '0', $empty_value = '' ) {
 
 
@@ -172,6 +182,7 @@ class MBDB_Book_List implements Countable, Iterator {
 		return $options;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function to_json() {
 		$results = array();
 		foreach ( $this->books as $book ) {
@@ -188,6 +199,7 @@ class MBDB_Book_List implements Countable, Iterator {
 	 *
 	 * @since 1.0
 	 */
+	#[\ReturnTypeWillChange]
 	public function __get( $key ) {
 
 		if ( method_exists( $this, 'get_' . $key ) ) {
