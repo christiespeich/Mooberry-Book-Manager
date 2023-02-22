@@ -476,15 +476,20 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		return $errors;
 	}
 
-	public function get_newest_books( ) {
+	public function get_newest_books( $book_filter = null ) {
 		global $wpdb;
 
 		$today = new DateTime( null, MBDB()->helper_functions->get_blog_timezone() );
 		$todayYmd = $today->format('Y-m-d');
 
+		// make sure $book_filter is an array
+		$book_filter = $book_filter === null ? array() : (!is_array($book_filter) ? array($book_filter) : $book_filter);
+
+		$book_ids = count($book_filter) > 0 ? '  b.book_id in ( ' . join(',', $book_filter) . ') and ' : '';
+
 		$sql = 'select DISTINCT b.*, p.post_title, p.post_name  from ' . $this->table_name() . ' as b
 		join ' . $wpdb->posts . ' as p on b.book_id = p.ID
-		where p.post_status="publish" and
+		where p.post_status="publish" and ' . $book_ids . '
 		b.release_date in
 		   (
 			select max(release_date) as release_date
@@ -566,7 +571,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		// SELECTION VARIABLES
 
 		// default to all books
-		$book_selection_options = MBDB()->book_grid_CPT->selection_options();
+		$book_selection_options = MBDB()->book_grid_CPT->selection_options() + MBDB()->get_widget_options();
+
 		if ( ! array_key_exists( $selection, $book_selection_options ) ) {
 			$selection = 'all';
 		}

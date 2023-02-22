@@ -1,12 +1,12 @@
 <?php
 /**
  *  Plugin Name: Mooberry Book Manager
- *  Plugin URI: http://mooberrybookmanager.com/features
+ *  Plugin URI: http://www.mooberrybookmanager.com/
  *  Description: An easy-to-use system for authors. Add your new book to your site in minutes, including links for purchase or download, sidebar widgets, and more.
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.14.7
+ *  Version: 4.14.8
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
 
-	define( 'MBDB_PLUGIN_VERSION', '4.14.7' );
+	define( 'MBDB_PLUGIN_VERSION', '4.14.8' );
 
 }
 
@@ -360,6 +360,15 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-book-csv-importer.php';
 
 
+	}
+
+	public function get_widget_options() {
+		return array(
+							'random' => __('Random Book', 'mooberry-book-manager'),
+							'newest'	=>	__('Newest Book', 'mooberry-book-manager'),
+							'coming-soon'	=>	__('Future Book', 'mooberry-book-manager'),
+							'specific'	=>	__('Specific Book', 'mooberry-book-manager')
+						);
 	}
 
 

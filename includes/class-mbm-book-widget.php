@@ -35,13 +35,7 @@ class mbdb_book_widget2 extends mbdb_widget {
 
 		$this->widgetType = esc_attr($instance['mbdb_widget_type']);
 
-		$options = apply_filters('mbdb_book_widget_options', array(
-							'random' => __('Random Book', 'mooberry-book-manager'),
-							'newest'	=>	__('Newest Book', 'mooberry-book-manager'),
-							'coming-soon'	=>	__('Future Book', 'mooberry-book-manager'),
-							'specific'	=>	__('Specific Book', 'mooberry-book-manager')
-						)
-					);
+		$options = apply_filters('mbdb_book_widget_options', MBDB()->get_widget_options() );
 		$widget_type_dropdown = MBDB()->helper_functions->make_dropdown($this->get_field_id('mbdb_widget_type'), $options, $this->widgetType, 'no', 0, $this->get_field_name('mbdb_widget_type'));
 
 		$selected_book = $instance[ 'mbdb_bookID' ];

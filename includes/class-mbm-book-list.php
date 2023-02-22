@@ -30,7 +30,7 @@ class MBDB_Book_List implements Countable, Iterator {
 			$this->full_count = count( $books );
 		} else {
 			if ( $book_list_type == 'newest' ) {
-				$books = $this->db_object->get_newest_books();
+				$books = $this->db_object->get_newest_books( $book_filter );
 			} else {
 				if ( $orderby == 'random' ) {
 					$sort = 'random';

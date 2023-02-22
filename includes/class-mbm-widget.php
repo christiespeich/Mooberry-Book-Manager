@@ -92,9 +92,13 @@ abstract class mbdb_widget extends WP_Widget {
 	}
 
 	function get_data( $instance ) {
-		$this->widgetTitle      = apply_filters( 'mbdb_widget_title', $instance['mbdb_widget_title'] );
-		$this->displayBookTitle = apply_filters( 'mbdb_widget_show_title', $instance['mbdb_widget_show_title'] );
-		$this->coverSize        = apply_filters( 'mbdb_widget_cover_size', $instance['mbdb_widget_cover_size'] );
+		$mbdb_widget_title = isset($instance['mbdb_widget_title']) ? $instance['mbdb_widget_title'] : '';
+		$mbdb_widget_show_title = isset($instance['mbdb_widget_show_title']) ? $instance['mbdb_widget_show_title'] : '';
+		$mbdb_widget_cover_size = isset($instance['mbdb_widget_cover_size']) ? $instance['mbdb_widget_cover_size'] : '';
+
+		$this->widgetTitle      = apply_filters( 'mbdb_widget_title', $mbdb_widget_title );
+		$this->displayBookTitle = apply_filters( 'mbdb_widget_show_title', $mbdb_widget_show_title );
+		$this->coverSize        = apply_filters( 'mbdb_widget_cover_size', $mbdb_widget_cover_size );
 
 		$this->books = array();
 		do_action( 'mbdb_widget_pre_get_books', $instance );
@@ -132,7 +136,7 @@ abstract class mbdb_widget extends WP_Widget {
 		// print_r($this->books);
 		//output
 
-		if ( $this->books == null ) {
+		if ( $this->books == null || (is_array($this->books) && count($this->books) == 0 ) ) {
 			//$this->books = array(new Mooberry_Book_Manager_Book( 0 ));
 			$this->books = array( MBDB()->book_factory->create_book( 0 ) );
 			//print_r('initialize book in widget');
@@ -145,8 +149,13 @@ abstract class mbdb_widget extends WP_Widget {
 						if ( property_exists( $book, 'id' ) ) {
 							$ids[] = $book->id;
 						} else {
-
-							$ids[] = $book->book_id;
+							if ( property_exists( $book, 'book_id')) {
+								$ids[] = $book->book_id;
+							} else {
+								if ( property_exists( $book, 'ID')) {
+									$ids[] = $book->ID;
+								}
+							}
 
 						}
 					}
