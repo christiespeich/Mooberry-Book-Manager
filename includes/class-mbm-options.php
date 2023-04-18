@@ -73,6 +73,10 @@ class Mooberry_Book_Manager_Options {
 
 	}
 
+	public function force_reload_options() {
+		$this->options = null;
+		$this->get_options();
+	}
 	protected function get_options( ) {
 		if ( $this->options == null ) {
 			$this->options = get_option('mbdb_options');
