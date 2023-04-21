@@ -154,7 +154,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	}
 
 
-	private function set_up_taxonomies() {
+	protected function set_up_taxonomies() {
 		$this->standard_taxonomies = array(
 			'mbdb_genre',
 			'mbdb_tag',
@@ -1665,7 +1665,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	 *
 	 ************************************************************/
 
-	private function set_book( $slug = '' ) {
+	protected function set_book( $slug = '' ) {
 
 		if ( $slug == '' ) {
 			global $post;
@@ -1692,7 +1692,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	}
 
 
-	private function output_blank_data( $classname, $blank_output, $book = null ) {
+	protected function output_blank_data( $classname, $blank_output, $book = null ) {
 		return apply_filters( 'mbdb_shortcode_' . $classname, '<span class="mbm-book-' . $classname . '"><span class="mbm-book-' . $classname . '-blank">' . esc_html( $blank_output ) . '</span></span>', $book );
 	}
 
@@ -2150,7 +2150,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	}
 
 
-	private function shortcode_taxonomy( $attr, $taxonomy, $default_permalink, $property ) {
+	protected function shortcode_taxonomy( $attr, $taxonomy, $default_permalink, $property ) {
 		$attr = shortcode_atts( array(
 			'delim' => 'comma',
 			'blank' => '',
@@ -2415,7 +2415,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 	 * @since  1.0
 	 *
 	 */
-	private function series_list( $delim, $series, $bookID ) {
+	protected function series_list( $delim, $series, $bookID ) {
 		$classname = 'mbm-book-serieslist';
 
 
