@@ -28,7 +28,7 @@ if ( !class_exists('Mooberry_Dreams_CSV_Importer')) {
 
 		public function import() {
 			$count = 0;
-			while ( ( $row = fgetcsv( $this->fileHandle, 0, "," ) ) !== false ) {
+			while ( ( $row = fgetcsv( $this->fileHandle, 0, "," ) ) !== false && count($row) == count($this->column_names) ) {
 				$count ++;
 				$data = array_combine( $this->column_names, $row );
 				$this->import_process->push_to_queue( $data );
