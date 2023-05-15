@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mooberry Book Manager\n"
 "Report-Msgid-Bugs-To: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
-"POT-Creation-Date: 2021-06-23 10:23-0400\n"
+"POT-Creation-Date: 2023-05-15 12:07-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Mooberry Dreams <bookmanager@mooberrydreams.com>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: includes/cmb2\n"
 
@@ -35,282 +35,285 @@ msgstr ""
 
 #: includes/admin/class-mbm-apple-books-link-update-process.php:122
 #: includes/admin/class-mbm-import-process.php:86
-#: includes/admin/class-mbm-novelist-import-process.php:328
-#: includes/class-mbm-book-grid-cpt.php:378 includes/updates.php:93
+#: includes/admin/class-mbm-novelist-import-process.php:343
+#: includes/admin/class-publisher-update-fix-process.php:79
+#: includes/class-mbm-book-grid-cpt.php:415 includes/updates.php:93
 msgid "Dismiss this notice"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:60
+#: includes/admin/class-mbm-core-settings.php:69
 msgid "Mooberry Book Manager General Settings"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:61
+#: includes/admin/class-mbm-core-settings.php:70
 msgid "General Settings"
 msgstr "Γενικές Ρυθμίσεις"
 
-#: includes/admin/class-mbm-core-settings.php:64
+#: includes/admin/class-mbm-core-settings.php:73
 msgid "Mooberry Book Manager Book Page Settings"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:65
+#: includes/admin/class-mbm-core-settings.php:74
 #: includes/class-mbm-helper-functions.php:323
+#: includes/class-mbm-helper-functions.php:331
 msgid "Book Page"
 msgstr "Σελίδα βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:68
+#: includes/admin/class-mbm-core-settings.php:77
 msgid "Mooberry Book Manager Book Grid Settings"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:69
-#: includes/class-mbm-book-grid-cpt.php:28
+#: includes/admin/class-mbm-core-settings.php:78
+#: includes/class-mbm-book-grid-cpt.php:46
 msgid "Book Grid"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:72
-msgid "Mooberry Book Manager Publishers"
-msgstr ""
-
-#: includes/admin/class-mbm-core-settings.php:73
-msgid "Publishers"
-msgstr "Εκδοτικοί Οίκοι"
-
-#: includes/admin/class-mbm-core-settings.php:76
+#: includes/admin/class-mbm-core-settings.php:85
 #, fuzzy
 #| msgid "Mooberry Book Manager Options"
 msgid "Mooberry Book Manager Imprints"
 msgstr "Επιλογές Διαχειριστή Βιβλίων Moobery"
 
-#: includes/admin/class-mbm-core-settings.php:77
+#: includes/admin/class-mbm-core-settings.php:86
 msgid "Imprints"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:80
+#: includes/admin/class-mbm-core-settings.php:89
 msgid "Mooberry Book Manager Retailers"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:81
+#: includes/admin/class-mbm-core-settings.php:90
+#: includes/admin/class-mbm-core-settings.php:968
 msgid "Retailers"
 msgstr "Έμποροι Λιανικής"
 
-#: includes/admin/class-mbm-core-settings.php:84
+#: includes/admin/class-mbm-core-settings.php:93
 msgid "Mooberry Book Manager E-book Formats"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:85
+#: includes/admin/class-mbm-core-settings.php:94
 msgctxt "noun"
 msgid "E-book Formats"
 msgstr "E-βιβλία"
 
-#: includes/admin/class-mbm-core-settings.php:88
+#: includes/admin/class-mbm-core-settings.php:97
 msgid "Mooberry Book Manager Edition Formats"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:89
+#: includes/admin/class-mbm-core-settings.php:98
 msgid "Edition Formats"
 msgstr "Εκδόσεις"
 
-#: includes/admin/class-mbm-core-settings.php:92
+#: includes/admin/class-mbm-core-settings.php:101
 msgid "Mooberry Book Manager Import/Export Books"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:93
+#: includes/admin/class-mbm-core-settings.php:102
 msgid "Import / Export"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:102
+#: includes/admin/class-mbm-core-settings.php:111
 msgid "Mooberry Book Manager v3.0 Data Migration"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:103
+#: includes/admin/class-mbm-core-settings.php:112
 msgid "Migrate Data"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:111
+#: includes/admin/class-mbm-core-settings.php:120
 msgid "Mooberry Book Manager Book Grid Migration"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:112
+#: includes/admin/class-mbm-core-settings.php:121
 msgid "Migrate Book Grids"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:195
+#: includes/admin/class-mbm-core-settings.php:204
 msgid ""
 "Note: This page for users of previous versions of Mooberry Book Manager only."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:196
+#: includes/admin/class-mbm-core-settings.php:205
 msgid "Data already migrated. Mooberry Book Manager 3.0 is ready to use!"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:197
+#: includes/admin/class-mbm-core-settings.php:206
 msgid ""
 "You may choose to re-migrate your data from version 2 if you've noticed "
 "issues with your books' information.  "
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:198 includes/updates.php:669
+#: includes/admin/class-mbm-core-settings.php:207 includes/updates.php:694
 msgid "Changes you've made since migrating may be lost."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:199
+#: includes/admin/class-mbm-core-settings.php:208
 msgid "Re-Migrate Data Now"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:204
+#: includes/admin/class-mbm-core-settings.php:213
 msgid "Migrating Data..."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:207
+#: includes/admin/class-mbm-core-settings.php:216
 msgid "Success! Mooberry Book Manager version 3.0 is ready to use!"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:211
+#: includes/admin/class-mbm-core-settings.php:220
 #, php-format
 msgid ""
 "An error occured while migrating data to version 3.0. Please contact "
 "Mooberry Dreams at %s with the following error message."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:211
+#: includes/admin/class-mbm-core-settings.php:220
 msgid "Error:"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:218
+#: includes/admin/class-mbm-core-settings.php:227
 msgid ""
 "Note: Book Grids have already been migrated. Mooberry Book Manager 3.4.3 is "
 "ready to use!"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:223
+#: includes/admin/class-mbm-core-settings.php:232
 msgid "Migrating Book Grids...please wait..."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:227
+#: includes/admin/class-mbm-core-settings.php:236
 msgid "Success! Mooberry Book Manager version 3.4.3 is ready to use!"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:227
+#: includes/admin/class-mbm-core-settings.php:236
 msgid "Click here to see your book grids."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:232
+#: includes/admin/class-mbm-core-settings.php:241
 #, fuzzy
 #| msgid "Book Grid Settings"
 msgid "MBM Book Page Settings"
 msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:235
+#: includes/admin/class-mbm-core-settings.php:244
 msgid "BOOK PAGE SETTINGS"
 msgstr "ΡΥΘΜΙΣΕΙΣ ΣΕΛΙΔΑΣ ΒΙΒΛΙΟΥ"
 
-#: includes/admin/class-mbm-core-settings.php:241
+#: includes/admin/class-mbm-core-settings.php:250
 msgid "Page Template"
 msgstr "Πρότυπο σελίδας"
 
-#: includes/admin/class-mbm-core-settings.php:249
+#: includes/admin/class-mbm-core-settings.php:258
 msgid "Show Back to Grid Link on Books When Coming From a Book Grid?"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:252
-#: includes/class-mbm-book-grid-cpt.php:278
+#: includes/admin/class-mbm-core-settings.php:261
+#: includes/class-mbm-book-grid-cpt.php:315
 msgid "No"
 msgstr "Όχι"
 
-#: includes/admin/class-mbm-core-settings.php:252
-#: includes/class-mbm-book-grid-cpt.php:277
+#: includes/admin/class-mbm-core-settings.php:261
+#: includes/class-mbm-book-grid-cpt.php:314
 msgid "Yes"
 msgstr "Ναι"
 
-#: includes/admin/class-mbm-core-settings.php:264
+#: includes/admin/class-mbm-core-settings.php:273
 msgid "Add to Goodreads Image"
 msgstr "Προσθήκη εικόνας Goodreads"
 
-#: includes/admin/class-mbm-core-settings.php:270
-#: includes/admin/class-mbm-core-settings.php:283
-#: includes/admin/class-mbm-core-settings.php:741
-#: includes/admin/class-mbm-core-settings.php:801
-#: includes/admin/class-mbm-core-settings.php:872
-#: includes/admin/class-mbm-core-settings.php:938
+#: includes/admin/class-mbm-core-settings.php:279
+#: includes/admin/class-mbm-core-settings.php:292
+#: includes/admin/class-mbm-core-settings.php:305
+#: includes/admin/class-mbm-core-settings.php:822
+#: includes/admin/class-mbm-core-settings.php:1036
+#: includes/admin/class-mbm-core-settings.php:1136
+#: includes/admin/class-mbm-core-settings.php:1202
+#: includes/class-mbm-publisher-cpt.php:108
 msgid "Choose or Upload File"
 msgstr "Επιλογή ή μεταφόρτωση αρχείου"
 
-#: includes/admin/class-mbm-core-settings.php:277
+#: includes/admin/class-mbm-core-settings.php:286
 #, fuzzy
 #| msgid "Add to Goodreads Image"
 msgid "Add to Reedsy Image"
 msgstr "Προσθήκη εικόνας Goodreads"
 
-#: includes/admin/class-mbm-core-settings.php:292
+#: includes/admin/class-mbm-core-settings.php:299
+#, fuzzy
+#| msgid "Add to Goodreads Image"
+msgid "Add to Google Books Image"
+msgstr "Προσθήκη εικόνας Goodreads"
+
+#: includes/admin/class-mbm-core-settings.php:314
 msgid "Reset Book Edit Page"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:294
+#: includes/admin/class-mbm-core-settings.php:316
 msgid ""
 "If you've reordered the boxes on the Book Edit page, this will revert them "
 "to their default positions."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:295
+#: includes/admin/class-mbm-core-settings.php:317
 msgid "Reset"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:304
+#: includes/admin/class-mbm-core-settings.php:326
 msgid "DEFAULT SETTINGS"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:310
+#: includes/admin/class-mbm-core-settings.php:332
 msgid "Default Unit of Measurement"
 msgstr "Προεπιλεγμένη Μονάδα Μέτρησης"
 
-#: includes/admin/class-mbm-core-settings.php:318
+#: includes/admin/class-mbm-core-settings.php:340
 msgid "Default Currency"
 msgstr "Προεπιλεγμένη Νομισματική Μονάδα"
 
-#: includes/admin/class-mbm-core-settings.php:326
+#: includes/admin/class-mbm-core-settings.php:348
 msgid "Default Language"
 msgstr "Προεπιλεγμένη Γλώσσα"
 
-#: includes/admin/class-mbm-core-settings.php:334
+#: includes/admin/class-mbm-core-settings.php:356
 msgid "Show Currency for Books in Default Language?"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:347
+#: includes/admin/class-mbm-core-settings.php:369
 msgid "SEO SETTINGS"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:353
+#: includes/admin/class-mbm-core-settings.php:375
 msgid "Allow MBM to add META tags for SEO?"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:361
+#: includes/admin/class-mbm-core-settings.php:383
 msgid "Override Wordpress SEO (Yoast) settings for the following fields:"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:386
+#: includes/admin/class-mbm-core-settings.php:408
 #, fuzzy
 #| msgid "Book Grid Settings"
 msgid "MBM Book Grid Settings"
 msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:389
+#: includes/admin/class-mbm-core-settings.php:411
 msgid "BOOK GRID DEFAULT SETTINGS"
 msgstr "ΠΡΟΕΠΙΛΟΓΗ ΡΥΘΜΙΣΕΩΝ ΠΛΕΓΜΑΤΟΣ ΒΙΒΛΙΟΥ"
 
-#: includes/admin/class-mbm-core-settings.php:391
+#: includes/admin/class-mbm-core-settings.php:413
 msgid ""
 "This setting will be used on all Taxonomy Grids. It's also used on any grids "
 "that do not override the default setting."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:397
+#: includes/admin/class-mbm-core-settings.php:419
 msgid "Default Cover Height (px)"
 msgstr "Προεπιλεγμένο ύψος εξωφύλλου (px)"
 
-#: includes/admin/class-mbm-core-settings.php:410
+#: includes/admin/class-mbm-core-settings.php:432
 msgid "TAXONOMY GRID SETTINGS"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:412
+#: includes/admin/class-mbm-core-settings.php:434
 msgid ""
 "This page will be used to display the Taxonomy Book Grids. A page has "
 "already been set up with the necessary code for this purpose, but if you "
@@ -318,153 +321,160 @@ msgid ""
 "button."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:412
+#: includes/admin/class-mbm-core-settings.php:434
 msgid ""
 "To change the template used for the taxonomy grids, edit this page and set "
 "the <b>Template</b> in the <b>Page Attributes</b> section."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:432
+#: includes/admin/class-mbm-core-settings.php:454
 msgid "Page"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:436
+#: includes/admin/class-mbm-core-settings.php:458
 msgid "Create a new page"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:442
+#: includes/admin/class-mbm-core-settings.php:464
 msgid ""
 "These will be used to build website URL for the Taxonomy Book Grids.  Text "
 "entered in these fields will be converted to \"friendly URLs\" by making "
 "them lower-case, removing the spaces, etc."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:443
+#: includes/admin/class-mbm-core-settings.php:465
 msgid "NOTE:"
 msgstr "ΣΗΜΕΙΩΣΗ:"
 
-#: includes/admin/class-mbm-core-settings.php:443
+#: includes/admin/class-mbm-core-settings.php:465
 msgid "Wordpress reserved terms are not allowed here."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:444
+#: includes/admin/class-mbm-core-settings.php:466
 msgid "Reserved Terms"
 msgstr "Δεσμευμένοι όροι"
 
-#: includes/admin/class-mbm-core-settings.php:445
+#: includes/admin/class-mbm-core-settings.php:467
 msgid "See a list of reserved terms."
 msgstr "Δείτε τη λίστα των δεσμευμένων όρων."
 
-#: includes/admin/class-mbm-core-settings.php:457
+#: includes/admin/class-mbm-core-settings.php:479
 msgid "TAXONOMY BOOK GRID URL SETTINGS"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:514
+#: includes/admin/class-mbm-core-settings.php:536
 #, fuzzy
 #| msgid "Set up Publishers in Settings."
 msgid "MBM Publishers Settings"
 msgstr "Επεξεργασία Εκδοτών στις ρυθμίσεις."
 
-#: includes/admin/class-mbm-core-settings.php:518
+#: includes/admin/class-mbm-core-settings.php:540
 msgid "Add your publishers."
 msgstr "Προσθέστε εκδοτικούς οίκους."
 
-#: includes/admin/class-mbm-core-settings.php:520
-#: includes/admin/class-mbm-core-settings.php:531
-#: includes/class-mbm-book-cpt.php:284 includes/class-mbm-book-cpt.php:295
-#: includes/class-mbm-book-cpt.php:735 includes/class-mbm-book-grid-cpt.php:101
+#: includes/admin/class-mbm-core-settings.php:542
+#: includes/admin/class-mbm-core-settings.php:553
+#: includes/class-mbm-book-cpt.php:320 includes/class-mbm-book-cpt.php:331
+#: includes/class-mbm-book-cpt.php:785 includes/class-mbm-book-grid-cpt.php:127
+#: includes/class-mbm-helper-functions.php:791
+#: includes/class-mbm-publisher-cpt.php:42
 msgid "Publisher"
 msgstr "Εκδόσεις"
 
-#: includes/admin/class-mbm-core-settings.php:522
+#: includes/admin/class-mbm-core-settings.php:544
 msgid "Add New Publisher"
 msgstr "Νέος εκδοτικός οίκος"
 
-#: includes/admin/class-mbm-core-settings.php:523
+#: includes/admin/class-mbm-core-settings.php:545
 msgid "Remove Publisher"
 msgstr "Διαγραφή εκδοτικού οίκου"
 
-#: includes/admin/class-mbm-core-settings.php:541
+#: includes/admin/class-mbm-core-settings.php:563
 msgid "Publisher Website"
 msgstr "Ιστότοπος εκδοτικού οίκου"
 
-#: includes/admin/class-mbm-core-settings.php:579
+#: includes/admin/class-mbm-core-settings.php:601
 #, fuzzy
 #| msgid "Book Grid Settings"
 msgid "MBM Imprints Settings"
 msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:583
+#: includes/admin/class-mbm-core-settings.php:605
 #, fuzzy
 #| msgid "Add your publishers."
 msgid "Add your imprints."
 msgstr "Προσθέστε εκδοτικούς οίκους."
 
-#: includes/admin/class-mbm-core-settings.php:585
-#: includes/admin/class-mbm-core-settings.php:596
-#: includes/class-mbm-book-cpt.php:749
+#: includes/admin/class-mbm-core-settings.php:607
+#: includes/admin/class-mbm-core-settings.php:618
+#: includes/class-mbm-book-cpt.php:799
 msgid "Imprint"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:587
+#: includes/admin/class-mbm-core-settings.php:609
 #, fuzzy
 #| msgid "Add New Format"
 msgid "Add New Imprint"
 msgstr "Νέα Μορφή"
 
-#: includes/admin/class-mbm-core-settings.php:588
+#: includes/admin/class-mbm-core-settings.php:610
 #, fuzzy
 #| msgid "Remove Format"
 msgid "Remove Imprint"
 msgstr "Διαγραφή Μορφής"
 
-#: includes/admin/class-mbm-core-settings.php:606
+#: includes/admin/class-mbm-core-settings.php:628
 msgid "Imprint Website"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:643
+#: includes/admin/class-mbm-core-settings.php:665
 #, fuzzy
 #| msgid "Book Grid Settings"
 msgid "MBM Editions Settings"
 msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:647
+#: includes/admin/class-mbm-core-settings.php:669
 msgid "Add any additional formats your books are available in."
 msgstr "Προσθέστε άλλες μορφές που μπορεί να έχουν τα βιβλία σας."
 
-#: includes/admin/class-mbm-core-settings.php:649
+#: includes/admin/class-mbm-core-settings.php:671
+#: includes/class-mbm-book-cpt.php:585
 msgid "Format"
 msgstr "Μορφή"
 
-#: includes/admin/class-mbm-core-settings.php:651
+#: includes/admin/class-mbm-core-settings.php:673
+#: includes/class-mbm-book-cpt.php:587
 msgid "Add New Format"
 msgstr "Νέα Μορφή"
 
-#: includes/admin/class-mbm-core-settings.php:652
-#: includes/admin/class-mbm-core-settings.php:852
+#: includes/admin/class-mbm-core-settings.php:674
+#: includes/admin/class-mbm-core-settings.php:1116
+#: includes/class-mbm-book-cpt.php:588
 msgid "Remove Format"
 msgstr "Διαγραφή Μορφής"
 
-#: includes/admin/class-mbm-core-settings.php:660
-#: includes/admin/class-mbm-core-settings.php:849
+#: includes/admin/class-mbm-core-settings.php:682
+#: includes/admin/class-mbm-core-settings.php:1113
 msgid "Format Name"
 msgstr "Ονομασία Μορφής"
 
-#: includes/admin/class-mbm-core-settings.php:696
+#: includes/admin/class-mbm-core-settings.php:718
 #, fuzzy
 #| msgid "General Settings"
 msgid "MBM General Settings"
 msgstr "Γενικές Ρυθμίσεις"
 
-#: includes/admin/class-mbm-core-settings.php:699
-msgid "IMAGE SETTINGS"
-msgstr ""
+#: includes/admin/class-mbm-core-settings.php:721
+#, fuzzy
+#| msgid "BOOK PAGE SETTINGS"
+msgid "BOOK COVER SETTINGS"
+msgstr "ΡΥΘΜΙΣΕΙΣ ΣΕΛΙΔΑΣ ΒΙΒΛΙΟΥ"
 
-#: includes/admin/class-mbm-core-settings.php:706
+#: includes/admin/class-mbm-core-settings.php:728
 msgid "Use Book Cover as Featured Image"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:708
+#: includes/admin/class-mbm-core-settings.php:730
 msgid ""
 "Using the book cover as featured image can allow you to add books to sliders "
 "and other tools.  However, be aware that some themes automatically display "
@@ -472,166 +482,273 @@ msgid ""
 "to hide that."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:717
+#: includes/admin/class-mbm-core-settings.php:739
+msgid "Show COMING SOON Ribbon on Corner of Book Cover?"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:748
+msgid "Color of COMING SOON Ribbon"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:755
+msgid "Text Color of COMING SOON Ribbon"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:762
+msgid "Show NEW Ribbon on Corner of Book Cover?"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:772
+msgid "Color of NEW Ribbon"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:779
+msgid "Text Color of NEW Ribbon"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:786
+msgid "Number of Days to Display NEW Ribbon"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:798
 msgid "Show Placeholder Cover On"
 msgstr "Εμφάνιση Placeholder εξωφύλλου σε"
 
-#: includes/admin/class-mbm-core-settings.php:720
+#: includes/admin/class-mbm-core-settings.php:801
 msgid ""
 "The placeholder cover is used for books that do not have a cover selected."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:733
+#: includes/admin/class-mbm-core-settings.php:814
 msgid "Placeholder Cover Image"
 msgstr "Placeholder εικόνας εξωφύλλου"
 
-#: includes/admin/class-mbm-core-settings.php:769
+#: includes/admin/class-mbm-core-settings.php:830
+msgid "POP UP CARD ON HOVER SETTINGS"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:832
+msgid ""
+"A card with information about a book will pop up when the mouse moves over "
+"the book cover"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:857
+msgid "Use Pop-up Card?"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:863
+#, php-format
+msgid ""
+"Drag and Drop up to %d fields into the Selected Fields list to display that "
+"data on the popup card."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:863
+msgid "Field List: "
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:863
+#, fuzzy
+#| msgid "Select Series"
+msgid "Selected Fields: "
+msgstr "Επιλογή Σειράς"
+
+#: includes/admin/class-mbm-core-settings.php:868
+msgid "Background Color of Pop-up Card"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:875
+msgid "Text Color of Pop-up Card"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:882
+msgid "Width of Pop-up Card (pixels)"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:915
 #, fuzzy
 #| msgid "Add more retailers in Settings"
 msgid "MBM Retailers Settings"
 msgstr "Προσθέστε περισσότερους κριτικούς στις ρυθμίσεις"
 
-#: includes/admin/class-mbm-core-settings.php:775
-#: includes/class-mbm-book-cpt.php:830
+#: includes/admin/class-mbm-core-settings.php:920
+#, fuzzy
+#| msgctxt "noun: URLs to book retailers"
+#| msgid "Retailer Links"
+msgid "Retailer Buttons"
+msgstr "Δικτυακοί τόποι κριτικών"
+
+#: includes/admin/class-mbm-core-settings.php:925
+msgid "Use Matching Buttons for All Retailers"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:926
+msgid "Use Individual Buttons for Each Retailer"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:945
+msgid "Retailer Buttons Colors"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:952
+msgid "Background Color"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:960
+msgid "Text Color"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:976
+#: includes/class-mbm-book-cpt.php:891
 msgid "Retailer"
 msgstr "Έμπορος λιανικής"
 
-#: includes/admin/class-mbm-core-settings.php:777
+#: includes/admin/class-mbm-core-settings.php:978
 msgid "Add Retailer"
 msgstr "Προσθήκη Εμπόρου Λιανικής"
 
-#: includes/admin/class-mbm-core-settings.php:778
+#: includes/admin/class-mbm-core-settings.php:979
 msgid "Remove Retailer"
 msgstr "Διαγραφή Εμπόρου Λιανικής"
 
-#: includes/admin/class-mbm-core-settings.php:785
+#: includes/admin/class-mbm-core-settings.php:986
 msgid "Retailer Name"
 msgstr "Όνομα Εμπόρου Λιανικής"
 
-#: includes/admin/class-mbm-core-settings.php:794
+#: includes/admin/class-mbm-core-settings.php:992
+msgid ""
+"If you are using buttons instead of images, this will be the text of the "
+"button"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:998
+msgid "Use a Button or an Image for this Retailer?"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1000
+msgid "Button"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1001
+msgid "Image"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1014
+msgid "Button Background Color"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1022
+msgid "Button Text Color"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1029
 msgid "Retailer Logo Image"
 msgstr "Λογότυπο Εμπόρου Λιανικής"
 
-#: includes/admin/class-mbm-core-settings.php:843
+#: includes/admin/class-mbm-core-settings.php:1107
 #, fuzzy
 #| msgid "Book Grid Settings"
 msgid "MBM Book Formats Settings"
 msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:851
+#: includes/admin/class-mbm-core-settings.php:1115
 msgid "Add Format"
 msgstr "Νέα Μορφή"
 
-#: includes/admin/class-mbm-core-settings.php:859
+#: includes/admin/class-mbm-core-settings.php:1123
 msgctxt "noun: the format of a book"
 msgid "Format"
 msgstr "Μορφή"
 
-#: includes/admin/class-mbm-core-settings.php:868
+#: includes/admin/class-mbm-core-settings.php:1132
 msgctxt "noun: the image that represents the format of a book"
 msgid "Format Image"
 msgstr "Μορφή εικόνας"
 
-#: includes/admin/class-mbm-core-settings.php:905
+#: includes/admin/class-mbm-core-settings.php:1169
 #, fuzzy
 #| msgid "Social Media Site"
 msgid "MBM Social Media Settings"
 msgstr "Μέσο κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:909
+#: includes/admin/class-mbm-core-settings.php:1173
 msgid "Add Social Media Sites With Whom You Have Accounts."
 msgstr "Προσθέστε τα μέσα κοινωνικής δικτύωσης στα οποία είστε εγγεγραμένοι."
 
-#: includes/admin/class-mbm-core-settings.php:911
+#: includes/admin/class-mbm-core-settings.php:1175
 msgid "Social Media Site"
 msgstr "Μέσο κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:913
+#: includes/admin/class-mbm-core-settings.php:1177
 msgid "Add New Social Media Site"
 msgstr "Προσθήκη νέου μέσου κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:914
+#: includes/admin/class-mbm-core-settings.php:1178
 msgid "Remove Social Media Site"
 msgstr "Διαγραφή μέσου κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:921
+#: includes/admin/class-mbm-core-settings.php:1185
 msgid "Social Media Site Name"
 msgstr "Ονομασία μέσου κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:931
+#: includes/admin/class-mbm-core-settings.php:1195
 msgid "Social Media Logo Image"
 msgstr "Λογότυπο μέσου κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:963
+#: includes/admin/class-mbm-core-settings.php:1227
 msgid "Mooberry Book Manager Social Media Options"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:964
+#: includes/admin/class-mbm-core-settings.php:1228
 msgid "Social Media"
 msgstr "Μέσα κοινωνικής δικτύωσης"
 
-#: includes/admin/class-mbm-core-settings.php:997
-#, fuzzy
-#| msgid "Book Grid Settings"
-msgid "MBM Book Import/Export Settings"
-msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
-
-#: includes/admin/class-mbm-core-settings.php:1017
-#: includes/admin/class-mbm-core-settings.php:1248
+#: includes/admin/class-mbm-core-settings.php:1266
+#: includes/admin/class-mbm-core-settings.php:1846
 #, fuzzy
 #| msgid "Parent Book"
 msgid "Import Books"
 msgstr "Γονικό βιβλίο"
 
-#: includes/admin/class-mbm-core-settings.php:1018
+#: includes/admin/class-mbm-core-settings.php:1267
 msgid ""
 "Books will be imported in the background. You may leave this page while they "
 "are importing. A notice will be displayed while books are importing."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1021
+#: includes/admin/class-mbm-core-settings.php:1270
+#: includes/admin/class-mbm-core-settings.php:1310
+#: includes/admin/class-mbm-core-settings.php:1342
+#: includes/admin/class-mbm-core-settings.php:1372
 msgid ""
 "Please wait for the current batch of imports to finish before importing more."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1022
+#: includes/admin/class-mbm-core-settings.php:1271
+#: includes/admin/class-mbm-core-settings.php:1343
+#: includes/admin/class-mbm-core-settings.php:1373
 msgid "Cancel Import"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1034
-msgid "IMPORT FROM GOOGLE BOOKS"
-msgstr ""
-
-#: includes/admin/class-mbm-core-settings.php:1035
-msgid "Enter ISBNs, one per line, to import books."
-msgstr ""
-
-#: includes/admin/class-mbm-core-settings.php:1037
-msgid "Import from Google"
-msgstr ""
-
-#: includes/admin/class-mbm-core-settings.php:1039
-msgid "IMPORT FROM FILE"
-msgstr ""
-
-#: includes/admin/class-mbm-core-settings.php:1040
+#: includes/admin/class-mbm-core-settings.php:1276
 msgid "Choose an export file from Mooberry Book Manager."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1053
-#: includes/admin/class-mbm-core-settings.php:1074
+#: includes/admin/class-mbm-core-settings.php:1289
+#: includes/admin/class-mbm-core-settings.php:1389
 msgid ""
 "Please wait for the current batch of imports to finish before exporting more."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1060
-#: includes/admin/class-mbm-core-settings.php:1249
+#: includes/admin/class-mbm-core-settings.php:1295
+#: includes/admin/class-mbm-core-settings.php:1847
 #, fuzzy
 #| msgid "Edit Book"
 msgid "Export Books"
 msgstr "Επεξεργασία βιβλίου"
 
-#: includes/admin/class-mbm-core-settings.php:1060
+#: includes/admin/class-mbm-core-settings.php:1295
 msgid ""
 "This will create a text file with all of the books entered into Mooberry "
 "Book Manager. Books that are in Draft Mode or in the Trash will not be "
@@ -639,11 +756,11 @@ msgid ""
 "future update."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1079
+#: includes/admin/class-mbm-core-settings.php:1315
 msgid "Import Books from Novelist"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1080
+#: includes/admin/class-mbm-core-settings.php:1316
 msgid ""
 "This will take any books you have entered with Novelist and import them into "
 "Mooberry Book Manager.  Books that are in the Trash will not be imported.  "
@@ -651,20 +768,20 @@ msgid ""
 "data while the Novelist plugin in activated."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1082
+#: includes/admin/class-mbm-core-settings.php:1318
 msgid ""
 "The Novelist plugin must be activated in order to import series and genres."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1083
+#: includes/admin/class-mbm-core-settings.php:1319
 msgid "ISBN13 and page length will be imported as a Paperback format"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1084
+#: includes/admin/class-mbm-core-settings.php:1320
 msgid "ASIN will be imported as a Kindle format"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1085
+#: includes/admin/class-mbm-core-settings.php:1321
 msgid ""
 "If ASIN is included, it will be used to add Kindle Live Preview. The "
 "excerpt, if included, will also\n"
@@ -673,54 +790,94 @@ msgid ""
 "                    that setting on the book page."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1089
+#: includes/admin/class-mbm-core-settings.php:1325
 msgid ""
 "Contributors will not be imported because there isn't a single corresponding "
 "field. Mooberry Book Manager has separate fields for editors, cover artists, "
 "and illustrators where contributors can be added to."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1092
+#: includes/admin/class-mbm-core-settings.php:1328
 msgid ""
 "PLEASE NOTE: At this time, only data entered with the base, free level of "
 "Novelist will be imported. Data entered with extensions will not be imported."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1192
-#: includes/admin/class-mbm-core-settings.php:1205
+#: includes/admin/class-mbm-core-settings.php:1362
+msgid ""
+"Books will be imported in the background. You may leave this page while they "
+"are importing."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1364
+msgid "Download file template"
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1395
+#, fuzzy
+#| msgid "Edit Book"
+msgid "Export Books to CSV file"
+msgstr "Επεξεργασία βιβλίου"
+
+#: includes/admin/class-mbm-core-settings.php:1396
+msgid ""
+"This will create a CSV file with all of the books entered into Mooberry Book "
+"Manager. Books that are in Draft Mode or in the Trash will not be exported."
+msgstr ""
+
+#: includes/admin/class-mbm-core-settings.php:1416
+#, fuzzy
+#| msgid "Book Grid Settings"
+msgid "MBM Book Import/Export Settings"
+msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
+
+#: includes/admin/class-mbm-core-settings.php:1788
+#: includes/admin/class-mbm-core-settings.php:1801
 msgid "Invalid file format"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1196
+#: includes/admin/class-mbm-core-settings.php:1792
 #, php-format
 msgid "Importing %d books."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1216
+#: includes/admin/class-mbm-core-settings.php:1812
 #, php-format
 msgid "%s added to queue!"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1233
+#: includes/admin/class-mbm-core-settings.php:1829
 msgid "export"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1235
+#: includes/admin/class-mbm-core-settings.php:1831
 msgid "import"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1240
+#: includes/admin/class-mbm-core-settings.php:1836
 #, php-format
 msgid ""
 "If you would like to %s books entered with Mooberry Book Manager, please use "
 "the Import/Export page in the Mooberry Book Manager settings menu."
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1250
+#: includes/admin/class-mbm-core-settings.php:1844
+#, fuzzy
+#| msgid "Parent Book"
+msgid "Import Books from CSV"
+msgstr "Γονικό βιβλίο"
+
+#: includes/admin/class-mbm-core-settings.php:1845
+#, fuzzy
+#| msgid "Edit Book"
+msgid "Export Books to CSV"
+msgstr "Επεξεργασία βιβλίου"
+
+#: includes/admin/class-mbm-core-settings.php:1848
 msgid "Import from Novelist"
 msgstr ""
 
-#: includes/admin/class-mbm-core-settings.php:1292
+#: includes/admin/class-mbm-core-settings.php:1890
 msgid "is a reserved term and not allowed. This field was not saved."
 msgstr ""
 "είναι δεσμευμένος όρος και δεν επιτρέπεται να χρησιμοποιηθεί. Το πεδίο δεν "
@@ -742,22 +899,28 @@ msgstr ""
 msgid "Books currently being imported from Novelist."
 msgstr ""
 
-#: includes/admin/class-mbm-novelist-import-process.php:327
+#: includes/admin/class-mbm-novelist-import-process.php:342
 msgid "Novelist Book import complete!"
 msgstr ""
 
-#: includes/admin/class-mbm-settings.php:67 mooberry-book-manager.php:298
+#: includes/admin/class-mbm-settings.php:67 mooberry-book-manager.php:271
 msgid "Mooberry Book Manager Settings"
 msgstr ""
 
 #: includes/admin/class-mbm-settings.php:164
-#: includes/class-mbm-book-cpt.php:941
+#: includes/class-mbm-book-cpt.php:1002
 msgid "Need help with Mooberry Book Manager?"
 msgstr ""
 
 #: includes/admin/class-mbm-settings.php:259
 msgid "Settings updated."
 msgstr "Επιτυχία ανανέωσης ρυθμίσεων."
+
+#: includes/admin/class-publisher-update-fix-process.php:78
+msgid ""
+"Mooberry Book Manager: Finished checking for duplicate publishers and "
+"correcting the issue!"
+msgstr ""
 
 #: includes/admin/views/admin-about-mooberry-story.php:3
 msgid "Also From Mooberry Dreams"
@@ -810,7 +973,7 @@ msgstr ""
 
 #: includes/admin/views/admin-about-mooberry.php:20
 msgid ""
-"Check out <a target=\"_new\" href=\"http://bookmanager.mooberrydreams.com/"
+"Check out <a target=\"_new\" href=\"http://www.mooberrybookmanager.com/"
 "\">our website</a> to learn more about these extensions so Mooberry Book "
 "Manager can save you more time!"
 msgstr ""
@@ -820,22 +983,30 @@ msgid "Additional Images"
 msgstr ""
 
 #: includes/admin/views/admin-about-mooberry.php:23
-msgid "Advanced Widgets"
+msgid "Advanced Grids"
 msgstr ""
 
 #: includes/admin/views/admin-about-mooberry.php:24
-msgid "Multi-Author"
+msgid "Advanced Widgets"
 msgstr ""
 
 #: includes/admin/views/admin-about-mooberry.php:25
+msgid "Custom Fields"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:27
+msgid "Multi-Author"
+msgstr ""
+
+#: includes/admin/views/admin-about-mooberry.php:28
 msgid "Retail Links Redirect"
 msgstr ""
 
-#: includes/admin/views/admin-about-mooberry.php:29
+#: includes/admin/views/admin-about-mooberry.php:32
 msgid "Tip Jar"
 msgstr ""
 
-#: includes/admin/views/admin-about-mooberry.php:30
+#: includes/admin/views/admin-about-mooberry.php:33
 msgid ""
 "You can help support this plugin by leaving a tip in any amount. This is "
 "completely optional. Thank you for the support."
@@ -874,21 +1045,22 @@ msgstr ""
 msgid "Book Grid:"
 msgstr ""
 
-#: includes/class-mbm-book-basic.php:280 includes/class-mbm-book-basic.php:310
-#: includes/class-mbm-book-grid.php:608 includes/class-mbm-book-grid.php:638
+#: includes/class-mbm-book-basic.php:295 includes/class-mbm-book-basic.php:325
+#: includes/class-mbm-book-grid.php:609 includes/class-mbm-book-grid.php:639
 #: includes/class-mbm-book-link.php:76 includes/class-mbm-book-link.php:104
-#: includes/class-mbm-book-list.php:213 includes/class-mbm-book.php:425
-#: includes/class-mbm-book.php:455 includes/class-mbm-buy-link.php:90
-#: includes/class-mbm-buy-link.php:120 includes/class-mbm-cpt.php:625
+#: includes/class-mbm-book-list.php:225 includes/class-mbm-book.php:446
+#: includes/class-mbm-book.php:476 includes/class-mbm-buy-link.php:90
+#: includes/class-mbm-buy-link.php:120 includes/class-mbm-cpt-object.php:109
+#: includes/class-mbm-cpt-object.php:140 includes/class-mbm-cpt.php:625
 #: includes/class-mbm-download-format.php:141
 #: includes/class-mbm-download-format.php:172
 #: includes/class-mbm-download-link.php:89
 #: includes/class-mbm-edition-format.php:121
-#: includes/class-mbm-edition-format.php:152 includes/class-mbm-edition.php:170
-#: includes/class-mbm-edition.php:200 includes/class-mbm-imprint.php:127
-#: includes/class-mbm-imprint.php:158 includes/class-mbm-options.php:758
-#: includes/class-mbm-publisher.php:131 includes/class-mbm-publisher.php:162
-#: includes/class-mbm-retailer.php:169 includes/class-mbm-retailer.php:200
+#: includes/class-mbm-edition-format.php:152 includes/class-mbm-edition.php:147
+#: includes/class-mbm-edition.php:177 includes/class-mbm-imprint.php:127
+#: includes/class-mbm-imprint.php:158 includes/class-mbm-options.php:857
+#: includes/class-mbm-publisher.php:135 includes/class-mbm-publisher.php:166
+#: includes/class-mbm-retailer.php:219 includes/class-mbm-retailer.php:250
 #: includes/class-mbm-review.php:90 includes/class-mbm-review.php:120
 #: includes/class-mbm-social-media-site.php:114
 #: includes/class-mbm-social-media-site.php:145
@@ -897,148 +1069,168 @@ msgstr ""
 msgid "Can't get property %s"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:28
+#: includes/class-mbm-book-cpt.php:107
 msgid "Book"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:29
+#: includes/class-mbm-book-cpt.php:108
 msgid "Books"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:179
+#: includes/class-mbm-book-cpt.php:190
 msgid "Genre"
 msgstr "Είδος"
 
-#: includes/class-mbm-book-cpt.php:179
+#: includes/class-mbm-book-cpt.php:190
 msgid "Genres"
 msgstr "Είδος"
 
-#: includes/class-mbm-book-cpt.php:189
+#: includes/class-mbm-book-cpt.php:200
 msgid "Series"
 msgstr "Σειρά"
 
-#: includes/class-mbm-book-cpt.php:200
+#: includes/class-mbm-book-cpt.php:211
 msgid "Tag"
 msgstr "Ετικέτα"
 
-#: includes/class-mbm-book-cpt.php:200
+#: includes/class-mbm-book-cpt.php:211
 msgid "Tags"
 msgstr "Ετικέτες"
 
-#: includes/class-mbm-book-cpt.php:213
+#: includes/class-mbm-book-cpt.php:224
+#, fuzzy
+#| msgid "Editor"
+msgctxt "general taxonomy name"
 msgid "Editor"
 msgstr "Συντάκτης"
 
-#: includes/class-mbm-book-cpt.php:213
+#: includes/class-mbm-book-cpt.php:224
+#, fuzzy
+#| msgid "Editors"
+msgctxt "general tax name plural"
 msgid "Editors"
 msgstr "Συντάκτες"
 
-#: includes/class-mbm-book-cpt.php:224
+#: includes/class-mbm-book-cpt.php:235
 msgid "Illustrator"
 msgstr "Εικονογράφος"
 
-#: includes/class-mbm-book-cpt.php:224
+#: includes/class-mbm-book-cpt.php:235
 msgid "Illustrators"
 msgstr "Εικονογράφοι"
 
-#: includes/class-mbm-book-cpt.php:234
+#: includes/class-mbm-book-cpt.php:245
 msgid "Cover Artist"
 msgstr "Cover Artist"
 
-#: includes/class-mbm-book-cpt.php:234
+#: includes/class-mbm-book-cpt.php:245
 msgid "Cover Artists"
 msgstr "Cover Artists"
 
-#: includes/class-mbm-book-cpt.php:276
+#: includes/class-mbm-book-cpt.php:255
+msgid "Narrator"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:255
+msgid "Narrators"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:265
+msgid "Translator"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:265
+msgid "Translators"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:312
 msgid "— No Change —"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:277
+#: includes/class-mbm-book-cpt.php:313
 msgid "— No Publisher —"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:302 includes/class-mbm-book-cpt.php:710
+#: includes/class-mbm-book-cpt.php:338 includes/class-mbm-book-cpt.php:760
+#: includes/class-mbm-helper-functions.php:792
 msgid "Release Date"
 msgstr "Ημερομηνία κυκλοφορίας"
 
-#: includes/class-mbm-book-cpt.php:309 includes/class-mbm-book-cpt.php:781
+#: includes/class-mbm-book-cpt.php:345 includes/class-mbm-book-cpt.php:842
 msgid "Series Order"
 msgstr "Σειρά"
 
-#: includes/class-mbm-book-cpt.php:322 includes/class-mbm-book-cpt.php:331
+#: includes/class-mbm-book-cpt.php:358 includes/class-mbm-book-cpt.php:367
+#: includes/class-mbm-helper-functions.php:793
 msgid "Summary"
 msgstr "Περίληψη"
 
-#: includes/class-mbm-book-cpt.php:363 includes/class-mbm-book-cpt.php:386
+#: includes/class-mbm-book-cpt.php:399 includes/class-mbm-book-cpt.php:421
 msgid "Excerpt"
 msgstr "Απόσπασμα"
 
-#: includes/class-mbm-book-cpt.php:371
-msgid "Excerpt Type"
-msgstr ""
-
-#: includes/class-mbm-book-cpt.php:374
+#: includes/class-mbm-book-cpt.php:409
 msgid "Excerpt Style"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:379
+#: includes/class-mbm-book-cpt.php:414
 msgid "Enter Excerpt Directly"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:380
+#: includes/class-mbm-book-cpt.php:415
 msgid "Use Kindle Live Preview"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:423
+#: includes/class-mbm-book-cpt.php:458
 msgid "ASIN"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:434
+#: includes/class-mbm-book-cpt.php:469
 msgctxt "noun: book reviews"
 msgid "Reviews"
 msgstr "Κριτικές"
 
-#: includes/class-mbm-book-cpt.php:446
+#: includes/class-mbm-book-cpt.php:481
 msgid "Add reviews of your book"
 msgstr "Προσθήκη κριτικών για το βιβλίο"
 
-#: includes/class-mbm-book-cpt.php:448
+#: includes/class-mbm-book-cpt.php:483
 msgctxt "noun"
 msgid "Reviews"
 msgstr "Κριτικές"
 
-#: includes/class-mbm-book-cpt.php:450
+#: includes/class-mbm-book-cpt.php:485
 msgid "Add Review"
 msgstr "Νέα κριτική"
 
-#: includes/class-mbm-book-cpt.php:451
+#: includes/class-mbm-book-cpt.php:486
 msgid "Remove Review"
 msgstr "Διαγραφή κριτικής"
 
-#: includes/class-mbm-book-cpt.php:459
+#: includes/class-mbm-book-cpt.php:494
 msgid "Reviewer Name"
 msgstr "Όνομα κριτή"
 
-#: includes/class-mbm-book-cpt.php:467
+#: includes/class-mbm-book-cpt.php:502
 msgctxt "noun: URL to book review"
 msgid "Review Link"
 msgstr "Σύνδεσμος κριτικής"
 
-#: includes/class-mbm-book-cpt.php:478
+#: includes/class-mbm-book-cpt.php:513
 msgctxt "noun: name of website of book review"
 msgid "Review Website Name"
 msgstr "Όνομα ιστοτόπου κριτικής"
 
-#: includes/class-mbm-book-cpt.php:485
+#: includes/class-mbm-book-cpt.php:520
 msgctxt "noun: book review"
 msgid "Review"
 msgstr "Κριτική"
 
-#: includes/class-mbm-book-cpt.php:495 includes/class-mbm-book-cpt.php:504
+#: includes/class-mbm-book-cpt.php:530 includes/class-mbm-book-cpt.php:539
 msgid "Additional Information"
 msgstr "Επιπλέον πληροφορίες"
 
-#: includes/class-mbm-book-cpt.php:508
+#: includes/class-mbm-book-cpt.php:543
 msgid ""
 "Any additional information you want to display on the page. Will be shown at "
 "the bottom of the page, after the reviews."
@@ -1046,168 +1238,169 @@ msgstr ""
 "Κάθε επιπλέον πληροφορία που θέλετε να εμφανίζεται στη σελίδα, θα βρίσκεται "
 "στο κάτω μέρος της σελίδας, μετά τις κριτικές."
 
-#: includes/class-mbm-book-cpt.php:537
-msgid "Formats and Editions"
-msgstr "Μορφές και Εκδόσεις"
+#: includes/class-mbm-book-cpt.php:572
+#, fuzzy
+#| msgid "Format"
+msgid "Formats"
+msgstr "Μορφή"
 
-#: includes/class-mbm-book-cpt.php:548
+#: includes/class-mbm-book-cpt.php:583
 #, fuzzy
 #| msgid ""
 #| "List the details of your book's hardcover, paperback, and e-book "
 #| "editions. Everything is optional except the format."
 msgid ""
 "List the details of your book's hardcover, paperback, and e-book editions.  "
-"Editions are completely optional. If you choose to enter an edition, only "
-"the format field is required."
+"This is completely optional. If you choose to enter any, only the format "
+"field is required."
 msgstr ""
 "Εισάγετε τις λεπτομέρειες του βιβλίου. Όλα είναι προαιρετικά εκτός από τον "
 "τύπο του βιβλίου."
 
-#: includes/class-mbm-book-cpt.php:550
-msgid "Edition"
-msgstr "Έκδοση"
-
-#: includes/class-mbm-book-cpt.php:552
-msgid "Add New Edition"
-msgstr "Νέα έκδοση"
-
-#: includes/class-mbm-book-cpt.php:553
-msgid "Remove Edition"
-msgstr "Διαγραφή έκδοσης"
-
-#: includes/class-mbm-book-cpt.php:566
+#: includes/class-mbm-book-cpt.php:601
 msgctxt "noun: format of a book"
 msgid "Format"
 msgstr "Μορφή"
 
-#: includes/class-mbm-book-cpt.php:571 includes/class-mbm-book-cpt.php:889
+#: includes/class-mbm-book-cpt.php:606 includes/class-mbm-book-cpt.php:950
 msgid "Add more formats in Settings"
 msgstr "Προσθέστε περισσότερες μορφές στις ρυθμίσεις"
 
-#: includes/class-mbm-book-cpt.php:576
+#: includes/class-mbm-book-cpt.php:611
 msgid "EAN/ISBN"
 msgstr "EAN/ISBN"
 
-#: includes/class-mbm-book-cpt.php:583
+#: includes/class-mbm-book-cpt.php:618
+msgid "DOI (Digital Object Identifier)"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:626
+msgid "SKU"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:633
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: includes/class-mbm-book-cpt.php:592
+#: includes/class-mbm-book-cpt.php:642
 msgid "Number of Pages"
 msgstr "Αριθμός σελίδων"
 
-#: includes/class-mbm-book-cpt.php:604
+#: includes/class-mbm-book-cpt.php:654
 msgid "Height"
 msgstr "Ύψος"
 
-#: includes/class-mbm-book-cpt.php:616
+#: includes/class-mbm-book-cpt.php:666
 msgid "Width"
 msgstr "Μήκος"
 
-#: includes/class-mbm-book-cpt.php:628
+#: includes/class-mbm-book-cpt.php:678
 msgctxt "units of measurement"
 msgid "Unit"
 msgstr "Μονάδα"
 
-#: includes/class-mbm-book-cpt.php:637
+#: includes/class-mbm-book-cpt.php:687
 msgid "Suggested Retail Price"
 msgstr "Προτεινόμενη τιμή λιανικής"
 
-#: includes/class-mbm-book-cpt.php:640
+#: includes/class-mbm-book-cpt.php:690
 msgid ""
 "Do not enter the currency symbol. That will be determined by the currency "
 "selected below."
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:649
+#: includes/class-mbm-book-cpt.php:699
 msgid "Currency"
 msgstr "Νόμισμα"
 
-#: includes/class-mbm-book-cpt.php:658
+#: includes/class-mbm-book-cpt.php:708
 msgid "Edition Title"
 msgstr "Τίτλος έκδοσης"
 
-#: includes/class-mbm-book-cpt.php:661
+#: includes/class-mbm-book-cpt.php:711
 msgid "First Edition, Second Edition, etc."
 msgstr "Πρώτη έκδοση, δεύτερη έκδοση, κλπ"
 
-#: includes/class-mbm-book-cpt.php:670
+#: includes/class-mbm-book-cpt.php:720
 msgctxt "noun"
 msgid "Cover"
 msgstr "Εξώφυλλο"
 
-#: includes/class-mbm-book-cpt.php:680
+#: includes/class-mbm-book-cpt.php:730
 msgctxt "noun"
 msgid "Book Cover"
 msgstr "Εξώφυλλο βιβλίου"
 
-#: includes/class-mbm-book-cpt.php:694
+#: includes/class-mbm-book-cpt.php:744
 msgid "Book Details"
 msgstr "Λεπτομέρειες βιβλίου"
 
-#: includes/class-mbm-book-cpt.php:703
+#: includes/class-mbm-book-cpt.php:753
+#: includes/class-mbm-helper-functions.php:790
 msgid "Subtitle"
 msgstr "Υπότιτλος"
 
-#: includes/class-mbm-book-cpt.php:739
-msgid "Set up Publishers in Settings."
-msgstr "Επεξεργασία Εκδοτών στις ρυθμίσεις."
-
-#: includes/class-mbm-book-cpt.php:753
+#: includes/class-mbm-book-cpt.php:803
 #, fuzzy
 #| msgid "Set up Publishers in Settings."
 msgid "Set up Imprints in Settings."
 msgstr "Επεξεργασία Εκδοτών στις ρυθμίσεις."
 
-#: includes/class-mbm-book-cpt.php:759
+#: includes/class-mbm-book-cpt.php:809
 msgid "Goodreads Link"
 msgstr "Σύνδεσμος Goodreads"
 
-#: includes/class-mbm-book-cpt.php:770
+#: includes/class-mbm-book-cpt.php:820
 msgid "Reedsy Discovery Link"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:783
+#: includes/class-mbm-book-cpt.php:831
+#, fuzzy
+#| msgid "Goodreads Link"
+msgid "Google Books Link"
+msgstr "Σύνδεσμος Goodreads"
+
+#: includes/class-mbm-book-cpt.php:844
 msgid "(leave blank if not part of a series)"
 msgstr "(αφήστε το κενό αν δεν είναι μέρος σειράς)"
 
-#: includes/class-mbm-book-cpt.php:800
+#: includes/class-mbm-book-cpt.php:861
 msgctxt "noun: URLs to book retailers"
 msgid "Retailer Links"
 msgstr "Δικτυακοί τόποι κριτικών"
 
-#: includes/class-mbm-book-cpt.php:811
+#: includes/class-mbm-book-cpt.php:872
 msgid "Add links where readers can purchase your book"
 msgstr "Προσθέστε συνδέσμους όπου οι αναγνώστες μπορούν να αγοράσουν το βιβλίο"
 
-#: includes/class-mbm-book-cpt.php:813
+#: includes/class-mbm-book-cpt.php:874
 msgctxt "noun"
 msgid "Retailer Link"
 msgstr "Σύνδεσμος πωλητή λιανικής"
 
-#: includes/class-mbm-book-cpt.php:815
+#: includes/class-mbm-book-cpt.php:876
 msgid "Add Retailer Link"
 msgstr "Προσθήκη συνδέσμου πωλητή λιανικής"
 
-#: includes/class-mbm-book-cpt.php:816
+#: includes/class-mbm-book-cpt.php:877
 msgid "Remove Retailer Link"
 msgstr "Διαγραφή συνδέσμου πωλητή λιανικής"
 
-#: includes/class-mbm-book-cpt.php:835
+#: includes/class-mbm-book-cpt.php:896
 msgid "Add more retailers in Settings"
 msgstr "Προσθέστε περισσότερους κριτικούς στις ρυθμίσεις"
 
-#: includes/class-mbm-book-cpt.php:840
+#: includes/class-mbm-book-cpt.php:901
 msgctxt "noun: URL"
 msgid "Link"
 msgstr "Σύνδεσμος"
 
-#: includes/class-mbm-book-cpt.php:853
+#: includes/class-mbm-book-cpt.php:914
 msgctxt "noun"
 msgid "Download Links"
 msgstr "Λήψη Συνδέσμων"
 
-#: includes/class-mbm-book-cpt.php:865
+#: includes/class-mbm-book-cpt.php:926
 msgid ""
 "If your book is available to download for free, add the links for each "
 "format."
@@ -1215,61 +1408,62 @@ msgstr ""
 "Αν το βιβλίο είναι διαθέσιμο για δωρεάν λήψη, προσθέστε τους συνδέσμους για "
 "κάθε τύπο."
 
-#: includes/class-mbm-book-cpt.php:867
+#: includes/class-mbm-book-cpt.php:928
 msgctxt "noun"
 msgid "Download Link"
 msgstr "Σύνδεσμος λήψης"
 
-#: includes/class-mbm-book-cpt.php:869
+#: includes/class-mbm-book-cpt.php:930
 msgid "Add Download Link"
 msgstr "Προσθήκη συνδέσμου λήψης"
 
-#: includes/class-mbm-book-cpt.php:870
+#: includes/class-mbm-book-cpt.php:931
 msgid "Remove Download Link"
 msgstr "Διαγραφή συνδέσμου λήψης"
 
-#: includes/class-mbm-book-cpt.php:884
+#: includes/class-mbm-book-cpt.php:945
 msgctxt "noun"
 msgid "Format"
 msgstr "Μορφή"
 
-#: includes/class-mbm-book-cpt.php:894
+#: includes/class-mbm-book-cpt.php:955
 msgctxt "noun"
 msgid "Link"
 msgstr "Σύνδεσμος"
 
-#: includes/class-mbm-book-cpt.php:968 includes/class-mbm-book-cpt.php:2044
+#: includes/class-mbm-book-cpt.php:1029 includes/class-mbm-book-cpt.php:2137
+#: includes/class-mbm-publisher-cpt.php:94
 msgid "Website"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:990
+#: includes/class-mbm-book-cpt.php:1051
 msgid "Book Grid Description"
 msgstr "Περιγραφή πλέγματος βιβλίου"
 
-#: includes/class-mbm-book-cpt.php:991
+#: includes/class-mbm-book-cpt.php:1052
 msgid ""
 "The Book Grid Description is displayed above the auto-generated grid for "
 "this page, ex. "
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1019
+#: includes/class-mbm-book-cpt.php:1080
 msgid "Book Grid Description (Bottom)"
 msgstr "Περιγραφή πλέγματος βιβλίου (κάτω μέρος)"
 
-#: includes/class-mbm-book-cpt.php:1020
+#: includes/class-mbm-book-cpt.php:1081
 msgid ""
 "The Book Grid Description is displayed below the auto-generated grid for "
 "this page, ex. "
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1377
+#: includes/class-mbm-book-cpt.php:1426
 #, php-format
 msgid "Editions require at least the format. Please check edition #%s."
 msgstr ""
 "Οι εκδόσεις απαιτούν τουλάχιστον τον τύπο. Παρακαλούμε ελέγξτε την έκδοση #"
 "%s."
 
-#: includes/class-mbm-book-cpt.php:1397
+#: includes/class-mbm-book-cpt.php:1448
 #, php-format
 msgid ""
 "If width or height is specified, both must be. Please check edition #%s."
@@ -1277,7 +1471,7 @@ msgstr ""
 "Αν το μήκος ή το ύψος διευκρινίζονται, πρέπει να διευκρινίζονται και τα δύο. "
 "Παρακαλούμε ελέγξτε την έκδοση #%s."
 
-#: includes/class-mbm-book-cpt.php:1455
+#: includes/class-mbm-book-cpt.php:1506
 #, php-format
 msgid ""
 "Reviews require review text and at least one other field. Please check "
@@ -1286,7 +1480,7 @@ msgstr ""
 "Οι κριτικές απαιτούν κείμενο κριτικής και τουλάχιστον ένα ακόμη πεδίο. "
 "Παρακαλούμε ελέγξτε την κριτική #%s."
 
-#: includes/class-mbm-book-cpt.php:1471
+#: includes/class-mbm-book-cpt.php:1522
 #, php-format
 msgid ""
 "Download links require all fields filled out. Please check download link #%s."
@@ -1294,7 +1488,7 @@ msgstr ""
 "Η λήψη των συνδέσμων απαιτεί όλα τα πεδία να είναι συμπληρωμένα. Παρακαλούμε "
 "ελέγξτε τν σύνδεσμο λήψης #%s."
 
-#: includes/class-mbm-book-cpt.php:1484
+#: includes/class-mbm-book-cpt.php:1535
 #, php-format
 msgid ""
 "Retailer links require all fields filled out. Please check retailer link #%s."
@@ -1302,7 +1496,7 @@ msgstr ""
 "Οι σύνδεσμοι των πωλητών λιανικής απαιτούν όλα τα πεδία να είναι "
 "συμπληρωμένα. Παρακαλούμε ελέγξτε τον σύνδεσμο του πωλητή λιανικής #%s."
 
-#: includes/class-mbm-book-cpt.php:1499
+#: includes/class-mbm-book-cpt.php:1550
 #, php-format
 msgid ""
 "Social Media Links require all fields filled out. Please check social media "
@@ -1311,112 +1505,124 @@ msgstr ""
 "Είναι απαραίτητη η συμπλήρωση των διευθύνσεων url των μέσως κοινωνικής "
 "δικτύωσης. παρακαλούμε ελέγξτε τον σύνδεσμο του μέσου #%s."
 
-#: includes/class-mbm-book-cpt.php:1531
+#: includes/class-mbm-book-cpt.php:1582
 msgid "Standalone book"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1533
+#: includes/class-mbm-book-cpt.php:1584
 #, php-format
 msgid "Book %d in the %s series"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1537
+#: includes/class-mbm-book-cpt.php:1588
 #, php-format
 msgid "in the %s genre"
 msgid_plural "in the %s genres"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-mbm-book-cpt.php:1540
+#: includes/class-mbm-book-cpt.php:1591
 #, php-format
 msgid "Available from %s."
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1559 includes/class-mbm-book-cpt.php:1686
-#: includes/class-mbm-book-grid.php:832 includes/class-mbm-widget.php:231
+#: includes/class-mbm-book-cpt.php:1610 includes/class-mbm-book-cpt.php:1737
+#: includes/class-mbm-book-grid.php:855 includes/class-mbm-widget.php:236
 msgid "Book Cover:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1791
+#: includes/class-mbm-book-cpt.php:1842
 msgid "Published:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1792
+#: includes/class-mbm-book-cpt.php:1843
 msgid "Available on:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1806
+#: includes/class-mbm-book-cpt.php:1857
 msgctxt "short date format. see http://php.net/date"
 msgid "m/d/Y"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1810
+#: includes/class-mbm-book-cpt.php:1861
 msgctxt "long date format. see http://php.net/date"
 msgid "F j, Y"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1828
+#: includes/class-mbm-book-cpt.php:1879
 msgid "View on Goodreads"
 msgstr "Δείτε στο Goodreads"
 
-#: includes/class-mbm-book-cpt.php:1845
+#: includes/class-mbm-book-cpt.php:1896
 msgid "Add to Goodreads"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:1857
+#: includes/class-mbm-book-cpt.php:1908
 #, fuzzy
 #| msgid "View on Goodreads"
 msgid "View on Reedsy"
 msgstr "Δείτε στο Goodreads"
 
-#: includes/class-mbm-book-cpt.php:1874
+#: includes/class-mbm-book-cpt.php:1925
 #, fuzzy
 #| msgid "Add Review"
 msgid "Add to Reedsy"
 msgstr "Νέα κριτική"
 
-#: includes/class-mbm-book-cpt.php:1962
+#: includes/class-mbm-book-cpt.php:1938
+#, fuzzy
+#| msgid "View on Goodreads"
+msgid "View on Google Books"
+msgstr "Δείτε στο Goodreads"
+
+#: includes/class-mbm-book-cpt.php:1955
+#, fuzzy
+#| msgid "Add New Book"
+msgid "Add to Google Books"
+msgstr "Προσθήκη νέου βιβλίου"
+
+#: includes/class-mbm-book-cpt.php:2043
 msgid "READ MORE"
 msgstr "ΠΕΡΙΣΣΟΤΕΡΑ"
 
-#: includes/class-mbm-book-cpt.php:1965
+#: includes/class-mbm-book-cpt.php:2046
 msgid "COLLAPSE"
 msgstr "ΛΙΓΟΤΕΡΑ"
 
-#: includes/class-mbm-book-cpt.php:2113
+#: includes/class-mbm-book-cpt.php:2206
 msgid "on "
 msgstr "σε "
 
-#: includes/class-mbm-book-cpt.php:2129
+#: includes/class-mbm-book-cpt.php:2222
 msgid "wrote"
 msgstr "έγραψε"
 
-#: includes/class-mbm-book-cpt.php:2207 includes/class-mbm-book-cpt.php:2279
+#: includes/class-mbm-book-cpt.php:2300 includes/class-mbm-book-cpt.php:2368
 msgid "Available on"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2223
+#: includes/class-mbm-book-cpt.php:2309
 msgid "Buy Now:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2286 includes/class-mbm-book-cpt.php:2653
-#: includes/class-mbm-book-cpt.php:2786
+#: includes/class-mbm-book-cpt.php:2375 includes/class-mbm-book-cpt.php:2769
+#: includes/class-mbm-book-cpt.php:2926
 msgid "Download Now:"
 msgstr "Κατεβάστε τώρα:"
 
-#: includes/class-mbm-book-cpt.php:2381
+#: includes/class-mbm-book-cpt.php:2470
 msgid "Part of the "
 msgstr "Μέρος του "
 
-#: includes/class-mbm-book-cpt.php:2382
+#: includes/class-mbm-book-cpt.php:2471
 msgid " series:"
 msgstr " σειρά:"
 
-#: includes/class-mbm-book-cpt.php:2543
+#: includes/class-mbm-book-cpt.php:2642
 msgid ":"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2545
+#: includes/class-mbm-book-cpt.php:2644
 #, php-format
 msgctxt ""
 "%1$s is the currency symbol. %2$s is the price. To put currency after price, "
@@ -1424,146 +1630,168 @@ msgctxt ""
 msgid "%1$s %2$s"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2555
+#: includes/class-mbm-book-cpt.php:2654
 msgid "ISBN:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2558
+#: includes/class-mbm-book-cpt.php:2657
+msgid "DOI:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2660
+msgid "SKU:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2663
 msgid "Size:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2561
+#: includes/class-mbm-book-cpt.php:2666
 msgid "Pages:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2594
+#: includes/class-mbm-book-cpt.php:2710
 msgid "Back to grid"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2660
+#: includes/class-mbm-book-cpt.php:2776
 msgid "Part of the"
 msgstr "Μέρος του"
 
-#: includes/class-mbm-book-cpt.php:2660
+#: includes/class-mbm-book-cpt.php:2776
 msgid "series:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2666
+#: includes/class-mbm-book-cpt.php:2782
 msgid "Editions:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2719
+#: includes/class-mbm-book-cpt.php:2846
 msgid "Publisher:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2724
+#: includes/class-mbm-book-cpt.php:2851
 msgid "Imprint:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2729
+#: includes/class-mbm-book-cpt.php:2856
 msgid "Editors:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2734
+#: includes/class-mbm-book-cpt.php:2861
 msgid "Illustrators:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2739
+#: includes/class-mbm-book-cpt.php:2866
 msgid "Cover Artists:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2744
+#: includes/class-mbm-book-cpt.php:2871
+msgid "Narrators:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2876
+msgid "Translators:"
+msgstr ""
+
+#: includes/class-mbm-book-cpt.php:2883
 msgid "Genres:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2748
+#: includes/class-mbm-book-cpt.php:2887
 msgid "Tags:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2759
+#: includes/class-mbm-book-cpt.php:2899
 msgid "Excerpt:"
 msgstr ""
 
-#: includes/class-mbm-book-cpt.php:2767
+#: includes/class-mbm-book-cpt.php:2907
 msgid "Reviews:"
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:29
+#: includes/class-mbm-book-grid-cpt.php:47
+#: includes/class-mbm-helper-functions.php:333
 msgid "Book Grids"
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:64
+#: includes/class-mbm-book-grid-cpt.php:67
+#: includes/class-mbm-book-grid-cpt.php:354
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-mbm-book-grid-cpt.php:90
 msgid "All"
 msgstr "Όλα"
 
-#: includes/class-mbm-book-grid-cpt.php:65
+#: includes/class-mbm-book-grid-cpt.php:91
 msgid "All Published"
 msgstr "Όλα τα Δημοσιευμένα"
 
-#: includes/class-mbm-book-grid-cpt.php:66
+#: includes/class-mbm-book-grid-cpt.php:92
 msgid "All Coming Soon"
 msgstr "Όλα που Έρχονται Σύντομα"
 
-#: includes/class-mbm-book-grid-cpt.php:67
-#: includes/class-mbm-book-grid-cpt.php:142
+#: includes/class-mbm-book-grid-cpt.php:93
+#: includes/class-mbm-book-grid-cpt.php:168
 msgid "Select Books"
 msgstr "Επιλογή Βιβλίων"
 
-#: includes/class-mbm-book-grid-cpt.php:68
-#: includes/class-mbm-book-grid-cpt.php:190
+#: includes/class-mbm-book-grid-cpt.php:94
+#: includes/class-mbm-book-grid-cpt.php:227
 msgid "Select Publishers"
 msgstr "Επιλέξτε εκδότες"
 
-#: includes/class-mbm-book-grid-cpt.php:75
+#: includes/class-mbm-book-grid-cpt.php:101
 #, fuzzy
 #| msgid "Select Tags"
 msgid "Select "
 msgstr "Επιλογή Ετικετών"
 
-#: includes/class-mbm-book-grid-cpt.php:84
+#: includes/class-mbm-book-grid-cpt.php:110
 msgid "Publication Date (oldest first)"
 msgstr "Ημερομηνία Έκδοσης (η παλαιότερη πρώτα)"
 
-#: includes/class-mbm-book-grid-cpt.php:85
+#: includes/class-mbm-book-grid-cpt.php:111
 msgid "Publication Date (newest first)"
 msgstr "Ημερομηνία Έκδοσης (η νεώτερη πρώτα)"
 
-#: includes/class-mbm-book-grid-cpt.php:86
+#: includes/class-mbm-book-grid-cpt.php:112
 msgid "Title (A-Z)"
 msgstr "Τίτλος (Α-Ω)"
 
-#: includes/class-mbm-book-grid-cpt.php:87
+#: includes/class-mbm-book-grid-cpt.php:113
 msgid "Title (Z-A)"
 msgstr "Τίτλος (Ω-Α)"
 
-#: includes/class-mbm-book-grid-cpt.php:88 includes/plugin-functions.php:363
+#: includes/class-mbm-book-grid-cpt.php:114 includes/plugin-functions.php:399
 msgid "Custom"
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:94
+#: includes/class-mbm-book-grid-cpt.php:120
 msgid "None"
 msgstr "Καμία"
 
-#: includes/class-mbm-book-grid-cpt.php:111
-#: includes/class-mbm-book-grid-cpt.php:368
+#: includes/class-mbm-book-grid-cpt.php:137
+#: includes/class-mbm-book-grid-cpt.php:405
 msgid "Book Grid Settings"
 msgstr "Ρυθμίσεις Πλέγματος Βιβλίου"
 
-#: includes/class-mbm-book-grid-cpt.php:120
+#: includes/class-mbm-book-grid-cpt.php:146
 msgid "Books to Display"
 msgstr "Βιβλία για Προβολή"
 
-#: includes/class-mbm-book-grid-cpt.php:156
+#: includes/class-mbm-book-grid-cpt.php:182
 #, fuzzy, php-format
 #| msgid "Select Tags"
 msgid "Select %s"
 msgstr "Επιλογή Ετικετών"
 
-#: includes/class-mbm-book-grid-cpt.php:227
+#: includes/class-mbm-book-grid-cpt.php:264
 msgid "Group Books By"
 msgstr "Ομαδοποίηση Βιβλίων Κατά"
 
-#: includes/class-mbm-book-grid-cpt.php:244
+#: includes/class-mbm-book-grid-cpt.php:281
 msgid ""
 "Warning: Setting more than 5 levels could cause the page to timeout and not "
 "display."
@@ -1571,39 +1799,35 @@ msgstr ""
 "Προειδοποίηση: Μία ρύθμιση μεγαλύτερη των 5 επιπέδων μπορεί να προκαλέσει "
 "λήξει του χρονικού ορίου της σελίδας και να μην εμφανίζεται."
 
-#: includes/class-mbm-book-grid-cpt.php:257
+#: includes/class-mbm-book-grid-cpt.php:294
 msgid "Order By"
 msgstr "Ταξινόμηση Κατά"
 
-#: includes/class-mbm-book-grid-cpt.php:264
+#: includes/class-mbm-book-grid-cpt.php:301
 msgid "Drag and drop the books into the order you want:"
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:269
+#: includes/class-mbm-book-grid-cpt.php:306
 msgid "Use default cover height?"
 msgstr "Χρήση του προεπιπελμένου ύψους εξώφυλλου;"
 
-#: includes/class-mbm-book-grid-cpt.php:284
+#: includes/class-mbm-book-grid-cpt.php:321
 msgid "Book Cover Height (px)"
 msgstr "Ύψος Εξώφυλλου Βιβλίου (px)"
 
-#: includes/class-mbm-book-grid-cpt.php:309
+#: includes/class-mbm-book-grid-cpt.php:346
 msgid "Preview"
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:317
-msgid "Shortcode"
-msgstr ""
-
-#: includes/class-mbm-book-grid-cpt.php:329
+#: includes/class-mbm-book-grid-cpt.php:366
 msgid "Show Preview"
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:346
+#: includes/class-mbm-book-grid-cpt.php:383
 msgid "Copy this code into a page, blog post, etc. to display this book grid."
 msgstr ""
 
-#: includes/class-mbm-book-grid-cpt.php:377
+#: includes/class-mbm-book-grid-cpt.php:414
 msgid ""
 "Looking for the Book Grid Settings?  As of version 3.4, there is now "
 "separate menu in your Dashboard for adding Book Grids."
@@ -1613,41 +1837,41 @@ msgstr ""
 msgid "No Publisher Specified"
 msgstr "Δεν έχει οριστεί εκδότης"
 
-#: includes/class-mbm-book-grid.php:466
+#: includes/class-mbm-book-grid.php:467
 msgid "Published by"
 msgstr ""
 
-#: includes/class-mbm-book-grid.php:517
+#: includes/class-mbm-book-grid.php:518
 msgid "Uncategorized"
 msgstr "Χωρίς Κατηγορία"
 
-#: includes/class-mbm-book-grid.php:520
+#: includes/class-mbm-book-grid.php:521
 msgid "Stand-Alone Books"
 msgstr ""
 
-#: includes/class-mbm-book-grid.php:523
+#: includes/class-mbm-book-grid.php:524
 msgid "Untagged"
 msgstr "Χωρίς Ετικέτα"
 
-#: includes/class-mbm-book-grid.php:526
+#: includes/class-mbm-book-grid.php:527
 msgid "No Editor Specified"
 msgstr "Δεν έχει οριστεί συντάκτης"
 
-#: includes/class-mbm-book-grid.php:529
+#: includes/class-mbm-book-grid.php:530
 msgid "No Illustrator Specified"
 msgstr "Δεν έχει οριστεί εικονογράφος"
 
-#: includes/class-mbm-book-grid.php:532
+#: includes/class-mbm-book-grid.php:533
 msgid "No Cover Artist Specified"
 msgstr "Δεν έχει οριστεί ο Cover Artist"
 
-#: includes/class-mbm-book-grid.php:536
+#: includes/class-mbm-book-grid.php:537
 #, fuzzy, php-format
 #| msgid "No Editor Specified"
 msgid "No %s Specified"
 msgstr "Δεν έχει οριστεί συντάκτης"
 
-#: includes/class-mbm-book-grid.php:572
+#: includes/class-mbm-book-grid.php:573
 #, php-format
 msgctxt ""
 "%1$s is the taxonomy name (Genre, Tag, etc.) and %2$s is the item ( romance, "
@@ -1655,38 +1879,22 @@ msgctxt ""
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: includes/class-mbm-book-grid.php:721
+#: includes/class-mbm-book-grid.php:722
 msgid "Books not found"
 msgstr "Δεν Βρέθηκαν Βιβλία"
 
-#: includes/class-mbm-book-widget.php:17
+#: includes/class-mbm-book-widget.php:18
 msgid ""
 "Shows the cover of the book of your choosing with a link to the book page"
 msgstr ""
 "Εμφανίζεται το εξώφυλλο του επιλεγμένου βιβλίου με ενεργό σύνδεσμο στη "
 "σελίδα του βιβλίου"
 
-#: includes/class-mbm-book-widget.php:19
+#: includes/class-mbm-book-widget.php:21
 msgid "Mooberry Book Manager Book"
 msgstr ""
 
-#: includes/class-mbm-book-widget.php:37
-msgid "Random Book"
-msgstr "Τυχαίο βιβλίο"
-
-#: includes/class-mbm-book-widget.php:38
-msgid "Newest Book"
-msgstr "Πιο πρόσφατο βιβλίο"
-
-#: includes/class-mbm-book-widget.php:39
-msgid "Future Book"
-msgstr "Μελλοντικό βιβλίο"
-
-#: includes/class-mbm-book-widget.php:40
-msgid "Specific Book"
-msgstr "Συγκεκριμένο βιβλίο"
-
-#: includes/class-mbm-cpt.php:86 includes/class-mbm-taxonomy.php:55
+#: includes/class-mbm-cpt.php:86
 #, php-format
 msgid "All %s"
 msgstr ""
@@ -1695,7 +1903,7 @@ msgstr ""
 msgid "Add New"
 msgstr "Νέο βιβλίο"
 
-#: includes/class-mbm-cpt.php:88 includes/class-mbm-taxonomy.php:60
+#: includes/class-mbm-cpt.php:88
 #, php-format
 msgid "Add New %s"
 msgstr ""
@@ -1704,7 +1912,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Επεξεργασία"
 
-#: includes/class-mbm-cpt.php:90 includes/class-mbm-taxonomy.php:58
+#: includes/class-mbm-cpt.php:90
 #, php-format
 msgid "Edit %s"
 msgstr ""
@@ -1720,7 +1928,7 @@ msgstr ""
 msgid "View %s"
 msgstr ""
 
-#: includes/class-mbm-cpt.php:94 includes/class-mbm-taxonomy.php:54
+#: includes/class-mbm-cpt.php:94
 #, php-format
 msgid "Search %s"
 msgstr ""
@@ -1735,7 +1943,7 @@ msgstr ""
 msgid "No %s Found in Trash"
 msgstr ""
 
-#: includes/class-mbm-cpt.php:97 includes/class-mbm-taxonomy.php:56
+#: includes/class-mbm-cpt.php:97
 #, php-format
 msgid "Parent %s"
 msgstr ""
@@ -1771,7 +1979,7 @@ msgstr ""
 msgid "Success!"
 msgstr ""
 
-#: includes/class-mbm-download-link.php:119 includes/class-mbm-options.php:772
+#: includes/class-mbm-download-link.php:119 includes/class-mbm-options.php:871
 #, php-format
 msgid "Can't set property %s"
 msgstr ""
@@ -1806,706 +2014,740 @@ msgid "Default"
 msgstr "Προεπιλογή"
 
 #: includes/class-mbm-helper-functions.php:324
+#: includes/class-mbm-helper-functions.php:332
 msgid "Widgets"
 msgstr "Μικροεφαρμογές"
 
-#: includes/class-mbm-helper-functions.php:331
+#: includes/class-mbm-helper-functions.php:338
 msgid "Open Graph"
 msgstr ""
 
-#: includes/class-mbm-helper-functions.php:332
+#: includes/class-mbm-helper-functions.php:339
 msgid "Twitter Card"
 msgstr ""
 
-#: includes/class-mbm-helper-functions.php:333
+#: includes/class-mbm-helper-functions.php:340
 msgid "Meta Description"
 msgstr ""
 
-#: includes/class-mbm-helper-functions.php:646
+#: includes/class-mbm-helper-functions.php:654
 msgid ""
 "MBM Tax Grid Page. Do NOT remove this page or edit it except to change "
 "template."
 msgstr ""
 
-#: includes/class-mbm-options.php:306
-msgid "Abkhazian"
-msgstr ""
-
-#: includes/class-mbm-options.php:307
-msgid "Afar"
-msgstr ""
-
-#: includes/class-mbm-options.php:308
-msgid "Afrikaans"
-msgstr ""
-
-#: includes/class-mbm-options.php:309
-msgid "Albanian"
-msgstr ""
-
-#: includes/class-mbm-options.php:310
-msgid "Amharic"
-msgstr ""
-
-#: includes/class-mbm-options.php:311
-msgid "Arabic"
-msgstr ""
-
-#: includes/class-mbm-options.php:312
-msgid "Armenian"
-msgstr ""
-
-#: includes/class-mbm-options.php:313
-msgid "Assamese"
-msgstr ""
-
-#: includes/class-mbm-options.php:314
-msgid "Aymara"
-msgstr ""
-
-#: includes/class-mbm-options.php:315
-msgid "Azerbaijani"
-msgstr ""
-
-#: includes/class-mbm-options.php:316
-msgid "Bashkir"
-msgstr ""
-
-#: includes/class-mbm-options.php:317
-msgid "Basque"
-msgstr ""
-
-#: includes/class-mbm-options.php:318
-msgid "Bengali, Bangla"
-msgstr ""
-
-#: includes/class-mbm-options.php:319
-msgid "Bhutani"
-msgstr ""
-
-#: includes/class-mbm-options.php:320
-msgid "Bihari"
-msgstr ""
-
-#: includes/class-mbm-options.php:321
-msgid "Bislama"
-msgstr ""
-
-#: includes/class-mbm-options.php:322
-msgid "Bosnian"
-msgstr ""
-
-#: includes/class-mbm-options.php:323
-msgid "Breton"
-msgstr ""
-
-#: includes/class-mbm-options.php:324
-msgid "Bulgarian"
-msgstr ""
-
-#: includes/class-mbm-options.php:325
-msgid "Burmese"
-msgstr ""
-
-#: includes/class-mbm-options.php:326
-msgid "Byelorussian"
-msgstr ""
-
-#: includes/class-mbm-options.php:327
-msgid "Cambodian"
-msgstr ""
-
-#: includes/class-mbm-options.php:328
-msgid "Catalan"
-msgstr ""
-
-#: includes/class-mbm-options.php:329
-msgid "Chinese"
-msgstr ""
-
-#: includes/class-mbm-options.php:330
-msgid "Corsican"
-msgstr ""
-
-#: includes/class-mbm-options.php:331
-msgid "Croatian"
-msgstr ""
-
-#: includes/class-mbm-options.php:332
-msgid "Czech"
-msgstr ""
-
-#: includes/class-mbm-options.php:333
-msgid "Danish"
-msgstr ""
-
-#: includes/class-mbm-options.php:334
-msgid "Dutch"
-msgstr ""
-
-#: includes/class-mbm-options.php:335
-msgid "English"
-msgstr ""
-
-#: includes/class-mbm-options.php:336
-msgid "Esperanto"
-msgstr ""
-
-#: includes/class-mbm-options.php:337
-msgid "Estonian"
-msgstr ""
-
-#: includes/class-mbm-options.php:338
-msgid "Faeroese"
-msgstr ""
-
-#: includes/class-mbm-options.php:339
-msgid "Fiji"
-msgstr ""
-
-#: includes/class-mbm-options.php:340
-msgid "Finnish"
-msgstr ""
-
-#: includes/class-mbm-options.php:341
-msgid "French"
-msgstr ""
-
-#: includes/class-mbm-options.php:342
-msgid "Frisian"
-msgstr ""
-
-#: includes/class-mbm-options.php:343
-msgid "Gaelic (Scots Gaelic)"
-msgstr ""
-
-#: includes/class-mbm-options.php:344
-msgid "Galician"
-msgstr ""
-
-#: includes/class-mbm-options.php:345
-msgid "Georgian"
-msgstr ""
-
-#: includes/class-mbm-options.php:346
-msgid "German"
-msgstr ""
-
-#: includes/class-mbm-options.php:347
-msgid "Greek"
-msgstr ""
-
-#: includes/class-mbm-options.php:348
-msgid "Greenlandic"
-msgstr ""
-
-#: includes/class-mbm-options.php:349
-msgid "Guarani"
-msgstr ""
-
-#: includes/class-mbm-options.php:350
-msgid "Gujarati"
-msgstr ""
-
-#: includes/class-mbm-options.php:351
-msgid "Hausa"
-msgstr ""
-
-#: includes/class-mbm-options.php:352
-msgid "Hebrew"
-msgstr ""
-
-#: includes/class-mbm-options.php:353
-msgid "Hindi"
-msgstr ""
-
-#: includes/class-mbm-options.php:354
-msgid "Hungarian"
-msgstr ""
-
-#: includes/class-mbm-options.php:355
-msgid "Icelandic"
-msgstr ""
-
-#: includes/class-mbm-options.php:356
-msgid "Indonesian"
-msgstr ""
-
-#: includes/class-mbm-options.php:357
-msgid "Interlingua"
-msgstr ""
-
-#: includes/class-mbm-options.php:358
-msgid "Interlingue"
-msgstr ""
-
-#: includes/class-mbm-options.php:359
-msgid "Inupiak"
-msgstr ""
-
-#: includes/class-mbm-options.php:360
-msgid "Irish"
-msgstr ""
-
-#: includes/class-mbm-options.php:361
-msgid "Italian"
-msgstr ""
-
-#: includes/class-mbm-options.php:362
-msgid "Japanese"
-msgstr ""
-
-#: includes/class-mbm-options.php:363
-msgid "Javanese"
-msgstr ""
-
-#: includes/class-mbm-options.php:364
-msgid "Kannada"
-msgstr ""
-
-#: includes/class-mbm-options.php:365
-msgid "Kashmiri"
-msgstr ""
-
-#: includes/class-mbm-options.php:366
-msgid "Kazakh"
-msgstr ""
-
-#: includes/class-mbm-options.php:367
-msgid "Kinyarwanda"
-msgstr ""
-
-#: includes/class-mbm-options.php:368
-msgid "Kirghiz"
-msgstr ""
-
-#: includes/class-mbm-options.php:369
-msgid "Kirundi"
-msgstr ""
-
-#: includes/class-mbm-options.php:370
-msgid "Korean"
-msgstr ""
-
-#: includes/class-mbm-options.php:371
-msgid "Kurdish"
-msgstr ""
-
-#: includes/class-mbm-options.php:372
-msgid "Laothian"
-msgstr ""
-
-#: includes/class-mbm-options.php:373
-msgid "Latin"
-msgstr ""
-
-#: includes/class-mbm-options.php:374
-msgid "Latvian, Lettish"
-msgstr ""
-
-#: includes/class-mbm-options.php:375
-msgid "Lingala"
-msgstr ""
-
-#: includes/class-mbm-options.php:376
-msgid "Lithuanian"
-msgstr ""
-
-#: includes/class-mbm-options.php:377
-msgid "Macedonian"
-msgstr ""
-
-#: includes/class-mbm-options.php:378
-msgid "Malagasy"
-msgstr ""
-
-#: includes/class-mbm-options.php:379
-msgid "Malay"
-msgstr ""
-
-#: includes/class-mbm-options.php:380
-msgid "Malayalam"
-msgstr ""
-
-#: includes/class-mbm-options.php:381
-msgid "Maltese"
-msgstr ""
-
-#: includes/class-mbm-options.php:382
-msgid "Maori"
-msgstr ""
-
-#: includes/class-mbm-options.php:383
-msgid "Marathi"
-msgstr ""
-
-#: includes/class-mbm-options.php:384
-msgid "Moldavian"
-msgstr ""
-
-#: includes/class-mbm-options.php:385
-msgid "Mongolian"
-msgstr ""
-
-#: includes/class-mbm-options.php:386
-msgid "Nauru"
-msgstr ""
-
-#: includes/class-mbm-options.php:387
-msgid "Nepali"
-msgstr ""
-
-#: includes/class-mbm-options.php:388
-msgid "Norwegian"
-msgstr ""
-
-#: includes/class-mbm-options.php:389
-msgid "Occitan"
-msgstr ""
-
-#: includes/class-mbm-options.php:390
-msgid "Oriya"
-msgstr ""
-
-#: includes/class-mbm-options.php:391
-msgid "Oromo, Afan"
-msgstr ""
-
-#: includes/class-mbm-options.php:392
-msgid "Pashto, Pushto"
-msgstr ""
-
-#: includes/class-mbm-options.php:393
-msgid "Persian"
-msgstr ""
-
-#: includes/class-mbm-options.php:394
-msgid "Polish"
-msgstr ""
-
-#: includes/class-mbm-options.php:395
-msgid "Portuguese"
-msgstr ""
-
-#: includes/class-mbm-options.php:396
-msgid "Punjabi"
-msgstr ""
-
-#: includes/class-mbm-options.php:397
-msgid "Quechua"
-msgstr ""
-
-#: includes/class-mbm-options.php:398
-msgid "Rhaeto-Romance"
-msgstr ""
-
-#: includes/class-mbm-options.php:399
-msgid "Romanian"
-msgstr ""
-
-#: includes/class-mbm-options.php:400
-msgid "Russian"
+#: includes/class-mbm-helper-functions.php:789
+msgid "Title"
+msgstr "Τίτλος"
+
+#: includes/class-mbm-helper-functions.php:814
+#: includes/class-mbm-helper-functions.php:822
+msgid "Information not available"
 msgstr ""
 
 #: includes/class-mbm-options.php:401
-msgid "Samoan"
+msgid "Abkhazian"
 msgstr ""
 
 #: includes/class-mbm-options.php:402
-msgid "Sangro"
+msgid "Afar"
 msgstr ""
 
 #: includes/class-mbm-options.php:403
-msgid "Sanskrit"
+msgid "Afrikaans"
 msgstr ""
 
 #: includes/class-mbm-options.php:404
-msgid "Serbian"
+msgid "Albanian"
 msgstr ""
 
 #: includes/class-mbm-options.php:405
-msgid "Serbo-Croatian"
+msgid "Amharic"
 msgstr ""
 
 #: includes/class-mbm-options.php:406
-msgid "Sesotho"
+msgid "Arabic"
 msgstr ""
 
 #: includes/class-mbm-options.php:407
-msgid "Setswana"
+msgid "Armenian"
 msgstr ""
 
 #: includes/class-mbm-options.php:408
-msgid "Shona"
+msgid "Assamese"
 msgstr ""
 
 #: includes/class-mbm-options.php:409
-msgid "Sindhi"
+msgid "Aymara"
 msgstr ""
 
 #: includes/class-mbm-options.php:410
-msgid "Singhalese"
+msgid "Azerbaijani"
 msgstr ""
 
 #: includes/class-mbm-options.php:411
-msgid "Siswati"
+msgid "Bashkir"
 msgstr ""
 
 #: includes/class-mbm-options.php:412
-msgid "Slovak"
+msgid "Basque"
 msgstr ""
 
 #: includes/class-mbm-options.php:413
-msgid "Slovenian"
+msgid "Bengali, Bangla"
 msgstr ""
 
 #: includes/class-mbm-options.php:414
-msgid "Somali"
+msgid "Bhutani"
 msgstr ""
 
 #: includes/class-mbm-options.php:415
-msgid "Spanish"
+msgid "Bihari"
 msgstr ""
 
 #: includes/class-mbm-options.php:416
-msgid "Sudanese"
+msgid "Bislama"
 msgstr ""
 
 #: includes/class-mbm-options.php:417
-msgid "Swahili"
+msgid "Bosnian"
 msgstr ""
 
 #: includes/class-mbm-options.php:418
-msgid "Swedish"
+msgid "Breton"
 msgstr ""
 
 #: includes/class-mbm-options.php:419
-msgid "Tagalog"
+msgid "Bulgarian"
 msgstr ""
 
 #: includes/class-mbm-options.php:420
-msgid "Tajik"
+msgid "Burmese"
 msgstr ""
 
 #: includes/class-mbm-options.php:421
-msgid "Tamil"
+msgid "Byelorussian"
 msgstr ""
 
 #: includes/class-mbm-options.php:422
-msgid "Tatar"
+msgid "Cambodian"
 msgstr ""
 
 #: includes/class-mbm-options.php:423
-msgid "Tegulu"
+msgid "Catalan"
 msgstr ""
 
 #: includes/class-mbm-options.php:424
-msgid "Thai"
+msgid "Chinese"
 msgstr ""
 
 #: includes/class-mbm-options.php:425
-msgid "Tibetan"
+msgid "Corsican"
 msgstr ""
 
 #: includes/class-mbm-options.php:426
-msgid "Tigrinya"
+msgid "Croatian"
 msgstr ""
 
 #: includes/class-mbm-options.php:427
-msgid "Tonga"
+msgid "Czech"
 msgstr ""
 
 #: includes/class-mbm-options.php:428
-msgid "Tsonga"
+msgid "Danish"
 msgstr ""
 
 #: includes/class-mbm-options.php:429
-msgid "Turkish"
+msgid "Dutch"
 msgstr ""
 
 #: includes/class-mbm-options.php:430
-msgid "Turkmen"
+msgid "English"
 msgstr ""
 
 #: includes/class-mbm-options.php:431
-msgid "Twi"
+msgid "Esperanto"
 msgstr ""
 
 #: includes/class-mbm-options.php:432
-msgid "Ukrainian"
+msgid "Estonian"
 msgstr ""
 
 #: includes/class-mbm-options.php:433
-msgid "Urdu"
+msgid "Faeroese"
 msgstr ""
 
 #: includes/class-mbm-options.php:434
-msgid "Uzbek"
+msgid "Fiji"
 msgstr ""
 
 #: includes/class-mbm-options.php:435
-msgid "Vietnamese"
+msgid "Finnish"
 msgstr ""
 
 #: includes/class-mbm-options.php:436
-msgid "Volapuk"
+msgid "French"
 msgstr ""
 
 #: includes/class-mbm-options.php:437
-msgid "Welsh"
+msgid "Frisian"
 msgstr ""
 
 #: includes/class-mbm-options.php:438
-msgid "Wolof"
+msgid "Gaelic (Scots Gaelic)"
 msgstr ""
 
 #: includes/class-mbm-options.php:439
-msgid "Xhosa"
+msgid "Galician"
 msgstr ""
 
 #: includes/class-mbm-options.php:440
-msgid "Yiddish"
+msgid "Georgian"
 msgstr ""
 
 #: includes/class-mbm-options.php:441
-msgid "Yoruba"
+msgid "German"
 msgstr ""
 
 #: includes/class-mbm-options.php:442
-msgid "Zulu"
+msgid "Greek"
+msgstr ""
+
+#: includes/class-mbm-options.php:443
+msgid "Greenlandic"
+msgstr ""
+
+#: includes/class-mbm-options.php:444
+msgid "Guarani"
+msgstr ""
+
+#: includes/class-mbm-options.php:445
+msgid "Gujarati"
+msgstr ""
+
+#: includes/class-mbm-options.php:446
+msgid "Hausa"
+msgstr ""
+
+#: includes/class-mbm-options.php:447
+msgid "Hebrew"
+msgstr ""
+
+#: includes/class-mbm-options.php:448
+msgid "Hindi"
+msgstr ""
+
+#: includes/class-mbm-options.php:449
+msgid "Hungarian"
+msgstr ""
+
+#: includes/class-mbm-options.php:450
+msgid "Icelandic"
+msgstr ""
+
+#: includes/class-mbm-options.php:451
+msgid "Indonesian"
+msgstr ""
+
+#: includes/class-mbm-options.php:452
+msgid "Interlingua"
+msgstr ""
+
+#: includes/class-mbm-options.php:453
+msgid "Interlingue"
+msgstr ""
+
+#: includes/class-mbm-options.php:454
+msgid "Inupiak"
+msgstr ""
+
+#: includes/class-mbm-options.php:455
+msgid "Irish"
+msgstr ""
+
+#: includes/class-mbm-options.php:456
+msgid "Italian"
+msgstr ""
+
+#: includes/class-mbm-options.php:457
+msgid "Japanese"
+msgstr ""
+
+#: includes/class-mbm-options.php:458
+msgid "Javanese"
+msgstr ""
+
+#: includes/class-mbm-options.php:459
+msgid "Kannada"
+msgstr ""
+
+#: includes/class-mbm-options.php:460
+msgid "Kashmiri"
+msgstr ""
+
+#: includes/class-mbm-options.php:461
+msgid "Kazakh"
+msgstr ""
+
+#: includes/class-mbm-options.php:462
+msgid "Kinyarwanda"
+msgstr ""
+
+#: includes/class-mbm-options.php:463
+msgid "Kirghiz"
+msgstr ""
+
+#: includes/class-mbm-options.php:464
+msgid "Kirundi"
+msgstr ""
+
+#: includes/class-mbm-options.php:465
+msgid "Korean"
+msgstr ""
+
+#: includes/class-mbm-options.php:466
+msgid "Kurdish"
+msgstr ""
+
+#: includes/class-mbm-options.php:467
+msgid "Laothian"
+msgstr ""
+
+#: includes/class-mbm-options.php:468
+msgid "Latin"
+msgstr ""
+
+#: includes/class-mbm-options.php:469
+msgid "Latvian, Lettish"
+msgstr ""
+
+#: includes/class-mbm-options.php:470
+msgid "Lingala"
+msgstr ""
+
+#: includes/class-mbm-options.php:471
+msgid "Lithuanian"
 msgstr ""
 
 #: includes/class-mbm-options.php:472
-msgid "inches (in)"
-msgstr "ίντσες (in)"
+msgid "Macedonian"
+msgstr ""
 
 #: includes/class-mbm-options.php:473
-msgid "centimeters (cm)"
-msgstr "εκατοστά (cm)"
+msgid "Malagasy"
+msgstr ""
 
 #: includes/class-mbm-options.php:474
-msgid "millimeters (mm)"
-msgstr "χιλιοστά (mm)"
+msgid "Malay"
+msgstr ""
+
+#: includes/class-mbm-options.php:475
+msgid "Malayalam"
+msgstr ""
+
+#: includes/class-mbm-options.php:476
+msgid "Maltese"
+msgstr ""
+
+#: includes/class-mbm-options.php:477
+msgid "Maori"
+msgstr ""
+
+#: includes/class-mbm-options.php:478
+msgid "Marathi"
+msgstr ""
+
+#: includes/class-mbm-options.php:479
+msgid "Moldavian"
+msgstr ""
+
+#: includes/class-mbm-options.php:480
+msgid "Mongolian"
+msgstr ""
+
+#: includes/class-mbm-options.php:481
+msgid "Nauru"
+msgstr ""
+
+#: includes/class-mbm-options.php:482
+msgid "Nepali"
+msgstr ""
+
+#: includes/class-mbm-options.php:483
+msgid "Norwegian"
+msgstr ""
+
+#: includes/class-mbm-options.php:484
+msgid "Occitan"
+msgstr ""
+
+#: includes/class-mbm-options.php:485
+msgid "Oriya"
+msgstr ""
+
+#: includes/class-mbm-options.php:486
+msgid "Oromo, Afan"
+msgstr ""
+
+#: includes/class-mbm-options.php:487
+msgid "Pashto, Pushto"
+msgstr ""
+
+#: includes/class-mbm-options.php:488
+msgid "Persian"
+msgstr ""
+
+#: includes/class-mbm-options.php:489
+msgid "Polish"
+msgstr ""
+
+#: includes/class-mbm-options.php:490
+msgid "Portuguese"
+msgstr ""
+
+#: includes/class-mbm-options.php:491
+msgid "Punjabi"
+msgstr ""
+
+#: includes/class-mbm-options.php:492
+msgid "Quechua"
+msgstr ""
+
+#: includes/class-mbm-options.php:493
+msgid "Rhaeto-Romance"
+msgstr ""
 
 #: includes/class-mbm-options.php:494
-msgid "Australian Dollar"
-msgstr "Δολάριο Αυστραλίας"
+msgid "Romanian"
+msgstr ""
 
 #: includes/class-mbm-options.php:495
-msgid "Bosnian Mark"
+msgid "Russian"
 msgstr ""
 
 #: includes/class-mbm-options.php:496
-msgid "Brazilian Real "
-msgstr "Ρεάλ Βραζιλίας "
+msgid "Samoan"
+msgstr ""
 
 #: includes/class-mbm-options.php:497
-msgid "Canadian Dollar"
-msgstr "Δολάριο Καναδά"
+msgid "Sangro"
+msgstr ""
 
 #: includes/class-mbm-options.php:498
-msgid "Czech Koruna"
-msgstr "Κορόνα Τσεχίας"
+msgid "Sanskrit"
+msgstr ""
 
 #: includes/class-mbm-options.php:499
-msgid "Danish Krone"
-msgstr "Κορόνα Δανίας"
+msgid "Serbian"
+msgstr ""
 
 #: includes/class-mbm-options.php:500
-msgid "Euro"
-msgstr "Ευρώ"
+msgid "Serbo-Croatian"
+msgstr ""
 
 #: includes/class-mbm-options.php:501
-msgid "Hong Kong Dollar"
-msgstr "Δολάριο Χονγκ Κονγκ"
+msgid "Sesotho"
+msgstr ""
 
 #: includes/class-mbm-options.php:502
-msgid "Hungarian Forint"
+msgid "Setswana"
 msgstr ""
 
 #: includes/class-mbm-options.php:503
-msgid "Indian Rupee"
+msgid "Shona"
 msgstr ""
 
 #: includes/class-mbm-options.php:504
-msgid "Israeli New Sheqel"
-msgstr "Σέκελ Ισραήλ"
+msgid "Sindhi"
+msgstr ""
 
 #: includes/class-mbm-options.php:505
-msgid "Japanese Yen"
-msgstr "Γιεν Ιαπωνίας"
+msgid "Singhalese"
+msgstr ""
 
 #: includes/class-mbm-options.php:506
-msgid "Malaysian Ringgit"
-msgstr "Ρινγκίτ Μαλαισίας"
+msgid "Siswati"
+msgstr ""
 
 #: includes/class-mbm-options.php:507
-msgid "Mexican Peso"
-msgstr "Πέσο Μεξικού"
+msgid "Slovak"
+msgstr ""
 
 #: includes/class-mbm-options.php:508
-msgid "Nigerian Naira"
+msgid "Slovenian"
 msgstr ""
 
 #: includes/class-mbm-options.php:509
-msgid "Norwegian Krone"
-msgstr "Κορόνα Νορβηγίας"
+msgid "Somali"
+msgstr ""
 
 #: includes/class-mbm-options.php:510
-msgid "New Zealand Dollar"
-msgstr "Δολάριο Νέας Ζηλανδίας"
+msgid "Spanish"
+msgstr ""
 
 #: includes/class-mbm-options.php:511
-msgid "Philippine Peso"
-msgstr "Πέσο Φιλιππίνων"
+msgid "Sudanese"
+msgstr ""
 
 #: includes/class-mbm-options.php:512
-msgid "Polish Zloty"
-msgstr "Ζλότυ Πολωνίας"
+msgid "Swahili"
+msgstr ""
 
 #: includes/class-mbm-options.php:513
-msgid "Russian Rube"
+msgid "Swedish"
 msgstr ""
 
 #: includes/class-mbm-options.php:514
+msgid "Tagalog"
+msgstr ""
+
+#: includes/class-mbm-options.php:515
+msgid "Tajik"
+msgstr ""
+
+#: includes/class-mbm-options.php:516
+msgid "Tamil"
+msgstr ""
+
+#: includes/class-mbm-options.php:517
+msgid "Tatar"
+msgstr ""
+
+#: includes/class-mbm-options.php:518
+msgid "Tegulu"
+msgstr ""
+
+#: includes/class-mbm-options.php:519
+msgid "Thai"
+msgstr ""
+
+#: includes/class-mbm-options.php:520
+msgid "Tibetan"
+msgstr ""
+
+#: includes/class-mbm-options.php:521
+msgid "Tigrinya"
+msgstr ""
+
+#: includes/class-mbm-options.php:522
+msgid "Tonga"
+msgstr ""
+
+#: includes/class-mbm-options.php:523
+msgid "Tsonga"
+msgstr ""
+
+#: includes/class-mbm-options.php:524
+msgid "Turkish"
+msgstr ""
+
+#: includes/class-mbm-options.php:525
+msgid "Turkmen"
+msgstr ""
+
+#: includes/class-mbm-options.php:526
+msgid "Twi"
+msgstr ""
+
+#: includes/class-mbm-options.php:527
+msgid "Ukrainian"
+msgstr ""
+
+#: includes/class-mbm-options.php:528
+msgid "Urdu"
+msgstr ""
+
+#: includes/class-mbm-options.php:529
+msgid "Uzbek"
+msgstr ""
+
+#: includes/class-mbm-options.php:530
+msgid "Vietnamese"
+msgstr ""
+
+#: includes/class-mbm-options.php:531
+msgid "Volapuk"
+msgstr ""
+
+#: includes/class-mbm-options.php:532
+msgid "Welsh"
+msgstr ""
+
+#: includes/class-mbm-options.php:533
+msgid "Wolof"
+msgstr ""
+
+#: includes/class-mbm-options.php:534
+msgid "Xhosa"
+msgstr ""
+
+#: includes/class-mbm-options.php:535
+msgid "Yiddish"
+msgstr ""
+
+#: includes/class-mbm-options.php:536
+msgid "Yoruba"
+msgstr ""
+
+#: includes/class-mbm-options.php:537
+msgid "Zulu"
+msgstr ""
+
+#: includes/class-mbm-options.php:567
+msgid "inches (in)"
+msgstr "ίντσες (in)"
+
+#: includes/class-mbm-options.php:568
+msgid "centimeters (cm)"
+msgstr "εκατοστά (cm)"
+
+#: includes/class-mbm-options.php:569
+msgid "millimeters (mm)"
+msgstr "χιλιοστά (mm)"
+
+#: includes/class-mbm-options.php:589
+msgid "Australian Dollar"
+msgstr "Δολάριο Αυστραλίας"
+
+#: includes/class-mbm-options.php:590
+msgid "Bosnian Mark"
+msgstr ""
+
+#: includes/class-mbm-options.php:591
+msgid "Brazilian Real "
+msgstr "Ρεάλ Βραζιλίας "
+
+#: includes/class-mbm-options.php:592
+msgid "Canadian Dollar"
+msgstr "Δολάριο Καναδά"
+
+#: includes/class-mbm-options.php:593
+msgid "Czech Koruna"
+msgstr "Κορόνα Τσεχίας"
+
+#: includes/class-mbm-options.php:594
+msgid "Danish Krone"
+msgstr "Κορόνα Δανίας"
+
+#: includes/class-mbm-options.php:595
+msgid "Euro"
+msgstr "Ευρώ"
+
+#: includes/class-mbm-options.php:596
+msgid "Hong Kong Dollar"
+msgstr "Δολάριο Χονγκ Κονγκ"
+
+#: includes/class-mbm-options.php:597
+msgid "Hungarian Forint"
+msgstr ""
+
+#: includes/class-mbm-options.php:598
+msgid "Indian Rupee"
+msgstr ""
+
+#: includes/class-mbm-options.php:599
+msgid "Israeli New Sheqel"
+msgstr "Σέκελ Ισραήλ"
+
+#: includes/class-mbm-options.php:600
+msgid "Japanese Yen"
+msgstr "Γιεν Ιαπωνίας"
+
+#: includes/class-mbm-options.php:601
+msgid "Malaysian Ringgit"
+msgstr "Ρινγκίτ Μαλαισίας"
+
+#: includes/class-mbm-options.php:602
+msgid "Mexican Peso"
+msgstr "Πέσο Μεξικού"
+
+#: includes/class-mbm-options.php:603
+msgid "Nigerian Naira"
+msgstr ""
+
+#: includes/class-mbm-options.php:604
+msgid "Norwegian Krone"
+msgstr "Κορόνα Νορβηγίας"
+
+#: includes/class-mbm-options.php:605
+msgid "New Zealand Dollar"
+msgstr "Δολάριο Νέας Ζηλανδίας"
+
+#: includes/class-mbm-options.php:606
+msgid "Philippine Peso"
+msgstr "Πέσο Φιλιππίνων"
+
+#: includes/class-mbm-options.php:607
+msgid "Polish Zloty"
+msgstr "Ζλότυ Πολωνίας"
+
+#: includes/class-mbm-options.php:608
+msgid "Russian Rube"
+msgstr ""
+
+#: includes/class-mbm-options.php:609
 msgid "Singapore Dollar"
 msgstr "Δολάριο Σιγκαπούρης"
 
-#: includes/class-mbm-options.php:515
+#: includes/class-mbm-options.php:610
 msgid "South African Rand"
 msgstr "Ραντ Νότιας Αφρικής"
 
-#: includes/class-mbm-options.php:516
+#: includes/class-mbm-options.php:611
 msgid "Swedish Krona"
 msgstr "Σουηδική Κορώνα"
 
-#: includes/class-mbm-options.php:517
+#: includes/class-mbm-options.php:612
 msgid "Swiss Franc"
 msgstr "Ελβετικό Φράγκο"
 
-#: includes/class-mbm-options.php:518
+#: includes/class-mbm-options.php:613
 msgid "Taiwan New Dollar"
 msgstr "Νέο Δολάριο Ταϊβάν"
 
-#: includes/class-mbm-options.php:519
+#: includes/class-mbm-options.php:614
 msgid "Thai Baht"
 msgstr "Ταϊλανδικό Μπατ"
 
-#: includes/class-mbm-options.php:520
+#: includes/class-mbm-options.php:615
 msgid "Turkish Lira"
 msgstr "Τούρκικη λίρα"
 
-#: includes/class-mbm-options.php:521
+#: includes/class-mbm-options.php:616
 msgid "U.K. Pound Sterling"
 msgstr "Λίρα Αγγλίας"
 
-#: includes/class-mbm-options.php:522
+#: includes/class-mbm-options.php:617
 msgid "U.S. Dollar"
 msgstr "Αμερικάνικο Δολάριο"
 
-#: includes/class-mbm-options.php:523
+#: includes/class-mbm-options.php:618
 msgid "Vietname đồng"
 msgstr ""
+
+#: includes/class-mbm-publisher-cpt.php:43
+msgid "Publishers"
+msgstr "Εκδοτικοί Οίκοι"
+
+#: includes/class-mbm-publisher-cpt.php:85
+#, fuzzy
+#| msgid "Set up Publishers in Settings."
+msgid "Publisher Settings"
+msgstr "Επεξεργασία Εκδοτών στις ρυθμίσεις."
+
+#: includes/class-mbm-publisher-cpt.php:101
+msgid "Logo"
+msgstr ""
+
+#: includes/class-mbm-publisher-cpt.php:148
+msgid "Website: "
+msgstr ""
+
+#: includes/class-mbm-publisher-cpt.php:154
+#, fuzzy
+#| msgid "Published by "
+msgid "Books Published By "
+msgstr "Εκδόσεις "
 
 #: includes/class-mbm-tax-grid-page.php:116
 msgid "There was an error!"
@@ -2543,25 +2785,61 @@ msgstr "Βιβλία εικονογραφημένα από %s"
 msgid "Book Covers By %s"
 msgstr "Εξώφυλλα βιβλίων από %s"
 
+#: includes/class-mbm-tax-grid-page.php:246
+#, php-format
+msgid "Narrated By %s"
+msgstr ""
+
 #: includes/class-mbm-tax-grid-page.php:249
+#, fuzzy, php-format
+#| msgid "Books Illustrated By %s"
+msgid "Translated By %s"
+msgstr "Βιβλία εικονογραφημένα από %s"
+
+#: includes/class-mbm-tax-grid-page.php:255
 msgid "Not Found"
 msgstr "Δεν βρέθηκε"
 
-#: includes/class-mbm-taxonomy.php:52 includes/class-mbm-taxonomy.php:53
-#: includes/class-mbm-taxonomy.php:62
-#, php-format
-msgid "%s"
-msgstr ""
+#: includes/class-mbm-taxonomy.php:54
+#, fuzzy
+#| msgid "Search Tags"
+msgid "Search "
+msgstr "Αναζήτηση ετικετών"
+
+#: includes/class-mbm-taxonomy.php:55
+#, fuzzy
+#| msgid "All Tags"
+msgid "All "
+msgstr "Όλες οι ετικέτες"
+
+#: includes/class-mbm-taxonomy.php:56
+#, fuzzy
+#| msgid "Parent Tag"
+msgid "Parent "
+msgstr "Γονική ετικέτα"
 
 #: includes/class-mbm-taxonomy.php:57
 #, php-format
 msgid "Parent %s:"
 msgstr ""
 
+#: includes/class-mbm-taxonomy.php:58
+#, fuzzy
+#| msgid "Edit"
+msgid "Edit "
+msgstr "Επεξεργασία"
+
 #: includes/class-mbm-taxonomy.php:59
-#, php-format
-msgid "Update %s"
-msgstr ""
+#, fuzzy
+#| msgid "Updated"
+msgid "Update "
+msgstr "Ενημερωμένα"
+
+#: includes/class-mbm-taxonomy.php:60
+#, fuzzy
+#| msgid "Add New"
+msgid "Add New "
+msgstr "Νέο βιβλίο"
 
 #: includes/class-mbm-taxonomy.php:61
 #, php-format
@@ -2569,9 +2847,10 @@ msgid "New %s Name"
 msgstr ""
 
 #: includes/class-mbm-taxonomy.php:63
-#, php-format
-msgid "Popular %s"
-msgstr ""
+#, fuzzy
+#| msgid "Popular Tags"
+msgid "Popular "
+msgstr "Δημοφιλείς ετικέτες"
 
 #: includes/class-mbm-taxonomy.php:64
 #, php-format
@@ -2579,14 +2858,16 @@ msgid "Separate %s with commas"
 msgstr ""
 
 #: includes/class-mbm-taxonomy.php:65
-#, php-format
-msgid "Add or remove %s"
-msgstr ""
+#, fuzzy
+#| msgid "Add or remove tags"
+msgid "Add or remove "
+msgstr "Προσθήκη ή διαγραφή ετικετών"
 
 #: includes/class-mbm-taxonomy.php:66
-#, php-format
-msgid "Choose from the most used %s"
-msgstr ""
+#, fuzzy
+#| msgid "Choose from the most used tags"
+msgid "Choose from the most used "
+msgstr "Επιλέξτε από τις πιο χρησιμοποιούμενες ετικέτες"
 
 #: includes/class-mbm-taxonomy.php:67
 #, php-format
@@ -2608,7 +2889,7 @@ msgstr ""
 msgid "Back to %s"
 msgstr ""
 
-#: includes/class-mbm-widget.php:175
+#: includes/class-mbm-widget.php:184
 msgid "No books found"
 msgstr "Δεν βρέθηκαν βιβλία"
 
@@ -2618,8 +2899,8 @@ msgid ""
 "before Mooberry Book Manager will operate properly."
 msgstr ""
 
-#: includes/depreciated-functions.php:88 includes/updates.php:648
-#: includes/updates.php:670
+#: includes/depreciated-functions.php:88 includes/updates.php:673
+#: includes/updates.php:695
 msgid "Migrate Data Now"
 msgstr ""
 
@@ -2693,31 +2974,37 @@ msgstr ""
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
-#: includes/plugin-functions.php:245
+#: includes/plugin-functions.php:271
 msgid "Librarian"
 msgstr "Βιβλιοθηκάριος"
 
-#: includes/plugin-functions.php:247
+#: includes/plugin-functions.php:273
 msgid "Master Librarian"
 msgstr "Κύριος Βιβλιοθηκάριος"
 
-#: includes/plugin-functions.php:360
+#: includes/plugin-functions.php:275
+#, fuzzy
+#| msgid "Book Manager"
+msgid "Manager"
+msgstr "Διαχειριστής Βιβλίων"
+
+#: includes/plugin-functions.php:396
 msgid "Group Books Within"
 msgstr "Κατηγοριοποίηση βιβλίων ανάμεσα σε"
 
-#: includes/plugin-functions.php:361
+#: includes/plugin-functions.php:397
 msgid "By"
 msgstr "κατά"
 
-#: includes/plugin-functions.php:400
+#: includes/plugin-functions.php:437
 msgid "Are you sure you want to reset the Book Edit page?"
 msgstr ""
 
-#: includes/plugin-functions.php:401
+#: includes/plugin-functions.php:438
 msgid "Are you sure your want to cancel the book import?"
 msgstr ""
 
-#: includes/plugin-functions.php:402
+#: includes/plugin-functions.php:439
 #, php-format
 msgid ""
 "Tax Grid Page creation failed. Manually create a page with  this shortcode "
@@ -2725,15 +3012,15 @@ msgid ""
 "down list."
 msgstr ""
 
-#: includes/plugin-functions.php:403
+#: includes/plugin-functions.php:440
 msgid "Tax Grid Page created."
 msgstr ""
 
-#: includes/plugin-functions.php:449
+#: includes/plugin-functions.php:486
 msgid "Insert Shortcode"
 msgstr ""
 
-#: includes/plugin-functions.php:450
+#: includes/plugin-functions.php:487
 msgid "Cancel"
 msgstr ""
 
@@ -2781,39 +3068,45 @@ msgid ""
 "apologize for the inconvenience."
 msgstr ""
 
-#: includes/updates.php:645
+#: includes/updates.php:670
 msgid ""
 "Upgrading to Mooberry Book Manager version 3.1 requires some data migration "
 "before Mooberry Book Manager will operate properly."
 msgstr ""
 
-#: includes/updates.php:646
+#: includes/updates.php:671
 msgid ""
 "Even if you have previously migrated the data (if you upgraded to version "
 "3.0 and then rolled back to version 2.4.x), you must migrate again to ensure "
 "Mooberry Book Manaer will operate properly."
 msgstr ""
 
-#: includes/updates.php:647
+#: includes/updates.php:672
 msgid "Changes made since migrating the first time may be lost."
 msgstr ""
 
-#: includes/updates.php:668
+#: includes/updates.php:693
 msgid ""
 "You may choose to re-migrate your data from version 2 if you've noticed "
 "issues with your books' information."
 msgstr ""
 
-#: includes/updates.php:671
+#: includes/updates.php:696
 msgid "Dismiss Notice"
 msgstr ""
 
-#: includes/updates.php:770 includes/updates.php:785
+#: includes/updates.php:795 includes/updates.php:810
 msgid "Imported Book Grid: "
 msgstr ""
 
-#: includes/updates.php:825
+#: includes/updates.php:850
 msgid "done!"
+msgstr ""
+
+#: includes/updates.php:1197
+msgid ""
+"Mooberry Book Manager: Checking for duplicate publishers and correcting the "
+"issue..."
 msgstr ""
 
 #: includes/wp-background-processing/classes/wp-background-process.php:424
@@ -2821,15 +3114,43 @@ msgstr ""
 msgid "Every %d Minutes"
 msgstr ""
 
-#: mooberry-book-manager.php:237
+#: mooberry-book-manager.php:241
 msgid "You must update MBM Multi-Author to be compatible with MBM version 4.0"
 msgstr ""
 
+#: mooberry-book-manager.php:367
+msgid "Random Book"
+msgstr "Τυχαίο βιβλίο"
+
+#: mooberry-book-manager.php:368
+msgid "Newest Book"
+msgstr "Πιο πρόσφατο βιβλίο"
+
+#: mooberry-book-manager.php:369
+msgid "Future Book"
+msgstr "Μελλοντικό βιβλίο"
+
+#: mooberry-book-manager.php:370
+msgid "Specific Book"
+msgstr "Συγκεκριμένο βιβλίο"
+
+#~ msgid "Formats and Editions"
+#~ msgstr "Μορφές και Εκδόσεις"
+
+#~ msgid "Edition"
+#~ msgstr "Έκδοση"
+
+#~ msgid "Add New Edition"
+#~ msgstr "Νέα έκδοση"
+
+#~ msgid "Remove Edition"
+#~ msgstr "Διαγραφή έκδοσης"
+
+#~ msgid "Set up Publishers in Settings."
+#~ msgstr "Επεξεργασία Εκδοτών στις ρυθμίσεις."
+
 #~ msgid "Select Genres"
 #~ msgstr "Επιλογή Είδους"
-
-#~ msgid "Select Series"
-#~ msgstr "Επιλογή Σειράς"
 
 #~ msgid "Select Editors"
 #~ msgstr "Επιλέξτε συντάκτες"
@@ -2860,17 +3181,11 @@ msgstr ""
 #~ "αυτά είναι διαθέσιμα. Αν πρέπει να επαναφέρετε εικόνες που υπήρχαν στον "
 #~ "Διαχειριστή Βιβλίων Mooberry, κατεβάστε το "
 
-#~ msgid "Title"
-#~ msgstr "Τίτλος"
-
 #~ msgid "Cover"
 #~ msgstr "Εξώφυλλο"
 
 #~ msgid "Published"
 #~ msgstr "Έκδοση"
-
-#~ msgid "Updated"
-#~ msgstr "Ενημερωμένα"
 
 #~ msgctxt "noun"
 #~ msgid "Books"
@@ -2882,9 +3197,6 @@ msgstr ""
 
 #~ msgid "All Books"
 #~ msgstr "Όλα τα βιβλία"
-
-#~ msgid "Add New Book"
-#~ msgstr "Προσθήκη νέου βιβλίου"
 
 #~ msgid "New Book"
 #~ msgstr "Νέο βιβλίο"
@@ -2955,15 +3267,6 @@ msgstr ""
 #~ msgid "Genre list"
 #~ msgstr "Λϊστα ειδών"
 
-#~ msgid "Search Tags"
-#~ msgstr "Αναζήτηση ετικετών"
-
-#~ msgid "All Tags"
-#~ msgstr "Όλες οι ετικέτες"
-
-#~ msgid "Parent Tag"
-#~ msgstr "Γονική ετικέτα"
-
 #~ msgid "Parent Tag:"
 #~ msgstr "Γονική ετικέτα:"
 
@@ -2979,17 +3282,8 @@ msgstr ""
 #~ msgid "New Tag Name"
 #~ msgstr "Νέο όνομα ετικέτας"
 
-#~ msgid "Popular Tags"
-#~ msgstr "Δημοφιλείς ετικέτες"
-
 #~ msgid "Separate tags with commas"
 #~ msgstr "Διαχωρίστε τις ετικέτες με κόμμα"
-
-#~ msgid "Add or remove tags"
-#~ msgstr "Προσθήκη ή διαγραφή ετικετών"
-
-#~ msgid "Choose from the most used tags"
-#~ msgstr "Επιλέξτε από τις πιο χρησιμοποιούμενες ετικέτες"
 
 #~ msgid "No tags found"
 #~ msgstr "Δε βρέθηκαν ετικέτες"
@@ -3180,9 +3474,6 @@ msgstr ""
 #~ msgid "Cover Artist list"
 #~ msgstr "Λίστα Cover Artists"
 
-#~ msgid "Published by "
-#~ msgstr "Εκδόσεις "
-
 #~ msgid "Standalones"
 #~ msgstr "Ατομικά"
 
@@ -3314,9 +3605,6 @@ msgstr ""
 #~ msgctxt "noun"
 #~ msgid "Retailer Links"
 #~ msgstr "Σύνδεσμοι πωλητών λιανικής"
-
-#~ msgid "Book Manager"
-#~ msgstr "Διαχειριστής Βιβλίων"
 
 #~ msgid "list"
 #~ msgstr "λίστα"
