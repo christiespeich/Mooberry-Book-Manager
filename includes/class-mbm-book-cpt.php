@@ -24,26 +24,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		// initialize
 		parent::__construct();
 
-		$this->post_type               = 'mbdb_book';
-		$this->singular_name           = __( 'Book', 'mooberry-book-manager' );
-		$this->plural_name             = __( 'Books', 'mooberry-book-manager' );
-		$this->default_single_template = MBDB()->options->book_page_template;
 
-
-		$this->set_up_taxonomies();
-
-		$this->args = array(
-			'public'          => true,
-			'rewrite'         => array( 'slug' => 'book' ),
-			'menu_icon'       => 'dashicons-book-alt',
-			'capability_type' => array( 'mbdb_book', 'mbdb_books' ),
-			'supports'        => array( 'title', 'comments', 'author' ),
-			'taxonomies'      => array_keys( $this->taxonomies ),
-			'show_in_rest'    => true,
-			'rest_base'       => 'books',
-			'can_export'      => false,
-			'has_archive'	=> true,
-		);
 
 		// let individual CPTs choose whether to add post class?
 		add_filter( 'post_class', array( $this, 'add_post_class' ) );
@@ -121,6 +102,31 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 
 	}
 
+	public function register() {
+			$this->post_type               = 'mbdb_book';
+		$this->singular_name           = __( 'Book', 'mooberry-book-manager' );
+		$this->plural_name             = __( 'Books', 'mooberry-book-manager' );
+		$this->default_single_template = MBDB()->options->book_page_template;
+
+
+		$this->set_up_taxonomies();
+
+		$this->args = array(
+			'public'          => true,
+			'rewrite'         => array( 'slug' => 'book' ),
+			'menu_icon'       => 'dashicons-book-alt',
+			'capability_type' => array( 'mbdb_book', 'mbdb_books' ),
+			'supports'        => array( 'title', 'comments', 'author' ),
+			'taxonomies'      => array_keys( $this->taxonomies ),
+			'show_in_rest'    => true,
+			'rest_base'       => 'books',
+			'can_export'      => false,
+			'has_archive'	=> true,
+		);
+
+
+		parent::register();
+	}
 	public function index_extra_content_for_relevanssi( $content, $post ) {
 		return $this->index_extra_content( $content, $post->ID );
 

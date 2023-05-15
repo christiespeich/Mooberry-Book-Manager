@@ -23,6 +23,21 @@ class Mooberry_Book_Manager_Publisher_CPT extends Mooberry_Book_Manager_CPT {
 		// initialize
 		parent::__construct();
 
+
+
+		add_shortcode( 'mbdb_publisher', array( $this, 'shortcode_publisher' ) );
+		add_shortcode( 'publisher_book_list', array( $this, 'shortcode_publisher_book_list' ) );
+		add_shortcode( 'publisher_photo', array( $this, 'shortcode_publisher_photo' ) );
+		add_shortcode( 'publisher_website', array( $this, 'shortcode_publisher_website' ) );
+		add_action( 'save_post_' . $this->post_type, array( $this, 'save_publisher' ) );
+
+		//	add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'set_custom_columns' ) );
+		//	add_action( 'manage_' . $this->post_type . '_posts_custom_column' , array( $this, 'display_custom_columns'), 10, 2 );
+
+
+	}
+
+	public function register() {
 		$this->post_type     = 'mbdb_publisher';
 		$this->singular_name = __( 'Publisher', 'mooberry-book-manager' );
 		$this->plural_name   = __( 'Publishers', 'mooberry-book-manager' );
@@ -41,17 +56,7 @@ class Mooberry_Book_Manager_Publisher_CPT extends Mooberry_Book_Manager_CPT {
 			'capability_type'   => array( 'mbdb_publisher', 'mbdb_publishers' ),
 			'supports'          => array( 'title' ),
 		);
-
-		add_shortcode( 'mbdb_publisher', array( $this, 'shortcode_publisher' ) );
-		add_shortcode( 'publisher_book_list', array( $this, 'shortcode_publisher_book_list' ) );
-		add_shortcode( 'publisher_photo', array( $this, 'shortcode_publisher_photo' ) );
-		add_shortcode( 'publisher_website', array( $this, 'shortcode_publisher_website' ) );
-		add_action( 'save_post_' . $this->post_type, array( $this, 'save_publisher' ) );
-
-		//	add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'set_custom_columns' ) );
-		//	add_action( 'manage_' . $this->post_type . '_posts_custom_column' , array( $this, 'display_custom_columns'), 10, 2 );
-
-
+		parent::register();
 	}
 
 	protected function set_data_object( $id = 0 ) {

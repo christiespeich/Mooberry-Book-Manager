@@ -24,7 +24,25 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 		// initialize
 		parent::__construct();
 
-		$this->post_type = 'mbdb_book_grid';
+
+
+		add_action( 'add_meta_boxes', array( $this, 'placeholder_metabox'), 10 );
+		add_action( 'wp_ajax_mbdb_book_grid_placeholder_dismiss', array
+		($this, 'placeholder_dismiss' ) );
+		add_action( 'add_meta_boxes', array($this, 'preview_meta_box' ) );
+		add_shortcode( 'mbm_book_grid', array( $this, 'shortcode_book_grid'  ) );
+		add_action('media_buttons', array( $this, 'add_book_grid_shortcode_button' ), 30, 1);
+		add_action( 'wp_ajax_mbdb_update_book_grid_preview', array( $this, 'update_book_grid_preview' ) );
+		add_action( 'wp_ajax_save_book_list_order', array( $this, 'save_book_list_order' ) );
+
+		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'set_custom_columns' ) );
+		add_action( 'manage_' . $this->post_type . '_posts_custom_column' , array( $this, 'display_custom_columns'), 10, 2 );
+
+
+	}
+
+	public function register() {
+			$this->post_type = 'mbdb_book_grid';
 		$this->singular_name = __('Book Grid', 'mooberry-book-manager');
 		$this->plural_name = __('Book Grids', 'mooberry-book-manager');
 
@@ -40,20 +58,7 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 			'capability_type' => array( 'mbdb_book_grid', 'mbdb_book_grids' ),
 			'supports' => array( 'title' ),
 		);
-
-		add_action( 'add_meta_boxes', array( $this, 'placeholder_metabox'), 10 );
-		add_action( 'wp_ajax_mbdb_book_grid_placeholder_dismiss', array
-		($this, 'placeholder_dismiss' ) );
-		add_action( 'add_meta_boxes', array($this, 'preview_meta_box' ) );
-		add_shortcode( 'mbm_book_grid', array( $this, 'shortcode_book_grid'  ) );
-		add_action('media_buttons', array( $this, 'add_book_grid_shortcode_button' ), 30, 1);
-		add_action( 'wp_ajax_mbdb_update_book_grid_preview', array( $this, 'update_book_grid_preview' ) );
-		add_action( 'wp_ajax_save_book_list_order', array( $this, 'save_book_list_order' ) );
-
-		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'set_custom_columns' ) );
-		add_action( 'manage_' . $this->post_type . '_posts_custom_column' , array( $this, 'display_custom_columns'), 10, 2 );
-
-
+		parent::register();
 	}
 
 function set_custom_columns($columns) {
