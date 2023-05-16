@@ -26,12 +26,12 @@ msgstr ""
 
 #: includes/CMB2/example-functions.php:115
 msgid "Test Metabox"
-msgstr ""
+msgstr "测试Metabox"
 
 #: includes/CMB2/example-functions.php:148
 #: includes/CMB2/example-functions.php:492
 msgid "Test Text"
-msgstr ""
+msgstr "测试文本"
 
 #: includes/CMB2/example-functions.php:149
 #: includes/CMB2/example-functions.php:162
@@ -70,174 +70,167 @@ msgstr ""
 #: includes/CMB2/example-functions.php:660
 #: includes/CMB2/example-functions.php:667
 #: includes/CMB2/example-functions.php:717
-#, fuzzy
-#| msgid "Book Grid Description (Bottom)"
 msgid "field description (optional)"
-msgstr "图书网格描述(底部)"
+msgstr "字段说明(可选)"
 
 #: includes/CMB2/example-functions.php:161
 msgid "Test Text Small"
-msgstr ""
+msgstr "测试文本小"
 
 #: includes/CMB2/example-functions.php:174
 msgid "Test Text Medium"
-msgstr ""
+msgstr "测试文本媒介"
 
 #: includes/CMB2/example-functions.php:181
 msgid "Read-only Disabled Field"
-msgstr ""
+msgstr "只读禁用字段"
 
 #: includes/CMB2/example-functions.php:185
 msgid "Hey there, I'm a read-only field"
-msgstr ""
+msgstr "嘿，我是一个只读字段"
 
 #: includes/CMB2/example-functions.php:194
 msgid "Custom Rendered Field"
-msgstr ""
+msgstr "自定义渲染字段"
 
 #: includes/CMB2/example-functions.php:202
-#, fuzzy
-#| msgid "Website"
 msgid "Website URL"
-msgstr "网站"
+msgstr "网站网址"
 
 #: includes/CMB2/example-functions.php:211
 msgid "Test Text Email"
-msgstr ""
+msgstr "测试文本邮件"
 
 #: includes/CMB2/example-functions.php:219
 msgid "Test Time"
-msgstr ""
+msgstr "测试时间"
 
 #: includes/CMB2/example-functions.php:227
 #: includes/CMB2/example-functions.php:228
 msgid "Time zone"
-msgstr ""
+msgstr "时区"
 
 #: includes/CMB2/example-functions.php:234
 msgid "Test Date Picker"
-msgstr ""
+msgstr "测试日期选择器"
 
 #: includes/CMB2/example-functions.php:242
 msgid "Test Date Picker (UNIX timestamp)"
-msgstr ""
+msgstr "测试日期选择器(UNIX时间戳)"
 
 #: includes/CMB2/example-functions.php:250
 msgid "Test Date/Time Picker Combo (UNIX timestamp)"
-msgstr ""
+msgstr "测试日期/时间选择器组合(UNIX时间戳)"
 
 #: includes/CMB2/example-functions.php:267
 msgid "Test Money"
-msgstr ""
+msgstr "测试的钱"
 
 #: includes/CMB2/example-functions.php:276
 msgid "Test Color Picker"
-msgstr ""
+msgstr "测试选色器"
 
 #: includes/CMB2/example-functions.php:292
 msgid "Test Text Area"
-msgstr ""
+msgstr "测试文本区"
 
 #: includes/CMB2/example-functions.php:299
 msgid "Test Text Area Small"
-msgstr ""
+msgstr "测试文本区域"
 
 #: includes/CMB2/example-functions.php:306
 msgid "Test Text Area for Code"
-msgstr ""
+msgstr "测试代码的文本区域"
 
 #: includes/CMB2/example-functions.php:324
 msgid "Test Title Weeeee"
-msgstr ""
+msgstr "测试标题Weeeee"
 
 #: includes/CMB2/example-functions.php:325
 msgid "This is a title description"
-msgstr ""
+msgstr "这是标题描述"
 
 #: includes/CMB2/example-functions.php:331
 msgid "Test Select"
-msgstr ""
+msgstr "测试选择"
 
 #: includes/CMB2/example-functions.php:337
 #: includes/CMB2/example-functions.php:350
 #: includes/CMB2/example-functions.php:362
 msgid "Option One"
-msgstr ""
+msgstr "选择一个"
 
 #: includes/CMB2/example-functions.php:338
 #: includes/CMB2/example-functions.php:351
 #: includes/CMB2/example-functions.php:363
 msgid "Option Two"
-msgstr ""
+msgstr "选择两个"
 
 #: includes/CMB2/example-functions.php:339
 #: includes/CMB2/example-functions.php:352
 #: includes/CMB2/example-functions.php:364
 msgid "Option Three"
-msgstr ""
+msgstr "选择三个"
 
 #: includes/CMB2/example-functions.php:344
 msgid "Test Radio inline"
-msgstr ""
+msgstr "测试无线电内联"
 
 #: includes/CMB2/example-functions.php:357
 msgid "Test Radio"
-msgstr ""
+msgstr "测试电台"
 
 #: includes/CMB2/example-functions.php:369
 msgid "Test Taxonomy Radio"
-msgstr ""
+msgstr "测试分类无线电"
 
 #: includes/CMB2/example-functions.php:383
 msgid "Test Taxonomy Select"
-msgstr ""
+msgstr "测试分类选择"
 
 #: includes/CMB2/example-functions.php:391
 msgid "Test Taxonomy Multi Checkbox"
-msgstr ""
+msgstr "测试分类法多复选框"
 
 #: includes/CMB2/example-functions.php:400
 msgid "Test Checkbox"
-msgstr ""
+msgstr "测试复选框"
 
 #: includes/CMB2/example-functions.php:407
 msgid "Test Multi Checkbox"
-msgstr ""
+msgstr "“测试”多复选框"
 
 #: includes/CMB2/example-functions.php:413
 msgid "Check One"
-msgstr ""
+msgstr "检查一个"
 
 #: includes/CMB2/example-functions.php:414
 msgid "Check Two"
-msgstr ""
+msgstr "检查两个"
 
 #: includes/CMB2/example-functions.php:415
 msgid "Check Three"
-msgstr ""
+msgstr "检查三个"
 
 #: includes/CMB2/example-functions.php:421
 msgid "Test wysiwyg"
 msgstr ""
 
 #: includes/CMB2/example-functions.php:431
-#, fuzzy
-#| msgctxt "noun: the image that represents the format of a book"
-#| msgid "Format Image"
 msgid "Test Image"
-msgstr "格式的图片"
+msgstr "测试图像"
 
 #: includes/CMB2/example-functions.php:432
 msgid "Upload an image or enter a URL."
-msgstr ""
+msgstr "上传图片或输入URL。"
 
 #: includes/CMB2/example-functions.php:438
 msgid "Multiple Files"
-msgstr ""
+msgstr "多个文件"
 
 #: includes/CMB2/example-functions.php:439
 msgid "Upload or add multiple images/attachments."
-msgstr ""
+msgstr "上传或添加多个图像/附件。"
 
 #: includes/CMB2/example-functions.php:446
 msgid "oEmbed"
@@ -247,188 +240,172 @@ msgstr ""
 #, php-format
 msgid ""
 "Enter a youtube, twitter, or instagram URL. Supports services listed at %s."
-msgstr ""
+msgstr "输入一个youtube, twitter或instagram的URL。支持列在%s处的服务。"
 
 #: includes/CMB2/example-functions.php:481
 msgid "About Page Metabox"
-msgstr ""
+msgstr "关于Page Metabox"
 
 #: includes/CMB2/example-functions.php:511
 msgid "Repeating Field Group"
-msgstr ""
+msgstr "重复字段组"
 
 #: includes/CMB2/example-functions.php:519
 msgid "Generates reusable form entries"
-msgstr ""
+msgstr "生成可重用的表单条目"
 
 #: includes/CMB2/example-functions.php:521
 msgid "Entry {#}"
-msgstr ""
+msgstr "输入{#}"
 
 #: includes/CMB2/example-functions.php:522
 msgid "Add Another Entry"
-msgstr ""
+msgstr "添加另一个条目"
 
 #: includes/CMB2/example-functions.php:523
-#, fuzzy
-#| msgid "Remove Edition"
 msgid "Remove Entry"
-msgstr "删除版本"
+msgstr "删除条目"
 
 #: includes/CMB2/example-functions.php:537
-#, fuzzy
-#| msgid "Edition Title"
 msgid "Entry Title"
-msgstr "版本的标题"
+msgstr "条目标题"
 
 #: includes/CMB2/example-functions.php:544
-#, fuzzy
-#| msgid "Meta Description"
 msgid "Description"
-msgstr "Meta 描述"
+msgstr "描述"
 
 #: includes/CMB2/example-functions.php:545
 msgid "Write a short description for this entry"
-msgstr ""
+msgstr "为这个条目写一个简短的描述"
 
 #: includes/CMB2/example-functions.php:551
-#, fuzzy
-#| msgctxt "noun: the image that represents the format of a book"
-#| msgid "Format Image"
 msgid "Entry Image"
-msgstr "格式的图片"
+msgstr "输入图像"
 
 #: includes/CMB2/example-functions.php:557
 msgid "Image Caption"
-msgstr ""
+msgstr "图片标题"
 
 #: includes/CMB2/example-functions.php:575
 msgid "User Profile Metabox"
-msgstr ""
+msgstr "用户配置文件"
 
 #: includes/CMB2/example-functions.php:582
 #: includes/CMB2/example-functions.php:651
 msgid "Extra Info"
-msgstr ""
+msgstr "额外的信息"
 
 #: includes/CMB2/example-functions.php:590
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: includes/CMB2/example-functions.php:597
 msgid "Facebook URL"
-msgstr ""
+msgstr "Facebook网址"
 
 #: includes/CMB2/example-functions.php:604
-#, fuzzy
-#| msgid "Twitter Card"
 msgid "Twitter URL"
-msgstr "推特卡"
+msgstr "推特网址"
 
 #: includes/CMB2/example-functions.php:611
 msgid "Google+ URL"
-msgstr ""
+msgstr "Google+网址"
 
 #: includes/CMB2/example-functions.php:618
 msgid "Linkedin URL"
-msgstr ""
+msgstr "Linkedin的URL"
 
 #: includes/CMB2/example-functions.php:625
 msgid "User Field"
-msgstr ""
+msgstr "用户字段"
 
 #: includes/CMB2/example-functions.php:644
 msgid "Category Metabox"
-msgstr ""
+msgstr "类别Metabox"
 
 #: includes/CMB2/example-functions.php:659
-#, fuzzy
-#| msgctxt "noun: the image that represents the format of a book"
-#| msgid "Format Image"
 msgid "Term Image"
-msgstr "格式的图片"
+msgstr "术语映像"
 
 #: includes/CMB2/example-functions.php:666
 msgid "Arbitrary Term Field"
-msgstr ""
+msgstr "任意术语字段"
 
 #: includes/CMB2/example-functions.php:685
 msgid "Theme Options"
-msgstr ""
+msgstr "Theme Options"
 
 #: includes/CMB2/example-functions.php:716
 msgid "Site Background Color"
-msgstr ""
+msgstr "网站背景色"
 
 #: includes/CMB2/example-functions.php:753
 #, php-format
 msgid "%s &mdash; Updated!"
-msgstr ""
+msgstr "%s &mdash; 更新!"
 
 #: includes/CMB2/example-functions.php:785
 msgid "REST Test Box"
-msgstr ""
+msgstr "REST测试盒子"
 
 #: includes/CMB2/example-functions.php:794
 msgid "REST Test Text"
-msgstr ""
+msgstr "REST测试文本"
 
 #: includes/CMB2/example-functions.php:795
 msgid "Will show in the REST API for this box and for pages."
-msgstr ""
+msgstr "将在此框和页面的REST API中显示。"
 
 #: includes/CMB2/example-functions.php:801
 msgid "REST Editable Test Text"
-msgstr ""
+msgstr "REST可编辑测试文本"
 
 #: includes/CMB2/example-functions.php:802
 msgid "Will show in REST API \"editable\" contexts only (`POST` requests)."
-msgstr ""
+msgstr "将只在REST API中显示“可编辑”上下文(POST请求)。"
 
 #: includes/CMB2/includes/CMB2.php:199
 msgid "Metabox configuration is required to have an ID parameter."
-msgstr ""
+msgstr "需要Metabox配置有一个ID参数。"
 
 #: includes/CMB2/includes/CMB2.php:618
 msgid "Click to toggle"
-msgstr ""
+msgstr "点击切换"
 
 #: includes/CMB2/includes/CMB2_Ajax.php:75
 msgid "Please Try Again"
-msgstr ""
+msgstr "请再试一次"
 
 #: includes/CMB2/includes/CMB2_Ajax.php:181
-#, fuzzy
-#| msgid "Remove Edition"
 msgid "Remove Embed"
-msgstr "删除版本"
+msgstr "拆卸嵌入"
 
 #: includes/CMB2/includes/CMB2_Ajax.php:189
 #: includes/CMB2/includes/helper-functions.php:107
 #, php-format
 msgid "No oEmbed Results Found for %1$s. View more info at %2$s."
-msgstr ""
+msgstr "没有找到%1$s的嵌入结果。在%2$s查看更多信息。"
 
 #: includes/CMB2/includes/CMB2_Base.php:423
 #, php-format
 msgid ""
 "The \"%1$s\" field parameter has been deprecated in favor of the \"%2$s\" "
 "parameter."
-msgstr ""
+msgstr "“%1$s”字段参数已被弃用，取而代之的是“%2$s”参数。"
 
 #: includes/CMB2/includes/CMB2_Base.php:427
 #, php-format
 msgid ""
 "Using the \"%1$s\" field parameter as a callback has been deprecated in "
 "favor of the \"%2$s\" parameter."
-msgstr ""
+msgstr "使用“%1$s”字段参数作为回调已被弃用，而使用“%2$s”参数。"
 
 #: includes/CMB2/includes/CMB2_Base.php:457
 #, php-format
 msgid ""
 "%1$s was called with a parameter that is <strong>deprecated</strong> since "
 "version %2$s! %3$s"
-msgstr ""
+msgstr "%1$s被调用时带一个参数<strong>已弃用</strong>，因为%2$s版本! %3$s"
 
 #: includes/CMB2/includes/CMB2_Base.php:459
 #, php-format
@@ -436,32 +413,31 @@ msgid ""
 "%1$s was called with a parameter that is <strong>deprecated</strong> since "
 "version %2$s with no alternative available."
 msgstr ""
+"%1$s被调用时带一个参数<strong>已弃用</strong>，因为版本%2$s没有可用的替代方"
+"法。"
 
 #: includes/CMB2/includes/CMB2_Base.php:492
 #: includes/CMB2/includes/CMB2_Hookup_Base.php:102
 #: includes/CMB2/includes/CMB2_Options.php:247
 #: includes/CMB2/includes/CMB2_Options_Hookup.php:369
 #: includes/CMB2/includes/types/CMB2_Type_Base.php:173
-#, fuzzy, php-format
-#| msgid "Can't set property %s"
+#, php-format
 msgid "Invalid %1$s property: %2$s"
-msgstr "不能设置属性%s"
+msgstr "无效的%1$s属性:%2$s"
 
 #: includes/CMB2/includes/CMB2_Base.php:510
 #: includes/CMB2/includes/types/CMB2_Type_Base.php:157
 #, php-format
 msgid "Invalid %1$s method: %2$s"
-msgstr ""
+msgstr "无效的%1$s方法:%2$s"
 
 #: includes/CMB2/includes/CMB2_Field.php:1443
 msgid "Add Group"
-msgstr ""
+msgstr "添加组"
 
 #: includes/CMB2/includes/CMB2_Field.php:1444
-#, fuzzy
-#| msgid "Remove Format"
 msgid "Remove Group"
-msgstr "删除格式"
+msgstr "删除组"
 
 #: includes/CMB2/includes/CMB2_Field.php:1476
 #: includes/CMB2/includes/CMB2_Field.php:1480
@@ -471,38 +447,38 @@ msgstr "没有"
 
 #: includes/CMB2/includes/CMB2_Field.php:1594
 msgid "Sorry, this field does not have a cmb_id specified."
-msgstr ""
+msgstr "对不起，这个字段没有指定cmb_id。"
 
 #: includes/CMB2/includes/CMB2_Field_Display.php:453
 #: includes/CMB2/includes/CMB2_JS.php:242
 #: includes/CMB2/includes/types/CMB2_Type_File_Base.php:90
 msgid "File:"
-msgstr ""
+msgstr "文件:"
 
 #: includes/CMB2/includes/CMB2_Hookup.php:188
 msgid ""
 "Term Metadata is a WordPress 4.4+ feature. Please upgrade your WordPress "
 "install."
-msgstr ""
+msgstr "术语元数据是WordPress 4.4+的一个特性。请升级你的WordPress安装。"
 
 #: includes/CMB2/includes/CMB2_Hookup.php:192
 msgid "Term metaboxes configuration requires a \"taxonomies\" parameter."
-msgstr ""
+msgstr "术语代谢箱配置需要一个“taxonomies”参数。"
 
 #: includes/CMB2/includes/CMB2_Hookup.php:560
 #, php-format
 msgid "Toggle panel: %s"
-msgstr ""
+msgstr "切换面板: %s"
 
 #: includes/CMB2/includes/CMB2_Hookup_Base.php:44
 #, php-format
 msgid "%1$s should be implemented by the extended class."
-msgstr ""
+msgstr "%1$s 应该由扩展类实现。"
 
 #: includes/CMB2/includes/CMB2_JS.php:177
 #: includes/CMB2/includes/CMB2_JS.php:222
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #: includes/CMB2/includes/CMB2_JS.php:178
 #: includes/class-mbm-helper-functions.php:198
@@ -510,14 +486,12 @@ msgid "Default"
 msgstr "默认的"
 
 #: includes/CMB2/includes/CMB2_JS.php:179
-#, fuzzy
-#| msgid "Select Books"
 msgid "Select Color"
-msgstr "选择的书"
+msgstr "选择颜色"
 
 #: includes/CMB2/includes/CMB2_JS.php:180
 msgid "Current Color"
-msgstr ""
+msgstr "当前的颜色"
 
 #: includes/CMB2/includes/CMB2_JS.php:212
 msgctxt "Valid formatDate string for jquery-ui datepicker"
@@ -526,7 +500,7 @@ msgstr ""
 
 #: includes/CMB2/includes/CMB2_JS.php:213
 msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
-msgstr ""
+msgstr "星期日，星期一，星期二，星期三，星期四，星期五，星期六"
 
 #: includes/CMB2/includes/CMB2_JS.php:214
 msgid "Su, Mo, Tu, We, Th, Fr, Sa"
@@ -534,62 +508,60 @@ msgstr ""
 
 #: includes/CMB2/includes/CMB2_JS.php:215
 msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
-msgstr ""
+msgstr "星期日、星期一、星期二、星期三、星期四、星期五、星期六"
 
 #: includes/CMB2/includes/CMB2_JS.php:216
 msgid ""
 "January, February, March, April, May, June, July, August, September, "
 "October, November, December"
 msgstr ""
+"一月、二月、三月、四月、五月、六月、七月、八月、九月、十月、十一月、十二月"
 
 #: includes/CMB2/includes/CMB2_JS.php:217
 msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
 msgstr ""
+"一月、二月、三月、四月、五月、六月、七月、八月、九月、十月、十一月、十二月"
 
 #: includes/CMB2/includes/CMB2_JS.php:218
 msgid "Next"
-msgstr ""
+msgstr "下一个"
 
 #: includes/CMB2/includes/CMB2_JS.php:219
-#, fuzzy
-#| msgid "Preview"
 msgid "Prev"
-msgstr "预览"
+msgstr "上一页"
 
 #: includes/CMB2/includes/CMB2_JS.php:220
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 #: includes/CMB2/includes/CMB2_JS.php:221
 #: includes/CMB2/includes/CMB2_JS.php:231
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: includes/CMB2/includes/CMB2_JS.php:225
 msgid "Choose Time"
-msgstr ""
+msgstr "选择时间"
 
 #: includes/CMB2/includes/CMB2_JS.php:226
 msgid "Time"
-msgstr ""
+msgstr "时间"
 
 #: includes/CMB2/includes/CMB2_JS.php:227
 msgid "Hour"
-msgstr ""
+msgstr "小时"
 
 #: includes/CMB2/includes/CMB2_JS.php:228
 msgid "Minute"
-msgstr ""
+msgstr "分钟"
 
 #: includes/CMB2/includes/CMB2_JS.php:229
 msgid "Second"
-msgstr ""
+msgstr "秒"
 
 #: includes/CMB2/includes/CMB2_JS.php:230
-#, fuzzy
-#| msgid "No"
 msgid "Now"
-msgstr "No"
+msgstr "现在"
 
 #: includes/CMB2/includes/CMB2_JS.php:232
 msgctxt ""
@@ -600,43 +572,35 @@ msgstr ""
 
 #: includes/CMB2/includes/CMB2_JS.php:238
 msgid "Use this file"
-msgstr ""
+msgstr "使用这个文件"
 
 #: includes/CMB2/includes/CMB2_JS.php:239
 msgid "Use these files"
-msgstr ""
+msgstr "使用这些文件"
 
 #: includes/CMB2/includes/CMB2_JS.php:240
 #: includes/CMB2/includes/types/CMB2_Type_File_Base.php:75
-#, fuzzy
-#| msgid "Remove Format"
 msgid "Remove Image"
-msgstr "删除格式"
+msgstr "删除图片"
 
 #: includes/CMB2/includes/CMB2_JS.php:241
 #: includes/CMB2/includes/CMB2_Types.php:408
 #: includes/CMB2/includes/types/CMB2_Type_File_Base.php:95
-#, fuzzy
-#| msgid "Remove Format"
 msgid "Remove"
-msgstr "删除格式"
+msgstr "删除"
 
 #: includes/CMB2/includes/CMB2_JS.php:243
 #: includes/CMB2/includes/types/CMB2_Type_File_Base.php:93
-#, fuzzy
-#| msgid "Download Now"
 msgid "Download"
-msgstr "立即下载"
+msgstr "下载"
 
 #: includes/CMB2/includes/CMB2_JS.php:244
 msgid "Select / Deselect All"
-msgstr ""
+msgstr "选择/取消选择全部"
 
 #: includes/CMB2/includes/CMB2_Options_Hookup.php:139
-#, fuzzy
-#| msgid "Settings updated."
 msgid "Nothing to update."
-msgstr "设置更新。"
+msgstr "没什么可更新的。"
 
 #: includes/CMB2/includes/CMB2_Options_Hookup.php:143
 #: includes/admin/class-mbm-settings.php:259
@@ -645,53 +609,49 @@ msgstr "设置更新。"
 
 #: includes/CMB2/includes/CMB2_Types.php:226
 msgid "Custom CMB2 field type classes must extend CMB2_Type_Base."
-msgstr ""
+msgstr "自定义CMB2字段类型类必须扩展CMB2_Type_Base。"
 
 #: includes/CMB2/includes/CMB2_Types.php:344
-#, fuzzy
-#| msgid "Add New"
 msgid "Add Row"
-msgstr "添加新"
+msgstr "添加一行"
 
 #: includes/CMB2/includes/CMB2_Types.php:408
-#, fuzzy
-#| msgid "Remove Review"
 msgid "Remove Row"
-msgstr "删除评论"
+msgstr "删除行"
 
 #: includes/CMB2/includes/helper-functions.php:308
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller.php:257
 msgid "This box does not have read permissions."
-msgstr ""
+msgstr "此框没有读取权限。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller.php:277
 msgid "This box does not have write permissions."
-msgstr ""
+msgstr "此框没有写权限。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller.php:300
 msgid ""
 "No box found by that id. A box needs to be registered with the \"show_in_rest"
 "\" parameter configured."
-msgstr ""
+msgstr "没有找到那个id的盒子。注册框需要配置参数“show_in_rest”。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller.php:378
 msgid "A human-readable description of the object."
-msgstr ""
+msgstr "人类可读的对象描述。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller.php:385
 msgid "The id for the object."
-msgstr ""
+msgstr "对象的id。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller.php:392
 msgid "The title for the object."
-msgstr ""
+msgstr "对象的标题。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Boxes.php:51
 msgid "Includes the registered fields for the box in the response."
-msgstr ""
+msgstr "包括响应中框的已注册字段。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Boxes.php:72
 msgid ""
@@ -699,17 +659,17 @@ msgid ""
 "as the enqueued 'js_dependencies' script handles, and 'css_dependencies' "
 "stylesheet handles."
 msgstr ""
+"包括完全渲染的属性，'form_open'， 'form_close'，以及排队的'js_dependencies'脚"
+"本句柄，和'css_dependencies'样式表句柄。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Boxes.php:122
-#, fuzzy
-#| msgid "No books found"
 msgid "No boxes found."
-msgstr "没有找到书"
+msgstr "没有找到盒子。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:27
 msgid ""
 "Includes the box object which the fields are registered to in the response."
-msgstr ""
+msgstr "包括响应中字段注册到的box对象。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:30
 msgid ""
@@ -717,39 +677,41 @@ msgid ""
 "will be returned fully rendered. By default, the names of the callback "
 "handers for the renderable attributes will be returned."
 msgstr ""
+"当传入'_rendered'参数时，renderable字段属性将被完全渲染。默认情况下，将返回可"
+"呈现属性的回调处理程序的名称。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:33
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:36
 msgid ""
 "To view or modify the field's value, the 'object_id' and 'object_type' "
 "arguments are required."
-msgstr ""
+msgstr "要查看或修改字段的值，需要使用'object_id'和'object_type'参数。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:236
 msgid ""
 "CMB2 Field value cannot be updated without the value parameter specified."
-msgstr ""
+msgstr "如果没有指定value参数，则无法更新ccm2字段值。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:297
 msgid ""
 "CMB2 Field value cannot be modified without the object_id and object_type "
 "parameters specified."
-msgstr ""
+msgstr "如果没有指定object_id和object_type参数，CMB2字段值不能修改。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:312
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:341
 msgid "No field found by that id."
-msgstr ""
+msgstr "该id没有找到任何字段。"
 
 #: includes/CMB2/includes/rest-api/CMB2_REST_Controller_Fields.php:415
 #, php-format
 msgid "Value Error for %s"
-msgstr ""
+msgstr "%s 的值错误"
 
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:25
 #, php-format
 msgid "Method '%s' must be overridden."
-msgstr ""
+msgstr "方法“%s”必须被重写。"
 
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:35
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:47
@@ -765,60 +727,56 @@ msgstr ""
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:168
 #, php-format
 msgid "Method '%s' not implemented. Must be overridden in subclass."
-msgstr ""
+msgstr "方法“%s”未实现。必须在子类中重写。"
 
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:273
 msgid "Current page of the collection."
-msgstr ""
+msgstr "集合的当前页面。"
 
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:281
 msgid "Maximum number of items to be returned in result set."
-msgstr ""
+msgstr "要在结果集中返回的最大项数。"
 
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:290
 msgid "Limit results to those matching a string."
-msgstr ""
+msgstr "将结果限制为匹配字符串的结果。"
 
 #: includes/CMB2/includes/shim/WP_REST_Controller.php:308
 msgid ""
 "Scope under which the request is made; determines fields present in response."
-msgstr ""
+msgstr "提出要求的范围;确定响应中存在的字段。"
 
 #: includes/CMB2/includes/types/CMB2_Type_Counter_Base.php:50
 msgid "Words left"
-msgstr ""
+msgstr "字左"
 
 #: includes/CMB2/includes/types/CMB2_Type_Counter_Base.php:51
 msgid "Words"
-msgstr ""
+msgstr "单词"
 
 #: includes/CMB2/includes/types/CMB2_Type_Counter_Base.php:56
 msgid "Characters left"
-msgstr ""
+msgstr "描述左"
 
 #: includes/CMB2/includes/types/CMB2_Type_Counter_Base.php:57
 msgid "Characters"
-msgstr ""
+msgstr "描述"
 
 #: includes/CMB2/includes/types/CMB2_Type_Counter_Base.php:62
 msgid "Your text may be truncated."
-msgstr ""
+msgstr "你的文章可能会被删节。"
 
 #: includes/CMB2/includes/types/CMB2_Type_File.php:76
-#, fuzzy
-#| msgid "Choose or Upload File"
 msgid "Add or Upload File"
-msgstr "选择或上传文件"
+msgstr "添加或上传文件"
 
 #: includes/CMB2/includes/types/CMB2_Type_File_List.php:41
-#, fuzzy
-#| msgid "Choose or Upload File"
 msgid "Add or Upload Files"
-msgstr "选择或上传文件"
+msgstr "添加或上传文件"
 
 #: includes/CMB2/includes/types/CMB2_Type_Taxonomy_Base.php:115
 msgid "No terms"
-msgstr ""
+msgstr "没有条件"
 
 #: includes/admin/class-mbm-apple-books-link-update-process.php:13
 msgid ""
@@ -1030,10 +988,8 @@ msgid "Add to Reedsy Image"
 msgstr "添加到Reedsy Image"
 
 #: includes/admin/class-mbm-core-settings.php:299
-#, fuzzy
-#| msgid "Add to Goodreads Image"
 msgid "Add to Google Books Image"
-msgstr "添加到Goodreads图像"
+msgstr "添加到谷歌图书图像"
 
 #: includes/admin/class-mbm-core-settings.php:314
 msgid "Reset Book Edit Page"
@@ -1247,10 +1203,8 @@ msgid "MBM General Settings"
 msgstr "MBM一般设置"
 
 #: includes/admin/class-mbm-core-settings.php:721
-#, fuzzy
-#| msgid "BOOK PAGE SETTINGS"
 msgid "BOOK COVER SETTINGS"
-msgstr "图书页面设置"
+msgstr "书籍封面设置"
 
 #: includes/admin/class-mbm-core-settings.php:728
 msgid "Use Book Cover as Featured Image"
@@ -1268,31 +1222,31 @@ msgstr ""
 
 #: includes/admin/class-mbm-core-settings.php:739
 msgid "Show COMING SOON Ribbon on Corner of Book Cover?"
-msgstr ""
+msgstr "展示即将到来的缎带在角落的书封面?"
 
 #: includes/admin/class-mbm-core-settings.php:748
 msgid "Color of COMING SOON Ribbon"
-msgstr ""
+msgstr "即将到来的缎带颜色"
 
 #: includes/admin/class-mbm-core-settings.php:755
 msgid "Text Color of COMING SOON Ribbon"
-msgstr ""
+msgstr "即将到来的缎带文本颜色"
 
 #: includes/admin/class-mbm-core-settings.php:762
 msgid "Show NEW Ribbon on Corner of Book Cover?"
-msgstr ""
+msgstr "显示新的缎带在角落的书封面?"
 
 #: includes/admin/class-mbm-core-settings.php:772
 msgid "Color of NEW Ribbon"
-msgstr ""
+msgstr "新缎带的颜色"
 
 #: includes/admin/class-mbm-core-settings.php:779
 msgid "Text Color of NEW Ribbon"
-msgstr ""
+msgstr "文本颜色的新缎带"
 
 #: includes/admin/class-mbm-core-settings.php:786
 msgid "Number of Days to Display NEW Ribbon"
-msgstr ""
+msgstr "显示新缎带的天数"
 
 #: includes/admin/class-mbm-core-settings.php:798
 msgid "Show Placeholder Cover On"
@@ -1309,17 +1263,17 @@ msgstr "占位符封面图片"
 
 #: includes/admin/class-mbm-core-settings.php:830
 msgid "POP UP CARD ON HOVER SETTINGS"
-msgstr ""
+msgstr "在悬停设置上弹出卡片"
 
 #: includes/admin/class-mbm-core-settings.php:832
 msgid ""
 "A card with information about a book will pop up when the mouse moves over "
 "the book cover"
-msgstr ""
+msgstr "当鼠标移动到书的封面上时，会弹出一张关于书的信息卡片"
 
 #: includes/admin/class-mbm-core-settings.php:857
 msgid "Use Pop-up Card?"
-msgstr ""
+msgstr "使用弹出式卡片?"
 
 #: includes/admin/class-mbm-core-settings.php:863
 #, php-format
@@ -1327,61 +1281,55 @@ msgid ""
 "Drag and Drop up to %d fields into the Selected Fields list to display that "
 "data on the popup card."
 msgstr ""
+"将最多%d个字段拖放到Selected fields列表中，以在弹出式卡片上显示该数据。"
 
 #: includes/admin/class-mbm-core-settings.php:863
-#, fuzzy
-#| msgid "Filter $s List"
 msgid "Field List: "
-msgstr "过滤 %s 列表"
+msgstr "字段列表:"
 
 #: includes/admin/class-mbm-core-settings.php:863
-#, fuzzy
-#| msgid "Select Series"
 msgid "Selected Fields: "
-msgstr "Seleccionar series"
+msgstr "选定字段:"
 
 #: includes/admin/class-mbm-core-settings.php:868
 msgid "Background Color of Pop-up Card"
-msgstr ""
+msgstr "弹出卡的背景色"
 
 #: includes/admin/class-mbm-core-settings.php:875
 msgid "Text Color of Pop-up Card"
-msgstr ""
+msgstr "弹出式卡片的文字颜色"
 
 #: includes/admin/class-mbm-core-settings.php:882
 msgid "Width of Pop-up Card (pixels)"
-msgstr ""
+msgstr "弹出卡宽度(像素)"
 
 #: includes/admin/class-mbm-core-settings.php:915
 msgid "MBM Retailers Settings"
 msgstr "MBM零售商设置"
 
 #: includes/admin/class-mbm-core-settings.php:920
-#, fuzzy
-#| msgctxt "noun: URLs to book retailers"
-#| msgid "Retailer Links"
 msgid "Retailer Buttons"
-msgstr "零售商的链接"
+msgstr "零售商的按钮"
 
 #: includes/admin/class-mbm-core-settings.php:925
 msgid "Use Matching Buttons for All Retailers"
-msgstr ""
+msgstr "对所有零售商使用匹配按钮"
 
 #: includes/admin/class-mbm-core-settings.php:926
 msgid "Use Individual Buttons for Each Retailer"
-msgstr ""
+msgstr "为每个零售商使用单独的按钮"
 
 #: includes/admin/class-mbm-core-settings.php:945
 msgid "Retailer Buttons Colors"
-msgstr ""
+msgstr "零售商按钮颜色"
 
 #: includes/admin/class-mbm-core-settings.php:952
 msgid "Background Color"
-msgstr ""
+msgstr "背景颜色"
 
 #: includes/admin/class-mbm-core-settings.php:960
 msgid "Text Color"
-msgstr ""
+msgstr "文本颜色"
 
 #: includes/admin/class-mbm-core-settings.php:976
 #: includes/class-mbm-book-cpt.php:891
@@ -1401,34 +1349,30 @@ msgid "Retailer Name"
 msgstr "零售商的名字"
 
 #: includes/admin/class-mbm-core-settings.php:992
-#, fuzzy
-#| msgid ""
-#| "If you've reordered the boxes on the Book Edit page, this will revert "
-#| "them to their default positions."
 msgid ""
 "If you are using buttons instead of images, this will be the text of the "
 "button"
-msgstr "如果您在Book Edit页面上重新排序了这些框，这将使它们恢复到默认位置。"
+msgstr "如果您使用按钮而不是图像，则这将是按钮的文本"
 
 #: includes/admin/class-mbm-core-settings.php:998
 msgid "Use a Button or an Image for this Retailer?"
-msgstr ""
+msgstr "为这个零售商使用按钮或图像?"
 
 #: includes/admin/class-mbm-core-settings.php:1000
 msgid "Button"
-msgstr ""
+msgstr "Button"
 
 #: includes/admin/class-mbm-core-settings.php:1001
 msgid "Image"
-msgstr ""
+msgstr "图像"
 
 #: includes/admin/class-mbm-core-settings.php:1014
 msgid "Button Background Color"
-msgstr ""
+msgstr "按钮背景颜色"
 
 #: includes/admin/class-mbm-core-settings.php:1022
 msgid "Button Text Color"
-msgstr ""
+msgstr "按钮文字颜色"
 
 #: includes/admin/class-mbm-core-settings.php:1029
 msgid "Retailer Logo Image"
@@ -1597,39 +1541,26 @@ msgstr ""
 "数据将不会被导入。"
 
 #: includes/admin/class-mbm-core-settings.php:1362
-#, fuzzy
-#| msgid ""
-#| "Books will be imported in the background. You may leave this page while "
-#| "they are importing. A notice will be displayed while books are importing."
 msgid ""
 "Books will be imported in the background. You may leave this page while they "
 "are importing."
-msgstr ""
-"图书将在后台导入。您可以在他们导入时离开此页面。在导入图书时将显示一个通知。"
+msgstr "图书将在后台导入。您可以在他们导入时离开此页面。"
 
 #: includes/admin/class-mbm-core-settings.php:1364
 msgid "Download file template"
-msgstr ""
+msgstr "下载文件模板"
 
 #: includes/admin/class-mbm-core-settings.php:1395
-#, fuzzy
-#| msgid "Export Books"
 msgid "Export Books to CSV file"
-msgstr "导出的书"
+msgstr "导出图书到CSV文件"
 
 #: includes/admin/class-mbm-core-settings.php:1396
-#, fuzzy
-#| msgid ""
-#| "This will create a text file with all of the books entered into Mooberry "
-#| "Book Manager. Books that are in Draft Mode or in the Trash will not be "
-#| "exported.  Options for filtering which books to export will be coming in "
-#| "a future update."
 msgid ""
 "This will create a CSV file with all of the books entered into Mooberry Book "
 "Manager. Books that are in Draft Mode or in the Trash will not be exported."
 msgstr ""
-"这将创建一个文本文件，其中包含进入Mooberry图书管理器的所有图书。处于草稿模式"
-"或废纸篓中的图书将不会被导出。筛选哪些书要导出的选项将在将来的更新中出现。"
+"这将创建一个CSV文件，其中包含输入到Mooberry图书管理器中的所有图书。处于草稿模"
+"式或回收站中的图书将不会被导出。"
 
 #: includes/admin/class-mbm-core-settings.php:1416
 msgid "MBM Book Import/Export Settings"
@@ -1666,16 +1597,12 @@ msgid ""
 msgstr "Editions require at least the format. Please check edition #%s."
 
 #: includes/admin/class-mbm-core-settings.php:1844
-#, fuzzy
-#| msgid "Import Books from Novelist"
 msgid "Import Books from CSV"
-msgstr "从Novelist那里导入书籍"
+msgstr "从CSV导入图书"
 
 #: includes/admin/class-mbm-core-settings.php:1845
-#, fuzzy
-#| msgid "Export Books"
 msgid "Export Books to CSV"
-msgstr "导出的书"
+msgstr "将图书导出为CSV格式导出的书"
 
 #: includes/admin/class-mbm-core-settings.php:1848
 msgid "Import from Novelist"
@@ -1718,11 +1645,11 @@ msgstr "需要Mooberry图书管理器的帮助吗?"
 msgid ""
 "Mooberry Book Manager: Finished checking for duplicate publishers and "
 "correcting the issue!"
-msgstr ""
+msgstr "Mooberry图书管理器:完成了对重复出版商的检查并纠正了问题!"
 
 #: includes/admin/views/admin-about-mooberry-story.php:3
 msgid "Also From Mooberry Dreams"
-msgstr "同样出自梦想"
+msgstr "同样出自Mooberry Dreams"
 
 #: includes/admin/views/admin-about-mooberry-story.php:5
 msgid ""
@@ -1770,11 +1697,6 @@ msgid "Extensions Available Now"
 msgstr "现在可用的扩展"
 
 #: includes/admin/views/admin-about-mooberry.php:20
-#, fuzzy
-#| msgid ""
-#| "Check out <a target=\"_new\" href=\"http://bookmanager.mooberrydreams.com/"
-#| "\">our website</a> to learn more about these extensions so Mooberry Book "
-#| "Manager can save you more time!"
 msgid ""
 "Check out <a target=\"_new\" href=\"http://www.mooberrybookmanager.com/"
 "\">our website</a> to learn more about these extensions so Mooberry Book "
@@ -1789,20 +1711,16 @@ msgid "Additional Images"
 msgstr "附加的图片"
 
 #: includes/admin/views/admin-about-mooberry.php:23
-#, fuzzy
-#| msgid "Advanced Widgets"
 msgid "Advanced Grids"
-msgstr "先进的部件"
+msgstr "先进的网格"
 
 #: includes/admin/views/admin-about-mooberry.php:24
 msgid "Advanced Widgets"
 msgstr "先进的部件"
 
 #: includes/admin/views/admin-about-mooberry.php:25
-#, fuzzy
-#| msgid "Custom"
 msgid "Custom Fields"
-msgstr "自定义"
+msgstr "自定义字段"
 
 #: includes/admin/views/admin-about-mooberry.php:27
 msgid "Multi-Author"
@@ -1910,15 +1828,11 @@ msgid "Tags"
 msgstr "标签"
 
 #: includes/class-mbm-book-cpt.php:224
-#, fuzzy
-#| msgid "Editor"
 msgctxt "general taxonomy name"
 msgid "Editor"
 msgstr "编辑器"
 
 #: includes/class-mbm-book-cpt.php:224
-#, fuzzy
-#| msgid "Editors"
 msgctxt "general tax name plural"
 msgid "Editors"
 msgstr "编辑器"
@@ -1941,19 +1855,19 @@ msgstr "封面画家"
 
 #: includes/class-mbm-book-cpt.php:255
 msgid "Narrator"
-msgstr ""
+msgstr "叙述者"
 
 #: includes/class-mbm-book-cpt.php:255
 msgid "Narrators"
-msgstr ""
+msgstr "叙述者"
 
 #: includes/class-mbm-book-cpt.php:265
 msgid "Translator"
-msgstr ""
+msgstr "译者"
 
 #: includes/class-mbm-book-cpt.php:265
 msgid "Translators"
-msgstr ""
+msgstr "译者"
 
 #: includes/class-mbm-book-cpt.php:312
 msgid "— No Change —"
@@ -2021,12 +1935,12 @@ msgstr "删除评论"
 
 #: includes/class-mbm-book-cpt.php:494
 msgid "Reviewer Name"
-msgstr "Reviewer Name"
+msgstr "评论者的名字"
 
 #: includes/class-mbm-book-cpt.php:502
 msgctxt "noun: URL to book review"
 msgid "Review Link"
-msgstr "Review Link"
+msgstr "评论链接"
 
 #: includes/class-mbm-book-cpt.php:513
 msgctxt "noun: name of website of book review"
@@ -2049,24 +1963,17 @@ msgid ""
 msgstr "您希望在页面上显示的任何其他信息。将显示在页面底部，之后的评论。"
 
 #: includes/class-mbm-book-cpt.php:572
-#, fuzzy
-#| msgid "Format"
 msgid "Formats"
 msgstr "格式"
 
 #: includes/class-mbm-book-cpt.php:583
-#, fuzzy
-#| msgid ""
-#| "List the details of your book's hardcover, paperback, and e-book "
-#| "editions.  Editions are completely optional. If you choose to enter an "
-#| "edition, only the format field is required."
 msgid ""
 "List the details of your book's hardcover, paperback, and e-book editions.  "
 "This is completely optional. If you choose to enter any, only the format "
 "field is required."
 msgstr ""
-"列出你的书的精装本、平装本和电子书版本的详细信息。版本是完全可选的。如果选择"
-"输入版本，则只需要输入格式字段。"
+"列出你的书的精装本、平装本和电子书版本的详细信息。这是完全可选的。如果选择输"
+"入any，则只需要输入format字段。"
 
 #: includes/class-mbm-book-cpt.php:601
 msgctxt "noun: format of a book"
@@ -2083,11 +1990,11 @@ msgstr "EAN/ISBN"
 
 #: includes/class-mbm-book-cpt.php:618
 msgid "DOI (Digital Object Identifier)"
-msgstr ""
+msgstr "DOI(数字对象标识符)"
 
 #: includes/class-mbm-book-cpt.php:626
 msgid "SKU"
-msgstr ""
+msgstr "SKU"
 
 #: includes/class-mbm-book-cpt.php:633
 msgid "Language"
@@ -2164,14 +2071,12 @@ msgid "Reedsy Discovery Link"
 msgstr "Reedsy Discovery链接"
 
 #: includes/class-mbm-book-cpt.php:831
-#, fuzzy
-#| msgid "Before Book Link"
 msgid "Google Books Link"
-msgstr "前一本书链接"
+msgstr "谷歌图书链接"
 
 #: includes/class-mbm-book-cpt.php:844
 msgid "(leave blank if not part of a series)"
-msgstr "(leave blank if not part of a series)"
+msgstr "(如果不是系列的一部分，请留空)"
 
 #: includes/class-mbm-book-cpt.php:861
 msgctxt "noun: URLs to book retailers"
@@ -2245,13 +2150,13 @@ msgstr "网站"
 
 #: includes/class-mbm-book-cpt.php:1051
 msgid "Book Grid Description"
-msgstr "图书网格描述Book Grid Description"
+msgstr "图书网格描述"
 
 #: includes/class-mbm-book-cpt.php:1052
 msgid ""
 "The Book Grid Description is displayed above the auto-generated grid for "
 "this page, ex. "
-msgstr " “图书网格描述”显示在本页自动生成网格的上方，例如:"
+msgstr " “图书网格描述”显示在本页自动生成网格的上方，例如: "
 
 #: includes/class-mbm-book-cpt.php:1080
 msgid "Book Grid Description (Bottom)"
@@ -2261,12 +2166,12 @@ msgstr "图书网格描述(底部)"
 msgid ""
 "The Book Grid Description is displayed below the auto-generated grid for "
 "this page, ex. "
-msgstr " “图书网格描述”显示在本页自动生成的网格下面，例如:"
+msgstr " “图书网格描述”显示在本页自动生成的网格下面，例如: "
 
 #: includes/class-mbm-book-cpt.php:1426
 #, php-format
 msgid "Editions require at least the format. Please check edition #%s."
-msgstr "Editions require at least the format. Please check edition #%s."
+msgstr "版本至少需要这种格式。请检查版本  #%s."
 
 #: includes/class-mbm-book-cpt.php:1448
 #, php-format
@@ -2318,7 +2223,7 @@ msgstr[0] "在%s类型"
 #: includes/class-mbm-book-cpt.php:1591
 #, php-format
 msgid "Available from %s."
-msgstr "genresa可从%s中获得。."
+msgstr "genresa可从%s中获得."
 
 #: includes/class-mbm-book-cpt.php:1610 includes/class-mbm-book-cpt.php:1737
 #: includes/class-mbm-book-grid.php:855 includes/class-mbm-widget.php:236
@@ -2360,16 +2265,12 @@ msgid "Add to Reedsy"
 msgstr "加入Reedsy"
 
 #: includes/class-mbm-book-cpt.php:1938
-#, fuzzy
-#| msgid "View on Goodreads"
 msgid "View on Google Books"
-msgstr "对好书的看法"
+msgstr "查看谷歌图书对好书的看法"
 
 #: includes/class-mbm-book-cpt.php:1955
-#, fuzzy
-#| msgid "Add to Goodreads"
 msgid "Add to Google Books"
-msgstr "加入Goodreads"
+msgstr "添加到谷歌图书加入Goodreads"
 
 #: includes/class-mbm-book-cpt.php:2043
 msgid "READ MORE"
@@ -2406,7 +2307,7 @@ msgstr "一部分 "
 
 #: includes/class-mbm-book-cpt.php:2471
 msgid " series:"
-msgstr "系列 "
+msgstr "系列:"
 
 #: includes/class-mbm-book-cpt.php:2642
 msgid ":"
@@ -2422,15 +2323,15 @@ msgstr ""
 
 #: includes/class-mbm-book-cpt.php:2654
 msgid "ISBN:"
-msgstr ""
+msgstr "DOI:"
 
 #: includes/class-mbm-book-cpt.php:2657
 msgid "DOI:"
-msgstr ""
+msgstr "DOI:"
 
 #: includes/class-mbm-book-cpt.php:2660
 msgid "SKU:"
-msgstr ""
+msgstr "SKU:"
 
 #: includes/class-mbm-book-cpt.php:2663
 msgid "Size:"
@@ -2446,11 +2347,11 @@ msgstr "回到网格"
 
 #: includes/class-mbm-book-cpt.php:2776
 msgid "Part of the"
-msgstr "Part of the"
+msgstr "部分"
 
 #: includes/class-mbm-book-cpt.php:2776
 msgid "series:"
-msgstr "series:"
+msgstr "系列:"
 
 #: includes/class-mbm-book-cpt.php:2782
 msgid "Editions:"
@@ -2477,14 +2378,12 @@ msgid "Cover Artists:"
 msgstr "封面画家:"
 
 #: includes/class-mbm-book-cpt.php:2871
-#, fuzzy
-#| msgid "Illustrators:"
 msgid "Narrators:"
-msgstr "插图画家:"
+msgstr "叙述者:"
 
 #: includes/class-mbm-book-cpt.php:2876
 msgid "Translators:"
-msgstr ""
+msgstr "翻译:"
 
 #: includes/class-mbm-book-cpt.php:2883
 msgid "Genres:"
@@ -2536,7 +2435,7 @@ msgstr "选择出版商"
 
 #: includes/class-mbm-book-grid-cpt.php:96
 msgid "Select "
-msgstr ""
+msgstr "选择"
 
 #: includes/class-mbm-book-grid-cpt.php:105
 msgid "Publication Date (oldest first)"
@@ -2570,7 +2469,7 @@ msgstr "展出书籍"
 #: includes/class-mbm-book-grid-cpt.php:177
 #, php-format
 msgid "Select %s"
-msgstr ""
+msgstr "选择 %s"
 
 #: includes/class-mbm-book-grid-cpt.php:259
 msgid "Group Books By"
@@ -2610,7 +2509,7 @@ msgstr "显示预览"
 
 #: includes/class-mbm-book-grid-cpt.php:378
 msgid "Copy this code into a page, blog post, etc. to display this book grid."
-msgstr "Copy this code into a page, blog post, etc. to display this book grid."
+msgstr "将此代码复制到页面、博客文章等中，以显示此图书网格。"
 
 #: includes/class-mbm-book-grid-cpt.php:409
 msgid ""
@@ -2820,12 +2719,12 @@ msgstr "MBM税务网格页面。请勿删除或编辑此页，除非更改模板
 
 #: includes/class-mbm-helper-functions.php:789
 msgid "Title"
-msgstr "Título"
+msgstr "标题"
 
 #: includes/class-mbm-helper-functions.php:814
 #: includes/class-mbm-helper-functions.php:822
 msgid "Information not available"
-msgstr ""
+msgstr "信息不可用"
 
 #: includes/class-mbm-options.php:401
 msgid "Abkhazian"
@@ -2833,675 +2732,675 @@ msgstr "阿布哈西亚人"
 
 #: includes/class-mbm-options.php:402
 msgid "Afar"
-msgstr ""
+msgstr "阿法尔语"
 
 #: includes/class-mbm-options.php:403
 msgid "Afrikaans"
-msgstr ""
+msgstr "南非荷兰语"
 
 #: includes/class-mbm-options.php:404
 msgid "Albanian"
-msgstr ""
+msgstr "阿尔巴尼亚语"
 
 #: includes/class-mbm-options.php:405
 msgid "Amharic"
-msgstr ""
+msgstr "阿姆哈拉语"
 
 #: includes/class-mbm-options.php:406
 msgid "Arabic"
-msgstr ""
+msgstr "阿拉伯语"
 
 #: includes/class-mbm-options.php:407
 msgid "Armenian"
-msgstr ""
+msgstr "亚美尼亚语"
 
 #: includes/class-mbm-options.php:408
 msgid "Assamese"
-msgstr ""
+msgstr "阿萨姆语"
 
 #: includes/class-mbm-options.php:409
 msgid "Aymara"
-msgstr ""
+msgstr "艾马拉语"
 
 #: includes/class-mbm-options.php:410
 msgid "Azerbaijani"
-msgstr ""
+msgstr "阿塞拜疆语"
 
 #: includes/class-mbm-options.php:411
 msgid "Bashkir"
-msgstr ""
+msgstr "巴斯克语"
 
 #: includes/class-mbm-options.php:412
 msgid "Basque"
-msgstr ""
+msgstr "巴斯克语"
 
 #: includes/class-mbm-options.php:413
 msgid "Bengali, Bangla"
-msgstr ""
+msgstr "孟加拉语"
 
 #: includes/class-mbm-options.php:414
 msgid "Bhutani"
-msgstr ""
+msgstr "不丹语"
 
 #: includes/class-mbm-options.php:415
 msgid "Bihari"
-msgstr ""
+msgstr "（印度）比哈尔语"
 
 #: includes/class-mbm-options.php:416
 msgid "Bislama"
-msgstr ""
+msgstr "比斯拉马语"
 
 #: includes/class-mbm-options.php:417
 msgid "Bosnian"
-msgstr ""
+msgstr "波斯尼亚语"
 
 #: includes/class-mbm-options.php:418
 msgid "Breton"
-msgstr ""
+msgstr "布列塔尼语"
 
 #: includes/class-mbm-options.php:419
 msgid "Bulgarian"
-msgstr ""
+msgstr "保加利亚语"
 
 #: includes/class-mbm-options.php:420
 msgid "Burmese"
-msgstr ""
+msgstr "缅甸语"
 
 #: includes/class-mbm-options.php:421
 msgid "Byelorussian"
-msgstr ""
+msgstr "白俄罗斯语"
 
 #: includes/class-mbm-options.php:422
 msgid "Cambodian"
-msgstr ""
+msgstr "柬埔寨语"
 
 #: includes/class-mbm-options.php:423
 msgid "Catalan"
-msgstr ""
+msgstr "加泰罗尼亚语"
 
 #: includes/class-mbm-options.php:424
 msgid "Chinese"
-msgstr ""
+msgstr "中文"
 
 #: includes/class-mbm-options.php:425
 msgid "Corsican"
-msgstr ""
+msgstr "柯西嘉语"
 
 #: includes/class-mbm-options.php:426
 msgid "Croatian"
-msgstr ""
+msgstr "克罗地亚语"
 
 #: includes/class-mbm-options.php:427
 msgid "Czech"
-msgstr ""
+msgstr "捷克语"
 
 #: includes/class-mbm-options.php:428
 msgid "Danish"
-msgstr ""
+msgstr "丹麦语"
 
 #: includes/class-mbm-options.php:429
 msgid "Dutch"
-msgstr ""
+msgstr "荷兰语"
 
 #: includes/class-mbm-options.php:430
 msgid "English"
-msgstr ""
+msgstr "英语"
 
 #: includes/class-mbm-options.php:431
 msgid "Esperanto"
-msgstr ""
+msgstr "世界语"
 
 #: includes/class-mbm-options.php:432
 msgid "Estonian"
-msgstr ""
+msgstr "爱沙尼亚语"
 
 #: includes/class-mbm-options.php:433
 msgid "Faeroese"
-msgstr ""
+msgstr "法罗语"
 
 #: includes/class-mbm-options.php:434
 msgid "Fiji"
-msgstr ""
+msgstr "斐济语"
 
 #: includes/class-mbm-options.php:435
 msgid "Finnish"
-msgstr ""
+msgstr "芬兰语"
 
 #: includes/class-mbm-options.php:436
 msgid "French"
-msgstr ""
+msgstr "法语"
 
 #: includes/class-mbm-options.php:437
 msgid "Frisian"
-msgstr ""
+msgstr "弗里西亚语"
 
 #: includes/class-mbm-options.php:438
 msgid "Gaelic (Scots Gaelic)"
-msgstr ""
+msgstr "苏格兰盖尔语"
 
 #: includes/class-mbm-options.php:439
 msgid "Galician"
-msgstr ""
+msgstr "加利西亚语"
 
 #: includes/class-mbm-options.php:440
 msgid "Georgian"
-msgstr ""
+msgstr "格鲁吉亚语"
 
 #: includes/class-mbm-options.php:441
 msgid "German"
-msgstr ""
+msgstr "德语"
 
 #: includes/class-mbm-options.php:442
 msgid "Greek"
-msgstr ""
+msgstr "希腊语"
 
 #: includes/class-mbm-options.php:443
 msgid "Greenlandic"
-msgstr ""
+msgstr "格陵兰语"
 
 #: includes/class-mbm-options.php:444
 msgid "Guarani"
-msgstr ""
+msgstr "瓜拉尼语"
 
 #: includes/class-mbm-options.php:445
 msgid "Gujarati"
-msgstr ""
+msgstr "古吉拉特语"
 
 #: includes/class-mbm-options.php:446
 msgid "Hausa"
-msgstr ""
+msgstr "豪萨语"
 
 #: includes/class-mbm-options.php:447
 msgid "Hebrew"
-msgstr ""
+msgstr "希伯来语"
 
 #: includes/class-mbm-options.php:448
 msgid "Hindi"
-msgstr ""
+msgstr "北印度语"
 
 #: includes/class-mbm-options.php:449
 msgid "Hungarian"
-msgstr ""
+msgstr "匈牙利语"
 
 #: includes/class-mbm-options.php:450
 msgid "Icelandic"
-msgstr ""
+msgstr "冰岛语"
 
 #: includes/class-mbm-options.php:451
 msgid "Indonesian"
-msgstr ""
+msgstr "印度尼西亚语"
 
 #: includes/class-mbm-options.php:452
 msgid "Interlingua"
-msgstr ""
+msgstr "国际语"
 
 #: includes/class-mbm-options.php:453
 msgid "Interlingue"
-msgstr ""
+msgstr "国际语"
 
 #: includes/class-mbm-options.php:454
 msgid "Inupiak"
-msgstr ""
+msgstr "因纽必语"
 
 #: includes/class-mbm-options.php:455
 msgid "Irish"
-msgstr ""
+msgstr "意大利语"
 
 #: includes/class-mbm-options.php:456
 msgid "Italian"
-msgstr ""
+msgstr "意大利语"
 
 #: includes/class-mbm-options.php:457
 msgid "Japanese"
-msgstr ""
+msgstr "日语"
 
 #: includes/class-mbm-options.php:458
 msgid "Javanese"
-msgstr ""
+msgstr "爪哇语"
 
 #: includes/class-mbm-options.php:459
 msgid "Kannada"
-msgstr ""
+msgstr "坎纳达语"
 
 #: includes/class-mbm-options.php:460
 msgid "Kashmiri"
-msgstr ""
+msgstr "克什米尔语"
 
 #: includes/class-mbm-options.php:461
 msgid "Kazakh"
-msgstr ""
+msgstr "哈萨克语"
 
 #: includes/class-mbm-options.php:462
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "卢旺达语"
 
 #: includes/class-mbm-options.php:463
 msgid "Kirghiz"
-msgstr ""
+msgstr "吉尔吉斯语"
 
 #: includes/class-mbm-options.php:464
 msgid "Kirundi"
-msgstr ""
+msgstr "基隆迪语"
 
 #: includes/class-mbm-options.php:465
 msgid "Korean"
-msgstr ""
+msgstr "韩国语"
 
 #: includes/class-mbm-options.php:466
 msgid "Kurdish"
-msgstr ""
+msgstr "库尔德语"
 
 #: includes/class-mbm-options.php:467
 msgid "Laothian"
-msgstr ""
+msgstr "老挝语"
 
 #: includes/class-mbm-options.php:468
 msgid "Latin"
-msgstr ""
+msgstr "拉丁语"
 
 #: includes/class-mbm-options.php:469
 msgid "Latvian, Lettish"
-msgstr ""
+msgstr "拉脱维亚语"
 
 #: includes/class-mbm-options.php:470
 msgid "Lingala"
-msgstr ""
+msgstr "林加拉语"
 
 #: includes/class-mbm-options.php:471
 msgid "Lithuanian"
-msgstr ""
+msgstr "立陶宛语"
 
 #: includes/class-mbm-options.php:472
 msgid "Macedonian"
-msgstr ""
+msgstr "马其顿语"
 
 #: includes/class-mbm-options.php:473
 msgid "Malagasy"
-msgstr ""
+msgstr "马达加斯加语"
 
 #: includes/class-mbm-options.php:474
 msgid "Malay"
-msgstr ""
+msgstr "马来语"
 
 #: includes/class-mbm-options.php:475
 msgid "Malayalam"
-msgstr ""
+msgstr "马拉雅拉姆语"
 
 #: includes/class-mbm-options.php:476
 msgid "Maltese"
-msgstr ""
+msgstr "马耳他语"
 
 #: includes/class-mbm-options.php:477
 msgid "Maori"
-msgstr ""
+msgstr "毛利语"
 
 #: includes/class-mbm-options.php:478
 msgid "Marathi"
-msgstr ""
+msgstr "马拉地语"
 
 #: includes/class-mbm-options.php:479
 msgid "Moldavian"
-msgstr ""
+msgstr "摩尔达维亚语"
 
 #: includes/class-mbm-options.php:480
 msgid "Mongolian"
-msgstr ""
+msgstr "蒙古语"
 
 #: includes/class-mbm-options.php:481
 msgid "Nauru"
-msgstr ""
+msgstr "诺鲁文"
 
 #: includes/class-mbm-options.php:482
 msgid "Nepali"
-msgstr ""
+msgstr "尼泊尔语"
 
 #: includes/class-mbm-options.php:483
 msgid "Norwegian"
-msgstr ""
+msgstr "挪威语"
 
 #: includes/class-mbm-options.php:484
 msgid "Occitan"
-msgstr ""
+msgstr "奥克西唐语"
 
 #: includes/class-mbm-options.php:485
 msgid "Oriya"
-msgstr ""
+msgstr "奥里雅语"
 
 #: includes/class-mbm-options.php:486
 msgid "Oromo, Afan"
-msgstr ""
+msgstr "奥罗莫语"
 
 #: includes/class-mbm-options.php:487
 msgid "Pashto, Pushto"
-msgstr ""
+msgstr "普什图语"
 
 #: includes/class-mbm-options.php:488
 msgid "Persian"
-msgstr ""
+msgstr "波斯语"
 
 #: includes/class-mbm-options.php:489
 msgid "Polish"
-msgstr ""
+msgstr "波兰语"
 
 #: includes/class-mbm-options.php:490
 msgid "Portuguese"
-msgstr ""
+msgstr "葡萄牙语"
 
 #: includes/class-mbm-options.php:491
 msgid "Punjabi"
-msgstr ""
+msgstr "旁遮普语"
 
 #: includes/class-mbm-options.php:492
 msgid "Quechua"
-msgstr ""
+msgstr "盖丘亚语"
 
 #: includes/class-mbm-options.php:493
 msgid "Rhaeto-Romance"
-msgstr ""
+msgstr "雷提亚罗曼语诸方言"
 
 #: includes/class-mbm-options.php:494
 msgid "Romanian"
-msgstr ""
+msgstr "罗马尼亚语"
 
 #: includes/class-mbm-options.php:495
 msgid "Russian"
-msgstr ""
+msgstr "萨摩亚语"
 
 #: includes/class-mbm-options.php:496
 msgid "Samoan"
-msgstr ""
+msgstr "萨摩亚语"
 
 #: includes/class-mbm-options.php:497
 msgid "Sangro"
-msgstr ""
+msgstr "桑戈语"
 
 #: includes/class-mbm-options.php:498
 msgid "Sanskrit"
-msgstr ""
+msgstr "梵文"
 
 #: includes/class-mbm-options.php:499
 msgid "Serbian"
-msgstr ""
+msgstr "塞尔维亚语"
 
 #: includes/class-mbm-options.php:500
 msgid "Serbo-Croatian"
-msgstr ""
+msgstr "塞尔维亚-克罗地亚语"
 
 #: includes/class-mbm-options.php:501
 msgid "Sesotho"
-msgstr ""
+msgstr "塞索托语"
 
 #: includes/class-mbm-options.php:502
 msgid "Setswana"
-msgstr ""
+msgstr "塞茨瓦纳语"
 
 #: includes/class-mbm-options.php:503
 msgid "Shona"
-msgstr ""
+msgstr "修纳语"
 
 #: includes/class-mbm-options.php:504
 msgid "Sindhi"
-msgstr ""
+msgstr "信德语"
 
 #: includes/class-mbm-options.php:505
 msgid "Singhalese"
-msgstr ""
+msgstr "僧伽罗语"
 
 #: includes/class-mbm-options.php:506
 msgid "Siswati"
-msgstr ""
+msgstr "斯威士语"
 
 #: includes/class-mbm-options.php:507
 msgid "Slovak"
-msgstr ""
+msgstr "斯洛伐克语"
 
 #: includes/class-mbm-options.php:508
 msgid "Slovenian"
-msgstr ""
+msgstr "斯洛维尼亚语"
 
 #: includes/class-mbm-options.php:509
 msgid "Somali"
-msgstr ""
+msgstr "索马里语"
 
 #: includes/class-mbm-options.php:510
 msgid "Spanish"
-msgstr ""
+msgstr "西班牙语"
 
 #: includes/class-mbm-options.php:511
 msgid "Sudanese"
-msgstr ""
+msgstr "苏丹语"
 
 #: includes/class-mbm-options.php:512
 msgid "Swahili"
-msgstr ""
+msgstr "斯瓦希里语"
 
 #: includes/class-mbm-options.php:513
 msgid "Swedish"
-msgstr ""
+msgstr "瑞典语"
 
 #: includes/class-mbm-options.php:514
 msgid "Tagalog"
-msgstr ""
+msgstr "塔加拉族语"
 
 #: includes/class-mbm-options.php:515
 msgid "Tajik"
-msgstr ""
+msgstr "塔吉克语"
 
 #: includes/class-mbm-options.php:516
 msgid "Tamil"
-msgstr ""
+msgstr "泰米尔语"
 
 #: includes/class-mbm-options.php:517
 msgid "Tatar"
-msgstr ""
+msgstr "鞑靼语"
 
 #: includes/class-mbm-options.php:518
 msgid "Tegulu"
-msgstr ""
+msgstr "泰卢固语"
 
 #: includes/class-mbm-options.php:519
 msgid "Thai"
-msgstr ""
+msgstr "泰国语"
 
 #: includes/class-mbm-options.php:520
 msgid "Tibetan"
-msgstr ""
+msgstr "藏语"
 
 #: includes/class-mbm-options.php:521
 msgid "Tigrinya"
-msgstr ""
+msgstr "提格里尼亚语"
 
 #: includes/class-mbm-options.php:522
 msgid "Tonga"
-msgstr ""
+msgstr "东加语"
 
 #: includes/class-mbm-options.php:523
 msgid "Tsonga"
-msgstr ""
+msgstr "聪加语"
 
 #: includes/class-mbm-options.php:524
 msgid "Turkish"
-msgstr ""
+msgstr "土耳其语"
 
 #: includes/class-mbm-options.php:525
 msgid "Turkmen"
-msgstr ""
+msgstr "土库曼语"
 
 #: includes/class-mbm-options.php:526
 msgid "Twi"
-msgstr ""
+msgstr "契维语"
 
 #: includes/class-mbm-options.php:527
 msgid "Ukrainian"
-msgstr ""
+msgstr "乌克兰语"
 
 #: includes/class-mbm-options.php:528
 msgid "Urdu"
-msgstr ""
+msgstr "乌尔都语"
 
 #: includes/class-mbm-options.php:529
 msgid "Uzbek"
-msgstr ""
+msgstr "乌兹别克语"
 
 #: includes/class-mbm-options.php:530
 msgid "Vietnamese"
-msgstr ""
+msgstr "越南语"
 
 #: includes/class-mbm-options.php:531
 msgid "Volapuk"
-msgstr ""
+msgstr "沃拉普克语"
 
 #: includes/class-mbm-options.php:532
 msgid "Welsh"
-msgstr ""
+msgstr "威尔士语"
 
 #: includes/class-mbm-options.php:533
 msgid "Wolof"
-msgstr ""
+msgstr "沃洛夫语"
 
 #: includes/class-mbm-options.php:534
 msgid "Xhosa"
-msgstr ""
+msgstr "班图语"
 
 #: includes/class-mbm-options.php:535
 msgid "Yiddish"
-msgstr ""
+msgstr "意第绪语"
 
 #: includes/class-mbm-options.php:536
 msgid "Yoruba"
-msgstr ""
+msgstr "约鲁巴人"
 
 #: includes/class-mbm-options.php:537
 msgid "Zulu"
-msgstr ""
+msgstr "祖鲁语"
 
 #: includes/class-mbm-options.php:567
 msgid "inches (in)"
-msgstr ""
+msgstr "英寸(in)"
 
 #: includes/class-mbm-options.php:568
 msgid "centimeters (cm)"
-msgstr ""
+msgstr "厘米(cm)"
 
 #: includes/class-mbm-options.php:569
 msgid "millimeters (mm)"
-msgstr ""
+msgstr "毫米(mm)"
 
 #: includes/class-mbm-options.php:589
 msgid "Australian Dollar"
-msgstr ""
+msgstr "澳元"
 
 #: includes/class-mbm-options.php:590
 msgid "Bosnian Mark"
-msgstr ""
+msgstr "波黑马克"
 
 #: includes/class-mbm-options.php:591
 msgid "Brazilian Real "
-msgstr ""
+msgstr "巴西雷亚尔 "
 
 #: includes/class-mbm-options.php:592
 msgid "Canadian Dollar"
-msgstr ""
+msgstr "加拿大元"
 
 #: includes/class-mbm-options.php:593
 msgid "Czech Koruna"
-msgstr ""
+msgstr "捷克克朗"
 
 #: includes/class-mbm-options.php:594
 msgid "Danish Krone"
-msgstr ""
+msgstr "丹麦克朗"
 
 #: includes/class-mbm-options.php:595
 msgid "Euro"
-msgstr ""
+msgstr "欧元"
 
 #: includes/class-mbm-options.php:596
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "港元"
 
 #: includes/class-mbm-options.php:597
 msgid "Hungarian Forint"
-msgstr ""
+msgstr "匈牙利福林"
 
 #: includes/class-mbm-options.php:598
 msgid "Indian Rupee"
-msgstr ""
+msgstr "印度卢比"
 
 #: includes/class-mbm-options.php:599
 msgid "Israeli New Sheqel"
-msgstr ""
+msgstr "以色列新谢克尔"
 
 #: includes/class-mbm-options.php:600
 msgid "Japanese Yen"
-msgstr ""
+msgstr "日元"
 
 #: includes/class-mbm-options.php:601
 msgid "Malaysian Ringgit"
-msgstr ""
+msgstr "马来西亚林吉特"
 
 #: includes/class-mbm-options.php:602
 msgid "Mexican Peso"
-msgstr ""
+msgstr "墨西哥比索"
 
 #: includes/class-mbm-options.php:603
 msgid "Nigerian Naira"
-msgstr ""
+msgstr "尼日利亚奈拉"
 
 #: includes/class-mbm-options.php:604
 msgid "Norwegian Krone"
-msgstr ""
+msgstr "挪威克朗"
 
 #: includes/class-mbm-options.php:605
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "新西兰元"
 
 #: includes/class-mbm-options.php:606
 msgid "Philippine Peso"
-msgstr ""
+msgstr "菲律宾比索"
 
 #: includes/class-mbm-options.php:607
 msgid "Polish Zloty"
-msgstr ""
+msgstr "波兰兹罗提"
 
 #: includes/class-mbm-options.php:608
 msgid "Russian Rube"
-msgstr ""
+msgstr "卢布"
 
 #: includes/class-mbm-options.php:609
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "新加坡元"
 
 #: includes/class-mbm-options.php:610
 msgid "South African Rand"
-msgstr ""
+msgstr "南非兰特"
 
 #: includes/class-mbm-options.php:611
 msgid "Swedish Krona"
-msgstr ""
+msgstr "瑞典克朗"
 
 #: includes/class-mbm-options.php:612
 msgid "Swiss Franc"
-msgstr ""
+msgstr "瑞士法郎"
 
 #: includes/class-mbm-options.php:613
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "新台币"
 
 #: includes/class-mbm-options.php:614
 msgid "Thai Baht"
-msgstr ""
+msgstr "泰铢"
 
 #: includes/class-mbm-options.php:615
 msgid "Turkish Lira"
-msgstr ""
+msgstr "土耳其里拉"
 
 #: includes/class-mbm-options.php:616
 msgid "U.K. Pound Sterling"
-msgstr ""
+msgstr "英镑"
 
 #: includes/class-mbm-options.php:617
 msgid "U.S. Dollar"
-msgstr ""
+msgstr "美元"
 
 #: includes/class-mbm-options.php:618
 msgid "Vietname đồng"
@@ -3509,29 +3408,23 @@ msgstr ""
 
 #: includes/class-mbm-publisher-cpt.php:28
 msgid "Publishers"
-msgstr "出版社"
+msgstr "出版商"
 
 #: includes/class-mbm-publisher-cpt.php:80
-#, fuzzy
-#| msgid "MBM Publishers Settings"
 msgid "Publisher Settings"
-msgstr "MBM出版商设置"
+msgstr "出版商设置"
 
 #: includes/class-mbm-publisher-cpt.php:96
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: includes/class-mbm-publisher-cpt.php:143
-#, fuzzy
-#| msgid "Website"
 msgid "Website: "
-msgstr "网站"
+msgstr "网站: "
 
 #: includes/class-mbm-publisher-cpt.php:149
-#, fuzzy
-#| msgid "Published by"
 msgid "Books Published By "
-msgstr "发表的"
+msgstr "书出版 By "
 
 #: includes/class-mbm-tax-grid-page.php:116
 msgid "There was an error!"
@@ -3567,40 +3460,33 @@ msgstr "书籍插图%s"
 #: includes/class-mbm-tax-grid-page.php:243
 #, php-format
 msgid "Book Covers By %s"
-msgstr "书的封面减少了%s"
+msgstr "书的封面 By %s"
 
 #: includes/class-mbm-tax-grid-page.php:246
 #, php-format
 msgid "Narrated By %s"
-msgstr ""
+msgstr "叙述 By %s"
 
 #: includes/class-mbm-tax-grid-page.php:249
-#, fuzzy, php-format
-#| msgid "Books Illustrated By %s"
+#, php-format
 msgid "Translated By %s"
-msgstr "书籍插图%s"
+msgstr "翻译 By %s"
 
 #: includes/class-mbm-tax-grid-page.php:255
 msgid "Not Found"
 msgstr "没有找到"
 
 #: includes/class-mbm-taxonomy.php:54
-#, fuzzy
-#| msgid "Search %s"
 msgid "Search "
-msgstr "搜索%s"
+msgstr "搜索 "
 
 #: includes/class-mbm-taxonomy.php:55
-#, fuzzy
-#| msgid "All %s"
 msgid "All "
-msgstr "所有%s"
+msgstr "所有 "
 
 #: includes/class-mbm-taxonomy.php:56
-#, fuzzy
-#| msgid "Parent %s"
 msgid "Parent "
-msgstr "父级%s"
+msgstr "父级 "
 
 #: includes/class-mbm-taxonomy.php:57
 #, php-format
@@ -3608,22 +3494,16 @@ msgid "Parent %s:"
 msgstr "父级%s:"
 
 #: includes/class-mbm-taxonomy.php:58
-#, fuzzy
-#| msgid "Edit"
 msgid "Edit "
-msgstr "编辑"
+msgstr "编辑 "
 
 #: includes/class-mbm-taxonomy.php:59
-#, fuzzy
-#| msgid "Update %s"
 msgid "Update "
-msgstr "更新%s"
+msgstr "更新 "
 
 #: includes/class-mbm-taxonomy.php:60
-#, fuzzy
-#| msgid "Add New"
 msgid "Add New "
-msgstr "添加新"
+msgstr " 添加新添加新 "
 
 #: includes/class-mbm-taxonomy.php:61
 #, php-format
@@ -3631,10 +3511,8 @@ msgid "New %s Name"
 msgstr "新的%s名称"
 
 #: includes/class-mbm-taxonomy.php:63
-#, fuzzy
-#| msgid "Popular %s"
 msgid "Popular "
-msgstr "受欢迎的%s"
+msgstr "受欢迎的 "
 
 #: includes/class-mbm-taxonomy.php:64
 #, php-format
@@ -3642,16 +3520,12 @@ msgid "Separate %s with commas"
 msgstr "用逗号分隔%s"
 
 #: includes/class-mbm-taxonomy.php:65
-#, fuzzy
-#| msgid "Add or remove %s"
 msgid "Add or remove "
-msgstr "添加或删除%s"
+msgstr "添加或删除 "
 
 #: includes/class-mbm-taxonomy.php:66
-#, fuzzy
-#| msgid "Choose from the most used %s"
 msgid "Choose from the most used "
-msgstr "从最常用的%s中选择"
+msgstr "选择最常用的 "
 
 #: includes/class-mbm-taxonomy.php:67
 #, php-format
@@ -3754,9 +3628,8 @@ msgid ""
 "go to the <a href=\"%s\" title=\"Go to Licenses page\">Licenses page</a> to "
 "correct this issue."
 msgstr ""
-"You have invalid or expired license keys for Mooberry Book Manager. Please "
-"go to the <a href=\"%s\" title=\"Go to Licenses page\">Licenses page</a> to "
-"correct this issue."
+"您的Mooberry图书管理器的许可证密钥无效或已过期。请到 <a href=\"%s\" title="
+"\"Go to Licenses page\">许可证页面</a> 纠正此问题。"
 
 #: includes/mooberry-dreams/software-licensing.php:530
 msgid "Enter valid license key for automatic updates."
@@ -3771,10 +3644,8 @@ msgid "Master Librarian"
 msgstr "掌握图书管理员"
 
 #: includes/plugin-functions.php:275
-#, fuzzy
-#| msgid "Book Manager"
 msgid "Manager"
-msgstr "Administrador de libros"
+msgstr "管理者"
 
 #: includes/plugin-functions.php:396
 msgid "Group Books Within"
@@ -3824,7 +3695,7 @@ msgstr ""
 
 #: includes/updates.php:76
 msgid "Migrate Book Grids Now"
-msgstr "Migrate Book Grids Now"
+msgstr "现在迁移图书网格"
 
 #: includes/updates.php:91
 msgid "New retailer logo images for Mooberry Book Manager are available. "
@@ -3902,14 +3773,10 @@ msgid "done!"
 msgstr "完成了!"
 
 #: includes/updates.php:1197
-#, fuzzy
-#| msgid ""
-#| "Mooberry Book Manager: Buy links for Apple Books currently being "
-#| "updated..."
 msgid ""
 "Mooberry Book Manager: Checking for duplicate publishers and correcting the "
 "issue..."
-msgstr "Mooberry图书管理器:购买链接的苹果图书目前正在更新…"
+msgstr "Mooberry图书管理器:检查重复的出版商和纠正问题…"
 
 #: includes/wp-background-processing/classes/wp-background-process.php:424
 #, php-format
