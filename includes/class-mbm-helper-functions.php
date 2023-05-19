@@ -80,9 +80,11 @@ class Mooberry_Book_Manager_Helper_Functions {
 			$type = 'updated';
 		}
 
-		$notices         = get_option( 'mbdb_admin_notices', array() );
+		$admin_manager = new Mooberry_Dreams_Admin_Notice_Manager('mbdb_admin_notice_manager');
+		/*$notices         = get_option( 'mbdb_admin_notices', array() );
 		$notices[ $key ] = array( 'message' => $message, 'type' => $type );
-		update_option( 'mbdb_admin_notices', $notices );
+		update_option( 'mbdb_admin_notices', $notices );*/
+		$admin_manager->add_new($message, $type, $key);
 	}
 
 	public function remove_admin_notice( $key ) {
@@ -94,6 +96,8 @@ class Mooberry_Book_Manager_Helper_Functions {
 			}
 			update_option( 'mbdb_admin_notices', $mbdb_admin_notices );
 		}
+		$admin_manager = new Mooberry_Dreams_Admin_Notice_Manager('mbdb_admin_notice_manager');
+		$admin_manager->dismiss($key);
 	}
 
 	// makes each property of the object a key in the array
