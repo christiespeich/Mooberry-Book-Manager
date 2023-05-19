@@ -23,7 +23,20 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 
 		// initialize
 		parent::__construct();
+		$this->post_type = 'mbdb_book_grid';
 
+
+		$this->args = array(
+			'show_in_nav_menus'	=>	false,
+			'query_var'	=>	false,
+			'menu_icon' => 'dashicons-screenoptions',
+			'show_in_admin_bar'	=> true,
+			'publicly_queryable' => false,
+			'exclude_from_search'	=> true,
+			'can_export'	=> true,
+			'capability_type' => array( 'mbdb_book_grid', 'mbdb_book_grids' ),
+			'supports' => array( 'title' ),
+		);
 
 
 		add_action( 'add_meta_boxes', array( $this, 'placeholder_metabox'), 10 );
@@ -42,26 +55,13 @@ class Mooberry_Book_Manager_Book_Grid_CPT extends Mooberry_Book_Manager_CPT {
 	}
 
 	public function register() {
-			$this->post_type = 'mbdb_book_grid';
 		$this->singular_name = __('Book Grid', 'mooberry-book-manager');
 		$this->plural_name = __('Book Grids', 'mooberry-book-manager');
 
-
-		$this->args = array(
-			'show_in_nav_menus'	=>	false,
-			'query_var'	=>	false,
-			'menu_icon' => 'dashicons-screenoptions',
-			'show_in_admin_bar'	=> true,
-			'publicly_queryable' => false,
-			'exclude_from_search'	=> true,
-			'can_export'	=> true,
-			'capability_type' => array( 'mbdb_book_grid', 'mbdb_book_grids' ),
-			'supports' => array( 'title' ),
-		);
 		parent::register();
 	}
 
-function set_custom_columns($columns) {
+	function set_custom_columns($columns) {
 	$date_column = $columns['date'];
 	unset( $columns['date'] );
 	$columns['shortcode'] = __( 'Shortcode', 'mooberry-book-manager' );

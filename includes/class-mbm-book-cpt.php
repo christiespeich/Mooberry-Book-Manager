@@ -25,6 +25,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		parent::__construct();
 
 
+		$this->singular_name           = __( 'Book', 'mooberry-book-manager' );
+		$this->plural_name             = __( 'Books', 'mooberry-book-manager' );
+		$this->default_single_template = MBDB()->options->book_page_template;
 
 		// let individual CPTs choose whether to add post class?
 		add_filter( 'post_class', array( $this, 'add_post_class' ) );
@@ -103,11 +106,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 	}
 
 	public function register() {
-			$this->post_type               = 'mbdb_book';
-		$this->singular_name           = __( 'Book', 'mooberry-book-manager' );
-		$this->plural_name             = __( 'Books', 'mooberry-book-manager' );
-		$this->default_single_template = MBDB()->options->book_page_template;
 
+		$this->post_type = 'mbdb_book';
 
 		$this->set_up_taxonomies();
 
@@ -121,7 +121,7 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 			'show_in_rest'    => true,
 			'rest_base'       => 'books',
 			'can_export'      => false,
-			'has_archive'	=> true,
+			'has_archive'     => true,
 		);
 
 
