@@ -25,8 +25,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		parent::__construct();
 
 
-		$this->singular_name           = __( 'Book', 'mooberry-book-manager' );
-		$this->plural_name             = __( 'Books', 'mooberry-book-manager' );
+		$this->post_type = 'mbdb_book';
+
+
 		$this->default_single_template = MBDB()->options->book_page_template;
 
 		// let individual CPTs choose whether to add post class?
@@ -107,8 +108,9 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 
 	public function register() {
 
-		$this->post_type = 'mbdb_book';
 
+		$this->singular_name           = __( 'Book', 'mooberry-book-manager' );
+		$this->plural_name             = __( 'Books', 'mooberry-book-manager' );
 		$this->set_up_taxonomies();
 
 		$this->args = array(
