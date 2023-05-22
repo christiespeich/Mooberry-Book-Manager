@@ -247,6 +247,10 @@ function mbdb_update_versions() {
 		mbdb_update_4_14_5();
 	}
 
+	if ( version_compare( $current_version, '4.14.16', '<' ) ) {
+		mbdb_update_4_14_16();
+	}
+
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
 
@@ -1258,3 +1262,20 @@ function mbdb_update_4_14_5() {
 
 }
 
+function mbdb_update_4_14_16() {
+	// ensure this only runs once
+	if ( get_option( 'mbdb_update_4_14_16' ) != false ) {
+		return;
+	}
+	update_option( 'mbdb_update_4_14_16', 'true' );
+	global $wpdb;
+	$post_ids = $wpdb->get_col("select ID from $wpdb->posts where post_type='mbdb_book' and post_content =''");
+	foreach ( $post_ids as $post_id ) {
+		MBDB()->book_content_update_fix_process->push_to_queue($post_id);
+	}
+	MBDB()->book_content_update_fix_process->save();
+	MBDB()->book_content_update_fix_process->dispatch();
+	$wpdb->update($wpdb->prefix . 'posts', array('post_content' => '[mbdb_publisher]'), array('post_type'=>'mbdb_publisher'));
+
+
+}

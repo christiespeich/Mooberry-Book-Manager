@@ -6,7 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
- *  Version: 4.14.15
+ *  Version: 4.14.16
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
 
-	define( 'MBDB_PLUGIN_VERSION', '4.14.15' );
+	define( 'MBDB_PLUGIN_VERSION', '4.14.16' );
 
 }
 
@@ -116,6 +116,8 @@ final class Mooberry_Book_Manager {
 	public $options;
 
 	public $publisher_update_fix_process;
+	public $book_content_update_fix_process;
+	public $publisher_content_update_fix_process;
 
 
 	/**
@@ -179,6 +181,9 @@ final class Mooberry_Book_Manager {
 			}
 
 			MBDB()->publisher_update_fix_process = new MBDB_Publisher_Update_Fix_Process();
+			MBDB()->book_content_update_fix_process = new MBDB_Book_Content_Update_Fix_Process();
+
+
 
 
 
@@ -358,6 +363,7 @@ final class Mooberry_Book_Manager {
 		require_once MBDB_PLUGIN_DIR . 'includes/mooberry-dreams/class-background-process.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-import-books-csv-process.php';
 		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-book-csv-importer.php';
+		require_once MBDB_PLUGIN_DIR . 'includes/admin/class-book-content-update-fix-process.php';
 
 
 	}
