@@ -189,6 +189,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 
 == Changelog ==
 
+= 4.14.16 =
+* Fixed: retro-fix books added since 4.14.13 update
+
 = 4.14.15 =
 * Fixed: Actually fixed the bug from 4.14.13 for books, not just publishers and book grids
 
