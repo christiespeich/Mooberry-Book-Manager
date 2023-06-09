@@ -42,6 +42,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	 protected $current_page;
 	 protected $books_per_page;
 	 protected $wp_size;
+	 protected $group_descriptions;
+	 protected $group_bottom_descriptions;
+	 protected $display_group_descriptions;
+	 protected $display_group_bottom_descriptions;
 
 	 // id can be id number or an array of options
 	 public function __construct( $id = 0 ) {
@@ -79,6 +83,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		 $this->book_list      = null;
 		 $this->current_page   = 1;
 		 $this->books_per_page = 0;
+		 $this->group_descriptions = array();
+		 $this->group_bottom_descriptions = array();
+		 $this->display_group_descriptions = array();
+		 $this->display_group_bottom_descriptions = array();
 
 		 $this->set_cover_height();
 
@@ -95,6 +103,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			 $this->selection = $book_grid->filter_selection;
 
 			 $this->set_group_by( $book_grid );
+			 $this->display_group_descriptions = $book_grid->display_group_descriptions;
+			 $this->display_group_bottom_descriptions = $book_grid->display_group_bottom_descriptions;
 
 			 $this->order_custom = $book_grid->order_custom;
 			 $this->set_order_by( $book_grid->order_by );
@@ -572,12 +582,31 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				 //$heading = $taxonomy->labels->singular_name . ': ' . $term->name;
 				 $heading = sprintf( _x( '%1$s: %2$s', '%1$s is the taxonomy name (Genre, Tag, etc.) and %2$s is the item ( romance, mystery, etc. )', 'mooberry-book-manager' ), $taxonomy->labels->singular_name, $term->name );
 				 //	}
-				 $books[ apply_filters( 'mbdb_book_grid_heading', $heading ) ] = $results;
+				 $filtered_heading = apply_filters( 'mbdb_book_grid_heading', $heading );
+				 $books[   $filtered_heading ] = $results;
+
+				 // get descriptions
+				 if (array_key_exists($level, $this->display_group_descriptions) ) {
+					 $this->group_descriptions[ $filtered_heading ]        = $this->display_group_descriptions[ $level ] == 'yes' ? get_term_meta( $term->term_id, 'mbdb_tax_grid_description', true ) : '';
+					 $this->group_bottom_descriptions[ $filtered_heading ] = $this->display_group_bottom_descriptions[ $level ] == 'yes' ? get_term_meta( $term->term_id, 'mbdb_tax_grid_description_bottom', true ) : '';
+				 }
 			 }
 		 }
 
 		 return $books;
 	 }
+
+	 protected function get_wysiwyg_output( $content ) {
+		global $wp_embed;
+
+		$content = $wp_embed->autoembed( $content );
+		$content = $wp_embed->run_shortcode( $content );
+		$content = wpautop( $content );
+		$content = do_shortcode( $content );
+
+
+		return $content;
+	}
 
 	 /**
 	  * Magic __get function to dispatch a call to retrieve a private property
@@ -733,7 +762,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					 if ( $label && count( $book_list ) > 0 ) {
 						 // set the heading level based on the depth level of the array
 						 do_action( 'mbdb_book_grid_pre_heading', $l, $label );
-						 $content = apply_filters('mbdb_book_grid_pre_heading_content', $content, $l, $label);
+						 $content = apply_filters( 'mbdb_book_grid_pre_heading_content', $content, $l, $label );
 						 // start the headings at H2
 						 $heading_level = $l + 2;
 						 // Headings can only go to H6
@@ -743,7 +772,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						 // display the heading
 						 $content .= '<h' . $heading_level . ' class="mbm-book-grid-heading' . ( $l + 1 ) . '">' . esc_html( $label ) . '</h' . $heading_level . '>';
 						 do_action( 'mbdb_book_grid_post_heading', $l, $label );
-						 $content = apply_filters('mbdb_book_grid_post_heading_content', $content, $l, $label);
+						 $content = apply_filters( 'mbdb_book_grid_post_heading_content', $content, $l, $label );
+					 }
+
+					 if ( array_key_exists( $label, $this->group_descriptions ) ) {
+						  $description = $this->get_wysiwyg_output($this->group_descriptions[ $label ] );
+						 $content .= '<div class="mbm-book-grid-description mbm-book-grid-description-' . $l + 1 . '">' . $description . '</div>';
+						 $content = apply_filters( 'mbdb_book_grid_post_description_content', $content, $l, $this->group_descriptions[ $label ] );
 					 }
 
 					 if ( gettype( $book_list ) == 'array' ) {
@@ -757,6 +792,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							 $content .= $this->display_book_list( $book_list );
 
 						 }
+					 }
+					 if ( array_key_exists( $label, $this->group_bottom_descriptions ) ) {
+						 $bottom_description = $this->get_wysiwyg_output($this->group_bottom_descriptions[ $label ] );
+						 $content .= '<div class="mbm-book-grid-bottom-description mbm-book-grid-bottom-description-' . $l + 1 . '">' . $bottom_description . '</div>';
+						 $content = apply_filters( 'mbdb_book_grid_post_bottom_description_content', $content, $l, $this->group_bottom_descriptions[ $label ] );
 					 }
 				 }
 			 }

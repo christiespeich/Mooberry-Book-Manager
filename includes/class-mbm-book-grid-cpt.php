@@ -275,6 +275,27 @@ function display_custom_columns( $column, $post_id ) {
 
 			$mbdb_book_grid_metabox->add_field( $args );
 
+			$mbdb_book_grid_metabox->add_field( array(
+					'name'	=>	__('Display Book Grid Description?', 'mooberry-book-manager'),
+					'id'	=>	'_mbdb_book_grid_description_group_by_level_' . $x,
+					'type'	=>	'select',
+					'options'	=>	array(
+						'no'	=>	__('No','mooberry-book-manager'),
+					'yes'	=> __('Yes','mooberry-book-manager'),
+
+				),
+			) );
+
+			$mbdb_book_grid_metabox->add_field( array(
+					'name'	=>	__('Display Bottom Book Grid Description?', 'mooberry-book-manager'),
+					'id'	=>	'_mbdb_book_grid_bottom_description_group_by_level_' . $x,
+					'type'	=>	'select',
+					'options'	=>	array(
+										'no'	=>	__('No','mooberry-book-manager'),
+						'yes'	=> __('Yes','mooberry-book-manager'),
+				),
+			) );
+
 			// put a warning at the 5th level
 			if ( $x == 5 ) {
 				$mbdb_book_grid_metabox->add_field( array(

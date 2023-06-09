@@ -105,11 +105,22 @@ function displayChange () {
 			 var selected_group_text = groupby_dropdown.find('option:selected').text();
 			 // add it to the array of selected items
 			 selected.push(selected_group);
+       // if neither publisher nor author is selected
+      if ( selected_group !== 'publisher' && selected_group !== 'author' && selected_group !== 'none' ) {
+        // show description options
+        	jQuery('#_mbdb_book_grid_description_group_by_level_' + (level )).parents('.cmb-row').show();
+          jQuery('#_mbdb_book_grid_bottom_description_group_by_level_' + (level  )).parents('.cmb-row').show();
+      } else {
+	        jQuery('#_mbdb_book_grid_description_group_by_level_' + (level )).parents('.cmb-row').hide();
+          jQuery('#_mbdb_book_grid_bottom_description_group_by_level_' + (level  )).parents('.cmb-row').hide();
+      }
 			 // if neither none nor series is selected
 			 if (selected_group !== 'none' && selected_group !== 'series') {
 				// show new drop down
 					var next_level = jQuery('#_mbdb_book_grid_group_by_level_' + (level + 1));
 					next_level.parents('.cmb-row').show();
+          jQuery('#_mbdb_book_grid_description_group_by_level_' + (level +1 )).parents('.cmb-row').show();
+          jQuery('#_mbdb_book_grid_bottom_description_group_by_level_' + (level +1 )).parents('.cmb-row').show();
 					next_level.parents('.cmb-row').find('.cmb-th').find('label').text(label1 + ' ' + selected_group_text + ' ' + label2);
 				// grab the selected item
 				var next_selected = next_level.val();
@@ -140,8 +151,10 @@ function displayChange () {
 				x = level+1;
 				var dropdown = jQuery('#_mbdb_book_grid_group_by_level_' + x)
 				while (dropdown.length > 0) {
-
+          dropdown.val('none');
 					dropdown.parents('.cmb-row').hide();
+          jQuery('#_mbdb_book_grid_description_group_by_level_' + (x  )).parents('.cmb-row').hide();
+          jQuery('#_mbdb_book_grid_bottom_description_group_by_level_' + (x  )).parents('.cmb-row').hide();
 					x++;
 					dropdown = jQuery('#_mbdb_book_grid_group_by_level_' + x)
 				}

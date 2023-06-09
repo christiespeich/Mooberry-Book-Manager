@@ -1,4 +1,9 @@
 
+.mbm-book-grid-description, .mbm-book-grid-bottom-description {
+    margin-bottom: 2em;
+    padding-top: 2em;
+    clear:both;
+}
 
 .mbm-ribbon-holder {
   overflow: hidden;

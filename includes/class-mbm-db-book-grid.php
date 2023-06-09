@@ -35,11 +35,17 @@ class MBDB_DB_Book_Grid extends MBDB_CMB_CPT {
 			$book_grid->filter_selection = array();
 		}
 
+		$book_grid->display_group_descriptions = array();
+		$book_grid->display_group_bottom_descriptions = array();
 		$x = 1;
 		//while ( property_exists( $book_grid, 'group_by_level_' . $x ) ) {
 			while (array_key_exists( '_mbdb_book_grid_group_by_level_' . $x, $postmeta ) ) {
 				$property = 'group_by_level_' . $x;
 				$book_grid->{$property} = $postmeta[ '_mbdb_book_grid_group_by_level_' . $x ][ 0 ];
+				if ( array_key_exists('_mbdb_book_grid_description_group_by_level_' . $x, $postmeta)) {
+					$book_grid->display_group_descriptions[$x] = $postmeta[ '_mbdb_book_grid_description_group_by_level_' . $x ][0];
+					$book_grid->display_group_bottom_descriptions[$x]  = $postmeta[ '_mbdb_book_grid_bottom_description_group_by_level_' . $x ][0];
+				}
 			//}
 			$x++;
 		}
