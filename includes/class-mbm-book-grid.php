@@ -777,7 +777,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 					 if ( array_key_exists( $label, $this->group_descriptions ) ) {
 						  $description = $this->get_wysiwyg_output($this->group_descriptions[ $label ] );
-						 $content .= '<div class="mbm-book-grid-description mbm-book-grid-description-' . $l + 1 . '">' . $description . '</div>';
+						 $content .= '<div class="mbm-book-grid-description mbm-book-grid-description-' . ($l + 1) . '">' . $description . '</div>';
 						 $content = apply_filters( 'mbdb_book_grid_post_description_content', $content, $l, $this->group_descriptions[ $label ] );
 					 }
 
@@ -795,7 +795,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					 }
 					 if ( array_key_exists( $label, $this->group_bottom_descriptions ) ) {
 						 $bottom_description = $this->get_wysiwyg_output($this->group_bottom_descriptions[ $label ] );
-						 $content .= '<div class="mbm-book-grid-bottom-description mbm-book-grid-bottom-description-' . $l + 1 . '">' . $bottom_description . '</div>';
+						 $content .= '<div class="mbm-book-grid-bottom-description mbm-book-grid-bottom-description-' . ($l + 1) . '">' . $bottom_description . '</div>';
 						 $content = apply_filters( 'mbdb_book_grid_post_bottom_description_content', $content, $l, $this->group_bottom_descriptions[ $label ] );
 					 }
 				 }
