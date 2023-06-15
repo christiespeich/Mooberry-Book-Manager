@@ -45,25 +45,9 @@ class MBDB_Book_List implements Countable, Iterator {
 
 			}
 		}
-		//error_log('got books');
 
 		if ( $book_list_type == MBDB_Book_List_Enum::random || $random ) {
 			shuffle( $books );
-			// print_r($limit);
-			// print_r($books);
-			// if ( $limit != null && $limit < count($books ) ) {
-			// $keys = array_rand( $books, $limit );
-
-			// if ( !is_array($keys) ) {
-			// $keys = array( $keys );
-			// }
-			// $random_books = array();
-			// foreach ( $keys as $key ) {
-			// $random_books[] = $books[$key];
-			// }
-			// $books = $random_books;
-			// }
-
 		}
 
 		//error_log('splice books');
@@ -142,6 +126,7 @@ class MBDB_Book_List implements Countable, Iterator {
 		$this->cursor ++;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function remove_book( $book_id ) {
 		foreach ( $this->books as $key => $book ) {
 			if ( $book->book_id == $book_id ) {
@@ -152,6 +137,7 @@ class MBDB_Book_List implements Countable, Iterator {
 
 	}
 
+	#[\ReturnTypeWillChange]
 	public function remove_book_by_index( $key ) {
 		unset( $this->books[ $key ] );
 		$this->books = array_values( $this->books );
@@ -191,6 +177,27 @@ class MBDB_Book_List implements Countable, Iterator {
 
 		return json_encode( $results );
 
+	}
+
+	#[\ReturnTypeWillChange]
+	public function shuffle() {
+		shuffle($this->books);
+	}
+
+	#[\ReturnTypeWillChange]
+	public function seeded_shuffle( $minute_interval ) {
+		// randomize the results by using a different seed
+		// every X minutes so that pagination works with random results
+		// see https://www.relevanssi.com/knowledge-base/search-results-in-random-order/
+		$minutes = date('i');
+		$date = date("Ymdh") . floor( $minutes / $minute_interval ); // every #minute_interval minutes
+		mt_srand(($date));
+        for ($i = count($this->books) - 1; $i > 0; $i--) {
+	        $j = @mt_rand(0, $i);
+	        $tmp = $this->books[$i];
+	        $this->books[$i] = $this->books[$j];
+	        $this->books[$j] = $tmp;
+	    }
 	}
 
 
