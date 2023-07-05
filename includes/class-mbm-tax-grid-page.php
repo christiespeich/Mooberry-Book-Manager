@@ -291,6 +291,7 @@ class Mooberry_Book_Manager_Tax_Grid_Page { // extends Mooberry_Book_Manager_Gri
 			$site_name = get_bloginfo('name');
 
 ?>
+			<meta name="robots" content="noindex" />
 			<meta name="description" content="<?php echo esc_attr( strip_tags($title)); ?>" />
 			<meta property="og:title" content="<?php echo esc_attr( strip_tags($title . ' | ' . $site_name)); ?>" />
 			<meta property="og:url" content="<?php echo esc_attr( strip_tags(home_url( $url . '/' . $mbdb_term) )); ?>" />
