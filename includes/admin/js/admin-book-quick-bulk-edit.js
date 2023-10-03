@@ -75,14 +75,10 @@ jQuery(document)
 			var $bulk_row = jQuery('#bulk-edit')
 
 			// get the selected post ids that are being edited
-			var $post_ids = new Array()
-			$bulk_row.find('#bulk-titles')
-			         .children()
-			         .each(function () {
-				         $post_ids.push(jQuery(this)
-				                          .attr('id')
-				                          .replace(/^(ttle)/i, ''))
-			         })
+        var $post_ids = jQuery.map(jQuery('input[name="post[]"]:checked'), function (e) {
+        return e.value;
+      });
+
 
 			// get the custom fields
 
