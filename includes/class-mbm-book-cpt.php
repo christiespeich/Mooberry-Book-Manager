@@ -833,10 +833,10 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				'name'       => __( 'Google Books Link', 'mooberry-book-manager' ),
 				'id'         => '_mbdb_google_books',
 				'type'       => 'text_url',
-				'desc'       => 'https://www.google.com/books/edition/your-unique-text',
-				'attributes' => array(
-					'pattern' => '^(https?:\/\/)?www.google.com/books/edition/.*',
-				),
+				//'desc'       => 'https://www.google.com/books/edition/your-unique-text',
+				//'attributes' => array(
+//					'pattern' => '^(https?:\/\/)?www.google.com/books/edition/.*',
+//				),
 			)
 		);
 
