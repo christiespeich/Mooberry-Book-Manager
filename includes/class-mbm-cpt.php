@@ -554,7 +554,7 @@ abstract class Mooberry_Book_Manager_CPT {
 
 	}
 
-	 function post_page_template_meta( $data, $object_id, $meta_key, ) {
+	 function post_page_template_meta( $data, $object_id, $meta_key ) {
 		// if this is a page with an overrided template, make sure to use that template
 		 // if a search, return what we got in
 		global $wp_query;
