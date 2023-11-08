@@ -59,7 +59,8 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		//add_action('init', array( $this, 'allow_comments') );
 
 
-		add_filter( 'template_include', array( $this, 'single_template' ) );
+		add_filter( 'template_include', array( $this, 'single_template' ), 99 );
+		add_filter('get_post_metadata', array($this,'post_page_template_meta'), 10, 3);
 		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'columns' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'create_taxonomy_metaboxes' ) );
 		add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'mbd_metabox' ), 10 );

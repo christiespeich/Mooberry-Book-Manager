@@ -554,6 +554,24 @@ abstract class Mooberry_Book_Manager_CPT {
 
 	}
 
+	 function post_page_template_meta( $data, $object_id, $meta_key, ) {
+		// if this is a page with an overrided template, make sure to use that template
+		 // if a search, return what we got in
+		global $wp_query;
+		if ( $wp_query->is_search() ) {
+			return $data;
+		}
+
+		if ( get_post_type() != $this->post_type || $meta_key != '_wp_page_template' ) {
+			return $data;
+		}
+
+		// make sure it's the main query and not on the admin
+		if ( is_main_query() && !is_admin() ) {
+			$data = $this->default_single_template;
+		}
+		return $data;
+	 }
 
 	/**
 	 * Admin Notices for Posts
