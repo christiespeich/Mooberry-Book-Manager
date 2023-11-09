@@ -511,7 +511,7 @@ abstract class Mooberry_Book_Manager_CPT {
 	public function single_template( $template ) {
 		// if a search, return what we got in
 		global $wp_query;
-		if ( $wp_query->is_search() ) {
+		if ( $wp_query && $wp_query->is_search() ) {
 			return $template;
 		}
 
@@ -556,9 +556,10 @@ abstract class Mooberry_Book_Manager_CPT {
 
 	 function post_page_template_meta( $data, $object_id, $meta_key ) {
 		// if this is a page with an overrided template, make sure to use that template
+
 		 // if a search, return what we got in
 		global $wp_query;
-		if ( $wp_query->is_search() ) {
+		if ( $wp_query && $wp_query->is_search() ) {
 			return $data;
 		}
 
