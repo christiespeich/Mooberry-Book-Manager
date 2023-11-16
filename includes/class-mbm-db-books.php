@@ -479,7 +479,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 	public function get_newest_books( $book_filter = null ) {
 		global $wpdb;
 
-		$today = new DateTime( null, MBDB()->helper_functions->get_blog_timezone() );
+		$today = new DateTime( 'now', MBDB()->helper_functions->get_blog_timezone() );
 		$todayYmd = $today->format('Y-m-d');
 
 		// make sure $book_filter is an array
@@ -632,7 +632,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		}
 
 		// set the where clause
-		$today = new DateTime( null, MBDB()->helper_functions->get_blog_timezone() );
+		$today = new DateTime( 'now', MBDB()->helper_functions->get_blog_timezone() );
 		$todayYmd = $today->format('Y-m-d');
 		switch ($selection) {
 			case 'all':
