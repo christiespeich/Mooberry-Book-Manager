@@ -20,35 +20,41 @@ class Mooberry_Book_Manager_Helper_Functions {
 	/**
 	 *  Returns the blog timezone
 	 *
-	 * Gets timezone settings from the db. If a timezone identifier is used just turns
-	 * it into a DateTimeZone. If an offset is used, it tries to find a suitable timezone.
-	 * If all else fails it uses UTC.
+	 * Uses the `timezone_string` option to get a proper timezone name if available,
+	 * otherwise falls back to a manual UTC ± offset.
+	 *
+	 * Example return values:
+	 *
+	 *  - 'Europe/Rome'
+	 *  - 'America/North_Dakota/New_Salem'
+	 *  - 'UTC'
+	 *  - '-06:30'
+	 *  - '+00:00'
+	 *  - '+08:45'
 	 *
 	 * @return DateTimeZone The blog timezone
 	 */
 	public function get_blog_timezone() {
 
-		$tzstring = get_option( 'timezone_string' );
-		$offset   = get_option( 'gmt_offset' );
+		if ( function_exists('wp_timezone_string')) {
+			return new DateTimeZone(wp_timezone_string());
+		}
+		$timezone_string = get_option( 'timezone_string' );
 
-		//Manual offset...
-		//@see http://us.php.net/manual/en/timezones.others.php
-		//@see https://bugs.php.net/bug.php?id=45543
-		//@see https://bugs.php.net/bug.php?id=45528
-		//IANA timezone database that provides PHP's timezone support uses POSIX (i.e. reversed) style signs
-		if ( empty( $tzstring ) && 0 != $offset && floor( $offset ) == $offset ) {
-			$offset_st = $offset > 0 ? "-$offset" : '+' . absint( $offset );
-			$tzstring  = 'Etc/GMT' . $offset_st;
+		if ( $timezone_string ) {
+			return $timezone_string;
 		}
 
-		//Issue with the timezone selected, set to 'UTC'
-		if ( empty( $tzstring ) ) {
-			$tzstring = 'UTC';
-		}
+		$offset  = (float) get_option( 'gmt_offset' );
+		$hours   = (int) $offset;
+		$minutes = ( $offset - $hours );
 
-		$timezone = new DateTimeZone( $tzstring );
+		$sign      = ( $offset < 0 ) ? '-' : '+';
+		$abs_hour  = abs( $hours );
+		$abs_mins  = abs( $minutes * 60 );
+		$tz_offset = sprintf( '%s%02d:%02d', $sign, $abs_hour, $abs_mins );
 
-		return $timezone;
+		return new DateTimeZone($tz_offset);
 	}
 
 	function format_date( $field ) {

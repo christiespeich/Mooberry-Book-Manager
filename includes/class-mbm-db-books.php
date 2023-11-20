@@ -644,8 +644,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				$where .= ' AND ( release_date <= "' . $todayYmd . '" ) ';
 				break;
 			case 'unpublished':
-				$where .= ' AND ( release_date > "' . $todayYmd . '" OR release_date IS NULL OR release_date = "" OR release_date = "0000-00-00") ';
-
+				$where .= ' AND ( release_date > "' . $todayYmd . '" OR release_date IS NULL ) ';
 				break;
 			case 'custom':
 				$selection_ids = array_map('absint', $selection_ids);
