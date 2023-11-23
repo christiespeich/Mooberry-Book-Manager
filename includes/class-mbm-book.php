@@ -387,6 +387,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							$fullsizepath = get_attached_file( $id );
 
 							if ( false !== $fullsizepath && file_exists( $fullsizepath ) ) {
+								if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
+									include( ABSPATH . 'wp-admin/includes/image.php' );
+								}
 								wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $fullsizepath ) );
 							}
 						}

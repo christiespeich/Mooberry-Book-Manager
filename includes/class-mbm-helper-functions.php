@@ -505,6 +505,9 @@ class Mooberry_Book_Manager_Helper_Functions {
 				'post_status'    => 'inherit'
 			);
 			$attach_id   = wp_insert_attachment( $attachment, $wp_upload_dir['path'] . '/' . $filename );
+			if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
+				include( ABSPATH . 'wp-admin/includes/image.php' );
+			}
 			$attach_data = wp_generate_attachment_metadata( $attach_id, $wp_upload_dir['path'] . '/' . $filename );
 			wp_update_attachment_metadata( $attach_id, $attach_data );
 
