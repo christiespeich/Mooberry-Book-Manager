@@ -47,6 +47,8 @@ jQuery( document ).ready(function() {
 
   jQuery('[name$="[retailer_button_image]"]').on( 'change', mbdb_set_retailer_button_image_options);
 
+  jQuery('div#retailers_repeat').on('cmb2_add_row', mbdb_retailer_added);
+
 
   jQuery('#retailer_buttons_color').wpColorPicker({
                      change: function (event, ui) {
@@ -113,7 +115,7 @@ function mbdb_create_tax_grid_page() {
 	var ajax = jQuery.post( mbdb_admin_options_ajax.ajax_url, data);
 	ajax.done ( function ( data ) {
 		jQuery('#mbdb_create_tax_grid_page_progress').hide();
-		if ( data == 0 ) {
+		if ( data === 0 ) {
 			result = mbdb_admin_options_ajax.create_tax_grid_page_fail_translation;
 		} else {
 			result = mbdb_admin_options_ajax.create_tax_grid_page_success_translation;
@@ -167,6 +169,16 @@ function mbdb_set_retailer_button_image_options() {
      parent.nextAll('.cmb-type-colorpicker').first().hide().next().hide();
      parent.nextAll('.cmb-type-file').first().show();
    }
+}
+
+function mbdb_retailer_added() {
+
+  var new_retailer = jQuery('div#retailers_repeat div.cmb-repeatable-grouping:last').find('[name$="[retailer_button_image]"]');
+  new_retailer.on( 'change', mbdb_set_retailer_button_image_options);
+  new_retailer.prop('checked',true).change();
+  mbdb_retailer_buttons_change();
+
+
 }
 
 
