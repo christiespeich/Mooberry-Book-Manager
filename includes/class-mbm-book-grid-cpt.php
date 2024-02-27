@@ -418,6 +418,9 @@ public function preview_meta_box() {
 
 public function placeholder_metabox() {
 	$mbdb_options = get_option('mbdb_options');
+	if ( !is_array($mbdb_options)) {
+		$mbdb_options = array($mbdb_options);
+	}
 	if (array_key_exists('dismiss_book_grids_notice', $mbdb_options) && $mbdb_options['dismiss_book_grids_notice'] == 'yes') {
 		return;
 	}
