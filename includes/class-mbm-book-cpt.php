@@ -1833,7 +1833,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		if ( $mbdb_imprintwebsite == '' ) {
 			$text = '<span class="mbm-book-imprint-text">' . esc_html( $mbdb_imprint ) . '</span>';
 		} else {
-			$text = '<A class="mbm-book-imprint-link" HREF="' . esc_url( $mbdb_imprintwebsite ) . '" target="_new"><span class="mbm-book-imprint-text">' . esc_html( $mbdb_imprint ) . '</span></a>';
+			$text = '<A class="mbm-book-imprint-link" HREF="' . esc_url( $mbdb_imprintwebsite ) . '" target="_blank"><span class="mbm-book-imprint-text">' . esc_html( $mbdb_imprint ) . '</span></a>';
 		}
 
 		return apply_filters( 'mbdb_shortcode_imprint', '<span class="mbm-book-imprint"><span class="mbm-book-imprint-label">' . esc_html( $attr['label'] ) . '</span>' . $text . '<span class="mbm-book-imprint-after">' . esc_html( $attr['after'] ) . '</span></span>' );
@@ -1894,7 +1894,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$goodreads_image = MBDB()->options->goodreads_image;
 
 		if ( $goodreads_image == '' ) {
-			return apply_filters( 'mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url( $goodreads_link ) . '" target="_new"><span class="mbm-book-goodreads-text">' . $attr['text'] . '</span></A><span class="mbm-book-goodreads-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+			return apply_filters( 'mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url( $goodreads_link ) . '" target="_blank"><span class="mbm-book-goodreads-text">' . $attr['text'] . '</span></A><span class="mbm-book-goodreads-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		} else {
 			$alt = __( 'Add to Goodreads', 'mooberry-book-manager' );
 			$url = esc_url( $goodreads_image );
@@ -1902,7 +1902,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				$url = preg_replace( '/^http:/', 'https:', $url );
 			}
 
-			return apply_filters( 'mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url( $goodreads_link ) . '" target="_new"><img class="mbm-book-goodreads-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-goodreads-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+			return apply_filters( 'mbdb_shortcode_goodreads', '<div class="mbm-book-goodreads"><span class="mbm-book-goodreads-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-goodreads-link" HREF="' . esc_url( $goodreads_link ) . '" target="_blank"><img class="mbm-book-goodreads-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-goodreads-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		}
 	}
 
@@ -1923,7 +1923,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$reedsy_image = MBDB()->options->reedsy_image;
 
 		if ( $reedsy_image == '' ) {
-			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_new"><span class="mbm-book-reedsy-text">' . $attr['text'] . '</span></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_blank"><span class="mbm-book-reedsy-text">' . $attr['text'] . '</span></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		} else {
 			$alt = __( 'Add to Reedsy', 'mooberry-book-manager' );
 			$url = esc_url( $reedsy_image );
@@ -1931,7 +1931,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				$url = preg_replace( '/^http:/', 'https:', $url );
 			}
 
-			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_new"><img class="mbm-book-reedsy-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+			return apply_filters( 'mbdb_shortcode_reedsy', '<div class="mbm-book-reedsy"><span class="mbm-book-reedsy-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-reedsy-link" HREF="' . esc_url( $reedsy_link ) . '" target="_blank"><img class="mbm-book-reedsy-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-reedsy-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		}
 	}
 
@@ -1953,7 +1953,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		$google_books_image = MBDB()->options->google_books_image;
 
 		if ( $google_books_image == '' ) {
-			return apply_filters( 'mbdb_shortcode_google_books', '<div class="mbm-book-google-books"><span class="mbm-book-google-books-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-google-books-link" HREF="' . esc_url( $google_books_link ) . '" target="_new"><span class="mbm-book-google-books-text">' . $attr['text'] . '</span></A><span class="mbm-book-google-books-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+			return apply_filters( 'mbdb_shortcode_google_books', '<div class="mbm-book-google-books"><span class="mbm-book-google-books-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-google-books-link" HREF="' . esc_url( $google_books_link ) . '" target="_blank"><span class="mbm-book-google-books-text">' . $attr['text'] . '</span></A><span class="mbm-book-google-books-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		} else {
 			$alt = __( 'Add to Google Books', 'mooberry-book-manager' );
 			$url = esc_url( $google_books_image );
@@ -1961,7 +1961,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				$url = preg_replace( '/^http:/', 'https:', $url );
 			}
 
-			return apply_filters( 'mbdb_shortcode_google_books', '<div class="mbm-book-google_books"><span class="mbm-book-google-books-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-google-books-link" HREF="' . esc_url( $google_books_link ) . '" target="_new"><img class="mbm-book-google-books-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-google-books-after">' . esc_html( $attr['after'] ) . '</span></div>' );
+			return apply_filters( 'mbdb_shortcode_google_books', '<div class="mbm-book-google_books"><span class="mbm-book-google-books-label">' . esc_html( $attr['label'] ) . '</span><A class="mbm-book-google-books-link" HREF="' . esc_url( $google_books_link ) . '" target="_blank"><img class="mbm-book-google-books-image" src="' . $url . '"' . $alt . '/></A><span class="mbm-book-google-books-after">' . esc_html( $attr['after'] ) . '</span></div>' );
 		}
 	}
 
@@ -2137,7 +2137,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				//if ( in_array( $term->taxonomy, mbdb_taxonomies_with_websites() ) ) {
 				$website = get_term_meta( $term->term_id, 'mbdb_website', true );
 				if ( $website != '' ) {
-					$list .= ' (<a class="' . $classname . '-website" href="' . $website . '" target="_new">' . __( 'Website', 'mooberry-book-manager' ) . '</a>)';
+					$list .= ' (<a class="' . $classname . '-website" href="' . $website . '" target="_blank">' . __( 'Website', 'mooberry-book-manager' ) . '</a>)';
 				}
 				//}
 			}
@@ -2209,7 +2209,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 				$review_html .= __( 'on ', 'mooberry-book-manager' );
 			}
 			if ( $review_url != '' ) {
-				$review_html .= '<A class="mbm-book-reviews-link" HREF="' . esc_url( $review_url ) . '" target="_new"><span class="mbm-book-reviews-website">';
+				$review_html .= '<A class="mbm-book-reviews-link" HREF="' . esc_url( $review_url ) . '" target="_blank"><span class="mbm-book-reviews-website">';
 				if ( $review_website == '' ) {
 					$review_html .= esc_html( $review_url );
 				} else {
@@ -2304,7 +2304,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 			}
 
 
-			$link = '<A HREF="' . esc_url( $link ) . '" TARGET="_new" ';
+			$link = '<A HREF="' . esc_url( $link ) . '" target="_blank" ';
 
 
 			// 4.12 add in buttons
@@ -2702,7 +2702,7 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 					$tax = 'mbdb_' . $_GET['taxonomy'];
 					$term_id = intval($_GET['term']);
 					$term = get_term($term_id, $tax);
-					error_log(print_r($term, true));
+				//	error_log(print_r($term, true));
 					$link = $this->get_tax_grid_link($term, $tax);
 				} else {
 					$link = get_permalink( $attr['grid'] );

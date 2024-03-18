@@ -194,7 +194,7 @@ abstract class MBDB_DB_CPT extends MOOBD_Database implements iMooberry_Book_Mana
 				$new_data[ $column ] = $this->sanitize_field( $column, $value, $type );
 			}
 		}
-		error_log(print_r($new_data, true));
+		//error_log(print_r($new_data, true));
 		// no data to save. Not an error just no rows updated/inserted
 		if (!isset($new_data) || !is_array($new_data)) {
 			return 0;

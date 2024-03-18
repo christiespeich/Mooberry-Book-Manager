@@ -266,7 +266,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		// translatable text
 		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
+		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_blank" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
 	*/
 		$mbdb_settings_metabox->add_field( array(
 				'id'         => 'goodreads',
@@ -807,7 +807,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		// translatable text
 		$description1 = __('If you need to restore the image that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
+		$description = '<span style="font-style:italic">' .$description1 . ' <a target="_blank" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a></span>.';
 	*/
 		$mbdb_settings_metabox->add_field( array(
 				'id'         => 'coming-soon',
@@ -910,7 +910,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		// translatable text
 		$description1 = __('Add any additional retailers that sell your books. If you need to restore images that came with Mooberry Book Manager, download the ', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
+		$description = $description1 . ' <a target="_blank" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
 		*/
 		$this->title = __( 'MBM Retailers Settings', 'mooberry-book-manager' );
 
@@ -1102,7 +1102,7 @@ class Mooberry_Book_Manager_Core_Settings extends Mooberry_Book_Manager_Settings
 		// translatable text
 		$description1 = __('If you have free books for download, add any additional formats your books are available in. If you need to restore images that came with Mooberry Book Manager, download the', 'mooberry-book-manager');
 		$description2 = __('Mooberry Book Manager Image Fixer plugin', 'mooberry-book-manager');
-		$description = $description1 . ' <a target="_new" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
+		$description = $description1 . ' <a target="_blank" href="' . admin_url('plugin-install.php?tab=search&s=mooberry+book+manager+image+fixer') . '">' . $description2 . '</a>.';
   */
 		$this->title = __( 'MBM Book Formats Settings', 'mooberry-book-manager' );
 		$mbdb_settings_metabox->add_field( array(
@@ -1358,7 +1358,7 @@ echo '<a id="mbdb_cancel_import" class="button" >' . __( 'Cancel Import', 'moobe
 		}   ?>
             <h1>Importing Books via CSV</h1>
                 <h3>Choose an import CSV file.</h3>
-<p><?php _e(sprintf('The CSV file must be formatted in a specific manner. Please see %s for details. Download a file template to use by clicking the button below.', '<a href="https://mooberry-book-manager.helpscoutdocs.com/article/119-importing-from-a-csv-file" target="_new">https://mooberry-book-manager.helpscoutdocs.com/article/119-importing-from-a-csv-file</a>', 'mooberry-book-manager')); ?></p>
+<p><?php _e(sprintf('The CSV file must be formatted in a specific manner. Please see %s for details. Download a file template to use by clicking the button below.', '<a href="https://mooberry-book-manager.helpscoutdocs.com/article/119-importing-from-a-csv-file" target="_blank">https://mooberry-book-manager.helpscoutdocs.com/article/119-importing-from-a-csv-file</a>', 'mooberry-book-manager')); ?></p>
             <p><?php _e( 'Books will be imported in the background. You may leave this page while they are importing.', 'mooberry-book-manager' ); ?> </p>
 		 <p><a class="button"
                   id="mbdb_export_csv_columns"><?php _e('Download file template') ?></a><img
