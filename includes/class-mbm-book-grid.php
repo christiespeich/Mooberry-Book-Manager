@@ -843,7 +843,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	 protected function get_book_link( $book ) {
 		 global $post;
-		 $page_id = isset( $_POST['page_id'] ) ? intval( $_POST['page_id'] ) : $post->ID;
+		 $post_id = $post ? $post->ID : 0;
+		 $page_id = isset( $_POST['page_id'] ) ? intval( $_POST['page_id'] ) : $post_id;
 
 		 $link = get_permalink( $book->id );
 		 if ( MBDB()->options->show_back_to_grid_link == 'yes' ) {
