@@ -14,7 +14,7 @@
  *
  * @since    4.0.0
  */
-abstract class Mooberry_Book_Manager_CPT {
+#[AllowDynamicProperties] abstract class Mooberry_Book_Manager_CPT {
 
 	//protected $columns;
 

@@ -81,7 +81,7 @@ function mbdb_activate() {
  */
 //require_once MBDB_PLUGIN_DIR . 'includes/class-mbm-loader.php';
 //require_once MBDB_PLUGIN_DIR . 'includes/class-mooberry-book-manager.php';
-final class Mooberry_Book_Manager {
+#[AllowDynamicProperties] final class Mooberry_Book_Manager {
 	/** Singleton *************************************************************/
 
 	/**
