@@ -251,6 +251,10 @@ function mbdb_update_versions() {
 		mbdb_update_4_14_16();
 	}
 
+	if ( version_compare( $current_version, '4.16', '<' ) ) {
+		mbdb_update_4_16();
+	}
+
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
 
@@ -1277,5 +1281,11 @@ function mbdb_update_4_14_16() {
 	MBDB()->book_content_update_fix_process->dispatch();
 	$wpdb->update($wpdb->prefix . 'posts', array('post_content' => '[mbdb_publisher]'), array('post_type'=>'mbdb_publisher'));
 
+}
 
+function mbdb_update_4_16() {
+	if ( !MBDB()->helper_functions->is_notice_set('mbdb_version_5')) {
+		$message = '<span style="font-size:large;color:purple;">' . __('Mooberry Book Manager version 5 is now available. Please read', 'mooberry-book-manager') . ' <a href="https://www.mooberrybookmanager.com/upgrading-to-mooberry-book-manager-5/" target="_blank">' . __('this message', 'mooberry-book-manager') . '</a> '. __('to learn how to upgrade.', 'mooberry-book-manager') . '</span>';
+		MBDB()->helper_functions->set_admin_notice( $message, 'notice', 'mbdb_version_5' );
+	}
 }
