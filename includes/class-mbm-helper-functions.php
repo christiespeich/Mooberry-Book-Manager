@@ -80,17 +80,19 @@ class Mooberry_Book_Manager_Helper_Functions {
 		return apply_filters( 'mbdb_url_validation_pattern', '^(https?:\/\/)?([\da-zA-Z\.-]+)\.([A-Za-z\.]{2,6}).*' );
 	}
 
+	public function is_notice_set( $key ) {
+		return MBDB()->admin_notices->get_notice($key) !== null;
+	}
 	public function set_admin_notice( $message, $type, $key ) {
 		// type must be one of these
 		if ( ! in_array( $type, array( 'error', 'updated', 'update-nag' ) ) ) {
 			$type = 'updated';
 		}
 
-		$admin_manager = new Mooberry_Dreams_Admin_Notice_Manager('mbdb_admin_notice_manager');
 		/*$notices         = get_option( 'mbdb_admin_notices', array() );
 		$notices[ $key ] = array( 'message' => $message, 'type' => $type );
 		update_option( 'mbdb_admin_notices', $notices );*/
-		$admin_manager->add_new($message, $type, $key);
+		MBDB()->admin_notices->add_new($message, $type, $key);
 	}
 
 	public function remove_admin_notice( $key ) {
@@ -102,8 +104,8 @@ class Mooberry_Book_Manager_Helper_Functions {
 			}
 			update_option( 'mbdb_admin_notices', $mbdb_admin_notices );
 		}
-		$admin_manager = new Mooberry_Dreams_Admin_Notice_Manager('mbdb_admin_notice_manager');
-		$admin_manager->dismiss($key);
+
+		MBDB()->admin_notices->dismiss($key);
 	}
 
 	// makes each property of the object a key in the array

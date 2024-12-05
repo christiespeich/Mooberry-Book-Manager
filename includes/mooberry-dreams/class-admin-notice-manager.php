@@ -40,7 +40,6 @@ if ( !class_exists('Mooberry_Dreams_Admin_Notice_Manager')) {
 			$this->options_key = $key;
 			$this->load_notices();
 
-			add_action('admin_notices', array($this, 'display_notices'));
 
 		}
 
