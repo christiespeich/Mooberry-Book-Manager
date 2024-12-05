@@ -313,6 +313,13 @@ a.mbm-widget-link .mbm-ribbon {
     padding: 2px;
 }
 
+li.mbm_publisher_list_item, li.mbm_tax_list_item {
+    margin-left: initial;
+}
+ul.mbm_publisher_list, ul.mbm_tax_list {
+    list-style: none;
+}
+
 @media (max-width:810px) {
 
 

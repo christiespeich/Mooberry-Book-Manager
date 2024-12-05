@@ -43,6 +43,7 @@ class Mooberry_Book_Manager_Publisher_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'publisher_book_list', array( $this, 'shortcode_publisher_book_list' ) );
 		add_shortcode( 'publisher_photo', array( $this, 'shortcode_publisher_photo' ) );
 		add_shortcode( 'publisher_website', array( $this, 'shortcode_publisher_website' ) );
+		add_shortcode( 'mbm_publisher_list', array( $this, 'shortcode_publisher_list' ) );
 		add_action( 'save_post_' . $this->post_type, array( $this, 'save_publisher' ) );
 
 		//	add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'set_custom_columns' ) );
@@ -247,6 +248,16 @@ class Mooberry_Book_Manager_Publisher_CPT extends Mooberry_Book_Manager_CPT {
 		}
 
 		return '';
+	}
 
+	function shortcode_publisher_list( $attr, $content ) {
+		$publishers = MBDB()->helper_functions->get_publishers();
+		$output = '<ul class="mbm_publisher_list">';
+		foreach ( $publishers as $publisher ) {
+			$link = get_permalink($publisher->id);
+			$output .= 	"<li class='mbm_publisher_list_item' data-item='{$publisher->id}'><a href='{$link}'>{$publisher->name}</a></li>";
+		}
+		$output .= '</ul>';
+		return $output;
 	}
 }

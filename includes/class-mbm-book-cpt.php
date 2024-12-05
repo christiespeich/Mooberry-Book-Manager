@@ -104,6 +104,14 @@ class Mooberry_Book_Manager_Book_CPT extends Mooberry_Book_Manager_CPT {
 		add_shortcode( 'mbdb_book', array( $this, 'shortcode_book' ) );
 		add_shortcode( 'book_kindle_preview', array( $this, 'shortcode_kindle_preview' ) );
 		add_shortcode( 'book_back_to_grid', array( $this, 'shortcode_back_to_grid'));
+		add_shortcode( 'mbm_genre_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_series_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_tag_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_cover_artist_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_illustrator_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_editor_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_narrator_list', array($this, 'shortcode_tax_item_list'));
+		add_shortcode( 'mbm_translator_list', array($this, 'shortcode_tax_item_list'));
 
 	}
 
@@ -2951,6 +2959,25 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 		//return do_shortcode($content);
 		return $content;
 
+	}
+
+	function shortcode_tax_item_list( $attr, $content, $tag ) {
+		$attr = shortcode_atts( array( 'hide_empty' => 'yes' ), $attr );
+		$tax  = str_replace( 'mbm_', '', $tag );
+		$tax  = str_replace( '_list', '', $tax );
+
+		$terms = get_terms( array( 'taxonomy' => 'mbdb_' . $tax, 'hide_empty' => $attr['hide_empty'] == 'yes' ) );
+
+		$permalink = MBDB()->options->get_tax_grid_slug( 'mbdb_' . $tax );
+
+		$output = "<ul class='mbm_tax_list mbm_{$tax}_list'>";
+		foreach ( $terms as $term ) {
+			$link      = home_url( $permalink . '/' . $term->slug );
+			$output    .= "<li class='mbm_{$tax}_list_item mbm_tax_list_item' data-item='{$term->term_id}'><a href='{$link}'>{$term->name}</a></li>";
+		}
+		$output .= '</ul>';
+
+		return $output;
 	}
 
 
