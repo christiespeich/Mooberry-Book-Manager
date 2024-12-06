@@ -3,8 +3,8 @@ Contributors: mooberrydreams
 Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, writer, writing, author website management
 Requires at least: 3.8.0
-Tested up to: 6.5.2
-Stable tag: 4.15.15
+Tested up to: 6.7
+Stable tag: 4.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,9 @@ Sell books via Amazon and other retailers directly from your author website with
 
 Mooberry Book Manager is an easy-to-use system for authors to add books to their Wordpress websites.
 
-No coding is necessary to use Mooberry Book Manager. Adding books is as easy as filling out a form. Include as much or as little information as you want, including the book cover, links to purchase the book, reviews of the book, an excerpt, and more.
+**NOTE:** [Please read this information about updating to version 5 of Mooberry Book Manager and consider installing version 5 now.](https://www.mooberrybookmanager.com/upgrading-to-mooberry-book-manager-5/)
+
+**No coding** is necessary to use Mooberry Book Manager. Adding books is as easy as filling out a form. Include as much or as little information as you want, including the book cover, links to purchase the book, reviews of the book, an excerpt, and more.
 
 Each book can be linked to as many book store retailers to you want. You can even use your affiliate links!
 
@@ -25,11 +27,8 @@ Organize your book into grids with just a few clicks. Grids can include all of y
 Feature books on your sidebar with four options:
 
 * A random book
-
 * The newest book
-
 * A book that's coming soon
-
 * A specific book
 
 Mooberry Book Manager works with your chosen theme to provide a consistent look throughout your website.
@@ -46,54 +45,32 @@ In order for your books to appear on your website, you need to add a Book Grid a
 *To Add a Book Grid:*
 
 * Go to Book Grids -> Add New
-
 * Give the Book Grid a name to help you remember what kind of grid it is
-
 * Choose the books, grouping, and sort order
-
 * Save the grid. You will be shown a shortcode.  Copy the entire shortcode.
-
 * On any page, blog post, etc. paste the shortcode into the text editor.
-
 * Save your page and view it. Click on any book to see the details of the book.
 
 
 *To Add a Widget:*
 
 * Go to Appearance -> Widget
-
 * Drag the Mooberry Book Manager Book Widget to the Widget Area of your choice
-
 * Choose the book to display
-
 * Save the widget and view your website. Click on the book cover to get the details of the book.
+
+*Need more?*
+
+Premium features are available, from adding multiple authors to creating your own fields to advanced grid filtering and pagination, and more! [See the details here.](https://www.mooberrybookmanager.com/pricing/)
 
 *Additonal questions?*
 
 Check out the [documentation and support page.](http://mooberry-book-manager.helpscoutdocs.com/)
 
-**Now Available**
-
-* [Custom Fields](https://www.mooberrybookmanager.com/downloads/custom-fields/) - Create your own fields and taxonomies for your books
-
-* [Advanced Grids](https://www.mooberrybookmanager.com/downloads/avanced-grids/) - Add paging, filtering, sorting, additional fields, and more selection options to you grids
-
-* [Additional Images](https://www.mooberrybookmanager.com/downloads/additional-images/) - Display additional images for a book beyond a single book cover, and add a video trailer.
-
-* [Advanced Widgets](https://www.mooberrybookmanager.com/downloads/advanced-widgets/) - Adds two additional sidebar widgets, as well as additional functionality to the existing Book Widget included with Mooberry Book Manager.
-
-* [Multi-Author](https://www.mooberrybookmanager.com/downloads/multi-author/) - Makes Mooberry Book Manager work for publishers, authors with multiple pen names, author groups, or for any other website that lists books by more than one author.
-
-* [Retail Links Redirect](https://www.mooberrybookmanager.com/downloads/retail-links-redirect/) - Magically redirects readers to retailers so you don't have to update your e-books after publishing.
-
-
-
 **Want regular updates?**
 
 * [Subscribe to Mooberry Dreams' mailing list](http://eepurl.com/bwXBPH)
-
 * [Like Mooberry Dreams on Facebook](https://www.facebook.com/MooberryDreams)
-
 * [Join the Mooberry Book Manager Users Group on Facebook](https://www.facebook.com/groups/mooberrybookmanager/)
 
 
@@ -188,8 +165,11 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.16 =
+* Added: Publisher and taxonomy list shortcodes
+* Added: version 5 notice
 
-= 4.14.15 =
+= 4.15.15 =
 * Fixed: suppress an error if a book grid is placed not on a page
 
 = 4.15.14 =
@@ -500,65 +480,26 @@ Responsive Book Grids and more!
 Redesigned, responsive book page and much more!
 
 == Other Notes ==
-= Multi-Site Compatibility =
-
-* **Versions 2.4.4 and earlier** work with Wordpress Multi-Site if you **don't** use Network Activation. If each blog activates Mooberry Book Manager themselves, it should work.
-
-* **Versions 3.0 - 3.0.4** do **not** work with Wordpress Multi-Site in any way.
-
-* **Versions 3.1 and above** work with Wordpress Multi-Site both with and without Network Activation.
-
-= Caching Plugins Compatibility =
-
-**Versions 2.4.4 and earlier** should work with caching plugins as-is. If your book pages or book grids aren't refreshing when you add/update a book, you may need to manually clear your cache.
-
-**Versions 3.0 - 3.0.4** do **not** work with W3C Total Cache. An error will be thrown. These versions work okay with WP Super Cache.
-
-**Versions 3.1 and above** work with both W3C Total Cache and WP Super Cache with the following notes:
-
-* **W3C Total Cache** - You must turn on Object Caching in W3C Total Cache's settings for Mooberry Book Manager data to be cached. Book data cache is automatically cleared when a book is updated, added, or deleted so your book pages and grids should stay up-to-date.
-
-* **WP Super Cache** - When a book is updated, added, or deleted, the cache for the entire site is cleared. Unfortunately, WP Super Cache does not seem to have an option for selectively clearing some cache and not all of it.
-
-* Use another caching plugin?  If you are having problems using it with Mooberry Book Manager, please [contact us](http://www.mooberrydreams.com/contact/) and let us know what plugin you are using and what the issue is.
-
 = Translations =
 * English
-
 * German
-
 * French
-
 * Serbo-Croatian
-
 * Spanish
-
 * Russian
-
 * Italian
-
 * Greek
-
 * Brazilian Portuguese
-
 * Chinese
 
 **NOTE:** [Mooberry Book Manager is translatable.](https://translate.wordpress.org/projects/wp-plugins/mooberry-book-manager/)
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
-
 * Thanks to Cyrille Sanson-Stern for providing the French translation!
-
 * Thanks to [Web Hosting Geeks](http://www.webhostinggeeks.com/) for the Serbo-Croatian translation!
-
 * Thanks to Ana Gomez for the Spanish translation!
-
 * Thanks to Sergey Kryukov for the Russian translation!
-
 * Thanks to Fabrizio Guidicini for the Italian translation!
-
 * Thanks to Eleni Linaki for the Greek translation!
-
 * Thanks to Vinicius Cubas Brand for the Brazilian Portuguese translation!
-
 * Thanks to Jin Gu for the Chinese translation!

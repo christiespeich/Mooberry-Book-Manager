@@ -6,6 +6,7 @@
  *  Author: Mooberry Dreams
  *  Author URI: http://www.mooberrydreams.com/
  *  Donate Link: https://www.paypal.me/mooberrydreams/
+ *  Version: 4.16
  *  Text Domain: mooberry-book-manager
  *  Domain Path: languages
  *
@@ -35,6 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Plugin version
 if ( ! defined( 'MBDB_PLUGIN_VERSION' ) ) {
 
+	define( 'MBDB_PLUGIN_VERSION', '4.16' );
 
 }
 
@@ -184,9 +186,6 @@ function mbdb_activate() {
 
 			self::$instance->admin_notices = new Mooberry_Dreams_Admin_Notice_Manager('mbdb_admin_notice_manager');
 			add_action('admin_notices', array(self::$instance->admin_notices, 'display_notices'));
-
-
-
 
 		}
 
