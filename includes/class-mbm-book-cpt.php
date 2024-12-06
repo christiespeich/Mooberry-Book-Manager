@@ -2968,6 +2968,9 @@ $tax_args['rewrite'] = array( 'slug' => MBDB()->options->get_tax_grid_slug( 'mbd
 
 		$terms = get_terms( array( 'taxonomy' => 'mbdb_' . $tax, 'hide_empty' => $attr['hide_empty'] == 'yes' ) );
 
+		if ( is_wp_error($terms) ) {
+			return '';
+		}
 		$permalink = MBDB()->options->get_tax_grid_slug( 'mbdb_' . $tax );
 
 		$output = "<ul class='mbm_tax_list mbm_{$tax}_list'>";
