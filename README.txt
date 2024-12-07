@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, writer, writing, author website management
 Requires at least: 3.8.0
 Tested up to: 6.7
-Stable tag: 4.16
+Stable tag: 4.16.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,9 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.16.1 =
+* Fixed: error with PHP 8 Attributes used on servers with older PHP versions
+
 = 4.16 =
 * Added: Publisher and taxonomy list shortcodes
 * Added: version 5 notice
