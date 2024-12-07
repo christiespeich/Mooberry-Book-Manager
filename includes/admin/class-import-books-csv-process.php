@@ -1,7 +1,8 @@
 <?php
 
 
-#[AllowDynamicProperties] class MBDB_Import_Books_CSV_Process extends Mooberry_Dreams_Background_Process {
+#[AllowDynamicProperties]
+class MBDB_Import_Books_CSV_Process extends Mooberry_Dreams_Background_Process {
 
 
 	/**
