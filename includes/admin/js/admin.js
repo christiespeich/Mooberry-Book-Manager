@@ -30,6 +30,7 @@ jQuery( document ).ready(function() {
     mbdb_copyToClipboard( this.innerHTML );
   })
 
+  jQuery('#snooze_mbdb_5_notice').on('click', mbdb_snooze_v5_notice);
 });
 
 function mbdb_copyToClipboard ( str ) {
@@ -53,6 +54,29 @@ function mbdb_copyToClipboard ( str ) {
 
 }
 
+function mbdb_snooze_v5_notice() {
+   jQuery('#snooze_mbdb_5_notice').hide();
+   jQuery('#mbdb_snooze_5_notice_results').hide();
+   jQuery('#snooze_mbdb_5_progress').show();
+
+  	var data = {
+		'action': 'mbdb_snooze_v5_notice',
+		'security': mbdb_admin_notice_ajax.dismiss_ajax_nonce
+	};
+
+	var mbdb_dismiss = jQuery.post(mbdb_admin_notice_ajax.ajax_url, data);
+
+  mbdb_dismiss.fail(function (results) {
+    jQuery('#mbdb_snooze_5_notice_results').html('An error occurred. Please try again.').show();
+       jQuery('#snooze_mbdb_5_notice').show();
+       jQuery('#snooze_mbdb_5_progress').hide();
+  });
+
+  mbdb_dismiss.done( function(results) {
+    jQuery('div#mbdb_version_5').hide();
+  });
+
+}
 
 function mbdb_admin_notice_dismiss(btnClicked) {
 	var key = jQuery(btnClicked)

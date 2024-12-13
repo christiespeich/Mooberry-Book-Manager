@@ -175,7 +175,8 @@ add_action( 'wpmu_new_blog',  'mbdb_new_blog' , 10, 6 );
 			$blogids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 			foreach ( $blogids as $blog ) {
 				switch_to_blog( $blog );
-
+				wp_clear_scheduled_hook( 'mbdb_version_5' );
+				wp_clear_scheduled_hook( 'mbdb_check_for_itunes_links');
 				delete_blog_option( $blog, 'rewrite_rules' );
 			}
 			 switch_to_blog( $old_blog );
@@ -502,6 +503,28 @@ function mbdb_admin_notice_dismiss() {
 		wp_die();
 }
 
+add_action('wp_ajax_mbdb_snooze_v5_notice', 'mbdb_dismiss_v5_notice');
+function mbdb_dismiss_v5_notice() {
+	check_ajax_referer( 'mbdb_admin_notice_dismiss_ajax_nonce', 'security' );
+	MBDB()->helper_functions->remove_admin_notice( 'mbdb_version_5' );
+
+	wp_clear_scheduled_hook( 'mbdb_version_5_notice' );
+	wp_schedule_single_event( time() + MONTH_IN_SECONDS, 'mbdb_version_5_notice' );
+}
+
+add_action('mbdb_version_5_notice', 'mbdb_add_v5_notice');
+function mbdb_add_v5_notice() {
+
+	$admins = get_users( [
+		'role'   => 'Administrator',
+		'fields' => 'ID',
+	] );
+
+	$message = '<span style="font-size:large;color:purple;">' . __( 'Mooberry Book Manager version 5 is now available. Please read', 'mooberry-book-manager' ) . ' <a href="https://www.mooberrybookmanager.com/upgrading-to-mooberry-book-manager-5/" target="_blank">' . __( 'this message', 'mooberry-book-manager' ) . '</a> ' . __( 'to learn how to upgrade.', 'mooberry-book-manager' ) . '</span><span  style="float:right"><button id="snooze_mbdb_5_notice" class="button">Snooze Notice for 30 days</button><img id="snooze_mbdb_5_progress" style="display:none" src="' . MBDB_PLUGIN_URL . '/includes/assets/ajax-loader.gif"/></span><p id="mbdb_snooze_5_notice_results" style="display:none;"></p>';
+
+	MBDB()->helper_functions->set_admin_notice( $message, 'notice', 'mbdb_version_5', false, $admins );
+
+}
 
 
 add_action( 'wp_enqueue_scripts', 'mbdb_enqueue_styles' );
