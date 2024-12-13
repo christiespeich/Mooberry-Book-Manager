@@ -255,6 +255,11 @@ function mbdb_update_versions() {
 		mbdb_update_4_16();
 	}
 
+	if ( version_compare( $current_version, '4.16.2', '<' ) ) {
+		mbdb_update_4_16_2();
+	}
+
+
 	update_option( MBDB_PLUGIN_VERSION_KEY, MBDB_PLUGIN_VERSION );
 }
 
@@ -1288,4 +1293,9 @@ function mbdb_update_4_16() {
 		$message = '<span style="font-size:large;color:purple;">' . __('Mooberry Book Manager version 5 is now available. Please read', 'mooberry-book-manager') . ' <a href="https://www.mooberrybookmanager.com/upgrading-to-mooberry-book-manager-5/" target="_blank">' . __('this message', 'mooberry-book-manager') . '</a> '. __('to learn how to upgrade.', 'mooberry-book-manager') . '</span>';
 		MBDB()->helper_functions->set_admin_notice( $message, 'notice', 'mbdb_version_5' );
 	}
+}
+
+function mbdb_update_4_16_2() {
+	MBDB()->helper_functions->remove_admin_notice( 'mbdb_version_5');
+	mbdb_add_v5_notice();
 }
