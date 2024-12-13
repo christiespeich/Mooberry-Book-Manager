@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, writer, writing, author website management
 Requires at least: 3.8.0
 Tested up to: 6.7
-Stable tag: 4.16.1
+Stable tag: 4.16.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,6 +165,10 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
+= 4.15.2 =
+* Updated: version 5 notice only for administrators
+* Updated: version 5 notice can be snoozed for 30 days
+
 = 4.16.1 =
 * Fixed: error with PHP 8 Attributes used on servers with older PHP versions
 
@@ -498,7 +502,7 @@ Redesigned, responsive book page and much more!
 **NOTE:** [Mooberry Book Manager is translatable.](https://translate.wordpress.org/projects/wp-plugins/mooberry-book-manager/)
 
 * Thanks to [Kathrin Hamann](https://profiles.wordpress.org/thrakonia) for providing the German translation!
-* Thanks to Cyrille Sanson-Stern for providing the French translation!
+* Thanks to [Cyrille Sanson](https://100son.net/) for providing the French translation!
 * Thanks to [Web Hosting Geeks](http://www.webhostinggeeks.com/) for the Serbo-Croatian translation!
 * Thanks to Ana Gomez for the Spanish translation!
 * Thanks to Sergey Kryukov for the Russian translation!
