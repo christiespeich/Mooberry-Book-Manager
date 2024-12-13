@@ -72,12 +72,13 @@ if ( !class_exists('Mooberry_Dreams_Admin_Notice_Manager')) {
 		 *
 		 * @since    1.0.0
 		 */
-		public function add_new( $message, $severity, $key, $dismissible = false ) {
+		public function add_new( $message, $severity, $key, $dismissible = false, $users = [] ) {
 			$this->notices[ $key ] = array(
 				'message'  => $message,
 				'severity' => $severity,
 				'key'      => $key,
 				'dismissible' => $dismissible,
+				'users' => $users,
 			);
 			$this->save();
 		}
@@ -111,8 +112,13 @@ if ( !class_exists('Mooberry_Dreams_Admin_Notice_Manager')) {
 				$key      = isset( $notice['key'] ) ? $notice['key'] : '';
 				$message  = isset( $notice['message'] ) ? $notice['message'] : '';
 				$dismissible = isset($notice['dismissible']) && $notice['dismissible'] ? 'is-dismissible' : '';
+				$users = isset($notice['users']) ? $notice['users'] : array();
 
-				if ( $severity == '' || $key == '' || $message == '' ) {
+				if ( $severity == '' || $key == '' || $message == '' || !is_array($users)) {
+					continue;
+				}
+
+				if ( count($users)>0 && !in_array(get_current_user_id(), $users) ) {
 					continue;
 				}
 

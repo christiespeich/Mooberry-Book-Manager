@@ -83,7 +83,7 @@ class Mooberry_Book_Manager_Helper_Functions {
 	public function is_notice_set( $key ) {
 		return MBDB()->admin_notices->get_notice($key) !== null;
 	}
-	public function set_admin_notice( $message, $type, $key ) {
+	public function set_admin_notice( $message, $type, $key, $dismissable = false, $users = array() ) {
 		// type must be one of these
 		if ( ! in_array( $type, array( 'error', 'updated', 'update-nag' ) ) ) {
 			$type = 'updated';
@@ -92,7 +92,7 @@ class Mooberry_Book_Manager_Helper_Functions {
 		/*$notices         = get_option( 'mbdb_admin_notices', array() );
 		$notices[ $key ] = array( 'message' => $message, 'type' => $type );
 		update_option( 'mbdb_admin_notices', $notices );*/
-		MBDB()->admin_notices->add_new($message, $type, $key);
+		MBDB()->admin_notices->add_new($message, $type, $key, $dismissable, $users);
 	}
 
 	public function remove_admin_notice( $key ) {
