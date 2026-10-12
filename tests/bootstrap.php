@@ -24,6 +24,7 @@ function mbm_test_reset() {
 		'meta_updates' => array(),
 	);
 	$_POST = array();
+	$GLOBALS['wpdb']->reset();
 }
 
 class Mbm_Test_Die_Exception extends Exception {}
@@ -65,19 +66,106 @@ function update_post_meta( $post_id, $key, $value ) {
 	$GLOBALS['mbm_test']['meta_updates'][] = array( $post_id, $key, $value );
 	return true;
 }
+function sanitize_title_for_query( $title ) {
+	return trim( preg_replace( '/[^a-z0-9_-]+/', '-', strtolower( $title ) ), '-' );
+}
+function wp_cache_get() {
+	return false;
+}
+function wp_cache_set() {
+	return true;
+}
+function wp_cache_flush() {
+	return true;
+}
+function get_option( $name, $default = false ) {
+	return $default;
+}
+function wp_insert_post( $args ) {
+	return isset( $GLOBALS['mbm_test']['next_post_id'] ) ? $GLOBALS['mbm_test']['next_post_id'] : 1;
+}
 function wp_die() {
 	throw new Mbm_Test_Die_Exception( 'wp_die' );
 }
 
 // ---- Plugin-level stubs ----------------------------------------------------
 
-// $wpdb: only the table names are used when building SQL.
-$wpdb                      = new stdClass();
-$wpdb->prefix              = 'wp_';
-$wpdb->posts               = 'wp_posts';
-$wpdb->terms               = 'wp_terms';
-$wpdb->term_taxonomy       = 'wp_term_taxonomy';
-$wpdb->term_relationships  = 'wp_term_relationships';
+/**
+ * Minimal $wpdb: records every statement it is given instead of running it.
+ * prepare() mimics the real thing closely enough to tell a correct placeholder
+ * from a misused one (%s is quoted and escaped, %d is cast to an integer).
+ */
+class Mbm_Test_Wpdb {
+	public $prefix             = 'wp_';
+	public $posts              = 'wp_posts';
+	public $terms              = 'wp_terms';
+	public $term_taxonomy      = 'wp_term_taxonomy';
+	public $term_relationships = 'wp_term_relationships';
+
+	/** Every statement passed to get_results/get_row/get_col/query, in order. */
+	public $queries = array();
+	/** Rows handed back by get_results(), get_row() and get_col(). */
+	public $results = array();
+	public $row     = null;
+	public $col     = array();
+	public $updates = array();
+
+	public function reset() {
+		$this->queries = array();
+		$this->results = array();
+		$this->row     = null;
+		$this->col     = array();
+		$this->updates = array();
+	}
+
+	public function prepare( $query, ...$args ) {
+		if ( count( $args ) === 1 && is_array( $args[0] ) ) {
+			$args = $args[0];
+		}
+		$i = 0;
+		return preg_replace_callback(
+			'/%[sdf%]/',
+			function ( $m ) use ( &$i, $args ) {
+				if ( $m[0] === '%%' ) {
+					return '%';
+				}
+				$value = $args[ $i++ ];
+				if ( $m[0] === '%d' ) {
+					return (string) (int) $value;
+				}
+				if ( $m[0] === '%f' ) {
+					return (string) (float) $value;
+				}
+				return "'" . addslashes( (string) $value ) . "'";
+			},
+			$query
+		);
+	}
+	public function get_results( $sql ) {
+		$this->queries[] = $sql;
+		return $this->results;
+	}
+	public function get_row( $sql ) {
+		$this->queries[] = $sql;
+		return $this->row;
+	}
+	public function get_col( $sql ) {
+		$this->queries[] = $sql;
+		return $this->col;
+	}
+	public function query( $sql ) {
+		$this->queries[] = $sql;
+		return 1;
+	}
+	public function update( $table, $data, $where ) {
+		$this->updates[] = array( $table, $data, $where );
+		return 1;
+	}
+	public function last_query() {
+		return end( $this->queries );
+	}
+}
+$wpdb = new Mbm_Test_Wpdb();
 
 require_once $plugin_dir . 'includes/class-mbm-helper-functions.php';
 
@@ -85,6 +173,7 @@ class Mbm_Test_Plugin_Stub {
 	public $helper_functions;
 	public $book_grid_CPT;
 	public $book_CPT;
+	public $books_db;
 	public function get_widget_options() {
 		return array();
 	}
@@ -100,7 +189,7 @@ class Mbm_Test_Grid_CPT_Stub {
 		);
 	}
 	public function group_by_options() {
-		return array( 'none' => 'None', 'series' => 'Series' );
+		return array( 'none' => 'None', 'series' => 'Series', 'publisher' => 'Publisher' );
 	}
 }
 class Mbm_Test_Book_CPT_Stub {
