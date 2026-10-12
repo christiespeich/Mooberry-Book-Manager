@@ -466,11 +466,18 @@ public function placeholder_dismiss() {
 public function save_book_list_order() {
 
 
-	$nonce = $_POST['security'];
+	$nonce = isset( $_POST['security'] ) ? $_POST['security'] : '';
 	// check to see if the submitted nonce matches with the
 	// generated nonce we created earlier
 	if ( ! wp_verify_nonce( $nonce, 'mbdb_book_grid_ajax_nonce' ) ) {
 		die ( );
+	}
+
+	// the nonce only proves the request came from our form. The user must also
+	// be allowed to edit the grid they're saving the order for
+	$page_id = isset( $_POST['pageID'] ) ? absint( $_POST['pageID'] ) : 0;
+	if ( $page_id == 0 || ! current_user_can( 'edit_post', $page_id ) ) {
+		wp_die();
 	}
 
 	// check for books to be blank
@@ -480,15 +487,12 @@ public function save_book_list_order() {
 
 		// parse_str($_POST['books']) creates variable $mbdb_custom_book_order_book which is an array of book ids
 		parse_str($_POST['books'], $books);
-		$book_ids = array();
-		foreach ( $books['mbdb_custom_book_order_book'] as $book ) {
 
-		    if ( (int)$book != 0 ) {
-		        $book_ids[] = $book;
-            }
-        }
-
-		update_post_meta($_POST['pageID'], '_mbdb_book_grid_order_custom', $book_ids);
+		// only positive whole numbers are book ids. These are later used in SQL.
+		if ( isset( $books['mbdb_custom_book_order_book'] ) ) {
+			$book_ids = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( $books['mbdb_custom_book_order_book'] );
+			update_post_meta( $page_id, '_mbdb_book_grid_order_custom', $book_ids );
+		}
 	}
 
 	wp_die();

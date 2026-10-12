@@ -725,6 +725,13 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				$tax_level++;
 			}
 		}
+		// the direction goes straight into the SQL so it can only be ASC or DESC
+		// (blank means "use the default"). For a custom sort, $order is the list
+		// of ids and is handled below.
+		if ( $sort != 'custom' && $order !== null && $order !== '' ) {
+			$order = ( is_string( $order ) && strtoupper( $order ) === 'DESC' ) ? 'DESC' : 'ASC';
+		}
+
 		// set the order
 		switch ($sort) {
 			case 'release_date':
@@ -736,9 +743,16 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 				$orderby .= ' CASE WHEN series_order IS NULL THEN 999 ELSE 0 END, series_order ';
 				break;
 			case 'custom':
-				$ids = implode(',', $order);
-				$orderby .= ' FIELD( b.book_id, ' . $ids . ') ';
-				$order = '';
+				// $order is the saved custom order (post meta), so don't trust it
+				$ids = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( $order );
+				if ( count( $ids ) > 0 ) {
+					$orderby .= ' FIELD( b.book_id, ' . implode( ',', $ids ) . ') ';
+					$order = '';
+				} else {
+					// nothing usable, and FIELD() with no ids is a syntax error
+					$orderby .= ' post_title ';
+					$order = '';
+				}
 				break;
 			default:
 				$orderby .= ' post_title ';
@@ -759,7 +773,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		$sql = "SELECT COUNT(DISTINCT b.book_id) as count FROM $table as b $join $where";
 
 		$row = $data = $this->run_sql( $sql );
-		$count = $row[0]->count;
+		$count = isset( $row[0]->count ) ? (int) $row[0]->count : 0;
 
 		$sql = "$select $count as total, b.*, p.post_title, p.post_name FROM  $table  as b  $join $where $orderby $order $limit_clause";
 

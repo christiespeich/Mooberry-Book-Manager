@@ -13,6 +13,31 @@
  */
 class Mooberry_Book_Manager_Helper_Functions {
 
+	/**
+	 * Reduce a list of ids to positive integers, dropping anything else.
+	 *
+	 * Use before putting ids into SQL or storing them. Only ints and digit-only
+	 * strings are kept (not floats, "1e3", "0x1", arrays, etc).
+	 *
+	 * @param mixed $ids
+	 * @return int[] re-indexed; empty if $ids is not an array
+	 */
+	public static function sanitize_id_list( $ids ) {
+		$clean = array();
+		if ( ! is_array( $ids ) ) {
+			return $clean;
+		}
+		foreach ( $ids as $id ) {
+			if ( is_string( $id ) && ctype_digit( $id ) ) {
+				$id = (int) $id;
+			}
+			if ( is_int( $id ) && $id > 0 ) {
+				$clean[] = $id;
+			}
+		}
+		return $clean;
+	}
+
 	public static function get_enqueue_version( $file ) {
 		return date( "ymd-Gis", filemtime( $file ) );
 	}
