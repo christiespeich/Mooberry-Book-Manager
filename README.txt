@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/mooberrydreams/
 Tags: book, author, writer, writing, author website management
 Requires at least: 3.8.0
 Tested up to: 6.7
-Stable tag: 4.16.2
+Stable tag: 4.16.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,7 +165,10 @@ Check out the [documentation and support page.](https://mooberry-book-manager.he
 5. Choose from four types of widgets to feature books on your sidebar.
 
 == Changelog ==
-= 4.15.2 =
+= 4.16.3 = 
+* Security fixes
+
+= 4.16.2 =
 * Updated: version 5 notice only for administrators
 * Updated: version 5 notice can be snoozed for 30 days
 
