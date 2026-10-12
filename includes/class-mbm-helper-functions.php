@@ -22,6 +22,33 @@ class Mooberry_Book_Manager_Helper_Functions {
 	 * @param mixed $ids
 	 * @return int[] re-indexed; empty if $ids is not an array
 	 */
+	/**
+	 * Column names can't go through $wpdb->prepare(), so a caller-supplied ORDER BY
+	 * has to be checked instead. Accepts one or more comma-separated column
+	 * names, each optionally table-qualified (p.post_title) and optionally
+	 * followed by ASC or DESC. Anything else returns $default.
+	 */
+	public static function sanitize_orderby( $orderby, $default ) {
+		if ( ! is_string( $orderby ) || trim( $orderby ) === '' ) {
+			return $default;
+		}
+		$terms = array();
+		foreach ( explode( ',', $orderby ) as $term ) {
+			if ( ! preg_match( '/^\s*([A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)?)(?:\s+(ASC|DESC))?\s*$/i', $term, $m ) ) {
+				return $default;
+			}
+			$terms[] = $m[1] . ( isset( $m[2] ) ? ' ' . strtoupper( $m[2] ) : '' );
+		}
+		return implode( ', ', $terms );
+	}
+
+	/**
+	 * Returns 'ASC' or 'DESC' (case-insensitive input); anything else is 'ASC'.
+	 */
+	public static function sanitize_order( $order ) {
+		return ( is_string( $order ) && strtoupper( trim( $order ) ) === 'DESC' ) ? 'DESC' : 'ASC';
+	}
+
 	public static function sanitize_id_list( $ids ) {
 		$clean = array();
 		if ( ! is_array( $ids ) ) {

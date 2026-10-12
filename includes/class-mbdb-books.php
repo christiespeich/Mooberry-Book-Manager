@@ -26,14 +26,9 @@ class MBDB_Books {
 		global $wpdb;
 		$primary_key = 'book_id';
 		
-		//	$orderby = $this->validate_orderby( $orderby );
-		if ($orderby == null) {
-			$orderby = $primary_key;
-		}
-		if ( $order == null || ( $order != 'ASC' && $order != 'DESC' ) ) {
-			$order = 'ASC';
-		}
-		$order = esc_sql( $order );
+		// both go straight into the SQL, so they're checked rather than trusted
+		$orderby = Mooberry_Book_Manager_Helper_Functions::sanitize_orderby( $orderby, $primary_key );
+		$order = Mooberry_Book_Manager_Helper_Functions::sanitize_order( $order );
 		
 		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.' . $primary_key;
 		$where = ' WHERE p.post_status = "publish" ';

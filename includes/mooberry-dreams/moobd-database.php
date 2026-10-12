@@ -68,17 +68,14 @@ abstract class MOOBD_Database {
 	}
 
 	protected function validate_orderby( $orderby ) {
-		if ( $orderby == '' || $orderby == null || ! $this->column_exists($orderby) ) {
+		if ( ! is_string( $orderby ) || $orderby == '' || ! $this->column_exists($orderby) ) {
 			$orderby = $this->primary_key;
 		}
 		return esc_sql( $orderby );
 	}
 
 	protected function validate_order( $order ) {
-		if ( $order == null || ( $order != 'ASC' && $order != 'DESC' ) ) {
-			$order = 'ASC';
-		}
-		return esc_sql( $order );
+		return Mooberry_Book_Manager_Helper_Functions::sanitize_order( $order );
 	}
 
 	protected  function run_sql( $sql, $cache_results = true ) {
@@ -127,7 +124,10 @@ abstract class MOOBD_Database {
 	protected function get_by( $column, $row_id, $cache_results = true ) {
 		global $wpdb;
 
-		$column = esc_sql( $column );
+		// the column name can't be passed through prepare() so it must be one of ours
+		if ( ! is_string( $column ) || ! $this->column_exists( $column ) ) {
+			return null;
+		}
 		/*
 		$where = '';
 		if ( $this->column_exists( 'blog_id' ) ) {
@@ -166,12 +166,19 @@ abstract class MOOBD_Database {
 			$where = "AND blog_id = $this->blog_id";
 		}
 */
-		$values = array_map('esc_sql', $values);
 		$values = array_map('sanitize_title_for_query', $values);
+
+		// nothing to look for
+		if ( count( $values ) == 0 ) {
+			return array();
+		}
 
 		$table = $this->table_name();
 		global $wpdb;
-		$sql =  $wpdb->prepare("SELECT * FROM $table WHERE $this->primary_key IN (%s)  ORDER BY %s %s;", implode(',',$values), $orderby, $order);
+		// each value gets its own placeholder; $orderby and $order were validated
+		// above and can't be placeholders because they're identifiers, not values
+		$placeholders = $this->get_in_format( $values, '%s' );
+		$sql =  $wpdb->prepare("SELECT * FROM $table WHERE $this->primary_key IN ($placeholders)  ORDER BY $orderby $order;", $values);
 
 		return $this->run_sql($sql, $cache_results);
 
@@ -190,11 +197,11 @@ abstract class MOOBD_Database {
 		}
 */
 		$table = $this->table_name();
-		$sql = $wpdb->prepare( "SELECT *
+		// $orderby and $order were validated above and can't be placeholders
+		// because they're identifiers, not values
+		$sql = "SELECT *
 						FROM $table AS t
-						ORDER BY %s %s;",
-						$orderby,
-						$order);
+						ORDER BY $orderby $order;";
 
 		return $this->run_sql($sql, $cache_results);
 	}

@@ -485,7 +485,13 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		// make sure $book_filter is an array
 		$book_filter = $book_filter === null ? array() : (!is_array($book_filter) ? array($book_filter) : $book_filter);
 
-		$book_ids = count($book_filter) > 0 ? '  b.book_id in ( ' . join(',', $book_filter) . ') and ' : '';
+		// if a filter was given but none of it is a usable id, match nothing
+		// rather than silently matching every book
+		$book_ids = '';
+		if ( count( $book_filter ) > 0 ) {
+			$filter_ids = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( $book_filter );
+			$book_ids   = '  b.book_id in ( ' . ( count( $filter_ids ) > 0 ? join( ',', $filter_ids ) : '0' ) . ') and ';
+		}
 
 		$sql = 'select DISTINCT b.*, p.post_title, p.post_name  from ' . $this->table_name() . ' as b
 		join ' . $wpdb->posts . ' as p on b.book_id = p.ID
@@ -493,8 +499,8 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		b.release_date in
 		   (
 			select max(release_date) as release_date
-			from wp_mbdb_books as b
-			join wp_posts as p on b.book_id = p.ID
+			from ' . $this->table_name() . ' as b
+			join ' . $wpdb->posts . ' as p on b.book_id = p.ID
 			and p.post_status = "publish"
 			where release_date <= "' . $todayYmd . '"
 			)';
@@ -527,13 +533,17 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 		global $wpdb;
 		$table = $this->table_name();
 
+		// limit and offset go straight into the SQL so only whole numbers are allowed.
+		// An offset without a limit is meaningless, so it's ignored.
 		$limit_clause = '';
-		if ( $limit != null && (int) $limit == $limit ) {
+		$limit_ids    = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( array( $limit ) );
+		if ( count( $limit_ids ) > 0 ) {
 			$limit_clause = ' LIMIT ';
-			if ( $offset != null && (int) $offset ) {
-					$limit_clause .= $offset . ', ';
+			$offset_ids   = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( array( $offset ) );
+			if ( count( $offset_ids ) > 0 ) {
+				$limit_clause .= $offset_ids[0] . ', ';
 			}
-			$limit_clause .=  $limit . ' ';
+			$limit_clause .= $limit_ids[0] . ' ';
 		}
 
 		// validate inputs
@@ -693,7 +703,7 @@ class MBDB_DB_Books extends MBDB_DB_CPT {
 								} else {
 									$name = '';
 								}
-								$select .= '"' . $name . '" as name' . $tax_level . ', ';
+								$select .= '"' . esc_sql( $name ) . '" as name' . $tax_level . ', ';
 								$where .= ' AND (b.publisher_id ="' . esc_sql($tax_ids) . '") ';
 
 							}

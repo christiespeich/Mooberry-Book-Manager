@@ -14,11 +14,9 @@ abstract class MBDB_CPT {
 		
 		global $wpdb;
 		
-		//	$orderby = $this->validate_orderby( $orderby );
-		if ($orderby == null) {
-			$orderby = 'p.id'; //$this->primary_key;
-		}
-		//$order = $this->db_object->validate_order( $order );
+		// both go straight into the SQL, so they're checked rather than trusted
+		$orderby = Mooberry_Book_Manager_Helper_Functions::sanitize_orderby( $orderby, 'p.id' );
+		$order = Mooberry_Book_Manager_Helper_Functions::sanitize_order( $order );
 		
 		$where = '';
 		$join = ' JOIN ' . $wpdb->posts . ' p ON p.id = t.author_id';

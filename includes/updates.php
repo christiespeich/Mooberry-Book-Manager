@@ -773,6 +773,12 @@ function mbdb_upgrade_to_3_1_1() {
 
 }
 
+// finds the book grids already created for a page, so the 3.4 upgrade doesn't import it twice
+function mbdb_get_imported_book_grids( $title ) {
+	global $wpdb;
+	return $wpdb->get_results( $wpdb->prepare( "select * from {$wpdb->prefix}posts where post_type='mbdb_book_grid' and post_status='publish' and post_name=%s", $title ) );
+}
+
 function mbdb_upgrade_to_3_4() {
 
 	// grab new roles for Book Grids CPT
@@ -807,7 +813,7 @@ function mbdb_upgrade_to_3_4() {
 
 		$title = sanitize_title( __( 'Imported Book Grid: ', 'mooberry-book-manager' ) . $page->post_name );
 
-		$book_grid_exists = $wpdb->get_results( "select * from {$wpdb->prefix}posts where post_type='mbdb_book_grid' and post_status='publish' and post_name='" . $title . "'" );
+		$book_grid_exists = mbdb_get_imported_book_grids( $title );
 
 		/*$book_grid_exists = get_posts(array(
 								'post_type' => 'mbdb_book_grid',

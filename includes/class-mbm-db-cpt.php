@@ -57,6 +57,13 @@ abstract class MBDB_DB_CPT extends MOOBD_Database implements iMooberry_Book_Mana
 	public function get($id, $cache_results = true) {
 		global $wpdb;
 
+				// $id goes straight into the SQL so it has to be a whole number
+				$ids = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( array( $id ) );
+				if ( count( $ids ) == 0 ) {
+					return null;
+				}
+				$id = $ids[0];
+
 				$table = $this->table_name();
 
 				$sql =  "SELECT *

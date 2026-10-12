@@ -56,8 +56,14 @@ class MBDB_Publisher_Update_Fix_Process extends WP_Background_Process {
 			) );
 		}
 
+		// wp_insert_post() returns 0 or a WP_Error on failure
+		$publisher_ids = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( array( $publisher_id ) );
+		if ( count( $publisher_ids ) == 0 ) {
+			return;
+		}
+
 		global $wpdb;
-		$sql = 'update ' . $wpdb->prefix . 'mbdb_books set publisher_id="' . $publisher_id . '" where book_id=' . $book->id;
+		$sql = $wpdb->prepare( 'update ' . $wpdb->prefix . 'mbdb_books set publisher_id = %s where book_id = %d', $publisher_ids[0], $book->id );
 		$wpdb->query( $sql );
 	}
 
@@ -67,10 +73,13 @@ class MBDB_Publisher_Update_Fix_Process extends WP_Background_Process {
 
 		// delete duplicate publishers
 		$sql = "select min(ID) from $wpdb->posts  WHERE post_type = 'mbdb_publisher' group by post_title";
-		$ids = $wpdb->get_col( $sql );
+		$ids = Mooberry_Book_Manager_Helper_Functions::sanitize_id_list( $wpdb->get_col( $sql ) );
 
-		$sql = "DELETE FROM $wpdb->posts   WHERE post_type = 'mbdb_publisher' and ID not in ( " . join( ',', $ids ) . ")";
-		$wpdb->query( $sql );
+		// with no ids to keep there is nothing valid to compare against
+		if ( count( $ids ) > 0 ) {
+			$sql = "DELETE FROM $wpdb->posts   WHERE post_type = 'mbdb_publisher' and ID not in ( " . join( ',', $ids ) . ")";
+			$wpdb->query( $sql );
+		}
 
 
 		mbdb_remove_admin_notice( 'mbdb_update_publishers' );
